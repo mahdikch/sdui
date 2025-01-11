@@ -1,0 +1,143 @@
+{
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "items": [
+            {
+              "type": "text",
+              "text": "صفحه اول",
+              "font_size": 20,
+              "width": {
+                "type": "wrap_content",
+                "constrained": true
+              },
+              "alignment_horizontal": "center",
+              "alignment_vertical": "top",
+              "margins": {
+                "top": 67
+              }
+            },
+            {
+              "text": "دریافت صفحه دوم",
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#000"
+                }
+              ],
+              "text_color": "#fff",
+              "corners": 4,
+              "type": "_template_button",
+              "width": {
+                "type": "fixed",
+                "value": 146
+              },
+              "alignment_horizontal": "center",
+              "alignment_vertical": "top",
+              "margins": {
+                "top": 260
+              },
+              "text_alignment_horizontal": "center",
+              "actions": [
+                {
+                  "log_id": "action_id",
+                  "url": "\"div-action://load_screen?screen=second\""
+                }
+              ]
+            },
+            {
+              "text": "صفحه تنظیمات",
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#000"
+                }
+              ],
+              "text_color": "#fff",
+              "corners": 4,
+              "type": "_template_button",
+              "width": {
+                "type": "fixed",
+                "value": 146
+              },
+              "alignment_horizontal": "left",
+              "alignment_vertical": "top",
+              "margins": {
+                "left": 107,
+                "top": 339
+              },
+              "text_alignment_horizontal": "center",
+              "actions": [
+                {
+                  "log_id": "action_id",
+                  "url": "\"div-action://load_screen?screen=setting\""
+                }
+              ]
+            },
+            {
+              "text": "دریافت فرم تست",
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#000"
+                }
+              ],
+              "text_color": "#fff",
+              "corners": 4,
+              "type": "_template_button",
+              "width": {
+                "type": "fixed",
+                "value": 146
+              },
+              "alignment_horizontal": "center",
+              "alignment_vertical": "top",
+              "margins": {
+                "top": 191
+              },
+              "text_alignment_horizontal": "center",
+              "actions": [
+                {
+                  "log_id": "action_id",
+                  "url": "\"div-action://load_screen?screen=test\""
+                }
+              ]
+            }
+          ],
+          "background": [
+            {
+              "color": "#F1EBDC",
+              "type": "solid"
+            }
+          ],
+          "height": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "type": "container"
+        }
+      }
+    ]
+  },
+  "templates": {
+    "_template_button": {
+      "type": "text",
+      "text_alignment_horizontal": "center",
+      "text_alignment_vertical": "center",
+      "border": {
+        "$corner_radius": "corners"
+      },
+      "paddings": {
+        "bottom": 24,
+        "left": 28,
+        "right": 28,
+        "top": 22
+      },
+      "width": {
+        "type": "wrap_content"
+      }
+    }
+  }
+}

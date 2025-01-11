@@ -1,0 +1,139 @@
+{
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "match_parent"
+              },
+              "visibility_actions": [
+                {
+                  "log_id": "call_service",
+                  "url": "div-action://call_service?path=getScreen&screenName=ph/splash&ph/token=empty&currentScreen=empty",
+                  "visibility_duration": 0
+                }
+
+              ]
+            }
+
+          ],
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "height": {
+            "type": "match_parent"
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "content_alignment_vertical": "center",
+          "content_alignment_horizontal": "center"
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "string",
+        "name": "text___1",
+        "value": "کاربر گرامی لطفا جهت ورود به سامانه شماره پرسنلی و رمز عبور خود را وارد کنید."
+      },
+      {
+        "type": "string",
+        "name": "username",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "password",
+        "value": ""
+      },  {
+        "type": "string",
+        "name": "captcha",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "text___2",
+        "value": "شماره پرسنلی"
+      },
+      {
+        "type": "string",
+        "name": "text___3",
+        "value": "رمز عبور"
+      },
+      {
+        "type": "string",
+        "name": "text___4",
+        "value": "۳۴"
+      },
+      {
+        "type": "string",
+        "name": "text___5",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___6",
+        "value": "۲۰"
+      },
+      {
+        "type": "string",
+        "name": "text___7",
+        "value": "کد امنیتی"
+      },
+      {
+        "type": "string",
+        "name": "text___8",
+        "value": "ورود"
+      },
+      {
+        "type": "string",
+        "name": "text___9",
+        "value": "نسخه ۱.۰.۹"
+      },
+      {
+        "type": "string",
+        "name": "captcha_image",
+        "value": "divkit-asset://naja.png"
+      },
+      {
+        "name": "is_masked",
+        "type": "boolean",
+        "value": true
+      }
+    ]
+  },
+  "templates": {
+    "btn": {
+      "type": "text",
+      "text_color": "#FFFFFF",
+      "text_alignment_horizontal": "center",
+      "text_alignment_vertical": "center",
+      "font_size": 24,
+      "line_height": 28,
+      "border": {
+        "corner_radius": 36
+      },
+      "action_animation": {
+        "name": "scale",
+        "start_value": 1,
+        "end_value": 0.95,
+        "duration": 300,
+        "interpolator": "ease_in_out"
+      }
+    }
+  }
+}

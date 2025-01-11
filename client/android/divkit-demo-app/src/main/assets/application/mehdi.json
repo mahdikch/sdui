@@ -1,0 +1,310 @@
+{
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "match_parent"
+          },
+          "margins": {
+            "top": 40,
+            "bottom": 10,
+            "left": 20,
+            "right": 20,
+            "start": 20,
+            "end": 20
+          },
+          "items": [
+            {
+              "type": "text",
+              "text": "صفحه اول",
+              "alignment_horizontal": "center",
+              "font_size": 18,
+              "line_height": 24,
+              "font_weight": "regular",
+              "text_alignment_vertical": "center",
+              "text_alignment_horizontal": "center",
+              "text_color": "#000000",
+              "margins": {
+                "top": 24,
+                "bottom": 40
+              }
+            },
+            {
+              "type": "container",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 100
+              },
+              "items": [
+                {
+                  "type": "bubble_text",
+                  "text": "فرم تست",
+                  "background": [
+                    {
+                      "color": "#000000",
+                      "type": "solid"
+                    }
+                  ],
+                  "height": {
+                    "type": "fixed",
+                    "value": 80
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "margins": {
+                    "top": 10
+                  },
+                  "border": {
+                    "corner_radius": 85
+                  },
+                  "actions": [
+                    {
+                      "log_id": "open_test",
+                      "url": "div-action://load_screen?screen=login"
+                    }
+                  ]
+                },
+                {
+                  "type": "bubble_text",
+                  "text": "صفحه دوم",
+                  "background": [
+                    {
+                      "color": "#000000",
+                      "type": "solid"
+                    }
+                  ],
+                  "height": {
+                    "type": "fixed",
+                    "value": 80
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "margins": {
+                    "top": 10
+                  },
+                  "border": {
+                    "corner_radius": 85
+                  },
+                  "actions": [
+                    {
+                      "log_id": "open_settings",
+                      "url": "div-action://load_screen?screen=second"
+                    }
+                  ]
+                }
+              ],
+              "orientation": "horizontal"
+            },
+            {
+              "type": "container",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 100
+              },
+              "items": [
+                {
+                  "type": "bubble_text",
+                  "text": "تنظیمات",
+                  "background": [
+                    {
+                      "color": "#000000",
+                      "type": "solid"
+                    }
+                  ],
+                  "height": {
+                    "type": "fixed",
+                    "value": 80
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "margins": {
+                    "top": 10
+                  },
+                  "border": {
+                    "corner_radius": 85
+                  },
+                  "actions": [
+                    {
+                      "log_id": "open_settings",
+                      "url": "div-action://load_screen?screen=settings"
+                    }
+                  ]
+                },
+                {
+                  "type": "bubble_text",
+                  "text": "منو",
+                  "background": [
+                    {
+                      "color": "#000000",
+                      "type": "solid"
+                    }
+                  ],
+                  "height": {
+                    "type": "fixed",
+                    "value": 80
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "margins": {
+                    "top": 10
+                  },
+                  "border": {
+                    "corner_radius": 85
+                  },
+                  "actions": [
+                    {
+                      "log_id": "open_settings",
+                      "url": "div-action://load_screen?screen=menu"
+                    }
+                  ]
+                }
+              ],
+              "orientation": "horizontal"
+            },
+            {
+              "type": "container",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 100
+              },
+              "items": [
+                {
+                  "type": "bubble_text",
+                  "text": "توست",
+                  "background": [
+                    {
+                      "color": "#000000",
+                      "type": "solid"
+                    }
+                  ],
+                  "height": {
+                    "type": "fixed",
+                    "value": 80
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "margins": {
+                    "top": 10
+                  },
+                  "border": {
+                    "corner_radius": 85
+                  },
+                  "actions": [
+                    {
+                      "log_id": "show_toast",
+                      "url": "div-action://show_toast?massage=@{toast}"
+                    }
+                  ]
+                },
+                {
+                  "type": "bubble_text",
+                  "text": "دیالوگ",
+                  "background": [
+                    {
+                      "color": "#000000",
+                      "type": "solid"
+                    }
+                  ],
+                  "height": {
+                    "type": "fixed",
+                    "value": 80
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "margins": {
+                    "top": 10
+                  },
+                  "border": {
+                    "corner_radius": 85
+                  },
+                  "actions": [
+                    {
+                      "log_id": "show_dialog",
+                      "url": "div-action://show_dialog?title=@{toast}"
+                    }
+                  ]
+                }
+              ],
+              "orientation": "horizontal"
+            },
+            {
+              "type": "custom",
+              "id": "new_custom_card_2",
+              "custom_type": "new_custom_card_2"
+            }
+          ]
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "string",
+        "name": "night_mode",
+        "value": "DAY"
+      },
+      {
+        "type": "string",
+        "name": "app_version",
+        "value": "DivKit"
+      },
+      {
+        "type": "integer",
+        "name": "image_loader",
+        "value": 0
+      },
+      {
+        "type": "integer",
+        "name": "prev_image_loader",
+        "value": 0
+      },
+      {
+        "type": "string",
+        "name": "toast",
+        "value": "فرم تست"
+      }
+    ]
+  },
+  "templates": {
+    "bubble_text": {
+      "type": "text",
+      "text_color": "#FFFFFF",
+      "text_alignment_horizontal": "center",
+      "text_alignment_vertical": "center",
+      "font_size": 24,
+      "line_height": 28,
+      "border": {
+        "corner_radius": 36
+      },
+      "action_animation": {
+        "name": "scale",
+        "start_value": 1,
+        "end_value": 0.95,
+        "duration": 300,
+        "interpolator": "ease_in_out"
+      }
+    }
+  }
+}

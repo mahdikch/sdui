@@ -1,0 +1,189 @@
+{
+  "templates": {
+    "settings_switch_off": {
+      "type": "container",
+      "width": {
+        "type": "fixed",
+        "value": 40
+      },
+      "height": {
+        "type": "fixed",
+        "value": 22
+      },
+      "content_alignment_horizontal": "left",
+      "content_alignment_vertical": "center",
+      "items": [
+        {
+          "type": "text",
+          "text": " ",
+          "width": {
+            "type": "fixed",
+            "value": 16
+          },
+          "height": {
+            "type": "fixed",
+            "value": 16
+          },
+          "border": {
+            "corner_radius": 8
+          },
+          "margins": {
+            "bottom": 0,
+            "left": 4,
+            "right": 4,
+            "top": 0,
+            "unit": "dp"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ]
+        }
+      ],
+      "border": {
+        "corner_radius": 16
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#3e000000"
+        }
+      ]
+    },
+    "settings_switch_on": {
+      "type": "settings_switch_off",
+      "content_alignment_horizontal": "right",
+      "content_alignment_vertical": "center",
+      "background": [
+        {
+          "type": "solid",
+          "color": "#FFCC00"
+        }
+      ]
+    }
+  },
+  "card": {
+    "log_id": "test",
+    "variables": [
+      {
+        "name": "secondary_thumb",
+        "type": "boolean",
+        "value": false
+      },
+      {
+        "name": "invert_secondary_thumb",
+        "type": "boolean",
+        "value": false
+      },
+      {
+        "name": "loc",
+        "type": "string",
+        "value": "right"
+      },
+      {
+        "name": "on_status",
+        "type": "boolean",
+        "value": true
+      }
+    ],
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "margins": {
+            "top": 8,
+            "bottom": 8,
+            "left": 8,
+            "right": 8
+          },
+          "items": [
+
+            {
+              "margins": {
+                "top": 15,
+                "unit": "dp"
+              },
+              "type": "container",
+              "orientation": "horizontal",
+              "width": {
+                "type": "match_parent"
+              },
+              "items": [
+                {
+                  "type": "container",
+                  "items": [{
+                    "type": "container",
+                    "width": {
+                      "type": "fixed",
+                      "value": 40
+                    },
+                    "height": {
+                      "type": "fixed",
+                      "value": 22
+                    },
+                    "content_alignment_horizontal": "@{loc}",
+                    "content_alignment_vertical": "center",
+                    "items": [
+                      {
+                        "type": "text",
+                        "text": " ",
+                        "width": {
+                          "type": "fixed",
+                          "value": 16
+                        },
+                        "height": {
+                          "type": "fixed",
+                          "value": 16
+                        },
+                        "border": {
+                          "corner_radius": 8
+                        },
+                        "margins": {
+                          "bottom": 0,
+                          "left": 4,
+                          "right": 4,
+                          "top": 0,
+                          "unit": "dp"
+                        },
+                        "background": [
+                          {
+                            "type": "solid",
+                            "color": "#ffffff"
+                          }
+                        ]
+                      }
+                    ],
+                    "border": {
+                      "corner_radius": 16
+                    },
+                    "background": [
+                      {
+                        "type": "solid",
+                        "color": "#3e000000"
+                      }
+                    ]
+                  }
+
+                  ],
+                  "actions": [
+                    {
+                      "log_id": "change_loc",
+                      "url": "div-action://set_variable?name=on_status&value=@{on_status ? 'false' : 'true'}"
+                    },
+                    {
+                      "log_id": "change_on_status",
+                      "url": "div-action://set_variable?name=loc&value=@{on_status ? 'right' : 'left'}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

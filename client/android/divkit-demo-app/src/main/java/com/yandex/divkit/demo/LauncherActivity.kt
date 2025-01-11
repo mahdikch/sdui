@@ -27,24 +27,24 @@ class LauncherActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val path = when (resources.configuration.orientation) {
-            Configuration.ORIENTATION_PORTRAIT -> "application/menu.json"
+            Configuration.ORIENTATION_PORTRAIT -> "application/test.json"
             Configuration.ORIENTATION_LANDSCAPE -> "application/menu-land.json"
             else -> "application/menu.json"
         }
-        val div = UIDiv2ViewCreator(this).createDiv2View(
-            this,
-            path,
-            binding.root,
-            ScenarioLogDelegate.Stub
-        )
+//        val div = UIDiv2ViewCreator(this).createDiv2View(
+//            this,
+//            path,
+//            binding.root,
+//            ScenarioLogDelegate.Stub
+//        )
 
-        div.layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.MATCH_PARENT
-        ).apply {
-            weight = 1F
-        }
+//        div.layoutParams = LinearLayout.LayoutParams(
+//            LinearLayout.LayoutParams.MATCH_PARENT,
+//            LinearLayout.LayoutParams.MATCH_PARENT
+//        ).apply {
+//            weight = 1F
+//        }
 
-        binding.root.addView(div)
+//        binding.root.addView(div)
     }
 }

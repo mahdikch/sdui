@@ -23,6 +23,7 @@ import com.yandex.divkit.demo.utils.DivkitDemoUriHandler
 import com.yandex.divkit.demo.utils.lifecycleOwner
 import com.yandex.divkit.regression.Div2ViewCreator
 import com.yandex.divkit.regression.ScenarioLogDelegate
+import org.json.JSONObject
 import java.util.concurrent.Executors
 
 class RegressionDiv2ViewCreator(context: Context) : Div2ViewCreator {
@@ -75,5 +76,14 @@ class RegressionDiv2ViewCreator(context: Context) : Div2ViewCreator {
             }
             else -> Div2ViewFactory(divContext).createView(divJson)
         }
+    }
+
+    override fun createDiv2ViewMehdi(
+        activity: Activity,
+        divView: JSONObject,
+        parent: ViewGroup,
+        logDelegate: ScenarioLogDelegate
+    ): Div2View {
+        TODO("Not yet implemented")
     }
 }

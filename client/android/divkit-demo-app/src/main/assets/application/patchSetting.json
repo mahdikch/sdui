@@ -1,0 +1,1092 @@
+{
+
+  "patch": {
+    "mode": "partial",
+    "changes": [
+      {
+        "id": "page",
+        "items": [
+          {
+            "id": "page",
+            "type": "container",
+            "items": [
+              {
+                "type": "container",
+                "items": [
+                  {
+                    "type": "container",
+                    "items": [
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "image",
+                            "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/c5ae7058-363b-481f-ab9e-e3ffc1cc7235",
+                            "height": {
+                              "type": "fixed",
+                              "value": 11
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 5
+                            }
+                          },
+                          {
+                            "type": "image",
+                            "image_url": "empty://",
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "width": {
+                              "type": "match_parent"
+                            }
+                          }
+                        ],
+                        "height": {
+                          "type": "fixed",
+                          "value": 16
+                        },
+                        "width": {
+                          "type": "fixed",
+                          "value": 16
+                        },
+                        "orientation": "overlap",
+                        "content_alignment_vertical": "center",
+                        "content_alignment_horizontal": "center",
+                        "alignment_horizontal": "left",
+                        "alignment_vertical": "center",
+                        "margins": {
+                          "left": 16
+                        }
+                      },
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "text",
+                            "text": "تغییر کلمه عبور",
+                            "font_size": 12,
+                            "font_weight": "regular",
+                            "letter_spacing": 0,
+                            "text_color": "#252424",
+                            "text_alignment_horizontal": "right",
+                            "text_alignment_vertical": "top",
+                            "width": {
+                              "type": "wrap_content"
+                            },
+                            "height": {
+                              "type": "wrap_content"
+                            }
+                          },
+                          {
+                            "type": "container",
+                            "items": [
+                              {
+                                "type": "image",
+                                "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/fb8d55c9-b36a-4322-92b6-fb2e29a5e7a8",
+                                "height": {
+                                  "type": "fixed",
+                                  "value": 20
+                                },
+                                "width": {
+                                  "type": "fixed",
+                                  "value": 20
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/c6a21ef8-7b71-4f2e-a73f-eb0a26e869f0",
+                                "height": {
+                                  "type": "fixed",
+                                  "value": 10
+                                },
+                                "width": {
+                                  "type": "fixed",
+                                  "value": 10
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "image_url": "empty://",
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                }
+                              }
+                            ],
+                            "height": {
+                              "type": "fixed",
+                              "value": 24
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 24
+                            },
+                            "orientation": "overlap",
+                            "content_alignment_vertical": "center",
+                            "content_alignment_horizontal": "center",
+                            "margins": {
+                              "left": 4
+                            }
+                          }
+                        ],
+                        "height": {
+                          "type": "wrap_content"
+                        },
+                        "width": {
+                          "type": "wrap_content"
+                        },
+                        "orientation": "horizontal",
+                        "content_alignment_horizontal": "right",
+                        "content_alignment_vertical": "center",
+                        "alignment_horizontal": "right",
+                        "alignment_vertical": "center",
+                        "margins": {
+                          "right": 16
+                        }
+                      }
+                    ],
+                    "height": {
+                      "type": "fixed",
+                      "value": 40
+                    },
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "orientation": "overlap",
+                    "content_alignment_horizontal": "center",
+                    "content_alignment_vertical": "center",
+                    "alignment_horizontal": "left",
+                    "alignment_vertical": "top"
+                  },
+                  {
+                    "type": "separator",
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "height": {
+                      "type": "fixed",
+                      "value": 10
+                    },
+                    "margins": {
+                      "right": 16,
+                      "left": 16
+                    }
+                  },
+                  {
+                    "type": "container",
+                    "items": [
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "image",
+                            "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/efbf5f34-417f-4198-8d46-f5d82389df45",
+                            "height": {
+                              "type": "fixed",
+                              "value": 11
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 5
+                            }
+                          },
+                          {
+                            "type": "image",
+                            "image_url": "empty://",
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "width": {
+                              "type": "match_parent"
+                            }
+                          }
+                        ],
+                        "height": {
+                          "type": "fixed",
+                          "value": 16
+                        },
+                        "width": {
+                          "type": "fixed",
+                          "value": 16
+                        },
+                        "orientation": "overlap",
+                        "content_alignment_vertical": "center",
+                        "content_alignment_horizontal": "center",
+                        "alignment_horizontal": "left",
+                        "alignment_vertical": "center",
+                        "margins": {
+                          "left": 16
+                        }
+                      },
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "text",
+                            "text": "بروز رسانی نسخه",
+                            "font_size": 12,
+                            "font_weight": "regular",
+                            "letter_spacing": 0,
+                            "text_color": "#252424",
+                            "text_alignment_horizontal": "right",
+                            "text_alignment_vertical": "top",
+                            "width": {
+                              "type": "wrap_content"
+                            },
+                            "height": {
+                              "type": "wrap_content"
+                            }
+                          },
+                          {
+                            "type": "container",
+                            "items": [
+                              {
+                                "type": "image",
+                                "image_url": "empty://",
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/0d36d748-10b1-447b-b637-9f072dd62fc5",
+                                "height": {
+                                  "type": "fixed",
+                                  "value": 20
+                                },
+                                "width": {
+                                  "type": "fixed",
+                                  "value": 20
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/14635b5d-4449-45c4-ad76-fa98a8286993",
+                                "height": {
+                                  "type": "fixed",
+                                  "value": 10
+                                },
+                                "width": {
+                                  "type": "fixed",
+                                  "value": 7
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/1e7befa5-b706-4254-bfb5-75822e0172b0",
+                                "height": {
+                                  "type": "fixed",
+                                  "value": 2
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                }
+                              }
+                            ],
+                            "height": {
+                              "type": "fixed",
+                              "value": 24
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 24
+                            },
+                            "orientation": "overlap",
+                            "content_alignment_vertical": "center",
+                            "content_alignment_horizontal": "center",
+                            "margins": {
+                              "left": 4
+                            }
+                          }
+                        ],
+                        "height": {
+                          "type": "wrap_content"
+                        },
+                        "width": {
+                          "type": "wrap_content"
+                        },
+                        "orientation": "horizontal",
+                        "content_alignment_horizontal": "right",
+                        "content_alignment_vertical": "center",
+                        "alignment_horizontal": "right",
+                        "alignment_vertical": "center",
+                        "margins": {
+                          "right": 16
+                        }
+                      }
+                    ],
+                    "height": {
+                      "type": "fixed",
+                      "value": 40
+                    },
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "orientation": "overlap",
+                    "content_alignment_horizontal": "left",
+                    "content_alignment_vertical": "center",
+                    "alignment_horizontal": "left",
+                    "alignment_vertical": "top"
+                  },
+                  {
+                    "type": "separator",
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "height": {
+                      "type": "fixed",
+                      "value": 10
+                    },
+                    "margins": {
+                      "right": 16,
+                      "left": 16
+                    }
+                  },
+                  {
+                    "type": "container",
+                    "items": [
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "image",
+                            "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/cfbe88ac-32b5-4ce6-91d8-51dd1455afb3",
+                            "height": {
+                              "type": "fixed",
+                              "value": 11
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 5
+                            }
+                          },
+                          {
+                            "type": "image",
+                            "image_url": "empty://",
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "width": {
+                              "type": "match_parent"
+                            }
+                          }
+                        ],
+                        "height": {
+                          "type": "fixed",
+                          "value": 16
+                        },
+                        "width": {
+                          "type": "fixed",
+                          "value": 16
+                        },
+                        "orientation": "overlap",
+                        "content_alignment_vertical": "center",
+                        "content_alignment_horizontal": "center",
+                        "margins": {
+                          "left": 16
+                        }
+                      },
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "text",
+                            "text": "پشتیبانی",
+                            "font_size": 12,
+                            "font_weight": "regular",
+                            "letter_spacing": 0,
+                            "text_color": "#252424",
+                            "text_alignment_horizontal": "right",
+                            "text_alignment_vertical": "top",
+                            "width": {
+                              "type": "wrap_content"
+                            },
+                            "height": {
+                              "type": "wrap_content"
+                            }
+                          },
+                          {
+                            "type": "container",
+                            "items": [
+                              {
+                                "type": "image",
+                                "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/d8af4f33-0f07-40be-9c8b-fcf29ffad0a0",
+                                "height": {
+                                  "type": "fixed",
+                                  "value": 9
+                                },
+                                "width": {
+                                  "type": "fixed",
+                                  "value": 10
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/7a873a13-1a52-435c-a3e6-4d4e4507451c",
+                                "height": {
+                                  "type": "fixed",
+                                  "value": 9
+                                },
+                                "width": {
+                                  "type": "fixed",
+                                  "value": 14
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/6a3fe581-4787-411b-a694-b51097798495",
+                                "height": {
+                                  "type": "fixed",
+                                  "value": 7
+                                },
+                                "width": {
+                                  "type": "fixed",
+                                  "value": 6
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/f887f63c-3dde-4be1-b408-ea87244fd42f",
+                                "height": {
+                                  "type": "fixed",
+                                  "value": 7
+                                },
+                                "width": {
+                                  "type": "fixed",
+                                  "value": 8
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "image_url": "empty://",
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                }
+                              }
+                            ],
+                            "height": {
+                              "type": "fixed",
+                              "value": 24
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 24
+                            },
+                            "orientation": "overlap",
+                            "content_alignment_vertical": "center",
+                            "content_alignment_horizontal": "center",
+                            "margins": {
+                              "left": 4
+                            }
+                          }
+                        ],
+                        "height": {
+                          "type": "wrap_content"
+                        },
+                        "width": {
+                          "type": "wrap_content"
+                        },
+                        "orientation": "horizontal",
+                        "content_alignment_horizontal": "right",
+                        "content_alignment_vertical": "center",
+                        "alignment_horizontal": "right",
+                        "alignment_vertical": "center",
+                        "margins": {
+                          "right": 16
+                        }
+                      }
+                    ],
+                    "height": {
+                      "type": "fixed",
+                      "value": 40
+                    },
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "orientation": "overlap",
+                    "content_alignment_horizontal": "left",
+                    "content_alignment_vertical": "center",
+                    "alignment_horizontal": "left",
+                    "alignment_vertical": "bottom"
+                  },
+                  {
+                    "type": "separator",
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "height": {
+                      "type": "fixed",
+                      "value": 10
+                    },
+                    "margins": {
+                      "right": 16,
+                      "left": 16
+                    }
+                  },
+                  {
+                    "type": "container",
+                    "items": [
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "image",
+                            "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/a4b47d5b-ee19-4497-88ce-c51ac8208786",
+                            "height": {
+                              "type": "fixed",
+                              "value": 11
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 5
+                            }
+                          },
+                          {
+                            "type": "image",
+                            "image_url": "empty://",
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "width": {
+                              "type": "match_parent"
+                            }
+                          }
+                        ],
+                        "height": {
+                          "type": "fixed",
+                          "value": 16
+                        },
+                        "width": {
+                          "type": "fixed",
+                          "value": 16
+                        },
+                        "orientation": "overlap",
+                        "content_alignment_vertical": "center",
+                        "content_alignment_horizontal": "center",
+                        "margins": {
+                          "left": 16
+                        }
+                      },
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "text",
+                            "text": "رمز ورود به برنامه",
+                            "font_size": 12,
+                            "font_weight": "regular",
+                            "letter_spacing": 0,
+                            "text_color": "#252424",
+                            "text_alignment_horizontal": "right",
+                            "text_alignment_vertical": "top",
+                            "width": {
+                              "type": "wrap_content"
+                            },
+                            "height": {
+                              "type": "fixed",
+                              "value": 15
+                            }
+                          },
+                          {
+                            "type": "container",
+                            "items": [
+                              {
+                                "type": "image",
+                                "image_url": "empty://",
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/1022037c-ef56-49a4-89f8-91d6b4cc670c",
+                                "height": {
+                                  "type": "fixed",
+                                  "value": 20
+                                },
+                                "width": {
+                                  "type": "fixed",
+                                  "value": 18
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/506edcf7-1b90-45c5-8714-515f2cd29c28",
+                                "height": {
+                                  "type": "fixed",
+                                  "value": 8
+                                },
+                                "width": {
+                                  "type": "fixed",
+                                  "value": 5
+                                }
+                              }
+                            ],
+                            "height": {
+                              "type": "fixed",
+                              "value": 24
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 24
+                            },
+                            "orientation": "overlap",
+                            "content_alignment_vertical": "center",
+                            "content_alignment_horizontal": "center",
+                            "margins": {
+                              "left": 4
+                            }
+                          }
+                        ],
+                        "height": {
+                          "type": "wrap_content"
+                        },
+                        "width": {
+                          "type": "wrap_content"
+                        },
+                        "orientation": "horizontal",
+                        "content_alignment_horizontal": "right",
+                        "content_alignment_vertical": "center",
+                        "alignment_horizontal": "right",
+                        "alignment_vertical": "center",
+                        "margins": {
+                          "right": 16
+                        }
+                      }
+                    ],
+                    "height": {
+                      "type": "fixed",
+                      "value": 40
+                    },
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "orientation": "overlap",
+                    "content_alignment_horizontal": "left",
+                    "content_alignment_vertical": "center",
+                    "alignment_horizontal": "left",
+                    "alignment_vertical": "bottom",
+                    "margins": {
+                      "bottom": 4
+                    }
+                  }
+                ],
+                "background": [
+                  {
+                    "type": "solid",
+                    "color": "#ffffff"
+                  }
+                ],
+                "border": {
+                  "corners_radius": {
+                    "top-left": 8,
+                    "top-right": 8,
+                    "bottom-left": 8,
+                    "bottom-right": 8
+                  },
+                  "stroke": {
+                    "color": "#c8d0e4",
+                    "width": 1
+                  }
+                },
+                "height": {
+                  "type": "wrap_content"
+                },
+                "width": {
+                  "type": "match_parent"
+                },
+                "orientation": "vertical",
+                "margins": {
+                  "top": 12,
+                  "right": 12,
+                  "left": 12
+                }
+              },
+              {
+                "type": "container",
+                "items": [
+                  {
+                    "type": "container",
+                    "items": [
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "image",
+                            "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/86cc4b49-f931-42ef-be0e-38c9f615fbc2",
+                            "height": {
+                              "type": "fixed",
+                              "value": 11
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 5
+                            }
+                          },
+                          {
+                            "type": "image",
+                            "image_url": "empty://",
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "width": {
+                              "type": "match_parent"
+                            }
+                          }
+                        ],
+                        "height": {
+                          "type": "fixed",
+                          "value": 16
+                        },
+                        "width": {
+                          "type": "fixed",
+                          "value": 16
+                        },
+                        "orientation": "overlap",
+                        "content_alignment_vertical": "center",
+                        "content_alignment_horizontal": "center",
+                        "alignment_horizontal": "left",
+                        "alignment_vertical": "center",
+                        "margins": {
+                          "left": 16
+                        }
+                      },
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "text",
+                            "text": "حذف اطلاعات",
+                            "font_size": 12,
+                            "font_weight": "regular",
+                            "letter_spacing": 0,
+                            "text_color": "#252424",
+                            "text_alignment_horizontal": "right",
+                            "text_alignment_vertical": "top",
+                            "width": {
+                              "type": "wrap_content"
+                            },
+                            "height": {
+                              "type": "wrap_content"
+                            }
+                          },
+                          {
+                            "type": "container",
+                            "items": [
+                              {
+                                "type": "image",
+                                "image_url": "empty://",
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/93afb56f-fb56-40e4-a4a3-1d118ea8b6be",
+                                "height": {
+                                  "type": "fixed",
+                                  "value": 20
+                                },
+                                "width": {
+                                  "type": "fixed",
+                                  "value": 20
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/fd4226d5-6937-42c3-8b90-bef49aa23bed",
+                                "height": {
+                                  "type": "fixed",
+                                  "value": 4
+                                },
+                                "width": {
+                                  "type": "fixed",
+                                  "value": 11
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/3f820032-4aab-4eca-88af-121640d9ac0b",
+                                "height": {
+                                  "type": "fixed",
+                                  "value": 7
+                                },
+                                "width": {
+                                  "type": "fixed",
+                                  "value": 8
+                                }
+                              }
+                            ],
+                            "height": {
+                              "type": "fixed",
+                              "value": 24
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 24
+                            },
+                            "orientation": "overlap",
+                            "content_alignment_vertical": "center",
+                            "content_alignment_horizontal": "center",
+                            "margins": {
+                              "left": 4
+                            }
+                          }
+                        ],
+                        "height": {
+                          "type": "wrap_content"
+                        },
+                        "width": {
+                          "type": "wrap_content"
+                        },
+                        "orientation": "horizontal",
+                        "content_alignment_horizontal": "right",
+                        "content_alignment_vertical": "center",
+                        "alignment_horizontal": "right",
+                        "alignment_vertical": "center",
+                        "margins": {
+                          "right": 16
+                        }
+                      }
+                    ],
+                    "height": {
+                      "type": "fixed",
+                      "value": 40
+                    },
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "orientation": "overlap",
+                    "content_alignment_horizontal": "left",
+                    "content_alignment_vertical": "center",
+                    "alignment_horizontal": "left",
+                    "alignment_vertical": "top",
+                    "margins": {
+                      "top": 5
+                    }
+                  },
+                  {
+                    "type": "separator",
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "height": {
+                      "type": "fixed",
+                      "value": 10
+                    },
+                    "margins": {
+                      "right": 16,
+                      "left": 16
+                    }
+                  },
+                  {
+                    "type": "container",
+                    "items": [
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "image",
+                            "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/c3a817e2-2181-43ab-a355-f29de6c34fe7",
+                            "height": {
+                              "type": "fixed",
+                              "value": 11
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 5
+                            }
+                          },
+                          {
+                            "type": "image",
+                            "image_url": "empty://",
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "width": {
+                              "type": "match_parent"
+                            }
+                          }
+                        ],
+                        "height": {
+                          "type": "fixed",
+                          "value": 16
+                        },
+                        "width": {
+                          "type": "fixed",
+                          "value": 16
+                        },
+                        "orientation": "overlap",
+                        "content_alignment_vertical": "center",
+                        "content_alignment_horizontal": "center",
+                        "alignment_horizontal": "left",
+                        "alignment_vertical": "center",
+                        "margins": {
+                          "left": 16
+                        }
+                      },
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "text",
+                            "text": "خروج",
+                            "font_size": 12,
+                            "font_weight": "regular",
+                            "letter_spacing": 0,
+                            "text_color": "#252424",
+                            "text_alignment_horizontal": "right",
+                            "text_alignment_vertical": "top",
+                            "width": {
+                              "type": "wrap_content"
+                            },
+                            "height": {
+                              "type": "wrap_content"
+                            }
+                          },
+                          {
+                            "type": "container",
+                            "items": [
+                              {
+                                "type": "image",
+                                "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/f23c7624-b5a4-4a98-9ef8-a10026ebeeb4",
+                                "height": {
+                                  "type": "fixed",
+                                  "value": 20
+                                },
+                                "width": {
+                                  "type": "fixed",
+                                  "value": 13
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/98fb0262-fd3f-4b1f-9a0c-6fafd8a1567e",
+                                "height": {
+                                  "type": "fixed",
+                                  "value": 8
+                                },
+                                "width": {
+                                  "type": "fixed",
+                                  "value": 14
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "image_url": "empty://",
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                }
+                              }
+                            ],
+                            "height": {
+                              "type": "fixed",
+                              "value": 24
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 24
+                            },
+                            "orientation": "overlap",
+                            "content_alignment_vertical": "center",
+                            "content_alignment_horizontal": "center",
+                            "margins": {
+                              "left": 4
+                            }
+                          }
+                        ],
+                        "height": {
+                          "type": "wrap_content"
+                        },
+                        "width": {
+                          "type": "wrap_content"
+                        },
+                        "orientation": "horizontal",
+                        "content_alignment_horizontal": "right",
+                        "content_alignment_vertical": "center",
+                        "alignment_horizontal": "right",
+                        "alignment_vertical": "center",
+                        "margins": {
+                          "right": 16
+                        }
+                      }
+                    ],
+                    "height": {
+                      "type": "fixed",
+                      "value": 40
+                    },
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "orientation": "overlap",
+                    "content_alignment_horizontal": "center",
+                    "content_alignment_vertical": "center",
+                    "alignment_horizontal": "left",
+                    "alignment_vertical": "bottom"
+                  }
+                ],
+                "background": [
+                  {
+                    "type": "solid",
+                    "color": "#ffffff"
+                  }
+                ],
+                "border": {
+                  "corners_radius": {
+                    "top-left": 8,
+                    "top-right": 8,
+                    "bottom-left": 8,
+                    "bottom-right": 8
+                  },
+                  "stroke": {
+                    "color": "#c8d0e4",
+                    "width": 1
+                  }
+                },
+                "height": {
+                  "type": "wrap_content"
+                },
+                "width": {
+                  "type": "match_parent"
+                },
+                "orientation": "vertical",
+                "margins": {
+                  "top": 12,
+                  "right": 12,
+                  "left": 12
+                }
+              }
+            ],
+            "height": {
+              "type": "match_parent"
+            },
+            "width": {
+              "type": "match_parent"
+            },
+            "orientation": "vertical",
+            "content_alignment_vertical": "top",
+            "content_alignment_horizontal": "left"
+          }
+        ]
+      }
+    ]
+  }
+}

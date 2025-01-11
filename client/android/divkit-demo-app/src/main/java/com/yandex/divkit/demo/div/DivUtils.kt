@@ -34,6 +34,8 @@ import com.yandex.div2.DivData
 import com.yandex.div2.DivPatch
 import com.yandex.divkit.demo.Container
 import com.yandex.divkit.demo.R
+import com.yandex.divkit.demo.ui.LoadScreenListener
+import com.yandex.divkit.demo.ui.activity.MehdiViewModel
 import com.yandex.divkit.demo.utils.DivkitDemoUriHandler
 import com.yandex.divkit.demo.utils.MetricaUtils
 import com.yandex.divkit.demo.utils.lifecycleOwner
@@ -44,8 +46,14 @@ import org.json.JSONObject
 
 fun divConfiguration(
     activity: Activity,
-    logDelegate: ScenarioLogDelegate = ScenarioLogDelegate.Stub
-): DivConfiguration.Builder {
+    logDelegate: ScenarioLogDelegate = ScenarioLogDelegate.Stub,
+    mehdiViewModel: MehdiViewModel?=null,
+    lo: LifecycleOwner?=null,
+    loadScreenListener: LoadScreenListener?=null,
+
+
+
+    ): DivConfiguration.Builder {
     val reporter = MetricaUtils.getReporter(activity)
     val flagPreferenceProvider = Container.flagPreferenceProvider
     return DivConfiguration.Builder(Container.imageLoader)

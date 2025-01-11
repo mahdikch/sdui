@@ -10,7 +10,7 @@ import com.yandex.div2.DivActionTyped
 import com.yandex.div2.DivDownloadCallbacks
 import com.yandex.div2.DivSightAction
 
-internal object DivActionTypedHandlerProxy {
+ object DivActionTypedHandlerProxy {
 
     @JvmStatic
     fun handleVisibilityAction(action: DivSightAction, view: DivViewFacade, resolver: ExpressionResolver): Boolean {

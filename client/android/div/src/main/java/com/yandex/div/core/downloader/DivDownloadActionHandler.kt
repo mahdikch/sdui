@@ -15,7 +15,7 @@ import com.yandex.div2.DivSightAction
 private const val PARAM_URL = "url"
 private const val AUTHORITY_DOWNLOAD = "download"
 
-internal object DivDownloadActionHandler {
+ object DivDownloadActionHandler {
 
     @JvmStatic
     fun canHandle(uri: Uri?, divViewFacade: DivViewFacade): Boolean {

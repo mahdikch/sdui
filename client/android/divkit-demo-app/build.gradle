@@ -5,6 +5,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-parcelize'
     alias(libs.plugins.screenshotTestPlugin)
+    id 'kotlin-kapt'
+
 }
 
 apply from: "${project.projectDir}/../div-application.gradle"
@@ -115,7 +117,13 @@ dependencies {
     implementation(libs.appmetrica.lib) {
         exclude group: 'io.appmetrica.analytics', module: 'analytics-identifiers'
     }
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 
+    def room_version = "2.5.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
     implementation libs.stetho.core
     implementation libs.stetho.okhttp3
 

@@ -48,14 +48,14 @@ class SettingsActivity : AppCompatActivity() {
         binding.toolbar.setNavigationIcon(icon)
         binding.toolbar.setNavigationOnClickListener { onBackPressed() }
 
-        div2View = UIDiv2ViewCreator(this).createDiv2View(
-            this,
-            "application/settings.json",
-            binding.scrollView,
-            ScenarioLogDelegate.Stub
-        )
+//        div2View = UIDiv2ViewCreator(this).createDiv2View(
+//            this,
+//            "application/settings.json",
+//            binding.scrollView,
+//            ScenarioLogDelegate.Stub
+//        )
 
-        binding.scrollView.addView(div2View)
+//        binding.scrollView.addView(div2View)
         initSettings()
     }
 

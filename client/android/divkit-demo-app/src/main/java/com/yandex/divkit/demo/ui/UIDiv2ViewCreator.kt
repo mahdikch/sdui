@@ -14,12 +14,17 @@ import com.yandex.divkit.demo.div.divConfiguration
 import com.yandex.divkit.demo.div.divContext
 import com.yandex.divkit.demo.screenshot.Div2ViewFactory
 import com.yandex.divkit.demo.screenshot.DivAssetReader
+import com.yandex.divkit.demo.ui.activity.MehdiViewModel
+import com.yandex.divkit.demo.ui.bottomSheetDiv.BottomSheetDiv
 import com.yandex.divkit.demo.utils.DivkitDemoUriHandler
 import com.yandex.divkit.regression.Div2ViewCreator
 import com.yandex.divkit.regression.ScenarioLogDelegate
+import org.json.JSONObject
 import java.util.concurrent.Executors
 
-class UIDiv2ViewCreator(private val context: Context) : Div2ViewCreator {
+class UIDiv2ViewCreator(private val context: Context, private val lo:LifecycleOwner,
+                        private val mehdiViewModel: MehdiViewModel?, private val activity: Activity,
+                        private  var btmSheet_div: BottomSheetDiv?=null) : Div2ViewCreator {
 
     private val assetReader = DivAssetReader(context)
     private val uriHandler = DivkitDemoUriHandler(context)
@@ -47,7 +52,8 @@ class UIDiv2ViewCreator(private val context: Context) : Div2ViewCreator {
                 .divStateChangeListener(transitionScheduler)
                 .divDataChangeListener(transitionScheduler)
                 .typefaceProvider(YandexSansDivTypefaceProvider(activity))
-                .actionHandler(UIDiv2ActionHandler(uriHandler, context))
+                .actionHandler(UIDiv2ActionHandler(uriHandler, context,activity,lo,context as LoadScreenListener,mehdiViewModel,
+                    btmSheet_div))
                 .enableAccessibility(true)
                 .build()
         val divContext = divContext(
@@ -58,6 +64,38 @@ class UIDiv2ViewCreator(private val context: Context) : Div2ViewCreator {
         divStateStorage.preloadState("div2")
         val templateJson = divJson.optJSONObject("templates")
         val cardJson = divJson.getJSONObject("card")
+        return Div2ViewFactory(divContext, templateJson).createView(cardJson)
+    }
+
+    override fun createDiv2ViewMehdi(
+        activity: Activity,
+        divView: JSONObject,
+        parent: ViewGroup,
+        logDelegate: ScenarioLogDelegate
+    ): Div2View {
+//        val divJson = assetReader.read(scenarioPath)
+        val transitionScheduler = Div2Activity.DivParentTransitionScheduler(parent)
+        val divConfiguration =
+            divConfiguration(activity, logDelegate,mehdiViewModel,lo,context as LoadScreenListener)
+                .extension(
+                    DivPinchToZoomExtensionHandler(
+                        DivPinchToZoomConfiguration.Builder(activity).build()
+                    )
+                )
+                .divStateChangeListener(transitionScheduler)
+                .divDataChangeListener(transitionScheduler)
+                .typefaceProvider(YandexSansDivTypefaceProvider(activity))
+                .actionHandler(UIDiv2ActionHandler(uriHandler, context,activity,lo,context as LoadScreenListener,mehdiViewModel,btmSheet_div))
+                .enableAccessibility(true)
+                .build()
+        val divContext = divContext(
+            baseContext = activity,
+            configuration = divConfiguration,
+            lifecycleOwner = activity as? LifecycleOwner
+        )
+        divStateStorage.preloadState("div2")
+        val templateJson = divView.optJSONObject("templates")
+        val cardJson = divView.getJSONObject("card")
         return Div2ViewFactory(divContext, templateJson).createView(cardJson)
     }
 }

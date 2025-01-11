@@ -1,0 +1,1234 @@
+{
+  "templates": {
+    "grid_element": {
+      "type": "container",
+      "$actions": "actions",
+      "width": {
+        "type": "match_parent",
+        "weight": 1
+      },
+      "height": {
+        "type": "match_parent",
+        "weight": 1
+      },
+      "margins": {
+        "left": 8,
+        "top": 8,
+        "right": 8,
+        "bottom": 8
+      },
+      "background": [
+        {
+          "type": "solid",
+          "$color": "background_color"
+        }
+      ],
+      "items": [
+        {
+          "type": "image",
+          "$image_url": "icon",
+          "height": {
+            "type": "fixed",
+            "value": 26
+          },
+          "width": {
+            "type": "fixed",
+            "value": 35
+          }
+        },
+        {
+          "type": "text",
+          "$text": "title",
+          "font_size": 12,
+          "letter_spacing": 0,
+          "text_color": "#193d8d",
+          "text_alignment_horizontal": "left",
+          "text_alignment_vertical": "top",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "content_alignment_vertical": "center",
+          "content_alignment_horizontal": "center",
+          "alignment_horizontal": "center",
+          "alignment_vertical": "center",
+          "margins": {
+            "top": 8,
+            "bottom": 0
+          }
+        }
+      ],
+      "orientation": "vertical",
+      "content_alignment_vertical": "center",
+      "content_alignment_horizontal": "center",
+      "alignment_horizontal": "center",
+      "alignment_vertical": "center",
+      "border": {
+        "corner_radius": 8
+      },
+      "delimiter_style": {
+        "color": "#00000000"
+      }
+    },
+    "empty_element": {
+      "type": "container",
+      "width": {
+        "type": "match_parent",
+        "weight": 1
+      },
+      "height": {
+        "type": "match_parent",
+        "weight": 1
+      },
+      "margins": {
+        "left": 8,
+        "top": 8,
+        "right": 8,
+        "bottom": 8
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#00000000"
+        }
+      ],
+      "orientation": "vertical",
+      "content_alignment_vertical": "center",
+      "content_alignment_horizontal": "center",
+      "alignment_horizontal": "center",
+      "alignment_vertical": "center",
+      "border": {
+        "corner_radius": 8
+      },
+      "delimiter_style": {
+        "color": "#00000000"
+      }
+    }
+  },
+  "patch": {
+    "mode": "partial",
+    "on_applied_actions": "partial",
+    "changes": [
+      {
+        "id": "page",
+        "items": [
+          {
+            "id": "page",
+
+            "type": "gallery",
+            "width": {
+              "type": "match_parent"
+            },
+            "height": {
+              "type": "match_parent",
+              "weight": 3
+            },
+            "items": [
+              {
+                "type": "container",
+                "items": [
+                  {
+                    "type": "container",
+                    "items": [
+                      {
+                        "type": "image",
+                        "image_url": "divkit-asset://gradient-wallpapers.png",
+                        "height": {
+                          "type": "match_parent"
+                        },
+                        "width": {
+                          "type": "match_parent"
+                        },
+                        "alignment_horizontal": "center",
+                        "alignment_vertical": "center",
+                        "margins": {
+                          "left": 0,
+                          "right": 0,
+                          "top": 0,
+                          "bottom": 0
+                        },
+                        "scale": "fill"
+                      }
+                    ],
+                    "height": {
+                      "type": "fixed",
+                      "value": 221
+                    },
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "orientation": "overlap",
+                    "content_alignment_vertical": "center",
+                    "content_alignment_horizontal": "center",
+                    "alignment_horizontal": "left",
+                    "alignment_vertical": "bottom",
+                    "margins": {
+                      "left": 0,
+                      "bottom": 0
+                    }
+                  },
+                  {
+                    "type": "image",
+                    "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/405494ef-1752-4d53-bd3f-6cd90bc6e7c4",
+                    "height": {
+                      "type": "match_parent"
+                    },
+                    "width": {
+                      "type": "match_parent"
+                    }
+                  },
+                  {
+                    "type": "image",
+                    "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/886eb955-e517-42e3-9c96-a409127ee240",
+                    "height": {
+                      "type": "match_parent"
+                    },
+                    "width": {
+                      "type": "match_parent"
+                    }
+                  },
+                  {
+                    "type": "container",
+                    "items": [
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "container",
+                            "items": [
+                              {
+                                "type": "container",
+                                "items": [
+                                  {
+                                    "type": "text",
+                                    "text": "آنلاین",
+                                    "font_size": 14,
+                                    "letter_spacing": 0,
+                                    "text_color": "#ffffff",
+                                    "text_alignment_horizontal": "right",
+                                    "text_alignment_vertical": "top",
+                                    "width": {
+                                      "type": "wrap_content"
+                                    },
+                                    "height": {
+                                      "type": "wrap_content"
+                                    }
+                                  },
+                                  {
+                                    "type": "separator",
+                                    "background": [
+                                      {
+                                        "type": "solid",
+                                        "color": "#3eb959"
+                                      }
+                                    ],
+                                    "delimiter_style": {
+                                      "color": "#00000000"
+                                    },
+                                    "height": {
+                                      "type": "fixed",
+                                      "value": 6
+                                    },
+                                    "width": {
+                                      "type": "fixed",
+                                      "value": 6
+                                    },
+                                    "border": {
+                                      "corners_radius": {
+                                        "top-left": 66,
+                                        "top-right": 66,
+                                        "bottom-left": 66,
+                                        "bottom-right": 66
+                                      }
+                                    },
+                                    "alpha": 0.8,
+                                    "margins": {
+                                      "left": 4
+                                    }
+                                  }
+                                ],
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                },
+                                "orientation": "horizontal",
+                                "content_alignment_horizontal": "center",
+                                "content_alignment_vertical": "center"
+                              }
+                            ],
+                            "background": [
+                              {
+                                "type": "solid",
+                                "color": "#33c8d0e4"
+                              }
+                            ],
+                            "border": {
+                              "corners_radius": {
+                                "top-left": 18,
+                                "top-right": 18,
+                                "bottom-left": 18,
+                                "bottom-right": 18
+                              }
+                            },
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "width": {
+                              "type": "wrap_content"
+                            },
+                            "orientation": "vertical",
+                            "content_alignment_vertical": "top",
+                            "content_alignment_horizontal": "left",
+                            "paddings": {
+                              "top": 6,
+                              "bottom": 6,
+                              "left": 16,
+                              "right": 16
+                            },
+                            "alignment_horizontal": "left",
+                            "alignment_vertical": "center"
+                          },
+                          {
+                            "type": "container",
+                            "items": [
+                              {
+                                "type": "container",
+                                "items": [
+                                  {
+                                    "type": "text",
+                                    "text": "@{name}",
+                                    "font_size": 12,
+                                    "letter_spacing": 0,
+                                    "text_color": "#ffffff",
+                                    "text_alignment_horizontal": "right",
+                                    "text_alignment_vertical": "top",
+                                    "width": {
+                                      "type": "wrap_content"
+                                    },
+                                    "height": {
+                                      "type": "wrap_content"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "text": "@{province}",
+                                    "font_size": 12,
+                                    "letter_spacing": 0,
+                                    "text_color": "#ececec",
+                                    "text_alignment_horizontal": "right",
+                                    "text_alignment_vertical": "top",
+                                    "width": {
+                                      "type": "wrap_content"
+                                    },
+                                    "height": {
+                                      "type": "wrap_content"
+                                    }
+                                  }
+                                ],
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "wrap_content"
+                                },
+                                "orientation": "vertical",
+                                "content_alignment_vertical": "center",
+                                "content_alignment_horizontal": "right"
+                              },
+                              {
+                                "type": "container",
+                                "items": [
+                                  {
+                                    "type": "image",
+                                    "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/8193396a-8388-4639-935f-8b482c9a4ed3",
+                                    "height": {
+                                      "type": "wrap_content"
+                                    },
+                                    "width": {
+                                      "type": "match_parent"
+                                    },
+                                    "alignment_horizontal": "right",
+                                    "alignment_vertical": "top",
+                                    "margins": {
+                                      "right": 0,
+                                      "top": 0
+                                    }
+                                  }
+                                ],
+                                "background": [
+                                  {
+                                    "type": "solid",
+                                    "color": "#80ffffff"
+                                  }
+                                ],
+                                "border": {
+                                  "corners_radius": {
+                                    "top-left": 18,
+                                    "top-right": 18,
+                                    "bottom-left": 18,
+                                    "bottom-right": 18
+                                  }
+                                },
+                                "height": {
+                                  "type": "fixed",
+                                  "value": 48
+                                },
+                                "width": {
+                                  "type": "fixed",
+                                  "value": 48
+                                },
+                                "orientation": "overlap",
+                                "content_alignment_vertical": "center",
+                                "content_alignment_horizontal": "center",
+                                "margins": {
+                                  "left": 8
+                                }
+                              }
+                            ],
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "width": {
+                              "type": "wrap_content"
+                            },
+                            "orientation": "horizontal",
+                            "content_alignment_horizontal": "right",
+                            "content_alignment_vertical": "center",
+                            "alignment_horizontal": "right",
+                            "alignment_vertical": "center"
+                          }
+                        ],
+                        "height": {
+                          "type": "wrap_content"
+                        },
+                        "width": {
+                          "type": "match_parent"
+                        },
+                        "orientation": "overlap",
+                        "content_alignment_horizontal": "center",
+                        "content_alignment_vertical": "center"
+                      }
+                    ],
+                    "background": [
+                      {
+                        "type": "solid",
+                        "color": "#1affffff"
+                      }
+                    ],
+                    "border": {
+                      "corners_radius": {
+                        "top-left": 22,
+                        "top-right": 22,
+                        "bottom-left": 22,
+                        "bottom-right": 22
+                      }
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "orientation": "vertical",
+                    "content_alignment_vertical": "center",
+                    "content_alignment_horizontal": "center",
+                    "paddings": {
+                      "top": 16,
+                      "bottom": 16,
+                      "left": 16,
+                      "right": 16
+                    },
+                    "alignment_horizontal": "center",
+                    "alignment_vertical": "center",
+                    "margins": {
+                      "top": 16,
+                      "right": 24,
+                      "bottom": 16,
+                      "left": 24
+                    }
+                  }
+                ],
+                "background": [
+                  {
+                    "type": "solid",
+                    "color": "#f6f6f6"
+                  }
+                ],
+                "border": {
+                  "corners_radius": {
+                    "top-left": 16,
+                    "top-right": 16,
+                    "bottom-left": 16,
+                    "bottom-right": 16
+                  }
+                },
+                "height": {
+                  "type": "fixed",
+                  "value": 112
+                },
+                "width": {
+                  "type": "match_parent"
+                },
+                "orientation": "overlap",
+                "content_alignment_vertical": "center",
+                "content_alignment_horizontal": "center",
+                "margins": {
+                  "top": 16,
+                  "right": 12,
+                  "left": 12
+                }
+              },
+              {
+                "type": "container",
+                "items": [
+                  {
+                    "type": "container",
+                    "items": [
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "container",
+                            "items": [
+                              {
+                                "type": "image",
+                                "image_url": "divkit-asset://gradient-wallpapers.png",
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                },
+                                "alignment_horizontal": "center",
+                                "alignment_vertical": "center",
+                                "margins": {
+                                  "left": 0,
+                                  "right": 0,
+                                  "top": 0,
+                                  "bottom": 0
+                                }
+                              }
+                            ],
+                            "height": {
+                              "type": "fixed",
+                              "value": 77
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 142
+                            },
+                            "orientation": "overlap",
+                            "content_alignment_vertical": "center",
+                            "content_alignment_horizontal": "center",
+                            "alignment_horizontal": "center",
+                            "alignment_vertical": "top",
+                            "margins": {
+                              "left": 0,
+                              "right": 0,
+                              "top": 0
+                            }
+                          },
+                          {
+                            "type": "separator",
+                            "background": [],
+                            "delimiter_style": {
+                              "color": "#00000000"
+                            },
+                            "height": {
+                              "type": "fixed",
+                              "value": 56
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 56
+                            },
+                            "alignment_horizontal": "center",
+                            "alignment_vertical": "center",
+                            "margins": {
+                              "left": 0,
+                              "right": 0,
+                              "top": 0,
+                              "bottom": 0
+                            },
+                            "alpha": 0.4
+                          },
+                          {
+                            "type": "container",
+                            "items": [
+                              {
+                                "type": "image",
+                                "image_url": "divkit-asset://phone-inquery.png",
+                                "height": {
+                                  "type": "match_parent"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                }
+                              }
+                            ],
+                            "height": {
+                              "type": "fixed",
+                              "value": 26
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 16
+                            },
+                            "orientation": "overlap",
+                            "content_alignment_vertical": "center",
+                            "content_alignment_horizontal": "center",
+                            "alignment_horizontal": "center",
+                            "alignment_vertical": "bottom",
+                            "margins": {
+                              "left": 11,
+                              "right": 11,
+                              "bottom": 18
+                            }
+                          }
+                        ],
+                        "background": [
+                          {
+                            "type": "solid",
+                            "color": "#193d8d"
+                          }
+                        ],
+                        "border": {
+                          "corners_radius": {
+                            "top-left": 16,
+                            "top-right": 16,
+                            "bottom-left": 16,
+                            "bottom-right": 16
+                          }
+                        },
+                        "height": {
+                          "type": "fixed",
+                          "value": 56
+                        },
+                        "width": {
+                          "type": "fixed",
+                          "value": 56
+                        },
+                        "orientation": "overlap",
+                        "content_alignment_vertical": "center",
+                        "content_alignment_horizontal": "center"
+                      },
+                      {
+                        "type": "text",
+                        "text": "موبایل و تبلت",
+                        "font_size": 11,
+                        "letter_spacing": 0,
+                        "text_color": "#121212",
+                        "text_alignment_horizontal": "right",
+                        "text_alignment_vertical": "top",
+                        "width": {
+                          "type": "wrap_content"
+                        },
+                        "height": {
+                          "type": "fixed",
+                          "value": 14
+                        },
+                        "margins": {
+                          "top": 8
+                        }
+                      }
+                    ],
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "width": {
+                      "type": "match_parent",
+                      "weight": 1
+                    },
+                    "orientation": "vertical",
+                    "content_alignment_vertical": "top",
+                    "content_alignment_horizontal": "center",
+                    "alignment_horizontal": "left",
+                    "alignment_vertical": "bottom",
+                    "margins": {
+                      "bottom": 15
+                    }
+                  },
+                  {
+                    "type": "container",
+                    "items": [
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "container",
+                            "items": [
+                              {
+                                "type": "image",
+                                "image_url": "divkit-asset://gradient-wallpapers.png",
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                },
+                                "alignment_horizontal": "center",
+                                "alignment_vertical": "center",
+                                "margins": {
+                                  "left": 0,
+                                  "right": 0,
+                                  "top": 0,
+                                  "bottom": 0
+                                }
+                              }
+                            ],
+                            "height": {
+                              "type": "fixed",
+                              "value": 77
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 142
+                            },
+                            "orientation": "overlap",
+                            "content_alignment_vertical": "center",
+                            "content_alignment_horizontal": "center",
+                            "alignment_horizontal": "center",
+                            "alignment_vertical": "top",
+                            "margins": {
+                              "left": 0,
+                              "right": 0,
+                              "top": 0
+                            }
+                          },
+                          {
+                            "type": "separator",
+                            "background": [],
+                            "delimiter_style": {
+                              "color": "#00000000"
+                            },
+                            "height": {
+                              "type": "fixed",
+                              "value": 56
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 56
+                            },
+                            "alignment_horizontal": "center",
+                            "alignment_vertical": "center",
+                            "margins": {
+                              "left": 0,
+                              "right": 0,
+                              "top": 0,
+                              "bottom": 0
+                            },
+                            "alpha": 0.4
+                          },
+                          {
+                            "type": "container",
+                            "items": [
+                              {
+                                "type": "image",
+                                "image_url": "divkit-asset://caw-inquery.png",
+                                "height": {
+                                  "type": "match_parent"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                }
+                              }
+                            ],
+                            "height": {
+                              "type": "fixed",
+                              "value": 19
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 34
+                            },
+                            "orientation": "overlap",
+                            "content_alignment_vertical": "center",
+                            "content_alignment_horizontal": "center",
+                            "alignment_horizontal": "center",
+                            "alignment_vertical": "bottom",
+                            "margins": {
+                              "left": 11,
+                              "right": 11,
+                              "bottom": 18
+                            }
+                          }
+                        ],
+                        "background": [
+                          {
+                            "type": "solid",
+                            "color": "#193d8d"
+                          }
+                        ],
+                        "border": {
+                          "corners_radius": {
+                            "top-left": 17,
+                            "top-right": 17,
+                            "bottom-left": 17,
+                            "bottom-right": 17
+                          }
+                        },
+                        "height": {
+                          "type": "fixed",
+                          "value": 56
+                        },
+                        "width": {
+                          "type": "fixed",
+                          "value": 56
+                        },
+                        "orientation": "overlap",
+                        "content_alignment_vertical": "center",
+                        "content_alignment_horizontal": "center"
+                      },
+                      {
+                        "type": "text",
+                        "text": "احشام",
+                        "font_size": 11,
+                        "letter_spacing": 0,
+                        "text_color": "#121212",
+                        "text_alignment_horizontal": "right",
+                        "text_alignment_vertical": "top",
+                        "width": {
+                          "type": "wrap_content"
+                        },
+                        "height": {
+                          "type": "wrap_content"
+                        },
+                        "margins": {
+                          "top": 8
+                        }
+                      }
+                    ],
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "width": {
+                      "type": "match_parent",
+                      "weight": 1
+                    },
+                    "orientation": "vertical",
+                    "content_alignment_vertical": "top",
+                    "content_alignment_horizontal": "center",
+                    "alignment_horizontal": "left",
+                    "alignment_vertical": "bottom",
+                    "margins": {
+                      "bottom": 15
+                    }
+                  },
+                  {
+                    "type": "container",
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "width": {
+                      "type": "match_parent",
+                      "weight": 1
+                    },
+                    "orientation": "vertical",
+                    "content_alignment_vertical": "top",
+                    "content_alignment_horizontal": "center",
+                    "alignment_horizontal": "left",
+                    "alignment_vertical": "bottom",
+                    "margins": {
+                      "bottom": 15
+                    },
+                    "items": [
+                      {
+                        "type": "container",
+                        "background": [
+                          {
+                            "type": "solid",
+                            "color": "#193d8d"
+                          }
+                        ],
+                        "border": {
+                          "corners_radius": {
+                            "top-left": 18,
+                            "top-right": 18,
+                            "bottom-left": 18,
+                            "bottom-right": 18
+                          }
+                        },
+                        "height": {
+                          "type": "fixed",
+                          "value": 56
+                        },
+                        "width": {
+                          "type": "fixed",
+                          "value": 56
+                        },
+                        "orientation": "overlap",
+                        "content_alignment_vertical": "center",
+                        "content_alignment_horizontal": "center",
+                        "items": [
+                          {
+                            "type": "container",
+                            "height": {
+                              "type": "fixed",
+                              "value": 77
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 142
+                            },
+                            "orientation": "overlap",
+                            "content_alignment_vertical": "center",
+                            "content_alignment_horizontal": "center",
+                            "alignment_horizontal": "center",
+                            "alignment_vertical": "top",
+                            "margins": {
+                              "left": 0,
+                              "right": 0,
+                              "top": 0
+                            },
+                            "items": [
+                              {
+                                "type": "image",
+                                "image_url": "divkit-asset://gradient-wallpapers.png",
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                },
+                                "alignment_horizontal": "center",
+                                "alignment_vertical": "center",
+                                "margins": {
+                                  "left": 0,
+                                  "right": 0,
+                                  "top": 0,
+                                  "bottom": 0
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "separator",
+                            "background": [],
+                            "delimiter_style": {
+                              "color": "#00000000"
+                            },
+                            "height": {
+                              "type": "fixed",
+                              "value": 56
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 56
+                            },
+                            "alignment_horizontal": "center",
+                            "alignment_vertical": "center",
+                            "margins": {
+                              "left": 0,
+                              "right": 0,
+                              "top": 0,
+                              "bottom": 0
+                            },
+                            "alpha": 0.4
+                          },
+                          {
+                            "type": "container",
+                            "height": {
+                              "type": "fixed",
+                              "value": 24
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 33
+                            },
+                            "orientation": "overlap",
+                            "content_alignment_vertical": "center",
+                            "content_alignment_horizontal": "center",
+                            "alignment_horizontal": "center",
+                            "alignment_vertical": "bottom",
+                            "margins": {
+                              "left": 11,
+                              "right": 11,
+                              "bottom": 18
+                            },
+                            "items": [
+                              {
+                                "type": "image",
+                                "image_url": "divkit-asset://car-inquery.png",
+                                "height": {
+                                  "type": "match_parent"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "text": "وسیله نقلیه",
+                        "font_size": 11,
+                        "letter_spacing": 0,
+                        "text_color": "#121212",
+                        "text_alignment_horizontal": "right",
+                        "text_alignment_vertical": "top",
+                        "width": {
+                          "type": "wrap_content"
+                        },
+                        "height": {
+                          "type": "wrap_content"
+                        },
+                        "margins": {
+                          "top": 8
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "container",
+                    "actions": [
+                      {
+                        "log_id": "show_main",
+                        "url": "div-action://load_screen?screen=ph/inqueryHuman"
+                      }
+                    ],
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "width": {
+                      "type": "match_parent",
+                      "weight": 1
+                    },
+                    "orientation": "vertical",
+                    "content_alignment_vertical": "top",
+                    "content_alignment_horizontal": "center",
+                    "alignment_horizontal": "left",
+                    "alignment_vertical": "bottom",
+                    "margins": {
+                      "bottom": 15
+                    },
+                    "items": [
+                      {
+                        "type": "container",
+                        "background": [
+                          {
+                            "type": "solid",
+                            "color": "#193d8d"
+                          }
+                        ],
+                        "border": {
+                          "corners_radius": {
+                            "top-left": 19,
+                            "top-right": 19,
+                            "bottom-left": 19,
+                            "bottom-right": 19
+                          }
+                        },
+                        "height": {
+                          "type": "fixed",
+                          "value": 56
+                        },
+                        "width": {
+                          "type": "fixed",
+                          "value": 56
+                        },
+                        "orientation": "overlap",
+                        "content_alignment_vertical": "center",
+                        "content_alignment_horizontal": "center",
+                        "items": [
+                          {
+                            "type": "container",
+                            "height": {
+                              "type": "fixed",
+                              "value": 77
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 142
+                            },
+                            "orientation": "overlap",
+                            "content_alignment_vertical": "center",
+                            "content_alignment_horizontal": "center",
+                            "alignment_horizontal": "center",
+                            "alignment_vertical": "top",
+                            "margins": {
+                              "left": 0,
+                              "right": 0,
+                              "top": 0
+                            },
+                            "items": [
+                              {
+                                "type": "image",
+                                "image_url": "divkit-asset://gradient-wallpapers.png",
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                },
+                                "alignment_horizontal": "center",
+                                "alignment_vertical": "center",
+                                "margins": {
+                                  "left": 0,
+                                  "right": 0,
+                                  "top": 0,
+                                  "bottom": 0
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "separator",
+                            "background": [],
+                            "delimiter_style": {
+                              "color": "#00000000"
+                            },
+                            "height": {
+                              "type": "fixed",
+                              "value": 56
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 56
+                            },
+                            "alignment_horizontal": "center",
+                            "alignment_vertical": "center",
+                            "margins": {
+                              "left": 0,
+                              "right": 0,
+                              "top": 0,
+                              "bottom": 0
+                            },
+                            "alpha": 0.4
+                          },
+                          {
+                            "type": "container",
+                            "height": {
+                              "type": "fixed",
+                              "value": 32
+                            },
+                            "width": {
+                              "type": "fixed",
+                              "value": 32
+                            },
+                            "orientation": "overlap",
+                            "content_alignment_vertical": "center",
+                            "content_alignment_horizontal": "center",
+                            "alignment_horizontal": "center",
+                            "alignment_vertical": "bottom",
+                            "margins": {
+                              "left": 11,
+                              "right": 11,
+                              "bottom": 18
+                            },
+                            "items": [
+                              {
+                                "type": "image",
+                                "image_url": "divkit-asset://person-inquery.png",
+                                "height": {
+                                  "type": "match_parent"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "text": "هویتی",
+                        "font_size": 11,
+                        "letter_spacing": 0,
+                        "text_color": "#121212",
+                        "text_alignment_horizontal": "right",
+                        "text_alignment_vertical": "top",
+                        "width": {
+                          "type": "wrap_content"
+                        },
+                        "height": {
+                          "type": "wrap_content"
+                        },
+                        "margins": {
+                          "top": 8
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "height": {
+                  "type": "fixed",
+                  "value": 140
+                },
+                "width": {
+                  "type": "match_parent"
+                },
+                "orientation": "horizontal",
+                "content_alignment_vertical": "center",
+                "content_alignment_horizontal": "center",
+                "background": [
+                  {
+                    "type": "solid",
+                    "color": "#ffffff"
+                  }
+                ],
+                "margins": {
+                  "top": 12,
+                  "right": 12,
+                  "left": 12
+                },
+                "border": {
+                  "corner_radius": 8
+                }
+              },
+              {
+                "type": "grid",
+                "width": {
+                  "type": "match_parent"
+                },
+                "height": {
+                  "type": "wrap_content"
+                },
+                "margins": {
+                  "top": 16
+                },
+                "paddings": {
+                  "left": 8,
+                  "top": 8,
+                  "right": 8,
+                  "bottom": 8
+                },
+
+                "alignment_horizontal": "center",
+                "column_count": "@{gridColumn}",
+                "row_count": "@{gridRow}",
+                "items": [
+                  {
+                    "id": "base_element",
+                    "type": "grid_element",
+                    "row_span": 1,
+                    "column_span": 1,
+                    "background_color": "#FFFFFF",
+                    "icon": "divkit-asset://sabte-takhalof.png",
+                    "title": "ثبت تخلفات",
+                    "actions": [
+                      {
+                        "log_id": "show_bottom_sheet",
+                        "url": "div-action://bottom_sheet_div?jsonName=ph/vt/bottomsheet"
+                      }
+                    ]
+
+                  }
+                ]
+              }
+            ],
+            "orientation": "vertical",
+            "alignment_horizontal": "center",
+            "alignment_vertical": "center"
+          }
+        ]
+      }
+    ]
+  }
+}
