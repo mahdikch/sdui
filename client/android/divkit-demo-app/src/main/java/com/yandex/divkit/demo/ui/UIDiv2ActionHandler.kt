@@ -66,6 +66,7 @@ private const val AUTHORITY_SHOW_TIME_PICKER = "show_time_picker"
 private const val AUTHORITY_SHOW_DATE_PICKER = "show_date_picker"
 private const val AUTHORITY_BOTTOM_SHEET_DISMISS = "bottom_sheet_dismiss"
 private const val AUTHORITY_SET_VARIABLE_TO_BASE = "set_variable_to_base"
+private const val AUTHORITY_CHECK_VERSION = "check_version"
 const val SCHEME_DIV_ACTION = "div-action"
 
 private const val ACTIVITY_DEMO = "demo"
@@ -84,6 +85,7 @@ private const val PARAM_VARIABLE_VALUE = "value"
 private const val PARAM_CAPTCHA_NAME = "name"
 private const val PARAM_CAPTCHA_IMAGE = "image"
 private const val PARAM_BOTTOM_SHEET_LIST_ID = "id"
+private const val PARAM_CHECK_VERSION = "id"
 private const val PARAM_BOTTOM_SHEET_LIST_TYPE = "type"
 private const val PARAM_BOTTOM_SHEET_LIST_TITLE = "title"
 private const val PARAM_BOTTOM_SHEET_LIST_SEARCHABLE = "SEARCHABLE"
@@ -102,6 +104,8 @@ private const val PARAM_TIME_PICKER = "variableName"
 private const val PARAM_DATE_PICKER = "variableName"
 private const val PARAM_OPEN_CAMERA = "type"
 private const val PARAM_OPEN_CAMERA_OCR = "check_ocr"
+private const val PARAM_CHECK_VERSION_NAME = "name"
+
 
 
 class UIDiv2ActionHandler(
@@ -214,6 +218,11 @@ class UIDiv2ActionHandler(
             val type = uri.getQueryParameter(PARAM_OPEN_CAMERA)
 //            naji.openCamera(context as Activity, this, type,uri.getQueryParameter(
 //                PARAM_OPEN_CAMERA_OCR))
+
+        } else if (uri.authority == AUTHORITY_CHECK_VERSION) {
+
+            val name = uri.getQueryParameter(PARAM_CHECK_VERSION_NAME)
+
 
         } else if (uri.authority == AUTHORITY_SHOW_TIME_PICKER) {
             val div2View: Div2View = view as Div2View

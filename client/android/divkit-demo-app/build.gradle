@@ -6,6 +6,8 @@ plugins {
     id 'kotlin-parcelize'
     alias(libs.plugins.screenshotTestPlugin)
     id 'kotlin-kapt'
+    id 'org.jetbrains.kotlin.android'
+//    id 'org.jetbrains.kotlin.plugin.compose'
 
 }
 
@@ -23,8 +25,12 @@ android {
     buildFeatures {
         buildConfig = true
         viewBinding = true
+        compose true
     }
 
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.3" // Use the latest version
+    }
     defaultConfig {
         versionCode divkitVersion.versionCode + divkitVersion.buildNumber
         buildConfigField "int", "BUILD_NUMBER", "${divkitVersion.buildNumber}"
@@ -75,6 +81,13 @@ android {
     lint {
         baseline file("lint-baseline.xml")
     }
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_11
+//        targetCompatibility JavaVersion.VERSION_11
+//    }
+//    kotlinOptions {
+//        jvmTarget = '11'
+//    }
 }
 
 dependencies {
@@ -119,6 +132,19 @@ dependencies {
     }
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation libs.androidx.lifecycle.runtime
+    implementation libs.androidx.activity.compose
+    implementation platform(libs.androidx.compose.bom)
+    implementation libs.androidx.compose.ui
+    implementation libs.androidx.ui.graphics
+    implementation libs.androidx.compose.ui.tooling.preview
+    implementation libs.androidx.material3
+    implementation libs.androidx.material3.android
+    implementation libs.androidx.foundation.layout.android
+    androidTestImplementation platform(libs.androidx.compose.bom)
+    androidTestImplementation libs.androidx.ui.test.junit4
+    debugImplementation libs.androidx.compose.ui.tooling
+    debugImplementation libs.androidx.ui.test.manifest
 
     def room_version = "2.5.1"
     implementation "androidx.room:room-runtime:$room_version"
@@ -126,7 +152,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     implementation libs.stetho.core
     implementation libs.stetho.okhttp3
-
+//    implementation("androidx.compose.material3:material3:1.0.1")
     implementation libs.nvWebsocket
     implementation libs.androidx.test.uiautomator
 

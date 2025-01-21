@@ -736,16 +736,12 @@
                               "type": "container",
                               "items": [
                                 {
-                                  "id": "plateA",
                                   "type": "input",
-                                  "next_focus_ids": {
-                                    "right": "plateC"
-                                  },
                                   "text_variable": "variable_plateA",
-                                  "hint_text": "11",
+                                  "hint_text": "@{variable_plateA}",
                                   "keyboard_type": "number",
-                                  "font_size": 32,
                                   "max_length": 2,
+                                  "font_size": 32,
                                   "letter_spacing": 0,
                                   "border": {
                                     "corner_radius": 4
@@ -771,9 +767,15 @@
                                   "margins": {
                                     "right": 2,
                                     "left": 2
+                                  },
+                                  "focus": {
+
+                                    "next_focus_ids": {
+                                      "forward": "plateB"
+                                    }
                                   }
                                 },
-                                {
+                                { "id": "plateB",
                                   "type": "text",
                                   "text": "@{variable_plateB}",
                                   "font_size": 32,
@@ -806,16 +808,22 @@
                                   "margins": {
                                     "right": 2,
                                     "left": 2
+                                  },
+                                  "next_focus_ids": {
+                                    "forward": "plateC"
                                   }
                                 },
                                 {
+
+                                  "next_focus_ids": {
+                                    "forward": "plateD"
+                                  },
                                   "id": "plateC",
                                   "type": "input",
                                   "text_variable": "variable_plateC",
-                                  "hint_text": "111",
-                                  "keyboard_type": "number",
                                   "max_length": 3,
-
+                                  "hint_text": "@{variable_plateC}",
+                                  "keyboard_type": "number",
                                   "font_size": 32,
                                   "letter_spacing": 0,
                                   "border": {
@@ -846,11 +854,10 @@
                                   "id": "plateD",
                                   "type": "input",
                                   "text_variable": "variable_plateD",
-                                  "hint_text": "11",
+                                  "hint_text": "@{variable_plateD}",
                                   "keyboard_type": "number",
-                                  "font_size": 32,
                                   "max_length": 2,
-
+                                  "font_size": 32,
                                   "letter_spacing": 0,
                                   "border": {
                                     "corner_radius": 4
@@ -5197,7 +5204,7 @@
       {
         "type": "string",
         "name": "variable_plateA",
-        "value": ""
+        "value": "۱۱"
       },
       {
         "type": "string",
@@ -5207,22 +5214,22 @@
       {
         "type": "string",
         "name": "variable_plateC",
-        "value": ""
+        "value": "۱۱۱"
       },
       {
         "type": "string",
         "name": "variable_plateD",
-        "value": ""
+        "value": "۱۱"
       },
       {
         "type": "string",
         "name": "variable_plateE",
-        "value": ""
+        "value": "۱۱"
       },
       {
         "type": "string",
         "name": "variable_plateF",
-        "value": ""
+        "value": "۱۱"
       },
       {
         "type": "string",
@@ -5727,7 +5734,7 @@
       {
         "type": "string",
         "name": "patch",
-        "value": ""
+        "value": "منطقه ای شخصی"
       },
       {
         "type": "string",
@@ -5988,19 +5995,6 @@
           {
             "log_id": "slider A change",
             "url": "div-action://set_variable?name=last_check&value=true"
-          }
-        ]
-      },
-      {
-        "condition": "@{len(variable_plateA)>1}",
-        "mode": "on_condition",
-        "actions": [
-          {
-            "log_id": "focus A ",
-            "typed":{
-              "type": "focus_element",
-              "element_id": "plateB"}
-
           }
         ]
       }

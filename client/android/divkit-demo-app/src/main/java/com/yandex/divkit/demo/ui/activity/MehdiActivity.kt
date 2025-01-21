@@ -476,10 +476,12 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                                 mehdiViewModel?.let { CustomToast(this, this, it, this) }
                             val jsonDto = mehdiViewModel?.getValueByKey(toast)
                             val json = jsonDto?.value
-                            customToast?.show(
-                                json = json,
-                                duration = Toast.LENGTH_LONG
-                            )
+                            if (json != null) {
+                                customToast?.show(
+                                    json = json,
+                                    duration = Toast.LENGTH_LONG
+                                )
+                            }
                         }
                         if (bottomSheet != "") {
 //                            if (btmSheet!=null)
