@@ -284,6 +284,7 @@ class UIDiv2ActionHandler(
             }
             loadScreenListener.onRequest(map)
 
+
 //            RemoteData.value.value = map
 
         }

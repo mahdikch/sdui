@@ -78,6 +78,8 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
     private var nextJson: String = ""
     private var nextJsonDto: PhPlusDB? = null
     private var divPageName: String = ""
+    private var nextScreen: String = ""
+
 
     private var page: String = "application/startPoint.json"
 
@@ -524,6 +526,10 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
                 Resource.Status.ERROR -> {
 //                     binding.loading.visibility = View.GONE
+                    if (nextScreen!=""){
+                        startActivityForLoad(  MehdiActivity::class.java,nextScreen)
+                        nextScreen=""
+                    }
                     loading.dismissDialog()
                     it.message?.let { it1 ->
                         error.showErrorDialog(it1)
@@ -591,10 +597,14 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         var counter = 0
         if (map.isNotEmpty())
             for (mutableEntry in map) {
+                if (mutableEntry.key=="screenName")
+                    nextScreen=mutableEntry.value
+
                 if (mutableEntry.value == "empty" || mutableEntry.value == "null")
                     if (mutableEntry.key == "currentScreen") {
                         map.put(mutableEntry.key, Constants.CURRENT_SCREEN)
                     }
+
 //                        else if (mutableEntry.key == "ph/token") {
 //                            map.put(mutableEntry.key, EncryptionConstant.TOKEN)
 //
