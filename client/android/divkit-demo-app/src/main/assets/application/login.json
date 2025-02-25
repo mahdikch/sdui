@@ -903,6 +903,11 @@
       },
       {
         "type": "string",
+        "name": "profile_circle",
+        "value": ""
+      },
+      {
+        "type": "string",
         "name": "lock",
         "value": ""
       },

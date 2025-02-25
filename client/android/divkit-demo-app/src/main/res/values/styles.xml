@@ -29,8 +29,8 @@
     </style>
 
     <style name="AppTheme.NoActionBar.White">
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorPrimary">@color/mision_card_presenced</item>
+        <item name="colorPrimaryDark">@color/mision_card_presenced</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
         <item name="android:navigationBarColor">?colorPrimary</item>

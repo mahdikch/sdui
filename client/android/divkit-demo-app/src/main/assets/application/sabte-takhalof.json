@@ -173,13 +173,14 @@
                                       "log_id": "change_on_color",
                                       "url": "div-action://change_color?name=on_color&value=@{on_status ? '193d8d' : '3e000000'}"
                                     },
+
                                     {
-                                      "log_id": "change_on_color",
-                                      "url": "div-action://set_variable?name=car_offline_info&value=@{on_status ? 'gone' : 'visible'}"
+                                      "log_id": "change_variable_inquiry_validation",
+                                      "url": "div-action://set_variable?name=variable_inquiry_validation&value=@{on_status ? 'true' : 'false'}"
                                     },
                                     {
-                                      "log_id": "change_on_color",
-                                      "url": "div-action://set_variable?name=register_punishment_visibility&value=@{on_status ? 'gone' : 'visible'}"
+                                      "log_id": "change_variable_inquiry_national_code",
+                                      "url": "div-action://set_variable?name=variable_inquiry_national_code&value=@{on_status ? 'true' : 'false'}"
                                     }
                                   ],
                                   "height": {
@@ -735,10 +736,10 @@
                             {
                               "type": "container",
                               "items": [
-                                {
+                                {"id": "plateA",
                                   "type": "input",
                                   "text_variable": "variable_plateA",
-                                  "hint_text": "@{variable_plateA}",
+                                  "hint_text": "@{variable_plateA_hint}",
                                   "keyboard_type": "number",
                                   "max_length": 2,
                                   "font_size": 32,
@@ -769,13 +770,13 @@
                                     "left": 2
                                   },
                                   "focus": {
-
                                     "next_focus_ids": {
                                       "forward": "plateB"
                                     }
                                   }
                                 },
-                                { "id": "plateB",
+                                {
+                                  "id": "plateB",
                                   "type": "text",
                                   "text": "@{variable_plateB}",
                                   "font_size": 32,
@@ -814,7 +815,6 @@
                                   }
                                 },
                                 {
-
                                   "next_focus_ids": {
                                     "forward": "plateD"
                                   },
@@ -822,7 +822,7 @@
                                   "type": "input",
                                   "text_variable": "variable_plateC",
                                   "max_length": 3,
-                                  "hint_text": "@{variable_plateC}",
+                                  "hint_text": "@{variable_plateC_hint}",
                                   "keyboard_type": "number",
                                   "font_size": 32,
                                   "letter_spacing": 0,
@@ -854,7 +854,7 @@
                                   "id": "plateD",
                                   "type": "input",
                                   "text_variable": "variable_plateD",
-                                  "hint_text": "@{variable_plateD}",
+                                  "hint_text": "@{variable_plateD_hint}",
                                   "keyboard_type": "number",
                                   "max_length": 2,
                                   "font_size": 32,
@@ -1076,35 +1076,35 @@
                               "background": [
                                 {
                                   "type": "solid",
-                                  "color": "#193d8d"
-                                }
+                                  "color": "@{on_status ? '#e8ecf4':'#193d8d'}"                                }
                               ],
                               "actions": [
-                                {
+                                {"is_enabled": "@{on_status ? false : true}",
                                   "log_id": "update_visibility",
                                   "url": "div-action://set_variable?name=car_info_visibility&value=visible"
                                 },
-                                {
+                                {"is_enabled": "@{on_status ? false : true}",
                                   "log_id": "update_visibility",
                                   "url": "div-action://set_variable?name=register_punishment_visibility&value=visible"
                                 },
-                                {
+                                {"is_enabled": "@{on_status ? false : true}",
                                   "log_id": "update_visibility",
                                   "url": "div-action://set_variable?name=driver_inquiry_visibility&value=@{taslimi ? 'visible' : 'gone'}"
                                 },
-                                {
+                                {"is_enabled": "@{on_status ? false : true}",
                                   "log_id": "update_visibility",
                                   "url": "div-action://set_variable?name=parking_visibility&value=gone"
                                 },
-                                {
+                                {"is_enabled": "@{on_status ? false : true}",
                                   "log_id": "update_visibility",
                                   "url": "div-action://set_variable?name=location_visibility&value=visible"
                                 },
-                                {
+                                {"is_enabled": "@{on_status ? false : true}",
                                   "log_id": "update_visibility",
                                   "url": "div-action://set_variable?name=register_btn_visibility&value=visible"
                                 },
                                 {
+                                  "is_enabled": "@{on_status ? false : true}",
                                   "log_id": "call_service",
                                   "url": "div-action://call_service?path=inquiryVehicle&ph/token=empty&sysName=@{sysName}&plateA=@{variable_plateA}&plateB=@{variable_plateB}&plateC=@{variable_plateC}&plateD=@{variable_plateD}&typeVehicle=plate&plateType=patchVehiclePlate"
                                 }
@@ -1173,6 +1173,16 @@
                             {
                               "log_id": "set_total_ticket_from_db",
                               "url": "div-action://set_variable_from_db?name=car_total_ticket_information_vt",
+                              "visibility_duration": 0
+                            },
+                            {
+                              "log_id": "set_total_ticket_from_db",
+                              "url": "div-action://set_variable_from_db?name=userName",
+                              "visibility_duration": 0
+                            },
+                            {
+                              "log_id": "set_imei",
+                              "url": "div-action://set_imei?name=imei_code",
                               "visibility_duration": 0
                             }
                           ],
@@ -2518,10 +2528,12 @@
                               "items": [
                                 {
                                   "type": "container",
+
                                   "items": [
                                     {
                                       "type": "input",
                                       "text_variable": "time",
+
                                       "hint_text": "ساعت",
                                       "font_size": 14,
                                       "line_height": 32,
@@ -3898,6 +3910,7 @@
                           },
                           "actions": [
                             {
+                              "is_enabled": "@{on_status ? false : true}",
                               "log_id": "call_service",
                               "url": "div-action://call_service?path=inquiryNationalCode&ph/token=empty&sysName=@{sysName}&nationalCode=@{national_code}&typeVehicle=nationalCode&iranian=@{iranian}"
                             }
@@ -3923,7 +3936,7 @@
                           "background": [
                             {
                               "type": "solid",
-                              "color": "#193d8d"
+                              "color": "@{on_status ? '#e8ecf4':'#193d8d'}"
                             }
                           ],
                           "border": {
@@ -5013,8 +5026,13 @@
                         },
                         {
                           "log_id": "call_service",
-                          "is_enabled": "@{last_check}",
-                          "url": "div-action://call_service?path=receiveTickets&ph/token=empty&ticket_type=@{ticket_type}&licenseDate=@{variable_driver_license_expire_vt}&licenseCityId=@{variable_driver_license_city_vt}&licenseTypeId=@{variable_driver_license_type_vt}&national_code=@{national_code}&usage_code=@{variable_usage_code}&color_code=@{variable_color_code}&system_code=@{variable_system_code}&typeVehicle=tickets&sysName=@{sysName}&police_code=@{policeCode}&address=@{address}&iranian=@{iranian}&plateA=@{variable_plateA}&plateB=@{variable_plateB}&plateC=@{variable_plateC}&plateD=@{variable_plateD}&plateType=patchVehiclePlate&car_model=@{car_model_information_vt}&plate_description=@{plate_description}&countPeople=@{number_of_passengers}&name=@{variable_driver_name_vt}&license_number=@{variable_driver_license_number_vt}&violationType1=@{violation1_code}&violationType2=@{violation2_code}&violationType3=@{violation3_code}&timePda=@{time}&datePda=@{date}&city_code=@{cityPolice_code}&isInternal=@{isInternal}&isOnline=@{isOnline}"
+                          "is_enabled": "@{online_validation}",
+                          "url": "div-action://call_service?path=receiveTickets&ph/token=empty&userName=@{userName}&ticket_type=@{ticket_type}&licenseDate=@{variable_driver_license_expire_vt}&licenseCityId=@{variable_driver_license_city_vt}&licenseTypeId=@{variable_driver_license_type_vt}&national_code=@{national_code}&usage_code=@{variable_usage_code}&color_code=@{variable_color_code}&system_code=@{variable_system_code}&typeVehicle=tickets&sysName=@{sysName}&police_code=@{policeCode}&address=@{address}&iranian=@{iranian}&plateA=@{variable_plateA}&plateB=@{variable_plateB}&plateC=@{variable_plateC}&plateD=@{variable_plateD}&plateType=patchVehiclePlate&car_model=@{car_model_information_vt}&plate_description=@{plate_description}&countPeople=@{number_of_passengers}&name=@{variable_driver_name_vt}&license_number=@{variable_driver_license_number_vt}&violationType1=@{violation1_code}&violationType2=@{violation2_code}&violationType3=@{violation3_code}&timePda=@{time}&datePda=@{date}&city_code=@{cityPolice_code}&imei_code=@{imei_code}&isInternal=@{isInternal}&isOnline=@{isOnline}"
+                        },
+                        {
+                          "log_id": "save_offline",
+                          "is_enabled": "@{offline_validation}",
+                          "url": "div-action://set_object_to_db?ticket_type=@{ticket_type}&national_code=@{national_code}&usage_code=@{variable_usage_code}&color_code=@{variable_color_code}&system_code=@{variable_system_code}&typeVehicle=tickets&sysName=@{sysName}&police_code=@{policeCode}&address=@{address}&iranian=@{iranian}&plateA=@{variable_plateA}&plateB=@{variable_plateB}&plateC=@{variable_plateC}&plateD=@{variable_plateD}&plateType=patchVehiclePlate&car_model=@{car_model_information_vt}&plate_description=@{plate_description}&countPeople=@{number_of_passengers}&name=@{variable_driver_name_vt}&license_number=@{variable_driver_license_number_vt}&violationType1=@{violation1_code}&violationType1_title=@{violation1_title}&violationType2=@{violation2_code}&violationType2_title=@{violation2_title}&violationType3=@{violation3_code}&violationType3_title=@{violation3_title}&timePda=@{time}&datePda=@{date}&city_code=@{cityPolice_code}&isInternal=@{isInternal}&isOnline=@{isOnline}&variable_system_title=@{variable_system_title}&variable_color_title=@{variable_color_title}&variable_usage_title=@{variable_usage_title}"
                         }
                       ],
                       "items": [
@@ -5204,7 +5222,7 @@
       {
         "type": "string",
         "name": "variable_plateA",
-        "value": "۱۱"
+        "value": ""
       },
       {
         "type": "string",
@@ -5214,21 +5232,50 @@
       {
         "type": "string",
         "name": "variable_plateC",
-        "value": "۱۱۱"
+        "value": ""
       },
       {
         "type": "string",
         "name": "variable_plateD",
-        "value": "۱۱"
+        "value": ""
       },
       {
         "type": "string",
         "name": "variable_plateE",
-        "value": "۱۱"
+        "value": ""
       },
       {
         "type": "string",
         "name": "variable_plateF",
+        "value": ""
+      }, {
+        "type": "string",
+        "name": "variable_plateA_hint",
+        "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateB_hint",
+        "value": "ب"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateC_hint",
+        "value": "۱۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateD_hint",
+        "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateE_hint",
+        "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateF_hint",
         "value": "۱۱"
       },
       {
@@ -5644,7 +5691,7 @@
       {
         "type": "boolean",
         "name": "on_status",
-        "value": true
+        "value": false
       },
       {
         "type": "string",
@@ -5825,6 +5872,10 @@
         "type": "boolean",
         "name": "is_valid",
         "value": false
+      },{
+        "type": "boolean",
+        "name": "is_valid_offline",
+        "value": false
       },
       {
         "type": "string",
@@ -5863,8 +5914,38 @@
       },
       {
         "type": "boolean",
+        "name": "register_offline",
+        "value": false
+      },
+      {
+        "type": "boolean",
         "name": "last_check",
         "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "last_check_offline",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "online_validation",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "offline_validation",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "userName",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "imei_code",
+        "value": "-"
       }
     ],
     "variable_triggers": [
@@ -5907,6 +5988,25 @@
             "url": "div-action://set_variable?name=is_valid&value=false"
           }
         ]
+      },{
+        "condition": "@{  variable_usage_title!=empty && variable_system_title!=empty && variable_color_title!=empty && address!=empty && time!=empty && violation_validation=='true'}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=is_valid_offline&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{  variable_usage_title==empty || variable_system_title==empty || variable_color_title==empty || address==empty || time==empty || violation_validation=='false'}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=is_valid_offline&value=false"
+          }
+        ]
       },
       {
         "condition": "@{taslimi && is_valid && national_code!=empty && variable_inquiry_national_code=='true'}",
@@ -5915,6 +6015,16 @@
           {
             "log_id": "slider A change",
             "url": "div-action://set_variable?name=register&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{taslimi && is_valid_offline && national_code!=empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=register_offline&value=true"
           }
         ]
       },
@@ -5929,12 +6039,32 @@
         ]
       },
       {
+        "condition": "@{taslimi && is_valid_offline && national_code==empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=register_offline&value=false"
+          }
+        ]
+      },
+      {
         "condition": "@{taslimi && !is_valid }",
         "mode": "on_condition",
         "actions": [
           {
             "log_id": "slider A change",
             "url": "div-action://set_variable?name=register&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{taslimi && !is_valid_offline }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=register_offline&value=false"
           }
         ]
       },
@@ -5949,6 +6079,16 @@
         ]
       },
       {
+        "condition": "@{taslimi && is_valid_offline }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=register_offline&value=false"
+          }
+        ]
+      },
+      {
         "condition": "@{!taslimi && is_valid}",
         "mode": "on_condition",
         "actions": [
@@ -5959,12 +6099,32 @@
         ]
       },
       {
+        "condition": "@{!taslimi && is_valid_offline}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=register_offline&value=true"
+          }
+        ]
+      },
+      {
         "condition": "@{!taslimi && !is_valid}",
         "mode": "on_condition",
         "actions": [
           {
             "log_id": "slider A change",
             "url": "div-action://set_variable?name=register&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{!taslimi && !is_valid_offline}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=register_offline&value=false"
           }
         ]
       },
@@ -5995,6 +6155,128 @@
           {
             "log_id": "slider A change",
             "url": "div-action://set_variable?name=last_check&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{picture_validation=='true' && register_offline && variable_car_picture!=''}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=last_check_offline&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{picture_validation=='true' && register_offline && variable_car_picture==''}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=last_check_offline&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{picture_validation=='false' && register_offline }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=last_check_offline&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{last_check && on_status }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=online_validation&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{last_check && !on_status }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=online_validation&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{last_check_offline && !on_status }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=offline_validation&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{last_check_offline && on_status }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=offline_validation&value=true"
+          }
+        ]
+      },
+      {
+        "condition":"@{len(variable_plateA) > 1}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "focus_one",
+            "typed": {
+              "type": "focus_element",
+              "element_id": "plateC"
+            }
+          }
+        ]
+      },
+      {
+        "condition":"@{len(variable_plateC) > 2}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "focus_one",
+            "typed": {
+              "type": "focus_element",
+              "element_id": "plateD"
+            }
+          }
+        ]
+      },
+      {
+        "condition":"@{len(variable_plateD) == 0}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "focus_six",
+            "typed": {
+              "type": "focus_element",
+              "element_id": "plateC"
+            }
+          }
+        ]
+      },
+      {
+        "condition":"@{len(variable_plateC) == 0}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "focus_six",
+            "typed": {
+              "type": "focus_element",
+              "element_id": "plateA"
+            }
           }
         ]
       }

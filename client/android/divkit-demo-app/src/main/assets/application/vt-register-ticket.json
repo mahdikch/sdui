@@ -5,7 +5,7 @@
       {
         "state_id": 0,
         "div": {
-          "type": "container",
+          "type": "gallery",
           "items": [
             {
               "type": "container",
@@ -15,7 +15,7 @@
                   "items": [
                     {
                       "type": "image",
-                      "image_url": "",
+                      "image_url": "@{info_circle}",
                       "height": {
                         "type": "wrap_content"
                       },
@@ -46,7 +46,6 @@
                   "type": "text",
                   "text": "@{text___1}",
                   "font_size": 12,
-                  "font_weight": "semibold",
                   "line_height": 24,
                   "letter_spacing": 0,
                   "text_color": "#343333",
@@ -88,14 +87,12 @@
                   "type": "text",
                   "text": "@{police_code}",
                   "font_size": 14,
-                  "font_weight": "semibold",
                   "letter_spacing": 0,
                   "text_color": "#252424",
-                  "text_alignment_horizontal": "right",
+                  "text_alignment_horizontal": "left",
                   "text_alignment_vertical": "top",
                   "width": {
-                    "type": "fixed",
-                    "value": 30
+                    "type": "match_parent"
                   },
                   "height": {
                     "type": "wrap_content"
@@ -103,6 +100,9 @@
                   "alignment_horizontal": "left",
                   "alignment_vertical": "center",
                   "margins": {
+                    "top": 17,
+                    "right": 72,
+                    "bottom": 17,
                     "left": 16
                   }
                 },
@@ -110,7 +110,6 @@
                   "type": "text",
                   "text": "@{text___6}",
                   "font_size": 12,
-                  "font_weight": "regular",
                   "letter_spacing": 0,
                   "text_color": "#777676",
                   "text_alignment_horizontal": "right",
@@ -154,13 +153,12 @@
                   "type": "text",
                   "text": "@{ticket_type}",
                   "font_size": 14,
-                  "font_weight": "semibold",
                   "letter_spacing": 0,
                   "text_color": "#252424",
-                  "text_alignment_horizontal": "right",
+                  "text_alignment_horizontal": "left",
                   "text_alignment_vertical": "top",
                   "width": {
-                    "type": "wrap_content"
+                    "type": "match_parent"
                   },
                   "height": {
                     "type": "wrap_content"
@@ -168,6 +166,9 @@
                   "alignment_horizontal": "left",
                   "alignment_vertical": "center",
                   "margins": {
+                    "top": 17,
+                    "right": 72,
+                    "bottom": 17,
                     "left": 16
                   }
                 },
@@ -175,7 +176,6 @@
                   "type": "text",
                   "text": "@{text___21}",
                   "font_size": 12,
-                  "font_weight": "regular",
                   "letter_spacing": 0,
                   "text_color": "#777676",
                   "text_alignment_horizontal": "right",
@@ -217,9 +217,8 @@
               "items": [
                 {
                   "type": "text",
-                  "text": "@{adress}",
+                  "text": "@{address}",
                   "font_size": 14,
-                  "font_weight": "semibold",
                   "letter_spacing": 0,
                   "text_color": "#252424",
                   "text_alignment_vertical": "top",
@@ -242,7 +241,6 @@
                   "type": "text",
                   "text": "@{text___19}",
                   "font_size": 12,
-                  "font_weight": "regular",
                   "letter_spacing": 0,
                   "text_color": "#777676",
                   "text_alignment_horizontal": "right",
@@ -303,7 +301,7 @@
                   "items": [
                     {
                       "type": "image",
-                      "image_url": "",
+                      "image_url": "@{car}",
                       "height": {
                         "type": "wrap_content"
                       },
@@ -317,7 +315,6 @@
                   "type": "text",
                   "text": "مشخصات خودرو",
                   "font_size": 12,
-                  "font_weight": "semibold",
                   "line_height": 24,
                   "letter_spacing": 0,
                   "text_color": "#343333",
@@ -359,13 +356,12 @@
                   "type": "text",
                   "text": "@{car_plate}",
                   "font_size": 14,
-                  "font_weight": "semibold",
                   "letter_spacing": 0,
                   "text_color": "#252424",
-                  "text_alignment_horizontal": "right",
+                  "text_alignment_horizontal": "left",
                   "text_alignment_vertical": "top",
                   "width": {
-                    "type": "wrap_content"
+                    "type": "match_parent"
                   },
                   "height": {
                     "type": "wrap_content"
@@ -374,6 +370,7 @@
                   "alignment_vertical": "center",
                   "margins": {
                     "top": 17,
+                    "right": 72,
                     "bottom": 17,
                     "left": 16
                   }
@@ -382,7 +379,6 @@
                   "type": "text",
                   "text": "@{text___8}",
                   "font_size": 12,
-                  "font_weight": "regular",
                   "letter_spacing": 0,
                   "text_color": "#777676",
                   "text_alignment_horizontal": "right",
@@ -426,13 +422,12 @@
                   "type": "text",
                   "text": "@{car_model}",
                   "font_size": 14,
-                  "font_weight": "semibold",
                   "letter_spacing": 0,
                   "text_color": "#252424",
-                  "text_alignment_horizontal": "right",
+                  "text_alignment_horizontal": "left",
                   "text_alignment_vertical": "top",
                   "width": {
-                    "type": "wrap_content"
+                    "type": "match_parent"
                   },
                   "height": {
                     "type": "wrap_content"
@@ -441,6 +436,7 @@
                   "alignment_vertical": "center",
                   "margins": {
                     "top": 17,
+                    "right": 72,
                     "bottom": 17,
                     "left": 16
                   }
@@ -449,7 +445,6 @@
                   "type": "text",
                   "text": "@{text___23}",
                   "font_size": 12,
-                  "font_weight": "regular",
                   "letter_spacing": 0,
                   "text_color": "#777676",
                   "text_alignment_horizontal": "right",
@@ -493,14 +488,12 @@
                   "type": "text",
                   "text": "@{plate_description}",
                   "font_size": 14,
-                  "font_weight": "semibold",
                   "letter_spacing": 0,
                   "text_color": "#252424",
-                  "text_alignment_horizontal": "right",
+                  "text_alignment_horizontal": "left",
                   "text_alignment_vertical": "top",
                   "width": {
-                    "type": "fixed",
-                    "value": 6
+                    "type": "match_parent"
                   },
                   "height": {
                     "type": "wrap_content"
@@ -508,6 +501,9 @@
                   "alignment_horizontal": "left",
                   "alignment_vertical": "center",
                   "margins": {
+                    "top": 17,
+                    "right": 88,
+                    "bottom": 17,
                     "left": 16
                   }
                 },
@@ -515,7 +511,6 @@
                   "type": "text",
                   "text": "@{text___15}",
                   "font_size": 12,
-                  "font_weight": "regular",
                   "letter_spacing": 0,
                   "text_color": "#777676",
                   "text_alignment_horizontal": "right",
@@ -557,16 +552,14 @@
               "items": [
                 {
                   "type": "text",
-                  "text": "@{driver_count}",
+                  "text": "@{countPeople}",
                   "font_size": 14,
-                  "font_weight": "semibold",
                   "letter_spacing": 0,
                   "text_color": "#252424",
-                  "text_alignment_horizontal": "right",
+                  "text_alignment_horizontal": "left",
                   "text_alignment_vertical": "top",
                   "width": {
-                    "type": "fixed",
-                    "value": 7
+                    "type": "match_parent"
                   },
                   "height": {
                     "type": "wrap_content"
@@ -574,6 +567,9 @@
                   "alignment_horizontal": "left",
                   "alignment_vertical": "center",
                   "margins": {
+                    "top": 17,
+                    "right": 88,
+                    "bottom": 17,
                     "left": 16
                   }
                 },
@@ -581,7 +577,6 @@
                   "type": "text",
                   "text": "@{text___27}",
                   "font_size": 12,
-                  "font_weight": "regular",
                   "letter_spacing": 0,
                   "text_color": "#777676",
                   "text_alignment_horizontal": "right",
@@ -625,25 +620,29 @@
                   "type": "text",
                   "text": "@{name}",
                   "font_size": 14,
-                  "font_weight": "semibold",
                   "letter_spacing": 0,
                   "text_color": "#252424",
-                  "text_alignment_horizontal": "right",
+                  "text_alignment_horizontal": "left",
                   "text_alignment_vertical": "top",
                   "width": {
-                    "type": "wrap_content"
+                    "type": "match_parent"
                   },
                   "height": {
                     "type": "wrap_content"
                   },
                   "alignment_horizontal": "left",
-                  "alignment_vertical": "center"
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 17,
+                    "right": 72,
+                    "bottom": 17,
+                    "left": 16
+                  }
                 },
                 {
                   "type": "text",
                   "text": "@{text___17}",
                   "font_size": 12,
-                  "font_weight": "regular",
                   "letter_spacing": 0,
                   "text_color": "#777676",
                   "text_alignment_horizontal": "right",
@@ -687,25 +686,29 @@
                   "type": "text",
                   "text": "@{license_number}",
                   "font_size": 14,
-                  "font_weight": "semibold",
                   "letter_spacing": 0,
                   "text_color": "#252424",
-                  "text_alignment_horizontal": "right",
+                  "text_alignment_horizontal": "left",
                   "text_alignment_vertical": "top",
                   "width": {
-                    "type": "wrap_content"
+                    "type": "match_parent"
                   },
                   "height": {
                     "type": "wrap_content"
                   },
                   "alignment_horizontal": "left",
-                  "alignment_vertical": "center"
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 17,
+                    "right": 72,
+                    "bottom": 17,
+                    "left": 16
+                  }
                 },
                 {
                   "type": "text",
                   "text": "@{text___29}",
                   "font_size": 12,
-                  "font_weight": "regular",
                   "letter_spacing": 0,
                   "text_color": "#777676",
                   "text_alignment_horizontal": "right",
@@ -767,7 +770,7 @@
                   "items": [
                     {
                       "type": "image",
-                      "image_url": "",
+                      "image_url": "@{info_circle}",
                       "height": {
                         "type": "wrap_content"
                       },
@@ -781,7 +784,6 @@
                   "type": "text",
                   "text": "مشخصات جریمه",
                   "font_size": 12,
-                  "font_weight": "semibold",
                   "line_height": 24,
                   "letter_spacing": 0,
                   "text_color": "#343333",
@@ -851,7 +853,7 @@
                   "items": [
                     {
                       "type": "image",
-                      "image_url": "",
+                      "image_url": "@{receipt}",
                       "height": {
                         "type": "wrap_content"
                       },
@@ -865,7 +867,6 @@
                   "type": "text",
                   "text": "جمع مبالغ تخلفات",
                   "font_size": 12,
-                  "font_weight": "semibold",
                   "line_height": 24,
                   "letter_spacing": 0,
                   "text_color": "#343333",
@@ -900,36 +901,12 @@
               "type": "container",
               "items": [
                 {
-                  "type": "text",
-                  "text": "@{text___11}",
-                  "font_size": 12,
-                  "font_weight": "regular",
-                  "letter_spacing": 0,
-                  "text_color": "#777676",
-                  "text_alignment_horizontal": "right",
-                  "text_alignment_vertical": "top",
-                  "width": {
-                    "type": "wrap_content"
-                  },
-                  "height": {
-                    "type": "wrap_content"
-                  },
-                  "alignment_horizontal": "right",
-                  "alignment_vertical": "center",
-                  "margins": {
-                    "top": 19,
-                    "right": 16,
-                    "bottom": 19
-                  }
-                },
-                {
                   "type": "container",
                   "items": [
                     {
                       "type": "text",
                       "text": "@{text___12}",
                       "font_size": 14,
-                      "font_weight": "regular",
                       "line_height": 24,
                       "letter_spacing": 0,
                       "text_color": "#252424",
@@ -946,7 +923,6 @@
                       "type": "text",
                       "text": "@{price}",
                       "font_size": 14,
-                      "font_weight": "semibold",
                       "line_height": 24,
                       "letter_spacing": 0,
                       "text_color": "#252424",
@@ -1008,10 +984,21 @@
                 {
                   "type": "container",
                   "actions": [
-
+                    {
+                      "log_id": "set_variable_from_db",
+                      "url": "div-action://set_variable_from_db?name=userName"
+                    },
+                    {
+                      "log_id": "set_variable_from_db",
+                      "url": "div-action://set_variable_from_db?name=zone"
+                    },
+                    {
+                      "log_id": "set_variable_from_db",
+                      "url": "div-action://set_variable_from_db?name=phoneNumber"
+                    },
                     {
                       "log_id": "call_service",
-                      "url": "div-action://call_service?path=registerTickets&ph/token=empty&ticket_type=@{ticket_type}&typeVehicle=registerTickets&police_code=@{police_code}&adress=@{adress}&iranian=@{iranian}&plateA=@{plateA}&plateB=@{plateB}&plateC=@{plateC}&plateD=@{plateD}&plateType=patchVehiclePlate&car_model=@{car_model_information_vt}&plate_description=@{plate_description}&countPeople=@{number_of_passengers}&name=@{variable_driver_name_vt}&license_number=@{license_number}&violationType1=@{violation1_code}&violationType2=@{violation2_code}&violationType3=@{violation3_code}&timePda=@{time}&datePda=@{}&cityPolice_code=@{cityPolice_code}&isInternal=@{isInternal}&isOnline=@{isOnline}"
+                      "url": "div-action://call_service?path=registerTickets&ph/token=empty&typeVehicle=tickets&sysName=vt&plate=@{digitPlate}&numberOfPeople=@{countPeople}&username=@{userName}&licenseDate=@{licenseDate}&latitude=@{latitude}&longitude=@{longitude}&licenseCityId=@{licenseCityId}&licenseTypeId=@{licenseTypeId}&carColorId=@{carColorId}&registerCityId=@{registerCityId}&carSystemId=@{carSystemId}&fineId1=@{fineId1}&fineId2=@{fineId2}&fineId3=@{fineId3}&ticketTypeId=@{ticketTypeId}&carUsageId=@{carUsageId}&name=@{name}&nationalId=@{nationalId}&address=@{address}&licenseNumber=@{license_number}&isBig=@{isBig}&zone=@{zone}&finePrice=@{price}&paperId=@{paperId}&paymentId=@{paymentId}&isPrevent=@{isPrevent}&warningPoliceDesc=@{warningPoliceDesc}&policeStationCode=@{policeStationCode}&imeiCode=@{imeiCode}&phoneNumber=@{phoneNumber}&version=@{version}&base64Image=@{base64Image}&isOnline=@{isOnline}&date=@{date}"
                     }
                   ],
                   "items": [
@@ -1019,7 +1006,6 @@
                       "type": "text",
                       "text": "@{text___30}",
                       "font_size": 14,
-                      "font_weight": "regular",
                       "line_height": 24,
                       "letter_spacing": 0,
                       "text_color": "#ffffff",
@@ -1040,12 +1026,7 @@
                     }
                   ],
                   "border": {
-                    "corners_radius": {
-                      "top-left": 57,
-                      "top-right": 57,
-                      "bottom-left": 57,
-                      "bottom-right": 57
-                    }
+                    "corner_radius": 4
                   },
                   "height": {
                     "type": "fixed",
@@ -1078,7 +1059,6 @@
                       "type": "text",
                       "text": "@{text___31}",
                       "font_size": 14,
-                      "font_weight": "regular",
                       "line_height": 24,
                       "letter_spacing": 0,
                       "text_color": "#8d1919",
@@ -1099,12 +1079,7 @@
                     }
                   ],
                   "border": {
-                    "corners_radius": {
-                      "top-left": 57,
-                      "top-right": 57,
-                      "bottom-left": 57,
-                      "bottom-right": 57
-                    }
+                    "corner_radius": 4
                   },
                   "height": {
                     "type": "fixed",
@@ -1141,7 +1116,7 @@
             }
           ],
           "height": {
-            "type": "wrap_content"
+            "type": "match_parent"
           },
           "width": {
             "type": "match_parent"
@@ -1178,6 +1153,26 @@
             "dark": "#000"
           }
         }
+      },
+      {
+        "type": "string",
+        "name": "info_circle",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "close_circle",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "car",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "receipt",
+        "value": ""
       },
       {
         "type": "string",
@@ -1266,7 +1261,7 @@
       },
       {
         "type": "string",
-        "name": "adress",
+        "name": "address",
         "value": "-"
       },
       {
@@ -1306,7 +1301,7 @@
       },
       {
         "type": "string",
-        "name": "driver_count",
+        "name": "numberOfPeople",
         "value": "-"
       },
       {
@@ -1333,6 +1328,31 @@
         "type": "string",
         "name": "text___31",
         "value": "انصراف"
+      },
+      {
+        "type": "string",
+        "name": "color_code",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "usage_code",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "system_code",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "iranian",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "nationalId",
+        "value": "-"
       },
       {
         "type": "string",
@@ -1366,13 +1386,8 @@
       },
       {
         "type": "string",
-        "name": "timePda",
-        "value": "-"
-      },
-      {
-        "type": "string",
-        "name": "datePda",
-        "value": "-"
+        "name": "date",
+        "value": "1403/09/11"
       },
       {
         "type": "string",
@@ -1386,17 +1401,17 @@
       },
       {
         "type": "string",
-        "name": "violationType1",
+        "name": "fineId1",
         "value": "-"
       },
       {
         "type": "string",
-        "name": "violationType2",
+        "name": "fineId2",
         "value": "-"
       },
       {
         "type": "string",
-        "name": "violationType3",
+        "name": "fineId3",
         "value": "-"
       },
       {
@@ -1411,17 +1426,7 @@
       },
       {
         "type": "string",
-        "name": "countPeaple",
-        "value": "-"
-      },
-      {
-        "type": "string",
-        "name": "countPeaple",
-        "value": "-"
-      },
-      {
-        "type": "string",
-        "name": "username",
+        "name": "userName",
         "value": "-"
       },
       {
@@ -1431,7 +1436,12 @@
       },
       {
         "type": "string",
-        "name": "date",
+        "name": "datePda",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "timePda",
         "value": "-"
       },
       {
@@ -1486,22 +1496,27 @@
       },
       {
         "type": "string",
-        "name": "nationalId",
-        "value": "-"
-      },
-      {
-        "type": "string",
         "name": "address",
         "value": "-"
       },
       {
         "type": "string",
-        "name": "nationalId",
+        "name": "zone",
         "value": "-"
       },
       {
         "type": "string",
-        "name": "zone",
+        "name": "countPeople",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "barCode",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "finePrice",
         "value": "-"
       },
       {
@@ -1543,18 +1558,22 @@
         "type": "string",
         "name": "version",
         "value": "-"
-      }  ,
+      },
       {
         "type": "string",
         "name": "policeCode",
         "value": "-"
-      } ,
+      },
       {
         "type": "string",
         "name": "base64Image",
         "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "digitPlate",
+        "value": "-"
       }
-
     ]
   },
   "templates": {
@@ -1575,7 +1594,6 @@
               "type": "text",
               "$text": "ticket_title",
               "font_size": 14,
-              "font_weight": "semibold",
               "letter_spacing": 0,
               "text_color": "#252424",
               "text_alignment_horizontal": "left",
@@ -1599,7 +1617,6 @@
               "type": "text",
               "text": "@{text___10}",
               "font_size": 12,
-              "font_weight": "regular",
               "letter_spacing": 0,
               "text_color": "#777676",
               "text_alignment_horizontal": "right",
@@ -1643,7 +1660,6 @@
               "type": "text",
               "$text": "ticket_code",
               "font_size": 14,
-              "font_weight": "semibold",
               "letter_spacing": 0,
               "text_color": "#252424",
               "text_alignment_horizontal": "right",
@@ -1664,7 +1680,6 @@
               "type": "text",
               "text": "@{text___25}",
               "font_size": 12,
-              "font_weight": "regular",
               "letter_spacing": 0,
               "text_color": "#777676",
               "text_alignment_horizontal": "right",

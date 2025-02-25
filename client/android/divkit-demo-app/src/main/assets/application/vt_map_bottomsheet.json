@@ -1,0 +1,440 @@
+{
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "gallery",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "text": "@{text___1}",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#3b3b3b",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "image",
+                          "image_url": "@{search}",
+                          "height": {
+                            "type": "fixed",
+                            "value": 19
+                          },
+                          "width": {
+                            "type": "fixed",
+                            "value": 19
+                          }
+                        },
+                        {
+                          "type": "image",
+                          "image_url": "",
+                          "height": {
+                            "type": "fixed",
+                            "value": 3
+                          },
+                          "width": {
+                            "type": "fixed",
+                            "value": 3
+                          }
+                        },
+                        {
+                          "type": "image",
+                          "image_url": "",
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "fixed",
+                        "value": 24
+                      },
+                      "width": {
+                        "type": "fixed",
+                        "value": 24
+                      },
+                      "orientation": "overlap",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    }
+                  ],
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#f3f5f9"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 4
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 32
+                  },
+                  "width": {
+                    "type": "fixed",
+                    "value": 32
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "center",
+                  "content_alignment_vertical": "center",
+                  "paddings": {
+                    "top": 8,
+                    "bottom": 8,
+                    "left": 8,
+                    "right": 8
+                  },
+                  "margins": {
+                    "left": 8
+                  }
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "wrap_content"
+              },
+              "orientation": "horizontal",
+              "content_alignment_horizontal": "right",
+              "content_alignment_vertical": "center",
+              "alignment_horizontal": "right",
+              "alignment_vertical": "top",
+              "margins": {
+                "top": 4,
+                "right": 16,
+                "bottom": 4
+              }
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "input",
+                  "text_variable": "bottom_sheet_variable_address_map",
+                  "hint_text": "آدرس",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#575757",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ],
+              "border": {
+                "corner_radius": 4,
+                "stroke": {
+                  "color": "#ececec",
+                  "width": 1
+                }
+              },
+              "height": {
+                "type": "fixed",
+                "value": 56
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "horizontal",
+              "content_alignment_horizontal": "right",
+              "content_alignment_vertical": "center",
+              "paddings": {
+                "top": 12,
+                "bottom": 12,
+                "left": 12,
+                "right": 12
+              },
+              "alignment_horizontal": "center",
+              "alignment_vertical": "top",
+              "margins": {
+                "top": 4,
+                "right": 16,
+                "bottom": 4,
+                "left": 16
+              }
+            },
+            {
+              "type": "custom",
+              "custom_type": "map",
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#ffffff"
+                }
+              ],
+              "border": {
+                "corner_radius": 4,
+                "stroke": {
+                  "color": "#d9e0e9",
+                  "width": 1
+                }
+              },
+              "height": {
+                "type": "fixed",
+                "value": 324
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "content_alignment_vertical": "center",
+              "content_alignment_horizontal": "center",
+              "alignment_horizontal": "center",
+              "alignment_vertical": "bottom",
+              "margins": {
+                "top": 4,
+                "right": 16,
+                "bottom": 4,
+                "left": 16
+              }
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "container",
+                  "actions": [
+                    {
+                      "log_id": "call_service",
+                      "url": "div-action://call_service?path=address&sysName=vt&ph/token=empty&status=add&location=@{bottom_sheet_variable_address_map}&close_bottom_sheet=true"
+                    },
+                    {
+                      "log_id": "bottom_sheet_dismiss",
+                      "url": "div-action://bottom_sheet_dismiss"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "@{text___3}",
+                      "font_size": 14,
+                      "line_height": 24,
+                      "letter_spacing": 0,
+                      "text_color": "#ffffff",
+                      "text_alignment_horizontal": "left",
+                      "text_alignment_vertical": "top",
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    }
+                  ],
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#193d8d"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 4
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 56
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "center",
+                  "content_alignment_vertical": "center",
+                  "paddings": {
+                    "top": 12,
+                    "right": 24,
+                    "bottom": 12,
+                    "left": 24
+                  },
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center"
+                },
+                {
+                  "type": "container",
+                  "actions": [
+                    {
+                      "log_id": "call_service",
+                      "url": "div-action://call_service?path=address&sysName=vt&ph/token=empty&status=get&close_bottom_sheet=true"
+                    },
+                    {
+                      "log_id": "bottom_sheet_dismiss",
+                      "url": "div-action://bottom_sheet_dismiss"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "@{text___4}",
+                      "font_size": 14,
+                      "line_height": 24,
+                      "letter_spacing": 0,
+                      "text_color": "#4260a2",
+                      "text_alignment_horizontal": "left",
+                      "text_alignment_vertical": "top",
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    }
+                  ],
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#f3f5f9"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 4
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 56
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "center",
+                  "content_alignment_vertical": "center",
+                  "paddings": {
+                    "top": 12,
+                    "right": 24,
+                    "bottom": 12,
+                    "left": 24
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center"
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "content_alignment_horizontal": "left",
+              "content_alignment_vertical": "center",
+              "alignment_horizontal": "center",
+              "alignment_vertical": "bottom",
+              "margins": {
+                "top": 4,
+                "right": 16,
+                "bottom": 8,
+                "left": 16
+              }
+            }
+          ],
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "border": {
+            "corners_radius": {
+              "top-left": 63,
+              "top-right": 63,
+              "bottom-left": 63,
+              "bottom-right": 63
+            }
+          },
+          "height": {
+            "type": "fixed",
+            "value": 544
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "vertical",
+          "content_alignment_vertical": "center",
+          "content_alignment_horizontal": "center"
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "string",
+        "name": "bottom_sheet_variable_address_map",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "search",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "text___1",
+        "value": "ثبت آدرس جدید"
+      },
+      {
+        "type": "string",
+        "name": "text___2",
+        "value": "تهران - میدان فردوسی - خیابان نجات اللهی - کوچه ششم"
+      },
+      {
+        "type": "string",
+        "name": "text___3",
+        "value": "ذخیره مکان"
+      },
+      {
+        "type": "string",
+        "name": "text___4",
+        "value": "انتخاب از لیست"
+      },
+      {
+        "type": "string",
+        "name": "text___5",
+        "value": "انتخاب موقعیت"
+      }
+    ]
+  },
+  "templates": {}
+}

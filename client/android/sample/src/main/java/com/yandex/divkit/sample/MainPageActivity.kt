@@ -26,7 +26,7 @@ class MainPageActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
         binding.toolbarLayout.title = title
 
-        val divJson = assetReader.read("sample.json")
+        val divJson = assetReader.read("test.json")
         val templatesJson = divJson.optJSONObject("templates")
         val cardJson = divJson.getJSONObject("card")
 

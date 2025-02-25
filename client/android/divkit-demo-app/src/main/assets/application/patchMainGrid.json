@@ -8,8 +8,8 @@
         "weight": 1
       },
       "height": {
-        "type": "match_parent",
-        "weight": 1
+        "type": "fixed",
+        "value": 120
       },
       "margins": {
         "left": 8,
@@ -40,7 +40,6 @@
           "type": "text",
           "$text": "title",
           "font_size": 12,
-          "font_weight": "bold",
           "letter_spacing": 0,
           "text_color": "#193d8d",
           "text_alignment_horizontal": "left",
@@ -67,7 +66,7 @@
       "alignment_horizontal": "center",
       "alignment_vertical": "center",
       "border": {
-        "corner_radius": 8
+        "corner_radius": 4
       },
       "delimiter_style": {
         "color": "#00000000"
@@ -101,7 +100,7 @@
       "alignment_horizontal": "center",
       "alignment_vertical": "center",
       "border": {
-        "corner_radius": 8
+        "corner_radius": 4
       },
       "delimiter_style": {
         "color": "#00000000"
@@ -115,27 +114,9 @@
         "id": "base_element",
         "items": [
           {
-            "type": "grid_element",
-            "row_span": "1",
-            "column_span": "1",
-            "background_color": "#FFFFFF",
-            "icon": "http://172.19.83.16:7001/PoliceHamrah/icon/ph.png",
-            "title": "ثبت تردد اربعين",
-            "actions": "[{\"log_id\":\"show_main\",\"url\":\"div-action://load_screen?screen=TRAFFICARB\"}]0"
-          },
-          {
-            "type": "grid_element",
-            "row_span": "1",
-            "column_span": "1",
-            "background_color": "#FFFFFF",
-            "icon": "http://172.19.83.16:7001/Basir/icon/bazresi.png",
-            "title": "بازرسي کل ناجا",
-            "actions": "[{\"log_id\":\"show_main\",\"url\":\"div-action://load_screen?screen=BAZRESI\"}]0"
-          },
-          {
             "type": "empty_element",
-            "row_span": "1",
-            "column_span": "1"
+            "column_span": 1,
+            "row_span": 1
           }
         ]
       }

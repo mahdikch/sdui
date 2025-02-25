@@ -17,11 +17,28 @@ apply from: "ui-tests.gradle"
 
 repositories {
     maven { url 'https://repo.gradle.org/gradle/libs-releases' }
+    maven {
+
+        url = uri("https://api.mapbox.com/downloads/v2/releases/maven")
+
+        // Do not change the username below. It should always be "mapbox" (not your username).
+
+        credentials.username = "mapbox"
+
+        // Use the secret token stored in gradle.properties as the password
+
+//            credentials.password = providers.gradleProperty("MAPBOX_DOWNLOADS_TOKEN").get()
+        credentials.password = "sk.eyJ1IjoiYnBrYXplbWkiLCJhIjoiY20zbDliZXpmMGZ3dzJqcXplNXBhdTA3OSJ9.kUYbRXN3L7C8pS97UC6mmQ"
+
+        authentication { basic(BasicAuthentication) }
+
+    }
 }
 
 android {
     namespace 'com.yandex.divkit.demo'
-
+//    versionName "1.0.0"
+//    versionCode 1
     buildFeatures {
         buildConfig = true
         viewBinding = true
@@ -32,7 +49,9 @@ android {
         kotlinCompilerExtensionVersion = "1.5.3" // Use the latest version
     }
     defaultConfig {
-        versionCode divkitVersion.versionCode + divkitVersion.buildNumber
+//        versionCode divkitVersion.versionCode + divkitVersion.buildNumber
+        versionCode 1
+        versionName "1.0.0"
         buildConfigField "int", "BUILD_NUMBER", "${divkitVersion.buildNumber}"
         buildConfigField "String", "METRICA_API_KEY", JsonOutput.toJson(project.findProperty("metricaApiKey") ?: "")
         buildConfigField "boolean", "THROW_ASSERTS", project.hasProperty("screenshot-tests")? "false" : "true"
@@ -113,6 +132,7 @@ dependencies {
     implementation project(path: ':picasso')
     implementation project(path: ':glide')
     implementation project(path: ':coil')
+    implementation project(path: ':najicamera')
 
     implementation libs.androidx.browser
     implementation libs.androidx.constraintlayout
@@ -141,6 +161,8 @@ dependencies {
     implementation libs.androidx.material3
     implementation libs.androidx.material3.android
     implementation libs.androidx.foundation.layout.android
+    implementation libs.core
+    implementation libs.core
     androidTestImplementation platform(libs.androidx.compose.bom)
     androidTestImplementation libs.androidx.ui.test.junit4
     debugImplementation libs.androidx.compose.ui.tooling
@@ -150,11 +172,14 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.2.1'
+
     implementation libs.stetho.core
     implementation libs.stetho.okhttp3
 //    implementation("androidx.compose.material3:material3:1.0.1")
     implementation libs.nvWebsocket
     implementation libs.androidx.test.uiautomator
+    implementation libs.androidx.coreKtx
 
     // QR code stuff
     implementation libs.zxing.embedded

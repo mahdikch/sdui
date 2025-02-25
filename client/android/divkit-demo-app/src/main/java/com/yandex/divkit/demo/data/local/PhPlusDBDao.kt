@@ -17,6 +17,9 @@ interface PhPlusDBDao {
     @Query("SELECT * FROM PhPlus WHERE `key`=:key")
     fun getPhPlusBykey(key: String): Flow<List<PhPlusDB>>
 
+    @Query("SELECT * FROM PhPlus WHERE `key` LIKE :key")
+    fun getVtOfflineReports(key: String): Flow<List<PhPlusDB>>
+
     @Query("SELECT * FROM PhPlus WHERE `key`=:key")
     fun getValueByKey(key: String):PhPlusDB
 

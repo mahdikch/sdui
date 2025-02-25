@@ -1648,6 +1648,51 @@
         "type": "string",
         "name": "plate_visibility",
         "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "variable_personInfo_visibility",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "variable_carInfo_visibility",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "variable_lastTicket_visibility",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "variable_violation_visibility",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "variable_command_visibility",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "variable_agahiInquiry_visibility",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "variable_insurance_visibility",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "variable_tecnical_visit_visibility",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "input_type",
+        "value": "plate"
       }
     ],
     "variable_triggers": [

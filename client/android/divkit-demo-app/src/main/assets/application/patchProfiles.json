@@ -44,12 +44,7 @@
                           }
                         ],
                         "border": {
-                          "corners_radius": {
-                            "top-left": 6,
-                            "top-right": 6,
-                            "bottom-left": 6,
-                            "bottom-right": 6
-                          }
+                          "corner_radius": 4
                         },
                         "height": {
                           "type": "fixed",
@@ -228,12 +223,7 @@
                       }
                     ],
                     "border": {
-                      "corners_radius": {
-                        "top-left": 4,
-                        "top-right": 4,
-                        "bottom-left": 4,
-                        "bottom-right": 4
-                      }
+                      "corner_radius": 4
                     },
                     "height": {
                       "type": "fixed",
@@ -1074,12 +1064,7 @@
               }
             ],
             "border": {
-              "corners_radius": {
-                "top-left": 6,
-                "top-right": 6,
-                "bottom-left": 6,
-                "bottom-right": 6
-              },
+              "corner_radius": 4,
               "stroke": {
                 "color": "#c8d0e4",
                 "width": 1

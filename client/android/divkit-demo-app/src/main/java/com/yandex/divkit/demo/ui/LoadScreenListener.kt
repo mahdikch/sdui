@@ -8,4 +8,6 @@ interface LoadScreenListener {
     fun onApplyOnbase(json: String, patchName: String, patchTitle:String)
     fun getBtmSheetInstance(btmSheet: BottomSheetDiv)
     fun setVariableToBase(key: String, value: String)
+    fun loadeScreenWithData(data: String, screenName: String)
+    fun update(url: String)
 }

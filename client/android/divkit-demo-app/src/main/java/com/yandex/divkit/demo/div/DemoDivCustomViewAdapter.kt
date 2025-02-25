@@ -3,6 +3,7 @@ package com.yandex.divkit.demo.div
 import android.content.Context
 import android.util.Log
 import android.view.View
+import androidx.lifecycle.LifecycleOwner
 import com.yandex.div.core.DivCustomContainerViewAdapter
 import com.yandex.div.core.DivPreloader
 import com.yandex.div.core.state.DivStatePath
@@ -13,16 +14,21 @@ import com.yandex.div.rive.RiveCustomViewAdapter
 import com.yandex.div.video.custom.VideoCustomAdapter
 import com.yandex.div.video.custom.VideoCustomViewController
 import com.yandex.div2.DivCustom
+import com.yandex.divkit.demo.ui.LoadScreenListener
+import com.yandex.divkit.demo.ui.activity.MehdiViewModel
 import okhttp3.OkHttpClient
 
 private const val TAG = "DivCustomViewAdapter"
 
 class DemoDivCustomViewAdapter(
     baseContext: Context,
-    videoCustomViewController: VideoCustomViewController
+    videoCustomViewController: VideoCustomViewController,
+    mehdiViewModel: MehdiViewModel?=null,
+    lo: LifecycleOwner?=null,
+    loadScreenListener: LoadScreenListener?=null,
 ): DivCustomContainerViewAdapter {
 
-    private val demoCustomContainerAdapter: DemoCustomContainerAdapter = DemoCustomContainerAdapter()
+    private val demoCustomContainerAdapter: DemoCustomContainerAdapter = DemoCustomContainerAdapter(mehdiViewModel, lo, loadScreenListener)
     private val videoCustomAdapter = VideoCustomAdapter(videoCustomViewController)
     private val divRiveAdapter =
         RiveCustomViewAdapter.Builder(baseContext, OkHttpDivRiveNetworkDelegate(OkHttpClient.Builder().build())).build()

@@ -1,0 +1,865 @@
+{
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "items": [
+            {
+              "visibility": "@{car_visibility}",
+              "type": "gallery",
+              "items": [
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "letter_template",
+                      "text": "د",
+                      "text_color": "#000000",
+                      "background_color": "#ffffff",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchVehiclePlate&patch_title=منطقه ای شخصی"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=د"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "و",
+                      "text_color": "#000000",
+                      "background_color": "#ffffff",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchVehiclePlate&patch_title=منطقه ای شخصی"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=و"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "ن",
+                      "text_color": "#000000",
+                      "background_color": "#ffffff",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchVehiclePlate&patch_title=منطقه ای شخصی"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=ن"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "ب",
+                      "background_color": "#ffffff",
+                      "text_color": "#000000",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchVehiclePlate&patch_title=منطقه ای شخصی"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=ب"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "ج",
+                      "background_color": "#ffffff",
+                      "text_color": "#000000",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchVehiclePlate&patch_title=منطقه ای شخصی"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=ج"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    }
+                  ],
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "left",
+                  "content_alignment_vertical": "top",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "top",
+                  "margins": {
+                    "top": 24,
+                    "right": 12,
+                    "bottom": 4,
+                    "left": 12
+                  },
+                  "paddings": {
+                    "top": 4,
+                    "bottom": 4
+                  }
+                },
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "letter_template",
+                      "text": "م",
+                      "text_color": "#000000",
+                      "background_color": "#ffffff",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchVehiclePlate&patch_title=منطقه ای شخصی"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=م"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "ل",
+                      "text_color": "#000000",
+                      "background_color": "#ffffff",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchVehiclePlate&patch_title=منطقه ای شخصی"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=ل"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "ق",
+                      "text_color": "#000000",
+                      "background_color": "#ffffff",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchVehiclePlate&patch_title=منطقه ای شخصی"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=ق"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "ص",
+                      "text_color": "#000000",
+                      "background_color": "#ffffff",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchVehiclePlate&patch_title=منطقه ای شخصی"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=ص"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "س",
+                      "text_color": "#000000",
+                      "background_color": "#ffffff",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchVehiclePlate&patch_title=منطقه ای شخصی"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=س"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    }
+                  ],
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "left",
+                  "content_alignment_vertical": "top",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "top",
+                  "margins": {
+                    "top": 4,
+                    "right": 12,
+                    "bottom": 4,
+                    "left": 12
+                  },
+                  "paddings": {
+                    "top": 4,
+                    "bottom": 4
+                  }
+                },
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "letter_template",
+                      "text": "الف",
+                      "background_color": "#F21829",
+                      "text_color": "#ffffff",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchDolatiPlate&patch_title=منطقه ای دولتی"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=الف"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "ع",
+                      "text_color": "#000000",
+                      "background_color": "#FDCA00",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchOmomePlate&patch_title=عمومی"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=ع"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "ت",
+                      "background_color": "#FDCA00",
+                      "text_color": "#000000",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchTaxiPlate&patch_title=تاکسی"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=ت"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "ی",
+                      "text_color": "#000000",
+                      "background_color": "#ffffff",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchVehiclePlate&patch_title=منطقه ای شخصی"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=ی"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "ه",
+                      "text_color": "#000000",
+                      "background_color": "#ffffff",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchVehiclePlate&patch_title=منطقه ای شخصی"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=ه"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    }
+                  ],
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "left",
+                  "content_alignment_vertical": "top",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "top",
+                  "margins": {
+                    "top": 4,
+                    "right": 12,
+                    "bottom": 4,
+                    "left": 12
+                  },
+                  "paddings": {
+                    "top": 4,
+                    "bottom": 4
+                  }
+                },
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "letter_template",
+                      "text": "ف",
+                      "background_color": "#1966C9",
+                      "text_color": "#ffffff",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchSetadKolPlate&patch_title=منطقه ای ستاد کل"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=ف"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "ک",
+                      "text_color": "#000000",
+                      "background_color": "#F8D700",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchKeshavarziPlate&patch_title=کشاورزی"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=ک"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "ش",
+                      "text_color": "#000000",
+                      "background_color": "#D6B481",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchArteshPlate&patch_title=آجا"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=ش"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "ز",
+                      "background_color": "#016C80",
+                      "text_color": "#ffffff",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchVedajaPlate&patch_title=وداجا"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=ز"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "ث",
+                      "background_color": "#015428",
+                      "text_color": "#ffffff",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchSepahPlate&patch_title=سپاه"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=ث"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    }
+                  ],
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "left",
+                  "content_alignment_vertical": "top",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "top",
+                  "margins": {
+                    "top": 4,
+                    "right": 12,
+                    "bottom": 4,
+                    "left": 12
+                  },
+                  "paddings": {
+                    "top": 4,
+                    "bottom": 4
+                  }
+                },
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "letter_template",
+                      "text": "S",
+                      "text_color": "#000000",
+                      "background_color": "#AEC7FF",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchServicePlate&patch_title=سرویس ملی"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=S"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "معلولین",
+                      "background_color": "#ffffff",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchMaloolinPlate&patch_title=منطقه ای معلولین"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=ژ"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "D",
+                      "text_color": "#000000",
+                      "background_color": "#AEC7FF",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchSiasiMeliPlate&patch_title=سیاسی ملی"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=D"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "پ",
+                      "background_color": "#02532A",
+                      "text_color": "#ffffff",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchpolicePlate&patch_title=منطقه ای پلیس"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=پ"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss"
+                        }
+                      ]
+                    }
+                  ],
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "left",
+                  "content_alignment_vertical": "top",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "top",
+                  "margins": {
+                    "top": 4,
+                    "right": 12,
+                    "bottom": 8,
+                    "left": 12
+                  },
+                  "paddings": {
+                    "top": 4,
+                    "bottom": 4
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#ffffff"
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "vertical",
+              "content_alignment_vertical": "center",
+              "content_alignment_horizontal": "center",
+              "alignment_horizontal": "center",
+              "alignment_vertical": "top"
+            }
+          ],
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "border": {
+            "corners_radius": {
+              "top-left": 5,
+              "top-right": 5,
+              "bottom-right": 5,
+              "bottom-left": 5
+            }
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "vertical",
+          "content_alignment_vertical": "center",
+          "content_alignment_horizontal": "center"
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "string",
+        "name": "text___1",
+        "value": "موتور"
+      },
+      {
+        "type": "string",
+        "name": "text___2",
+        "value": "ماشین"
+      },
+      {
+        "type": "string",
+        "name": "text___3",
+        "value": "مناطق آزاد"
+      },
+      {
+        "type": "string",
+        "name": "text___4",
+        "value": "نظامی"
+      },
+      {
+        "type": "string",
+        "name": "text___5",
+        "value": "قدیم دولتی بدون کد"
+      },
+      {
+        "type": "string",
+        "name": "text___6",
+        "value": "منطقه ای "
+      },
+      {
+        "type": "string",
+        "name": "text___7",
+        "value": "گذر موقت"
+      },
+      {
+        "type": "string",
+        "name": "text___8",
+        "value": "فاقد پلاک"
+      },
+      {
+        "type": "string",
+        "name": "text___9",
+        "value": "سرویس ملی"
+      },
+      {
+        "type": "string",
+        "name": "text___10",
+        "value": "سیاسی ملی"
+      },
+      {
+        "type": "string",
+        "name": "text___11",
+        "value": "مناطق آزاد"
+      },
+      {
+        "type": "string",
+        "name": "text___12",
+        "value": "شماره موقت تهران"
+      },
+      {
+        "type": "string",
+        "name": "text___13",
+        "value": "سیاسی"
+      },
+      {
+        "type": "string",
+        "name": "text___14",
+        "value": "گذر موقت ملی"
+      },
+      {
+        "type": "string",
+        "name": "text___15",
+        "value": "ترانزیت"
+      },
+      {
+        "type": "string",
+        "name": "text___16",
+        "value": "تاریخی"
+      },
+      {
+        "type": "string",
+        "name": "motor_visibility",
+        "value": "gone"
+      },
+      {
+        "type": "string",
+        "name": "car_visibility",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "selected_tab_color",
+        "value": "ffffff"
+      },
+      {
+        "type": "string",
+        "name": "unselected_tab_color",
+        "value": "f3f5f9"
+      },
+      {
+        "type": "string",
+        "name": "motor_selected",
+        "value": "#f3f5f9"
+      },
+      {
+        "type": "string",
+        "name": "mashin_selected",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "motor_plate",
+        "value": "patchMotorPlate"
+      },
+      {
+        "type": "string",
+        "name": "mashin_plate",
+        "value": "patchVehiclePlate"
+      }
+    ]
+  },
+  "templates": {
+    "letter_template": {
+      "type": "container",
+      "background": [
+        {
+          "type": "solid",
+          "$color": "background_color"
+        }
+      ],
+      "items": [
+        {
+          "type": "text",
+          "$text": "text",
+          "font_size": 14,
+          "font_weight": "regular",
+          "line_height": 24,
+          "letter_spacing": 0,
+          "$text_color": "text_color",
+          "text_alignment_vertical": "top",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          }
+        }
+      ],
+      "$actions": "actions",
+      "border": {
+        "corner_radius": 4,
+        "stroke": {
+          "color": "#193d8d",
+          "width": 1
+        }
+      },
+      "height": {
+        "type": "fixed",
+        "value": 36
+      },
+      "width": {
+        "type": "match_parent"
+      },
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "center",
+      "content_alignment_vertical": "center",
+      "paddings": {
+        "top": 4,
+        "bottom": 4,
+        "left": 4,
+        "right": 4
+      },
+      "margins": {
+        "right": 4,
+        "left": 4
+      }
+    }
+  }
+}

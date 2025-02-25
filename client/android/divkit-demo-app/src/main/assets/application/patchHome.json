@@ -66,7 +66,7 @@
       "alignment_horizontal": "center",
       "alignment_vertical": "center",
       "border": {
-        "corner_radius": 8
+        "corner_radius": 4
       },
       "delimiter_style": {
         "color": "#00000000"
@@ -100,7 +100,7 @@
       "alignment_horizontal": "center",
       "alignment_vertical": "center",
       "border": {
-        "corner_radius": 8
+        "corner_radius": 4
       },
       "delimiter_style": {
         "color": "#00000000"
@@ -116,7 +116,6 @@
         "items": [
           {
             "id": "page",
-
             "type": "gallery",
             "width": {
               "type": "match_parent"
@@ -237,10 +236,10 @@
                                     },
                                     "border": {
                                       "corners_radius": {
-                                        "top-left": 66,
-                                        "top-right": 66,
-                                        "bottom-left": 66,
-                                        "bottom-right": 66
+                                        "top-left": 145,
+                                        "top-right": 145,
+                                        "bottom-left": 145,
+                                        "bottom-right": 145
                                       }
                                     },
                                     "alpha": 0.8,
@@ -268,10 +267,10 @@
                             ],
                             "border": {
                               "corners_radius": {
-                                "top-left": 18,
-                                "top-right": 18,
-                                "bottom-left": 18,
-                                "bottom-right": 18
+                                "top-left": 97,
+                                "top-right": 97,
+                                "bottom-left": 97,
+                                "bottom-right": 97
                               }
                             },
                             "height": {
@@ -367,10 +366,10 @@
                                 ],
                                 "border": {
                                   "corners_radius": {
-                                    "top-left": 18,
-                                    "top-right": 18,
-                                    "bottom-left": 18,
-                                    "bottom-right": 18
+                                    "top-left": 97,
+                                    "top-right": 97,
+                                    "bottom-left": 97,
+                                    "bottom-right": 97
                                   }
                                 },
                                 "height": {
@@ -421,10 +420,10 @@
                     ],
                     "border": {
                       "corners_radius": {
-                        "top-left": 22,
-                        "top-right": 22,
-                        "bottom-left": 22,
-                        "bottom-right": 22
+                        "top-left": 101,
+                        "top-right": 101,
+                        "bottom-left": 101,
+                        "bottom-right": 101
                       }
                     },
                     "height": {
@@ -460,15 +459,15 @@
                 ],
                 "border": {
                   "corners_radius": {
-                    "top-left": 16,
-                    "top-right": 16,
-                    "bottom-left": 16,
-                    "bottom-right": 16
+                    "top-left": 95,
+                    "top-right": 95,
+                    "bottom-left": 95,
+                    "bottom-right": 95
                   }
                 },
                 "height": {
                   "type": "fixed",
-                  "value": 112
+                  "value": 120
                 },
                 "width": {
                   "type": "match_parent"
@@ -561,7 +560,7 @@
                             "items": [
                               {
                                 "type": "image",
-                                "image_url": "divkit-asset://phone-inquery.png",
+                                "image_url": "@{phone_inquery}",
                                 "height": {
                                   "type": "match_parent"
                                 },
@@ -598,10 +597,10 @@
                         ],
                         "border": {
                           "corners_radius": {
-                            "top-left": 16,
-                            "top-right": 16,
-                            "bottom-left": 16,
-                            "bottom-right": 16
+                            "top-left": 95,
+                            "top-right": 95,
+                            "bottom-left": 95,
+                            "bottom-right": 95
                           }
                         },
                         "height": {
@@ -654,6 +653,12 @@
                   },
                   {
                     "type": "container",
+                    "actions": [
+                      {
+                        "log_id": "show_main",
+                        "url": "div-action://forward_to?path=forward_to&name=ph/reports&system=2"
+                      }
+                    ],
                     "items": [
                       {
                         "type": "container",
@@ -728,7 +733,7 @@
                             "items": [
                               {
                                 "type": "image",
-                                "image_url": "divkit-asset://caw-inquery.png",
+                                "image_url": "@{caw_inquery}",
                                 "height": {
                                   "type": "match_parent"
                                 },
@@ -765,10 +770,10 @@
                         ],
                         "border": {
                           "corners_radius": {
-                            "top-left": 17,
-                            "top-right": 17,
-                            "bottom-left": 17,
-                            "bottom-right": 17
+                            "top-left": 96,
+                            "top-right": 96,
+                            "bottom-left": 96,
+                            "bottom-right": 96
                           }
                         },
                         "height": {
@@ -846,10 +851,10 @@
                         ],
                         "border": {
                           "corners_radius": {
-                            "top-left": 18,
-                            "top-right": 18,
-                            "bottom-left": 18,
-                            "bottom-right": 18
+                            "top-left": 97,
+                            "top-right": 97,
+                            "bottom-left": 97,
+                            "bottom-right": 97
                           }
                         },
                         "height": {
@@ -952,7 +957,7 @@
                             "items": [
                               {
                                 "type": "image",
-                                "image_url": "divkit-asset://car-inquery.png",
+                                "image_url": "@{car_inquery}",
                                 "height": {
                                   "type": "match_parent"
                                 },
@@ -1018,10 +1023,10 @@
                         ],
                         "border": {
                           "corners_radius": {
-                            "top-left": 19,
-                            "top-right": 19,
-                            "bottom-left": 19,
-                            "bottom-right": 19
+                            "top-left": 98,
+                            "top-right": 98,
+                            "bottom-left": 98,
+                            "bottom-right": 98
                           }
                         },
                         "height": {
@@ -1124,7 +1129,7 @@
                             "items": [
                               {
                                 "type": "image",
-                                "image_url": "divkit-asset://person-inquery.png",
+                                "image_url": "@{person_inquery}",
                                 "height": {
                                   "type": "match_parent"
                                 },
@@ -1159,7 +1164,7 @@
                 ],
                 "height": {
                   "type": "fixed",
-                  "value": 140
+                  "value": 120
                 },
                 "width": {
                   "type": "match_parent"
@@ -1199,7 +1204,6 @@
                   "right": 8,
                   "bottom": 8
                 },
-
                 "alignment_horizontal": "center",
                 "column_count": "@{gridColumn}",
                 "row_count": "@{gridRow}",
@@ -1214,11 +1218,10 @@
                     "title": "ثبت تخلفات",
                     "actions": [
                       {
-                        "log_id": "show_bottom_sheet",
-                        "url": "div-action://bottom_sheet_div?jsonName=ph/vt/bottomsheet"
+                        "log_id": "show_main",
+                        "url": "div-action://load_screen?screen=sabte-takhalof"
                       }
                     ]
-
                   }
                 ]
               }

@@ -11,7 +11,7 @@ class Version private constructor(
     val versionCode = computeVersionCode(majorVersion, minorVersion, fixVersion)
     val baseVersionName =  "$majorVersion.$minorVersion.$fixVersion"
 
-    var buildNumber = 0
+    var buildNumber = 3
         private set
 
     var releaseLibraryVersion: String = baseVersionName

@@ -1,9 +1,15 @@
 package com.yandex.divkit.demo.ui.activity
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.DownloadManager
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -35,12 +41,22 @@ import com.yandex.divkit.demo.utils.SingletonObjects
 import com.yandex.divkit.regression.ScenarioLogDelegate
 //import dagger.hilt.android.AndroidEntryPoint
 import org.json.JSONObject
-
+import androidx.core.app.ActivityCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.FragmentActivity
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.yandex.divkit.demo.BuildConfig
 import com.yandex.divkit.demo.ui.LoadScreenListener
 import com.yandex.divkit.demo.ui.bottomSheetDiv.BottomSheetDiv
 import com.yandex.divkit.demo.ui.dialogDiv.DialogDiv
 import com.yandex.divkit.demo.ui.toastDiv.CustomToast
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.File
 
 //@AndroidEntryPoint
 class MehdiActivity : AppCompatActivity(), LoadScreenListener {
@@ -70,7 +86,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
     private var varlist: ArrayList<String> = arrayListOf()
     private lateinit var div: Div2View
     private lateinit var btmSheet: BottomSheetDiv
-
+    private val REQUEST_CODE_STORAGE = 1001
 //    private lateinit var observerRemoteData: Observer<String>
 //    private lateinit var observerRemoteData: Observer<MutableMap<String, String>>
 
@@ -93,6 +109,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         val intent = intent
         val bundle = intent.extras
         val json = bundle?.getString("json")
+        val sysname = bundle?.getString("sysName")
         binding = ActivityMehdiBinding.inflate(layoutInflater)
         setContentView(binding.root)
         loading = LoadingDialog(this)
@@ -312,6 +329,92 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                 ).apply {
                     weight = 1F
                 }
+                if (sysname != null && sysname == "vt") {
+                    val data = bundle.getString("data")
+                    val restoredMap: MutableMap<String, String> = Gson().fromJson(
+                        data,
+                        object : TypeToken<MutableMap<String, String>>() {}.type
+                    )
+
+                    restoredMap["ticket_type"]?.let { div.setVariable("ticket_type", it) }
+                    restoredMap["national_code"]?.let { div.setVariable("national_code", it) }
+                    restoredMap["usage_code"]?.let { div.setVariable("variable_usage_code", it) }
+                    restoredMap["color_code"]?.let { div.setVariable("variable_color_code", it) }
+                    restoredMap["system_code"]?.let { div.setVariable("variable_system_code", it) }
+                    restoredMap["sysName"]?.let { div.setVariable("sysName", it) }
+                    restoredMap["police_code"]?.let { div.setVariable("policeCode", it) }
+                    restoredMap["address"]?.let { div.setVariable("address", it) }
+                    restoredMap["iranian"]?.let { div.setVariable("iranian", it) }
+                    restoredMap["plateA"]?.let { div.setVariable("variable_plateA", it) }
+                    restoredMap["plateB"]?.let { div.setVariable("variable_plateB", it) }
+                    restoredMap["plateC"]?.let { div.setVariable("variable_plateC", it) }
+                    restoredMap["plateD"]?.let { div.setVariable("variable_plateD", it) }
+                    restoredMap["car_model"]?.let {
+                        div.setVariable(
+                            "car_model_information_vt",
+                            it
+                        )
+                    }
+                    restoredMap["plate_description"]?.let {
+                        div.setVariable(
+                            "plate_description",
+                            it
+                        )
+                    }
+                    restoredMap["countPeople"]?.let { div.setVariable("number_of_passengers", it) }
+                    restoredMap["name"]?.let { div.setVariable("variable_driver_name_vt", it) }
+                    restoredMap["license_number"]?.let {
+                        div.setVariable(
+                            "variable_driver_license_number_vt",
+                            it
+                        )
+                    }
+                    restoredMap["violationType1"]?.let { div.setVariable("violation1_code", it) }
+                    restoredMap["violationType1_title"]?.let {
+                        div.setVariable(
+                            "violation1_title",
+                            it
+                        )
+                    }
+                    restoredMap["violationType2"]?.let { div.setVariable("violation2_code", it) }
+                    restoredMap["violationType2_title"]?.let {
+                        div.setVariable(
+                            "violation2_title",
+                            it
+                        )
+                    }
+                    restoredMap["violationType3"]?.let { div.setVariable("violation3_code", it) }
+                    restoredMap["violationType3_title"]?.let {
+                        div.setVariable(
+                            "violation3_title",
+                            it
+                        )
+                    }
+                    restoredMap["timePda"]?.let { div.setVariable("time", it) }
+                    restoredMap["datePda"]?.let { div.setVariable("date", it) }
+                    restoredMap["city_code"]?.let { div.setVariable("cityPolice_code", it) }
+                    restoredMap["isInternal"]?.let { div.setVariable("isInternal", it) }
+                    restoredMap["isOnline"]?.let { div.setVariable("isOnline", it) }
+                    restoredMap["variable_system_title"]?.let {
+                        div.setVariable(
+                            "variable_system_title",
+                            it
+                        )
+                    }
+                    restoredMap["variable_color_title"]?.let {
+                        div.setVariable(
+                            "variable_color_title",
+                            it
+                        )
+                    }
+                    restoredMap["variable_usage_title"]?.let {
+                        div.setVariable(
+                            "variable_usage_title",
+                            it
+                        )
+                    }
+
+                }
                 binding.root.addView(div)
 
             }
@@ -429,33 +532,54 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                     println("key:${it.data.toString()}")
 
                     var next = ""
+                    var reset = ""
                     var toast = ""
                     var dialog = ""
                     var bottomSheet = ""
                     var bottomSheetPatch = ""
                     var patch = ""
+                    var update = ""
                     var res: MutableMap<String, String>? = it.data
                     if (res != null) {
 //                        var i: Long = 1
                         for ((key, value) in res) {
                             if (key != null && value != null) {
-                                if (key == "next") {
-                                    next = value
-                                } else if (key == "show_toast") {
-                                    toast = value
-                                } else if (key == "show_dialog") {
-                                    dialog = value
-                                } else if (key == "show_bottomSheet") {
-                                    bottomSheet = value
-                                } else if (key == "set_patch") {
-                                    patch = value
-                                } else if (key == "bottom_sheet_set_patch") {
-                                    bottomSheetPatch = value
-                                } else if (key == "close_bottom_sheet") {
-//                                   btmSheet.dismiss()
-                                } else {
-                                    mehdiViewModel.insertItemToDb(PhPlusDB(null, key, value))
+                                when (key) {
+                                    "next" -> next = value
+                                    "show_toast" -> toast = value
+                                    "show_dialog" -> dialog = value
+                                    "show_bottomSheet" -> bottomSheet = value
+                                    "set_patch" -> patch = value
+                                    "bottom_sheet_set_patch" -> bottomSheetPatch = value
+                                    "reset" -> reset = value
+                                    "update" -> update = value
+                                    else -> mehdiViewModel.insertItemToDb(
+                                        PhPlusDB(
+                                            null,
+                                            key,
+                                            value
+                                        )
+                                    )
                                 }
+//                                if (key == "next") {
+//                                    next = value
+//                                } else if (key == "show_toast") {
+//                                    toast = value
+//                                } else if (key == "show_dialog") {
+//                                    dialog = value
+//                                } else if (key == "show_bottomSheet") {
+//                                    bottomSheet = value
+//                                } else if (key == "set_patch") {
+//                                    patch = value
+//                                } else if (key == "bottom_sheet_set_patch") {
+//                                    bottomSheetPatch = value
+//                                } else if (key == "close_bottom_sheet") {
+////                                   btmSheet.dismiss()
+//                                } else if (key == "reset") {
+//                                   reset=value
+//                                } else {
+//                                    mehdiViewModel.insertItemToDb(PhPlusDB(null, key, value))
+//                                }
 //                                if (key == "ph/token") {
 //                                    EncryptionConstant.TOKEN = value
 //                                }
@@ -510,8 +634,18 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
                         }
                         if (bottomSheetPatch != "") {
-                          btmSheet.onApply(bottomSheetPatch,"")
+                            btmSheet.onApply(bottomSheetPatch, "")
 
+                        }
+                        if (reset != "") {
+                            resetActivityForLoad(
+                                MehdiActivity::class.java,
+                                reset
+                            )
+
+                        }
+                        if (update != "") {
+                            updateApp(update)
                         }
                     }
                     loading.dismissDialog()
@@ -526,9 +660,9 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
                 Resource.Status.ERROR -> {
 //                     binding.loading.visibility = View.GONE
-                    if (nextScreen!=""){
-                        startActivityForLoad(  MehdiActivity::class.java,nextScreen)
-                        nextScreen=""
+                    if (nextScreen != "") {
+                        startActivityForLoad(MehdiActivity::class.java, nextScreen)
+                        nextScreen = ""
                     }
                     loading.dismissDialog()
                     it.message?.let { it1 ->
@@ -570,6 +704,172 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
     }
 
+    private fun resetActivityForLoad(klass: Class<out Activity>, jsonName: String) {
+
+//        if (Constants.CURRENT_SCREEN != jsonName) {
+        val intent = Intent(this, klass)
+        intent.putExtra("json", jsonName)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        ContextCompat.startActivity(this, intent, null)
+        finish()
+
+
+    }
+
+    private fun startActivityWithDataForLoad(
+        klass: Class<out Activity>,
+        jsonName: String,
+        data: String
+    ) {
+
+//        if (Constants.CURRENT_SCREEN != jsonName) {
+        val intent = Intent(this, klass)
+        intent.putExtra("json", jsonName)
+        intent.putExtra("sysName", "vt")
+        intent.putExtra("data", data)
+        ContextCompat.startActivity(this, intent, null)
+        if (Constants.CURRENT_SCREEN == "ph/splash" || Constants.CURRENT_SCREEN == "ph/login" || Constants.CURRENT_SCREEN == "ph/main") {
+            finish()
+        }
+
+
+    }
+
+    private fun updateApp(url: String) {
+        val APK_URL = url
+        if (checkPermissions()) {
+            startDownload(APK_URL)
+        }
+
+
+    }
+
+    private fun startDownload(url: String) {
+        // Launch a coroutine to handle the download
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                val downloadId = withContext(Dispatchers.IO) {
+                    downloadApk(url)
+                }
+                monitorDownload(downloadId)
+            } catch (e: Exception) {
+                Toast.makeText(
+                    this@MehdiActivity,
+                    "Download failed: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    private fun downloadApk(url: String): Long {
+        val downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        val request = DownloadManager.Request(Uri.parse(url))
+            .setTitle("Downloading Update")
+            .setDescription("Downloading the latest version of the app")
+            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+            .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "app_update.apk")
+
+        return downloadManager.enqueue(request)
+    }
+
+    @SuppressLint("Range")
+    private suspend fun monitorDownload(downloadId: Long) {
+        val downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        var downloading = true
+
+        while (downloading) {
+            val query = DownloadManager.Query().setFilterById(downloadId)
+            val cursor = downloadManager.query(query)
+            if (cursor.moveToFirst()) {
+                val status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
+                when (status) {
+                    DownloadManager.STATUS_SUCCESSFUL -> {
+                        // Download completed, start installation
+                        val uri = downloadManager.getUriForDownloadedFile(downloadId)
+                        uri?.let { installApk(it) }
+                        downloading = false
+                    }
+
+                    DownloadManager.STATUS_FAILED -> {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(
+                                this@MehdiActivity,
+                                "Download failed",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        downloading = false
+                    }
+                }
+            }
+            cursor.close()
+            delay(1000) // Check every second
+        }
+    }
+
+    private fun installApk(apkUri: Uri) {
+        val file = File(apkUri.path ?: return)
+        val contentUri =
+            FileProvider.getUriForFile(this, "${applicationContext.packageName}.fileprovider", file)
+
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(contentUri, "application/vnd.android.package-archive")
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+        startActivity(intent)
+    }
+//    @SuppressLint("Range")
+//    private fun downloadApk(url: String) {
+//        val downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+//        val request = DownloadManager.Request(Uri.parse(url))
+//            .setTitle("Downloading Update")
+//            .setDescription("Downloading the latest version of the app")
+//            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+//            .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "app_update.apk")
+//
+//        val downloadId = downloadManager.enqueue(request)
+//
+//        // Monitor the download progress
+//        Thread {
+//            var downloading = true
+//            while (downloading) {
+//                val query = DownloadManager.Query().setFilterById(downloadId)
+//                val cursor = downloadManager.query(query)
+//                if (cursor.moveToFirst()) {
+//                    val status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
+//                    if (status == DownloadManager.STATUS_SUCCESSFUL) {
+//                        // Download completed, start installation
+//                        val uri = downloadManager.getUriForDownloadedFile(downloadId)
+//                        uri?.let { installApk(it) }
+//                        downloading = false
+//                    } else if (status == DownloadManager.STATUS_FAILED) {
+//                        Toast.makeText(this, "Download failed", Toast.LENGTH_SHORT).show()
+//                        downloading = false
+//                    }
+//                }
+//                cursor.close()
+//            }
+//        }.start()
+//    }
+
+    private fun checkPermissions(): Boolean {
+        return if (ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                REQUEST_CODE_STORAGE
+            )
+            false
+        } else {
+            true
+        }
+    }
+
     override fun onLoad(screenName: String) {
         var next = ""
 
@@ -597,19 +897,19 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         var counter = 0
         if (map.isNotEmpty())
             for (mutableEntry in map) {
-                if (mutableEntry.key=="screenName")
-                    nextScreen=mutableEntry.value
+                if (mutableEntry.key == "screenName")
+                    nextScreen = mutableEntry.value
 
                 if (mutableEntry.value == "empty" || mutableEntry.value == "null")
                     if (mutableEntry.key == "currentScreen") {
                         map.put(mutableEntry.key, Constants.CURRENT_SCREEN)
-                    }
+                    } else if (mutableEntry.key == "versionCodePhPlus") {
+                        map.put(mutableEntry.key, BuildConfig.VERSION_CODE.toString())
 
-//                        else if (mutableEntry.key == "ph/token") {
-//                            map.put(mutableEntry.key, EncryptionConstant.TOKEN)
-//
-//                        }
-                    else {
+                    }else if (mutableEntry.key == "versionNamePhPlus") {
+                        map.put(mutableEntry.key, BuildConfig.VERSION_NAME)
+
+                    } else {
                         var dbValue = mehdiViewModel.getValueByKey(mutableEntry.key)
                         if (dbValue != null)
                             map.put(mutableEntry.key, dbValue.value)
@@ -626,6 +926,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                 counter++
                 if (counter == map.size) {
                     mehdiViewModel.setphPlusRequest(map)
+                    println(map.toString())
 
                 }
 
@@ -648,5 +949,32 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
     override fun setVariableToBase(key: String, value: String) {
         div.setVariable(key, value)
+    }
+
+    override fun loadeScreenWithData(data: String, screenName: String) {
+        var next = ""
+
+        if (screenName.isNotEmpty()) {
+//            next = mehdiViewModel.getValueByKey(screenName).value
+            if (screenName == "nextSplash")
+                next = mehdiViewModel.getValueByKey(screenName).value
+            else
+                next = screenName
+            if (next != null || next != "") {
+//                if (Constants.CURRENT_SCREEN != next) {
+                Constants.CURRENT_SCREEN = next
+                mehdiViewModel.insertItemToDb(PhPlusDB(null, "currentScreen", next))
+                startActivityWithDataForLoad(
+                    MehdiActivity::class.java,
+                    next,
+                    data
+                )
+//                }
+            }
+        }
+    }
+
+    override fun update(url: String) {
+        updateApp(url)
     }
 }

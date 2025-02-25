@@ -32,6 +32,7 @@ class PhPlusRepository @Inject constructor(
 //
 //
     fun getByKey(key:String) = this.phPlusDBDao.getPhPlusBykey(key)
+    fun getVtOfflineReports(key:String) = this.phPlusDBDao.getVtOfflineReports(key)
     fun getValueByKey(key:String) = this.phPlusDBDao.getValueByKey(key)
     fun getall() = this.phPlusDBDao.getAllBasicInfo()
 

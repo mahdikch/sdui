@@ -43,6 +43,7 @@ class MehdiViewModel @Inject constructor(
 //        repository.getByKey(key)
 //    }
     fun getPage(key: String) = repository.getByKey(key).asLiveData()
+    fun getVtOfflineReports(key: String) = repository.getVtOfflineReports(key).asLiveData()
     fun getJson(key: String) = repository.getByKey(key).asLiveData()
     fun getVariable(key: String) = repository.getByKey(key).asLiveData()
     fun getRequestParam(key: String) = repository.getByKey(key).asLiveData()

@@ -4,7 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.yandex.div.core.actions.logError
 
-internal object ViewLocator {
+object ViewLocator {
 
     @JvmStatic
     fun findSingleViewWithTag(divView: Div2View, tag: String): View? {

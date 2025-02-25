@@ -1,6 +1,7 @@
 package com.yandex.divkit.demo.ui
 
 import android.R
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
@@ -16,8 +17,15 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_CLOCK
 import com.google.android.material.timepicker.TimeFormat
+import com.google.gson.Gson
+import com.yandex.div.core.DivActionHandler
 import com.yandex.div.core.DivViewFacade
+import com.yandex.div.core.actions.DivActionTypedHandlerProxy
+import com.yandex.div.core.actions.DivActionTypedHandlerProxy.handleVisibilityAction
+import com.yandex.div.core.downloader.DivDownloadActionHandler.canHandle
+import com.yandex.div.core.downloader.DivDownloadActionHandler.handleVisibilityAction
 import com.yandex.div.core.view2.Div2View
+import com.yandex.div.core.view2.ViewLocator.findSingleViewWithTag
 import com.yandex.div.data.VariableMutationException
 import com.yandex.div.internal.Assert
 import com.yandex.div.json.expressions.ExpressionResolver
@@ -39,10 +47,12 @@ import com.yandex.divkit.demo.ui.bottomSheetSpinner.BottomSheetSpinner
 import com.yandex.divkit.demo.ui.toastDiv.CustomToast
 import com.yandex.divkit.demo.utils.DivkitDemoUriHandler
 import com.yandex.divkit.regression.RegressionActivity
+import ir.nrdc.camera.Naji
+import ir.nrdc.camera.OnCallBackListener
 import java.io.Serializable
-import com.yandex.div.core.actions.DivActionTypedHandlerProxy.handleVisibilityAction
-import com.yandex.div.core.downloader.DivDownloadActionHandler.canHandle
-import com.yandex.div.core.downloader.DivDownloadActionHandler.handleVisibilityAction
+import java.text.SimpleDateFormat
+import java.util.Date
+import android.provider.Settings
 
 private const val AUTHORITY_OPEN_SCREEN = "open_screen"
 private const val AUTHORITY_SET_PATCH = "set_patch"
@@ -54,6 +64,7 @@ private const val AUTHORITY_SHOW_DIV_DIALOG = "show_dialog_div"
 private const val AUTHORITY_SHOW_DIALOG = "show_dialog"
 private const val AUTHORITY_SET_VARIABLE = "set_variable"
 private const val AUTHORITY_SET_VARIABLE_FROM_DB = "set_variable_from_db"
+private const val AUTHORITY_SET_IMEI = "set_imei"
 private const val AUTHORITY_SET_VARIABLE_TO_DB = "set_variable_to_db"
 private const val AUTHORITY_CHANGE_COLOR = "change_color"
 private const val AUTHORITY_SET_CAPTCHA = "refresh_captcha"
@@ -67,6 +78,8 @@ private const val AUTHORITY_SHOW_DATE_PICKER = "show_date_picker"
 private const val AUTHORITY_BOTTOM_SHEET_DISMISS = "bottom_sheet_dismiss"
 private const val AUTHORITY_SET_VARIABLE_TO_BASE = "set_variable_to_base"
 private const val AUTHORITY_CHECK_VERSION = "check_version"
+private const val AUTHORITY_SET_OBJECT_TO_DB = "set_object_to_db"
+private const val AUTHORITY_UPDATE = "update"
 const val SCHEME_DIV_ACTION = "div-action"
 
 private const val ACTIVITY_DEMO = "demo"
@@ -77,6 +90,7 @@ private const val ACTIVITY_MEHDI = "mehdi"
 
 private const val PARAM_ACTIVITY = "activity"
 private const val PARAM_SCREEN = "screen"
+private const val PARAM_UPDATE_URL = "url"
 private const val PARAM_TOAST = "massage"
 private const val PARAM_DIALOG_TITLE = "title"
 private const val PARAM_DIALOG_MASSAGE = "massage"
@@ -107,7 +121,6 @@ private const val PARAM_OPEN_CAMERA_OCR = "check_ocr"
 private const val PARAM_CHECK_VERSION_NAME = "name"
 
 
-
 class UIDiv2ActionHandler(
     uriHandler: DivkitDemoUriHandler,
     private val context: Context,
@@ -115,8 +128,8 @@ class UIDiv2ActionHandler(
     private val lo: LifecycleOwner,
     private var loadScreenListener: LoadScreenListener,
     private val mehdiViewModel: MehdiViewModel?,
-    private  var btmSheet_div: BottomSheetDiv?=null
-) : DemoDivActionHandler(uriHandler), BottomSheetPlate.PlateItemListener, /*OnCallBackListener,*/
+    private var btmSheet_div: BottomSheetDiv? = null
+) : /*DemoDivActionHandler(uriHandler),*/ DivActionHandler(), BottomSheetPlate.PlateItemListener, OnCallBackListener,
     Serializable,
     AdapterBottomSheetSpinner.CustomItemListener {
     lateinit var view: DivViewFacade
@@ -124,7 +137,7 @@ class UIDiv2ActionHandler(
 
     private var flag = 0;
     private var btmSheet_list = BottomSheetDialogFragment();
-//    private var naji = Naji();
+    private var naji = Naji();
 
 //    interface LoadScreenListener {
 //        fun onLoad(screenName: String)
@@ -138,11 +151,17 @@ class UIDiv2ActionHandler(
         view: DivViewFacade,
         resolver: ExpressionResolver
     ): Boolean {
+//        val scopedResolver = findExpressionResolverById(view as Div2View, action.scopeId)
+//        val localResolver = scopedResolver ?: resolver
+//        if (DivActionTypedHandlerProxy.handleAction(action, view, localResolver)) {
+//            return true
+//        }
+        val url = action.url?.evaluate(resolver) ?: return super.handleAction(action, view, resolver)
 
         if (action.url == null) return false
-        val uri = action.url!!.evaluate(resolver)
+//        val uri = action.url!!.evaluate(resolver)
 
-        return (handleActivityActionUrl(uri, view) || SettingsActionHandler.handleActionUrl(uri)
+        return (handleActivityActionUrl(url, view) || SettingsActionHandler.handleActionUrl(url)
                 || super.handleAction(action, view, resolver))
     }
 
@@ -181,10 +200,11 @@ class UIDiv2ActionHandler(
         } else handleActionUrl(url, view, resolver)
     }
 
+    @SuppressLint("HardwareIds", "SuspiciousIndentation")
     private fun handleActivityActionUrl(uri: Uri, view: DivViewFacade): Boolean {
         this.view = view
-        if (uri.scheme != SCHEME_DIV_ACTION) return false
-        if (uri.authority == AUTHORITY_OPEN_SCREEN) {
+         if (uri.scheme != SCHEME_DIV_ACTION) return false
+         if (uri.authority == AUTHORITY_OPEN_SCREEN) {
             when (uri.getQueryParameter(PARAM_ACTIVITY)) {
                 ACTIVITY_DEMO -> startActivityAction(Div2Activity::class.java)
                 ACTIVITY_REGRESSION -> startActivityAction(RegressionActivity::class.java)
@@ -203,6 +223,10 @@ class UIDiv2ActionHandler(
 //                MehdiActivity::class.java,
 //                uri.getQueryParameter(PARAM_SCREEN).toString()
 //            )
+        }else if (uri.authority == AUTHORITY_UPDATE) {
+            val url = uri.getQueryParameter(PARAM_UPDATE_URL)
+
+
         } else if (uri.authority == AUTHORITY_FORWARD_TO) {
             val parameterNames = uri.queryParameterNames
             val map: MutableMap<String, String> = HashMap()
@@ -216,13 +240,31 @@ class UIDiv2ActionHandler(
         } else if (uri.authority == AUTHORITY_OPEN_CAMERA) {
 
             val type = uri.getQueryParameter(PARAM_OPEN_CAMERA)
-//            naji.openCamera(context as Activity, this, type,uri.getQueryParameter(
-//                PARAM_OPEN_CAMERA_OCR))
+            naji.openCamera(context as Activity, this, type,uri.getQueryParameter(
+                PARAM_OPEN_CAMERA_OCR))
 
         } else if (uri.authority == AUTHORITY_CHECK_VERSION) {
 
             val name = uri.getQueryParameter(PARAM_CHECK_VERSION_NAME)
 
+
+        } else if (uri.authority ==  AUTHORITY_SET_OBJECT_TO_DB) {
+
+            val parameterNames = uri.queryParameterNames
+            val map: MutableMap<String, String> = HashMap()
+            var sysName = ""
+            for (parameterName in parameterNames) {
+                map[parameterName] = uri.getQueryParameter(parameterName).toString()
+                if (parameterName == "sysName")
+                    sysName = uri.getQueryParameter(parameterName).toString()
+            }
+            var username = mehdiViewModel?.getValueByKey("userName")?.value
+            val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+            val currentDate = sdf.format(Date())
+
+            val json = Gson().toJson(map).toString()
+
+            mehdiViewModel?.insertItemToDb(PhPlusDB(null, "$username/$sysName/$currentDate", json))
 
         } else if (uri.authority == AUTHORITY_SHOW_TIME_PICKER) {
             val div2View: Div2View = view as Div2View
@@ -240,12 +282,12 @@ class UIDiv2ActionHandler(
 
             picker.addOnPositiveButtonClickListener {
                 if (varName != null) {
-                    if (picker.minute.toString().length==1){
-                    div2View.setVariable(
-                        varName,
-                        picker.hour.toString() + ":0" + picker.minute.toString()
-                    )}
-                    else{
+                    if (picker.minute.toString().length == 1) {
+                        div2View.setVariable(
+                            varName,
+                            picker.hour.toString() + ":0" + picker.minute.toString()
+                        )
+                    } else {
                         div2View.setVariable(
                             varName,
                             picker.hour.toString() + ":" + picker.minute.toString()
@@ -282,13 +324,12 @@ class UIDiv2ActionHandler(
             for (parameterName in parameterNames) {
                 map[parameterName] = uri.getQueryParameter(parameterName).toString()
             }
-            loadScreenListener.onRequest(map)
+             loadScreenListener.onRequest(map)
 
 
 //            RemoteData.value.value = map
 
-        }
-        else if (uri.authority == AUTHORITY_SET_VARIABLE) {
+        } else if (uri.authority == AUTHORITY_SET_VARIABLE) {
             val name = uri.getQueryParameter(PARAM_VARIABLE_NAME)
             if (name == null) {
                 Assert.fail(PARAM_VARIABLE_NAME + " param is required")
@@ -344,6 +385,16 @@ class UIDiv2ActionHandler(
 //                }
 //            }
 
+            return true
+        }else if (uri.authority == AUTHORITY_SET_IMEI) {
+            val name = uri.getQueryParameter(PARAM_VARIABLE_NAME)
+
+            if (name != null) {
+//                    json == it[0].value
+                    val div2View = if (view is Div2View) view as Div2View? else null
+                val androidId=Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
+                        div2View?.setVariable(name,androidId)
+            }
             return true
         } else if (uri.authority == AUTHORITY_SET_VARIABLE_TO_DB) {
             val key = uri.getQueryParameter(PARAM_SET_VARIABLE_TO_DB_KEY)
@@ -438,7 +489,7 @@ class UIDiv2ActionHandler(
             val value = uri.getQueryParameter(PARAM_VARIABLE_VALUE)
             if (name != null) {
                 if (value != null) {
-                    loadScreenListener.setVariableToBase(name,value)
+                    loadScreenListener.setVariableToBase(name, value)
                 }
             }
 //            btmSheet_div.dismiss()
@@ -564,18 +615,18 @@ class UIDiv2ActionHandler(
         try {
             when (varName) {
                 "usage" -> {
-                    div2View?.setVariable("usage_code", programs.id)
-                    div2View?.setVariable("usage_title", programs.titleFa)
+                    div2View?.setVariable("variable_usage_code", programs.id)
+                    div2View?.setVariable("variable_usage_title", programs.titleFa)
                 }
 
                 "system" -> {
-                    div2View?.setVariable("system_code", programs.id)
-                    div2View?.setVariable("system_title", programs.titleFa)
+                    div2View?.setVariable("variable_system_code", programs.id)
+                    div2View?.setVariable("variable_system_title", programs.titleFa)
                 }
 
                 "color" -> {
-                    div2View?.setVariable("color_code", programs.id)
-                    div2View?.setVariable("color_title", programs.titleFa)
+                    div2View?.setVariable("variable_color_code", programs.id)
+                    div2View?.setVariable("variable_color_title", programs.titleFa)
                 }
 
                 "violation1" -> {
@@ -607,58 +658,74 @@ class UIDiv2ActionHandler(
 
     }
 
-//    override fun getImageMainAndCropped(bitmapMain: String?, imageUriCrop: String?, type: String?,checkOcr:String?) {
-//        println("bitmapMain = ${bitmapMain}")
-//        val div2View = if (view is Div2View) view as Div2View? else null
-//
-//        if (type == "car") {
-//            if (checkOcr=="true"){
-//            val map: MutableMap<String, String> = HashMap()
-//            if (imageUriCrop != null) {
-//                map.put("path", "carPicture")
-//                map.put("base64", imageUriCrop)
-//                map.put("ph/token", "empty")
-//            }
-//            loadScreenListener.onRequest(map)}
-//            else{
-//                div2View?.setVariable("variable_picture_visibility","visible")
-//                if (imageUriCrop != null) {
-//                    div2View?.setVariable("variable_car_picture",imageUriCrop)
-//                }
-//            }
-//        }
-//        if (type == "ocr") {
-//            val map: MutableMap<String, String> = HashMap()
-//            if (imageUriCrop != null) {
-//                map.put("path", "ocrPicture")
-//                map.put("base64", imageUriCrop)
-//                map.put("ph/token", "empty")
-//
-//            }
-//            loadScreenListener.onRequest(map)
-//        }
-//        if (type == "person") {
-//            val map: MutableMap<String, String> = HashMap()
-//            if (imageUriCrop != null) {
-//                map.put("path", "parsonPicture")
-//                map.put("base64", imageUriCrop)
-//                map.put("ph/token", "empty")
-//
-//            }
-//            loadScreenListener.onRequest(map)
-//        }
-//    }
-//
-//    override fun getImageMainCompress(bitmapMainCompress: String?, type: String?) {
-//        println("bitmapMain = ${bitmapMainCompress}")
-//
-//    }
-//
-//    override fun getImageCroppedCompress(imageUriCropCompress: String?, type: String?) {
-//        println("bitmapMain = ${imageUriCropCompress}")
-//
-//    }
+    override fun getImageMainAndCropped(bitmapMain: String?, imageUriCrop: String?, type: String?,checkOcr:String?) {
+        println("bitmapMain = ${bitmapMain}")
+        val div2View = if (view is Div2View) view as Div2View? else null
 
+        if (type == "car") {
+            if (checkOcr=="true"){
+            val map: MutableMap<String, String> = HashMap()
+            if (imageUriCrop != null) {
+                map.put("path", "carPicture")
+                map.put("base64", imageUriCrop)
+                map.put("ph/token", "empty")
+            }
+            loadScreenListener.onRequest(map)}
+            else{
+                div2View?.setVariable("variable_picture_visibility","visible")
+                if (imageUriCrop != null) {
+                    div2View?.setVariable("variable_car_picture",imageUriCrop)
+                }
+            }
+        }
+        if (type == "ocr") {
+            val map: MutableMap<String, String> = HashMap()
+            if (imageUriCrop != null) {
+                map.put("path", "ocrPicture")
+                map.put("base64", imageUriCrop)
+                map.put("ph/token", "empty")
+
+            }
+            loadScreenListener.onRequest(map)
+        }
+        if (type == "person") {
+            val map: MutableMap<String, String> = HashMap()
+            if (imageUriCrop != null) {
+                map.put("path", "inquiryBiometric/agh")
+                map.put("personalImage", imageUriCrop)
+                map.put("ph/token", "empty")
+                map.put("type", "3")
+                map.put("status", "searchImage")
+                map.put("sysName", "agh")
+
+            }
+            loadScreenListener.onRequest(map)
+        }
+    }
+
+    override fun getImageMainCompress(bitmapMainCompress: String?, type: String?) {
+        println("bitmapMain = ${bitmapMainCompress}")
+
+    }
+
+    override fun getImageCroppedCompress(imageUriCropCompress: String?, type: String?) {
+        println("bitmapMain = ${imageUriCropCompress}")
+
+    }
+//    private fun findExpressionResolverById(divView: Div2View, id: String?): ExpressionResolver? {
+//        if (id == null) {
+//            return null
+//        }
+//
+//        val targetView = findSingleViewWithTag(divView, id)
+//        if (targetView is DivHolderView<*>) {
+//            val bindingContext = (targetView as DivHolderView<*>).bindingContext
+//            if (bindingContext != null) {
+//                return bindingContext.expressionResolver
+//            }
+//        }
+//        return null
+//    }
 //    override fun loadscreen(json: String) {
 //        startActivityForLoad(MehdiActivity::class.java,json)
 //    }
