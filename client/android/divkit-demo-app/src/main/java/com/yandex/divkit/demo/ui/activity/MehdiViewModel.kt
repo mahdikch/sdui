@@ -1,6 +1,5 @@
 package com.yandex.divkit.demo.ui.activity
 
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,11 +8,8 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.yandex.divkit.demo.data.entities.PhPlusDB
-import com.yandex.divkit.demo.data.entities.req.RequestPhPlus
-import com.yandex.divkit.demo.data.entities.res.ResponsePhPlus
 import com.yandex.divkit.demo.data.remote.Resource
 import com.yandex.divkit.demo.data.repository.PhPlusRepository
-//import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject

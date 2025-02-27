@@ -1,5 +1,6 @@
 package com.yandex.divkit.demo.ui
 
+import android.Manifest
 import android.R
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -7,9 +8,12 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.provider.Settings
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
@@ -20,12 +24,10 @@ import com.google.android.material.timepicker.TimeFormat
 import com.google.gson.Gson
 import com.yandex.div.core.DivActionHandler
 import com.yandex.div.core.DivViewFacade
-import com.yandex.div.core.actions.DivActionTypedHandlerProxy
 import com.yandex.div.core.actions.DivActionTypedHandlerProxy.handleVisibilityAction
 import com.yandex.div.core.downloader.DivDownloadActionHandler.canHandle
 import com.yandex.div.core.downloader.DivDownloadActionHandler.handleVisibilityAction
 import com.yandex.div.core.view2.Div2View
-import com.yandex.div.core.view2.ViewLocator.findSingleViewWithTag
 import com.yandex.div.data.VariableMutationException
 import com.yandex.div.internal.Assert
 import com.yandex.div.json.expressions.ExpressionResolver
@@ -33,7 +35,6 @@ import com.yandex.div2.DivAction
 import com.yandex.div2.DivSightAction
 import com.yandex.divkit.demo.data.entities.ListItemDto
 import com.yandex.divkit.demo.data.entities.PhPlusDB
-import com.yandex.divkit.demo.div.DemoDivActionHandler
 import com.yandex.divkit.demo.div.Div2Activity
 import com.yandex.divkit.demo.div.DivActivity
 import com.yandex.divkit.demo.settings.SettingsActionHandler
@@ -49,10 +50,13 @@ import com.yandex.divkit.demo.utils.DivkitDemoUriHandler
 import com.yandex.divkit.regression.RegressionActivity
 import ir.nrdc.camera.Naji
 import ir.nrdc.camera.OnCallBackListener
+import saman.zamani.persiandate.PersianDate
+import saman.zamani.persiandate.PersianDateFormat
+import saman.zamani.persiandate.PersianDateFormat.PersianDateNumberCharacter
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.Date
-import android.provider.Settings
+
 
 private const val AUTHORITY_OPEN_SCREEN = "open_screen"
 private const val AUTHORITY_SET_PATCH = "set_patch"
@@ -75,10 +79,13 @@ private const val AUTHORITY_SHOW_BOTTOM_SHEET_PLATE = "bottom_sheet_plate"
 private const val AUTHORITY_SHOW_BOTTOM_SHEET_DIV = "bottom_sheet_div"
 private const val AUTHORITY_SHOW_TIME_PICKER = "show_time_picker"
 private const val AUTHORITY_SHOW_DATE_PICKER = "show_date_picker"
+private const val AUTHORITY_GET_PERSIAN_DATE = "get_persian_date"
 private const val AUTHORITY_BOTTOM_SHEET_DISMISS = "bottom_sheet_dismiss"
 private const val AUTHORITY_SET_VARIABLE_TO_BASE = "set_variable_to_base"
 private const val AUTHORITY_CHECK_VERSION = "check_version"
 private const val AUTHORITY_SET_OBJECT_TO_DB = "set_object_to_db"
+private const val AUTHORITY_GET_CAMERA_PERMISSION = "get_camera_permission"
+private const val AUTHORITY_GET_LOCATION_PERMISSION = "get_location_permission"
 private const val AUTHORITY_UPDATE = "update"
 const val SCHEME_DIV_ACTION = "div-action"
 
@@ -129,7 +136,8 @@ class UIDiv2ActionHandler(
     private var loadScreenListener: LoadScreenListener,
     private val mehdiViewModel: MehdiViewModel?,
     private var btmSheet_div: BottomSheetDiv? = null
-) : /*DemoDivActionHandler(uriHandler),*/ DivActionHandler(), BottomSheetPlate.PlateItemListener, OnCallBackListener,
+) : /*DemoDivActionHandler(uriHandler),*/ DivActionHandler(), BottomSheetPlate.PlateItemListener,
+    OnCallBackListener,
     Serializable,
     AdapterBottomSheetSpinner.CustomItemListener {
     lateinit var view: DivViewFacade
@@ -156,7 +164,8 @@ class UIDiv2ActionHandler(
 //        if (DivActionTypedHandlerProxy.handleAction(action, view, localResolver)) {
 //            return true
 //        }
-        val url = action.url?.evaluate(resolver) ?: return super.handleAction(action, view, resolver)
+        val url =
+            action.url?.evaluate(resolver) ?: return super.handleAction(action, view, resolver)
 
         if (action.url == null) return false
 //        val uri = action.url!!.evaluate(resolver)
@@ -203,8 +212,8 @@ class UIDiv2ActionHandler(
     @SuppressLint("HardwareIds", "SuspiciousIndentation")
     private fun handleActivityActionUrl(uri: Uri, view: DivViewFacade): Boolean {
         this.view = view
-         if (uri.scheme != SCHEME_DIV_ACTION) return false
-         if (uri.authority == AUTHORITY_OPEN_SCREEN) {
+        if (uri.scheme != SCHEME_DIV_ACTION) return false
+        if (uri.authority == AUTHORITY_OPEN_SCREEN) {
             when (uri.getQueryParameter(PARAM_ACTIVITY)) {
                 ACTIVITY_DEMO -> startActivityAction(Div2Activity::class.java)
                 ACTIVITY_REGRESSION -> startActivityAction(RegressionActivity::class.java)
@@ -223,9 +232,41 @@ class UIDiv2ActionHandler(
 //                MehdiActivity::class.java,
 //                uri.getQueryParameter(PARAM_SCREEN).toString()
 //            )
-        }else if (uri.authority == AUTHORITY_UPDATE) {
+        } else if (uri.authority == AUTHORITY_UPDATE) {
             val url = uri.getQueryParameter(PARAM_UPDATE_URL)
 
+
+        } else if (uri.authority == AUTHORITY_GET_PERSIAN_DATE) {
+            val varName = uri.getQueryParameter(PARAM_DATE_PICKER)
+            val pdate =
+                PersianDateFormat.format(PersianDate(), "y m j", PersianDateNumberCharacter.FARSI);
+            val div2View = if (view is Div2View) view as Div2View? else null
+            if (div2View != null) {
+                if (varName != null) {
+                    div2View.setVariable(
+                        varName,
+                        pdate
+                    )
+                }
+            }
+
+        } else if (uri.authority == AUTHORITY_GET_CAMERA_PERMISSION) {
+            if (ContextCompat.checkSelfPermission(
+                    context,
+                    Manifest.permission.CAMERA
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                val permissions = arrayOf(Manifest.permission.CAMERA)
+
+            }
+
+        } else if (uri.authority == AUTHORITY_GET_LOCATION_PERMISSION) {
+            if (ContextCompat.checkSelfPermission(
+                    context,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+            }
 
         } else if (uri.authority == AUTHORITY_FORWARD_TO) {
             val parameterNames = uri.queryParameterNames
@@ -240,15 +281,18 @@ class UIDiv2ActionHandler(
         } else if (uri.authority == AUTHORITY_OPEN_CAMERA) {
 
             val type = uri.getQueryParameter(PARAM_OPEN_CAMERA)
-            naji.openCamera(context as Activity, this, type,uri.getQueryParameter(
-                PARAM_OPEN_CAMERA_OCR))
+            naji.openCamera(
+                context as Activity, this, type, uri.getQueryParameter(
+                    PARAM_OPEN_CAMERA_OCR
+                )
+            )
 
         } else if (uri.authority == AUTHORITY_CHECK_VERSION) {
 
             val name = uri.getQueryParameter(PARAM_CHECK_VERSION_NAME)
 
 
-        } else if (uri.authority ==  AUTHORITY_SET_OBJECT_TO_DB) {
+        } else if (uri.authority == AUTHORITY_SET_OBJECT_TO_DB) {
 
             val parameterNames = uri.queryParameterNames
             val map: MutableMap<String, String> = HashMap()
@@ -324,7 +368,7 @@ class UIDiv2ActionHandler(
             for (parameterName in parameterNames) {
                 map[parameterName] = uri.getQueryParameter(parameterName).toString()
             }
-             loadScreenListener.onRequest(map)
+            loadScreenListener.onRequest(map)
 
 
 //            RemoteData.value.value = map
@@ -386,14 +430,15 @@ class UIDiv2ActionHandler(
 //            }
 
             return true
-        }else if (uri.authority == AUTHORITY_SET_IMEI) {
+        } else if (uri.authority == AUTHORITY_SET_IMEI) {
             val name = uri.getQueryParameter(PARAM_VARIABLE_NAME)
 
             if (name != null) {
 //                    json == it[0].value
-                    val div2View = if (view is Div2View) view as Div2View? else null
-                val androidId=Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
-                        div2View?.setVariable(name,androidId)
+                val div2View = if (view is Div2View) view as Div2View? else null
+                val androidId =
+                    Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
+                div2View?.setVariable(name, androidId)
             }
             return true
         } else if (uri.authority == AUTHORITY_SET_VARIABLE_TO_DB) {
@@ -658,23 +703,28 @@ class UIDiv2ActionHandler(
 
     }
 
-    override fun getImageMainAndCropped(bitmapMain: String?, imageUriCrop: String?, type: String?,checkOcr:String?) {
+    override fun getImageMainAndCropped(
+        bitmapMain: String?,
+        imageUriCrop: String?,
+        type: String?,
+        checkOcr: String?
+    ) {
         println("bitmapMain = ${bitmapMain}")
         val div2View = if (view is Div2View) view as Div2View? else null
 
         if (type == "car") {
-            if (checkOcr=="true"){
-            val map: MutableMap<String, String> = HashMap()
-            if (imageUriCrop != null) {
-                map.put("path", "carPicture")
-                map.put("base64", imageUriCrop)
-                map.put("ph/token", "empty")
-            }
-            loadScreenListener.onRequest(map)}
-            else{
-                div2View?.setVariable("variable_picture_visibility","visible")
+            if (checkOcr == "true") {
+                val map: MutableMap<String, String> = HashMap()
                 if (imageUriCrop != null) {
-                    div2View?.setVariable("variable_car_picture",imageUriCrop)
+                    map.put("path", "carPicture")
+                    map.put("base64", imageUriCrop)
+                    map.put("ph/token", "empty")
+                }
+                loadScreenListener.onRequest(map)
+            } else {
+                div2View?.setVariable("variable_picture_visibility", "visible")
+                if (imageUriCrop != null) {
+                    div2View?.setVariable("variable_car_picture", imageUriCrop)
                 }
             }
         }

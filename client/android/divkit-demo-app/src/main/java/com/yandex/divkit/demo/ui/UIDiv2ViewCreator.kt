@@ -64,6 +64,7 @@ class UIDiv2ViewCreator(private val context: Context, private val lo:LifecycleOw
         divStateStorage.preloadState("div2")
         val templateJson = divJson.optJSONObject("templates")
         val cardJson = divJson.getJSONObject("card")
+        println("assetReader1 = "+cardJson.get("variables").toString())
         return Div2ViewFactory(divContext, templateJson).createView(cardJson)
     }
 
@@ -96,6 +97,8 @@ class UIDiv2ViewCreator(private val context: Context, private val lo:LifecycleOw
         divStateStorage.preloadState("div2")
         val templateJson = divView.optJSONObject("templates")
         val cardJson = divView.getJSONObject("card")
+        println("assetReader2 = "+cardJson.get("variables").toString())
+
         return Div2ViewFactory(divContext, templateJson).createView(cardJson)
     }
 }

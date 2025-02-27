@@ -23,6 +23,7 @@ kotlin-ksp = "1.9.10-1.0.13"
 kotlin-serialization = "1.3.2"
 kotlinpoet = "1.18.1"
 lottie = "6.1.0"
+mapboxAndroidSdk = "9.2.1"
 markwon = "4.6.2"
 metrica = "7.0.0"
 metricaCrashPlugin = "0.11.0"
@@ -33,6 +34,8 @@ okio = "3.9.1"
 picasso = "2.8"
 protobuf = "4.28.2"
 robolectric = "4.11.1"
+roomRuntime = "2.5.1"
+solarcalendar = "1.0.0"
 stetho = "1.6.0"
 strikt = "0.28.2"
 unmock = "0.9.0"
@@ -90,6 +93,8 @@ androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "
 androidx-material = { module = "com.google.android.material:material", version.ref = "androidx-material" }
 androidx-preference = { module = "androidx.preference:preference-ktx", version.ref = "androidx-preference" }
 androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "androidx-recycler" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 androidx-transition = { module = "androidx.transition:transition", version.ref = "androidx-transition" }
 androidx-viewpager = { module = "androidx.viewpager:viewpager", version.ref = "androidx-viewpager" }
 androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "androidx-viewpager2" }
@@ -163,6 +168,7 @@ kotlinpoet = { module = "com.squareup:kotlinpoet", version.ref = "kotlinpoet" }
 
 lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 
+mapbox-android-sdk = { module = "com.mapbox.mapboxsdk:mapbox-android-sdk", version.ref = "mapboxAndroidSdk" }
 markwon = { module = "io.noties.markwon:core", version.ref = "markwon" }
 
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
@@ -182,6 +188,7 @@ rive = { module = "app.rive:rive-android", version = "4.2.1" }
 
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 
+solarcalendar = { module = "com.github.ghasemdev:solarcalendar", version.ref = "solarcalendar" }
 stetho-core = { module = "com.facebook.stetho:stetho", version.ref = "stetho" }
 stetho-okhttp3 = { module = "com.facebook.stetho:stetho-okhttp3", version.ref = "stetho" }
 

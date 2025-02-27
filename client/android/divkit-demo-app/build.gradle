@@ -17,6 +17,7 @@ apply from: "ui-tests.gradle"
 
 repositories {
     maven { url 'https://repo.gradle.org/gradle/libs-releases' }
+    maven { url 'https://jitpack.io' }
     maven {
 
         url = uri("https://api.mapbox.com/downloads/v2/releases/maven")
@@ -169,11 +170,14 @@ dependencies {
     debugImplementation libs.androidx.ui.test.manifest
 
     def room_version = "2.5.1"
-    implementation "androidx.room:room-runtime:$room_version"
-    implementation "androidx.room:room-ktx:$room_version"
+    implementation libs.androidx.room.runtime
+    implementation libs.androidx.room.ktx
     kapt "androidx.room:room-compiler:$room_version"
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.2.1'
-
+    implementation libs.mapbox.android.sdk
+//    implementation libs.solarcalendar
+//    implementation 'com.github.samanzamani:JalaliCalendar:1.0.0'
+//    implementation 'com.github.roojin:persian-calendar-view:1.2.2'
+    implementation 'com.github.samanzamani:PersianDate:1.7.1'
     implementation libs.stetho.core
     implementation libs.stetho.okhttp3
 //    implementation("androidx.compose.material3:material3:1.0.1")

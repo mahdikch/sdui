@@ -5,168 +5,32 @@
       {
         "state_id": 0,
         "div": {
-          "type": "container",
+          "type": "gallery",
           "items": [
             {
               "type": "container",
               "items": [
                 {
-                  "type": "container",
-
-                  "items": [
-                    {
-                      "type": "text",
-                      "text": "@{text___1}",
-                      "font_size": 14,
-                      "font_weight": "regular",
-                      "line_height": 32,
-                      "letter_spacing": 0,
-                      "text_color": "#757575",
-                      "text_alignment_horizontal": "right",
-                      "text_alignment_vertical": "top",
-                      "width": {
-                        "type": "wrap_content"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      }
-                    }
-                  ],
-                  "background": [
-                    {
-                      "type": "solid",
-                      "color": "@{motor_selected}"
-                    }
-                  ],
-                  "border": {
-                    "corners_radius": {
-                      "top-left": 13,
-                      "top-right": 13,
-                      "bottom-left": 13,
-                      "bottom-right": 13
-                    }
-                  },
-                  "actions": [
-                    {
-                      "log_id": "update_visibility",
-                      "url": "div-action://set_variable?name=car_visibility&value=gone"
-                    },
-                    {
-                      "log_id": "update_visibility",
-                      "url": "div-action://set_variable?name=motor_visibility&value=visible"
-                    },
-                    {
-                      "log_id": "change_motor_tab_background",
-                      "url": "div-action://change_color?name=motor_selected&value=@{selected_tab_color}"
-                    },
-                    {
-                      "log_id": "change_mashin_tab_background",
-                      "url": "div-action://change_color?name=mashin_selected&value=@{unselected_tab_color}"
-                    }
-                  ],
-                  "height": {
-                    "type": "wrap_content"
-                  },
+                  "type": "text",
+                  "text": "@{text___73}",
+                  "font_size": 14,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#121212",
+                  "text_alignment_horizontal": "center",
+                  "text_alignment_vertical": "top",
                   "width": {
-                    "type": "match_parent"
-                  },
-                  "orientation": "horizontal",
-                  "content_alignment_horizontal": "center",
-                  "content_alignment_vertical": "center",
-                  "paddings": {
-                    "top": 8,
-                    "bottom": 8,
-                    "left": 12,
-                    "right": 12
-                  }
-                },
-                {
-                  "type": "container",
-                  "items": [
-                    {
-                      "type": "text",
-                      "text": "@{text___2}",
-                      "font_size": 14,
-                      "font_weight": "regular",
-                      "line_height": 32,
-                      "letter_spacing": 0,
-                      "text_color": "#193d8d",
-                      "text_alignment_horizontal": "right",
-                      "text_alignment_vertical": "top",
-                      "width": {
-                        "type": "wrap_content"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      }
-                    }
-                  ],
-                  "background": [
-                    {
-                      "type": "solid",
-                      "color": "@{mashin_selected}"
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "log_id": "update_visibility",
-                      "url": "div-action://set_variable?name=car_visibility&value=visible"
-                    },
-                    {
-                      "log_id": "update_visibility",
-                      "url": "div-action://set_variable?name=motor_visibility&value=gone"
-                    },
-                    {
-                      "log_id": "change_motor_tab_background",
-                      "url": "div-action://change_color?name=motor_selected&value=@{unselected_tab_color}"
-                    },
-                    {
-                      "log_id": "change_mashin_tab_background",
-                      "url": "div-action://change_color?name=mashin_selected&value=@{selected_tab_color}"
-                    }
-                  ],
-                  "border": {
-                    "corners_radius": {
-                      "top-left": 13,
-                      "top-right": 13,
-                      "bottom-left": 13,
-                      "bottom-right": 13
-                    }
+                    "type": "wrap_content"
                   },
                   "height": {
                     "type": "wrap_content"
-                  },
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "orientation": "horizontal",
-                  "content_alignment_horizontal": "center",
-                  "content_alignment_vertical": "center",
-                  "paddings": {
-                    "top": 8,
-                    "bottom": 8,
-                    "left": 12,
-                    "right": 12
                   },
                   "margins": {
-                    "left": 8
+                    "top": 8,
+                    "bottom": 8
                   }
                 }
               ],
-              "background": [
-                {
-                  "type": "solid",
-                  "color": "#f3f5f9"
-                }
-              ],
-              "border": {
-                "corners_radius": {
-                  "top-left": 13,
-                  "top-right": 13,
-                  "bottom-left": 13,
-                  "bottom-right": 13
-                }
-              },
               "height": {
                 "type": "wrap_content"
               },
@@ -176,1512 +40,2068 @@
               "orientation": "horizontal",
               "content_alignment_horizontal": "center",
               "content_alignment_vertical": "center",
-              "paddings": {
-                "top": 8,
-                "bottom": 8,
-                "left": 8,
-                "right": 8
-              },
               "alignment_horizontal": "center",
               "alignment_vertical": "top",
               "margins": {
-                "left": 24,
-                "right": 24,
-                "top": 24
+                "right": 16,
+                "left": 16
               }
             },
             {
-              "visibility": "@{car_visibility}",
-              "type": "gallery",
+              "type": "container",
+              "visibility_actions": [
+                {
+                  "log_id": "set_car_model_to_db",
+                  "url": "div-action://set_variable_to_db?key=car_model_information_vt&value=@{car_model}",
+                  "visibility_duration": 0
+                },
+                {
+                  "log_id": "set_car_color_to_db",
+                  "url": "div-action://set_variable_to_db?key=car_color_information_vt&value=@{color}",
+                  "visibility_duration": 0
+                },
+                {
+                  "log_id": "set_car_total_ticket_to_db",
+                  "url": "div-action://set_variable_to_db?key=car_total_ticket_information_vt&value=@{total_ticket}",
+                  "visibility_duration": 0
+                }
+              ],
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "center",
+              "alignment_vertical": "center",
               "items": [
                 {
                   "type": "container",
                   "items": [
                     {
-                      "type": "container",
-                      "items": [
-                        {
-                          "type": "text",
-                          "text": "قدیم دولتی بدون کد",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#193d8d",
-                          "text_alignment_horizontal": "left",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "fixed",
-                            "value": 25
-                          }
-                        }
-                      ],
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 15,
-                          "top-right": 15,
-                          "bottom-left": 15,
-                          "bottom-right": 15
-                        },
-                        "stroke": {
-                          "color": "#193d8d",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
+                      "type": "text",
+                      "text": "@{text___1}",
+                      "font_size": 12,
+                      "line_height": 24,
+                      "letter_spacing": 0,
+                      "text_color": "#343333",
+                      "text_alignment_horizontal": "right",
+                      "text_alignment_vertical": "top",
                       "width": {
                         "type": "match_parent"
                       },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
-                      "margins": {
-                        "right": 12,
-                        "left": 12
+                      "height": {
+                        "type": "wrap_content"
                       }
                     },
                     {
+                      "type": "nodata_template",
+                      "visibility": "@{car_information ? 'gone' : 'visible'}"
+                    },
+                    {
                       "type": "container",
-                      "items": [
-                        {
-                          "type": "text",
-                          "text": "منطقه ای",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#193d8d",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "wrap_content"
-                          }
-                        }
-                      ],
-                      "actions": [
-                        {
-                          "log_id": "set_patch",
-                          "url": "div-action://set_patch?patch=@{mashin_plate}"
-                        }
-                      ],
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 15,
-                          "top-right": 15,
-                          "bottom-left": 15,
-                          "bottom-right": 15
-                        },
-                        "stroke": {
-                          "color": "#193d8d",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
+                      "visibility": "@{car_information ? 'visible' : 'gone'}",
                       "width": {
                         "type": "match_parent"
                       },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
+                      "height": {
+                        "type": "wrap_content"
                       },
+                      "items": [
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "separator",
+                                      "background": [],
+                                      "delimiter_style": {
+                                        "color": "#00000000"
+                                      },
+                                      "height": {
+                                        "type": "fixed",
+                                        "value": 8
+                                      },
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 13
+                                      },
+                                      "border": {
+                                        "corner_radius": 4
+                                      },
+                                      "alignment_horizontal": "right",
+                                      "alignment_vertical": "top",
+                                      "margins": {
+                                        "right": 2,
+                                        "top": 6
+                                      }
+                                    },
+                                    {
+                                      "type": "text",
+                                      "text": "@{text_i_r__2}",
+                                      "font_size": 3.3544607162475586,
+                                      "line_height": 4,
+                                      "letter_spacing": 0,
+                                      "text_color": "#ffffff",
+                                      "text_alignment_horizontal": "center",
+                                      "text_alignment_vertical": "top",
+                                      "width": {
+                                        "type": "wrap_content"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "alignment_horizontal": "left",
+                                      "alignment_vertical": "bottom",
+                                      "margins": {
+                                        "left": 2,
+                                        "bottom": 9
+                                      }
+                                    },
+                                    {
+                                      "type": "text",
+                                      "text": "@{text_iran_3}",
+                                      "font_size": 3.3544607162475586,
+                                      "line_height": 4,
+                                      "letter_spacing": 0,
+                                      "text_color": "#ffffff",
+                                      "text_alignment_horizontal": "center",
+                                      "text_alignment_vertical": "top",
+                                      "width": {
+                                        "type": "wrap_content"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "alignment_horizontal": "left",
+                                      "alignment_vertical": "bottom",
+                                      "margins": {
+                                        "left": 2,
+                                        "bottom": 4
+                                      }
+                                    },
+                                    {
+                                      "type": "image",
+                                      "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/94b93053-96a7-4669-b729-dad620f68533",
+                                      "height": {
+                                        "type": "fixed",
+                                        "value": 8
+                                      },
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 13
+                                      },
+                                      "alignment_horizontal": "right",
+                                      "alignment_vertical": "top",
+                                      "margins": {
+                                        "right": 2,
+                                        "top": 6
+                                      }
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#003299"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corner_radius": 4
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 29
+                                  },
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 18
+                                  },
+                                  "orientation": "overlap",
+                                  "content_alignment_vertical": "center",
+                                  "content_alignment_horizontal": "center"
+                                },
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "items": [
+                                        {
+                                          "type": "text",
+                                          "text": "@{plateA}",
+                                          "font_size": 15.278989791870117,
+                                          "line_height": 24,
+                                          "letter_spacing": 0,
+                                          "text_color": "#252424",
+                                          "text_alignment_horizontal": "left",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "wrap_content"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        },
+                                        {
+                                          "type": "text",
+                                          "text": "@{plateB}",
+                                          "font_size": 15.278989791870117,
+                                          "line_height": 24,
+                                          "letter_spacing": 0,
+                                          "text_color": "#252424",
+                                          "text_alignment_horizontal": "center",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "wrap_content"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          },
+                                          "margins": {
+                                            "left": 9
+                                          }
+                                        },
+                                        {
+                                          "type": "text",
+                                          "text": "@{plateC}",
+                                          "font_size": 15.278989791870117,
+                                          "line_height": 24,
+                                          "letter_spacing": 0,
+                                          "text_color": "#252424",
+                                          "text_alignment_horizontal": "left",
+                                          "text_alignment_vertical": "center",
+                                          "width": {
+                                            "type": "wrap_content"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          },
+                                          "margins": {
+                                            "left": 9
+                                          }
+                                        }
+                                      ],
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "wrap_content"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "center",
+                                      "content_alignment_vertical": "center"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "text": "@{plateD}",
+                                      "font_size": 15.278989791870117,
+                                      "line_height": 24,
+                                      "letter_spacing": 0,
+                                      "text_color": "#252424",
+                                      "text_alignment_horizontal": "left",
+                                      "text_alignment_vertical": "top",
+                                      "width": {
+                                        "type": "wrap_content"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "margins": {
+                                        "left": 9
+                                      }
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corner_radius": 4
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "wrap_content"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 2,
+                                    "bottom": 2,
+                                    "left": 9,
+                                    "right": 9
+                                  },
+                                  "margins": {
+                                    "left": 3
+                                  }
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#e8eeff"
+                                }
+                              ],
+                              "border": {
+                                "corner_radius": 4,
+                                "stroke": {
+                                  "color": "#f6f6f6",
+                                  "width": 1
+                                }
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "left",
+                              "content_alignment_vertical": "center",
+                              "paddings": {
+                                "top": 3,
+                                "bottom": 3,
+                                "left": 3,
+                                "right": 3
+                              },
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "center"
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{text___8}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#7f7f7f",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "right",
+                              "alignment_vertical": "center"
+                            }
+                          ],
+                          "height": {
+                            "type": "fixed",
+                            "value": 24
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 16
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{car_model}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#2c2c2c",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "center"
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{text___10}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#7f7f7f",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "right",
+                              "alignment_vertical": "center"
+                            }
+                          ],
+                          "height": {
+                            "type": "fixed",
+                            "value": 24
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 16
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{usability}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#2c2c2c",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "center"
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{text___12}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#7f7f7f",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "right",
+                              "alignment_vertical": "center"
+                            }
+                          ],
+                          "height": {
+                            "type": "fixed",
+                            "value": 24
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 16
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "@{color}",
+                                  "font_size": 12,
+                                  "line_height": 24,
+                                  "letter_spacing": 0,
+                                  "text_color": "#2c2c2c",
+                                  "text_alignment_horizontal": "center",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "wrap_content"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "fixed",
+                                "value": 177
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "left",
+                              "content_alignment_vertical": "center",
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "center"
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{text___14}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#7f7f7f",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "right",
+                              "alignment_vertical": "center"
+                            }
+                          ],
+                          "height": {
+                            "type": "fixed",
+                            "value": 24
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 16
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{year}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#2c2c2c",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "center"
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{text___16}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#7f7f7f",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "right",
+                              "alignment_vertical": "center"
+                            }
+                          ],
+                          "height": {
+                            "type": "fixed",
+                            "value": 24
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 16
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{chassis_number}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#2c2c2c",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "center"
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{text___18}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#7f7f7f",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "right",
+                              "alignment_vertical": "center"
+                            }
+                          ],
+                          "height": {
+                            "type": "fixed",
+                            "value": 24
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 16
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{car_type}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#2c2c2c",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "center"
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{text___20}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#7f7f7f",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "right",
+                              "alignment_vertical": "center"
+                            }
+                          ],
+                          "height": {
+                            "type": "fixed",
+                            "value": 24
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 16
+                          }
+                        }
+                      ],
                       "margins": {
-                        "right": 12,
-                        "left": 12
+                        "bottom": 8
                       }
                     }
                   ],
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 4,
+                    "stroke": {
+                      "color": "#ececec",
+                      "width": 1
+                    },
+                    "has_shadow": 1,
+                    "shadow": {
+                      "offset": {
+                        "x": {
+                          "value": 0
+                        },
+                        "y": {
+                          "value": 4
+                        }
+                      },
+                      "blur": 17,
+                      "color": "#000000",
+                      "alpha": 0.03999999910593033
+                    }
+                  },
                   "height": {
                     "type": "wrap_content"
                   },
                   "width": {
                     "type": "match_parent"
                   },
-                  "orientation": "horizontal",
-                  "content_alignment_horizontal": "left",
+                  "orientation": "vertical",
                   "content_alignment_vertical": "top",
+                  "content_alignment_horizontal": "left",
+                  "paddings": {
+                    "top": 16,
+                    "bottom": 16,
+                    "left": 16,
+                    "right": 16
+                  },
                   "alignment_horizontal": "center",
                   "alignment_vertical": "top",
                   "margins": {
-                    "top": 24,
-                    "right": 24,
-                    "left": 24
-                  },
-                  "paddings": {
-                    "top": 2,
-                    "bottom": 4
+                    "top": 8,
+                    "right": 16,
+                    "bottom": 8,
+                    "left": 16
                   }
                 },
                 {
                   "type": "container",
                   "items": [
                     {
-                      "type": "container",
-                      "items": [
-                        {
-                          "type": "text",
-                          "text": "مناطق آزاد",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#193d8d",
-                          "text_alignment_horizontal": "left",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "fixed",
-                            "value": 25
-                          }
-                        }
-                      ],
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 16,
-                          "top-right": 16,
-                          "bottom-left": 16,
-                          "bottom-right": 16
-                        },
-                        "stroke": {
-                          "color": "#193d8d",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
+                      "type": "text",
+                      "text": "@{text___21}",
+                      "font_size": 12,
+                      "line_height": 24,
+                      "letter_spacing": 0,
+                      "text_color": "#343333",
+                      "text_alignment_horizontal": "right",
+                      "text_alignment_vertical": "top",
                       "width": {
                         "type": "match_parent"
                       },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
-                      "margins": {
-                        "right": 12,
-                        "left": 12
+                      "height": {
+                        "type": "wrap_content"
                       }
                     },
                     {
+                      "type": "nodata_template",
+                      "visibility": "@{last_ticket ? 'gone' : 'visible'}"
+                    },
+                    {
                       "type": "container",
+                      "visibility": "@{last_ticket ? 'visible' : 'gone'}",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
                       "items": [
                         {
-                          "type": "text",
-                          "text": "نظامی",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#193d8d",
-                          "text_alignment_horizontal": "left",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{ticket_date}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#2c2c2c",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "center"
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{text___23}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#7f7f7f",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "right",
+                              "alignment_vertical": "center"
+                            }
+                          ],
                           "height": {
-                            "type": "wrap_content"
+                            "type": "fixed",
+                            "value": 24
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 16
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{ticket_title}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#2c2c2c",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "center"
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{text___25}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#7f7f7f",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "right",
+                              "alignment_vertical": "center"
+                            }
+                          ],
+                          "height": {
+                            "type": "fixed",
+                            "value": 24
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 16
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{ticket_code}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#2c2c2c",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "center"
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{text___27}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#7f7f7f",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "right",
+                              "alignment_vertical": "center"
+                            }
+                          ],
+                          "height": {
+                            "type": "fixed",
+                            "value": 24
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 16
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{ticket_type}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#2c2c2c",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 24
+                              },
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "center"
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{text___29}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#7f7f7f",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "right",
+                              "alignment_vertical": "center"
+                            }
+                          ],
+                          "height": {
+                            "type": "fixed",
+                            "value": 24
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 16
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{ticket_location}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#2c2c2c",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "center"
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{text___31}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#7f7f7f",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "right",
+                              "alignment_vertical": "center"
+                            }
+                          ],
+                          "height": {
+                            "type": "fixed",
+                            "value": 24
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 16
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "@{text___32}",
+                                  "font_size": 10,
+                                  "line_height": 24,
+                                  "letter_spacing": 0,
+                                  "text_color": "#252424",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "center",
+                                  "width": {
+                                    "type": "wrap_content"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{ticket_price}",
+                                  "font_size": 12,
+                                  "line_height": 24,
+                                  "letter_spacing": 0,
+                                  "text_color": "#252424",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "center",
+                                  "width": {
+                                    "type": "wrap_content"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "left": 4
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "top",
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "center"
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{text___34}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#7f7f7f",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "right",
+                              "alignment_vertical": "center"
+                            }
+                          ],
+                          "height": {
+                            "type": "fixed",
+                            "value": 24
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 16
                           }
                         }
                       ],
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 16,
-                          "top-right": 16,
-                          "bottom-left": 16,
-                          "bottom-right": 16
-                        },
-                        "stroke": {
-                          "color": "#193d8d",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
                       "margins": {
-                        "right": 12,
-                        "left": 12
+                        "bottom": 8
                       }
                     }
                   ],
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 4,
+                    "stroke": {
+                      "color": "#ececec",
+                      "width": 1
+                    },
+                    "has_shadow": 1,
+                    "shadow": {
+                      "offset": {
+                        "x": {
+                          "value": 0
+                        },
+                        "y": {
+                          "value": 4
+                        }
+                      },
+                      "blur": 17,
+                      "color": "#000000",
+                      "alpha": 0.03999999910593033
+                    }
+                  },
                   "height": {
                     "type": "wrap_content"
                   },
                   "width": {
                     "type": "match_parent"
                   },
-                  "orientation": "horizontal",
-                  "content_alignment_horizontal": "left",
+                  "orientation": "vertical",
                   "content_alignment_vertical": "top",
+                  "content_alignment_horizontal": "left",
+                  "paddings": {
+                    "top": 16,
+                    "bottom": 16,
+                    "left": 16,
+                    "right": 16
+                  },
                   "alignment_horizontal": "center",
                   "alignment_vertical": "top",
                   "margins": {
-                    "top": 4,
-                    "right": 24,
-                    "left": 24
-                  },
-                  "paddings": {
-                    "top": 4,
-                    "bottom": 4
+                    "top": 8,
+                    "right": 16,
+                    "bottom": 8,
+                    "left": 16
                   }
                 },
                 {
                   "type": "container",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "@{text___35}",
+                      "font_size": 12,
+                      "line_height": 24,
+                      "letter_spacing": 0,
+                      "text_color": "#343333",
+                      "text_alignment_horizontal": "right",
+                      "text_alignment_vertical": "top",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "type": "nodata_template",
+                      "visibility": "@{car_punishments ? 'gone' : 'visible'}"
+                    },
+                    {
+                      "type": "container",
+                      "visibility": "@{car_punishments ? 'visible' : 'gone'}",
+                      "items": [
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{text___36}",
+                              "font_size": 10,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#252424",
+                              "text_alignment_horizontal": "right",
+                              "text_alignment_vertical": "center",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{total_ticket}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#252424",
+                              "text_alignment_horizontal": "right",
+                              "text_alignment_vertical": "center",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "margins": {
+                                "left": 4
+                              }
+                            }
+                          ],
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "right",
+                          "content_alignment_vertical": "top",
+                          "alignment_horizontal": "left",
+                          "alignment_vertical": "center"
+                        },
+                        {
+                          "type": "text",
+                          "text": "@{text___38}",
+                          "font_size": 12,
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#7f7f7f",
+                          "text_alignment_horizontal": "center",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "alignment_horizontal": "right",
+                          "alignment_vertical": "center"
+                        }
+                      ],
+                      "height": {
+                        "type": "fixed",
+                        "value": 24
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "overlap",
+                      "content_alignment_horizontal": "left",
+                      "content_alignment_vertical": "center",
+                      "margins": {
+                        "top": 16,
+                        "bottom": 8
+                      }
+                    }
+                  ],
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 4,
+                    "stroke": {
+                      "color": "#ececec",
+                      "width": 1
+                    },
+                    "has_shadow": 1,
+                    "shadow": {
+                      "offset": {
+                        "x": {
+                          "value": 0
+                        },
+                        "y": {
+                          "value": 4
+                        }
+                      },
+                      "blur": 17,
+                      "color": "#000000",
+                      "alpha": 0.03999999910593033
+                    }
+                  },
                   "height": {
                     "type": "wrap_content"
                   },
                   "width": {
                     "type": "match_parent"
                   },
-                  "orientation": "horizontal",
-                  "content_alignment_horizontal": "left",
+                  "orientation": "vertical",
                   "content_alignment_vertical": "top",
+                  "content_alignment_horizontal": "left",
+                  "paddings": {
+                    "top": 16,
+                    "bottom": 16,
+                    "left": 16,
+                    "right": 16
+                  },
                   "alignment_horizontal": "center",
                   "alignment_vertical": "top",
                   "margins": {
-                    "top": 4,
-                    "right": 24,
-                    "left": 24
-                  },
+                    "top": 8,
+                    "right": 16,
+                    "bottom": 8,
+                    "left": 16
+                  }
+                },
+                {
+                  "type": "container",
                   "items": [
                     {
-                      "type": "container",
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 16,
-                          "top-right": 16,
-                          "bottom-left": 16,
-                          "bottom-right": 16
-                        },
-                        "stroke": {
-                          "color": "#193d8d",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
+                      "type": "text",
+                      "text": "@{text___39}",
+                      "font_size": 12,
+                      "line_height": 24,
+                      "letter_spacing": 0,
+                      "text_color": "#343333",
+                      "text_alignment_horizontal": "right",
+                      "text_alignment_vertical": "top",
                       "width": {
                         "type": "match_parent"
                       },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
-                      "margins": {
-                        "right": 12,
-                        "left": 12
-                      },
-                      "items": [
-                        {
-                          "type": "text",
-                          "text": "ترانزیت",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#193d8d",
-                          "text_alignment_horizontal": "left",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "fixed",
-                            "value": 25
-                          }
-                        }
-                      ]
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "type": "nodata_template",
+                      "visibility": "@{instruction ? 'gone' : 'visible'}"
                     },
                     {
                       "type": "container",
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 16,
-                          "top-right": 16,
-                          "bottom-left": 16,
-                          "bottom-right": 16
-                        },
-                        "stroke": {
-                          "color": "#193d8d",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
+                      "visibility": "@{instruction ? 'visible' : 'gone'}",
+                      "id": "technicalDiagnosis_container",
                       "width": {
                         "type": "match_parent"
                       },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
-                      "margins": {
-                        "right": 12,
-                        "left": 12
+                      "height": {
+                        "type": "wrap_content"
                       },
                       "items": [
                         {
-                          "type": "text",
-                          "text": "تاریخی",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#193d8d",
-                          "text_alignment_horizontal": "left",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "wrap_content"
+                          "background_color": "#ececec",
+                          "title_text_color": "#7f7f7f",
+                          "text": "ندارد",
+                          "text_color": "#7f7f7f",
+                          "type": "numbering_order_template",
+                          "title": "دستور شماره گذاری"
+                        },
+                        {
+                          "background_color": "#ececec",
+                          "title_text_color": "#7f7f7f",
+                          "text": "ندارد",
+                          "text_color": "#7f7f7f",
+                          "type": "numbering_order_template",
+                          "title": "دستور اجرائیات"
+                        }
+                      ]
+                    }
+                  ],
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 4,
+                    "stroke": {
+                      "color": "#ececec",
+                      "width": 1
+                    },
+                    "has_shadow": 1,
+                    "shadow": {
+                      "offset": {
+                        "x": {
+                          "value": 0
+                        },
+                        "y": {
+                          "value": 4
+                        }
+                      },
+                      "blur": 17,
+                      "color": "#000000",
+                      "alpha": 0.03999999910593033
+                    }
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "vertical",
+                  "content_alignment_vertical": "top",
+                  "content_alignment_horizontal": "left",
+                  "paddings": {
+                    "top": 16,
+                    "bottom": 16,
+                    "left": 16,
+                    "right": 16
+                  },
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "bottom",
+                  "margins": {
+                    "top": 8,
+                    "right": 16,
+                    "bottom": 8,
+                    "left": 16
+                  }
+                },
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "@{text___44}",
+                      "font_size": 12,
+                      "line_height": 24,
+                      "letter_spacing": 0,
+                      "text_color": "#343333",
+                      "text_alignment_horizontal": "right",
+                      "text_alignment_vertical": "top",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "type": "nodata_template",
+                      "visibility": "@{inquiry_agahi ? 'gone' : 'visible'}"
+                    },
+                    {
+                      "id": "agh_container",
+                      "visibility": "@{inquiry_agahi ? 'visible' : 'gone'}",
+                      "type": "container",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "agh_template",
+                          "agh_order": "test",
+                          "agh_order_date": "test",
+                          "collision_type": "test",
+                          "announcement_date": "test",
+                          "agh_order_location": "test ",
+                          "discover_location": "test",
+                          "discover_date": "test",
+                          "agh_description": "test",
+                          "order_background_color": "#fbebeb",
+                          "order_text_color": "#d73333",
+                          "margins": {
+                            "bottom": 8
                           }
                         }
                       ]
                     }
                   ],
-                  "paddings": {
-                    "top": 4,
-                    "bottom": 4
-                  }
-                },
-                {
-                  "type": "container",
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 4,
+                    "stroke": {
+                      "color": "#ececec",
+                      "width": 1
+                    },
+                    "has_shadow": 1,
+                    "shadow": {
+                      "offset": {
+                        "x": {
+                          "value": 0
+                        },
+                        "y": {
+                          "value": 4
+                        }
+                      },
+                      "blur": 17,
+                      "color": "#000000",
+                      "alpha": 0.03999999910593033
+                    }
+                  },
                   "height": {
                     "type": "wrap_content"
                   },
                   "width": {
                     "type": "match_parent"
                   },
-                  "orientation": "horizontal",
-                  "content_alignment_horizontal": "left",
+                  "orientation": "vertical",
                   "content_alignment_vertical": "top",
-                  "alignment_horizontal": "center",
-                  "alignment_vertical": "top",
-                  "margins": {
-                    "top": 4,
-                    "right": 24,
-                    "left": 24
-                  },
-                  "items": [
-                    {
-                      "type": "container",
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 16,
-                          "top-right": 16,
-                          "bottom-left": 16,
-                          "bottom-right": 16
-                        },
-                        "stroke": {
-                          "color": "#193d8d",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
-                      "margins": {
-                        "right": 12,
-                        "left": 12
-                      },
-                      "items": [
-                        {
-                          "type": "text",
-                          "text": "سیاسی",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#193d8d",
-                          "text_alignment_horizontal": "left",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "fixed",
-                            "value": 25
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      "type": "container",
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 16,
-                          "top-right": 16,
-                          "bottom-left": 16,
-                          "bottom-right": 16
-                        },
-                        "stroke": {
-                          "color": "#193d8d",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
-                      "margins": {
-                        "right": 12,
-                        "left": 12
-                      },
-                      "items": [
-                        {
-                          "type": "text",
-                          "text": "گذر موقت ملی",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#193d8d",
-                          "text_alignment_horizontal": "left",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "wrap_content"
-                          }
-                        }
-                      ]
-                    }
-                  ],
+                  "content_alignment_horizontal": "left",
                   "paddings": {
-                    "top": 4,
-                    "bottom": 4
-                  }
+                    "top": 16,
+                    "bottom": 16,
+                    "left": 16,
+                    "right": 16
+                  },
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "bottom",
+                  "margins": {
+                    "top": 8,
+                    "right": 16,
+                    "bottom": 8,
+                    "left": 16
+                  },
+                  "alpha": 0.8
                 },
                 {
                   "type": "container",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "@{text___61}",
+                      "font_size": 12,
+                      "line_height": 24,
+                      "letter_spacing": 0,
+                      "text_color": "#343333",
+                      "text_alignment_horizontal": "right",
+                      "text_alignment_vertical": "top",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "type": "nodata_template",
+                      "visibility": "@{insurance ? 'gone' : 'visible'}"
+                    },
+                    {
+                      "type": "container",
+                      "visibility": "@{insurance ? 'visible' : 'gone'}",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{insurance_number}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#2c2c2c",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 24
+                              },
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "center"
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{text___69}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#7f7f7f",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "right",
+                              "alignment_vertical": "center"
+                            }
+                          ],
+                          "height": {
+                            "type": "fixed",
+                            "value": 24
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 16
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{insurance_type}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#2c2c2c",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "center"
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{text___67}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#7f7f7f",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "right",
+                              "alignment_vertical": "center"
+                            }
+                          ],
+                          "height": {
+                            "type": "fixed",
+                            "value": 24
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 16
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{insurance_name}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#2c2c2c",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "center"
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{text___65}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#7f7f7f",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "right",
+                              "alignment_vertical": "center"
+                            }
+                          ],
+                          "height": {
+                            "type": "fixed",
+                            "value": 24
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 16
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{insurance_expire}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#2c2c2c",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "center"
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{text___63}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#7f7f7f",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "right",
+                              "alignment_vertical": "center"
+                            }
+                          ],
+                          "height": {
+                            "type": "fixed",
+                            "value": 24
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 16
+                          }
+                        }
+                      ],
+                      "margins": {
+                        "bottom": 8
+                      }
+                    }
+                  ],
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 4,
+                    "stroke": {
+                      "color": "#ececec",
+                      "width": 1
+                    },
+                    "has_shadow": 1,
+                    "shadow": {
+                      "offset": {
+                        "x": {
+                          "value": 0
+                        },
+                        "y": {
+                          "value": 4
+                        }
+                      },
+                      "blur": 17,
+                      "color": "#000000",
+                      "alpha": 0.03999999910593033
+                    }
+                  },
                   "height": {
                     "type": "wrap_content"
                   },
                   "width": {
                     "type": "match_parent"
                   },
-                  "orientation": "horizontal",
-                  "content_alignment_horizontal": "left",
+                  "orientation": "vertical",
                   "content_alignment_vertical": "top",
-                  "alignment_horizontal": "center",
-                  "alignment_vertical": "top",
-                  "margins": {
-                    "top": 4,
-                    "right": 24,
-                    "left": 24
-                  },
-                  "items": [
-                    {
-                      "type": "container",
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 17,
-                          "top-right": 17,
-                          "bottom-left": 17,
-                          "bottom-right": 17
-                        },
-                        "stroke": {
-                          "color": "#193d8d",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
-                      "margins": {
-                        "right": 12,
-                        "left": 12
-                      },
-                      "items": [
-                        {
-                          "type": "text",
-                          "text": "مناطق آزاد",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#193d8d",
-                          "text_alignment_horizontal": "left",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "fixed",
-                            "value": 25
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      "type": "container",
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 17,
-                          "top-right": 17,
-                          "bottom-left": 17,
-                          "bottom-right": 17
-                        },
-                        "stroke": {
-                          "color": "#193d8d",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
-                      "margins": {
-                        "right": 12,
-                        "left": 12
-                      },
-                      "items": [
-                        {
-                          "type": "text",
-                          "text": "شماره موقت تهران",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#193d8d",
-                          "text_alignment_horizontal": "left",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "wrap_content"
-                          }
-                        }
-                      ]
-                    }
-                  ],
+                  "content_alignment_horizontal": "left",
                   "paddings": {
-                    "top": 4,
-                    "bottom": 4
+                    "top": 16,
+                    "bottom": 16,
+                    "left": 16,
+                    "right": 16
+                  },
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "bottom",
+                  "margins": {
+                    "top": 8,
+                    "right": 16,
+                    "bottom": 8,
+                    "left": 16
                   }
                 },
                 {
                   "type": "container",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "@{text___70}",
+                      "font_size": 12,
+                      "line_height": 24,
+                      "letter_spacing": 0,
+                      "text_color": "#343333",
+                      "text_alignment_horizontal": "right",
+                      "text_alignment_vertical": "top",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "type": "nodata_template",
+                      "visibility": "@{tecnical_visit ? 'gone' : 'visible'}"
+                    },
+                    {
+                      "type": "container",
+                      "visibility": "@{tecnical_visit ? 'visible' : 'gone'}",
+                      "items": [
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{tecnical_visit_status}",
+                              "font_size": 12,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#396756",
+                              "text_alignment_horizontal": "right",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              }
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#e6ecea"
+                            }
+                          ],
+                          "border": {
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "fixed",
+                            "value": 140
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "center",
+                          "content_alignment_vertical": "center",
+                          "paddings": {
+                            "left": 8,
+                            "right": 8
+                          },
+                          "alignment_horizontal": "left",
+                          "alignment_vertical": "center"
+                        },
+                        {
+                          "type": "text",
+                          "text": "@{text___72}",
+                          "font_size": 12,
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#7f7f7f",
+                          "text_alignment_horizontal": "center",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "alignment_horizontal": "right",
+                          "alignment_vertical": "center"
+                        }
+                      ],
+                      "height": {
+                        "type": "fixed",
+                        "value": 24
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "overlap",
+                      "content_alignment_horizontal": "left",
+                      "content_alignment_vertical": "center",
+                      "margins": {
+                        "top": 16
+                      }
+                    }
+                  ],
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 4,
+                    "stroke": {
+                      "color": "#ececec",
+                      "width": 1
+                    },
+                    "has_shadow": 1,
+                    "shadow": {
+                      "offset": {
+                        "x": {
+                          "value": 0
+                        },
+                        "y": {
+                          "value": 4
+                        }
+                      },
+                      "blur": 17,
+                      "color": "#000000",
+                      "alpha": 0.03999999910593033
+                    }
+                  },
                   "height": {
                     "type": "wrap_content"
                   },
                   "width": {
                     "type": "match_parent"
                   },
-                  "orientation": "horizontal",
-                  "content_alignment_horizontal": "left",
+                  "orientation": "vertical",
                   "content_alignment_vertical": "top",
-                  "alignment_horizontal": "center",
-                  "alignment_vertical": "top",
-                  "margins": {
-                    "top": 4,
-                    "right": 24,
-                    "left": 24
-                  },
-                  "items": [
-                    {
-                      "type": "container",
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 18,
-                          "top-right": 18,
-                          "bottom-left": 18,
-                          "bottom-right": 18
-                        },
-                        "stroke": {
-                          "color": "#193d8d",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
-                      "margins": {
-                        "right": 12,
-                        "left": 12
-                      },
-                      "items": [
-                        {
-                          "type": "text",
-                          "text": "سرویس ملی",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#193d8d",
-                          "text_alignment_horizontal": "left",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "fixed",
-                            "value": 25
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      "type": "container",
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 18,
-                          "top-right": 18,
-                          "bottom-left": 18,
-                          "bottom-right": 18
-                        },
-                        "stroke": {
-                          "color": "#193d8d",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
-                      "margins": {
-                        "right": 12,
-                        "left": 12
-                      },
-                      "items": [
-                        {
-                          "type": "text",
-                          "text": "سیاسی ملی",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#193d8d",
-                          "text_alignment_horizontal": "left",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "wrap_content"
-                          }
-                        }
-                      ]
-                    }
-                  ],
-                  "paddings": {
-                    "top": 4,
-                    "bottom": 4
-                  }
-                },
-                {
-                  "type": "container",
-                  "height": {
-                    "type": "wrap_content"
-                  },
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "orientation": "horizontal",
                   "content_alignment_horizontal": "left",
-                  "content_alignment_vertical": "top",
-                  "alignment_horizontal": "center",
-                  "alignment_vertical": "top",
-                  "margins": {
-                    "top": 4,
-                    "right": 24,
-                    "left": 24
-                  },
-                  "items": [
-                    {
-                      "type": "container",
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 18,
-                          "top-right": 18,
-                          "bottom-left": 18,
-                          "bottom-right": 18
-                        },
-                        "stroke": {
-                          "color": "#d73333",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
-                      "margins": {
-                        "right": 12,
-                        "left": 12
-                      },
-                      "items": [
-                        {
-                          "type": "text",
-                          "text": "فاقد پلاک",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#d73333",
-                          "text_alignment_horizontal": "left",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "fixed",
-                            "value": 25
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      "type": "container",
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 18,
-                          "top-right": 18,
-                          "bottom-left": 18,
-                          "bottom-right": 18
-                        },
-                        "stroke": {
-                          "color": "#193d8d",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
-                      "margins": {
-                        "right": 12,
-                        "left": 12
-                      },
-                      "items": [
-                        {
-                          "type": "text",
-                          "text": "گذر موقت",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#193d8d",
-                          "text_alignment_horizontal": "left",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "wrap_content"
-                          }
-                        }
-                      ]
-                    }
-                  ],
                   "paddings": {
-                    "top": 4,
-                    "bottom": 4
+                    "top": 16,
+                    "bottom": 16,
+                    "left": 16,
+                    "right": 16
+                  },
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "bottom",
+                  "margins": {
+                    "top": 8,
+                    "right": 16,
+                    "bottom": 8,
+                    "left": 16
                   }
                 }
-              ],
-              "background": [
-                {
-                  "type": "solid",
-                  "color": "#ffffff"
-                }
-              ],
-              "height": {
-                "type": "wrap_content"
-              },
-              "width": {
-                "type": "match_parent"
-              },
-              "orientation": "vertical",
-              "content_alignment_vertical": "center",
-              "content_alignment_horizontal": "center",
-              "alignment_horizontal": "center",
-              "alignment_vertical": "top"
-            },
-            {
-              "visibility": "@{motor_visibility}",
-              "type": "gallery",
-              "items": [
-                {
-                  "type": "container",
-                  "items": [
-                    {
-                      "type": "container",
-                      "items": [
-                        {
-                          "type": "text",
-                          "text": "موتور سیکلت نظامی",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#193d8d",
-                          "text_alignment_horizontal": "left",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "fixed",
-                            "value": 25
-                          }
-                        }
-                      ],
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 15,
-                          "top-right": 15,
-                          "bottom-left": 15,
-                          "bottom-right": 15
-                        },
-                        "stroke": {
-                          "color": "#193d8d",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
-                      "margins": {
-                        "right": 12,
-                        "left": 12
-                      }
-                    },
-                    {
-                      "type": "container",
-                      "items": [
-                        {
-                          "type": "text",
-                          "text": "موتور سیکلت شخصی",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#193d8d",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "wrap_content"
-                          }
-                        }
-                      ],
-                      "actions": [
-                        {
-                          "log_id": "set_patch",
-                          "url": "div-action://set_patch?patch=@{motor_plate}"
-                        }
-                      ],
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 15,
-                          "top-right": 15,
-                          "bottom-left": 15,
-                          "bottom-right": 15
-                        },
-                        "stroke": {
-                          "color": "#193d8d",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
-                      "margins": {
-                        "right": 12,
-                        "left": 12
-                      }
-                    }
-                  ],
-                  "height": {
-                    "type": "wrap_content"
-                  },
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "orientation": "horizontal",
-                  "content_alignment_horizontal": "left",
-                  "content_alignment_vertical": "top",
-                  "alignment_horizontal": "center",
-                  "alignment_vertical": "top",
-                  "margins": {
-                    "top": 24,
-                    "right": 24,
-                    "left": 24
-                  },
-                  "paddings": {
-                    "top": 2,
-                    "bottom": 4
-                  }
-                },
-                {
-                  "type": "container",
-                  "items": [
-                    {
-                      "type": "container",
-                      "items": [
-                        {
-                          "type": "text",
-                          "text": "موتور سیکلت پلیس",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#193d8d",
-                          "text_alignment_horizontal": "left",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "fixed",
-                            "value": 25
-                          }
-                        }
-                      ],
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 16,
-                          "top-right": 16,
-                          "bottom-left": 16,
-                          "bottom-right": 16
-                        },
-                        "stroke": {
-                          "color": "#193d8d",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
-                      "margins": {
-                        "right": 12,
-                        "left": 12
-                      }
-                    },
-                    {
-                      "type": "container",
-                      "items": [
-                        {
-                          "type": "text",
-                          "text": "موتور سیکلت دولتی",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#193d8d",
-                          "text_alignment_horizontal": "left",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "wrap_content"
-                          }
-                        }
-                      ],
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 16,
-                          "top-right": 16,
-                          "bottom-left": 16,
-                          "bottom-right": 16
-                        },
-                        "stroke": {
-                          "color": "#193d8d",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
-                      "margins": {
-                        "right": 12,
-                        "left": 12
-                      }
-                    }
-                  ],
-                  "height": {
-                    "type": "wrap_content"
-                  },
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "orientation": "horizontal",
-                  "content_alignment_horizontal": "left",
-                  "content_alignment_vertical": "top",
-                  "alignment_horizontal": "center",
-                  "alignment_vertical": "top",
-                  "margins": {
-                    "top": 4,
-                    "right": 24,
-                    "left": 24
-                  },
-                  "paddings": {
-                    "top": 4,
-                    "bottom": 4
-                  }
-                },
-                {
-                  "type": "container",
-                  "height": {
-                    "type": "wrap_content"
-                  },
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "orientation": "horizontal",
-                  "content_alignment_horizontal": "left",
-                  "content_alignment_vertical": "top",
-                  "alignment_horizontal": "center",
-                  "alignment_vertical": "top",
-                  "margins": {
-                    "top": 4,
-                    "right": 24,
-                    "left": 24
-                  },
-                  "items": [
-                    {
-                      "type": "container",
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 16,
-                          "top-right": 16,
-                          "bottom-left": 16,
-                          "bottom-right": 16
-                        },
-                        "stroke": {
-                          "color": "#193d8d",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
-                      "margins": {
-                        "right": 12,
-                        "left": 12
-                      },
-                      "items": [
-                        {
-                          "type": "text",
-                          "text": "منطقه ای موتور شخصی",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#193d8d",
-                          "text_alignment_horizontal": "left",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "fixed",
-                            "value": 25
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      "type": "container",
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 16,
-                          "top-right": 16,
-                          "bottom-left": 16,
-                          "bottom-right": 16
-                        },
-                        "stroke": {
-                          "color": "#193d8d",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
-                      "margins": {
-                        "right": 12,
-                        "left": 12
-                      },
-                      "items": [
-                        {
-                          "type": "text",
-                          "text": "منطقه ای موتور دولتی",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#193d8d",
-                          "text_alignment_horizontal": "left",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "wrap_content"
-                          }
-                        }
-                      ]
-                    }
-                  ],
-                  "paddings": {
-                    "top": 4,
-                    "bottom": 4
-                  }
-                },
-                {
-                  "type": "container",
-                  "height": {
-                    "type": "wrap_content"
-                  },
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "orientation": "horizontal",
-                  "content_alignment_horizontal": "left",
-                  "content_alignment_vertical": "top",
-                  "alignment_horizontal": "center",
-                  "alignment_vertical": "top",
-                  "margins": {
-                    "top": 4,
-                    "right": 24,
-                    "left": 24
-                  },
-                  "items": [
-                    {
-                      "type": "container",
-                      "border": {
-                        "corners_radius": {
-                          "top-left": 16,
-                          "top-right": 16,
-                          "bottom-left": 16,
-                          "bottom-right": 16
-                        },
-                        "stroke": {
-                          "color": "#d73333",
-                          "width": 1
-                        }
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 56
-                      },
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "orientation": "horizontal",
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "paddings": {
-                        "top": 12,
-                        "bottom": 12,
-                        "left": 12,
-                        "right": 12
-                      },
-                      "margins": {
-                        "right": 12,
-                        "left": 12
-                      },
-                      "items": [
-                        {
-                          "type": "text",
-                          "text": "فاقد پلاک",
-                          "font_size": 14,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#d73333",
-                          "text_alignment_horizontal": "left",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "wrap_content"
-                          }
-                        }
-                      ]
-                    }
-                  ],
-                  "paddings": {
-                    "top": 4,
-                    "bottom": 4
-                  }
-                }
-              ],
-              "background": [
-                {
-                  "type": "solid",
-                  "color": "#ffffff"
-                }
-              ],
-              "height": {
-                "type": "wrap_content"
-              },
-              "width": {
-                "type": "match_parent"
-              },
-              "orientation": "vertical",
-              "content_alignment_vertical": "center",
-              "content_alignment_horizontal": "center",
-              "alignment_horizontal": "center",
-              "alignment_vertical": "top"
+              ]
             }
           ],
           "background": [
             {
               "type": "solid",
-              "color": "#ffffff"
+              "color": "#fafafa"
             }
           ],
-          "border": {
-            "corners_radius": {
-              "top-left": 29,
-              "top-right": 29,
-              "bottom-right": 9,
-              "bottom-left": 9
-            }
-          },
           "height": {
-            "type": "wrap_content"
+            "type": "match_parent"
           },
           "width": {
             "type": "match_parent"
@@ -1694,126 +2114,1158 @@
     ],
     "variables": [
       {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "boolean",
+        "name": "car_information",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "last_ticket",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "car_punishments",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "instruction",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "inquiry_agahi",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "insurance",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "tecnical_visit",
+        "value": true
+      },
+      {
         "type": "string",
         "name": "text___1",
-        "value": "موتور"
+        "value": "مشخصات خودرو"
       },
       {
         "type": "string",
-        "name": "text___2",
-        "value": "ماشین"
+        "name": "text_i_r__2",
+        "value": "i.r."
       },
       {
         "type": "string",
-        "name": "text___3",
-        "value": "مناطق آزاد"
+        "name": "text_iran_3",
+        "value": "iran"
       },
       {
         "type": "string",
-        "name": "text___4",
-        "value": "نظامی"
+        "name": "plateA",
+        "value": "11"
       },
       {
         "type": "string",
-        "name": "text___5",
-        "value": "قدیم دولتی بدون کد"
+        "name": "plateB",
+        "value": "ب"
       },
       {
         "type": "string",
-        "name": "text___6",
-        "value": "منطقه ای "
+        "name": "plateC",
+        "value": "89"
       },
       {
         "type": "string",
-        "name": "text___7",
-        "value": "گذر موقت"
+        "name": "plateD",
+        "value": "115"
       },
       {
         "type": "string",
         "name": "text___8",
-        "value": "فاقد پلاک"
+        "value": "پلاک"
       },
       {
         "type": "string",
-        "name": "text___9",
-        "value": "سرویس ملی"
+        "name": "car_model",
+        "value": "جک"
       },
       {
         "type": "string",
         "name": "text___10",
-        "value": "سیاسی ملی"
+        "value": "مدل"
       },
       {
         "type": "string",
-        "name": "text___11",
-        "value": "مناطق آزاد"
+        "name": "usability",
+        "value": "سواري"
       },
       {
         "type": "string",
         "name": "text___12",
-        "value": "شماره موقت تهران"
+        "value": "کاربری"
       },
       {
         "type": "string",
-        "name": "text___13",
-        "value": "سیاسی"
+        "name": "color",
+        "value": "مشکي"
       },
       {
         "type": "string",
         "name": "text___14",
-        "value": "گذر موقت ملی"
+        "value": "رنگ"
       },
       {
         "type": "string",
-        "name": "text___15",
-        "value": "ترانزیت"
+        "name": "year",
+        "value": "1403"
       },
       {
         "type": "string",
         "name": "text___16",
-        "value": "تاریخی"
+        "value": "سال ساخت"
       },
       {
         "type": "string",
-        "name": "motor_visibility",
-        "value": "gone"
+        "name": "chassis_number",
+        "value": "NAKNF7522RB156921"
       },
       {
         "type": "string",
-        "name": "car_visibility",
-        "value": "visible"
+        "name": "text___18",
+        "value": "شماره شاسی"
       },
       {
         "type": "string",
-        "name": "selected_tab_color",
-        "value": "ffffff"
+        "name": "car_type",
+        "value": "J4-CVT"
       },
       {
         "type": "string",
-        "name": "unselected_tab_color",
-        "value": "f3f5f9"
+        "name": "text___20",
+        "value": "تیپ"
       },
       {
         "type": "string",
-        "name": "motor_selected",
-        "value": "#f3f5f9"
+        "name": "text___21",
+        "value": "آخرین جریمه"
       },
       {
         "type": "string",
-        "name": "mashin_selected",
-        "value": "#ffffff"
+        "name": "ticket_date",
+        "value": "-"
       },
       {
         "type": "string",
-        "name": "motor_plate",
-        "value": "patchMotorPlate"
+        "name": "text___23",
+        "value": "تاریخ و زمان جریمه"
       },
       {
         "type": "string",
-        "name": "mashin_plate",
-        "value": "patchVehiclePlate"
+        "name": "ticket_title",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___25",
+        "value": "عنوان جریمه"
+      },
+      {
+        "type": "string",
+        "name": "ticket_code",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___27",
+        "value": "کد جریمه"
+      },
+      {
+        "type": "string",
+        "name": "ticket_type",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___29",
+        "value": "نوع جریمه"
+      },
+      {
+        "type": "string",
+        "name": "ticket_location",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___31",
+        "value": "موقعیت"
+      },
+      {
+        "type": "string",
+        "name": "text___32",
+        "value": "ریال"
+      },
+      {
+        "type": "string",
+        "name": "ticket_price",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___34",
+        "value": "مبلغ جریمه"
+      },
+      {
+        "type": "string",
+        "name": "text___35",
+        "value": "خلافی خودرو"
+      },
+      {
+        "type": "string",
+        "name": "text___36",
+        "value": "ریال"
+      },
+      {
+        "type": "string",
+        "name": "total_ticket",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___38",
+        "value": "جمع تخلفات"
+      },
+      {
+        "type": "string",
+        "name": "text___39",
+        "value": "دستورات"
+      },
+      {
+        "type": "string",
+        "name": "executive_order",
+        "value": "تبصره ماده ۸ قانون"
+      },
+      {
+        "type": "string",
+        "name": "text___41",
+        "value": "دستور اجرائیات"
+      },
+      {
+        "type": "string",
+        "name": "numbering_order",
+        "value": "ندارد"
+      },
+      {
+        "type": "string",
+        "name": "text___43",
+        "value": "دستور شماره گذاری"
+      },
+      {
+        "type": "string",
+        "name": "text___44",
+        "value": "استعلام آگاهی"
+      },
+      {
+        "type": "string",
+        "name": "agh_order",
+        "value": "توقیف - بدپوششی"
+      },
+      {
+        "type": "string",
+        "name": "text___46",
+        "value": "دستور"
+      },
+      {
+        "type": "string",
+        "name": "agh_order_date",
+        "value": "۱۴۰۲/۰۵/۱۲"
+      },
+      {
+        "type": "string",
+        "name": "text___48",
+        "value": "تاریخ دستور"
+      },
+      {
+        "type": "string",
+        "name": "collision_type",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___50",
+        "value": "نوع برخورد"
+      },
+      {
+        "type": "string",
+        "name": "announcement_date",
+        "value": "۱۴۰۲/۰۵/۱۲"
+      },
+      {
+        "type": "string",
+        "name": "text___52",
+        "value": "تاریخ اعلان"
+      },
+      {
+        "type": "string",
+        "name": "agh_order_location",
+        "value": "تهران ، تهران ، میدان نبوت"
+      },
+      {
+        "type": "string",
+        "name": "text___54",
+        "value": "آدرس دستور"
+      },
+      {
+        "type": "string",
+        "name": "discover_location",
+        "value": "تهران ، تهران ، میدان نبوت"
+      },
+      {
+        "type": "string",
+        "name": "text___56",
+        "value": "آدرس کشف"
+      },
+      {
+        "type": "string",
+        "name": "discover_date",
+        "value": "۱۴۰۲/۰۵/۱۲"
+      },
+      {
+        "type": "string",
+        "name": "text___58",
+        "value": "تاریخ کشف"
+      },
+      {
+        "type": "string",
+        "name": "agh_description",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___60",
+        "value": "شرح برخورد"
+      },
+      {
+        "type": "string",
+        "name": "text___61",
+        "value": "بیمه"
+      },
+      {
+        "type": "string",
+        "name": "insurance_expire",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___63",
+        "value": "تاریخ اعتبار"
+      },
+      {
+        "type": "string",
+        "name": "insurance_name",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___65",
+        "value": "نام شرکت"
+      },
+      {
+        "type": "string",
+        "name": "insurance_type",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___67",
+        "value": "نوع بیمه"
+      },
+      {
+        "type": "string",
+        "name": "insurance_number",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___69",
+        "value": "شماره بیمه"
+      },
+      {
+        "type": "string",
+        "name": "text___70",
+        "value": "معاینه فنی"
+      },
+      {
+        "type": "string",
+        "name": "tecnical_visit_status",
+        "value": "اعتبار دارد"
+      },
+      {
+        "type": "string",
+        "name": "text___72",
+        "value": "وضعیت"
+      },
+      {
+        "type": "string",
+        "name": "text___73",
+        "value": "استعلام خودرو"
       }
     ]
   },
-  "templates": {}
+  "templates": {
+    "numbering_order_template": {
+      "type": "container",
+      "$id": "numbering_order_id",
+      "items": [
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "text",
+              "$text": "text",
+              "font_size": 12,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "$text_color": "text_color",
+              "text_alignment_horizontal": "right",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ],
+          "background": [
+            {
+              "type": "solid",
+              "$color": "background_color"
+            }
+          ],
+          "border": {
+            "corner_radius": 4
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "width": {
+            "type": "fixed",
+            "value": 140
+          },
+          "orientation": "horizontal",
+          "content_alignment_horizontal": "center",
+          "content_alignment_vertical": "center",
+          "paddings": {
+            "left": 8,
+            "right": 8
+          },
+          "alignment_horizontal": "left",
+          "alignment_vertical": "center"
+        },
+        {
+          "type": "text",
+          "$text": "title",
+          "font_size": 12,
+          "line_height": 24,
+          "letter_spacing": 0,
+          "text_color": "#7f7f7f",
+          "text_alignment_horizontal": "center",
+          "text_alignment_vertical": "top",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "alignment_horizontal": "right",
+          "alignment_vertical": "center"
+        }
+      ],
+      "height": {
+        "type": "fixed",
+        "value": 24
+      },
+      "width": {
+        "type": "match_parent"
+      },
+      "orientation": "overlap",
+      "content_alignment_horizontal": "left",
+      "content_alignment_vertical": "center",
+      "margins": {
+        "top": 16
+      }
+    },
+    "agh_template": {
+      "type": "container",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "items": [
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "$text": "agh_order",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "$text_color": "text_color",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "$color": "order_background_color"
+                }
+              ],
+              "border": {
+                "corner_radius": 4
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 140
+              },
+              "orientation": "horizontal",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "paddings": {
+                "left": 8,
+                "right": 8
+              },
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center"
+            },
+            {
+              "type": "text",
+              "text": "دستور",
+              "font_size": 12,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "$text_color": "order_text_color",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center"
+            }
+          ],
+          "height": {
+            "type": "fixed",
+            "value": 24
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "content_alignment_horizontal": "left",
+          "content_alignment_vertical": "center",
+          "margins": {
+            "top": 16
+          }
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "$text": "agh_order_date",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#2c2c2c",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ],
+              "border": {
+                "corner_radius": 4
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 140
+              },
+              "orientation": "horizontal",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "paddings": {
+                "left": 8,
+                "right": 8
+              },
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center"
+            },
+            {
+              "type": "text",
+              "text": "تاریخ دستور",
+              "font_size": 12,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#7f7f7f",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center"
+            }
+          ],
+          "height": {
+            "type": "fixed",
+            "value": 24
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "content_alignment_horizontal": "left",
+          "content_alignment_vertical": "center",
+          "margins": {
+            "top": 16
+          }
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "$text": "collision_type",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#2c2c2c",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ],
+              "border": {
+                "corner_radius": 4
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 140
+              },
+              "orientation": "horizontal",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "paddings": {
+                "left": 8,
+                "right": 8
+              },
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center"
+            },
+            {
+              "type": "text",
+              "text": "نوع برخورد",
+              "font_size": 12,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#7f7f7f",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center"
+            }
+          ],
+          "height": {
+            "type": "fixed",
+            "value": 24
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "content_alignment_horizontal": "left",
+          "content_alignment_vertical": "center",
+          "margins": {
+            "top": 16
+          }
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "$text": "announcement_date",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#2c2c2c",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ],
+              "border": {
+                "corner_radius": 4
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 140
+              },
+              "orientation": "horizontal",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "paddings": {
+                "left": 8,
+                "right": 8
+              },
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center"
+            },
+            {
+              "type": "text",
+              "text": "تاریخ اعلان ",
+              "font_size": 12,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#7f7f7f",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center"
+            }
+          ],
+          "height": {
+            "type": "fixed",
+            "value": 24
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "content_alignment_horizontal": "left",
+          "content_alignment_vertical": "center",
+          "margins": {
+            "top": 16
+          }
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "$text": "agh_order_location",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#2c2c2c",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ],
+              "border": {
+                "corner_radius": 4
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 140
+              },
+              "orientation": "horizontal",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "paddings": {
+                "left": 8,
+                "right": 8
+              },
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center"
+            },
+            {
+              "type": "text",
+              "text": "آدرس دستور ",
+              "font_size": 12,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#7f7f7f",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center"
+            }
+          ],
+          "height": {
+            "type": "fixed",
+            "value": 24
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "content_alignment_horizontal": "left",
+          "content_alignment_vertical": "center",
+          "margins": {
+            "top": 16
+          }
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "$text": "discover_location",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#2c2c2c",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ],
+              "border": {
+                "corner_radius": 4
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 140
+              },
+              "orientation": "horizontal",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "paddings": {
+                "left": 8,
+                "right": 8
+              },
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center"
+            },
+            {
+              "type": "text",
+              "text": "آدرس کشف ",
+              "font_size": 12,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#7f7f7f",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center"
+            }
+          ],
+          "height": {
+            "type": "fixed",
+            "value": 24
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "content_alignment_horizontal": "left",
+          "content_alignment_vertical": "center",
+          "margins": {
+            "top": 16
+          }
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "$text": "discover_date",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#2c2c2c",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ],
+              "border": {
+                "corner_radius": 4
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 140
+              },
+              "orientation": "horizontal",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "paddings": {
+                "left": 8,
+                "right": 8
+              },
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center"
+            },
+            {
+              "type": "text",
+              "text": "تاریخ کشف",
+              "font_size": 12,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#7f7f7f",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center"
+            }
+          ],
+          "height": {
+            "type": "fixed",
+            "value": 24
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "content_alignment_horizontal": "left",
+          "content_alignment_vertical": "center",
+          "margins": {
+            "top": 16
+          }
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "$text": "agh_description",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#2c2c2c",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ],
+              "border": {
+                "corner_radius": 4
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 140
+              },
+              "orientation": "horizontal",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "paddings": {
+                "left": 8,
+                "right": 8
+              },
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center"
+            },
+            {
+              "type": "text",
+              "text": "شرح برخورد",
+              "font_size": 12,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#7f7f7f",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center"
+            }
+          ],
+          "height": {
+            "type": "fixed",
+            "value": 24
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "content_alignment_horizontal": "left",
+          "content_alignment_vertical": "center",
+          "margins": {
+            "top": 16
+          }
+        }
+      ]
+    },
+    "nodata_template": {
+      "type": "container",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "items": [
+        {
+          "type": "text",
+          "text": "استعلامی وجود ندارد",
+          "font_size": 12,
+          "line_height": 24,
+          "letter_spacing": 0,
+          "text_color": "#d73333",
+          "text_alignment_horizontal": "center",
+          "text_alignment_vertical": "top",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          }
+        }
+      ]
+    }
+  }
 }

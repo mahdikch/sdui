@@ -1,7 +1,9 @@
 package com.yandex.divkit.demo.ui.activity
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
@@ -12,6 +14,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 
 import androidx.core.content.ContextCompat
@@ -539,6 +542,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                     var bottomSheetPatch = ""
                     var patch = ""
                     var update = ""
+                    var permissions = ""
                     var res: MutableMap<String, String>? = it.data
                     if (res != null) {
 //                        var i: Long = 1
@@ -553,6 +557,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                                     "bottom_sheet_set_patch" -> bottomSheetPatch = value
                                     "reset" -> reset = value
                                     "update" -> update = value
+                                    "permissions" -> permissions = value
                                     else -> mehdiViewModel.insertItemToDb(
                                         PhPlusDB(
                                             null,
@@ -646,6 +651,9 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                         }
                         if (update != "") {
                             updateApp(update)
+                        }
+                        if (permissions != "") {
+                            checkAndRequestPermissions()
                         }
                     }
                     loading.dismissDialog()
@@ -744,6 +752,56 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
     }
 
+
+    private fun checkAndRequestPermissions() {
+        val permissions = arrayOf(
+            Manifest.permission.CAMERA,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+
+        val permissionsToRequest = permissions.filter {
+            ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
+        }
+
+        if (permissionsToRequest.isNotEmpty()) {
+            // Request permissions
+            requestPermissionLauncher.launch(permissionsToRequest.toTypedArray())
+        } else {
+            // All permissions are already granted
+            proceedWithCameraAndLocation()
+        }
+    }
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            val allPermissionsGranted = permissions.all { it.value }
+            if (allPermissionsGranted) {
+                // All permissions are granted, proceed with camera and location access
+                proceedWithCameraAndLocation()
+            } else {
+                // Some permissions are denied, show a message or disable functionality
+                Toast.makeText(this, "Permissions denied", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    private fun proceedWithCameraAndLocation() {
+        // Start using the camera and location
+        Toast.makeText(this, "Camera and location access granted", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showPermissionRationale(permission: String) {
+        AlertDialog.Builder(this)
+            .setTitle("Permission Required")
+            .setMessage("This app needs the $permission to function properly.")
+            .setPositiveButton("OK") { _, _ ->
+                // Request the permission again
+                requestPermissionLauncher.launch(arrayOf(permission))
+            }
+            .setNegativeButton("Cancel", null)
+            .create()
+            .show()
+    }
     private fun startDownload(url: String) {
         // Launch a coroutine to handle the download
         CoroutineScope(Dispatchers.Main).launch {
