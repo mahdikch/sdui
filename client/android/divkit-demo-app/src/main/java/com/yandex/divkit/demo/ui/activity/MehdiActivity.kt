@@ -617,7 +617,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                         if (bottomSheet != "") {
 //                            if (btmSheet!=null)
 //                                btmSheet.dismiss()
-
+                            println("bottomSheet1:${bottomSheet}")
                             btmSheet = BottomSheetDiv(this, this, bottomSheet, mehdiViewModel, this)
 
                             btmSheet.show(

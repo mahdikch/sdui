@@ -129,7 +129,7 @@ class BottomSheetSpinner(
             for (constraint in item.constraintList) {
                 if (constraint.variableName == "usage.res") {
                     if (map.contains("usage")) {
-                        if (constraint.disallowedList.contains(map["uasge"])) {
+                        if (constraint.disallowedList.contains(map["usage"])) {
                             arrayList.remove(item)
                         }
                     }
