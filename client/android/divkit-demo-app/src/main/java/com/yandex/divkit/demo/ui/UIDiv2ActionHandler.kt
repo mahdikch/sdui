@@ -1,6 +1,5 @@
 package com.yandex.divkit.demo.ui
 
-import android.Manifest
 import android.R
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -8,12 +7,16 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.net.Uri
 import android.provider.Settings
+import android.util.Base64
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
@@ -37,6 +40,10 @@ import com.yandex.divkit.demo.data.entities.ListItemDto
 import com.yandex.divkit.demo.data.entities.PhPlusDB
 import com.yandex.divkit.demo.div.Div2Activity
 import com.yandex.divkit.demo.div.DivActivity
+import com.yandex.divkit.demo.persiandatepicker.PersianDatePickerDialog
+import com.yandex.divkit.demo.persiandatepicker.api.PersianPickerDate
+import com.yandex.divkit.demo.persiandatepicker.api.PersianPickerListener
+import com.yandex.divkit.demo.persiandatepicker.util.PersianCalendar
 import com.yandex.divkit.demo.settings.SettingsActionHandler
 import com.yandex.divkit.demo.settings.SettingsActivity
 import com.yandex.divkit.demo.ui.activity.MehdiActivity
@@ -49,7 +56,7 @@ import com.yandex.divkit.demo.ui.toastDiv.CustomToast
 import com.yandex.divkit.demo.utils.DivkitDemoUriHandler
 import com.yandex.divkit.regression.RegressionActivity
 import ir.nrdc.camera.Naji
-import ir.nrdc.camera.OnCallBackListener
+import ir.nrdc.camera.com.github.dhaval2404.imagepicker.OnCallBackListener
 import saman.zamani.persiandate.PersianDate
 import saman.zamani.persiandate.PersianDateFormat
 import saman.zamani.persiandate.PersianDateFormat.PersianDateNumberCharacter
@@ -79,6 +86,7 @@ private const val AUTHORITY_SHOW_BOTTOM_SHEET_PLATE = "bottom_sheet_plate"
 private const val AUTHORITY_SHOW_BOTTOM_SHEET_DIV = "bottom_sheet_div"
 private const val AUTHORITY_SHOW_TIME_PICKER = "show_time_picker"
 private const val AUTHORITY_SHOW_DATE_PICKER = "show_date_picker"
+private const val AUTHORITY_SHOW_IMAGE = "show_image"
 private const val AUTHORITY_GET_PERSIAN_DATE = "get_persian_date"
 private const val AUTHORITY_BOTTOM_SHEET_DISMISS = "bottom_sheet_dismiss"
 private const val AUTHORITY_SET_VARIABLE_TO_BASE = "set_variable_to_base"
@@ -86,6 +94,8 @@ private const val AUTHORITY_CHECK_VERSION = "check_version"
 private const val AUTHORITY_SET_OBJECT_TO_DB = "set_object_to_db"
 private const val AUTHORITY_GET_CAMERA_PERMISSION = "get_camera_permission"
 private const val AUTHORITY_GET_LOCATION_PERMISSION = "get_location_permission"
+private const val AUTHORITY_GET_WRITE_PERMISSION = "get_write_permission"
+private const val AUTHORITY_GET_ALL_PERMISSION = "get_all_permission"
 private const val AUTHORITY_UPDATE = "update"
 const val SCHEME_DIV_ACTION = "div-action"
 
@@ -117,6 +127,7 @@ private const val PARAM_DIALOG_DIV = "jsonName"
 private const val PARAM_SET_PATCH = "patch"
 private const val PARAM_SET_PATCH_BOTTOMSHEET_DISMISS = "btm_dismiss"
 private const val PARAM_SET_PATCH_TITLE = "patch_title"
+private const val PARAM_SET_VEHICLE_TYPE = "vehicle_type"
 private const val PARAM_SET_VARIABLE_TO_DB_KEY = "key"
 private const val PARAM_SET_VARIABLE_TO_DB_value = "value"
 private const val PARAM_FORWARD_TO_PATH = "name"
@@ -124,8 +135,10 @@ private const val PARAM_FORWARD_TO_SYSTEM = "system"
 private const val PARAM_TIME_PICKER = "variableName"
 private const val PARAM_DATE_PICKER = "variableName"
 private const val PARAM_OPEN_CAMERA = "type"
+private const val PARAM_OPEN_CAMERA_iranian = "iranian"
 private const val PARAM_OPEN_CAMERA_OCR = "check_ocr"
 private const val PARAM_CHECK_VERSION_NAME = "name"
+private const val PARAM_SHOW_IMAGE = "image"
 
 
 class UIDiv2ActionHandler(
@@ -239,7 +252,7 @@ class UIDiv2ActionHandler(
         } else if (uri.authority == AUTHORITY_GET_PERSIAN_DATE) {
             val varName = uri.getQueryParameter(PARAM_DATE_PICKER)
             val pdate =
-                PersianDateFormat.format(PersianDate(), "y m j", PersianDateNumberCharacter.FARSI);
+                PersianDateFormat.format(PersianDate(), "Y/m/d", PersianDateNumberCharacter.ENGLISH);
             val div2View = if (view is Div2View) view as Div2View? else null
             if (div2View != null) {
                 if (varName != null) {
@@ -251,40 +264,60 @@ class UIDiv2ActionHandler(
             }
 
         } else if (uri.authority == AUTHORITY_GET_CAMERA_PERMISSION) {
-            if (ContextCompat.checkSelfPermission(
-                    context,
-                    Manifest.permission.CAMERA
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                val permissions = arrayOf(Manifest.permission.CAMERA)
-
-            }
+//            if (ContextCompat.checkSelfPermission(
+//                    context,
+//                    Manifest.permission.CAMERA
+//                ) != PackageManager.PERMISSION_GRANTED
+//            ) {
+//                val permissions = arrayOf(Manifest.permission.CAMERA)
+//
+//            }
+//            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+//                EasyPermissions.requestPermissions(
+//                    context,
+//                    "You need to accept location , camera and storage permissions to use this app",
+//                    103,
+////                android.Manifest.permission.ACCESS_COARSE_LOCATION,
+////                android.Manifest.permission.ACCESS_FINE_LOCATION,
+////                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//                    android.Manifest.permission.CAMERA
+//                )
+//            } else {
+//                EasyPermissions.requestPermissions(
+//                    this,
+//                    "You need to accept location , camera and storage permissions to use this app",
+//                    103,
+//                    android.Manifest.permission.ACCESS_COARSE_LOCATION,
+//                    android.Manifest.permission.ACCESS_FINE_LOCATION,
+//                    android.Manifest.permission.ACCESS_BACKGROUND_LOCATION
+//
+//                )
+//            }
 
         } else if (uri.authority == AUTHORITY_GET_LOCATION_PERMISSION) {
-            if (ContextCompat.checkSelfPermission(
-                    context,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-            }
+            loadScreenListener.getLocationPermission()
 
-        } else if (uri.authority == AUTHORITY_FORWARD_TO) {
-            val parameterNames = uri.queryParameterNames
-            val map: MutableMap<String, String> = HashMap()
-            var parametersMap: MutableMap<String, String> = HashMap<String, String>()
-            for (parameterName in parameterNames) {
-                map[parameterName] = uri.getQueryParameter(parameterName).toString()
-            }
-            loadScreenListener.onRequest(map)
+//
+        }else if (uri.authority == AUTHORITY_GET_CAMERA_PERMISSION) {
+            loadScreenListener.getCameraPermission()
+
+//
+        }else if (uri.authority == AUTHORITY_GET_WRITE_PERMISSION) {
+            loadScreenListener.getWritePermission()
+
+//
+        }else if (uri.authority == AUTHORITY_GET_ALL_PERMISSION) {
+            loadScreenListener.getAllPermissions()
 
 //
         } else if (uri.authority == AUTHORITY_OPEN_CAMERA) {
 
             val type = uri.getQueryParameter(PARAM_OPEN_CAMERA)
+            val iranian = uri.getQueryParameter(PARAM_OPEN_CAMERA_iranian)
             naji.openCamera(
                 context as Activity, this, type, uri.getQueryParameter(
                     PARAM_OPEN_CAMERA_OCR
-                )
+                ),iranian
             )
 
         } else if (uri.authority == AUTHORITY_CHECK_VERSION) {
@@ -341,7 +374,49 @@ class UIDiv2ActionHandler(
 
             }
 
-        } else if (uri.authority == AUTHORITY_SET_PATCH) {
+        }else if (uri.authority == AUTHORITY_SHOW_DATE_PICKER) {
+            val div2View: Div2View = view as Div2View
+            var varName = uri.getQueryParameter(PARAM_TIME_PICKER)
+
+            var picker: PersianDatePickerDialog? = null
+            picker = PersianDatePickerDialog(context)
+                .setPositiveButtonString("باشه")
+                .setNegativeButton("بیخیال")
+                .setTodayButton("امروز")
+                .setTodayButtonVisible(true)
+                .setMinYear(1300)
+                .setAllButtonsTextSize(12)
+                .setMaxYear(1500)
+                .setInitDate(1370, 3, 13)
+                .setActionTextColor(Color.GRAY)
+                //.setTypeFace(typeface) //  .setShowDayPicker(false)
+                .setTitleType(PersianDatePickerDialog.DAY_MONTH_YEAR)
+                .setShowInBottomSheet(true)
+                .setListener(object : PersianPickerListener {
+                    override fun onDateSelected(persianPickerDate: PersianPickerDate) {
+                        if (varName != null) {
+                            div2View.setVariable(
+                                varName,
+                                (persianPickerDate.getPersianYear().toString() + "/" + persianPickerDate.getPersianMonth()).toString() + "/" + persianPickerDate.getPersianDay().toString()
+                            )
+                        }
+//                        Toast.makeText(
+//                            context,
+//                            (persianPickerDate.getPersianYear().toString() + "/" + persianPickerDate.getPersianMonth()).toString() + "/" + persianPickerDate.getPersianDay().toString(),
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+                    }
+
+                    override fun onDismissed() {
+                        Toast.makeText(context, "Dismissed", Toast.LENGTH_SHORT).show()
+                    }
+                })
+
+            picker.show()
+
+
+        }
+        else if (uri.authority == AUTHORITY_SET_PATCH) {
 
             val div2View: Div2View = view as Div2View
             var patchName = uri.getQueryParameter(PARAM_SET_PATCH)
@@ -349,14 +424,16 @@ class UIDiv2ActionHandler(
             dismiss = uri.getQueryParameter(PARAM_SET_PATCH_BOTTOMSHEET_DISMISS).toString()
 
             var patchTitle = ""
+            var vehicle_type = ""
             patchTitle = uri.getQueryParameter(PARAM_SET_PATCH_TITLE).toString()
+            vehicle_type = uri.getQueryParameter(PARAM_SET_VEHICLE_TYPE).toString()
             var json = ""
 //            VariableToGet.value.value = uri.getQueryParameter(PARAM_SET_PATCH)
             if (patchName != null) {
                 json = mehdiViewModel?.getValueByKey(patchName)?.value.toString()
             }
             if (patchName != null) {
-                loadScreenListener.onApplyOnbase(json, patchName, patchTitle)
+                loadScreenListener.onApplyOnbase(json, patchName, patchTitle,vehicle_type)
 
             }
 //            view.applyPatch(JSONObject(json).asDivPatchWithTemplates())
@@ -384,6 +461,7 @@ class UIDiv2ActionHandler(
                 Assert.fail(PARAM_VARIABLE_VALUE + " param unspecified for " + name)
                 return false
             }
+
 
             val div2View = if (view is Div2View) view as Div2View? else null
 
@@ -414,7 +492,7 @@ class UIDiv2ActionHandler(
 //                    json == it[0].value
                     val div2View = if (view is Div2View) view as Div2View? else null
                     if (it.isNotEmpty())
-                        div2View?.setVariable(name, it[0].value)
+                        it[0].value?.let { it1 -> div2View?.setVariable(name, it1) }
 
                 }
             }
@@ -523,6 +601,23 @@ class UIDiv2ActionHandler(
                 .setNegativeButton(R.string.no, null)
                 .setIcon(R.drawable.ic_dialog_alert)
                 .show()
+        }else if (uri.authority == AUTHORITY_SHOW_IMAGE) {
+            val image = uri.getQueryParameter(PARAM_SHOW_IMAGE)
+            val imageBytes = Base64.decode(image, Base64.DEFAULT)
+            val decodedBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+//            loadScreenListener.showImage(decodedBitmap)
+//            dialogImage.setImageBitmap(decodedBitmap)
+
+            val dialogView = LayoutInflater.from(context).inflate(com.yandex.divkit.demo.R.layout.dialog_image, null)
+            val dialogImage = dialogView.findViewById<ImageView>(com.yandex.divkit.demo.R.id.dialogImageView)
+            dialogImage.setImageBitmap(decodedBitmap)
+
+            AlertDialog.Builder(context)
+                .setView(dialogView)
+                .setPositiveButton("Close", null)
+                .create()
+                .show()
+
         } else if (uri.authority == AUTHORITY_SHOW_MASSAGE) {
 
             Toast.makeText(context, uri.getQueryParameter(PARAM_TOAST), Toast.LENGTH_LONG).show()
@@ -707,7 +802,8 @@ class UIDiv2ActionHandler(
         bitmapMain: String?,
         imageUriCrop: String?,
         type: String?,
-        checkOcr: String?
+        checkOcr: String?,
+        iranian:String?
     ) {
         println("bitmapMain = ${bitmapMain}")
         val div2View = if (view is Div2View) view as Div2View? else null
@@ -744,7 +840,9 @@ class UIDiv2ActionHandler(
                 map.put("path", "inquiryBiometric/agh")
                 map.put("personalImage", imageUriCrop)
                 map.put("ph/token", "empty")
+                if (iranian=="true")
                 map.put("type", "3")
+                else map.put("type", "2")
                 map.put("status", "searchImage")
                 map.put("sysName", "agh")
 
@@ -761,6 +859,41 @@ class UIDiv2ActionHandler(
     override fun getImageCroppedCompress(imageUriCropCompress: String?, type: String?) {
         println("bitmapMain = ${imageUriCropCompress}")
 
+    }
+    fun showCalendar(v: View?) {
+//        val typeface = Typeface.createFromAsset(getAssets(), "Shabnam-Light-FD.ttf")
+//        val initDate: PersianCalendar = PersianCalendar()
+//        initDate.setPersianDate(1370, 3, 13)
+         var picker: PersianDatePickerDialog? = null
+        picker = PersianDatePickerDialog(context)
+            .setPositiveButtonString("باشه")
+            .setNegativeButton("بیخیال")
+            .setTodayButton("امروز")
+            .setTodayButtonVisible(true)
+            .setMinYear(1300)
+            .setAllButtonsTextSize(12)
+            .setMaxYear(1500)
+            .setInitDate(1370, 3, 13)
+            .setActionTextColor(Color.GRAY)
+            //.setTypeFace(typeface) //  .setShowDayPicker(false)
+            .setTitleType(PersianDatePickerDialog.DAY_MONTH_YEAR)
+            .setShowInBottomSheet(true)
+            .setListener(object : PersianPickerListener {
+                override fun onDateSelected(persianPickerDate: PersianPickerDate) {
+
+                    Toast.makeText(
+                        context,
+                        (persianPickerDate.getPersianYear().toString() + "/" + persianPickerDate.getPersianMonth()).toString() + "/" + persianPickerDate.getPersianDay().toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                override fun onDismissed() {
+                    Toast.makeText(context, "Dismissed", Toast.LENGTH_SHORT).show()
+                }
+            })
+
+        picker.show()
     }
 //    private fun findExpressionResolverById(divView: Div2View, id: String?): ExpressionResolver? {
 //        if (id == null) {

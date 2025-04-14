@@ -11,5 +11,5 @@ data class PhPlusDB(
     val id: Long?,
     @ColumnInfo(name = "key")
     val key: String?,
-    val value: String,
+    val value: String?,
 )

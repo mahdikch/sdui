@@ -214,6 +214,884 @@
           ]
         }
       }
+    ],
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "string",
+        "name": "variable_car_picture",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_car_info_visibility",
+        "value": "gone"
+      },
+      {
+        "type": "string",
+        "name": "car_offline_info",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "location_visibility",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "register_punishment_visibility",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "driver_inquiry_visibility",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "variable_driver_info_visibility",
+        "value": "gone"
+      },
+      {
+        "type": "string",
+        "name": "parking_visibility",
+        "value": "gone"
+      },
+      {
+        "type": "string",
+        "name": "register_btn_visibility",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "variable_picture_visibility",
+        "value": "gone"
+      },
+      {
+        "type": "string",
+        "name": "variable_driver_info_bck",
+        "value": "#e7ffe3"
+      },
+      {
+        "type": "string",
+        "name": "text___1",
+        "value": "دوبرگی"
+      },
+      {
+        "type": "string",
+        "name": "text___2",
+        "value": "الصاقی"
+      },
+      {
+        "type": "string",
+        "name": "text___3",
+        "value": "تسلیمی"
+      },
+      {
+        "type": "string",
+        "name": "text___4",
+        "value": "منطقه ای شخصی"
+      },
+      {
+        "type": "string",
+        "name": "text_i_r__5",
+        "value": "i.r."
+      },
+      {
+        "type": "string",
+        "name": "text_iran_6",
+        "value": "iran"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateA",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_plateB",
+        "value": "ب"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateC",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_plateD",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_plateE",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_plateF",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_plateA_hint",
+        "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateA_motor_hint",
+        "value": "۱۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateC_motor_hint",
+        "value": "۱۱۱۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateB_hint",
+        "value": "ب"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateC_hint",
+        "value": "۱۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateD_hint",
+        "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateE_hint",
+        "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateF_hint",
+        "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "text___11",
+        "value": "استعلام"
+      },
+      {
+        "type": "string",
+        "name": "text___12",
+        "value": "مشخصات خودرو"
+      },
+      {
+        "type": "string",
+        "name": "text___13",
+        "value": "بیشتر"
+      },
+      {
+        "type": "string",
+        "name": "text___14",
+        "value": "مدل"
+      },
+      {
+        "type": "string",
+        "name": "variable_car_model_information_vt",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "plate_description",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "number_of_passengers",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "text___16",
+        "value": "رنگ"
+      },
+      {
+        "type": "string",
+        "name": "variable_car_color_information_vt",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___18",
+        "value": "جمع تخلفات"
+      },
+      {
+        "type": "string",
+        "name": "text___19",
+        "value": "ریال"
+      },
+      {
+        "type": "string",
+        "name": "variable_car_total_ticket_information_vt",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___21",
+        "value": "دستور"
+      },
+      {
+        "type": "string",
+        "name": "variable_order_information",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___23",
+        "value": "دوبرگی"
+      },
+      {
+        "type": "string",
+        "name": "text___24",
+        "value": "الصاقی"
+      },
+      {
+        "type": "string",
+        "name": "text___25",
+        "value": "تسلیمی"
+      },
+      {
+        "type": "string",
+        "name": "text___26",
+        "value": "مکان تخلف"
+      },
+      {
+        "type": "string",
+        "name": "text___27",
+        "value": "انتخاب از نقشه"
+      },
+      {
+        "type": "string",
+        "name": "address",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "text___29",
+        "value": "ثبت نوع تخلف"
+      },
+      {
+        "type": "string",
+        "name": "text___30",
+        "value": "انتخاب از لیست"
+      },
+      {
+        "type": "string",
+        "name": "text___31",
+        "value": "کد تخلف"
+      },
+      {
+        "type": "string",
+        "name": "text___32",
+        "value": "انتخاب از لیست"
+      },
+      {
+        "type": "string",
+        "name": "text___33",
+        "value": "کد تخلف"
+      },
+      {
+        "type": "string",
+        "name": "text___34",
+        "value": "انتخاب از لیست"
+      },
+      {
+        "type": "string",
+        "name": "text___35",
+        "value": "کد تخلف"
+      },
+      {
+        "type": "string",
+        "name": "text___36",
+        "value": "مشخصات راننده"
+      },
+      {
+        "type": "string",
+        "name": "text___37",
+        "value": "اسکن چهره"
+      },
+      {
+        "type": "string",
+        "name": "text___38",
+        "value": "کد ملی"
+      },
+      {
+        "type": "string",
+        "name": "text___39",
+        "value": "استعلام"
+      },
+      {
+        "type": "string",
+        "name": "text___40",
+        "value": "نام و نام خانوادگی"
+      },
+      {
+        "type": "string",
+        "name": "variable_driver_name_vt",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___42",
+        "value": "وضعیت گواهی نامه"
+      },
+      {
+        "type": "string",
+        "name": "variable_driver_license_status_vt",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___44",
+        "value": "نمره منفی"
+      },
+      {
+        "type": "string",
+        "name": "variable_driver_score_vt",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_driver_license_number_vt",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___46",
+        "value": "تاریخ اعتبار"
+      },
+      {
+        "type": "string",
+        "name": "variable_driver_license_expire_vt",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_driver_license_city_vt",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_driver_license_type_vt",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___48",
+        "value": "مشخصات فردی"
+      },
+      {
+        "type": "string",
+        "name": "text___49",
+        "value": "غیر ایرانی"
+      },
+      {
+        "type": "string",
+        "name": "text___50",
+        "value": "ایرانی"
+      },
+      {
+        "type": "string",
+        "name": "text___51",
+        "value": "ثبت جریمه"
+      },
+      {
+        "type": "string",
+        "name": "text___52",
+        "value": "انتقال به پارکینگ"
+      },
+      {
+        "type": "string",
+        "name": "text___53",
+        "value": "۲ روز"
+      },
+      {
+        "type": "string",
+        "name": "text___54",
+        "value": "توضیحات"
+      },
+      {
+        "type": "string",
+        "name": "text___55",
+        "value": "انتخاب از لیست"
+      },
+      {
+        "type": "string",
+        "name": "text___56",
+        "value": "کد تخلف توقیف"
+      },
+      {
+        "type": "string",
+        "name": "white",
+        "value": "ffffff"
+      },
+      {
+        "type": "string",
+        "name": "gray",
+        "value": "E8ECF4"
+      },
+      {
+        "type": "string",
+        "name": "elsaghi_color",
+        "value": "#E8ECF4"
+      },
+      {
+        "type": "string",
+        "name": "dobargi_color",
+        "value": "#E8ECF4"
+      },
+      {
+        "type": "string",
+        "name": "taslimi_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "elsaghi_text_color",
+        "value": "#757575"
+      },
+      {
+        "type": "string",
+        "name": "dobargi_text_color",
+        "value": "#757575"
+      },
+      {
+        "type": "string",
+        "name": "taslimi_text_color",
+        "value": "#1A4499"
+      },
+      {
+        "type": "string",
+        "name": "text___57",
+        "value": "ثبت تخلف"
+      },
+      {
+        "type": "boolean",
+        "name": "taslimi",
+        "value": true
+      },
+      {
+        "type": "string",
+        "name": "plate1_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate2_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate3_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate4_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate_text_color",
+        "value": "#4F4F4F"
+      },
+      {
+        "type": "string",
+        "name": "text_1",
+        "value": "۱۲۳"
+      },
+      {
+        "type": "string",
+        "name": "text_2",
+        "value": "۲۳۴۵۲"
+      },
+      {
+        "type": "string",
+        "name": "text_i_r__3",
+        "value": "i.r."
+      },
+      {
+        "type": "string",
+        "name": "text_iran_4",
+        "value": "iran"
+      },
+      {
+        "type": "string",
+        "name": "variable_system_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_system_code",
+        "value": "3"
+      },
+      {
+        "type": "string",
+        "name": "variable_usage_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_usage_code",
+        "value": "1308"
+      },
+      {
+        "type": "string",
+        "name": "variable_color_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_color_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "violation1_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "violation1_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "violation2_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "violation2_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "violation3_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "loc",
+        "value": "right"
+      },
+      {
+        "type": "boolean",
+        "name": "on_status",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "on_color",
+        "value": "#3e000000"
+      },
+      {
+        "type": "string",
+        "name": "violation3_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "plate_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "plate_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "sysName",
+        "value": "vt"
+      },
+      {
+        "type": "boolean",
+        "name": "order_information_status",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "national_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_driver_image_vt",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "iranian",
+        "value": "true"
+      },
+      {
+        "type": "string",
+        "name": "ticket_type",
+        "value": "1"
+      },
+      {
+        "type": "string",
+        "name": "policeCode",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "license_number",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "cityPolice_code",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "isInternal",
+        "value": "1"
+      },
+      {
+        "type": "string",
+        "name": "time",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "date",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "isOnline",
+        "value": "true"
+      },
+      {
+        "type": "string",
+        "name": "patch",
+        "value": "منطقه ای شخصی"
+      },
+      {
+        "type": "string",
+        "name": "check_ocr",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "taslimi_check_ocr",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "dobargi_check_ocr",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "elsaghi_check_ocr",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "taslimi_picture_validation",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "elsaghi_picture_validation",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "dobargi_picture_validation",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "picture_validation",
+        "value": "true"
+      },
+      {
+        "type": "string",
+        "name": "variable_inquiry_validation",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "variable_inquiry_national_code",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "usage_validation",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "system_validation",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "color_validation",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "address_validation",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "time_validation",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "violation_validation",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "national_code_validation",
+        "value": "false"
+      },
+      {
+        "type": "boolean",
+        "name": "is_valid",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "is_valid_offline",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "true",
+        "value": "true"
+      },
+      {
+        "type": "string",
+        "name": "false",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "empty",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "taslimi_validation",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "elsaghi_validation",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "dobargi_validation",
+        "value": "false"
+      },
+      {
+        "type": "boolean",
+        "name": "register",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "register_offline",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "last_check",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "last_check_offline",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "online_validation",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "offline_validation",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "userName",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "imei_code",
+        "value": "-"
+      },
+      {
+        "type": "boolean",
+        "name": "variable_usage_selectable",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "variable_system_selectable",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "variable_color_selectable",
+        "value": true
+      },
+      {
+        "type": "string",
+        "name": "plate2_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate3_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate4_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate_text_color",
+        "value": "#4F4F4F"
+      }
     ]
   }
 }

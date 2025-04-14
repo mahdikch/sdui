@@ -18,7 +18,10 @@
 -keep class kotlinx.**
 
 -keep class com.yandex.div.lottie.**
-
+-dontwarn com.yalantis.ucrop.UCrop$Options
+-dontwarn com.yalantis.ucrop.UCrop
+-keep class com.yandex.divkit.demo.**
+-keep class retrofit2.**
 -assumenosideeffects class kotlin.jvm.internal.Intrinsics {
     public static void checkExpressionValueIsNotNull(...);
     public static void checkFieldIsNotNull(...);

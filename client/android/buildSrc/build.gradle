@@ -3,6 +3,8 @@ apply plugin: 'kotlin'
 
 repositories {
     mavenCentral()
+    jcenter()
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -13,6 +15,8 @@ dependencies {
 buildscript {
     repositories {
         mavenCentral()
+        jcenter()
+        maven { url "https://jitpack.io" }
     }
 
     dependencies {

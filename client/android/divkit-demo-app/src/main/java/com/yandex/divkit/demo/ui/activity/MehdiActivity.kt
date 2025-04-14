@@ -1,5 +1,6 @@
 package com.yandex.divkit.demo.ui.activity
 
+//import dagger.hilt.android.AndroidEntryPoint
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -9,19 +10,28 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
+import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.view.LayoutInflater
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.yandex.div.core.view2.Div2View
+import com.yandex.divkit.demo.BuildConfig
 import com.yandex.divkit.demo.data.Constants
 import com.yandex.divkit.demo.data.RemoteData
 import com.yandex.divkit.demo.data.ScreenToLoad
@@ -37,29 +47,25 @@ import com.yandex.divkit.demo.data.repository.PhPlusRepository
 import com.yandex.divkit.demo.databinding.ActivityMehdiBinding
 import com.yandex.divkit.demo.div.asDivPatchWithTemplates
 import com.yandex.divkit.demo.screenshot.DivAssetReader
+import com.yandex.divkit.demo.ui.LoadScreenListener
 import com.yandex.divkit.demo.ui.UIDiv2ViewCreator
+import com.yandex.divkit.demo.ui.bottomSheetDiv.BottomSheetDiv
+import com.yandex.divkit.demo.ui.dialogDiv.DialogDiv
+import com.yandex.divkit.demo.ui.toastDiv.CustomToast
 import com.yandex.divkit.demo.utils.ErrorDialog
 import com.yandex.divkit.demo.utils.LoadingDialog
 import com.yandex.divkit.demo.utils.SingletonObjects
 import com.yandex.divkit.regression.ScenarioLogDelegate
-//import dagger.hilt.android.AndroidEntryPoint
-import org.json.JSONObject
-import androidx.core.app.ActivityCompat
-import androidx.core.content.FileProvider
-import androidx.fragment.app.FragmentActivity
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.yandex.divkit.demo.BuildConfig
-import com.yandex.divkit.demo.ui.LoadScreenListener
-import com.yandex.divkit.demo.ui.bottomSheetDiv.BottomSheetDiv
-import com.yandex.divkit.demo.ui.dialogDiv.DialogDiv
-import com.yandex.divkit.demo.ui.toastDiv.CustomToast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
+import pub.devrel.easypermissions.EasyPermissions
 import java.io.File
+import java.util.TreeMap
+import java.util.UUID
 
 //@AndroidEntryPoint
 class MehdiActivity : AppCompatActivity(), LoadScreenListener {
@@ -115,6 +121,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         val sysname = bundle?.getString("sysName")
         binding = ActivityMehdiBinding.inflate(layoutInflater)
         setContentView(binding.root)
+//        checkAndRequestPermissions()
         loading = LoadingDialog(this)
         error = ErrorDialog(this)
 //        loading.showLoadingDialog("لطفا شکیبا باشید...")
@@ -315,9 +322,9 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
             binding.root.addView(div)
 
         } else {
-            nextJsonDto = mehdiViewModel.getValueByKey(json)
+            nextJsonDto = repository.getValueByKey(json)
             if (nextJsonDto != null) {
-                nextJson = nextJsonDto!!.value
+                nextJson = nextJsonDto!!.value.toString()
                 divJson = JSONObject(nextJson)
 
                 div = UIDiv2ViewCreator(this, this, mehdiViewModel, this).createDiv2ViewMehdi(
@@ -439,7 +446,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                         } else {
                             var dbValue = mehdiViewModel.getValueByKey(mutableEntry.key)
                             if (dbValue != null)
-                                map.put(mutableEntry.key, dbValue.value)
+                                dbValue.value?.let { map.put(mutableEntry.key, it) }
 
                         }
                     if (mutableEntry.key.contains("variable")) {
@@ -462,7 +469,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
         observerScreenToLoad = Observer {
             if (it.isNotEmpty()) {
-                next = mehdiViewModel.getValueByKey(it).value
+                next = mehdiViewModel.getValueByKey(it).value.toString()
                 if (next != null || next != "") {
                     if (Constants.CURRENT_SCREEN != next) {
                         Constants.CURRENT_SCREEN = next
@@ -543,10 +550,17 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                     var patch = ""
                     var update = ""
                     var permissions = ""
-                    var res: MutableMap<String, String>? = it.data
-                    if (res != null) {
+//                    var res: MutableMap<String, String>?= sortedMapOf()
+                    if(it.data?.contains("next") == true){
+                        val nv=it.data["next"]
+                        it.data.remove("next")
+                        it.data["next"]=nv!!
+                    }
+//                    it.data?.let { data-> res?.putAll(data) }
+
+                    if (it.data != null) {
 //                        var i: Long = 1
-                        for ((key, value) in res) {
+                        for ((key, value) in it.data) {
                             if (key != null && value != null) {
                                 when (key) {
                                     "next" -> next = value
@@ -558,13 +572,14 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                                     "reset" -> reset = value
                                     "update" -> update = value
                                     "permissions" -> permissions = value
-                                    else -> mehdiViewModel.insertItemToDb(
+                                    else -> {
+                                        repository.insertItem(
                                         PhPlusDB(
                                             null,
                                             key,
                                             value
                                         )
-                                    )
+                                    )}
                                 }
 //                                if (key == "next") {
 //                                    next = value
@@ -596,6 +611,15 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                             }
                         }
                         if (next != "") {
+                            nextJsonDto = repository.getValueByKey(next)
+                            if(nextJsonDto==null)
+                            repository.insertItem(
+                                PhPlusDB(
+                                    null,
+                                    next,
+                                    it.data[next]
+                                )
+                            )
                             Constants.CURRENT_SCREEN = next
                             startActivityForLoad(
                                 MehdiActivity::class.java,
@@ -631,10 +655,15 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                             ).show()
                         }
                         if (patch != "") {
-                            var json = mehdiViewModel?.getValueByKey(patch)?.value.toString()
-                            if (json != null) {
+                            var json=""
+                            val dbPatch=mehdiViewModel.getValueByKey(patch)
+                            println("dppatch: "+dbPatch.toString())
+                            if (dbPatch!=null )
+                             json = dbPatch.value.toString()
+                            if (json != null && json!="") {
                                 var patchTitle = "تست"
-                                onApplyOnbase(json, patch, patchTitle)
+                                var vehicleType = "تست"
+                                onApplyOnbase(json, patch, patchTitle,vehicleType)
                             }
 
                         }
@@ -652,9 +681,9 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                         if (update != "") {
                             updateApp(update)
                         }
-                        if (permissions != "") {
-                            checkAndRequestPermissions()
-                        }
+//                        if (permissions != "") {
+//                            checkAndRequestPermissions()
+//                        }
                     }
                     loading.dismissDialog()
 
@@ -754,23 +783,50 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
 
     private fun checkAndRequestPermissions() {
-        val permissions = arrayOf(
-            Manifest.permission.CAMERA,
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-        )
-
-        val permissionsToRequest = permissions.filter {
-            ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
-        }
-
-        if (permissionsToRequest.isNotEmpty()) {
-            // Request permissions
-            requestPermissionLauncher.launch(permissionsToRequest.toTypedArray())
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            EasyPermissions.requestPermissions(
+                this,
+                "You need to accept location , camera and storage permissions to use this app",
+                103,
+//                android.Manifest.permission.ACCESS_COARSE_LOCATION,
+//                android.Manifest.permission.ACCESS_FINE_LOCATION,
+//                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                android.Manifest.permission.CAMERA
+            )
         } else {
-            // All permissions are already granted
-            proceedWithCameraAndLocation()
+            EasyPermissions.requestPermissions(
+                this,
+                "You need to accept location , camera and storage permissions to use this app",
+                103,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.ACCESS_BACKGROUND_LOCATION
+
+            )
         }
+//        val RC_CAMERA_PERM: Int = 123
+//        val RC_LOCATION_CONTACTS_PERM: Int = 124
+//        val RC_WRITE_EXTERNAL_STORAGE_PERM: Int = 125
+
+
+//        val permissions = arrayOf(
+//            Manifest.permission.CAMERA,
+//            Manifest.permission.ACCESS_FINE_LOCATION,
+//            Manifest.permission.WRITE_EXTERNAL_STORAGE
+//        )
+//        EasyPermissions.requestPermissions(this,"",123,permissions)
+//
+//        val permissionsToRequest = permissions.filter {
+//            ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
+//        }
+
+//        if (permissionsToRequest.isNotEmpty()) {
+//            // Request permissions
+//            requestPermissionLauncher.launch(permissionsToRequest.toTypedArray())
+//        } else {
+//            // All permissions are already granted
+//            proceedWithCameraAndLocation()
+//        }
     }
 
     private val requestPermissionLauncher =
@@ -790,18 +846,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         Toast.makeText(this, "Camera and location access granted", Toast.LENGTH_SHORT).show()
     }
 
-    private fun showPermissionRationale(permission: String) {
-        AlertDialog.Builder(this)
-            .setTitle("Permission Required")
-            .setMessage("This app needs the $permission to function properly.")
-            .setPositiveButton("OK") { _, _ ->
-                // Request the permission again
-                requestPermissionLauncher.launch(arrayOf(permission))
-            }
-            .setNegativeButton("Cancel", null)
-            .create()
-            .show()
-    }
+    //
     private fun startDownload(url: String) {
         // Launch a coroutine to handle the download
         CoroutineScope(Dispatchers.Main).launch {
@@ -934,7 +979,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         if (screenName.isNotEmpty()) {
 //            next = mehdiViewModel.getValueByKey(screenName).value
             if (screenName == "nextSplash")
-                next = mehdiViewModel.getValueByKey(screenName).value
+                next = mehdiViewModel.getValueByKey(screenName).value.toString()
             else
                 next = screenName
             if (next != null || next != "") {
@@ -964,13 +1009,13 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                     } else if (mutableEntry.key == "versionCodePhPlus") {
                         map.put(mutableEntry.key, BuildConfig.VERSION_CODE.toString())
 
-                    }else if (mutableEntry.key == "versionNamePhPlus") {
+                    } else if (mutableEntry.key == "versionNamePhPlus") {
                         map.put(mutableEntry.key, BuildConfig.VERSION_NAME)
 
                     } else {
                         var dbValue = mehdiViewModel.getValueByKey(mutableEntry.key)
                         if (dbValue != null)
-                            map.put(mutableEntry.key, dbValue.value)
+                            dbValue.value?.let { map.put(mutableEntry.key, it) }
 //                            mehdiViewModel.getRequestParam(mutableEntry.value).observe(this) {
 //                                if (it.isNotEmpty())
 //                                    map.put(mutableEntry.key, it[0].value)
@@ -983,6 +1028,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                 }
                 counter++
                 if (counter == map.size) {
+                    map.put("phId", UUID.randomUUID().toString())
                     mehdiViewModel.setphPlusRequest(map)
                     println(map.toString())
 
@@ -991,14 +1037,17 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
             }
     }
 
-    override fun onApplyOnbase(json: String, patchName: String, patchTitle: String) {
+    override fun onApplyOnbase(json: String, patchName: String, patchTitle: String,vehicleType:String) {
 //        if (dismiss=="true")
 //            btmSheet.dismiss()
 //        var json=mehdiViewModel?.getValueByKey(patchName)?.value.toString()
-        if (json != null)
-            div.applyPatch(JSONObject(json).asDivPatchWithTemplates())
+        div.applyPatch(JSONObject(json).asDivPatchWithTemplates())
         if (patchTitle != "")
             div.setVariable("patch", patchTitle)
+        if (vehicleType != ""&& vehicleType != "تست")
+            div.setVariable("vehicle_type", vehicleType)
+        if (patchName != "" && patchName != "تست")
+            div.setVariable("plateType", patchName)
     }
 
     override fun getBtmSheetInstance(btmSheet: BottomSheetDiv) {
@@ -1015,7 +1064,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         if (screenName.isNotEmpty()) {
 //            next = mehdiViewModel.getValueByKey(screenName).value
             if (screenName == "nextSplash")
-                next = mehdiViewModel.getValueByKey(screenName).value
+                next = mehdiViewModel.getValueByKey(screenName).value.toString()
             else
                 next = screenName
             if (next != null || next != "") {
@@ -1035,4 +1084,91 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
     override fun update(url: String) {
         updateApp(url)
     }
+
+    override fun getLocationPermission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            EasyPermissions.requestPermissions(
+                this,
+                "You need to accept location , camera and storage permissions to use this app",
+                103,
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+            )
+        } else {
+            EasyPermissions.requestPermissions(
+                this,
+                "You need to accept location , camera and storage permissions to use this app",
+                103,
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION            )
+        }
+    }
+
+    override fun getWritePermission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            EasyPermissions.requestPermissions(
+                this,
+                "You need to accept location , camera and storage permissions to use this app",
+                103,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+        } else {
+            EasyPermissions.requestPermissions(
+                this,
+                "You need to accept location , camera and storage permissions to use this app",
+                103,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+        }
+    }
+
+    override fun getCameraPermission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            EasyPermissions.requestPermissions(
+                this,
+                "You need to accept location , camera and storage permissions to use this app",
+                103,
+                android.Manifest.permission.CAMERA
+            )
+        } else {
+            EasyPermissions.requestPermissions(
+                this,
+                "You need to accept location , camera and storage permissions to use this app",
+                103,
+                android.Manifest.permission.CAMERA
+            )
+        }
+    }
+
+    override fun getAllPermissions() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            EasyPermissions.requestPermissions(
+                this,
+                "برنامه به دسترسی های حافظه , دوربین و لوکیشن نیاز دارد.",
+                103,
+                android.Manifest.permission.CAMERA,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+
+            )
+        } else {
+            EasyPermissions.requestPermissions(
+                this,
+                "برنامه به دسترسی های حافظه , دوربین و لوکیشن نیاز دارد.",
+                103,
+                android.Manifest.permission.CAMERA,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+
+            )
+        }
+    }
+
+//    override fun showImage(decodedBitmap: Bitmap) {
+//        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_image, null)
+//        val dialogImage = dialogView.findViewById<ImageView>(R.id.dialogImageView)    }
+
+
 }

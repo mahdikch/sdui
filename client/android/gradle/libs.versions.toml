@@ -72,6 +72,9 @@ activityCompose = "1.9.3"
 material3Android = "1.3.1"
 foundationLayoutAndroid = "1.7.6"
 core = "1.13.0"
+coreKtx = "1.10.1"
+kotlinVersion = "1.9.24"
+coreKtxVersion = "1.15.0"
 
 
 [libraries]
@@ -219,3 +222,4 @@ apiGenerator = { id = "com.yandex.divkit.api-generator", version = "unspecified"
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "kotlin-ksp" }
 screenshotTestPlugin = { id = "com.yandex.test.screenshot-test-plugin", version = "unspecified" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }

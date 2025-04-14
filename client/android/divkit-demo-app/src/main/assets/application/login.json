@@ -92,6 +92,7 @@
                                     {
                                       "type": "input",
                                       "text_variable": "username",
+                                      "keyboard_type":"single_line_text",
                                       "hint_text": "شماره پرسنلی",
                                       "font_size": 14,
                                       "font_weight": "regular",

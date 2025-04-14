@@ -71,7 +71,7 @@ android {
             minifyEnabled false
         }
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
@@ -175,9 +175,10 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     implementation libs.mapbox.android.sdk
 //    implementation libs.solarcalendar
-//    implementation 'com.github.samanzamani:JalaliCalendar:1.0.0'
+    implementation 'com.github.samanzamani:PersianDate:1.7.0'
 //    implementation 'com.github.roojin:persian-calendar-view:1.2.2'
     implementation 'com.github.samanzamani:PersianDate:1.7.1'
+    implementation 'pub.devrel:easypermissions:3.0.0'
     implementation libs.stetho.core
     implementation libs.stetho.okhttp3
 //    implementation("androidx.compose.material3:material3:1.0.1")

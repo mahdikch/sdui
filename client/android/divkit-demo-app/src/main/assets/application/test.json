@@ -5,115 +5,72 @@
       {
         "state_id": 0,
         "div": {
-          "type": "gallery",
+          "type": "container",
           "items": [
             {
-              "type": "container",
-              "items": [
-                {
-                  "type": "text",
-                  "text": "@{text___73}",
-                  "font_size": 14,
-                  "line_height": 24,
-                  "letter_spacing": 0,
-                  "text_color": "#121212",
-                  "text_alignment_horizontal": "center",
-                  "text_alignment_vertical": "top",
-                  "width": {
-                    "type": "wrap_content"
-                  },
-                  "height": {
-                    "type": "wrap_content"
-                  },
-                  "margins": {
-                    "top": 8,
-                    "bottom": 8
-                  }
-                }
-              ],
+              "type": "image",
+              "image_url": "divkit-asset://login.png",
               "height": {
-                "type": "wrap_content"
+                "type": "match_parent"
               },
               "width": {
                 "type": "match_parent"
               },
-              "orientation": "horizontal",
-              "content_alignment_horizontal": "center",
-              "content_alignment_vertical": "center",
               "alignment_horizontal": "center",
               "alignment_vertical": "top",
               "margins": {
-                "right": 16,
-                "left": 16
+                "left": 0,
+                "right": 0,
+                "top": 0
               }
             },
             {
               "type": "container",
-              "visibility_actions": [
-                {
-                  "log_id": "set_car_model_to_db",
-                  "url": "div-action://set_variable_to_db?key=car_model_information_vt&value=@{car_model}",
-                  "visibility_duration": 0
-                },
-                {
-                  "log_id": "set_car_color_to_db",
-                  "url": "div-action://set_variable_to_db?key=car_color_information_vt&value=@{color}",
-                  "visibility_duration": 0
-                },
-                {
-                  "log_id": "set_car_total_ticket_to_db",
-                  "url": "div-action://set_variable_to_db?key=car_total_ticket_information_vt&value=@{total_ticket}",
-                  "visibility_duration": 0
-                }
-              ],
               "width": {
                 "type": "match_parent"
               },
-              "height": {
-                "type": "wrap_content"
-              },
-              "alignment_horizontal": "center",
-              "alignment_vertical": "center",
               "items": [
                 {
                   "type": "container",
                   "items": [
                     {
-                      "actions": [
-                        {
-                          "log_id": "load_screen",
-                          "url": "div-action://load_screen?screen=vt/plate"
-                        }
-                      ],
-                      "type": "text",
-                      "text": "@{text___1}",
-                      "font_size": 12,
-                      "line_height": 24,
-                      "letter_spacing": 0,
-                      "text_color": "#343333",
-                      "text_alignment_horizontal": "right",
-                      "text_alignment_vertical": "top",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      }
-                    },
-                    {
-                      "type": "nodata_template",
-                      "visibility": "@{car_information ? 'gone' : 'visible'}"
-                    },
-                    {
                       "type": "container",
-                      "visibility": "@{car_information ? 'visible' : 'gone'}",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      },
                       "items": [
+                        {
+                          "type": "image",
+                          "image_url": "@{naja}",
+                          "height": {
+                            "type": "fixed",
+                            "value": 64
+                          },
+                          "width": {
+                            "type": "fixed",
+                            "value": 48
+                          },
+                          "margins": {
+                            "top": 8
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "text": "@{text___1}",
+                          "font_size": 12,
+                          "font_weight": "regular",
+                          "line_height": 14,
+                          "letter_spacing": 0,
+                          "text_color": "#ffffff",
+                          "text_alignment_horizontal": "center",
+                          "text_alignment_vertical": "center",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 16
+                          }
+                        },
                         {
                           "type": "container",
                           "items": [
@@ -124,108 +81,184 @@
                                   "type": "container",
                                   "items": [
                                     {
-                                      "type": "separator",
-                                      "background": [],
-                                      "delimiter_style": {
-                                        "color": "#00000000"
+                                      "type": "input",
+                                      "text_variable": "username",
+                                      "keyboard_type": "single_line_text",
+                                      "hint_text": "شماره پرسنلی",
+                                      "font_size": 14,
+                                      "font_weight": "regular",
+                                      "line_height": 32,
+                                      "letter_spacing": 0,
+                                      "text_color": "#a3a3a3",
+                                      "text_alignment_horizontal": "right",
+                                      "text_alignment_vertical": "top",
+                                      "validators": [
+                                        {
+                                          "type": "regex",
+                                          "pattern": ".{3,}",
+                                          "allow_empty": "@{allow_empty_username}",
+                                          "label_id": "too_short_title_username",
+                                          "variable": "text_not_are_too_short_username"
+                                        },
+                                        {
+                                          "type": "regex",
+                                          "pattern": "@{regex}",
+                                          "allow_empty": "@{allow_empty_username}",
+                                          "label_id": "contains_only_valid_characters_username_title_username",
+                                          "variable": "text_contains_only_valid_characters_username"
+                                        }
+                                      ],
+                                      "width": {
+                                        "type": "wrap_content"
                                       },
                                       "height": {
-                                        "type": "fixed",
-                                        "value": 8
-                                      },
-                                      "width": {
-                                        "type": "fixed",
-                                        "value": 13
-                                      },
-                                      "border": {
-                                        "corner_radius": 4
-                                      },
-                                      "alignment_horizontal": "right",
-                                      "alignment_vertical": "top",
-                                      "margins": {
-                                        "right": 2,
-                                        "top": 6
+                                        "type": "wrap_content"
                                       }
                                     },
                                     {
-                                      "type": "text",
-                                      "text": "@{text_i_r__2}",
-                                      "font_size": 3.3544607162475586,
-                                      "line_height": 4,
-                                      "letter_spacing": 0,
-                                      "text_color": "#ffffff",
-                                      "text_alignment_horizontal": "center",
-                                      "text_alignment_vertical": "top",
-                                      "width": {
-                                        "type": "wrap_content"
-                                      },
+                                      "type": "container",
+                                      "items": [
+                                        {
+                                          "type": "image",
+                                          "image_url": "@{profile_circle}",
+                                          "height": {
+                                            "type": "fixed",
+                                            "value": 20
+                                          },
+                                          "width": {
+                                            "type": "fixed",
+                                            "value": 20
+                                          }
+                                        }
+                                      ],
                                       "height": {
-                                        "type": "wrap_content"
+                                        "type": "fixed",
+                                        "value": 24
                                       },
-                                      "alignment_horizontal": "left",
-                                      "alignment_vertical": "bottom",
-                                      "margins": {
-                                        "left": 2,
-                                        "bottom": 9
-                                      }
-                                    },
-                                    {
-                                      "type": "text",
-                                      "text": "@{text_iran_3}",
-                                      "font_size": 3.3544607162475586,
-                                      "line_height": 4,
-                                      "letter_spacing": 0,
-                                      "text_color": "#ffffff",
-                                      "text_alignment_horizontal": "center",
-                                      "text_alignment_vertical": "top",
                                       "width": {
-                                        "type": "wrap_content"
+                                        "type": "fixed",
+                                        "value": 24
                                       },
-                                      "height": {
-                                        "type": "wrap_content"
-                                      },
-                                      "alignment_horizontal": "left",
-                                      "alignment_vertical": "bottom",
+                                      "orientation": "overlap",
+                                      "content_alignment_vertical": "center",
+                                      "content_alignment_horizontal": "center",
                                       "margins": {
-                                        "left": 2,
-                                        "bottom": 4
+                                        "left": 4
                                       }
-                                    },
+                                    }
+                                  ],
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "right",
+                                  "content_alignment_vertical": "center"
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#ffffff"
+                                }
+                              ],
+                              "border": {
+                                "corner_radius": 4,
+                                "stroke": {
+                                  "color": "#dedede",
+                                  "width": 1
+                                }
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "left",
+                              "content_alignment_vertical": "center",
+                              "paddings": {
+                                "top": 12,
+                                "bottom": 12,
+                                "left": 8,
+                                "right": 12
+                              },
+                              "margins": {
+                                "top": 48
+                              }
+                            }
+                          ],
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "vertical",
+                          "content_alignment_vertical": "top",
+                          "content_alignment_horizontal": "right",
+                          "margins": {
+                            "top": 8
+                          }
+                        },
+                        {
+                          "id": "too_short_title_username",
+                          "type": "pretty_text",
+                          "text": "نام کاربری کوتاه است",
+                          "text_color": "#ff0000",
+                          "font_size": 10,
+                          "visibility": "@{text_not_are_too_short_username ? 'invisible' : 'visible'}",
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        },
+                        {
+                          "id": "contains_only_valid_characters_username_title_username",
+                          "type": "pretty_text",
+                          "text": "استفاده از کاراکتر نا معتبر",
+                          "text_color": "#ff0000",
+                          "font_size": 10,
+                          "visibility": "@{text_contains_only_valid_characters_username ? 'invisible' : 'visible'}",
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "items": [
                                     {
                                       "type": "image",
-                                      "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/94b93053-96a7-4669-b729-dad620f68533",
+                                      "image_url": "@{eye_slash}",
                                       "height": {
                                         "type": "fixed",
-                                        "value": 8
+                                        "value": 20
                                       },
                                       "width": {
                                         "type": "fixed",
-                                        "value": 13
+                                        "value": 20
                                       },
-                                      "alignment_horizontal": "right",
-                                      "alignment_vertical": "top",
-                                      "margins": {
-                                        "right": 2,
-                                        "top": 6
+                                      "action": {
+                                        "log_id": "toggle",
+                                        "url": "div-action://set_variable?name=is_masked&value=@{is_masked ? 'false' : 'true'}"
                                       }
                                     }
                                   ],
-                                  "background": [
-                                    {
-                                      "type": "solid",
-                                      "color": "#003299"
-                                    }
-                                  ],
-                                  "border": {
-                                    "corner_radius": 4
-                                  },
                                   "height": {
                                     "type": "fixed",
-                                    "value": 29
+                                    "value": 24
                                   },
                                   "width": {
                                     "type": "fixed",
-                                    "value": 18
+                                    "value": 24
                                   },
                                   "orientation": "overlap",
                                   "content_alignment_vertical": "center",
@@ -235,60 +268,277 @@
                                   "type": "container",
                                   "items": [
                                     {
+                                      "type": "input",
+                                      "text_variable": "password",
+                                      "hint_text": "رمز عبور",
+                                      "keyboard_type": "@{is_masked ? 'password' : 'single_line_text'}",
+                                      "font_size": 14,
+                                      "font_weight": "regular",
+                                      "line_height": 32,
+                                      "letter_spacing": 0,
+                                      "text_color": "#a3a3a3",
+                                      "text_alignment_horizontal": "right",
+                                      "text_alignment_vertical": "top",
+                                      "validators": [
+                                        {
+                                          "type": "regex",
+                                          "pattern": ".{3,}",
+                                          "allow_empty": "@{allow_empty_username}",
+                                          "label_id": "too_short_title_password",
+                                          "variable": "text_not_are_too_short_password"
+                                        },
+                                        {
+                                          "type": "regex",
+                                          "pattern": "@{regex}",
+                                          "allow_empty": "@{allow_empty_username}",
+                                          "label_id": "contains_only_valid_characters_password_title",
+                                          "variable": "text_contains_only_valid_characters_password"
+                                        }
+                                      ],
+                                      "width": {
+                                        "type": "wrap_content"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      }
+                                    },
+                                    {
                                       "type": "container",
                                       "items": [
                                         {
-                                          "type": "text",
-                                          "text": "@{plateA}",
-                                          "font_size": 15.278989791870117,
-                                          "line_height": 24,
+                                          "type": "image",
+                                          "image_url": "@{lock}",
+                                          "height": {
+                                            "type": "fixed",
+                                            "value": 20
+                                          },
+                                          "width": {
+                                            "type": "fixed",
+                                            "value": 20
+                                          }
+                                        }
+                                      ],
+                                      "height": {
+                                        "type": "fixed",
+                                        "value": 24
+                                      },
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 24
+                                      },
+                                      "orientation": "overlap",
+                                      "content_alignment_vertical": "center",
+                                      "content_alignment_horizontal": "center",
+                                      "margins": {
+                                        "left": 4
+                                      }
+                                    }
+                                  ],
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "right",
+                                  "content_alignment_vertical": "center",
+                                  "margins": {
+                                    "left": 120
+                                  }
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#ffffff"
+                                }
+                              ],
+                              "border": {
+                                "corner_radius": 4,
+                                "stroke": {
+                                  "color": "#dedede",
+                                  "width": 1
+                                }
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "left",
+                              "content_alignment_vertical": "center",
+                              "paddings": {
+                                "top": 12,
+                                "bottom": 12,
+                                "left": 8,
+                                "right": 12
+                              }
+                            }
+                          ],
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "vertical",
+                          "content_alignment_vertical": "top",
+                          "content_alignment_horizontal": "right",
+                          "margins": {
+                            "top": 8
+                          }
+                        },
+                        {
+                          "id": "too_short_title_password",
+                          "type": "pretty_text",
+                          "text": "رمز عبور کوتاه است",
+                          "text_color": "#ff0000",
+                          "font_size": 10,
+                          "visibility": "@{text_not_are_too_short_password ? 'invisible' : 'visible'}",
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        },
+                        {
+                          "id": "contains_only_valid_characters_password_title",
+                          "type": "pretty_text",
+                          "text": "استفاده از کاراکتر نا معتبر",
+                          "text_color": "#ff0000",
+                          "font_size": 10,
+                          "visibility": "@{text_contains_only_valid_characters_password ? 'invisible' : 'visible'}",
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "image",
+                                      "image_url": "empty://",
+                                      "preview": "@{variable_captcha}",
+                                      "height": {
+                                        "type": "match_parent"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      }
+                                    }
+                                  ],
+                                  "height": {
+                                    "type": "match_parent"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "top",
+                                  "alignment_horizontal": "right",
+                                  "alignment_vertical": "center"
+                                },
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "image",
+                                      "image_url": "@{refresh}",
+                                      "height": {
+                                        "type": "fixed",
+                                        "value": 20
+                                      },
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 20
+                                      },
+                                      "actions": [
+                                        {
+                                          "log_id": "call_service",
+                                          "url": "div-action://call_service?path=getCaptcha&token=empty"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 24
+                                  },
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 24
+                                  },
+                                  "orientation": "overlap",
+                                  "content_alignment_vertical": "center",
+                                  "content_alignment_horizontal": "center",
+                                  "alignment_horizontal": "right",
+                                  "alignment_vertical": "center",
+                                  "margins": {
+                                    "right": 8,
+                                    "top": 16,
+                                    "bottom": 16
+                                  }
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#c8d0e4"
+                                }
+                              ],
+                              "border": {
+                                "corner_radius": 4,
+                                "stroke": {
+                                  "color": "#dedede",
+                                  "width": 1
+                                }
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 56
+                              },
+                              "width": {
+                                "type": "match_parent",
+                                "weight": 2
+                              },
+                              "orientation": "overlap",
+                              "content_alignment_vertical": "center",
+                              "content_alignment_horizontal": "center"
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "items": [
+                                        {
+                                          "type": "input",
+                                          "text_variable": "inputResultCaptcha",
+                                          "hint_text": "کد امنیتی",
+                                          "keyboard_type": "phone",
+                                          "font_size": 14,
+                                          "font_weight": "regular",
+                                          "line_height": 32,
                                           "letter_spacing": 0,
-                                          "text_color": "#252424",
-                                          "text_alignment_horizontal": "left",
+                                          "text_color": "#a3a3a3",
+                                          "text_alignment_horizontal": "right",
                                           "text_alignment_vertical": "top",
                                           "width": {
                                             "type": "wrap_content"
                                           },
                                           "height": {
                                             "type": "wrap_content"
-                                          }
-                                        },
-                                        {
-                                          "type": "text",
-                                          "text": "@{plateB}",
-                                          "font_size": 15.278989791870117,
-                                          "line_height": 24,
-                                          "letter_spacing": 0,
-                                          "text_color": "#252424",
-                                          "text_alignment_horizontal": "center",
-                                          "text_alignment_vertical": "top",
-                                          "width": {
-                                            "type": "wrap_content"
-                                          },
-                                          "height": {
-                                            "type": "wrap_content"
-                                          },
-                                          "margins": {
-                                            "left": 9
-                                          }
-                                        },
-                                        {
-                                          "type": "text",
-                                          "text": "@{plateC}",
-                                          "font_size": 15.278989791870117,
-                                          "line_height": 24,
-                                          "letter_spacing": 0,
-                                          "text_color": "#252424",
-                                          "text_alignment_horizontal": "left",
-                                          "text_alignment_vertical": "center",
-                                          "width": {
-                                            "type": "wrap_content"
-                                          },
-                                          "height": {
-                                            "type": "wrap_content"
-                                          },
-                                          "margins": {
-                                            "left": 9
                                           }
                                         }
                                       ],
@@ -296,30 +546,11 @@
                                         "type": "wrap_content"
                                       },
                                       "width": {
-                                        "type": "wrap_content"
+                                        "type": "match_parent"
                                       },
                                       "orientation": "horizontal",
-                                      "content_alignment_horizontal": "center",
+                                      "content_alignment_horizontal": "right",
                                       "content_alignment_vertical": "center"
-                                    },
-                                    {
-                                      "type": "text",
-                                      "text": "@{plateD}",
-                                      "font_size": 15.278989791870117,
-                                      "line_height": 24,
-                                      "letter_spacing": 0,
-                                      "text_color": "#252424",
-                                      "text_alignment_horizontal": "left",
-                                      "text_alignment_vertical": "top",
-                                      "width": {
-                                        "type": "wrap_content"
-                                      },
-                                      "height": {
-                                        "type": "wrap_content"
-                                      },
-                                      "margins": {
-                                        "left": 9
-                                      }
                                     }
                                   ],
                                   "background": [
@@ -329,1669 +560,129 @@
                                     }
                                   ],
                                   "border": {
-                                    "corner_radius": 4
+                                    "corner_radius": 4,
+                                    "stroke": {
+                                      "color": "#dedede",
+                                      "width": 1
+                                    }
                                   },
                                   "height": {
                                     "type": "wrap_content"
                                   },
                                   "width": {
-                                    "type": "wrap_content"
+                                    "type": "match_parent"
                                   },
                                   "orientation": "horizontal",
                                   "content_alignment_horizontal": "left",
                                   "content_alignment_vertical": "center",
                                   "paddings": {
-                                    "top": 2,
-                                    "bottom": 2,
-                                    "left": 9,
-                                    "right": 9
-                                  },
-                                  "margins": {
-                                    "left": 3
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 8,
+                                    "right": 12
                                   }
                                 }
                               ],
-                              "background": [
-                                {
-                                  "type": "solid",
-                                  "color": "#e8eeff"
-                                }
-                              ],
-                              "border": {
-                                "corner_radius": 4,
-                                "stroke": {
-                                  "color": "#f6f6f6",
-                                  "width": 1
-                                }
-                              },
                               "height": {
                                 "type": "wrap_content"
                               },
                               "width": {
-                                "type": "wrap_content"
+                                "type": "match_parent",
+                                "weight": 1
                               },
-                              "orientation": "horizontal",
-                              "content_alignment_horizontal": "left",
-                              "content_alignment_vertical": "center",
-                              "paddings": {
-                                "top": 3,
-                                "bottom": 3,
-                                "left": 3,
-                                "right": 3
-                              },
-                              "alignment_horizontal": "left",
-                              "alignment_vertical": "center"
-                            },
+                              "orientation": "vertical",
+                              "content_alignment_vertical": "top",
+                              "content_alignment_horizontal": "right",
+                              "margins": {
+                                "left": 16
+                              }
+                            }
+                          ],
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "center",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
                             {
                               "type": "text",
                               "text": "@{text___8}",
-                              "font_size": 12,
+                              "font_size": 14,
+                              "font_weight": "regular",
                               "line_height": 24,
                               "letter_spacing": 0,
-                              "text_color": "#7f7f7f",
-                              "text_alignment_horizontal": "center",
+                              "text_color": "#ffffff",
+                              "text_alignment_horizontal": "left",
                               "text_alignment_vertical": "top",
                               "width": {
                                 "type": "wrap_content"
                               },
                               "height": {
                                 "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "right",
-                              "alignment_vertical": "center"
-                            }
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 24
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "overlap",
-                          "content_alignment_horizontal": "left",
-                          "content_alignment_vertical": "center",
-                          "margins": {
-                            "top": 16
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "text",
-                              "text": "@{car_model}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#2c2c2c",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "left",
-                              "alignment_vertical": "center"
+                              }
                             },
-                            {
-                              "type": "text",
-                              "text": "@{text___10}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#7f7f7f",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "right",
-                              "alignment_vertical": "center"
-                            }
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 24
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "overlap",
-                          "content_alignment_horizontal": "left",
-                          "content_alignment_vertical": "center",
-                          "margins": {
-                            "top": 16
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "text",
-                              "text": "@{usability}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#2c2c2c",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "left",
-                              "alignment_vertical": "center"
-                            },
-                            {
-                              "type": "text",
-                              "text": "@{text___12}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#7f7f7f",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "right",
-                              "alignment_vertical": "center"
-                            }
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 24
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "overlap",
-                          "content_alignment_horizontal": "left",
-                          "content_alignment_vertical": "center",
-                          "margins": {
-                            "top": 16
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "items": [
                             {
                               "type": "container",
                               "items": [
                                 {
-                                  "type": "text",
-                                  "text": "@{color}",
-                                  "font_size": 12,
-                                  "line_height": 24,
-                                  "letter_spacing": 0,
-                                  "text_color": "#2c2c2c",
-                                  "text_alignment_horizontal": "center",
-                                  "text_alignment_vertical": "top",
-                                  "width": {
-                                    "type": "wrap_content"
-                                  },
+                                  "type": "image",
+                                  "image_url": "@{loginbtn}",
                                   "height": {
-                                    "type": "wrap_content"
+                                    "type": "fixed",
+                                    "value": 24
+                                  },
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 24
                                   }
                                 }
                               ],
                               "height": {
-                                "type": "wrap_content"
+                                "type": "fixed",
+                                "value": 24
                               },
                               "width": {
                                 "type": "fixed",
-                                "value": 177
+                                "value": 24
                               },
-                              "orientation": "horizontal",
-                              "content_alignment_horizontal": "left",
+                              "orientation": "overlap",
                               "content_alignment_vertical": "center",
-                              "alignment_horizontal": "left",
-                              "alignment_vertical": "center"
-                            },
-                            {
-                              "type": "text",
-                              "text": "@{text___14}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#7f7f7f",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "right",
-                              "alignment_vertical": "center"
-                            }
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 24
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "overlap",
-                          "content_alignment_horizontal": "left",
-                          "content_alignment_vertical": "center",
-                          "margins": {
-                            "top": 16
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "text",
-                              "text": "@{year}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#2c2c2c",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "left",
-                              "alignment_vertical": "center"
-                            },
-                            {
-                              "type": "text",
-                              "text": "@{text___16}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#7f7f7f",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "right",
-                              "alignment_vertical": "center"
-                            }
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 24
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "overlap",
-                          "content_alignment_horizontal": "left",
-                          "content_alignment_vertical": "center",
-                          "margins": {
-                            "top": 16
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "text",
-                              "text": "@{chassis_number}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#2c2c2c",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "left",
-                              "alignment_vertical": "center"
-                            },
-                            {
-                              "type": "text",
-                              "text": "@{text___18}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#7f7f7f",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "right",
-                              "alignment_vertical": "center"
-                            }
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 24
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "overlap",
-                          "content_alignment_horizontal": "left",
-                          "content_alignment_vertical": "center",
-                          "margins": {
-                            "top": 16
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "text",
-                              "text": "@{car_type}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#2c2c2c",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "left",
-                              "alignment_vertical": "center"
-                            },
-                            {
-                              "type": "text",
-                              "text": "@{text___20}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#7f7f7f",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "right",
-                              "alignment_vertical": "center"
-                            }
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 24
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "overlap",
-                          "content_alignment_horizontal": "left",
-                          "content_alignment_vertical": "center",
-                          "margins": {
-                            "top": 16
-                          }
-                        }
-                      ],
-                      "margins": {
-                        "bottom": 8
-                      }
-                    }
-                  ],
-                  "background": [
-                    {
-                      "type": "solid",
-                      "color": "#ffffff"
-                    }
-                  ],
-                  "border": {
-                    "corner_radius": 4,
-                    "stroke": {
-                      "color": "#ececec",
-                      "width": 1
-                    },
-                    "has_shadow": 1,
-                    "shadow": {
-                      "offset": {
-                        "x": {
-                          "value": 0
-                        },
-                        "y": {
-                          "value": 4
-                        }
-                      },
-                      "blur": 17,
-                      "color": "#000000",
-                      "alpha": 0.03999999910593033
-                    }
-                  },
-                  "height": {
-                    "type": "wrap_content"
-                  },
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "orientation": "vertical",
-                  "content_alignment_vertical": "top",
-                  "content_alignment_horizontal": "left",
-                  "paddings": {
-                    "top": 16,
-                    "bottom": 16,
-                    "left": 16,
-                    "right": 16
-                  },
-                  "alignment_horizontal": "center",
-                  "alignment_vertical": "top",
-                  "margins": {
-                    "top": 8,
-                    "right": 16,
-                    "bottom": 8,
-                    "left": 16
-                  }
-                },
-                {
-                  "type": "container",
-                  "items": [
-                    {
-                      "type": "text",
-                      "text": "@{text___21}",
-                      "font_size": 12,
-                      "line_height": 24,
-                      "letter_spacing": 0,
-                      "text_color": "#343333",
-                      "text_alignment_horizontal": "right",
-                      "text_alignment_vertical": "top",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      }
-                    },
-                    {
-                      "type": "nodata_template",
-                      "visibility": "@{last_ticket ? 'gone' : 'visible'}"
-                    },
-                    {
-                      "type": "container",
-                      "visibility": "@{last_ticket ? 'visible' : 'gone'}",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      },
-                      "items": [
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "text",
-                              "text": "@{ticket_date}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#2c2c2c",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "left",
-                              "alignment_vertical": "center"
-                            },
-                            {
-                              "type": "text",
-                              "text": "@{text___23}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#7f7f7f",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "right",
-                              "alignment_vertical": "center"
-                            }
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 24
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "overlap",
-                          "content_alignment_horizontal": "left",
-                          "content_alignment_vertical": "center",
-                          "margins": {
-                            "top": 16
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "text",
-                              "text": "@{ticket_title}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#2c2c2c",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "left",
-                              "alignment_vertical": "center"
-                            },
-                            {
-                              "type": "text",
-                              "text": "@{text___25}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#7f7f7f",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "right",
-                              "alignment_vertical": "center"
-                            }
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 24
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "overlap",
-                          "content_alignment_horizontal": "left",
-                          "content_alignment_vertical": "center",
-                          "margins": {
-                            "top": 16
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "text",
-                              "text": "@{ticket_code}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#2c2c2c",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "left",
-                              "alignment_vertical": "center"
-                            },
-                            {
-                              "type": "text",
-                              "text": "@{text___27}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#7f7f7f",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "right",
-                              "alignment_vertical": "center"
-                            }
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 24
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "overlap",
-                          "content_alignment_horizontal": "left",
-                          "content_alignment_vertical": "center",
-                          "margins": {
-                            "top": 16
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "text",
-                              "text": "@{ticket_type}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#2c2c2c",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "fixed",
-                                "value": 24
-                              },
-                              "alignment_horizontal": "left",
-                              "alignment_vertical": "center"
-                            },
-                            {
-                              "type": "text",
-                              "text": "@{text___29}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#7f7f7f",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "right",
-                              "alignment_vertical": "center"
-                            }
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 24
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "overlap",
-                          "content_alignment_horizontal": "left",
-                          "content_alignment_vertical": "center",
-                          "margins": {
-                            "top": 16
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "text",
-                              "text": "@{ticket_location}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#2c2c2c",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "left",
-                              "alignment_vertical": "center"
-                            },
-                            {
-                              "type": "text",
-                              "text": "@{text___31}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#7f7f7f",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "right",
-                              "alignment_vertical": "center"
-                            }
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 24
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "overlap",
-                          "content_alignment_horizontal": "left",
-                          "content_alignment_vertical": "center",
-                          "margins": {
-                            "top": 16
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "container",
-                              "items": [
-                                {
-                                  "type": "text",
-                                  "text": "@{text___32}",
-                                  "font_size": 10,
-                                  "line_height": 24,
-                                  "letter_spacing": 0,
-                                  "text_color": "#252424",
-                                  "text_alignment_horizontal": "right",
-                                  "text_alignment_vertical": "center",
-                                  "width": {
-                                    "type": "wrap_content"
-                                  },
-                                  "height": {
-                                    "type": "wrap_content"
-                                  }
-                                },
-                                {
-                                  "type": "text",
-                                  "text": "@{ticket_price}",
-                                  "font_size": 12,
-                                  "line_height": 24,
-                                  "letter_spacing": 0,
-                                  "text_color": "#252424",
-                                  "text_alignment_horizontal": "right",
-                                  "text_alignment_vertical": "center",
-                                  "width": {
-                                    "type": "wrap_content"
-                                  },
-                                  "height": {
-                                    "type": "wrap_content"
-                                  },
-                                  "margins": {
-                                    "left": 4
-                                  }
-                                }
-                              ],
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "orientation": "horizontal",
-                              "content_alignment_horizontal": "right",
-                              "content_alignment_vertical": "top",
-                              "alignment_horizontal": "left",
-                              "alignment_vertical": "center"
-                            },
-                            {
-                              "type": "text",
-                              "text": "@{text___34}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#7f7f7f",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "right",
-                              "alignment_vertical": "center"
-                            }
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 24
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "overlap",
-                          "content_alignment_horizontal": "left",
-                          "content_alignment_vertical": "center",
-                          "margins": {
-                            "top": 16
-                          }
-                        }
-                      ],
-                      "margins": {
-                        "bottom": 8
-                      }
-                    }
-                  ],
-                  "background": [
-                    {
-                      "type": "solid",
-                      "color": "#ffffff"
-                    }
-                  ],
-                  "border": {
-                    "corner_radius": 4,
-                    "stroke": {
-                      "color": "#ececec",
-                      "width": 1
-                    },
-                    "has_shadow": 1,
-                    "shadow": {
-                      "offset": {
-                        "x": {
-                          "value": 0
-                        },
-                        "y": {
-                          "value": 4
-                        }
-                      },
-                      "blur": 17,
-                      "color": "#000000",
-                      "alpha": 0.03999999910593033
-                    }
-                  },
-                  "height": {
-                    "type": "wrap_content"
-                  },
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "orientation": "vertical",
-                  "content_alignment_vertical": "top",
-                  "content_alignment_horizontal": "left",
-                  "paddings": {
-                    "top": 16,
-                    "bottom": 16,
-                    "left": 16,
-                    "right": 16
-                  },
-                  "alignment_horizontal": "center",
-                  "alignment_vertical": "top",
-                  "margins": {
-                    "top": 8,
-                    "right": 16,
-                    "bottom": 8,
-                    "left": 16
-                  }
-                },
-                {
-                  "type": "container",
-                  "items": [
-                    {
-                      "type": "text",
-                      "text": "@{text___35}",
-                      "font_size": 12,
-                      "line_height": 24,
-                      "letter_spacing": 0,
-                      "text_color": "#343333",
-                      "text_alignment_horizontal": "right",
-                      "text_alignment_vertical": "top",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      }
-                    },
-                    {
-                      "type": "nodata_template",
-                      "visibility": "@{car_punishments ? 'gone' : 'visible'}"
-                    },
-                    {
-                      "type": "container",
-                      "visibility": "@{car_punishments ? 'visible' : 'gone'}",
-                      "items": [
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "text",
-                              "text": "@{text___36}",
-                              "font_size": 10,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#252424",
-                              "text_alignment_horizontal": "right",
-                              "text_alignment_vertical": "center",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              }
-                            },
-                            {
-                              "type": "text",
-                              "text": "@{total_ticket}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#252424",
-                              "text_alignment_horizontal": "right",
-                              "text_alignment_vertical": "center",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
+                              "content_alignment_horizontal": "center",
                               "margins": {
-                                "left": 4
-                              }
-                            }
-                          ],
-                          "height": {
-                            "type": "wrap_content"
-                          },
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "orientation": "horizontal",
-                          "content_alignment_horizontal": "right",
-                          "content_alignment_vertical": "top",
-                          "alignment_horizontal": "left",
-                          "alignment_vertical": "center"
-                        },
-                        {
-                          "type": "text",
-                          "text": "@{text___38}",
-                          "font_size": 12,
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#7f7f7f",
-                          "text_alignment_horizontal": "center",
-                          "text_alignment_vertical": "top",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "wrap_content"
-                          },
-                          "alignment_horizontal": "right",
-                          "alignment_vertical": "center"
-                        }
-                      ],
-                      "height": {
-                        "type": "fixed",
-                        "value": 24
-                      },
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "orientation": "overlap",
-                      "content_alignment_horizontal": "left",
-                      "content_alignment_vertical": "center",
-                      "margins": {
-                        "top": 16,
-                        "bottom": 8
-                      }
-                    }
-                  ],
-                  "background": [
-                    {
-                      "type": "solid",
-                      "color": "#ffffff"
-                    }
-                  ],
-                  "border": {
-                    "corner_radius": 4,
-                    "stroke": {
-                      "color": "#ececec",
-                      "width": 1
-                    },
-                    "has_shadow": 1,
-                    "shadow": {
-                      "offset": {
-                        "x": {
-                          "value": 0
-                        },
-                        "y": {
-                          "value": 4
-                        }
-                      },
-                      "blur": 17,
-                      "color": "#000000",
-                      "alpha": 0.03999999910593033
-                    }
-                  },
-                  "height": {
-                    "type": "wrap_content"
-                  },
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "orientation": "vertical",
-                  "content_alignment_vertical": "top",
-                  "content_alignment_horizontal": "left",
-                  "paddings": {
-                    "top": 16,
-                    "bottom": 16,
-                    "left": 16,
-                    "right": 16
-                  },
-                  "alignment_horizontal": "center",
-                  "alignment_vertical": "top",
-                  "margins": {
-                    "top": 8,
-                    "right": 16,
-                    "bottom": 8,
-                    "left": 16
-                  }
-                },
-                {
-                  "type": "container",
-                  "items": [
-                    {
-                      "type": "text",
-                      "text": "@{text___39}",
-                      "font_size": 12,
-                      "line_height": 24,
-                      "letter_spacing": 0,
-                      "text_color": "#343333",
-                      "text_alignment_horizontal": "right",
-                      "text_alignment_vertical": "top",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      }
-                    },
-                    {
-                      "type": "nodata_template",
-                      "visibility": "@{instruction ? 'gone' : 'visible'}"
-                    },
-                    {
-                      "type": "container",
-                      "visibility": "@{instruction ? 'visible' : 'gone'}",
-                      "id": "technicalDiagnosis_container",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      },
-                      "items": [
-                        {
-                          "background_color": "#ececec",
-                          "title_text_color": "#7f7f7f",
-                          "text": "ندارد",
-                          "text_color": "#7f7f7f",
-                          "type": "numbering_order_template",
-                          "title": "دستور شماره گذاری"
-                        },
-                        {
-                          "background_color": "#ececec",
-                          "title_text_color": "#7f7f7f",
-                          "text": "ندارد",
-                          "text_color": "#7f7f7f",
-                          "type": "numbering_order_template",
-                          "title": "دستور اجرائیات"
-                        }
-                      ]
-                    }
-                  ],
-                  "background": [
-                    {
-                      "type": "solid",
-                      "color": "#ffffff"
-                    }
-                  ],
-                  "border": {
-                    "corner_radius": 4,
-                    "stroke": {
-                      "color": "#ececec",
-                      "width": 1
-                    },
-                    "has_shadow": 1,
-                    "shadow": {
-                      "offset": {
-                        "x": {
-                          "value": 0
-                        },
-                        "y": {
-                          "value": 4
-                        }
-                      },
-                      "blur": 17,
-                      "color": "#000000",
-                      "alpha": 0.03999999910593033
-                    }
-                  },
-                  "height": {
-                    "type": "wrap_content"
-                  },
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "orientation": "vertical",
-                  "content_alignment_vertical": "top",
-                  "content_alignment_horizontal": "left",
-                  "paddings": {
-                    "top": 16,
-                    "bottom": 16,
-                    "left": 16,
-                    "right": 16
-                  },
-                  "alignment_horizontal": "center",
-                  "alignment_vertical": "bottom",
-                  "margins": {
-                    "top": 8,
-                    "right": 16,
-                    "bottom": 8,
-                    "left": 16
-                  }
-                },
-                {
-                  "type": "container",
-                  "items": [
-                    {
-                      "type": "text",
-                      "text": "@{text___44}",
-                      "font_size": 12,
-                      "line_height": 24,
-                      "letter_spacing": 0,
-                      "text_color": "#343333",
-                      "text_alignment_horizontal": "right",
-                      "text_alignment_vertical": "top",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      }
-                    },
-                    {
-                      "type": "nodata_template",
-                      "visibility": "@{inquiry_agahi ? 'gone' : 'visible'}"
-                    },
-                    {
-                      "id": "agh_container",
-                      "visibility": "@{inquiry_agahi ? 'visible' : 'gone'}",
-                      "type": "container",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      },
-                      "items": [
-                        {
-                          "type": "agh_template",
-                          "agh_order": "test",
-                          "agh_order_date": "test",
-                          "collision_type": "test",
-                          "announcement_date": "test",
-                          "agh_order_location": "test ",
-                          "discover_location": "test",
-                          "discover_date": "test",
-                          "agh_description": "test",
-                          "order_background_color": "#fbebeb",
-                          "order_text_color": "#d73333",
-                          "margins": {
-                            "bottom": 8
-                          }
-                        }
-                      ]
-                    }
-                  ],
-                  "background": [
-                    {
-                      "type": "solid",
-                      "color": "#ffffff"
-                    }
-                  ],
-                  "border": {
-                    "corner_radius": 4,
-                    "stroke": {
-                      "color": "#ececec",
-                      "width": 1
-                    },
-                    "has_shadow": 1,
-                    "shadow": {
-                      "offset": {
-                        "x": {
-                          "value": 0
-                        },
-                        "y": {
-                          "value": 4
-                        }
-                      },
-                      "blur": 17,
-                      "color": "#000000",
-                      "alpha": 0.03999999910593033
-                    }
-                  },
-                  "height": {
-                    "type": "wrap_content"
-                  },
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "orientation": "vertical",
-                  "content_alignment_vertical": "top",
-                  "content_alignment_horizontal": "left",
-                  "paddings": {
-                    "top": 16,
-                    "bottom": 16,
-                    "left": 16,
-                    "right": 16
-                  },
-                  "alignment_horizontal": "center",
-                  "alignment_vertical": "bottom",
-                  "margins": {
-                    "top": 8,
-                    "right": 16,
-                    "bottom": 8,
-                    "left": 16
-                  },
-                  "alpha": 0.8
-                },
-                {
-                  "type": "container",
-                  "items": [
-                    {
-                      "type": "text",
-                      "text": "@{text___61}",
-                      "font_size": 12,
-                      "line_height": 24,
-                      "letter_spacing": 0,
-                      "text_color": "#343333",
-                      "text_alignment_horizontal": "right",
-                      "text_alignment_vertical": "top",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      }
-                    },
-                    {
-                      "type": "nodata_template",
-                      "visibility": "@{insurance ? 'gone' : 'visible'}"
-                    },
-                    {
-                      "type": "container",
-                      "visibility": "@{insurance ? 'visible' : 'gone'}",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      },
-                      "items": [
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "text",
-                              "text": "@{insurance_number}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#2c2c2c",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "fixed",
-                                "value": 24
-                              },
-                              "alignment_horizontal": "left",
-                              "alignment_vertical": "center"
-                            },
-                            {
-                              "type": "text",
-                              "text": "@{text___69}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#7f7f7f",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "right",
-                              "alignment_vertical": "center"
-                            }
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 24
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "overlap",
-                          "content_alignment_horizontal": "left",
-                          "content_alignment_vertical": "center",
-                          "margins": {
-                            "top": 16
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "text",
-                              "text": "@{insurance_type}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#2c2c2c",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "left",
-                              "alignment_vertical": "center"
-                            },
-                            {
-                              "type": "text",
-                              "text": "@{text___67}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#7f7f7f",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "right",
-                              "alignment_vertical": "center"
-                            }
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 24
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "overlap",
-                          "content_alignment_horizontal": "left",
-                          "content_alignment_vertical": "center",
-                          "margins": {
-                            "top": 16
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "text",
-                              "text": "@{insurance_name}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#2c2c2c",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "left",
-                              "alignment_vertical": "center"
-                            },
-                            {
-                              "type": "text",
-                              "text": "@{text___65}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#7f7f7f",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "right",
-                              "alignment_vertical": "center"
-                            }
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 24
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "overlap",
-                          "content_alignment_horizontal": "left",
-                          "content_alignment_vertical": "center",
-                          "margins": {
-                            "top": 16
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "text",
-                              "text": "@{insurance_expire}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#2c2c2c",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "left",
-                              "alignment_vertical": "center"
-                            },
-                            {
-                              "type": "text",
-                              "text": "@{text___63}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#7f7f7f",
-                              "text_alignment_horizontal": "center",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "alignment_horizontal": "right",
-                              "alignment_vertical": "center"
-                            }
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 24
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "overlap",
-                          "content_alignment_horizontal": "left",
-                          "content_alignment_vertical": "center",
-                          "margins": {
-                            "top": 16
-                          }
-                        }
-                      ],
-                      "margins": {
-                        "bottom": 8
-                      }
-                    }
-                  ],
-                  "background": [
-                    {
-                      "type": "solid",
-                      "color": "#ffffff"
-                    }
-                  ],
-                  "border": {
-                    "corner_radius": 4,
-                    "stroke": {
-                      "color": "#ececec",
-                      "width": 1
-                    },
-                    "has_shadow": 1,
-                    "shadow": {
-                      "offset": {
-                        "x": {
-                          "value": 0
-                        },
-                        "y": {
-                          "value": 4
-                        }
-                      },
-                      "blur": 17,
-                      "color": "#000000",
-                      "alpha": 0.03999999910593033
-                    }
-                  },
-                  "height": {
-                    "type": "wrap_content"
-                  },
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "orientation": "vertical",
-                  "content_alignment_vertical": "top",
-                  "content_alignment_horizontal": "left",
-                  "paddings": {
-                    "top": 16,
-                    "bottom": 16,
-                    "left": 16,
-                    "right": 16
-                  },
-                  "alignment_horizontal": "center",
-                  "alignment_vertical": "bottom",
-                  "margins": {
-                    "top": 8,
-                    "right": 16,
-                    "bottom": 8,
-                    "left": 16
-                  }
-                },
-                {
-                  "type": "container",
-                  "items": [
-                    {
-                      "type": "text",
-                      "text": "@{text___70}",
-                      "font_size": 12,
-                      "line_height": 24,
-                      "letter_spacing": 0,
-                      "text_color": "#343333",
-                      "text_alignment_horizontal": "right",
-                      "text_alignment_vertical": "top",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      }
-                    },
-                    {
-                      "type": "nodata_template",
-                      "visibility": "@{tecnical_visit ? 'gone' : 'visible'}"
-                    },
-                    {
-                      "type": "container",
-                      "visibility": "@{tecnical_visit ? 'visible' : 'gone'}",
-                      "items": [
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "text",
-                              "text": "@{tecnical_visit_status}",
-                              "font_size": 12,
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#396756",
-                              "text_alignment_horizontal": "right",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
+                                "left": 8
                               }
                             }
                           ],
                           "background": [
                             {
                               "type": "solid",
-                              "color": "#e6ecea"
+                              "color": "#193d8d"
                             }
                           ],
+                          "actions": [
+                            {
+                              "log_id": "call_service",
+                              "is_enabled": "@{is_valid}",
+                              "url": "div-action://call_service?path=getLoginData&username=@{username}&password=@{password}"
+                            }
+                          ],
+                          "action_animation": {
+                            "name": "scale",
+                            "start_value": 1,
+                            "end_value": 0.95,
+                            "duration": 300,
+                            "interpolator": "ease_in_out"
+                          },
                           "border": {
                             "corner_radius": 4
                           },
@@ -1999,65 +690,88 @@
                             "type": "wrap_content"
                           },
                           "width": {
-                            "type": "fixed",
-                            "value": 140
+                            "type": "match_parent"
                           },
                           "orientation": "horizontal",
                           "content_alignment_horizontal": "center",
                           "content_alignment_vertical": "center",
                           "paddings": {
-                            "left": 8,
-                            "right": 8
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
                           },
-                          "alignment_horizontal": "left",
-                          "alignment_vertical": "center"
+                          "margins": {
+                            "top": 8
+                          }
                         },
                         {
-                          "type": "text",
-                          "text": "@{text___72}",
-                          "font_size": 12,
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#7f7f7f",
-                          "text_alignment_horizontal": "center",
-                          "text_alignment_vertical": "top",
+                          "type": "container",
                           "width": {
-                            "type": "wrap_content"
+                            "type": "match_parent"
                           },
                           "height": {
-                            "type": "wrap_content"
+                            "type": "match_parent"
                           },
-                          "alignment_horizontal": "right",
-                          "alignment_vertical": "center"
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{text___9}",
+                              "font_size": 12,
+                              "font_weight": "regular",
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#ffffff",
+                              "text_alignment_horizontal": "right",
+                              "text_alignment_vertical": "center",
+                              "width": {
+                                "type": "fixed",
+                                "value": 82
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "margins": {
+                                "top": 8
+                              },
+                              "alignment_horizontal": "center",
+                              "transform": {
+                                "rotation": 0
+                              }
+                            }
+                          ],
+                          "content_alignment_horizontal": "center",
+                          "content_alignment_vertical": "bottom"
                         }
                       ],
                       "height": {
-                        "type": "fixed",
-                        "value": 24
+                        "type": "match_parent",
+                        "weight": 1
                       },
                       "width": {
                         "type": "match_parent"
                       },
-                      "orientation": "overlap",
-                      "content_alignment_horizontal": "left",
-                      "content_alignment_vertical": "center",
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "top",
+                      "content_alignment_horizontal": "center",
+                      "alignment_horizontal": "center",
+                      "alignment_vertical": "center",
                       "margins": {
-                        "top": 16
+                        "left": 12,
+                        "right": 12,
+                        "top": 8,
+                        "bottom": 8
                       }
                     }
                   ],
                   "background": [
                     {
                       "type": "solid",
-                      "color": "#ffffff"
+                      "color": "#00ffffff"
                     }
                   ],
                   "border": {
                     "corner_radius": 4,
-                    "stroke": {
-                      "color": "#ececec",
-                      "width": 1
-                    },
                     "has_shadow": 1,
                     "shadow": {
                       "offset": {
@@ -2065,39 +779,38 @@
                           "value": 0
                         },
                         "y": {
-                          "value": 4
+                          "value": -4
                         }
                       },
-                      "blur": 17,
+                      "blur": 16,
                       "color": "#000000",
-                      "alpha": 0.03999999910593033
+                      "alpha": 0.05000000074505806
                     }
                   },
                   "height": {
-                    "type": "wrap_content"
+                    "type": "match_parent",
+                    "weight": 8
                   },
                   "width": {
                     "type": "match_parent"
                   },
                   "orientation": "vertical",
-                  "content_alignment_vertical": "top",
-                  "content_alignment_horizontal": "left",
-                  "paddings": {
-                    "top": 16,
-                    "bottom": 16,
-                    "left": 16,
-                    "right": 16
-                  },
+                  "content_alignment_vertical": "center",
+                  "content_alignment_horizontal": "center",
                   "alignment_horizontal": "center",
                   "alignment_vertical": "bottom",
                   "margins": {
-                    "top": 8,
-                    "right": 16,
-                    "bottom": 8,
-                    "left": 16
+                    "left": 0,
+                    "right": 0,
+                    "bottom": 0
                   }
                 }
-              ]
+              ],
+              "height": {
+                "type": "match_parent"
+              },
+              "alignment_horizontal": "center",
+              "alignment_vertical": "center"
             }
           ],
           "background": [
@@ -2112,9 +825,21 @@
           "width": {
             "type": "match_parent"
           },
-          "orientation": "vertical",
+          "orientation": "overlap",
           "content_alignment_vertical": "center",
-          "content_alignment_horizontal": "center"
+          "content_alignment_horizontal": "center",
+          "visibility_actions": [
+            {
+              "log_id": "set_variable_from_db",
+              "url": "div-action://set_variable_from_db?name=variable_resultCaptcha",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "set_variable_from",
+              "url": "div-action://set_variable_from_db?name=variable_captcha",
+              "visibility_duration": 0
+            }
+          ]
         }
       }
     ],
@@ -2136,1142 +861,154 @@
         }
       },
       {
-        "type": "boolean",
-        "name": "car_information",
-        "value": true
-      },
-      {
-        "type": "boolean",
-        "name": "last_ticket",
-        "value": false
-      },
-      {
-        "type": "boolean",
-        "name": "car_punishments",
-        "value": true
-      },
-      {
-        "type": "boolean",
-        "name": "instruction",
-        "value": true
-      },
-      {
-        "type": "boolean",
-        "name": "inquiry_agahi",
-        "value": false
-      },
-      {
-        "type": "boolean",
-        "name": "insurance",
-        "value": false
-      },
-      {
-        "type": "boolean",
-        "name": "tecnical_visit",
-        "value": true
-      },
-      {
         "type": "string",
         "name": "text___1",
-        "value": "مشخصات خودرو"
+        "value": "کاربر گرامی لطفا جهت ورود به سامانه شماره پرسنلی و رمز عبور خود را وارد کنید."
       },
       {
         "type": "string",
-        "name": "text_i_r__2",
-        "value": "i.r."
+        "name": "naja",
+        "value": "divkit-asset://naja.png"
       },
       {
         "type": "string",
-        "name": "text_iran_3",
-        "value": "iran"
+        "name": "username",
+        "value": ""
       },
       {
         "type": "string",
-        "name": "plateA",
-        "value": "11"
+        "name": "password",
+        "value": ""
       },
       {
         "type": "string",
-        "name": "plateB",
-        "value": "ب"
+        "name": "variable_captcha",
+        "value": ""
       },
       {
         "type": "string",
-        "name": "plateC",
-        "value": "89"
+        "name": "text___2",
+        "value": "شماره پرسنلی"
       },
       {
         "type": "string",
-        "name": "plateD",
-        "value": "115"
+        "name": "text___3",
+        "value": "رمز عبور"
+      },
+      {
+        "type": "string",
+        "name": "text___7",
+        "value": "کد امنیتی"
       },
       {
         "type": "string",
         "name": "text___8",
-        "value": "پلاک"
+        "value": "ورود"
       },
       {
         "type": "string",
-        "name": "car_model",
-        "value": "جک"
+        "name": "text___9",
+        "value": "نسخه ۱.۰.۹"
       },
       {
         "type": "string",
-        "name": "text___10",
-        "value": "مدل"
+        "name": "variable_resultCaptcha",
+        "value": ""
       },
       {
         "type": "string",
-        "name": "usability",
-        "value": "سواري"
+        "name": "inputResultCaptcha",
+        "value": ""
       },
       {
         "type": "string",
-        "name": "text___12",
-        "value": "کاربری"
+        "name": "eye_slash",
+        "value": ""
       },
       {
         "type": "string",
-        "name": "color",
-        "value": "مشکي"
+        "name": "loginbtn",
+        "value": ""
       },
       {
         "type": "string",
-        "name": "text___14",
-        "value": "رنگ"
+        "name": "refresh",
+        "value": ""
       },
       {
         "type": "string",
-        "name": "year",
-        "value": "1403"
+        "name": "profile_circle",
+        "value": ""
       },
       {
         "type": "string",
-        "name": "text___16",
-        "value": "سال ساخت"
+        "name": "lock",
+        "value": ""
       },
       {
         "type": "string",
-        "name": "chassis_number",
-        "value": "NAKNF7522RB156921"
+        "name": "regex",
+        "value": "[a-zA-Z0-9-@#!$_*+&]+"
       },
       {
-        "type": "string",
-        "name": "text___18",
-        "value": "شماره شاسی"
-      },
-      {
-        "type": "string",
-        "name": "car_type",
-        "value": "J4-CVT"
-      },
-      {
-        "type": "string",
-        "name": "text___20",
-        "value": "تیپ"
-      },
-      {
-        "type": "string",
-        "name": "text___21",
-        "value": "آخرین جریمه"
-      },
-      {
-        "type": "string",
-        "name": "ticket_date",
-        "value": "-"
-      },
-      {
-        "type": "string",
-        "name": "text___23",
-        "value": "تاریخ و زمان جریمه"
-      },
-      {
-        "type": "string",
-        "name": "ticket_title",
-        "value": "-"
-      },
-      {
-        "type": "string",
-        "name": "text___25",
-        "value": "عنوان جریمه"
-      },
-      {
-        "type": "string",
-        "name": "ticket_code",
-        "value": "-"
-      },
-      {
-        "type": "string",
-        "name": "text___27",
-        "value": "کد جریمه"
-      },
-      {
-        "type": "string",
-        "name": "ticket_type",
-        "value": "-"
-      },
-      {
-        "type": "string",
-        "name": "text___29",
-        "value": "نوع جریمه"
-      },
-      {
-        "type": "string",
-        "name": "ticket_location",
-        "value": "-"
-      },
-      {
-        "type": "string",
-        "name": "text___31",
-        "value": "موقعیت"
-      },
-      {
-        "type": "string",
-        "name": "text___32",
-        "value": "ریال"
-      },
-      {
-        "type": "string",
-        "name": "ticket_price",
-        "value": "-"
-      },
-      {
-        "type": "string",
-        "name": "text___34",
-        "value": "مبلغ جریمه"
-      },
-      {
-        "type": "string",
-        "name": "text___35",
-        "value": "خلافی خودرو"
-      },
-      {
-        "type": "string",
-        "name": "text___36",
-        "value": "ریال"
-      },
-      {
-        "type": "string",
-        "name": "total_ticket",
-        "value": "-"
-      },
-      {
-        "type": "string",
-        "name": "text___38",
-        "value": "جمع تخلفات"
-      },
-      {
-        "type": "string",
-        "name": "text___39",
-        "value": "دستورات"
-      },
-      {
-        "type": "string",
-        "name": "executive_order",
-        "value": "تبصره ماده ۸ قانون"
-      },
-      {
-        "type": "string",
-        "name": "text___41",
-        "value": "دستور اجرائیات"
-      },
-      {
-        "type": "string",
-        "name": "numbering_order",
-        "value": "ندارد"
-      },
-      {
-        "type": "string",
-        "name": "text___43",
-        "value": "دستور شماره گذاری"
-      },
-      {
-        "type": "string",
-        "name": "text___44",
-        "value": "استعلام آگاهی"
-      },
-      {
-        "type": "string",
-        "name": "agh_order",
-        "value": "توقیف - بدپوششی"
-      },
-      {
-        "type": "string",
-        "name": "text___46",
-        "value": "دستور"
-      },
-      {
-        "type": "string",
-        "name": "agh_order_date",
-        "value": "۱۴۰۲/۰۵/۱۲"
-      },
-      {
-        "type": "string",
-        "name": "text___48",
-        "value": "تاریخ دستور"
-      },
-      {
-        "type": "string",
-        "name": "collision_type",
-        "value": "-"
-      },
-      {
-        "type": "string",
-        "name": "text___50",
-        "value": "نوع برخورد"
-      },
-      {
-        "type": "string",
-        "name": "announcement_date",
-        "value": "۱۴۰۲/۰۵/۱۲"
-      },
-      {
-        "type": "string",
-        "name": "text___52",
-        "value": "تاریخ اعلان"
-      },
-      {
-        "type": "string",
-        "name": "agh_order_location",
-        "value": "تهران ، تهران ، میدان نبوت"
-      },
-      {
-        "type": "string",
-        "name": "text___54",
-        "value": "آدرس دستور"
-      },
-      {
-        "type": "string",
-        "name": "discover_location",
-        "value": "تهران ، تهران ، میدان نبوت"
-      },
-      {
-        "type": "string",
-        "name": "text___56",
-        "value": "آدرس کشف"
-      },
-      {
-        "type": "string",
-        "name": "discover_date",
-        "value": "۱۴۰۲/۰۵/۱۲"
-      },
-      {
-        "type": "string",
-        "name": "text___58",
-        "value": "تاریخ کشف"
+        "type": "boolean",
+        "name": "is_masked",
+        "value": true
       },
       {
-        "type": "string",
-        "name": "agh_description",
-        "value": "-"
-      },
-      {
-        "type": "string",
-        "name": "text___60",
-        "value": "شرح برخورد"
-      },
-      {
-        "type": "string",
-        "name": "text___61",
-        "value": "بیمه"
-      },
-      {
-        "type": "string",
-        "name": "insurance_expire",
-        "value": "-"
-      },
-      {
-        "type": "string",
-        "name": "text___63",
-        "value": "تاریخ اعتبار"
-      },
-      {
-        "type": "string",
-        "name": "insurance_name",
-        "value": "-"
-      },
-      {
-        "type": "string",
-        "name": "text___65",
-        "value": "نام شرکت"
-      },
-      {
-        "type": "string",
-        "name": "insurance_type",
-        "value": "-"
-      },
-      {
-        "type": "string",
-        "name": "text___67",
-        "value": "نوع بیمه"
-      },
-      {
-        "type": "string",
-        "name": "insurance_number",
-        "value": "-"
-      },
-      {
-        "type": "string",
-        "name": "text___69",
-        "value": "شماره بیمه"
-      },
-      {
-        "type": "string",
-        "name": "text___70",
-        "value": "معاینه فنی"
-      },
-      {
-        "type": "string",
-        "name": "tecnical_visit_status",
-        "value": "اعتبار دارد"
-      },
-      {
-        "type": "string",
-        "name": "text___72",
-        "value": "وضعیت"
+        "type": "boolean",
+        "name": "is_valid",
+        "value": false
       },
       {
-        "type": "string",
-        "name": "text___73",
-        "value": "استعلام خودرو"
+        "type": "boolean",
+        "name": "is_valid",
+        "value": false
       }
     ]
   },
   "templates": {
-    "numbering_order_template": {
-      "type": "container",
-      "$id": "numbering_order_id",
-      "items": [
-        {
-          "type": "container",
-          "items": [
-            {
-              "type": "text",
-              "$text": "text",
-              "font_size": 12,
-              "line_height": 24,
-              "letter_spacing": 0,
-              "$text_color": "text_color",
-              "text_alignment_horizontal": "right",
-              "text_alignment_vertical": "top",
-              "width": {
-                "type": "wrap_content"
-              },
-              "height": {
-                "type": "wrap_content"
-              }
-            }
-          ],
-          "background": [
-            {
-              "type": "solid",
-              "$color": "background_color"
-            }
-          ],
-          "border": {
-            "corner_radius": 4
-          },
-          "height": {
-            "type": "wrap_content"
-          },
-          "width": {
-            "type": "fixed",
-            "value": 140
-          },
-          "orientation": "horizontal",
-          "content_alignment_horizontal": "center",
-          "content_alignment_vertical": "center",
-          "paddings": {
-            "left": 8,
-            "right": 8
-          },
-          "alignment_horizontal": "left",
-          "alignment_vertical": "center"
-        },
-        {
-          "type": "text",
-          "$text": "title",
-          "font_size": 12,
-          "line_height": 24,
-          "letter_spacing": 0,
-          "text_color": "#7f7f7f",
-          "text_alignment_horizontal": "center",
-          "text_alignment_vertical": "top",
-          "width": {
-            "type": "wrap_content"
-          },
-          "height": {
-            "type": "wrap_content"
-          },
-          "alignment_horizontal": "right",
-          "alignment_vertical": "center"
-        }
-      ],
-      "height": {
-        "type": "fixed",
-        "value": 24
+    "btn": {
+      "type": "text",
+      "text_color": "#FFFFFF",
+      "text_alignment_horizontal": "center",
+      "text_alignment_vertical": "center",
+      "font_size": 24,
+      "line_height": 28,
+      "border": {
+        "corner_radius": 4
       },
-      "width": {
-        "type": "match_parent"
-      },
-      "orientation": "overlap",
-      "content_alignment_horizontal": "left",
-      "content_alignment_vertical": "center",
-      "margins": {
-        "top": 16
+      "action_animation": {
+        "name": "scale",
+        "start_value": 1,
+        "end_value": 0.95,
+        "duration": 300,
+        "interpolator": "ease_in_out"
       }
     },
-    "agh_template": {
-      "type": "container",
+    "pretty_text": {
+      "type": "text",
       "width": {
         "type": "match_parent"
       },
       "height": {
-        "type": "wrap_content"
+        "type": "match_parent",
+        "weight": 0.5
       },
-      "items": [
-        {
-          "type": "container",
-          "items": [
-            {
-              "type": "container",
-              "items": [
-                {
-                  "type": "text",
-                  "$text": "agh_order",
-                  "font_size": 12,
-                  "line_height": 24,
-                  "letter_spacing": 0,
-                  "$text_color": "text_color",
-                  "text_alignment_horizontal": "right",
-                  "text_alignment_vertical": "top",
-                  "width": {
-                    "type": "wrap_content"
-                  },
-                  "height": {
-                    "type": "wrap_content"
-                  }
-                }
-              ],
-              "background": [
-                {
-                  "type": "solid",
-                  "$color": "order_background_color"
-                }
-              ],
-              "border": {
-                "corner_radius": 4
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "width": {
-                "type": "fixed",
-                "value": 140
-              },
-              "orientation": "horizontal",
-              "content_alignment_horizontal": "center",
-              "content_alignment_vertical": "center",
-              "paddings": {
-                "left": 8,
-                "right": 8
-              },
-              "alignment_horizontal": "left",
-              "alignment_vertical": "center"
-            },
-            {
-              "type": "text",
-              "text": "دستور",
-              "font_size": 12,
-              "line_height": 24,
-              "letter_spacing": 0,
-              "$text_color": "order_text_color",
-              "text_alignment_horizontal": "center",
-              "text_alignment_vertical": "top",
-              "width": {
-                "type": "wrap_content"
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "alignment_horizontal": "right",
-              "alignment_vertical": "center"
-            }
-          ],
-          "height": {
-            "type": "fixed",
-            "value": 24
-          },
-          "width": {
-            "type": "match_parent"
-          },
-          "orientation": "overlap",
-          "content_alignment_horizontal": "left",
-          "content_alignment_vertical": "center",
-          "margins": {
-            "top": 16
-          }
-        },
-        {
-          "type": "container",
-          "items": [
-            {
-              "type": "container",
-              "items": [
-                {
-                  "type": "text",
-                  "$text": "agh_order_date",
-                  "font_size": 12,
-                  "line_height": 24,
-                  "letter_spacing": 0,
-                  "text_color": "#2c2c2c",
-                  "text_alignment_horizontal": "right",
-                  "text_alignment_vertical": "top",
-                  "width": {
-                    "type": "wrap_content"
-                  },
-                  "height": {
-                    "type": "wrap_content"
-                  }
-                }
-              ],
-              "border": {
-                "corner_radius": 4
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "width": {
-                "type": "fixed",
-                "value": 140
-              },
-              "orientation": "horizontal",
-              "content_alignment_horizontal": "center",
-              "content_alignment_vertical": "center",
-              "paddings": {
-                "left": 8,
-                "right": 8
-              },
-              "alignment_horizontal": "left",
-              "alignment_vertical": "center"
-            },
-            {
-              "type": "text",
-              "text": "تاریخ دستور",
-              "font_size": 12,
-              "line_height": 24,
-              "letter_spacing": 0,
-              "text_color": "#7f7f7f",
-              "text_alignment_horizontal": "center",
-              "text_alignment_vertical": "top",
-              "width": {
-                "type": "wrap_content"
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "alignment_horizontal": "right",
-              "alignment_vertical": "center"
-            }
-          ],
-          "height": {
-            "type": "fixed",
-            "value": 24
-          },
-          "width": {
-            "type": "match_parent"
-          },
-          "orientation": "overlap",
-          "content_alignment_horizontal": "left",
-          "content_alignment_vertical": "center",
-          "margins": {
-            "top": 16
-          }
-        },
-        {
-          "type": "container",
-          "items": [
-            {
-              "type": "container",
-              "items": [
-                {
-                  "type": "text",
-                  "$text": "collision_type",
-                  "font_size": 12,
-                  "line_height": 24,
-                  "letter_spacing": 0,
-                  "text_color": "#2c2c2c",
-                  "text_alignment_horizontal": "right",
-                  "text_alignment_vertical": "top",
-                  "width": {
-                    "type": "wrap_content"
-                  },
-                  "height": {
-                    "type": "wrap_content"
-                  }
-                }
-              ],
-              "border": {
-                "corner_radius": 4
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "width": {
-                "type": "fixed",
-                "value": 140
-              },
-              "orientation": "horizontal",
-              "content_alignment_horizontal": "center",
-              "content_alignment_vertical": "center",
-              "paddings": {
-                "left": 8,
-                "right": 8
-              },
-              "alignment_horizontal": "left",
-              "alignment_vertical": "center"
-            },
-            {
-              "type": "text",
-              "text": "نوع برخورد",
-              "font_size": 12,
-              "line_height": 24,
-              "letter_spacing": 0,
-              "text_color": "#7f7f7f",
-              "text_alignment_horizontal": "center",
-              "text_alignment_vertical": "top",
-              "width": {
-                "type": "wrap_content"
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "alignment_horizontal": "right",
-              "alignment_vertical": "center"
-            }
-          ],
-          "height": {
-            "type": "fixed",
-            "value": 24
-          },
-          "width": {
-            "type": "match_parent"
-          },
-          "orientation": "overlap",
-          "content_alignment_horizontal": "left",
-          "content_alignment_vertical": "center",
-          "margins": {
-            "top": 16
-          }
-        },
-        {
-          "type": "container",
-          "items": [
-            {
-              "type": "container",
-              "items": [
-                {
-                  "type": "text",
-                  "$text": "announcement_date",
-                  "font_size": 12,
-                  "line_height": 24,
-                  "letter_spacing": 0,
-                  "text_color": "#2c2c2c",
-                  "text_alignment_horizontal": "right",
-                  "text_alignment_vertical": "top",
-                  "width": {
-                    "type": "wrap_content"
-                  },
-                  "height": {
-                    "type": "wrap_content"
-                  }
-                }
-              ],
-              "border": {
-                "corner_radius": 4
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "width": {
-                "type": "fixed",
-                "value": 140
-              },
-              "orientation": "horizontal",
-              "content_alignment_horizontal": "center",
-              "content_alignment_vertical": "center",
-              "paddings": {
-                "left": 8,
-                "right": 8
-              },
-              "alignment_horizontal": "left",
-              "alignment_vertical": "center"
-            },
-            {
-              "type": "text",
-              "text": "تاریخ اعلان ",
-              "font_size": 12,
-              "line_height": 24,
-              "letter_spacing": 0,
-              "text_color": "#7f7f7f",
-              "text_alignment_horizontal": "center",
-              "text_alignment_vertical": "top",
-              "width": {
-                "type": "wrap_content"
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "alignment_horizontal": "right",
-              "alignment_vertical": "center"
-            }
-          ],
-          "height": {
-            "type": "fixed",
-            "value": 24
-          },
-          "width": {
-            "type": "match_parent"
-          },
-          "orientation": "overlap",
-          "content_alignment_horizontal": "left",
-          "content_alignment_vertical": "center",
-          "margins": {
-            "top": 16
-          }
-        },
-        {
-          "type": "container",
-          "items": [
-            {
-              "type": "container",
-              "items": [
-                {
-                  "type": "text",
-                  "$text": "agh_order_location",
-                  "font_size": 12,
-                  "line_height": 24,
-                  "letter_spacing": 0,
-                  "text_color": "#2c2c2c",
-                  "text_alignment_horizontal": "right",
-                  "text_alignment_vertical": "top",
-                  "width": {
-                    "type": "wrap_content"
-                  },
-                  "height": {
-                    "type": "wrap_content"
-                  }
-                }
-              ],
-              "border": {
-                "corner_radius": 4
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "width": {
-                "type": "fixed",
-                "value": 140
-              },
-              "orientation": "horizontal",
-              "content_alignment_horizontal": "center",
-              "content_alignment_vertical": "center",
-              "paddings": {
-                "left": 8,
-                "right": 8
-              },
-              "alignment_horizontal": "left",
-              "alignment_vertical": "center"
-            },
-            {
-              "type": "text",
-              "text": "آدرس دستور ",
-              "font_size": 12,
-              "line_height": 24,
-              "letter_spacing": 0,
-              "text_color": "#7f7f7f",
-              "text_alignment_horizontal": "center",
-              "text_alignment_vertical": "top",
-              "width": {
-                "type": "wrap_content"
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "alignment_horizontal": "right",
-              "alignment_vertical": "center"
-            }
-          ],
-          "height": {
-            "type": "fixed",
-            "value": 24
-          },
-          "width": {
-            "type": "match_parent"
-          },
-          "orientation": "overlap",
-          "content_alignment_horizontal": "left",
-          "content_alignment_vertical": "center",
-          "margins": {
-            "top": 16
-          }
-        },
-        {
-          "type": "container",
-          "items": [
-            {
-              "type": "container",
-              "items": [
-                {
-                  "type": "text",
-                  "$text": "discover_location",
-                  "font_size": 12,
-                  "line_height": 24,
-                  "letter_spacing": 0,
-                  "text_color": "#2c2c2c",
-                  "text_alignment_horizontal": "right",
-                  "text_alignment_vertical": "top",
-                  "width": {
-                    "type": "wrap_content"
-                  },
-                  "height": {
-                    "type": "wrap_content"
-                  }
-                }
-              ],
-              "border": {
-                "corner_radius": 4
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "width": {
-                "type": "fixed",
-                "value": 140
-              },
-              "orientation": "horizontal",
-              "content_alignment_horizontal": "center",
-              "content_alignment_vertical": "center",
-              "paddings": {
-                "left": 8,
-                "right": 8
-              },
-              "alignment_horizontal": "left",
-              "alignment_vertical": "center"
-            },
-            {
-              "type": "text",
-              "text": "آدرس کشف ",
-              "font_size": 12,
-              "line_height": 24,
-              "letter_spacing": 0,
-              "text_color": "#7f7f7f",
-              "text_alignment_horizontal": "center",
-              "text_alignment_vertical": "top",
-              "width": {
-                "type": "wrap_content"
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "alignment_horizontal": "right",
-              "alignment_vertical": "center"
-            }
-          ],
-          "height": {
-            "type": "fixed",
-            "value": 24
-          },
-          "width": {
-            "type": "match_parent"
-          },
-          "orientation": "overlap",
-          "content_alignment_horizontal": "left",
-          "content_alignment_vertical": "center",
-          "margins": {
-            "top": 16
-          }
-        },
-        {
-          "type": "container",
-          "items": [
-            {
-              "type": "container",
-              "items": [
-                {
-                  "type": "text",
-                  "$text": "discover_date",
-                  "font_size": 12,
-                  "line_height": 24,
-                  "letter_spacing": 0,
-                  "text_color": "#2c2c2c",
-                  "text_alignment_horizontal": "right",
-                  "text_alignment_vertical": "top",
-                  "width": {
-                    "type": "wrap_content"
-                  },
-                  "height": {
-                    "type": "wrap_content"
-                  }
-                }
-              ],
-              "border": {
-                "corner_radius": 4
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "width": {
-                "type": "fixed",
-                "value": 140
-              },
-              "orientation": "horizontal",
-              "content_alignment_horizontal": "center",
-              "content_alignment_vertical": "center",
-              "paddings": {
-                "left": 8,
-                "right": 8
-              },
-              "alignment_horizontal": "left",
-              "alignment_vertical": "center"
-            },
-            {
-              "type": "text",
-              "text": "تاریخ کشف",
-              "font_size": 12,
-              "line_height": 24,
-              "letter_spacing": 0,
-              "text_color": "#7f7f7f",
-              "text_alignment_horizontal": "center",
-              "text_alignment_vertical": "top",
-              "width": {
-                "type": "wrap_content"
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "alignment_horizontal": "right",
-              "alignment_vertical": "center"
-            }
-          ],
-          "height": {
-            "type": "fixed",
-            "value": 24
-          },
-          "width": {
-            "type": "match_parent"
-          },
-          "orientation": "overlap",
-          "content_alignment_horizontal": "left",
-          "content_alignment_vertical": "center",
-          "margins": {
-            "top": 16
-          }
-        },
-        {
-          "type": "container",
-          "items": [
-            {
-              "type": "container",
-              "items": [
-                {
-                  "type": "text",
-                  "$text": "agh_description",
-                  "font_size": 12,
-                  "line_height": 24,
-                  "letter_spacing": 0,
-                  "text_color": "#2c2c2c",
-                  "text_alignment_horizontal": "right",
-                  "text_alignment_vertical": "top",
-                  "width": {
-                    "type": "wrap_content"
-                  },
-                  "height": {
-                    "type": "wrap_content"
-                  }
-                }
-              ],
-              "border": {
-                "corner_radius": 4
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "width": {
-                "type": "fixed",
-                "value": 140
-              },
-              "orientation": "horizontal",
-              "content_alignment_horizontal": "center",
-              "content_alignment_vertical": "center",
-              "paddings": {
-                "left": 8,
-                "right": 8
-              },
-              "alignment_horizontal": "left",
-              "alignment_vertical": "center"
-            },
-            {
-              "type": "text",
-              "text": "شرح برخورد",
-              "font_size": 12,
-              "line_height": 24,
-              "letter_spacing": 0,
-              "text_color": "#7f7f7f",
-              "text_alignment_horizontal": "center",
-              "text_alignment_vertical": "top",
-              "width": {
-                "type": "wrap_content"
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "alignment_horizontal": "right",
-              "alignment_vertical": "center"
-            }
-          ],
-          "height": {
-            "type": "fixed",
-            "value": 24
-          },
-          "width": {
-            "type": "match_parent"
-          },
-          "orientation": "overlap",
-          "content_alignment_horizontal": "left",
-          "content_alignment_vertical": "center",
-          "margins": {
-            "top": 16
-          }
-        }
-      ]
-    },
-    "nodata_template": {
-      "type": "container",
-      "width": {
-        "type": "match_parent"
+      "paddings": {
+        "left": 32,
+        "top": 4,
+        "right": 16,
+        "bottom": 4
       },
-      "height": {
-        "type": "wrap_content"
-      },
-      "items": [
-        {
-          "type": "text",
-          "text": "استعلامی وجود ندارد",
-          "font_size": 12,
-          "line_height": 24,
-          "letter_spacing": 0,
-          "text_color": "#d73333",
-          "text_alignment_horizontal": "center",
-          "text_alignment_vertical": "top",
-          "width": {
-            "type": "match_parent"
-          },
-          "height": {
-            "type": "wrap_content"
-          }
-        }
-      ]
+      "alpha": 1,
+      "alignment_horizontal": "center",
+      "alignment_vertical": "center",
+      "font_size": 16,
+      "font_weight": "medium",
+      "text_alignment_horizontal": "right",
+      "text_alignment_vertical": "center",
+      "text_color": "#000000"
     }
   }
 }

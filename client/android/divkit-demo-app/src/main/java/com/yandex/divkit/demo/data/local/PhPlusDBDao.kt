@@ -23,7 +23,7 @@ interface PhPlusDBDao {
     fun getValueByKey(key: String):PhPlusDB
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(phPlus: PhPlusDB)
+     fun insert(phPlus: PhPlusDB)
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertList(phPlus: List<PhPlusDB>)
 

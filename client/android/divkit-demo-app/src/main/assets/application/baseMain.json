@@ -236,10 +236,10 @@
                                       },
                                       "border": {
                                         "corners_radius": {
-                                          "top-left": 145,
-                                          "top-right": 145,
-                                          "bottom-left": 145,
-                                          "bottom-right": 145
+                                          "top-left": 146,
+                                          "top-right": 146,
+                                          "bottom-left": 146,
+                                          "bottom-right": 146
                                         }
                                       },
                                       "alpha": 0.8,
@@ -267,10 +267,10 @@
                               ],
                               "border": {
                                 "corners_radius": {
-                                  "top-left": 97,
-                                  "top-right": 97,
-                                  "bottom-left": 97,
-                                  "bottom-right": 97
+                                  "top-left": 98,
+                                  "top-right": 98,
+                                  "bottom-left": 98,
+                                  "bottom-right": 98
                                 }
                               },
                               "height": {
@@ -343,7 +343,8 @@
                                   "items": [
                                     {
                                       "type": "image",
-                                      "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/8193396a-8388-4639-935f-8b482c9a4ed3",
+                                      "image_url": "empty://",
+                                      "preview": "@{image_profile}",
                                       "height": {
                                         "type": "wrap_content"
                                       },
@@ -366,10 +367,10 @@
                                   ],
                                   "border": {
                                     "corners_radius": {
-                                      "top-left": 97,
-                                      "top-right": 97,
-                                      "bottom-left": 97,
-                                      "bottom-right": 97
+                                      "top-left": 98,
+                                      "top-right": 98,
+                                      "bottom-left": 98,
+                                      "bottom-right": 98
                                     }
                                   },
                                   "height": {
@@ -420,10 +421,10 @@
                       ],
                       "border": {
                         "corners_radius": {
-                          "top-left": 101,
-                          "top-right": 101,
-                          "bottom-left": 101,
-                          "bottom-right": 101
+                          "top-left": 102,
+                          "top-right": 102,
+                          "bottom-left": 102,
+                          "bottom-right": 102
                         }
                       },
                       "height": {
@@ -459,10 +460,10 @@
                   ],
                   "border": {
                     "corners_radius": {
-                      "top-left": 95,
-                      "top-right": 95,
-                      "bottom-left": 95,
-                      "bottom-right": 95
+                      "top-left": 96,
+                      "top-right": 96,
+                      "bottom-left": 96,
+                      "bottom-right": 96
                     }
                   },
                   "height": {
@@ -486,6 +487,12 @@
                   "items": [
                     {
                       "type": "container",
+                      "actions": [
+                        {
+                          "log_id": "show_main",
+                          "url": "div-action://show_toast?massage=برنامه در مرحله تولید می باشد"
+                        }
+                      ],
                       "items": [
                         {
                           "type": "container",
@@ -597,10 +604,10 @@
                           ],
                           "border": {
                             "corners_radius": {
-                              "top-left": 95,
-                              "top-right": 95,
-                              "bottom-left": 95,
-                              "bottom-right": 95
+                              "top-left": 96,
+                              "top-right": 96,
+                              "bottom-left": 96,
+                              "bottom-right": 96
                             }
                           },
                           "height": {
@@ -656,7 +663,7 @@
                       "actions": [
                         {
                           "log_id": "show_main",
-                          "url": "div-action://forward_to?path=forward_to&name=ph/reports&system=2"
+                          "url": "div-action://show_toast?massage=برنامه در مرحله تولید می باشد"
                         }
                       ],
                       "items": [
@@ -770,10 +777,10 @@
                           ],
                           "border": {
                             "corners_radius": {
-                              "top-left": 96,
-                              "top-right": 96,
-                              "bottom-left": 96,
-                              "bottom-right": 96
+                              "top-left": 97,
+                              "top-right": 97,
+                              "bottom-left": 97,
+                              "bottom-right": 97
                             }
                           },
                           "height": {
@@ -797,7 +804,8 @@
                           "text_alignment_horizontal": "right",
                           "text_alignment_vertical": "top",
                           "width": {
-                            "type": "wrap_content"
+                            "type": "fixed",
+                            "value": 28
                           },
                           "height": {
                             "type": "wrap_content"
@@ -811,8 +819,8 @@
                         "type": "wrap_content"
                       },
                       "width": {
-                        "type": "match_parent",
-                        "weight": 1
+                        "type": "fixed",
+                        "value": 84
                       },
                       "orientation": "vertical",
                       "content_alignment_vertical": "top",
@@ -825,6 +833,12 @@
                     },
                     {
                       "type": "container",
+                      "actions": [
+                        {
+                          "log_id": "show_main",
+                          "url": "div-action://load_screen?screen=ph/InquiryVehicle"
+                        }
+                      ],
                       "height": {
                         "type": "wrap_content"
                       },
@@ -851,10 +865,10 @@
                           ],
                           "border": {
                             "corners_radius": {
-                              "top-left": 97,
-                              "top-right": 97,
-                              "bottom-left": 97,
-                              "bottom-right": 97
+                              "top-left": 98,
+                              "top-right": 98,
+                              "bottom-left": 98,
+                              "bottom-right": 98
                             }
                           },
                           "height": {
@@ -1023,10 +1037,10 @@
                           ],
                           "border": {
                             "corners_radius": {
-                              "top-left": 98,
-                              "top-right": 98,
-                              "bottom-left": 98,
-                              "bottom-right": 98
+                              "top-left": 99,
+                              "top-right": 99,
+                              "bottom-left": 99,
+                              "bottom-right": 99
                             }
                           },
                           "height": {
@@ -1317,10 +1331,10 @@
                           },
                           "border": {
                             "corners_radius": {
-                              "top-left": 103,
-                              "top-right": 103,
-                              "bottom-right": 95,
-                              "bottom-left": 95
+                              "top-left": 104,
+                              "top-right": 104,
+                              "bottom-right": 96,
+                              "bottom-left": 96
                             }
                           },
                           "alignment_horizontal": "center",
@@ -1476,10 +1490,10 @@
                           },
                           "border": {
                             "corners_radius": {
-                              "top-left": 102,
-                              "top-right": 102,
-                              "bottom-right": 94,
-                              "bottom-left": 94
+                              "top-left": 103,
+                              "top-right": 103,
+                              "bottom-right": 95,
+                              "bottom-left": 95
                             }
                           },
                           "alignment_horizontal": "center",
@@ -1610,10 +1624,10 @@
                           },
                           "border": {
                             "corners_radius": {
-                              "top-left": 103,
-                              "top-right": 103,
-                              "bottom-right": 95,
-                              "bottom-left": 95
+                              "top-left": 104,
+                              "top-right": 104,
+                              "bottom-right": 96,
+                              "bottom-left": 96
                             }
                           },
                           "alignment_horizontal": "center",
@@ -1756,10 +1770,10 @@
                           },
                           "border": {
                             "corners_radius": {
-                              "top-left": 102,
-                              "top-right": 102,
-                              "bottom-right": 94,
-                              "bottom-left": 94
+                              "top-left": 103,
+                              "top-right": 103,
+                              "bottom-right": 95,
+                              "bottom-left": 95
                             }
                           },
                           "alignment_horizontal": "center",
@@ -2084,6 +2098,11 @@
       },
       {
         "type": "string",
+        "name": "image_profile",
+        "value": ""
+      },
+      {
+        "type": "string",
         "name": "profile_police_code",
         "value": ""
       },
@@ -2137,121 +2156,6 @@
         "name": "profile_personal_number",
         "value": ""
       }
-    ],
-    "variable_triggers": [
-      {
-        "condition": "@{home}",
-        "mode": "on_condition",
-        "actions": [
-          {
-            "log_id": "change home text color",
-            "url": "div-action://change_color?name=home_selected_text_color&value=@{blue}"
-          },
-          {
-            "log_id": "change home line color",
-            "url": "div-action://change_color?name=home_selected_line_color&value=@{blue}"
-          }
-        ]
-      },
-      {
-        "condition": "@{!home}",
-        "mode": "on_condition",
-        "actions": [
-          {
-            "log_id": "change home text color",
-            "url": "div-action://change_color?name=home_selected_text_color&value=@{gray}"
-          },
-          {
-            "log_id": "change home line color",
-            "url": "div-action://change_color?name=home_selected_line_color&value=@{white}"
-          }
-        ]
-      },
-      {
-        "condition": "@{setting}",
-        "mode": "on_condition",
-        "actions": [
-          {
-            "log_id": "change setting text color",
-            "url": "div-action://change_color?name=setting_selected_text_color&value=@{blue}"
-          },
-          {
-            "log_id": "change setting text color",
-            "url": "div-action://change_color?name=setting_selected_line_color&value=@{blue}"
-          }
-        ]
-      },
-      {
-        "condition": "@{!setting}",
-        "mode": "on_condition",
-        "actions": [
-          {
-            "log_id": "change setting text color",
-            "url": "div-action://change_color?name=setting_selected_text_color&value=@{gray}"
-          },
-          {
-            "log_id": "change setting text color",
-            "url": "div-action://change_color?name=setting_selected_line_color&value=@{white}"
-          }
-        ]
-      },
-      {
-        "condition": "@{reports}",
-        "mode": "on_condition",
-        "actions": [
-          {
-            "log_id": "change reports text color",
-            "url": "div-action://change_color?name=reports_selected_text_color&value=@{blue}"
-          },
-          {
-            "log_id": "change reports text color",
-            "url": "div-action://change_color?name=reports_selected_line_color&value=@{blue}"
-          }
-        ]
-      },
-      {
-        "condition": "@{!reports}",
-        "mode": "on_condition",
-        "actions": [
-          {
-            "log_id": "change reports text color",
-            "url": "div-action://change_color?name=reports_selected_text_color&value=@{gray}"
-          },
-          {
-            "log_id": "change reports text color",
-            "url": "div-action://change_color?name=reports_selected_line_color&value=@{white}"
-          }
-        ]
-      },
-      {
-        "condition": "@{profile}",
-        "mode": "on_condition",
-        "actions": [
-          {
-            "log_id": "change home text color",
-            "url": "div-action://change_color?name=profile_selected_text_color&value=@{blue}"
-          },
-          {
-            "log_id": "change home line color",
-            "url": "div-action://change_color?name=profile_selected_line_color&value=@{blue}"
-          }
-        ]
-      },
-      {
-        "condition": "@{!profile}",
-        "mode": "on_condition",
-        "actions": [
-          {
-            "log_id": "change home text color",
-            "url": "div-action://change_color?name=profile_selected_text_color&value=@{gray}"
-          },
-          {
-            "log_id": "change home line color",
-            "url": "div-action://change_color?name=profile_selected_line_color&value=@{white}"
-          }
-        ]
-      }
-
     ]
   },
   "templates": {

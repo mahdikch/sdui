@@ -19,7 +19,7 @@ class PhPlusRepository @Inject constructor(
         remoteDataSource.phPlus(request)
     }
 //
-    suspend fun insertItem(phPlusDB:PhPlusDB) {
+    fun insertItem(phPlusDB:PhPlusDB) {
         this.phPlusDBDao.insert(phPlusDB)
     }
     suspend fun insertList(phPlusDBs:List<PhPlusDB>) {

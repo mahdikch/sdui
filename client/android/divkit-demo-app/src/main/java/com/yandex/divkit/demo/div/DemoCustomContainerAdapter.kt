@@ -215,7 +215,7 @@ class DemoCustomContainerAdapter(
         lo?.let {
             mehdiViewModel?.getVtOfflineReports("%$username/vt%")?.observe(it) {
             for(ph:PhPlusDB in it){
-                items.add(ph.value)
+                ph.value?.let { it1 -> items.add(it1) }
             }
                 adapter.setItems(items)
                 recyclerview.adapter = adapter

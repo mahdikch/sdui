@@ -134,6 +134,13 @@ class BottomSheetSpinner(
                         }
                     }
                 }
+                if (constraint.variableName == "delivery.res") {
+                    if (map.contains("delivery")) {
+                        if (constraint.disallowedList.contains(map["delivery"])) {
+                            arrayList.remove(item)
+                        }
+                    }
+                }
                 if (constraint.variableName == "plate.res") {
                     if (map.contains("plate")) {
                         if (constraint.disallowedList.contains(map["plate"])) {
@@ -141,6 +148,7 @@ class BottomSheetSpinner(
                         }
                     }
                 }
+
                 if (constraint.variableName == "violation.res") {
                     if (map.contains("violation1")) {
                         if (constraint.disallowedList.contains(map["violation1"])) {
@@ -157,6 +165,11 @@ class BottomSheetSpinner(
                             arrayList.remove(item)
                         }
                     }
+//                    if (map.contains("delivery")) {
+//                        if (constraint.disallowedList.contains(map["violation3"])) {
+//                            arrayList.remove(item)
+//                        }
+//                    }
 
                 }
                 if (constraint.variableName == "system.res") {
