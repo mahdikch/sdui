@@ -12,23 +12,24 @@ import com.yandex.divkit.demo.data.remote.Resource
 import com.yandex.divkit.demo.data.repository.PhPlusRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.HashMap
 import javax.inject.Inject
 
 //@HiltViewModel
 class MehdiViewModel @Inject constructor(
     private val repository: PhPlusRepository
 ) : ViewModel() {
-    private val _phPlusRequest = MutableLiveData<MutableMap<String, String>>()
+    private val _phPlusRequest = MutableLiveData<Pair<String, HashMap<String, String>>>()
 
-    fun setphPlusRequest(request: MutableMap<String, String>) {
-        _phPlusRequest.postValue(request)
+    fun setphPlusRequest(phId: String,request: HashMap<String, String>) {
+        _phPlusRequest.postValue(Pair(phId, request))
     }
 
-    private val _phPlus = _phPlusRequest.switchMap { request ->
-        repository.phPlus(request)
+    private val _phPlus = _phPlusRequest.switchMap { (phId, request) ->
+        repository.phPlus(phId,request)
     }
 
-    val phPlus: LiveData<Resource<MutableMap<String, String>>> = _phPlus
+    val phPlus: LiveData<Resource<Map<String, String>>> = _phPlus
 
 
 //    fun insertListToDb(phPlusDBs: List<PhPlusDB>) = viewModelScope.launch(Dispatchers.IO) {
@@ -47,7 +48,9 @@ class MehdiViewModel @Inject constructor(
     fun getpatch(key: String) = repository.getByKey(key).asLiveData()
     fun getall() = repository.getall().asLiveData()
 
-
+    fun deleteItemFromDb(key: String) = viewModelScope.launch(Dispatchers.IO) {
+        repository.deleteItemFromDb(key)
+    }
     fun insertItemToDb(phPlusDB: PhPlusDB) = viewModelScope.launch(Dispatchers.IO) {
         repository.insertItem(phPlusDB)
     }

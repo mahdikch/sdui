@@ -21,7 +21,7 @@ import com.yandex.divkit.demo.data.remote.Resource
 //}
 
 object RemoteData {
-    var value = MutableLiveData<MutableMap<String,String>>()
+    var value = MutableLiveData<HashMap<String,String>>()
 }
 
 object VariableToSetMap {

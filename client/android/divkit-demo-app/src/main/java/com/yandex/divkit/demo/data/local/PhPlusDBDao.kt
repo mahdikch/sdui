@@ -24,6 +24,10 @@ interface PhPlusDBDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
      fun insert(phPlus: PhPlusDB)
+
+     @Query("DELETE FROM PhPlus WHERE `key` = :key")
+     fun deleteItemFromDb(key: String)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertList(phPlus: List<PhPlusDB>)
 

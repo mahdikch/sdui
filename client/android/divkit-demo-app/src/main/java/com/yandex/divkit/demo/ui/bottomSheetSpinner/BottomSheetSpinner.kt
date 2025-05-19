@@ -5,8 +5,6 @@ package com.yandex.divkit.demo.ui.bottomSheetSpinner
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,6 +37,8 @@ class BottomSheetSpinner(
     private val listener: AdapterBottomSheetSpinner.CustomItemListener,
     private val key: String,
     private val title: String,
+    private val codeVar: String,
+    private val titleVar: String,
     private val view: DivViewFacade,
     private val map: MutableMap<String, String> = HashMap()
 
@@ -184,7 +184,7 @@ class BottomSheetSpinner(
             }
         }
         if (varName != null) {
-            adapter.addItem(ArrayList(arrayList), varName)
+            adapter.addItem(ArrayList(arrayList), varName,titleVar,codeVar)
         }
 //            val gridLayoutManager = GridLayoutManager(context, 1)
         val gridLayoutManager = LinearLayoutManager(context)
@@ -196,7 +196,7 @@ class BottomSheetSpinner(
                 var fiterList = arrayList!!.filter { it.titleFa.contains(query.toString()) || it.id.contains(query.toString()) }
                 if (fiterList.isNotEmpty()) {
                     if (varName != null) {
-                        adapter.addItem(ArrayList(fiterList), varName)
+                        adapter.addItem(ArrayList(fiterList), varName,titleVar,codeVar)
                     }
                 }
                 else {
@@ -214,7 +214,7 @@ class BottomSheetSpinner(
                 var fiterList = arrayList!!.filter { it.titleFa.contains(newText.toString()) ||  it.id.contains(newText.toString()) }
                 if (fiterList.isNotEmpty()) {
                     if (varName != null) {
-                        adapter.addItem(ArrayList(fiterList), varName)
+                        adapter.addItem(ArrayList(fiterList), varName,titleVar,codeVar)
                     }
                 }
                 else {

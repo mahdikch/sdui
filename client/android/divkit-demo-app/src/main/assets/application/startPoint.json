@@ -18,6 +18,11 @@
               "visibility_actions": [
                 {
                   "log_id": "call_service",
+                  "url": "div-action://reset_phid",
+                  "visibility_duration": 0
+                },
+                {
+                  "log_id": "call_service",
                   "url": "div-action://call_service?path=getScreen&screenName=ph/splash&ph/token=empty&currentScreen=empty&versionCodePhPlus=empty&versionNamePhPlus=empty",
                   "visibility_duration": 0
                 }

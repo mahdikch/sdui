@@ -65,16 +65,27 @@ android {
             testInstrumentationRunnerArguments.notAnnotation = "com.yandex.alicekit.uitests.annotations.Regression"
         }
     }
+//    signingConfigs {
+//        release {
+//            storeFile file(RELEASE_STORE_FILE)
+//            storePassword RELEASE_STORE_PASSWORD
+//            keyAlias RELEASE_KEY_ALIAS
+//            keyPassword RELEASE_KEY_PASSWORD
+//        }
+//    }
 
     buildTypes {
         debug {
             minifyEnabled false
+            proguardFiles  'proguard-rules.pro'
         }
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+//            signingConfig signingConfigs.release
+            minifyEnabled true
+            proguardFiles  'proguard-rules.pro'
         }
     }
+
 
     sourceSets {
         main {
@@ -185,11 +196,11 @@ dependencies {
     implementation libs.nvWebsocket
     implementation libs.androidx.test.uiautomator
     implementation libs.androidx.coreKtx
-
+    implementation 'com.github.Piashsarker:AndroidAppUpdateLibrary:1.0.4'
     // QR code stuff
     implementation libs.zxing.embedded
     implementation libs.zxing.core
-
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
     androidTestUtil libs.androidx.test.services
     androidTestImplementation libs.hamcrest.library
     androidTestImplementation libs.androidx.lifecycle.viewmodel

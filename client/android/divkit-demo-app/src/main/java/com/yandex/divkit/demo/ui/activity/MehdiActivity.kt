@@ -1,22 +1,18 @@
 package com.yandex.divkit.demo.ui.activity
 
 //import dagger.hilt.android.AndroidEntryPoint
-import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.AlertDialog
 import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.view.LayoutInflater
-import android.widget.ImageView
+import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -28,6 +24,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.dcastalia.localappupdate.DownloadApk
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.yandex.div.core.view2.Div2View
@@ -64,8 +61,8 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import pub.devrel.easypermissions.EasyPermissions
 import java.io.File
-import java.util.TreeMap
 import java.util.UUID
+
 
 //@AndroidEntryPoint
 class MehdiActivity : AppCompatActivity(), LoadScreenListener {
@@ -88,7 +85,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
     private lateinit var remoteDataSource: PhPlusRemoteDataSource
     private lateinit var sharePref: SharePref
     private lateinit var phPlusDBDao: PhPlusDBDao
-    private lateinit var observerRemoteData: Observer<MutableMap<String, String>>
+    private lateinit var observerRemoteData: Observer<HashMap<String, String>>
     private lateinit var observerScreenToLoad: Observer<String>
     private lateinit var observerVariableToSet: Observer<String>
     private lateinit var observerVariableToGet: Observer<String>
@@ -139,12 +136,21 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         mehdiViewModel = ViewModelProvider(this, factory)[MehdiViewModel::class.java]
 
 
-
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_SECURE,
+            WindowManager.LayoutParams.FLAG_SECURE
+        )
+//        if (isDeviceRooted()) {
+//            Toast.makeText(this, "دستگاه شما روت است", Toast.LENGTH_LONG).show()
+//            finishAffinity() // close the app
+//        }
         setupObservers()
 
         var path = ""
         var divJson = JSONObject()
         if (json == null) {
+            var phId = UUID.randomUUID().toString()
+            mehdiViewModel.insertItemToDb(PhPlusDB(null, "phid", phId))
             var divMotorJson = assetReader.read("application/patchMotorPlate.json")
 
             var divpatchTestJson = assetReader.read("application/patchTest.json")
@@ -293,7 +299,8 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 //                Configuration.ORIENTATION_PORTRAIT -> "application/mehdi.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/menu.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/test.json"
-//                Configuration.ORIENTATION_PORTRAIT -> "application/switch.json"
+//                Configuration.ORIENTATION_PORTRAIT -> "application/temp.json"
+//                Configuration.ORIENTATION_PORTRAIT -> "application/switch.jso+n"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/patchTest.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/main.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/baseMain.json"
@@ -301,11 +308,11 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 //                Configuration.ORIENTATION_PORTRAIT -> "application/login.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/vt-register-ticket.json"
                 Configuration.ORIENTATION_PORTRAIT -> "application/startPoint.json"
-//                Configuration.ORIENTATION_PORTRAIT -> "application/testStartPoint.json"
+//                Configuration.ORIENTATION_PORTRAIT -> "application/testStartPoint46.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/sabte-takhalof.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/navigation.json"
 //                Configuration.ORIENTATION_LANDSCAPE -> "application/login.json"
-                else -> "application/menu.json"
+                else -> "application/startPoint.json"
             }
             div = UIDiv2ViewCreator(this, this, mehdiViewModel, this).createDiv2View(
                 this,
@@ -345,84 +352,87 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                         data,
                         object : TypeToken<MutableMap<String, String>>() {}.type
                     )
-
-                    restoredMap["ticket_type"]?.let { div.setVariable("ticket_type", it) }
-                    restoredMap["national_code"]?.let { div.setVariable("national_code", it) }
-                    restoredMap["usage_code"]?.let { div.setVariable("variable_usage_code", it) }
-                    restoredMap["color_code"]?.let { div.setVariable("variable_color_code", it) }
-                    restoredMap["system_code"]?.let { div.setVariable("variable_system_code", it) }
-                    restoredMap["sysName"]?.let { div.setVariable("sysName", it) }
-                    restoredMap["police_code"]?.let { div.setVariable("policeCode", it) }
-                    restoredMap["address"]?.let { div.setVariable("address", it) }
-                    restoredMap["iranian"]?.let { div.setVariable("iranian", it) }
-                    restoredMap["plateA"]?.let { div.setVariable("variable_plateA", it) }
-                    restoredMap["plateB"]?.let { div.setVariable("variable_plateB", it) }
-                    restoredMap["plateC"]?.let { div.setVariable("variable_plateC", it) }
-                    restoredMap["plateD"]?.let { div.setVariable("variable_plateD", it) }
-                    restoredMap["car_model"]?.let {
-                        div.setVariable(
-                            "car_model_information_vt",
-                            it
-                        )
+                    for (entry in restoredMap) {
+                        div.setVariable(entry.key, entry.value)
                     }
-                    restoredMap["plate_description"]?.let {
-                        div.setVariable(
-                            "plate_description",
-                            it
-                        )
-                    }
-                    restoredMap["countPeople"]?.let { div.setVariable("number_of_passengers", it) }
-                    restoredMap["name"]?.let { div.setVariable("variable_driver_name_vt", it) }
-                    restoredMap["license_number"]?.let {
-                        div.setVariable(
-                            "variable_driver_license_number_vt",
-                            it
-                        )
-                    }
-                    restoredMap["violationType1"]?.let { div.setVariable("violation1_code", it) }
-                    restoredMap["violationType1_title"]?.let {
-                        div.setVariable(
-                            "violation1_title",
-                            it
-                        )
-                    }
-                    restoredMap["violationType2"]?.let { div.setVariable("violation2_code", it) }
-                    restoredMap["violationType2_title"]?.let {
-                        div.setVariable(
-                            "violation2_title",
-                            it
-                        )
-                    }
-                    restoredMap["violationType3"]?.let { div.setVariable("violation3_code", it) }
-                    restoredMap["violationType3_title"]?.let {
-                        div.setVariable(
-                            "violation3_title",
-                            it
-                        )
-                    }
-                    restoredMap["timePda"]?.let { div.setVariable("time", it) }
-                    restoredMap["datePda"]?.let { div.setVariable("date", it) }
-                    restoredMap["city_code"]?.let { div.setVariable("cityPolice_code", it) }
-                    restoredMap["isInternal"]?.let { div.setVariable("isInternal", it) }
-                    restoredMap["isOnline"]?.let { div.setVariable("isOnline", it) }
-                    restoredMap["variable_system_title"]?.let {
-                        div.setVariable(
-                            "variable_system_title",
-                            it
-                        )
-                    }
-                    restoredMap["variable_color_title"]?.let {
-                        div.setVariable(
-                            "variable_color_title",
-                            it
-                        )
-                    }
-                    restoredMap["variable_usage_title"]?.let {
-                        div.setVariable(
-                            "variable_usage_title",
-                            it
-                        )
-                    }
+//                    restoredMap["ticket_type"]?.let { div.setVariable("ticket_type", it) }
+//                    restoredMap["variable_car_picture"]?.let { div.setVariable("variable_car_picture", it) }
+//                    restoredMap["national_code"]?.let { div.setVariable("national_code", it) }
+//                    restoredMap["usage_code"]?.let { div.setVariable("variable_usage_code", it) }
+//                    restoredMap["color_code"]?.let { div.setVariable("variable_color_code", it) }
+//                    restoredMap["system_code"]?.let { div.setVariable("variable_system_code", it) }
+//                    restoredMap["sysName"]?.let { div.setVariable("sysName", it) }
+//                    restoredMap["police_code"]?.let { div.setVariable("policeCode", it) }
+//                    restoredMap["address"]?.let { div.setVariable("address", it) }
+//                    restoredMap["iranian"]?.let { div.setVariable("iranian", it) }
+//                    restoredMap["plateA"]?.let { div.setVariable("variable_plateA", it) }
+//                    restoredMap["plateB"]?.let { div.setVariable("variable_plateB", it) }
+//                    restoredMap["plateC"]?.let { div.setVariable("variable_plateC", it) }
+//                    restoredMap["plateD"]?.let { div.setVariable("variable_plateD", it) }
+//                    restoredMap["car_model"]?.let {
+//                        div.setVariable(
+//                            "car_model_information_vt",
+//                            it
+//                        )
+//                    }
+//                    restoredMap["plate_description"]?.let {
+//                        div.setVariable(
+//                            "plate_description",
+//                            it
+//                        )
+//                    }
+//                    restoredMap["countPeople"]?.let { div.setVariable("number_of_passengers", it) }
+//                    restoredMap["name"]?.let { div.setVariable("variable_driver_name_vt", it) }
+//                    restoredMap["license_number"]?.let {
+//                        div.setVariable(
+//                            "variable_driver_license_number_vt",
+//                            it
+//                        )
+//                    }
+//                    restoredMap["violationType1"]?.let { div.setVariable("violation1_code", it) }
+//                    restoredMap["violationType1_title"]?.let {
+//                        div.setVariable(
+//                            "violation1_title",
+//                            it
+//                        )
+//                    }
+//                    restoredMap["violationType2"]?.let { div.setVariable("violation2_code", it) }
+//                    restoredMap["violationType2_title"]?.let {
+//                        div.setVariable(
+//                            "violation2_title",
+//                            it
+//                        )
+//                    }
+//                    restoredMap["violationType3"]?.let { div.setVariable("violation3_code", it) }
+//                    restoredMap["violationType3_title"]?.let {
+//                        div.setVariable(
+//                            "violation3_title",
+//                            it
+//                        )
+//                    }
+//                    restoredMap["timePda"]?.let { div.setVariable("time", it) }
+//                    restoredMap["datePda"]?.let { div.setVariable("date", it) }
+//                    restoredMap["city_code"]?.let { div.setVariable("cityPolice_code", it) }
+//                    restoredMap["isInternal"]?.let { div.setVariable("isInternal", it) }
+//                    restoredMap["isOnline"]?.let { div.setVariable("isOnline", it) }
+//                    restoredMap["variable_system_title"]?.let {
+//                        div.setVariable(
+//                            "variable_system_title",
+//                            it
+//                        )
+//                    }
+//                    restoredMap["variable_color_title"]?.let {
+//                        div.setVariable(
+//                            "variable_color_title",
+//                            it
+//                        )
+//                    }
+//                    restoredMap["variable_usage_title"]?.let {
+//                        div.setVariable(
+//                            "variable_usage_title",
+//                            it
+//                        )
+//                    }
 
                 }
                 binding.root.addView(div)
@@ -456,8 +466,8 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                     }
                     counter++
                     if (counter == map.size) {
-
-                        mehdiViewModel.setphPlusRequest(map)
+                        var phId: String = mehdiViewModel.getValueByKey("phid").value.toString()
+                        mehdiViewModel.setphPlusRequest(phId, map)
 
                     }
 
@@ -539,8 +549,9 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
 //                    var varList: MutableList<PhPlusDB> = mutableListOf()
+                    var varList = java.util.HashMap(it.data)
                     println("key:${it.data.toString()}")
-
+                    val data: java.util.HashMap<String, String>
                     var next = ""
                     var reset = ""
                     var toast = ""
@@ -550,17 +561,18 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                     var patch = ""
                     var update = ""
                     var permissions = ""
+                    var reset_phid = ""
 //                    var res: MutableMap<String, String>?= sortedMapOf()
-                    if(it.data?.contains("next") == true){
-                        val nv=it.data["next"]
-                        it.data.remove("next")
-                        it.data["next"]=nv!!
+                    if (varList?.contains("next") == true) {
+                        val nv = varList["next"]
+                        varList.remove("next")
+                        varList["next"] = nv!!
                     }
 //                    it.data?.let { data-> res?.putAll(data) }
 
-                    if (it.data != null) {
+                    if (varList != null) {
 //                        var i: Long = 1
-                        for ((key, value) in it.data) {
+                        for ((key, value) in varList) {
                             if (key != null && value != null) {
                                 when (key) {
                                     "next" -> next = value
@@ -572,14 +584,16 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                                     "reset" -> reset = value
                                     "update" -> update = value
                                     "permissions" -> permissions = value
+                                    "reset_phid" -> reset_phid = value
                                     else -> {
                                         repository.insertItem(
-                                        PhPlusDB(
-                                            null,
-                                            key,
-                                            value
+                                            PhPlusDB(
+                                                null,
+                                                key,
+                                                value
+                                            )
                                         )
-                                    )}
+                                    }
                                 }
 //                                if (key == "next") {
 //                                    next = value
@@ -612,14 +626,14 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                         }
                         if (next != "") {
                             nextJsonDto = repository.getValueByKey(next)
-                            if(nextJsonDto==null)
-                            repository.insertItem(
-                                PhPlusDB(
-                                    null,
-                                    next,
-                                    it.data[next]
+                            if (nextJsonDto == null)
+                                repository.insertItem(
+                                    PhPlusDB(
+                                        null,
+                                        next,
+                                        varList[next]
+                                    )
                                 )
-                            )
                             Constants.CURRENT_SCREEN = next
                             startActivityForLoad(
                                 MehdiActivity::class.java,
@@ -654,16 +668,20 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                                 this, this, bottomSheet, mehdiViewModel, this
                             ).show()
                         }
+                        if (reset_phid != "") {
+                            var phId = UUID.randomUUID().toString()
+                            mehdiViewModel.insertItemToDb(PhPlusDB(null, "phid", phId))
+                        }
                         if (patch != "") {
-                            var json=""
-                            val dbPatch=mehdiViewModel.getValueByKey(patch)
-                            println("dppatch: "+dbPatch.toString())
-                            if (dbPatch!=null )
-                             json = dbPatch.value.toString()
-                            if (json != null && json!="") {
+                            var json = ""
+                            val dbPatch = mehdiViewModel.getValueByKey(patch)
+                            println("dppatch: " + dbPatch.toString())
+                            if (dbPatch != null)
+                                json = dbPatch.value.toString()
+                            if (json != null && json != "") {
                                 var patchTitle = "تست"
                                 var vehicleType = "تست"
-                                onApplyOnbase(json, patch, patchTitle,vehicleType)
+                                onApplyOnbase(json, patch, patchTitle, vehicleType)
                             }
 
                         }
@@ -911,6 +929,17 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         }
     }
 
+    fun isDeviceRooted(): Boolean {
+        val paths = arrayOf(
+            "/sbin/su", "/system/bin/su", "/system/xbin/su", "/data/local/xbin/su",
+            "/data/local/bin/su", "/system/sd/xbin/su", "/system/bin/failsafe/su", "/data/local/su"
+        )
+        for (path in paths) {
+            if (File(path).exists()) return true
+        }
+        return false
+    }
+
     private fun installApk(apkUri: Uri) {
         val file = File(apkUri.path ?: return)
         val contentUri =
@@ -995,7 +1024,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         }
     }
 
-    override fun onRequest(map: MutableMap<String, String>) {
+    override fun onRequest(map: HashMap<String, String>) {
         varlist.clear()
         var counter = 0
         if (map.isNotEmpty())
@@ -1028,8 +1057,32 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                 }
                 counter++
                 if (counter == map.size) {
-                    map.put("phId", UUID.randomUUID().toString())
-                    mehdiViewModel.setphPlusRequest(map)
+                    var phId = mehdiViewModel.getValueByKey("phid").value.toString()
+                    map.put("phId", phId)
+
+                    if (map.contains("base64")) {
+
+                        var text = map.get("base64")?.replace("\n", "")
+                        text?.replace(" ", "+")
+                        if (text != null) {
+                            map.put("base64", text)
+                        }
+                    }
+                    if (map.contains("base64Image")) {
+                        var text = map.get("base64Image")?.replace("\n", "")
+                        text?.replace(" ", "+")
+                        if (text != null) {
+                            map.put("base64Image", text)
+                        }
+                    }
+                    if (map.contains("car_picture")) {
+                        var text = map.get("car_picture")?.replace("\n", "")
+                        text?.replace(" ", "+")
+                        if (text != null) {
+                            map.put("car_picture", text)
+                        }
+                    }
+                    mehdiViewModel.setphPlusRequest(phId, map)
                     println(map.toString())
 
                 }
@@ -1037,16 +1090,21 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
             }
     }
 
-    override fun onApplyOnbase(json: String, patchName: String, patchTitle: String,vehicleType:String) {
+    override fun onApplyOnbase(
+        json: String,
+        patchName: String,
+        patchTitle: String,
+        vehicleType: String
+    ) {
 //        if (dismiss=="true")
 //            btmSheet.dismiss()
 //        var json=mehdiViewModel?.getValueByKey(patchName)?.value.toString()
         div.applyPatch(JSONObject(json).asDivPatchWithTemplates())
-        if (patchTitle != "")
+        if (patchTitle != "" && patchTitle != "تست")
             div.setVariable("patch", patchTitle)
-        if (vehicleType != ""&& vehicleType != "تست")
+        if (vehicleType != "" && vehicleType != "تست")
             div.setVariable("vehicle_type", vehicleType)
-        if (patchName != "" && patchName != "تست")
+        if (patchName != "" && patchName != "تست" && patchName != "patchEstelam")
             div.setVariable("plateType", patchName)
     }
 
@@ -1082,7 +1140,13 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
     }
 
     override fun update(url: String) {
-        updateApp(url)
+//        updateApp(url)
+//        ApkDownloader(this).downloadAndInstall(url)
+        val downloadApk = DownloadApk(this)
+
+
+// With standard fileName 'App Update.apk'
+        downloadApk.startDownloadingApk(url)
     }
 
     override fun getLocationPermission() {
@@ -1100,7 +1164,8 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                 "You need to accept location , camera and storage permissions to use this app",
                 103,
                 android.Manifest.permission.ACCESS_FINE_LOCATION,
-                android.Manifest.permission.ACCESS_COARSE_LOCATION            )
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+            )
         }
     }
 
@@ -1164,6 +1229,10 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
             )
         }
+    }
+
+    override fun setPageToDB(key: String) {
+        mehdiViewModel.insertItemToDb(PhPlusDB(null, key, nextJson))
     }
 
 //    override fun showImage(decodedBitmap: Bitmap) {

@@ -1,4 +1,4 @@
-package com.yandex.divkit.demo.div.offlineVtAdapter
+package com.yandex.divkit.demo.div.offlineView
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import com.google.gson.reflect.TypeToken
 import com.yandex.divkit.demo.databinding.RowOfflineVtReportsBinding
 import java.util.ArrayList
 
-class VtReportAdapter(private val listener: VtReportItemListener) :
+class VtReportAdapter( private val listener: VtReportItemListener) :
     RecyclerView.Adapter<VtReportAdapter.ProgramsViewHolder>() {
 
     interface VtReportItemListener {
@@ -47,18 +47,18 @@ class VtReportAdapter(private val listener: VtReportItemListener) :
         private lateinit var program: String
 
         init {
-            itemBinding.send.setOnClickListener(this)
+//            itemBinding.send.setOnClickListener(this)
         }
 
         @SuppressLint("SetTextI18n")
         fun bind(item: String) {
             this.program = item
             val restoredMap: MutableMap<String, String> = Gson().fromJson(item, object : TypeToken<MutableMap<String, String>>() {}.type)
-            itemBinding.model.text= restoredMap["variable_system_title"] +"-"+ restoredMap["variable_color_title"]
-            itemBinding.time.text=restoredMap["timePda"]
-            itemBinding.location.text=restoredMap["address"]
-            itemBinding.violation.text=restoredMap["violationType1_title"] +"-"+ restoredMap["violationType2_title"]+"-"+restoredMap["violationType3_title"]
-
+//            itemBinding.model.text= restoredMap["variable_system_title"] +"-"+ restoredMap["variable_color_title"]
+//            itemBinding.time.text=restoredMap["timePda"]
+//            itemBinding.location.text=restoredMap["address"]
+//            itemBinding.violation.text=restoredMap["violationType1_title"] +"-"+ restoredMap["violationType2_title"]+"-"+restoredMap["violationType3_title"]
+//
 
         }
 

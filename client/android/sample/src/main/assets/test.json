@@ -5,7 +5,171 @@
       {
         "state_id": 0,
         "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "match_parent"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#FFFFFF"
+            }
+          ],
           "items": [
+            {
+              "type": "text",
+              "text": "پرسـان",
+              "font_size": 24,
+              "text_color": "#007F3F",
+              "text_alignment_horizontal": "center",
+              "margins": {
+                "top": 32,
+                "bottom": 16
+              }
+            },
+            {
+              "type": "text",
+              "text": "ورود",
+              "font_size": 20,
+              "font_weight": "bold",
+              "text_color": "#000000",
+              "margins": {
+                "bottom": 8
+              },
+              "text_alignment_horizontal": "right",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 34
+              },
+              "paddings": {
+                "right": 48
+              }
+            },
+            {
+              "type": "text",
+              "text": ".لطفا شماره موبایل خود را وارد کنید",
+              "font_size": 14,
+              "text_color": "#7F7F7F",
+              "margins": {
+                "bottom": 24
+              },
+              "text_alignment_horizontal": "right",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 23
+              },
+              "paddings": {
+                "right": 48
+              }
+            },
+            {
+              "type": "container",
+              "orientation": "horizontal",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 48
+              },
+              "margins": {
+                "left": 16,
+                "right": 16,
+                "bottom": 24
+              },
+              "border": {
+                "corner_radius": 8,
+                "stroke": {
+                  "color": "#E0E0E0",
+                  "width": 1
+                }
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#F5F5F5"
+                }
+              ],
+              "items": [
+                {
+                  "type": "text",
+                  "text": "۰۹",
+                  "font_size": 16,
+                  "text_color": "#000000",
+                  "text_alignment_horizontal": "center",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "fixed",
+                    "value": 48
+                  },
+                  "margins": {
+                    "left": 12
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 48
+                  }
+                },
+                {
+                  "type": "separator",
+                  "width": {
+                    "type": "fixed",
+                    "value": 30
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 10
+                  },
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "center",
+                  "delimiter_style": {
+                    "orientation": "horizontal"
+                  },
+                  "transform": {
+                    "rotation": 90
+                  }
+                },
+                {
+                  "type": "input",
+                  "text_variable": "phone_number",
+                  "hint_text": "شماره موبایل",
+                  "hint_color": "#B0B0B0",
+                  "keyboard_type": "phone",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "match_parent"
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#F5F5F5"
+                    }
+                  ],
+                  "paddings": {
+                    "left": 170
+                  }
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "height": {
+                "type": "weight",
+                "value": 1
+              }
+            },
             {
               "type": "container",
               "width": {
@@ -14,12 +178,8 @@
               "height": {
                 "type": "match_parent"
               },
-              "alignment_horizontal": "left",
-              "alignment_vertical": "top",
-              "margins": {
-                "top": 180,
-                "left": 0
-              },
+              "alignment_horizontal": "center",
+              "alignment_vertical": "center",
               "items": [
                 {
                   "type": "container",
@@ -27,861 +187,78 @@
                     "type": "match_parent"
                   },
                   "height": {
-                    "type": "wrap_content"
+                    "type": "fixed",
+                    "value": 48
                   },
-                  "alignment_horizontal": "left",
+                  "orientation": "horizontal",
+                  "alignment_horizontal": "center",
                   "alignment_vertical": "center",
-                  "items": [
+                  "background": [
                     {
-                      "type": "container",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content",
-                        "constrained": true
-                      },
-                      "items": [
-                        {
-                          "type": "input",
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "alignment_horizontal": "center",
-                          "alignment_vertical": "center",
-                          "max_length": 1,
-                          "accessibility": {
-                            "type": "text",
-                            "description": "input",
-                            "state_description": "otp",
-                            "hint": "0",
-                            "mode": "default"
-                          },
-                          "font_size_unit": "dp",
-                          "font_size": 24,
-                          "text_alignment_horizontal": "center",
-                          "text_alignment_vertical": "center",
-                          "keyboard_type": "phone",
-                          "validators": [
-                            ""
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 40
-                          },
-                          "paddings": {
-                            "top": 5,
-                            "right": 15,
-                            "bottom": 5,
-                            "left": 15
-                          },
-                          "margins": {
-                            "bottom": 5
-                          },
-                          "hint_text": "0",
-                          "hint_color": "#b5b5b5",
-                          "font_weight": "medium",
-                          "disappear_actions": [
-                            {}
-                          ],
-                          "text_color": "#000000",
-                          "text_variable": "inputone",
-                          "id": "input_one",
-                          "mask": {
-                            "type": "fixed_length",
-                            "pattern": "@{mask}",
-                            "pattern_elements": [
-                              {
-                                "key": "@{key}",
-                                "regex": "@{filter}"
-                              }
-                            ],
-                            "always_visible": "@{always_visible}"
-                          }
-                        },
-                        {
-                          "type": "text",
-                          "text": "text",
-                          "width": {
-                            "type": "fixed",
-                            "value": 45
-                          },
-                          "height": {
-                            "type": "fixed",
-                            "value": 2
-                          },
-                          "background": [
-                            {
-                              "type": "solid",
-                              "color": "#1eccb0"
-                            }
-                          ]
-                        }
-                      ],
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center",
-                      "margins": {
-                        "right": 5,
-                        "left": 10
-                      }
-                    },
-                    {
-                      "type": "container",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      },
-                      "items": [
-                        {
-                          "type": "input",
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "alignment_horizontal": "center",
-                          "alignment_vertical": "center",
-                          "max_length": 1,
-                          "accessibility": {
-                            "type": "text",
-                            "description": "input",
-                            "state_description": "otp",
-                            "hint": "0",
-                            "mode": "default"
-                          },
-                          "font_size_unit": "dp",
-                          "font_size": 24,
-                          "text_alignment_horizontal": "center",
-                          "text_alignment_vertical": "center",
-                          "keyboard_type": "phone",
-                          "validators": [
-                            ""
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 40
-                          },
-                          "paddings": {
-                            "top": 5,
-                            "right": 15,
-                            "bottom": 5,
-                            "left": 15
-                          },
-                          "margins": {
-                            "bottom": 5
-                          },
-                          "hint_text": "0",
-                          "hint_color": "#b5b5b5",
-                          "font_weight": "medium",
-                          "text_color": "#000000",
-                          "text_variable": "inputtwo",
-                          "id": "input_two",
-                          "mask": {
-                            "type": "fixed_length",
-                            "pattern": "@{mask}",
-                            "pattern_elements": [
-                              {
-                                "key": "@{key}",
-                                "regex": "@{filter}"
-                              }
-                            ],
-                            "always_visible": "@{always_visible}"
-                          }
-                        },
-                        {
-                          "type": "text",
-                          "text": "text",
-                          "width": {
-                            "type": "fixed",
-                            "value": 45
-                          },
-                          "height": {
-                            "type": "fixed",
-                            "value": 2
-                          },
-                          "background": [
-                            {
-                              "type": "solid",
-                              "color": "#1eccb0"
-                            }
-                          ]
-                        }
-                      ],
-                      "margins": {
-                        "right": 5,
-                        "left": 5
-                      },
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center"
-                    },
-                    {
-                      "type": "container",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      },
-                      "items": [
-                        {
-                          "type": "input",
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "alignment_horizontal": "center",
-                          "alignment_vertical": "center",
-                          "max_length": 1,
-                          "accessibility": {
-                            "type": "text",
-                            "description": "input",
-                            "state_description": "otp",
-                            "hint": "0",
-                            "mode": "default"
-                          },
-                          "font_size_unit": "dp",
-                          "font_size": 24,
-                          "text_alignment_horizontal": "center",
-                          "text_alignment_vertical": "center",
-                          "keyboard_type": "phone",
-                          "validators": [
-                            ""
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 40
-                          },
-                          "paddings": {
-                            "top": 5,
-                            "right": 15,
-                            "bottom": 5,
-                            "left": 15
-                          },
-                          "margins": {
-                            "bottom": 5
-                          },
-                          "hint_text": "0",
-                          "hint_color": "#b5b5b5",
-                          "font_weight": "medium",
-                          "text_color": "#000000",
-                          "text_variable": "inputthree",
-                          "id": "input_three",
-                          "mask": {
-                            "type": "fixed_length",
-                            "pattern": "@{mask}",
-                            "pattern_elements": [
-                              {
-                                "key": "@{key}",
-                                "regex": "@{filter}"
-                              }
-                            ],
-                            "always_visible": "@{always_visible}"
-                          }
-                        },
-                        {
-                          "type": "text",
-                          "text": "text",
-                          "width": {
-                            "type": "fixed",
-                            "value": 45
-                          },
-                          "height": {
-                            "type": "fixed",
-                            "value": 2
-                          },
-                          "background": [
-                            {
-                              "type": "solid",
-                              "color": "#1eccb0"
-                            }
-                          ]
-                        }
-                      ],
-                      "margins": {
-                        "right": 5,
-                        "left": 5
-                      },
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center"
-                    },
-                    {
-                      "type": "container",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      },
-                      "items": [
-                        {
-                          "type": "input",
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "alignment_horizontal": "center",
-                          "alignment_vertical": "center",
-                          "max_length": 1,
-                          "accessibility": {
-                            "type": "text",
-                            "description": "input",
-                            "state_description": "otp",
-                            "hint": "0",
-                            "mode": "default"
-                          },
-                          "font_size_unit": "dp",
-                          "font_size": 24,
-                          "text_alignment_horizontal": "center",
-                          "text_alignment_vertical": "center",
-                          "keyboard_type": "phone",
-                          "validators": [
-                            ""
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 40
-                          },
-                          "paddings": {
-                            "top": 5,
-                            "right": 15,
-                            "bottom": 5,
-                            "left": 15
-                          },
-                          "margins": {
-                            "bottom": 5
-                          },
-                          "hint_text": "0",
-                          "hint_color": "#b5b5b5",
-                          "font_weight": "medium",
-                          "text_color": "#000000",
-                          "text_variable": "inputfour",
-                          "id": "input_four",
-                          "mask": {
-                            "type": "fixed_length",
-                            "pattern": "@{mask}",
-                            "pattern_elements": [
-                              {
-                                "key": "@{key}",
-                                "regex": "@{filter}"
-                              }
-                            ],
-                            "always_visible": "@{always_visible}"
-                          }
-                        },
-                        {
-                          "type": "text",
-                          "text": "text",
-                          "width": {
-                            "type": "fixed",
-                            "value": 45
-                          },
-                          "height": {
-                            "type": "fixed",
-                            "value": 2
-                          },
-                          "background": [
-                            {
-                              "type": "solid",
-                              "color": "#1eccb0"
-                            }
-                          ]
-                        }
-                      ],
-                      "margins": {
-                        "right": 5,
-                        "left": 5
-                      },
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center"
-                    },
-                    {
-                      "type": "container",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      },
-                      "items": [
-                        {
-                          "type": "input",
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "alignment_horizontal": "center",
-                          "alignment_vertical": "center",
-                          "max_length": 1,
-                          "accessibility": {
-                            "type": "text",
-                            "description": "input",
-                            "state_description": "otp",
-                            "hint": "0",
-                            "mode": "default"
-                          },
-                          "font_size_unit": "dp",
-                          "font_size": 24,
-                          "text_alignment_horizontal": "center",
-                          "text_alignment_vertical": "center",
-                          "keyboard_type": "phone",
-                          "validators": [
-                            ""
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 40
-                          },
-                          "paddings": {
-                            "top": 5,
-                            "right": 15,
-                            "bottom": 5,
-                            "left": 15
-                          },
-                          "margins": {
-                            "bottom": 5
-                          },
-                          "hint_text": "0",
-                          "hint_color": "#b5b5b5",
-                          "font_weight": "medium",
-                          "text_color": "#000000",
-                          "text_variable": "inputfive",
-                          "id": "input_five",
-                          "mask": {
-                            "type": "fixed_length",
-                            "pattern": "@{mask}",
-                            "pattern_elements": [
-                              {
-                                "key": "@{key}",
-                                "regex": "@{filter}"
-                              }
-                            ],
-                            "always_visible": "@{always_visible}"
-                          }
-                        },
-                        {
-                          "type": "text",
-                          "text": "text",
-                          "width": {
-                            "type": "fixed",
-                            "value": 45
-                          },
-                          "height": {
-                            "type": "fixed",
-                            "value": 2
-                          },
-                          "background": [
-                            {
-                              "type": "solid",
-                              "color": "#1eccb0"
-                            }
-                          ]
-                        }
-                      ],
-                      "margins": {
-                        "right": 5,
-                        "left": 5
-                      },
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center"
-                    },
-                    {
-                      "type": "container",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      },
-                      "items": [
-                        {
-                          "type": "input",
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "alignment_horizontal": "center",
-                          "alignment_vertical": "center",
-                          "max_length": 1,
-                          "accessibility": {
-                            "type": "text",
-                            "description": "input",
-                            "state_description": "otp",
-                            "hint": "0",
-                            "mode": "default"
-                          },
-                          "font_size_unit": "dp",
-                          "font_size": 24,
-                          "text_alignment_horizontal": "center",
-                          "text_alignment_vertical": "center",
-                          "keyboard_type": "phone",
-                          "validators": [
-                            ""
-                          ],
-                          "height": {
-                            "type": "fixed",
-                            "value": 40
-                          },
-                          "paddings": {
-                            "top": 5,
-                            "right": 15,
-                            "bottom": 5,
-                            "left": 15
-                          },
-                          "margins": {
-                            "bottom": 5
-                          },
-                          "hint_text": "0",
-                          "hint_color": "#b5b5b5",
-                          "font_weight": "medium",
-                          "text_color": "#000000",
-                          "text_variable": "inputsix",
-                          "id": "input_six",
-                          "mask": {
-                            "type": "fixed_length",
-                            "pattern": "@{mask}",
-                            "pattern_elements": [
-                              {
-                                "key": "@{key}",
-                                "regex": "@{filter}"
-                              }
-                            ],
-                            "always_visible": "@{always_visible}"
-                          }
-                        },
-                        {
-                          "type": "text",
-                          "text": "text",
-                          "width": {
-                            "type": "fixed",
-                            "value": 45
-                          },
-                          "height": {
-                            "type": "fixed",
-                            "value": 2
-                          },
-                          "background": [
-                            {
-                              "type": "solid",
-                              "color": "#1eccb0"
-                            }
-                          ]
-                        }
-                      ],
-                      "margins": {
-                        "right": 10,
-                        "left": 5
-                      },
-                      "content_alignment_horizontal": "center",
-                      "content_alignment_vertical": "center"
+                      "type": "solid",
+                      "color": "#007F3F"
                     }
                   ],
-                  "cross_content_alignment": "center",
-                  "item_spacing": 10,
-                  "orientation": "horizontal",
-                  "content_alignment_horizontal": "center",
-                  "content_alignment_vertical": "center",
-                  "transform": {
-                    "rotation": 0
+                  "border": {
+                    "corner_radius": 8
                   },
                   "margins": {
-                    "top": 15,
-                    "right": 10,
-                    "left": 10
+                    "left": 16,
+                    "right": 16,
+                    "bottom": 48
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "ادامه",
+                      "font_size": 16,
+                      "text_color": "#FFFFFF",
+                      "text_alignment_horizontal": "center",
+                      "text_alignment_vertical": "center",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "match_parent"
+                      }
+                    }
+                  ],
+                  "on_click": {
+                    "log_id": "login_continue",
+                    "url": "div-action://login?phone=09@{phone_number}"
                   }
                 }
               ],
-              "background": [
-                {
-                  "type": "solid",
-                  "color": "#ffffff"
-                }
-              ]
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "bottom"
             }
-          ],
-          "background": [
-            {
-              "type": "solid",
-              "color": "#b5b5b5"
-            }
-          ],
-          "height": {
-            "type": "match_parent"
-          },
-          "orientation": "overlap",
-          "type": "container"
+          ]
         }
       }
     ],
     "variables": [
       {
-        "type": "string",
-        "name": "inputSeparatorColor",
-        "value": "default"
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
       },
       {
         "type": "string",
-        "name": "inputone",
+        "name": "phone_number",
         "value": ""
-      },
-      {
-        "type": "string",
-        "name": "inputtwo",
-        "value": ""
-      },
-      {
-        "type": "string",
-        "name": "inputthree",
-        "value": ""
-      },
-      {
-        "type": "string",
-        "name": "inputfour",
-        "value": ""
-      },
-      {
-        "type": "string",
-        "name": "inputfive",
-        "value": ""
-      },
-      {
-        "type": "string",
-        "name": "inputsix",
-        "value": ""
-      },
-      {
-        "name": "mask",
-        "type": "string",
-        "value": "#"
-      },
-      {
-        "name": "key",
-        "type": "string",
-        "value": "#"
-      },
-      {
-        "name": "filter",
-        "type": "string",
-        "value": "\\d"
-      },
-      {
-        "name": "always_visible",
-        "type": "boolean",
-        "value": 0
-      }
-    ],
-    "variable_triggers": [
-      {
-        "condition":"@{len(inputone) > 0}",
-        "mode": "on_condition",
-        "actions": [
-          {
-            "log_id": "focus_one",
-            "typed": {
-              "type": "focus_element",
-              "element_id": "input_two"
-            }
-          }
-        ]
-      },
-      {
-        "condition":"@{len(inputtwo) > 0}",
-        "mode": "on_condition",
-        "actions": [
-          {
-            "log_id": "focus_two",
-            "typed": {
-              "type": "focus_element",
-              "element_id": "input_three"
-            }
-          }
-        ]
-      },
-      {
-        "condition":"@{len(inputthree) > 0}",
-        "mode": "on_condition",
-        "actions": [
-          {
-            "log_id": "focus_three",
-            "typed": {
-              "type": "focus_element",
-              "element_id": "input_four"
-            }
-          }
-        ]
-      },
-      {
-        "condition":"@{len(inputfour) > 0}",
-        "mode": "on_condition",
-        "actions": [
-          {
-            "log_id": "focus_four",
-            "typed": {
-              "type": "focus_element",
-              "element_id": "input_five"
-            }
-          }
-        ]
-      },
-      {
-        "condition":"@{len(inputfive) > 0}",
-        "mode": "on_condition",
-        "actions": [
-          {
-            "log_id": "focus_five",
-            "typed": {
-              "type": "focus_element",
-              "element_id": "input_six"
-            }
-          }
-        ]
-      },
-      {
-        "condition":"@{len(inputsix) == 0}",
-        "mode": "on_condition",
-        "actions": [
-          {
-            "log_id": "focus_six",
-            "typed": {
-              "type": "focus_element",
-              "element_id": "input_five"
-            }
-          }
-        ]
-      },
-      {
-        "condition":"@{len(inputfive) == 0}",
-        "mode": "on_condition",
-        "actions": [
-          {
-            "log_id": "focus_five_1",
-            "typed": {
-              "type": "focus_element",
-              "element_id": "input_four"
-            }
-          }
-        ]
-      },
-      {
-        "condition":"@{len(inputfour) == 0}",
-        "mode": "on_condition",
-        "actions": [
-          {
-            "log_id": "focus_four_1",
-            "typed": {
-              "type": "focus_element",
-              "element_id": "input_three"
-            }
-          }
-        ]
-      },
-      {
-        "condition":"@{len(inputthree) == 0}",
-        "mode": "on_condition",
-        "actions": [
-          {
-            "log_id": "focus_three_1",
-            "typed": {
-              "type": "focus_element",
-              "element_id": "input_two"
-            }
-          }
-        ]
-      },
-      {
-        "condition":"@{len(inputtwo) == 0}",
-        "mode": "on_condition",
-        "actions": [
-          {
-            "log_id": "focus_two_1",
-            "typed": {
-              "type": "focus_element",
-              "element_id": "input_one"
-            }
-          }
-        ]
       }
     ]
   },
-  "templates": {
-    "_template_lottie": {
-      "type": "gif",
-      "scale": "fit",
-      "extensions": [
-        {
-          "id": "lottie",
-          "params": {
-            "$lottie_url": "lottie_url"
-          }
-        }
-      ],
-      "gif_url": "https://empty"
-    },
-    "_template_button": {
-      "type": "text",
-      "text_alignment_horizontal": "center",
-      "text_alignment_vertical": "center",
-      "border": {
-        "$corner_radius": "corners"
-      },
-      "paddings": {
-        "bottom": 24,
-        "left": 28,
-        "right": 28,
-        "top": 22
-      },
-      "width": {
-        "type": "wrap_content"
-      }
-    },
-    "_template_close": {
-      "accessibility": {
-        "description": "Закрыть",
-        "mode": "merge",
-        "type": "button"
-      },
-      "actions": [
-        {
-          "log_id": "close_popup",
-          "url": "div-screen://close"
-        }
-      ],
-      "image_url": "https://yastatic.net/s3/home/div/div_fullscreens/cross2.3.png",
-      "tint_color": "#73000000",
-      "type": "image"
-    },
-    "_template_list_item": {
-      "type": "container",
-      "orientation": "horizontal",
-      "items": [
-        {
-          "type": "image",
-          "image_url": "https://yastatic.net/s3/home/div/div_fullscreens/hyphen.4.png",
-          "$tint_color": "list_color",
-          "width": {
-            "type": "fixed",
-            "value": 28,
-            "unit": 28
-          },
-          "height": {
-            "type": "fixed",
-            "value": 28,
-            "unit": 28
-          },
-          "margins": {
-            "top": 2,
-            "right": 12,
-            "bottom": 2
-          }
-        },
-        {
-          "type": "text",
-          "$text": "list_text",
-          "$text_color": "list_color",
-          "font_size": 24,
-          "line_height": 32,
-          "font_weight": "medium",
-          "width": {
-            "type": "wrap_content",
-            "constrained": true
-          }
-        }
-      ]
-    }
-  }
+  "templates": {}
 }

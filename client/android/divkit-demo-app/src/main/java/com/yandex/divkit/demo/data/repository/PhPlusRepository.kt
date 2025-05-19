@@ -15,12 +15,15 @@ class PhPlusRepository @Inject constructor(
     private val phPlusDBDao: PhPlusDBDao
 
 ) {
-    fun phPlus(request: MutableMap<String,String>) = myPerformGetOperation("phPlus", true) {
-        remoteDataSource.phPlus(request)
+    fun phPlus(phId:String,request: HashMap<String,String>) = myPerformGetOperation("phPlus", true) {
+        remoteDataSource.phPlus(phId,request)
     }
 //
     fun insertItem(phPlusDB:PhPlusDB) {
         this.phPlusDBDao.insert(phPlusDB)
+    }
+    fun deleteItemFromDb(key: String) {
+        this.phPlusDBDao.deleteItemFromDb(key)
     }
     suspend fun insertList(phPlusDBs:List<PhPlusDB>) {
         this.phPlusDBDao.insertList(phPlusDBs)

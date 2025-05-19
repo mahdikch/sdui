@@ -26,6 +26,11 @@
                   "log_id": "set_validation_picture",
                   "url": "div-action://set_variable?name=picture_validation&value=@{taslimi_picture_validation}",
                   "visibility_duration": 0
+                },
+                {
+                  "log_id": "set_date",
+                  "url": "div-action://get_persian_date?variableName=date",
+                  "visibility_duration": 0
                 }
               ],
               "items": [
@@ -37,19 +42,11 @@
                       "items": [
                         {
                           "type": "image",
-                          "image_url": "divkit-asset://refresh-appbar.png",
+                          "image_url": "@{refresh}",
                           "actions": [
                             {
                               "log_id": "update_visibility",
-                              "url": "div-action://set_variable?name=car_info_visibility&value=gone"
-                            },
-                            {
-                              "log_id": "update_visibility",
-                              "url": "div-action://set_variable?name=register_punishment_visibility&value=gone"
-                            },
-                            {
-                              "log_id": "update_visibility",
-                              "url": "div-action://set_variable?name=driver_inquiry_visibility&value=gone"
+                              "url": "div-action://set_variable?name=variable_car_info_visibility&value=gone"
                             },
                             {
                               "log_id": "update_visibility",
@@ -60,12 +57,24 @@
                               "url": "div-action://set_variable?name=parking_visibility&value=gone"
                             },
                             {
-                              "log_id": "update_visibility",
-                              "url": "div-action://set_variable?name=location_visibility&value=gone"
+                              "log_id": "set_patch_patchVehiclePlate",
+                              "url": "div-action://set_patch?patch=patchVehiclePlate&patch_title=منطقه ای شخصی&vehicle_type=car"
                             },
                             {
                               "log_id": "update_visibility",
-                              "url": "div-action://set_variable?name=register_btn_visibility&value=gone"
+                              "url": "div-action://set_variable?name=variable_plateA&value=@{empty}"
+                            },
+                            {
+                              "log_id": "update_visibility",
+                              "url": "div-action://set_variable?name=variable_plateB&value=ب"
+                            },
+                            {
+                              "log_id": "update_visibility",
+                              "url": "div-action://set_variable?name=variable_plateC&value=@{empty}"
+                            },
+                            {
+                              "log_id": "update_visibility",
+                              "url": "div-action://set_variable?name=variable_plateD&value=@{empty}"
                             }
                           ],
                           "width": {
@@ -166,6 +175,10 @@
                                       "url": "div-action://set_variable?name=on_status&value=@{on_status ? 'false' : 'true'}"
                                     },
                                     {
+                                      "log_id": "change_loc",
+                                      "url": "div-action://set_variable?name=on_status&value=@{on_status ? 'false' : 'true'}"
+                                    },
+                                    {
                                       "log_id": "change_on_status",
                                       "url": "div-action://set_variable?name=loc&value=@{on_status ? 'left' : 'right'}"
                                     },
@@ -173,7 +186,6 @@
                                       "log_id": "change_on_color",
                                       "url": "div-action://change_color?name=on_color&value=@{on_status ? '193d8d' : '3e000000'}"
                                     },
-
                                     {
                                       "log_id": "change_variable_inquiry_validation",
                                       "url": "div-action://set_variable?name=variable_inquiry_validation&value=@{on_status ? 'true' : 'false'}"
@@ -198,7 +210,7 @@
                         },
                         {
                           "type": "image",
-                          "image_url": "divkit-asset://arrow-left.png",
+                          "image_url": "@{arrow_left}",
                           "width": {
                             "type": "fixed",
                             "value": 24
@@ -315,7 +327,7 @@
                                 },
                                 {
                                   "log_id": "change_ticket_type",
-                                  "url": "div-action://set_variable?name=ticket_type&value=3"
+                                  "url": "div-action://set_variable?name=ticket_type&value=4"
                                 },
                                 {
                                   "log_id": "update_visibility",
@@ -328,6 +340,26 @@
                                 {
                                   "log_id": "set_validation_picture",
                                   "url": "div-action://set_variable?name=picture_validation&value=@{dobargi_picture_validation}"
+                                },
+                                {
+                                  "log_id": "set_empty_national_code",
+                                  "url": "div-action://set_variable?name=national_code&value=@{empty}"
+                                },
+                                {
+                                  "log_id": "set_gone_variable_driver_info_visibility",
+                                  "url": "div-action://set_variable?name=variable_driver_info_visibility&value=gone"
+                                },
+                                {
+                                  "log_id": "violation1_code",
+                                  "url": "div-action://set_variable?name=violation1_code&value=@{empty}"
+                                },
+                                {
+                                  "log_id": "violation2_code",
+                                  "url": "div-action://set_variable?name=violation2_code&value=@{empty}"
+                                },
+                                {
+                                  "log_id": "violation3_code",
+                                  "url": "div-action://set_variable?name=violation3_code&value=@{empty}"
                                 }
                               ],
                               "background": [
@@ -419,6 +451,34 @@
                                 {
                                   "log_id": "set_validation_picture",
                                   "url": "div-action://set_variable?name=picture_validation&value=@{elsaghi_picture_validation}"
+                                },
+                                {
+                                  "log_id": "set_empty_national_code",
+                                  "url": "div-action://set_variable?name=national_code&value=@{empty}"
+                                },
+                                {
+                                  "log_id": "set_gone_variable_driver_info_visibility",
+                                  "url": "div-action://set_variable?name=variable_driver_info_visibility&value=gone"
+                                },
+                                {
+                                  "log_id": "set_gone_variable_driver_info_visibility",
+                                  "url": "div-action://set_variable?name=variable_plateC_motor&value=@{empty}"
+                                },
+                                {
+                                  "log_id": "set_gone_variable_driver_info_visibility",
+                                  "url": "div-action://set_variable?name=variable_plateD_motor&value=@{empty}"
+                                },
+                                {
+                                  "log_id": "violation1_code",
+                                  "url": "div-action://set_variable?name=violation1_code&value=@{empty}"
+                                },
+                                {
+                                  "log_id": "violation2_code",
+                                  "url": "div-action://set_variable?name=violation2_code&value=@{empty}"
+                                },
+                                {
+                                  "log_id": "violation3_code",
+                                  "url": "div-action://set_variable?name=violation3_code&value=@{empty}"
                                 }
                               ],
                               "background": [
@@ -513,6 +573,18 @@
                                 {
                                   "log_id": "set_validation_picture",
                                   "url": "div-action://set_variable?name=picture_validation&value=@{taslimi_picture_validation}"
+                                },
+                                {
+                                  "log_id": "violation1_code",
+                                  "url": "div-action://set_variable?name=violation1_code&value=@{empty}"
+                                },
+                                {
+                                  "log_id": "violation2_code",
+                                  "url": "div-action://set_variable?name=violation2_code&value=@{empty}"
+                                },
+                                {
+                                  "log_id": "violation3_code",
+                                  "url": "div-action://set_variable?name=violation3_code&value=@{empty}"
                                 }
                               ],
                               "background": [
@@ -588,7 +660,7 @@
                               "items": [
                                 {
                                   "type": "image",
-                                  "image_url": "divkit-asset://arrow-down.png",
+                                  "image_url": "@{arrow_down}",
                                   "height": {
                                     "type": "fixed",
                                     "value": 16
@@ -696,7 +768,7 @@
                               "items": [
                                 {
                                   "type": "image",
-                                  "image_url": "divkit-asset://ir.png",
+                                  "image_url": "@{ir}",
                                   "height": {
                                     "type": "match_parent"
                                   },
@@ -736,7 +808,8 @@
                             {
                               "type": "container",
                               "items": [
-                                {"id": "plateA",
+                                {
+                                  "id": "plateA",
                                   "type": "input",
                                   "text_variable": "variable_plateA",
                                   "hint_text": "@{variable_plateA_hint}",
@@ -963,7 +1036,7 @@
                               "items": [
                                 {
                                   "type": "image",
-                                  "image_url": "divkit-asset://microphone.png",
+                                  "image_url": "@{microphone}",
                                   "height": {
                                     "type": "fixed",
                                     "value": 48
@@ -1012,7 +1085,7 @@
                               "items": [
                                 {
                                   "type": "image",
-                                  "image_url": "divkit-asset://Scan.png",
+                                  "image_url": "@{Scan}",
                                   "height": {
                                     "type": "fixed",
                                     "value": 48
@@ -1076,37 +1149,48 @@
                               "background": [
                                 {
                                   "type": "solid",
-                                  "color": "@{on_status ? '#e8ecf4':'#193d8d'}"                                }
+                                  "color": "@{on_status ? '#e8ecf4':'#193d8d'}"
+                                }
                               ],
                               "actions": [
-                                {"is_enabled": "@{on_status ? false : true}",
-                                  "log_id": "update_visibility",
-                                  "url": "div-action://set_variable?name=car_info_visibility&value=visible"
+                                {
+                                  "log_id": "reset_phid",
+                                  "url": "div-action://reset_phid"
                                 },
-                                {"is_enabled": "@{on_status ? false : true}",
+                                {
+                                  "is_enabled": "@{on_status ? false : true}",
                                   "log_id": "update_visibility",
                                   "url": "div-action://set_variable?name=register_punishment_visibility&value=visible"
                                 },
-                                {"is_enabled": "@{on_status ? false : true}",
+                                {
+                                  "is_enabled": "@{on_status ? false : true}",
                                   "log_id": "update_visibility",
                                   "url": "div-action://set_variable?name=driver_inquiry_visibility&value=@{taslimi ? 'visible' : 'gone'}"
                                 },
-                                {"is_enabled": "@{on_status ? false : true}",
+                                {
+                                  "is_enabled": "@{on_status ? false : true}",
                                   "log_id": "update_visibility",
                                   "url": "div-action://set_variable?name=parking_visibility&value=gone"
                                 },
-                                {"is_enabled": "@{on_status ? false : true}",
+                                {
+                                  "is_enabled": "@{on_status ? false : true}",
                                   "log_id": "update_visibility",
                                   "url": "div-action://set_variable?name=location_visibility&value=visible"
                                 },
-                                {"is_enabled": "@{on_status ? false : true}",
+                                {
+                                  "is_enabled": "@{on_status ? false : true}",
                                   "log_id": "update_visibility",
                                   "url": "div-action://set_variable?name=register_btn_visibility&value=visible"
                                 },
                                 {
-                                  "is_enabled": "@{on_status ? false : true}",
+                                  "is_enabled": "@{!on_status&&car}",
                                   "log_id": "call_service",
-                                  "url": "div-action://call_service?path=inquiryVehicle&ph/token=empty&sysName=@{sysName}&plateA=@{variable_plateA}&plateB=@{variable_plateB}&plateC=@{variable_plateC}&plateD=@{variable_plateD}&typeVehicle=plate&plateType=patchVehiclePlate"
+                                  "url": "div-action://call_service?path=inquiryVehicle&ph/token=empty&sysName=@{sysName}&plateA=@{variable_plateA}&plateB=@{variable_plateB}&plateC=@{variable_plateC}&plateD=@{variable_plateD}&typeVehicle=plate&plateType=@{plateType}"
+                                },
+                                {
+                                  "is_enabled": "@{!on_status && motor }",
+                                  "log_id": "call_service",
+                                  "url": "div-action://call_service?path=inquiryVehicle&ph/token=empty&sysName=@{sysName}&plateC=@{variable_plateC_motor}&plateD=@{variable_plateD_motor}&typeVehicle=plate&plateType=@{plateType}"
                                 }
                               ],
                               "action_animation": {
@@ -1161,22 +1245,7 @@
                           "type": "container",
                           "visibility_actions": [
                             {
-                              "log_id": "set_car_model_from_db",
-                              "url": "div-action://set_variable_from_db?name=car_model_information_vt",
-                              "visibility_duration": 0
-                            },
-                            {
-                              "log_id": "set_color_from_dp",
-                              "url": "div-action://set_variable_from_db?name=car_color_information_vt",
-                              "visibility_duration": 0
-                            },
-                            {
-                              "log_id": "set_total_ticket_from_db",
-                              "url": "div-action://set_variable_from_db?name=car_total_ticket_information_vt",
-                              "visibility_duration": 0
-                            },
-                            {
-                              "log_id": "set_total_ticket_from_db",
+                              "log_id": "set_userName_ticket_from_db",
                               "url": "div-action://set_variable_from_db?name=userName",
                               "visibility_duration": 0
                             },
@@ -1184,9 +1253,14 @@
                               "log_id": "set_imei",
                               "url": "div-action://set_imei?name=imei_code",
                               "visibility_duration": 0
+                            },
+                            {
+                              "log_id": "set_date",
+                              "url": "div-action://get_persian_date?variableName=date",
+                              "visibility_duration": 0
                             }
                           ],
-                          "visibility": "@{car_info_visibility}",
+                          "visibility": "@{variable_car_info_visibility}",
                           "items": [
                             {
                               "type": "text",
@@ -1224,7 +1298,7 @@
                                   "items": [
                                     {
                                       "type": "image",
-                                      "image_url": "divkit-asset://arrow-left-blue.png",
+                                      "image_url": "@{arrow_left_blue}",
                                       "height": {
                                         "type": "fixed",
                                         "value": 12
@@ -1309,15 +1383,14 @@
                                 },
                                 {
                                   "type": "text",
-                                  "text": "@{car_model_information_vt}",
+                                  "text": "@{variable_car_model_information_vt}",
                                   "font_size": 12,
                                   "letter_spacing": 0,
                                   "text_color": "#252424",
                                   "text_alignment_horizontal": "right",
                                   "text_alignment_vertical": "top",
                                   "width": {
-                                    "type": "fixed",
-                                    "value": 5
+                                    "type": "wrap_content"
                                   },
                                   "height": {
                                     "type": "fixed",
@@ -1378,7 +1451,7 @@
                                 },
                                 {
                                   "type": "text",
-                                  "text": "@{car_color_information_vt}",
+                                  "text": "@{variable_car_color_information_vt}",
                                   "font_size": 12,
                                   "letter_spacing": 0,
                                   "text_color": "#252424",
@@ -1454,7 +1527,7 @@
                                       "line_height": 24,
                                       "letter_spacing": 0,
                                       "text_color": "#252424",
-                                      "text_alignment_horizontal": "right",
+                                      "text_alignment_horizontal": "left",
                                       "text_alignment_vertical": "center",
                                       "width": {
                                         "type": "wrap_content"
@@ -1465,7 +1538,7 @@
                                     },
                                     {
                                       "type": "text",
-                                      "text": "@{car_total_ticket_information_vt}",
+                                      "text": "@{variable_car_total_ticket_information_vt}",
                                       "font_size": 14,
                                       "line_height": 24,
                                       "letter_spacing": 0,
@@ -1495,9 +1568,9 @@
                                   "alignment_horizontal": "left",
                                   "alignment_vertical": "center",
                                   "margins": {
-                                    "left": 54,
                                     "top": 16,
-                                    "bottom": 16
+                                    "bottom": 16,
+                                    "left": 12
                                   }
                                 }
                               ],
@@ -1552,7 +1625,7 @@
                                   "items": [
                                     {
                                       "type": "text",
-                                      "text": "@{order_information}",
+                                      "text": "@{variable_order_information}",
                                       "font_size": 14,
                                       "line_height": 24,
                                       "letter_spacing": 0,
@@ -1578,8 +1651,7 @@
                                     "corner_radius": 4
                                   },
                                   "height": {
-                                    "type": "fixed",
-                                    "value": 6
+                                    "type": "wrap_content"
                                   },
                                   "width": {
                                     "type": "wrap_content"
@@ -1671,7 +1743,7 @@
                                       "items": [
                                         {
                                           "type": "image",
-                                          "image_url": "divkit-asset://arrow-down.png",
+                                          "image_url": "@{arrow_down}",
                                           "height": {
                                             "type": "fixed",
                                             "value": 16
@@ -1778,8 +1850,9 @@
                               },
                               "actions": [
                                 {
+                                  "is_enabled": "@{variable_usage_selectable}",
                                   "log_id": "show_bottom_sheet_list",
-                                  "url": "div-action://bottom_sheet_list?id=usage&varName=usage&title=کاربری&violation1=@{violation1_code}&violation2=@{violation2_code}&violation3=@{violation3_code}&plate=@{plate_code}&system=@{variable_system_code}"
+                                  "url": "div-action://bottom_sheet_list?id=usage&varName=usage&title=کاربری&violation1=@{violation1_code}&violation2=@{violation2_code}&violation3=@{violation3_code}&plate=@{plate_code}&system=@{variable_system_code}&title_var=variable_usage_title&code_var=variable_usage_code"
                                 }
                               ],
                               "orientation": "vertical",
@@ -1797,7 +1870,7 @@
                                       "items": [
                                         {
                                           "type": "image",
-                                          "image_url": "divkit-asset://arrow-down.png",
+                                          "image_url": "@{arrow_down}",
                                           "height": {
                                             "type": "fixed",
                                             "value": 16
@@ -1903,8 +1976,9 @@
                               },
                               "actions": [
                                 {
+                                  "is_enabled": "@{variable_system_selectable}",
                                   "log_id": "show_bottom_sheet_list",
-                                  "url": "div-action://bottom_sheet_list?id=system&varName=system&title=برند و تیپ&usage=@{variable_usage_code}"
+                                  "url": "div-action://bottom_sheet_list?id=system&varName=system&title=برند و تیپ&usage=@{variable_usage_code}&title_var=variable_system_title&code_var=variable_system_code"
                                 }
                               ],
                               "orientation": "vertical",
@@ -1915,8 +1989,9 @@
                               "type": "container",
                               "actions": [
                                 {
+                                  "is_enabled": "@{variable_color_selectable}",
                                   "log_id": "show_bottom_sheet_list",
-                                  "url": "div-action://bottom_sheet_list?id=color&varName=color&title=رنگ"
+                                  "url": "div-action://bottom_sheet_list?id=color&varName=color&title=رنگ&title_var=variable_color_title&code_var=variable_color_code"
                                 }
                               ],
                               "height": {
@@ -1983,7 +2058,7 @@
                                       "items": [
                                         {
                                           "type": "image",
-                                          "image_url": "divkit-asset://arrow-down.png",
+                                          "image_url": "@{arrow_down}",
                                           "height": {
                                             "type": "fixed",
                                             "value": 16
@@ -2101,7 +2176,8 @@
                                       },
                                       "height": {
                                         "type": "wrap_content"
-                                      }
+                                      },
+                                      "keyboard_type": "single_line_text"
                                     }
                                   ]
                                 }
@@ -2197,7 +2273,7 @@
                                   "items": [
                                     {
                                       "type": "image",
-                                      "image_url": "divkit-asset://location.png",
+                                      "image_url": "@{location}",
                                       "height": {
                                         "type": "fixed",
                                         "value": 32
@@ -2315,7 +2391,9 @@
                                       },
                                       "height": {
                                         "type": "wrap_content"
-                                      }
+                                      },
+                                      "max_visible_lines": 1,
+                                      "keyboard_type": "single_line_text"
                                     }
                                   ],
                                   "height": {
@@ -2326,10 +2404,7 @@
                                   },
                                   "orientation": "horizontal",
                                   "content_alignment_horizontal": "right",
-                                  "content_alignment_vertical": "center",
-                                  "margins": {
-                                    "left": 120
-                                  }
+                                  "content_alignment_vertical": "center"
                                 }
                               ],
                               "background": [
@@ -2443,7 +2518,7 @@
                                   "items": [
                                     {
                                       "type": "image",
-                                      "image_url": "divkit-asset://location.png",
+                                      "image_url": "@{location}",
                                       "height": {
                                         "type": "fixed",
                                         "value": 32
@@ -2528,14 +2603,13 @@
                               "items": [
                                 {
                                   "type": "container",
-
                                   "items": [
                                     {
                                       "type": "input",
                                       "text_variable": "time",
-
                                       "hint_text": "ساعت",
                                       "font_size": 14,
+                                      "is_enabled": false,
                                       "line_height": 32,
                                       "letter_spacing": 0,
                                       "text_color": "#a3a3a3",
@@ -2544,6 +2618,12 @@
                                       "width": {
                                         "type": "match_parent"
                                       },
+                                      "actions": [
+                                        {
+                                          "log_id": "show_bottom_sheet_list",
+                                          "url": "div-action://show_time_picker?variableName=time"
+                                        }
+                                      ],
                                       "height": {
                                         "type": "wrap_content"
                                       }
@@ -2674,7 +2754,7 @@
                                   "items": [
                                     {
                                       "type": "image",
-                                      "image_url": "divkit-asset://location.png",
+                                      "image_url": "@{person}",
                                       "height": {
                                         "type": "fixed",
                                         "value": 32
@@ -2769,7 +2849,8 @@
                                       },
                                       "height": {
                                         "type": "wrap_content"
-                                      }
+                                      },
+                                      "keyboard_type": "number"
                                     }
                                   ],
                                   "height": {
@@ -2959,7 +3040,7 @@
                                       "items": [
                                         {
                                           "type": "image",
-                                          "image_url": "divkit-asset://person.png",
+                                          "image_url": "@{person}",
                                           "height": {
                                             "type": "fixed",
                                             "value": 32
@@ -3111,7 +3192,7 @@
                                   "items": [
                                     {
                                       "type": "image",
-                                      "image_url": "divkit-asset://ducument.png",
+                                      "image_url": "@{ducument}",
                                       "height": {
                                         "type": "fixed",
                                         "value": 32
@@ -3198,7 +3279,6 @@
                                       "line_height": 24,
                                       "letter_spacing": 0,
                                       "text_color": "#4260a2",
-                                      "text_alignment_horizontal": "left",
                                       "text_alignment_vertical": "center",
                                       "width": {
                                         "type": "fixed",
@@ -3207,7 +3287,7 @@
                                       "actions": [
                                         {
                                           "log_id": "show_bottom_sheet_list",
-                                          "url": "div-action://bottom_sheet_list?id=violation&varName=violation1&title=تخلف&violation2=@{violation2_code}&violation3=@{violation3_code}&usage=@{variable_usage_code}"
+                                          "url": "div-action://bottom_sheet_list?id=violation&varName=violation1&title=تخلف&violation2=@{violation2_code}&violation3=@{violation3_code}&usage=@{variable_usage_code}&delivery=@{ticket_type}&title_var=violation1_title&code_var=violation1_code"
                                         }
                                       ],
                                       "height": {
@@ -3225,6 +3305,7 @@
                                           "keyboard_type": "number",
                                           "font_size": 14,
                                           "line_height": 32,
+                                          "max_length": 4,
                                           "letter_spacing": 0,
                                           "text_color": "#a3a3a3",
                                           "text_alignment_horizontal": "right",
@@ -3314,7 +3395,7 @@
                                       "actions": [
                                         {
                                           "log_id": "show_bottom_sheet_list",
-                                          "url": "div-action://bottom_sheet_list?id=violation&varName=violation2&title=تخلف&violation1=@{violation1_code}&violation3=@{violation3_code}&usage=@{variable_usage_code}"
+                                          "url": "div-action://bottom_sheet_list?id=violation&varName=violation2&title=تخلف&violation1=@{violation1_code}&violation3=@{violation3_code}&usage=@{variable_usage_code}&delivery=@{ticket_type}&title_var=violation2_title&code_var=violation2_code"
                                         }
                                       ],
                                       "height": {
@@ -3332,6 +3413,7 @@
                                           "keyboard_type": "number",
                                           "font_size": 14,
                                           "line_height": 32,
+                                          "max_length": 4,
                                           "letter_spacing": 0,
                                           "text_color": "#a3a3a3",
                                           "text_alignment_horizontal": "right",
@@ -3424,7 +3506,7 @@
                                       "actions": [
                                         {
                                           "log_id": "show_bottom_sheet_list",
-                                          "url": "div-action://bottom_sheet_list?id=violation&varName=violation3&title=تخلف&violation1=@{violation1_code}&violation2=@{violation2_code}&usage=@{variable_usage_code}"
+                                          "url": "div-action://bottom_sheet_list?id=violation&varName=violation3&title=تخلف&violation1=@{violation1_code}&violation2=@{violation2_code}&usage=@{variable_usage_code}&delivery=@{ticket_type}&title_var=violation3_title&code_var=violation3_code"
                                         }
                                       ],
                                       "height": {
@@ -3442,6 +3524,7 @@
                                           "keyboard_type": "number",
                                           "font_size": 14,
                                           "line_height": 32,
+                                          "max_length": 4,
                                           "letter_spacing": 0,
                                           "text_color": "#a3a3a3",
                                           "text_alignment_horizontal": "right",
@@ -3541,8 +3624,7 @@
                         "stroke": {
                           "color": "#c8d0e4",
                           "width": 1
-                        },
-                        "corner_radius": 4
+                        }
                       },
                       "height": {
                         "type": "fixed",
@@ -3725,7 +3807,7 @@
                                       "items": [
                                         {
                                           "type": "image",
-                                          "image_url": "divkit-asset://person.png",
+                                          "image_url": "@{person}",
                                           "height": {
                                             "type": "fixed",
                                             "value": 32
@@ -3809,6 +3891,10 @@
                                   "type": "text",
                                   "actions": [
                                     {
+                                      "log_id": "reset_phid",
+                                      "url": "div-action://reset_phid"
+                                    },
+                                    {
                                       "log_id": "open_camera",
                                       "url": "div-action://open_camera?type=person"
                                     }
@@ -3849,7 +3935,8 @@
                                   "alignment_vertical": "center",
                                   "margins": {
                                     "left": 64
-                                  }
+                                  },
+                                  "keyboard_type": "number"
                                 }
                               ],
                               "background": [
@@ -3909,6 +3996,10 @@
                             "interpolator": "ease_in_out"
                           },
                           "actions": [
+                            {
+                              "log_id": "reset_phid",
+                              "url": "div-action://reset_phid"
+                            },
                             {
                               "is_enabled": "@{on_status ? false : true}",
                               "log_id": "call_service",
@@ -5021,18 +5112,19 @@
                           "url": "div-action://set_variable_from_db?name=policeCode"
                         },
                         {
-                          "log_id": "set_cityPolice_code",
-                          "url": "div-action://set_variable_from_db?name=cityPolice_code"
+                          "log_id": "call_service",
+                          "is_enabled": "@{online_validation&&motor}",
+                          "url": "div-action://call_service?path=receiveTickets&ph/token=empty&userName=@{userName}&ticket_type=@{ticket_type}&licenseDate=@{variable_driver_license_expire_vt}&licenseCityId=@{variable_driver_license_city_vt}&licenseTypeId=@{variable_driver_license_type_vt}&national_code=@{national_code}&usage_code=@{variable_usage_code}&color_code=@{variable_color_code}&system_code=@{variable_system_code}&typeVehicle=tickets&sysName=@{sysName}&police_code=@{policeCode}&address=@{address}&iranian=@{iranian}&plateC=@{variable_plateC_motor}&plateD=@{variable_plateD_motor}&plateType=@{plateType}&car_model=@{variable_car_model_information_vt}&plate_description=@{plate_description}&countPeople=@{number_of_passengers}&name=@{variable_driver_name_vt}&license_number=@{variable_driver_license_number_vt}&violationType1=@{violation1_code}&violationType2=@{violation2_code}&violationType3=@{violation3_code}&timePda=@{time}&datePda=@{date}&city_code=@{cityPolice_code}&imei_code=@{imei_code}&isInternal=@{isInternal}&isOnline=@{isOnline}&car_picture=@{variable_car_picture}"
                         },
                         {
                           "log_id": "call_service",
-                          "is_enabled": "@{online_validation}",
-                          "url": "div-action://call_service?path=receiveTickets&ph/token=empty&userName=@{userName}&ticket_type=@{ticket_type}&licenseDate=@{variable_driver_license_expire_vt}&licenseCityId=@{variable_driver_license_city_vt}&licenseTypeId=@{variable_driver_license_type_vt}&national_code=@{national_code}&usage_code=@{variable_usage_code}&color_code=@{variable_color_code}&system_code=@{variable_system_code}&typeVehicle=tickets&sysName=@{sysName}&police_code=@{policeCode}&address=@{address}&iranian=@{iranian}&plateA=@{variable_plateA}&plateB=@{variable_plateB}&plateC=@{variable_plateC}&plateD=@{variable_plateD}&plateType=patchVehiclePlate&car_model=@{car_model_information_vt}&plate_description=@{plate_description}&countPeople=@{number_of_passengers}&name=@{variable_driver_name_vt}&license_number=@{variable_driver_license_number_vt}&violationType1=@{violation1_code}&violationType2=@{violation2_code}&violationType3=@{violation3_code}&timePda=@{time}&datePda=@{date}&city_code=@{cityPolice_code}&imei_code=@{imei_code}&isInternal=@{isInternal}&isOnline=@{isOnline}"
+                          "is_enabled": "@{online_validation&&car}",
+                          "url": "div-action://call_service?path=receiveTickets&ph/token=empty&userName=@{userName}&ticket_type=@{ticket_type}&licenseDate=@{variable_driver_license_expire_vt}&licenseCityId=@{variable_driver_license_city_vt}&licenseTypeId=@{variable_driver_license_type_vt}&national_code=@{national_code}&usage_code=@{variable_usage_code}&color_code=@{variable_color_code}&system_code=@{variable_system_code}&typeVehicle=tickets&sysName=@{sysName}&police_code=@{policeCode}&address=@{address}&iranian=@{iranian}&plateA=@{variable_plateA}&plateB=@{variable_plateB}&plateC=@{variable_plateC}&plateD=@{variable_plateD}&plateType=@{plateType}&car_model=@{variable_car_model_information_vt}&plate_description=@{plate_description}&countPeople=@{number_of_passengers}&name=@{variable_driver_name_vt}&license_number=@{variable_driver_license_number_vt}&violationType1=@{violation1_code}&violationType2=@{violation2_code}&violationType3=@{violation3_code}&timePda=@{time}&datePda=@{date}&city_code=@{cityPolice_code}&imei_code=@{imei_code}&isInternal=@{isInternal}&isOnline=@{isOnline}&car_picture=@{variable_car_picture}"
                         },
                         {
                           "log_id": "save_offline",
                           "is_enabled": "@{offline_validation}",
-                          "url": "div-action://set_object_to_db?ticket_type=@{ticket_type}&national_code=@{national_code}&usage_code=@{variable_usage_code}&color_code=@{variable_color_code}&system_code=@{variable_system_code}&typeVehicle=tickets&sysName=@{sysName}&police_code=@{policeCode}&address=@{address}&iranian=@{iranian}&plateA=@{variable_plateA}&plateB=@{variable_plateB}&plateC=@{variable_plateC}&plateD=@{variable_plateD}&plateType=patchVehiclePlate&car_model=@{car_model_information_vt}&plate_description=@{plate_description}&countPeople=@{number_of_passengers}&name=@{variable_driver_name_vt}&license_number=@{variable_driver_license_number_vt}&violationType1=@{violation1_code}&violationType1_title=@{violation1_title}&violationType2=@{violation2_code}&violationType2_title=@{violation2_title}&violationType3=@{violation3_code}&violationType3_title=@{violation3_title}&timePda=@{time}&datePda=@{date}&city_code=@{cityPolice_code}&isInternal=@{isInternal}&isOnline=@{isOnline}&variable_system_title=@{variable_system_title}&variable_color_title=@{variable_color_title}&variable_usage_title=@{variable_usage_title}"
+                          "url": "div-action://set_object_to_db?ticket_type=@{ticket_type}&national_code=@{national_code}&usage_code=@{variable_usage_code}&color_code=@{variable_color_code}&system_code=@{variable_system_code}&typeVehicle=tickets&sysName=@{sysName}&police_code=@{policeCode}&address=@{address}&iranian=@{iranian}&plateA=@{variable_plateA}&plateB=@{variable_plateB}&plateC=@{variable_plateC}&plateD=@{variable_plateD}&plateType=@{plateType}&car_model=@{variable_car_model_information_vt}&plate_description=@{plate_description}&countPeople=@{number_of_passengers}&name=@{variable_driver_name_vt}&license_number=@{variable_driver_license_number_vt}&violationType1=@{violation1_code}&violationType1_title=@{violation1_title}&violationType2=@{violation2_code}&violationType2_title=@{violation2_title}&violationType3=@{violation3_code}&violationType3_title=@{violation3_title}&timePda=@{time}&datePda=@{date}&city_code=@{cityPolice_code}&isInternal=@{isInternal}&isOnline=@{isOnline}&variable_system_title=@{variable_system_title}&variable_color_title=@{variable_color_title}&variable_usage_title=@{variable_usage_title}&car_picture=@{variable_car_picture"
                         }
                       ],
                       "items": [
@@ -5141,7 +5233,7 @@
       },
       {
         "type": "string",
-        "name": "car_info_visibility",
+        "name": "variable_car_info_visibility",
         "value": "gone"
       },
       {
@@ -5153,6 +5245,11 @@
         "type": "string",
         "name": "location_visibility",
         "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "location",
+        "value": "divkit-asset://location.png"
       },
       {
         "type": "string",
@@ -5241,6 +5338,16 @@
       },
       {
         "type": "string",
+        "name": "variable_plateC_motor",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_plateD_motor",
+        "value": ""
+      },
+      {
+        "type": "string",
         "name": "variable_plateE",
         "value": ""
       },
@@ -5248,10 +5355,21 @@
         "type": "string",
         "name": "variable_plateF",
         "value": ""
-      }, {
+      },
+      {
         "type": "string",
         "name": "variable_plateA_hint",
         "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateA_motor_hint",
+        "value": "۱۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateC_motor_hint",
+        "value": "۱۱۱۱۱"
       },
       {
         "type": "string",
@@ -5300,7 +5418,7 @@
       },
       {
         "type": "string",
-        "name": "car_model_information_vt",
+        "name": "variable_car_model_information_vt",
         "value": "-"
       },
       {
@@ -5320,7 +5438,7 @@
       },
       {
         "type": "string",
-        "name": "car_color_information_vt",
+        "name": "variable_car_color_information_vt",
         "value": "-"
       },
       {
@@ -5335,7 +5453,7 @@
       },
       {
         "type": "string",
-        "name": "car_total_ticket_information_vt",
+        "name": "variable_car_total_ticket_information_vt",
         "value": "-"
       },
       {
@@ -5345,8 +5463,8 @@
       },
       {
         "type": "string",
-        "name": "order_information",
-        "value": "توقیف - بد پوششی"
+        "name": "variable_order_information",
+        "value": "-"
       },
       {
         "type": "string",
@@ -5447,6 +5565,11 @@
         "type": "string",
         "name": "text___42",
         "value": "وضعیت گواهی نامه"
+      },
+      {
+        "type": "string",
+        "name": "ir",
+        "value": "divkit-asset://ir.png"
       },
       {
         "type": "string",
@@ -5557,6 +5680,16 @@
         "type": "string",
         "name": "taslimi_color",
         "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "arrow_left",
+        "value": "divkit-asset://arrow-left.png"
+      },
+      {
+        "type": "string",
+        "name": "arrow_left_blue",
+        "value": "divkit-asset://arrow-left-blue.png"
       },
       {
         "type": "string",
@@ -5872,7 +6005,8 @@
         "type": "boolean",
         "name": "is_valid",
         "value": false
-      },{
+      },
+      {
         "type": "boolean",
         "name": "is_valid_offline",
         "value": false
@@ -5896,6 +6030,11 @@
         "type": "string",
         "name": "taslimi_validation",
         "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "arrow_down",
+        "value": "divkit-asset://arrow-down.png"
       },
       {
         "type": "string",
@@ -5939,6 +6078,11 @@
       },
       {
         "type": "string",
+        "name": "person",
+        "value": "divkit-asset://person.png"
+      },
+      {
+        "type": "string",
         "name": "userName",
         "value": "-"
       },
@@ -5946,6 +6090,81 @@
         "type": "string",
         "name": "imei_code",
         "value": "-"
+      },
+      {
+        "type": "boolean",
+        "name": "variable_usage_selectable",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "variable_system_selectable",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "variable_color_selectable",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "motor",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "car",
+        "value": true
+      },
+      {
+        "type": "string",
+        "name": "plate2_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate3_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate4_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate_text_color",
+        "value": "#4F4F4F"
+      },
+      {
+        "type": "string",
+        "name": "vehicle_type",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "plateType",
+        "value": "patchVehiclePlate"
+      },
+      {
+        "type": "string",
+        "name": "ducument",
+        "value": "divkit-asset://ducument.png"
+      },
+      {
+        "type": "string",
+        "name": "refresh",
+        "value": "divkit-asset://refresh-appbar.png"
+      },
+      {
+        "type": "string",
+        "name": "microphone",
+        "value": "divkit-asset://microphone.png"
+      },
+      {
+        "type": "string",
+        "name": "Scan",
+        "value": "divkit-asset://Scan.png"
       }
     ],
     "variable_triggers": [
@@ -5988,7 +6207,8 @@
             "url": "div-action://set_variable?name=is_valid&value=false"
           }
         ]
-      },{
+      },
+      {
         "condition": "@{  variable_usage_title!=empty && variable_system_title!=empty && variable_color_title!=empty && address!=empty && time!=empty && violation_validation=='true'}",
         "mode": "on_condition",
         "actions": [
@@ -6229,7 +6449,35 @@
         ]
       },
       {
-        "condition":"@{len(variable_plateA) > 1}",
+        "condition": "@{vehicle_type =='car' }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "car change",
+            "url": "div-action://set_variable?name=car&value=true"
+          },
+          {
+            "log_id": "motor change",
+            "url": "div-action://set_variable?name=motor&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{vehicle_type =='motor' }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "car change",
+            "url": "div-action://set_variable?name=motor&value=true"
+          },
+          {
+            "log_id": "motor change",
+            "url": "div-action://set_variable?name=car&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{len(variable_plateA) > 1}",
         "mode": "on_condition",
         "actions": [
           {
@@ -6242,7 +6490,20 @@
         ]
       },
       {
-        "condition":"@{len(variable_plateC) > 2}",
+        "condition": "@{len(variable_plateC_motor) > 2}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "focus_one",
+            "typed": {
+              "type": "focus_element",
+              "element_id": "plateD_motor"
+            }
+          }
+        ]
+      },
+      {
+        "condition": "@{len(variable_plateC) > 2}",
         "mode": "on_condition",
         "actions": [
           {
@@ -6255,7 +6516,7 @@
         ]
       },
       {
-        "condition":"@{len(variable_plateD) == 0}",
+        "condition": "@{len(variable_plateD) == 0}",
         "mode": "on_condition",
         "actions": [
           {
@@ -6268,7 +6529,20 @@
         ]
       },
       {
-        "condition":"@{len(variable_plateC) == 0}",
+        "condition": "@{len(variable_plateD_motor) == 0}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "focus_six",
+            "typed": {
+              "type": "focus_element",
+              "element_id": "plateC_motor"
+            }
+          }
+        ]
+      },
+      {
+        "condition": "@{len(variable_plateC) == 0}",
         "mode": "on_condition",
         "actions": [
           {
