@@ -180,6 +180,14 @@ class BottomSheetSpinner(
                     }
 
                 }
+                if (constraint.variableName == "city.res") {
+                    if (map.contains("city")) {
+                        if (!constraint.allowedList.contains(map.get("city"))) {
+                            arrayList.remove(item)
+                        }
+                    }
+
+                }
 
             }
         }

@@ -58,14 +58,14 @@ class CircularProgressView @JvmOverloads constructor(
         val textHeight = fontMetrics.descent - fontMetrics.ascent
 
         // فاصله دلخواه بین خط و متن
-        val textLinePadding = 20f
+        val textLinePadding = 10f
 
         // نوشتن عدد بالا و پایین با دقت
         val topText = toPersianNumber(current.toString())
         val bottomText = toPersianNumber(total.toString())
 
         // متن بالایی بالاتر از خط با در نظر گرفتن ارتفاع خودش
-        canvas.drawText(topText, centerX, centerY - textLinePadding - textHeight+30 / 2, textPaint)
+        canvas.drawText(topText, centerX, centerY - textLinePadding - textHeight+70 / 2, textPaint)
 
         // متن پایینی پایین‌تر از خط با در نظر گرفتن ارتفاع خودش
         canvas.drawText(bottomText, centerX, centerY + textLinePadding + textHeight-20 / 2, textPaint)

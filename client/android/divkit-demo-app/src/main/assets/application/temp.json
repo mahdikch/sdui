@@ -199,7 +199,7 @@
                         {
                           "type": "custom",
                           "custom_type": "circular_progress",
-                          "custom_props": {},
+                          "custom_props": {"current": 5,"total": 14,"textSize":32},
                           "background": [
                             {
                               "type": "solid",

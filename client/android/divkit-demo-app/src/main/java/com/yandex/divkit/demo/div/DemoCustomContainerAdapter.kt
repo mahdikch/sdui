@@ -50,6 +50,7 @@ class DemoCustomContainerAdapter(
     private var lo = lo
     private var mehdiViewModel = mehdiViewModel
     private var current: Int = 0
+    private var currentTest: String = ""
     private var total: Int = 0
     private var innerPercent: Int = 0
     private var outerPercent: Int = 0
@@ -83,7 +84,8 @@ class DemoCustomContainerAdapter(
         path: DivStatePath
     ): View {
         if (div.customType == "circular_progress") {
-            current = div.customProps?.get("current") as Int
+//            current = div.customProps?.get("current") as Int
+            currentTest = div.customProps?.get("$"+"current") as String
             total = div.customProps?.get("total") as Int
             textSize = div.customProps?.get("textSize") as Int
         }
