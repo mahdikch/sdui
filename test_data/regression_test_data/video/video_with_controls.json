@@ -24,7 +24,8 @@
     "states": [
       {
         "state_id": 0,
-        "div": {
+        "div":
+        {
           "type": "container",
           "orientation": "vertical",
           "items": [
@@ -35,7 +36,7 @@
               "video_sources": [
                 {
                   "type": "video_source",
-                  "url": "https://yastatic.net/s3/home/divkit/bears.mp4",
+                  "url": "http://172.19.83.21:7001/PoliceHamrah/Phplus/icon/VID_20250413_102226_436(1).mp4",
                   "mime_type": "video/mp4"
                 }
               ],
@@ -130,7 +131,15 @@
               "content_alignment_horizontal": "center",
               "items": [
                 {
-                  "type": "control_button",
+                  "type": "image",
+                  "aspect": {
+                    "ratio": 1
+                  },
+                  "scale": "fit",
+                  "width": {
+                    "type": "fixed",
+                    "value": 44
+                  },
                   "image_url": "https://yastatic.net/s3/home/divkit/rewind_button.png",
                   "margins": {
                     "right": 20
@@ -143,7 +152,15 @@
                   ]
                 },
                 {
-                  "type": "control_button",
+                  "type": "image",
+                  "aspect": {
+                    "ratio": 1
+                  },
+                  "scale": "fit",
+                  "width": {
+                    "type": "fixed",
+                    "value": 44
+                  },
                   "image_url": "https://yastatic.net/s3/home/divkit/play_button.png",
                   "margins": {
                     "right": 16
@@ -160,7 +177,16 @@
                   ]
                 },
                 {
-                  "type": "control_button",
+
+                  "type": "image",
+                  "aspect": {
+                    "ratio": 1
+                  },
+                  "scale": "fit",
+                  "width": {
+                    "type": "fixed",
+                    "value": 44
+                  },
                   "image_url": "https://yastatic.net/s3/home/divkit/pause_button.png",
                   "paddings": {
                     "top": 3,

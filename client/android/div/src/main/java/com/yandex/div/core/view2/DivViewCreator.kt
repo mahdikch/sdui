@@ -21,6 +21,7 @@ import com.yandex.div.core.view2.divs.widgets.DivPagerView
 import com.yandex.div.core.view2.divs.widgets.DivRecyclerView
 import com.yandex.div.core.view2.divs.widgets.DivSelectView
 import com.yandex.div.core.view2.divs.widgets.DivSeparatorView
+import com.yandex.div.core.view2.divs.widgets.DivSeparatorMehdiView
 import com.yandex.div.core.view2.divs.widgets.DivSliderView
 import com.yandex.div.core.view2.divs.widgets.DivStateLayout
 import com.yandex.div.core.view2.divs.widgets.DivSwitchView
@@ -121,6 +122,9 @@ internal class DivViewCreator @Inject constructor(
     override fun visit(data: Div.Separator, resolver: ExpressionResolver): View {
         return DivSeparatorView(context)
     }
+//    override fun visit(data: Div.SeparatorMehdi, resolver: ExpressionResolver): View {
+//        return DivSeparatorMehdiView(context)
+//    }
 
     override fun visit(data: Div.Container, resolver: ExpressionResolver): View {
         val view = defaultVisit(data, resolver) as ViewGroup
@@ -202,6 +206,7 @@ internal class DivViewCreator @Inject constructor(
                 is Div.Text -> TAG_TEXT
                 is Div.Video -> TAG_VIDEO
                 is Div.Separator -> ""
+//                is Div.SeparatorMehdi -> ""
             }
     }
 }

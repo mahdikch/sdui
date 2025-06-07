@@ -182,7 +182,15 @@ class BottomSheetSpinner(
                 }
                 if (constraint.variableName == "city.res") {
                     if (map.contains("city")) {
-                        if (!constraint.allowedList.contains(map.get("city"))) {
+                        if (constraint.disallowedList.contains(map.get("city"))) {
+                            arrayList.remove(item)
+                        }
+                    }
+
+                }
+                if (constraint.variableName == "province.res") {
+                    if (map.contains("province")) {
+                        if (constraint.disallowedList.contains(map.get("province"))) {
                             arrayList.remove(item)
                         }
                     }

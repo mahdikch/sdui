@@ -19,6 +19,7 @@ import com.yandex.div.core.view2.divs.DivIndicatorBinder
 import com.yandex.div.core.view2.divs.DivInputBinder
 import com.yandex.div.core.view2.divs.DivSelectBinder
 import com.yandex.div.core.view2.divs.DivSeparatorBinder
+import com.yandex.div.core.view2.divs.DivSeparatorMehdiBinder
 import com.yandex.div.core.view2.divs.DivSliderBinder
 import com.yandex.div.core.view2.divs.DivStateBinder
 import com.yandex.div.core.view2.divs.DivSwitchBinder
@@ -40,6 +41,7 @@ import com.yandex.div.core.view2.divs.widgets.DivPagerIndicatorView
 import com.yandex.div.core.view2.divs.widgets.DivPagerView
 import com.yandex.div.core.view2.divs.widgets.DivRecyclerView
 import com.yandex.div.core.view2.divs.widgets.DivSelectView
+import com.yandex.div.core.view2.divs.widgets.DivSeparatorMehdiView
 import com.yandex.div.core.view2.divs.widgets.DivSeparatorView
 import com.yandex.div.core.view2.divs.widgets.DivSliderView
 import com.yandex.div.core.view2.divs.widgets.DivStateLayout
@@ -60,6 +62,7 @@ import com.yandex.div2.DivInput
 import com.yandex.div2.DivPager
 import com.yandex.div2.DivSelect
 import com.yandex.div2.DivSeparator
+//import com.yandex.div2.DivSeparatorMehdi
 import com.yandex.div2.DivSlider
 import com.yandex.div2.DivState
 import com.yandex.div2.DivSwitch
@@ -75,6 +78,7 @@ internal class DivBinder @Inject constructor(
     private val textBinder: DivTextBinder,
     private val containerBinder: DivContainerBinder,
     private val separatorBinder: DivSeparatorBinder,
+    private val separatorMehdiBinder: DivSeparatorMehdiBinder,
     private val imageBinder: DivImageBinder,
     private val gifImageBinder: DivGifImageBinder,
     private val gridBinder: DivGridBinder,
@@ -117,6 +121,7 @@ internal class DivBinder @Inject constructor(
             is Div.Image -> bindImage(context, view, div.value)
             is Div.GifImage -> bindGifImage(context, view, div.value)
             is Div.Separator -> bindSeparator(context, view, div.value)
+//            is Div.SeparatorMehdi -> bindSeparatorMehdi(context, view, div.value)
             is Div.Container -> bindContainer(context, view, div.value, path)
             is Div.Grid -> bindGrid(context, view, div.value, path)
             is Div.Gallery -> bindGallery(context, view, div.value, path)
@@ -158,6 +163,9 @@ internal class DivBinder @Inject constructor(
     private fun bindSeparator(context: BindingContext, view: View, data: DivSeparator) {
         separatorBinder.bindView(context, view as DivSeparatorView, data)
     }
+//    private fun bindSeparatorMehdi(context: BindingContext, view: View, data: DivSeparatorMehdi) {
+//        separatorMehdiBinder.bindView(context, view as DivSeparatorMehdiView, data)
+//    }
 
     private fun bindContainer(context: BindingContext, view: View, data: DivContainer, path: DivStatePath) {
         containerBinder.bindView(context, view as ViewGroup, data, path)
@@ -220,6 +228,7 @@ internal class DivBinder @Inject constructor(
         is Div.Image -> (view as DivImageView).setDataWithoutBinding(context, div.value)
         is Div.GifImage -> (view as DivGifImageView).setDataWithoutBinding(context, div.value)
         is Div.Separator -> (view as DivSeparatorView).setDataWithoutBinding(context, div.value)
+//        is Div.SeparatorMehdi -> (view as DivSeparatorMehdiView).setDataWithoutBinding(context, div.value)
         is Div.Container -> setContainerData(context, view, div.value)
         is Div.Grid -> setGridData(context, view, div.value)
         is Div.Gallery -> (view as DivRecyclerView).setDataWithoutBinding(context, div.value)

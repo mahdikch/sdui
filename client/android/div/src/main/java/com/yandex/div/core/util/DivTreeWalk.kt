@@ -166,6 +166,7 @@ private fun Div.getItems(resolver: ExpressionResolver): List<DivItemBuilderResul
         is Div.Image -> emptyList()
         is Div.GifImage -> emptyList()
         is Div.Separator -> emptyList()
+//        is Div.SeparatorMehdi -> emptyList()
         is Div.Indicator -> emptyList()
         is Div.Slider -> emptyList()
         is Div.Input -> emptyList()

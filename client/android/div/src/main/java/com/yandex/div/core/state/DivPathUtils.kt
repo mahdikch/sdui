@@ -119,6 +119,7 @@ internal object DivPathUtils {
             is Div.GifImage -> null
             is Div.Indicator -> null
             is Div.Separator -> null
+//            is Div.SeparatorMehdi -> null
             is Div.Select -> null
             is Div.Video -> null
             is Div.Switch -> null

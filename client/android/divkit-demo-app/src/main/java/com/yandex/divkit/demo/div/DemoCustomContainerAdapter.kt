@@ -57,6 +57,7 @@ class DemoCustomContainerAdapter(
     private var centerPercent: Int = 0
     private var seconds: Int = 0
     private var textSize: Int = 0
+    private var counter: Int = 0
     private var timerButtonNext: String = ""
     private var systemForOffline: String = ""
     private lateinit var sharePref: SharePref
@@ -84,8 +85,9 @@ class DemoCustomContainerAdapter(
         path: DivStatePath
     ): View {
         if (div.customType == "circular_progress") {
-//            current = div.customProps?.get("current") as Int
-            currentTest = div.customProps?.get("$"+"current") as String
+            counter++
+            current = div.customProps?.get("current") as Int
+//            currentTest = div.customProps?.get("$"+"current") as String
             total = div.customProps?.get("total") as Int
             textSize = div.customProps?.get("textSize") as Int
         }
@@ -97,6 +99,7 @@ class DemoCustomContainerAdapter(
         if (div.customType == "timer_button") {
             seconds = div.customProps?.get("seconds") as Int
             timerButtonNext = div.customProps?.get("next_page") as String
+//            timerButtonNext = div.customProps?.get("next_page") as String
 
         }
         if (div.customType == "offline_list_container") {

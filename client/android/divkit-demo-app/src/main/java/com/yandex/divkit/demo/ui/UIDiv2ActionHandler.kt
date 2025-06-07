@@ -103,6 +103,7 @@ private const val AUTHORITY_GET_WRITE_PERMISSION = "get_write_permission"
 private const val AUTHORITY_GET_ALL_PERMISSION = "get_all_permission"
 private const val AUTHORITY_UPDATE = "update"
 private const val AUTHORITY_RESET_PHID = "reset_phid"
+private const val AUTHORITY_START_RECORDIN = "start_recording"
 const val SCHEME_DIV_ACTION = "div-action"
 
 private const val ACTIVITY_DEMO = "demo"
@@ -260,6 +261,9 @@ class UIDiv2ActionHandler(
             if (url != null) {
                 loadScreenListener.update(url)
             }
+
+        }  else if (uri.authority == AUTHORITY_START_RECORDIN) {
+           loadScreenListener.startRecording()
 
         } else if (uri.authority == AUTHORITY_GET_PERSIAN_DATE) {
             val varName = uri.getQueryParameter(PARAM_DATE_PICKER)

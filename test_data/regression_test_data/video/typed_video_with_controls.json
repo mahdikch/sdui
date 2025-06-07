@@ -35,7 +35,7 @@
               "video_sources": [
                 {
                   "type": "video_source",
-                  "url": "https://yastatic.net/s3/home/divkit/bears.mp4",
+                  "url": "http://172.19.83.21:7001/PoliceHamrah/Phplus/icon/VID_20250413_102226_436(1).mp4",
                   "mime_type": "video/mp4"
                 }
               ],

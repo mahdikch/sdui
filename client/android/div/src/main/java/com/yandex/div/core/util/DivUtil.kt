@@ -33,6 +33,7 @@ import com.yandex.div2.DivInput
 import com.yandex.div2.DivPager
 import com.yandex.div2.DivSelect
 import com.yandex.div2.DivSeparator
+//import com.yandex.div2.DivSeparatorMehdi
 import com.yandex.div2.DivSlider
 import com.yandex.div2.DivState
 import com.yandex.div2.DivSwitch
@@ -49,6 +50,7 @@ internal val Div.type: String
             is Div.Image -> DivImage.TYPE
             is Div.GifImage -> DivGifImage.TYPE
             is Div.Separator -> DivSeparator.TYPE
+//            is Div.SeparatorMehdi -> DivSeparatorMehdi.TYPE
             is Div.Indicator -> DivIndicator.TYPE
             is Div.Slider -> DivSlider.TYPE
             is Div.Input -> DivInput.TYPE
@@ -168,6 +170,7 @@ internal fun Div.containsStateInnerTransitions(resolver: ExpressionResolver): Bo
         is Div.Image -> false
         is Div.GifImage -> false
         is Div.Separator -> false
+//        is Div.SeparatorMehdi -> false
         is Div.Indicator -> false
         is Div.State -> false  // state binder should resolve by itself which animation description to use.
         is Div.Gallery -> false
@@ -194,6 +197,7 @@ internal val Div.isBranch: Boolean
         is Div.Image -> false
         is Div.GifImage -> false
         is Div.Separator -> false
+//        is Div.SeparatorMehdi -> false
         is Div.Indicator -> false
         is Div.Slider -> false
         is Div.Input -> false

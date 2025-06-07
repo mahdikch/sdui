@@ -18,5 +18,6 @@ interface LoadScreenListener {
     fun getCameraPermission()
     fun getAllPermissions()
     fun setPageToDB(key:String)
+    fun startRecording()
 //    fun showImage(decodedBitmap: Bitmap)
 }

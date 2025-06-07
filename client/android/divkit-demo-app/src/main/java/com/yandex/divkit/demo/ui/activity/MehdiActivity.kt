@@ -1,6 +1,7 @@
 package com.yandex.divkit.demo.ui.activity
 
 //import dagger.hilt.android.AndroidEntryPoint
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DownloadManager
@@ -12,9 +13,11 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.provider.Settings
 import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -44,6 +47,7 @@ import com.yandex.divkit.demo.data.repository.PhPlusRepository
 import com.yandex.divkit.demo.databinding.ActivityMehdiBinding
 import com.yandex.divkit.demo.div.asDivPatchWithTemplates
 import com.yandex.divkit.demo.screenshot.DivAssetReader
+import com.yandex.divkit.demo.service.AudioRecordingService
 import com.yandex.divkit.demo.ui.LoadScreenListener
 import com.yandex.divkit.demo.ui.UIDiv2ViewCreator
 import com.yandex.divkit.demo.ui.bottomSheetDiv.BottomSheetDiv
@@ -102,6 +106,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
     private var divPageName: String = ""
     private var nextScreen: String = ""
 
+//    private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
 
     private var page: String = "application/startPoint.json"
 
@@ -116,6 +121,14 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         val bundle = intent.extras
         val json = bundle?.getString("json")
         val sysname = bundle?.getString("sysName")
+        var requestPermissionLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+                if (isGranted) {
+                    startRecordingService()
+                } else {
+                    Toast.makeText(this, "دسترسی ضبط صدا رد شد", Toast.LENGTH_SHORT).show()
+                }
+            }
         binding = ActivityMehdiBinding.inflate(layoutInflater)
         setContentView(binding.root)
 //        checkAndRequestPermissions()
@@ -298,16 +311,16 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 //                Configuration.ORIENTATION_PORTRAIT -> "application/splash.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/mehdi.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/menu.json"
-//                Configuration.ORIENTATION_PORTRAIT -> "application/test.json"
+                Configuration.ORIENTATION_PORTRAIT -> "application/test.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/temp.json"
-//                Configuration.ORIENTATION_PORTRAIT -> "application/switch.jso+n"
+//                Configuration.ORIENTATION_PORTRAIT -> "application/switch.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/patchTest.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/main.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/baseMain.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/testBaseMain.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/login.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/vt-register-ticket.json"
-                Configuration.ORIENTATION_PORTRAIT -> "application/startPoint.json"
+//                Configuration.ORIENTATION_PORTRAIT -> "application/startPoint.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/testStartPoint46.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/sabte-takhalof.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/navigation.json"
@@ -1035,13 +1048,15 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                 if (mutableEntry.value == "empty" || mutableEntry.value == "null")
                     if (mutableEntry.key == "currentScreen") {
                         map.put(mutableEntry.key, Constants.CURRENT_SCREEN)
-                    } else if (mutableEntry.key == "versionCodePhPlus") {
-                        map.put(mutableEntry.key, BuildConfig.VERSION_CODE.toString())
-
-                    } else if (mutableEntry.key == "versionNamePhPlus") {
-                        map.put(mutableEntry.key, BuildConfig.VERSION_NAME)
-
-                    } else {
+                    }
+//                    else if (mutableEntry.key == "versionCodePhPlus") {
+//                        map.put(mutableEntry.key, BuildConfig.VERSION_CODE.toString())
+//
+//                    } else if (mutableEntry.key == "versionNamePhPlus") {
+//                        map.put(mutableEntry.key, BuildConfig.VERSION_NAME)
+//
+//                    }
+                    else {
                         var dbValue = mehdiViewModel.getValueByKey(mutableEntry.key)
                         if (dbValue != null)
                             dbValue.value?.let { map.put(mutableEntry.key, it) }
@@ -1082,6 +1097,14 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                             map.put("car_picture", text)
                         }
                     }
+                    map.put("versionCodePhPlus", BuildConfig.VERSION_CODE.toString())
+                    map.put("versionNamePhPlus", BuildConfig.VERSION_NAME)
+                    map.put("androidVersionNamePhPlus", Build.VERSION.SDK_INT.toString())
+                    map.put(
+                        "imei",
+                        Settings.Secure.getString(this.contentResolver, Settings.Secure.ANDROID_ID)
+                    )
+                    map.put("deviceModel", Build.MODEL)
                     mehdiViewModel.setphPlusRequest(phId, map)
                     println(map.toString())
 
@@ -1233,6 +1256,28 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
     override fun setPageToDB(key: String) {
         mehdiViewModel.insertItemToDb(PhPlusDB(null, key, nextJson))
+    }
+
+    fun requestAudioPermissionAndStart() {
+
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestPermissionLauncher.launch(arrayOf(Manifest.permission.RECORD_AUDIO))
+        } else {
+            startRecordingService()
+        }
+    }
+
+
+    fun startRecordingService() {
+        val intent = Intent(this, AudioRecordingService::class.java)
+        ContextCompat.startForegroundService(this, intent)
+    }
+
+    override fun startRecording() {
+        requestAudioPermissionAndStart()
     }
 
 //    override fun showImage(decodedBitmap: Bitmap) {

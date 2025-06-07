@@ -17,6 +17,7 @@ internal abstract class DivViewVisitor {
     open fun visit(view: DivPagerView) = defaultVisit(view)
     open fun visit(view: DivRecyclerView) = defaultVisit(view)
     open fun visit(view: DivSeparatorView) = defaultVisit(view)
+//    open fun visit(view: DivSeparatorMehdiView) = defaultVisit(view)
     open fun visit(view: DivStateLayout) = defaultVisit(view)
     open fun visit(view: DivTabsLayout) = defaultVisit(view)
     open fun visit(view: DivSliderView) = defaultVisit(view)
@@ -66,6 +67,7 @@ internal fun DivViewVisitor.visitViewTree(view: View) {
             visit(view)
         }
         is DivSeparatorView -> visit(view)
+//        is DivSeparatorMehdiView -> visit(view)
         is DivGifImageView -> visit(view)
         is DivImageView -> visit(view)
         is DivLineHeightTextView -> visit(view)

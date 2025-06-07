@@ -21,6 +21,7 @@ import com.yandex.div2.DivImage
 import com.yandex.div2.DivInput
 import com.yandex.div2.DivSelect
 import com.yandex.div2.DivSeparator
+//import com.yandex.div2.DivSeparatorMehdi
 import com.yandex.div2.DivSlider
 import com.yandex.div2.DivTabs
 import com.yandex.div2.DivText
@@ -103,6 +104,12 @@ internal class DivAccessibilityBinder @Inject constructor(
             } else {
                 DivAccessibility.Mode.DEFAULT
             }
+//            is DivSeparatorMehdi -> if (accessibility == null && doubletapActions.isNullOrEmpty() &&
+//                actions.isNullOrEmpty() && longtapActions.isNullOrEmpty()) {
+//                DivAccessibility.Mode.EXCLUDE
+//            } else {
+//                DivAccessibility.Mode.DEFAULT
+//            }
 
             else -> DivAccessibility.Mode.DEFAULT
         }
