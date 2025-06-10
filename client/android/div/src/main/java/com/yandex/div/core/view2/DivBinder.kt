@@ -19,7 +19,6 @@ import com.yandex.div.core.view2.divs.DivIndicatorBinder
 import com.yandex.div.core.view2.divs.DivInputBinder
 import com.yandex.div.core.view2.divs.DivSelectBinder
 import com.yandex.div.core.view2.divs.DivSeparatorBinder
-import com.yandex.div.core.view2.divs.DivSeparatorMehdiBinder
 import com.yandex.div.core.view2.divs.DivSliderBinder
 import com.yandex.div.core.view2.divs.DivStateBinder
 import com.yandex.div.core.view2.divs.DivSwitchBinder
@@ -78,7 +77,6 @@ internal class DivBinder @Inject constructor(
     private val textBinder: DivTextBinder,
     private val containerBinder: DivContainerBinder,
     private val separatorBinder: DivSeparatorBinder,
-    private val separatorMehdiBinder: DivSeparatorMehdiBinder,
     private val imageBinder: DivImageBinder,
     private val gifImageBinder: DivGifImageBinder,
     private val gridBinder: DivGridBinder,

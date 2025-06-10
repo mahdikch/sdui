@@ -36,6 +36,8 @@ import com.yandex.divkit.demo.div.CircularProgress.DoubleCircularProgressView
 import com.yandex.divkit.demo.div.offlineView.OfflineViewListAdapter
 import com.yandex.divkit.demo.div.offlineView.VtReportAdapter
 import com.yandex.divkit.demo.div.timerButton.TimerButton
+import com.yandex.divkit.demo.div.labelledSliderView.LabelledSliderView
+import com.yandex.divkit.demo.div.audioPlayerView.AudioPlayerView
 import com.yandex.divkit.demo.ui.LoadScreenListener
 import com.yandex.divkit.demo.ui.activity.MehdiViewModel
 import java.util.ArrayList
@@ -71,6 +73,8 @@ class DemoCustomContainerAdapter(
         "circular_progress" to { context: Context -> context.circularProgress() },
         "double_circular_progressView" to { context: Context -> context.doubleCircularProgressView() },
         "timer_button" to { context: Context -> context.timerButton() },
+        "audioPlayerView" to { context: Context -> context.audioPlayerView() },
+        "labelledSliderView" to { context: Context -> context.labelledSliderView() },
 //        "offline_vt_reports_container" to { context: Context -> context.createOfflineVtReportsContainer() },
         "offline_list_container" to { context: Context -> context.createOfflineListContainer() }
     )
@@ -171,6 +175,15 @@ class DemoCustomContainerAdapter(
         setOnClickListener {
             loadScreenListener?.onLoad(timerButtonNext)
         }
+    }
+    private fun Context.labelledSliderView(): View = LabelledSliderView(this).apply {
+        setItems(listOf("کم", "متوسط", "زیاد", "خیلی زیاد"))
+            setOnItemSelectedListener { label, index ->
+                Toast.makeText(context, "انتخاب شده: $label", Toast.LENGTH_SHORT).show()}
+    }
+    private fun Context.audioPlayerView(): View = AudioPlayerView(this).apply {
+
+   setAudioUrl("https://github.com/rafaelreis-hotmart/Audio-Sample-files/raw/master/sample.mp3")
     }
 
     private fun Context.doubleCircularProgressView(): View =
