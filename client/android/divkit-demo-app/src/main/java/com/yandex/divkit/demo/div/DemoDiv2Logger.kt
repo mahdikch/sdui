@@ -14,7 +14,8 @@ import com.yandex.div2.DivPatch
 import com.yandex.div2.DivVisibilityAction
 import com.yandex.divkit.regression.ScenarioLogDelegate
 
-class DemoDiv2Logger(
+class
+DemoDiv2Logger(
     private val scenarioLogDelegate: ScenarioLogDelegate = ScenarioLogDelegate.Stub
 ) : Div2Logger {
 

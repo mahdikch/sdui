@@ -107,7 +107,8 @@ class DemoCustomContainerAdapter(
 
         }
         if (div.customType == "offline_list_container") {
-            systemForOffline = div.customProps?.get("screen") as String
+            systemForOffline = mehdiViewModel?.getValueByKey("OFFLINE_DB_SYSTEM")?.value.toString()
+//            systemForOffline = div.customProps?.get("screen") as String
 
         }
         val customView = factories[div.customType]?.invoke(divView.context)
@@ -307,7 +308,9 @@ class DemoCustomContainerAdapter(
             system = systemForOffline,
             listener = this@DemoCustomContainerAdapter
         ).apply {
+
             var username = mehdiViewModel?.getValueByKey("userName")?.value
+//            systemForOffline = mehdiViewModel?.getValueByKey("OFFLINE_DB_SYSTEM")?.value.toString()
             var data: MutableList<Map<String, String>> = mutableListOf()
             lo?.let {
                 mehdiViewModel?.getVtOfflineReports("%$username/$systemForOffline%")?.observe(it) {
@@ -352,7 +355,7 @@ class DemoCustomContainerAdapter(
 //        loadScreenListener?.loadeScreenWithData(data, "vt/main")
 //    }
 
-    override fun onClickedOfflineView(data: String, system: String) {
-        loadScreenListener?.loadeScreenWithData(data, system)
+    override fun onClickedOfflineView(data: String, next: String) {
+        loadScreenListener?.loadeScreenWithData(data, next)
     }
 }

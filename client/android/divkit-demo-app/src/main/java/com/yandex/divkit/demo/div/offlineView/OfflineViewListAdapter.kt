@@ -22,7 +22,7 @@ class OfflineViewListAdapter@JvmOverloads constructor(
 ) :
     ListAdapter<Map<String, String>, OfflineViewListAdapter.EntryViewHolder>(DiffCallback()) {
     interface OfflineViewListItemListener {
-        fun onClickedOfflineView(data: String,system: String)
+        fun onClickedOfflineView(data: String,next: String)
     }
     var onSendClick: ((position: Int, item: Map<String, String>) -> Unit)? = null
 
@@ -63,7 +63,7 @@ class OfflineViewListAdapter@JvmOverloads constructor(
 
         holder.sendButton.setOnClickListener {
 
-            item["data"]?.let { it1 -> listener.onClickedOfflineView(it1, system = system) }
+            item["data"]?.let { it1 -> restoredMap["next"]?.let { it2 -> listener.onClickedOfflineView(it1, next = it2) } }
 //            onSendClick?.invoke(position, item)
         }
     }

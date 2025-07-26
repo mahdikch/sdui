@@ -77,6 +77,7 @@ private const val AUTHORITY_SHOW_DIALOG = "show_dialog"
 private const val AUTHORITY_SET_VARIABLE = "set_variable"
 private const val AUTHORITY_SET_VARIABLE_FROM_DB = "set_variable_from_db"
 private const val AUTHORITY_SET_IMEI = "set_imei"
+private const val AUTHORITY_SET_IP = "set_ip"
 private const val AUTHORITY_SET_DEVICE_MODEL = "set_device_model"
 private const val AUTHORITY_SET_VARIABLE_TO_DB = "set_variable_to_db"
 private const val AUTHORITY_CHANGE_COLOR = "change_color"
@@ -582,6 +583,16 @@ class UIDiv2ActionHandler(
 
             return true
         } else if (uri.authority == AUTHORITY_SET_IMEI) {
+            val name = uri.getQueryParameter(PARAM_VARIABLE_NAME)
+
+            if (name != null) {
+//                    json == it[0].value
+                val div2View = if (view is Div2View) view as Div2View? else null
+                val androidId = Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
+                div2View?.setVariable(name, androidId)
+            }
+            return true
+        }  else if (uri.authority == AUTHORITY_SET_IP) {
             val name = uri.getQueryParameter(PARAM_VARIABLE_NAME)
 
             if (name != null) {

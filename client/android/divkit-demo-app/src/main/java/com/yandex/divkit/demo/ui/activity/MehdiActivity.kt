@@ -93,7 +93,6 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
     private lateinit var observerScreenToLoad: Observer<String>
     private lateinit var observerVariableToSet: Observer<String>
     private lateinit var observerVariableToGet: Observer<String>
-    // لیست برای ذخیره متغیرهای شامل "variable"
     private var varlist: ArrayList<String> = arrayListOf()
     private lateinit var div: Div2View
     private lateinit var btmSheet: BottomSheetDiv
@@ -102,7 +101,6 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 //    private lateinit var observerRemoteData: Observer<MutableMap<String, String>>
 
     //    private lateinit var next: String
-    // متغیرهای مربوط به ناوبری و JSON
     private var nextJson: String = ""
     private var nextJsonDto: PhPlusDB? = null
     private var divPageName: String = ""
@@ -137,8 +135,6 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         loading = LoadingDialog(this)
         error = ErrorDialog(this)
 //        loading.showLoadingDialog("لطفا شکیبا باشید...")
-
-        // مقداردهی اولیه سرویس‌ها و Repository
         val retrofit = SingletonObjects.retrofitInstance()
         val create = retrofit?.create(PhPlusApi::class.java)
         val database = SingletonObjects.getDbInstance(this)
@@ -152,7 +148,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         val factory = MyViewModelFactory(repository)
         mehdiViewModel = ViewModelProvider(this, factory)[MehdiViewModel::class.java]
 
-        // تنظیم امنیت صفحه (جلوگیری از گرفتن اسکرین‌شات)
+
         window.setFlags(
             WindowManager.LayoutParams.FLAG_SECURE,
             WindowManager.LayoutParams.FLAG_SECURE
@@ -166,7 +162,6 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         var path = ""
         var divJson = JSONObject()
         if (json == null) {
-            // تولید phid جدید برای دستگاه
             var phId = UUID.randomUUID().toString()
             mehdiViewModel.insertItemToDb(PhPlusDB(null, "phid", phId))
             var divMotorJson = assetReader.read("application/patchMotorPlate.json")
@@ -317,7 +312,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 //                Configuration.ORIENTATION_PORTRAIT -> "application/mehdi.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/menu.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/test.json"
-                Configuration.ORIENTATION_PORTRAIT -> "application/temp.json"
+//                Configuration.ORIENTATION_PORTRAIT -> "application/temp.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/switch.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/patchTest.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/main.json"
@@ -325,7 +320,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 //                Configuration.ORIENTATION_PORTRAIT -> "application/testBaseMain.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/login.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/vt-register-ticket.json"
-//                Configuration.ORIENTATION_PORTRAIT -> "application/startPoint.json"
+                Configuration.ORIENTATION_PORTRAIT -> "application/startPoint.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/testStartPoint46.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/sabte-takhalof.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/navigation.json"
@@ -364,7 +359,6 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                 ).apply {
                     weight = 1F
                 }
-                // اعمال متغیرها برای سیستم "vt"
                 if (sysname != null && sysname == "vt") {
                     val data = bundle.getString("data")
                     val restoredMap: MutableMap<String, String> = Gson().fromJson(
@@ -374,7 +368,84 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                     for (entry in restoredMap) {
                         div.setVariable(entry.key, entry.value)
                     }
-
+//                    restoredMap["ticket_type"]?.let { div.setVariable("ticket_type", it) }
+//                    restoredMap["variable_car_picture"]?.let { div.setVariable("variable_car_picture", it) }
+//                    restoredMap["national_code"]?.let { div.setVariable("national_code", it) }
+//                    restoredMap["usage_code"]?.let { div.setVariable("variable_usage_code", it) }
+//                    restoredMap["color_code"]?.let { div.setVariable("variable_color_code", it) }
+//                    restoredMap["system_code"]?.let { div.setVariable("variable_system_code", it) }
+//                    restoredMap["sysName"]?.let { div.setVariable("sysName", it) }
+//                    restoredMap["police_code"]?.let { div.setVariable("policeCode", it) }
+//                    restoredMap["address"]?.let { div.setVariable("address", it) }
+//                    restoredMap["iranian"]?.let { div.setVariable("iranian", it) }
+//                    restoredMap["plateA"]?.let { div.setVariable("variable_plateA", it) }
+//                    restoredMap["plateB"]?.let { div.setVariable("variable_plateB", it) }
+//                    restoredMap["plateC"]?.let { div.setVariable("variable_plateC", it) }
+//                    restoredMap["plateD"]?.let { div.setVariable("variable_plateD", it) }
+//                    restoredMap["car_model"]?.let {
+//                        div.setVariable(
+//                            "car_model_information_vt",
+//                            it
+//                        )
+//                    }
+//                    restoredMap["plate_description"]?.let {
+//                        div.setVariable(
+//                            "plate_description",
+//                            it
+//                        )
+//                    }
+//                    restoredMap["countPeople"]?.let { div.setVariable("number_of_passengers", it) }
+//                    restoredMap["name"]?.let { div.setVariable("variable_driver_name_vt", it) }
+//                    restoredMap["license_number"]?.let {
+//                        div.setVariable(
+//                            "variable_driver_license_number_vt",
+//                            it
+//                        )
+//                    }
+//                    restoredMap["violationType1"]?.let { div.setVariable("violation1_code", it) }
+//                    restoredMap["violationType1_title"]?.let {
+//                        div.setVariable(
+//                            "violation1_title",
+//                            it
+//                        )
+//                    }
+//                    restoredMap["violationType2"]?.let { div.setVariable("violation2_code", it) }
+//                    restoredMap["violationType2_title"]?.let {
+//                        div.setVariable(
+//                            "violation2_title",
+//                            it
+//                        )
+//                    }
+//                    restoredMap["violationType3"]?.let { div.setVariable("violation3_code", it) }
+//                    restoredMap["violationType3_title"]?.let {
+//                        div.setVariable(
+//                            "violation3_title",
+//                            it
+//                        )
+//                    }
+//                    restoredMap["timePda"]?.let { div.setVariable("time", it) }
+//                    restoredMap["datePda"]?.let { div.setVariable("date", it) }
+//                    restoredMap["city_code"]?.let { div.setVariable("cityPolice_code", it) }
+//                    restoredMap["isInternal"]?.let { div.setVariable("isInternal", it) }
+//                    restoredMap["isOnline"]?.let { div.setVariable("isOnline", it) }
+//                    restoredMap["variable_system_title"]?.let {
+//                        div.setVariable(
+//                            "variable_system_title",
+//                            it
+//                        )
+//                    }
+//                    restoredMap["variable_color_title"]?.let {
+//                        div.setVariable(
+//                            "variable_color_title",
+//                            it
+//                        )
+//                    }
+//                    restoredMap["variable_usage_title"]?.let {
+//                        div.setVariable(
+//                            "variable_usage_title",
+//                            it
+//                        )
+//                    }
 
                 }
                 binding.root.addView(div)
@@ -382,14 +453,16 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
             }
         }
         observerRemoteData = Observer { map ->
-
+//            Log.d("", "")
+//            if (flagRemoteData) {
+//            var emptyMap: MutableMap<String, String> = HashMap<String, String>()
+//            loading.showLoadingDialog("لطفا شکیبا باشید...")
             error.showErrorDialog("ffffffffffffff")
 
             varlist.clear()
             var counter = 0
             if (map.isNotEmpty())
                 for (mutableEntry in map) {
-                    // جایگزینی مقادیر "empty" یا "null" با داده‌های دیتابیس
                     if (mutableEntry.value == "empty" || mutableEntry.value == "null")
                         if (mutableEntry.key == "currentScreen") {
                             map.put(mutableEntry.key, Constants.CURRENT_SCREEN)
@@ -399,7 +472,6 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                                 dbValue.value?.let { map.put(mutableEntry.key, it) }
 
                         }
-                    // ذخیره متغیرهای شامل "variable" در لیست
                     if (mutableEntry.key.contains("variable")) {
                         varlist?.add(mutableEntry.value)
 //                        map.remove(mutableEntry.key)
@@ -422,7 +494,6 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
             if (it.isNotEmpty()) {
                 next = mehdiViewModel.getValueByKey(it).value.toString()
                 if (next != null || next != "") {
-                    // به‌روزرسانی صفحه فعلی و لود صفحه جدید
                     if (Constants.CURRENT_SCREEN != next) {
                         Constants.CURRENT_SCREEN = next
                         mehdiViewModel.insertItemToDb(PhPlusDB(null, "currentScreen", next))
@@ -537,7 +608,28 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                                         )
                                     }
                                 }
-
+//                                if (key == "next") {
+//                                    next = value
+//                                } else if (key == "show_toast") {
+//                                    toast = value
+//                                } else if (key == "show_dialog") {
+//                                    dialog = value
+//                                } else if (key == "show_bottomSheet") {
+//                                    bottomSheet = value
+//                                } else if (key == "set_patch") {
+//                                    patch = value
+//                                } else if (key == "bottom_sheet_set_patch") {
+//                                    bottomSheetPatch = value
+//                                } else if (key == "close_bottom_sheet") {
+////                                   btmSheet.dismiss()
+//                                } else if (key == "reset") {
+//                                   reset=value
+//                                } else {
+//                                    mehdiViewModel.insertItemToDb(PhPlusDB(null, key, value))
+//                                }
+//                                if (key == "ph/token") {
+//                                    EncryptionConstant.TOKEN = value
+//                                }
                                 if (key.contains("variable"))
                                     div.setVariable(key, value)
                                 if (key.contains("bottom_sheet_variable"))
@@ -545,7 +637,6 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
                             }
                         }
-                        // اجرای اقدامات بر اساس keywordها
                         if (next != "") {
                             nextJsonDto = repository.getValueByKey(next)
                             if (nextJsonDto == null)
@@ -621,12 +712,18 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                         if (update != "") {
                             updateApp(update)
                         }
-
+//                        if (permissions != "") {
+//                            checkAndRequestPermissions()
+//                        }
                     }
                     loading.dismissDialog()
 
 
-
+//                    if (next!=null)
+//                    mehdiViewModel.getPage(next).observe(this){
+//                        page = it[0].value
+//                    }
+//                    page = mehdiViewModel.getPage(page).toString()
                 }
 
                 Resource.Status.ERROR -> {
@@ -674,7 +771,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
 
     }
-    // ریست اکتیویتی و لود صفحه جدید
+
     private fun resetActivityForLoad(klass: Class<out Activity>, jsonName: String) {
 
 //        if (Constants.CURRENT_SCREEN != jsonName) {
@@ -686,7 +783,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
 
     }
-    // لود صفحه با داده خاص
+
     private fun startActivityWithDataForLoad(
         klass: Class<out Activity>,
         jsonName: String,
@@ -738,7 +835,29 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
             )
         }
+//        val RC_CAMERA_PERM: Int = 123
+//        val RC_LOCATION_CONTACTS_PERM: Int = 124
+//        val RC_WRITE_EXTERNAL_STORAGE_PERM: Int = 125
 
+
+//        val permissions = arrayOf(
+//            Manifest.permission.CAMERA,
+//            Manifest.permission.ACCESS_FINE_LOCATION,
+//            Manifest.permission.WRITE_EXTERNAL_STORAGE
+//        )
+//        EasyPermissions.requestPermissions(this,"",123,permissions)
+//
+//        val permissionsToRequest = permissions.filter {
+//            ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
+//        }
+
+//        if (permissionsToRequest.isNotEmpty()) {
+//            // Request permissions
+//            requestPermissionLauncher.launch(permissionsToRequest.toTypedArray())
+//        } else {
+//            // All permissions are already granted
+//            proceedWithCameraAndLocation()
+//        }
     }
 
     private val requestPermissionLauncher =
@@ -823,7 +942,6 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         }
     }
 
-    // بررسی روت بودن دستگاه
     fun isDeviceRooted(): Boolean {
         val paths = arrayOf(
             "/sbin/su", "/system/bin/su", "/system/xbin/su", "/data/local/xbin/su",
@@ -846,7 +964,39 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         }
         startActivity(intent)
     }
-
+//    @SuppressLint("Range")
+//    private fun downloadApk(url: String) {
+//        val downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+//        val request = DownloadManager.Request(Uri.parse(url))
+//            .setTitle("Downloading Update")
+//            .setDescription("Downloading the latest version of the app")
+//            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+//            .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "app_update.apk")
+//
+//        val downloadId = downloadManager.enqueue(request)
+//
+//        // Monitor the download progress
+//        Thread {
+//            var downloading = true
+//            while (downloading) {
+//                val query = DownloadManager.Query().setFilterById(downloadId)
+//                val cursor = downloadManager.query(query)
+//                if (cursor.moveToFirst()) {
+//                    val status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
+//                    if (status == DownloadManager.STATUS_SUCCESSFUL) {
+//                        // Download completed, start installation
+//                        val uri = downloadManager.getUriForDownloadedFile(downloadId)
+//                        uri?.let { installApk(it) }
+//                        downloading = false
+//                    } else if (status == DownloadManager.STATUS_FAILED) {
+//                        Toast.makeText(this, "Download failed", Toast.LENGTH_SHORT).show()
+//                        downloading = false
+//                    }
+//                }
+//                cursor.close()
+//            }
+//        }.start()
+//    }
 
     private fun checkPermissions(): Boolean {
         return if (ContextCompat.checkSelfPermission(
@@ -969,7 +1119,9 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         patchTitle: String,
         vehicleType: String
     ) {
-
+//        if (dismiss=="true")
+//            btmSheet.dismiss()
+//        var json=mehdiViewModel?.getValueByKey(patchName)?.value.toString()
         div.applyPatch(JSONObject(json).asDivPatchWithTemplates())
         if (patchTitle != "" && patchTitle != "تست")
             div.setVariable("patch", patchTitle)
@@ -1128,7 +1280,9 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         requestAudioPermissionAndStart()
     }
 
-
+//    override fun showImage(decodedBitmap: Bitmap) {
+//        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_image, null)
+//        val dialogImage = dialogView.findViewById<ImageView>(R.id.dialogImageView)    }
 
 
 }
