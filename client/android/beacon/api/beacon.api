@@ -1,0 +1,123 @@
+public abstract class com/yandex/android/beacon/BeaconItem {
+	public abstract fun asPersistent ()Lcom/yandex/android/beacon/BeaconItem$Persistent;
+	public final fun getAddTimestamp ()J
+	public abstract fun getCookieStorage ()Lcom/yandex/android/net/CookieStorage;
+	public final fun getHeaders ()Ljava/util/Map;
+	public final fun getPayload ()Lorg/json/JSONObject;
+	public final fun getUrl ()Landroid/net/Uri;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/yandex/android/beacon/BeaconItem$NonPersistent : com/yandex/android/beacon/BeaconItem {
+	public fun <init> (Landroid/net/Uri;Ljava/util/Map;Lorg/json/JSONObject;JLcom/yandex/android/net/CookieStorage;)V
+	public fun asPersistent ()Lcom/yandex/android/beacon/BeaconItem$Persistent;
+	public fun getCookieStorage ()Lcom/yandex/android/net/CookieStorage;
+}
+
+public final class com/yandex/android/beacon/BeaconItem$Persistent : com/yandex/android/beacon/BeaconItem {
+	public fun <init> (Landroid/net/Uri;Ljava/util/Map;Lorg/json/JSONObject;JJ)V
+	public fun asPersistent ()Lcom/yandex/android/beacon/BeaconItem$Persistent;
+	public fun getCookieStorage ()Lcom/yandex/android/net/CookieStorage;
+	public final fun getRowId ()J
+}
+
+public final class com/yandex/android/beacon/SendBeaconConfiguration {
+	public fun <init> (Ljava/util/concurrent/Executor;Lcom/yandex/android/beacon/SendBeaconRequestExecutor;Lcom/yandex/android/beacon/SendBeaconWorkerScheduler;Lcom/yandex/android/beacon/SendBeaconPerWorkerLogger;Ljava/lang/String;)V
+	public final fun getDatabaseName ()Ljava/lang/String;
+	public final fun getExecutor ()Ljava/util/concurrent/Executor;
+	public final fun getPerWorkerLogger ()Lcom/yandex/android/beacon/SendBeaconPerWorkerLogger;
+	public final fun getRequestExecutor ()Lcom/yandex/android/beacon/SendBeaconRequestExecutor;
+	public final fun getWorkerScheduler ()Lcom/yandex/android/beacon/SendBeaconWorkerScheduler;
+}
+
+public final class com/yandex/android/beacon/SendBeaconManager {
+	public fun <init> (Landroid/content/Context;Lcom/yandex/android/beacon/SendBeaconConfiguration;)V
+	public final fun addNonPersistentUrl (Landroid/net/Uri;Lcom/yandex/android/net/CookieStorage;Lorg/json/JSONObject;)V
+	public static synthetic fun addNonPersistentUrl$default (Lcom/yandex/android/beacon/SendBeaconManager;Landroid/net/Uri;Lcom/yandex/android/net/CookieStorage;Lorg/json/JSONObject;ILjava/lang/Object;)V
+	public final fun addUrl (Landroid/net/Uri;)V
+	public final fun addUrl (Landroid/net/Uri;Ljava/util/Map;)V
+	public final fun addUrl (Landroid/net/Uri;Ljava/util/Map;Lorg/json/JSONObject;)V
+	public static synthetic fun addUrl$default (Lcom/yandex/android/beacon/SendBeaconManager;Landroid/net/Uri;Ljava/util/Map;Lorg/json/JSONObject;ILjava/lang/Object;)V
+	public final fun onStart (Lcom/yandex/android/beacon/SendBeaconWorker$Callback;)Z
+	public final fun onStop ()Z
+}
+
+public abstract interface class com/yandex/android/beacon/SendBeaconPerWorkerLogger {
+	public abstract fun onFailedSendUrl (Ljava/lang/String;Z)V
+	public abstract fun onFailedSendUrlDueServerError (Ljava/lang/String;)V
+	public abstract fun onSuccessSendUrl (Ljava/lang/String;)V
+	public abstract fun onTrySendUrl (Ljava/lang/String;)V
+}
+
+public final class com/yandex/android/beacon/SendBeaconPerWorkerLogger$Logcat : com/yandex/android/beacon/SendBeaconPerWorkerLogger {
+	public static final field INSTANCE Lcom/yandex/android/beacon/SendBeaconPerWorkerLogger$Logcat;
+	public fun onFailedSendUrl (Ljava/lang/String;Z)V
+	public fun onFailedSendUrlDueServerError (Ljava/lang/String;)V
+	public fun onSuccessSendUrl (Ljava/lang/String;)V
+	public fun onTrySendUrl (Ljava/lang/String;)V
+}
+
+public final class com/yandex/android/beacon/SendBeaconPerWorkerLogger$NoOp : com/yandex/android/beacon/SendBeaconPerWorkerLogger {
+	public static final field INSTANCE Lcom/yandex/android/beacon/SendBeaconPerWorkerLogger$NoOp;
+	public fun onFailedSendUrl (Ljava/lang/String;Z)V
+	public fun onFailedSendUrlDueServerError (Ljava/lang/String;)V
+	public fun onSuccessSendUrl (Ljava/lang/String;)V
+	public fun onTrySendUrl (Ljava/lang/String;)V
+}
+
+public final class com/yandex/android/beacon/SendBeaconRequest {
+	public static final field Companion Lcom/yandex/android/beacon/SendBeaconRequest$Companion;
+	public fun <init> (Landroid/net/Uri;Ljava/util/Map;Lorg/json/JSONObject;Lcom/yandex/android/net/CookieStorage;)V
+	public final fun component1 ()Landroid/net/Uri;
+	public final fun component2 ()Ljava/util/Map;
+	public final fun component3 ()Lorg/json/JSONObject;
+	public final fun component4 ()Lcom/yandex/android/net/CookieStorage;
+	public final fun copy (Landroid/net/Uri;Ljava/util/Map;Lorg/json/JSONObject;Lcom/yandex/android/net/CookieStorage;)Lcom/yandex/android/beacon/SendBeaconRequest;
+	public static synthetic fun copy$default (Lcom/yandex/android/beacon/SendBeaconRequest;Landroid/net/Uri;Ljava/util/Map;Lorg/json/JSONObject;Lcom/yandex/android/net/CookieStorage;ILjava/lang/Object;)Lcom/yandex/android/beacon/SendBeaconRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public static final fun from (Lcom/yandex/android/beacon/BeaconItem;)Lcom/yandex/android/beacon/SendBeaconRequest;
+	public final fun getCookieStorage ()Lcom/yandex/android/net/CookieStorage;
+	public final fun getHeaders ()Ljava/util/Map;
+	public final fun getPayload ()Lorg/json/JSONObject;
+	public final fun getUrl ()Landroid/net/Uri;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/yandex/android/beacon/SendBeaconRequest$Companion {
+	public final fun from (Lcom/yandex/android/beacon/BeaconItem;)Lcom/yandex/android/beacon/SendBeaconRequest;
+}
+
+public abstract interface class com/yandex/android/beacon/SendBeaconRequestExecutor {
+	public abstract fun execute (Lcom/yandex/android/beacon/SendBeaconRequest;)Lcom/yandex/android/beacon/SendBeaconResponse;
+}
+
+public abstract interface class com/yandex/android/beacon/SendBeaconResponse {
+	public abstract fun getResponseCode ()I
+	public abstract fun isValid ()Z
+}
+
+public abstract interface class com/yandex/android/beacon/SendBeaconWorker {
+	public abstract fun onStart (Lcom/yandex/android/beacon/SendBeaconWorker$Callback;)Z
+	public abstract fun onStop ()Z
+}
+
+public abstract interface class com/yandex/android/beacon/SendBeaconWorker$Callback {
+	public abstract fun finish (Z)V
+}
+
+public abstract interface class com/yandex/android/beacon/SendBeaconWorkerScheduler {
+	public abstract fun schedule (Lcom/yandex/android/beacon/SendBeaconWorker;)V
+}
+
+public abstract interface class com/yandex/android/net/CookieStorage {
+	public abstract fun getCookies (Landroid/net/Uri;)Ljava/lang/String;
+	public abstract fun processCookies (Ljava/util/List;Ljava/lang/String;)V
+}
+
+public final class com/yandex/android/net/CookieStorage$NoOp : com/yandex/android/net/CookieStorage {
+	public static final field INSTANCE Lcom/yandex/android/net/CookieStorage$NoOp;
+	public fun getCookies (Landroid/net/Uri;)Ljava/lang/String;
+	public fun processCookies (Ljava/util/List;Ljava/lang/String;)V
+}
+

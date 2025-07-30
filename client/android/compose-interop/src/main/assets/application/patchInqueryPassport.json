@@ -1,0 +1,1013 @@
+{
+  "patch": {
+    "mode": "partial",
+    "changes": [
+      {
+        "id": "inquiry",
+        "items": [
+          {
+            "id": "inquiry",
+            "type": "container",
+            "items": [
+              {
+                "type": "container",
+                "items": [
+                  {
+                    "type": "text",
+                    "text": "@{variable_name_Passport}",
+                    "font_size": 14,
+                    "font_weight": "medium",
+                    "line_height": 24,
+                    "letter_spacing": 0,
+                    "text_color": "#121212",
+                    "text_alignment_horizontal": "right",
+                    "text_alignment_vertical": "top",
+                    "width": {
+                      "type": "wrap_content"
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "text": "نام",
+                    "font_size": 14,
+                    "font_weight": "regular",
+                    "line_height": 24,
+                    "letter_spacing": 0,
+                    "text_color": "#7f7f7f",
+                    "text_alignment_horizontal": "center",
+                    "text_alignment_vertical": "top",
+                    "width": {
+                      "type": "wrap_content"
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "alignment_horizontal": "right",
+                    "alignment_vertical": "center"
+                  }
+                ],
+                "height": {
+                  "type": "fixed",
+                  "value": 24
+                },
+                "width": {
+                  "type": "match_parent"
+                },
+                "orientation": "overlap",
+                "content_alignment_horizontal": "left",
+                "content_alignment_vertical": "center"
+              },
+              {
+                "type": "container",
+                "items": [
+                  {
+                    "type": "text",
+                    "text": "@{variable_lastName_Passport}",
+                    "font_size": 14,
+                    "font_weight": "medium",
+                    "line_height": 24,
+                    "letter_spacing": 0,
+                    "text_color": "#121212",
+                    "text_alignment_horizontal": "right",
+                    "text_alignment_vertical": "top",
+                    "width": {
+                      "type": "wrap_content"
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "text": "نام خانوادگی",
+                    "font_size": 14,
+                    "font_weight": "regular",
+                    "line_height": 24,
+                    "letter_spacing": 0,
+                    "text_color": "#7f7f7f",
+                    "text_alignment_horizontal": "center",
+                    "text_alignment_vertical": "top",
+                    "width": {
+                      "type": "wrap_content"
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "alignment_horizontal": "right",
+                    "alignment_vertical": "center"
+                  }
+                ],
+                "height": {
+                  "type": "fixed",
+                  "value": 24
+                },
+                "width": {
+                  "type": "match_parent"
+                },
+                "orientation": "overlap",
+                "content_alignment_horizontal": "left",
+                "content_alignment_vertical": "center",
+                "margins": {
+                  "top": 16
+                }
+              },
+              {
+                "type": "container",
+                "items": [
+                  {
+                    "type": "text",
+                    "text": "@{variable_fatherName_Passport}",
+                    "font_size": 14,
+                    "font_weight": "medium",
+                    "line_height": 24,
+                    "letter_spacing": 0,
+                    "text_color": "#121212",
+                    "text_alignment_horizontal": "right",
+                    "text_alignment_vertical": "top",
+                    "width": {
+                      "type": "wrap_content"
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "text": "نام پدر",
+                    "font_size": 14,
+                    "font_weight": "regular",
+                    "line_height": 24,
+                    "letter_spacing": 0,
+                    "text_color": "#7f7f7f",
+                    "text_alignment_horizontal": "center",
+                    "text_alignment_vertical": "top",
+                    "width": {
+                      "type": "wrap_content"
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "alignment_horizontal": "right",
+                    "alignment_vertical": "center"
+                  }
+                ],
+                "height": {
+                  "type": "fixed",
+                  "value": 24
+                },
+                "width": {
+                  "type": "match_parent"
+                },
+                "orientation": "overlap",
+                "content_alignment_horizontal": "left",
+                "content_alignment_vertical": "center",
+                "margins": {
+                  "top": 16
+                }
+              },
+              {
+                "type": "container",
+                "items": [
+                  {
+                    "type": "text",
+                    "text": "@{variable_number_Passport}",
+                    "font_size": 14,
+                    "font_weight": "semibold",
+                    "line_height": 24,
+                    "letter_spacing": 0,
+                    "text_color": "#121212",
+                    "text_alignment_horizontal": "right",
+                    "text_alignment_vertical": "top",
+                    "width": {
+                      "type": "wrap_content"
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "text": "شماره گذر نامه",
+                    "font_size": 14,
+                    "font_weight": "regular",
+                    "line_height": 24,
+                    "letter_spacing": 0,
+                    "text_color": "#7f7f7f",
+                    "text_alignment_horizontal": "center",
+                    "text_alignment_vertical": "top",
+                    "width": {
+                      "type": "wrap_content"
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "alignment_horizontal": "right",
+                    "alignment_vertical": "center"
+                  }
+                ],
+                "height": {
+                  "type": "fixed",
+                  "value": 24
+                },
+                "width": {
+                  "type": "match_parent"
+                },
+                "orientation": "overlap",
+                "content_alignment_horizontal": "left",
+                "content_alignment_vertical": "center",
+                "margins": {
+                  "top": 16
+                }
+              },
+              {
+                "type": "container",
+                "items": [
+                  {
+                    "type": "text",
+                    "text": "@{variable_sodourDate_Passport}",
+                    "font_size": 14,
+                    "font_weight": "semibold",
+                    "line_height": 24,
+                    "letter_spacing": 0,
+                    "text_color": "#121212",
+                    "text_alignment_horizontal": "right",
+                    "text_alignment_vertical": "top",
+                    "width": {
+                      "type": "wrap_content"
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "text": "تاریخ صدور",
+                    "font_size": 14,
+                    "font_weight": "regular",
+                    "line_height": 24,
+                    "letter_spacing": 0,
+                    "text_color": "#7f7f7f",
+                    "text_alignment_horizontal": "center",
+                    "text_alignment_vertical": "top",
+                    "width": {
+                      "type": "wrap_content"
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "alignment_horizontal": "right",
+                    "alignment_vertical": "center"
+                  }
+                ],
+                "height": {
+                  "type": "fixed",
+                  "value": 24
+                },
+                "width": {
+                  "type": "match_parent"
+                },
+                "orientation": "overlap",
+                "content_alignment_horizontal": "left",
+                "content_alignment_vertical": "center",
+                "margins": {
+                  "top": 16
+                }
+              },
+              {
+                "type": "container",
+                "items": [
+                  {
+                    "type": "container",
+                    "items": [
+                      {
+                        "type": "text",
+                        "text": "@{variable_status_Passport}",
+                        "font_size": 14,
+                        "font_weight": "regular",
+                        "line_height": 24,
+                        "letter_spacing": 0,
+                        "text_color": "#d73333",
+                        "text_alignment_horizontal": "right",
+                        "text_alignment_vertical": "top",
+                        "width": {
+                          "type": "wrap_content"
+                        },
+                        "height": {
+                          "type": "wrap_content"
+                        }
+                      }
+                    ],
+                    "background": [
+                      {
+                        "type": "solid",
+                        "color": "#fbebeb"
+                      }
+                    ],
+                    "border": {
+                      "corners_radius": {
+                        "top-left": 15,
+                        "top-right": 15,
+                        "bottom-left": 15,
+                        "bottom-right": 15
+                      }
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "width": {
+                      "type": "fixed",
+                      "value": 140
+                    },
+                    "orientation": "horizontal",
+                    "content_alignment_horizontal": "center",
+                    "content_alignment_vertical": "center",
+                    "paddings": {
+                      "top": 4,
+                      "bottom": 4,
+                      "left": 8,
+                      "right": 8
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "text": "وضعیت",
+                    "font_size": 14,
+                    "font_weight": "regular",
+                    "line_height": 24,
+                    "letter_spacing": 0,
+                    "text_color": "#7f7f7f",
+                    "text_alignment_horizontal": "center",
+                    "text_alignment_vertical": "top",
+                    "width": {
+                      "type": "wrap_content"
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "alignment_horizontal": "right",
+                    "alignment_vertical": "center"
+                  }
+                ],
+                "height": {
+                  "type": "fixed",
+                  "value": 24
+                },
+                "width": {
+                  "type": "match_parent"
+                },
+                "orientation": "overlap",
+                "content_alignment_horizontal": "left",
+                "content_alignment_vertical": "center",
+                "margins": {
+                  "top": 16
+                }
+              },
+              {
+                "type": "container",
+                "items": [
+                  {
+                    "type": "container",
+                    "items": [
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "text",
+                            "text": "کشور مقصد",
+                            "font_size": 12,
+                            "font_weight": "regular",
+                            "line_height": 16,
+                            "letter_spacing": 0,
+                            "text_color": "#757575",
+                            "text_alignment_horizontal": "right",
+                            "text_alignment_vertical": "center",
+                            "width": {
+                              "type": "match_parent"
+                            },
+                            "height": {
+                              "type": "wrap_content"
+                            }
+                          },
+                          {
+                            "type": "text",
+                            "text": "@{variable_destinationCountry_Passport}",
+                            "font_size": 14,
+                            "font_weight": "semibold",
+                            "line_height": 24,
+                            "letter_spacing": 0,
+                            "text_color": "#161515",
+                            "text_alignment_horizontal": "right",
+                            "text_alignment_vertical": "center",
+                            "width": {
+                              "type": "match_parent"
+                            },
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "margins": {
+                              "top": 8
+                            }
+                          }
+                        ],
+                        "height": {
+                          "type": "wrap_content"
+                        },
+                        "width": {
+                          "type": "match_parent"
+                        },
+                        "orientation": "vertical",
+                        "content_alignment_vertical": "center",
+                        "content_alignment_horizontal": "right"
+                      },
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "text",
+                            "text": "وضعیت سفر",
+                            "font_size": 12,
+                            "font_weight": "regular",
+                            "line_height": 16,
+                            "letter_spacing": 0,
+                            "text_color": "#757575",
+                            "text_alignment_horizontal": "left",
+                            "text_alignment_vertical": "center",
+                            "width": {
+                              "type": "wrap_content"
+                            },
+                            "height": {
+                              "type": "wrap_content"
+                            }
+                          },
+                          {
+                            "type": "text",
+                            "text": "@{variable_travelStatus_Passport}",
+                            "font_size": 14,
+                            "font_weight": "semibold",
+                            "line_height": 24,
+                            "letter_spacing": 0,
+                            "text_color": "#161515",
+                            "text_alignment_horizontal": "right",
+                            "text_alignment_vertical": "center",
+                            "width": {
+                              "type": "wrap_content"
+                            },
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "margins": {
+                              "top": 8
+                            }
+                          }
+                        ],
+                        "height": {
+                          "type": "wrap_content"
+                        },
+                        "width": {
+                          "type": "match_parent"
+                        },
+                        "orientation": "vertical",
+                        "content_alignment_vertical": "center",
+                        "content_alignment_horizontal": "right",
+                        "margins": {
+                          "top": 8
+                        }
+                      },
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "text",
+                            "text": "تاریخ و زمان سفر",
+                            "font_size": 12,
+                            "font_weight": "regular",
+                            "line_height": 16,
+                            "letter_spacing": 0,
+                            "text_color": "#757575",
+                            "text_alignment_horizontal": "left",
+                            "text_alignment_vertical": "center",
+                            "width": {
+                              "type": "wrap_content"
+                            },
+                            "height": {
+                              "type": "wrap_content"
+                            }
+                          },
+                          {
+                            "type": "text",
+                            "text": "@{variable_travelDate&Time_Passport}",
+                            "font_size": 14,
+                            "font_weight": "semibold",
+                            "line_height": 24,
+                            "letter_spacing": 0,
+                            "text_color": "#252424",
+                            "text_alignment_horizontal": "right",
+                            "text_alignment_vertical": "center",
+                            "width": {
+                              "type": "wrap_content"
+                            },
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "margins": {
+                              "top": 8
+                            }
+                          }
+                        ],
+                        "height": {
+                          "type": "wrap_content"
+                        },
+                        "width": {
+                          "type": "match_parent"
+                        },
+                        "orientation": "vertical",
+                        "content_alignment_vertical": "center",
+                        "content_alignment_horizontal": "right",
+                        "margins": {
+                          "top": 8
+                        }
+                      },
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "text",
+                            "text": "نوع مرز",
+                            "font_size": 12,
+                            "font_weight": "regular",
+                            "line_height": 16,
+                            "letter_spacing": 0,
+                            "text_color": "#757575",
+                            "text_alignment_horizontal": "left",
+                            "text_alignment_vertical": "center",
+                            "width": {
+                              "type": "wrap_content"
+                            },
+                            "height": {
+                              "type": "wrap_content"
+                            }
+                          },
+                          {
+                            "type": "text",
+                            "text": "@{variable_borderType_Passport}",
+                            "font_size": 14,
+                            "font_weight": "semibold",
+                            "line_height": 24,
+                            "letter_spacing": 0,
+                            "text_color": "#252424",
+                            "text_alignment_horizontal": "right",
+                            "text_alignment_vertical": "center",
+                            "width": {
+                              "type": "wrap_content"
+                            },
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "margins": {
+                              "top": 8
+                            }
+                          }
+                        ],
+                        "height": {
+                          "type": "wrap_content"
+                        },
+                        "width": {
+                          "type": "match_parent"
+                        },
+                        "orientation": "vertical",
+                        "content_alignment_vertical": "center",
+                        "content_alignment_horizontal": "right",
+                        "margins": {
+                          "top": 8
+                        }
+                      }
+                    ],
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "orientation": "vertical",
+                    "content_alignment_vertical": "top",
+                    "content_alignment_horizontal": "right",
+                    "alignment_horizontal": "left",
+                    "alignment_vertical": "bottom",
+                    "margins": {
+                      "left": 12,
+                      "bottom": 12
+                    },
+                    "paddings": {
+                      "right": 36
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "text": "اطلاعات آخرین خروج",
+                    "font_size": 12,
+                    "font_weight": "semibold",
+                    "line_height": 24,
+                    "letter_spacing": 0,
+                    "text_color": "#343333",
+                    "text_alignment_horizontal": "right",
+                    "text_alignment_vertical": "top",
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "alignment_horizontal": "right",
+                    "alignment_vertical": "top",
+                    "margins": {
+                      "top": 12
+                    },
+                    "paddings": {
+                      "right": 24
+                    }
+                  }
+                ],
+                "background": [
+                  {
+                    "type": "solid",
+                    "color": "#fafafa"
+                  }
+                ],
+                "border": {
+                  "corners_radius": {
+                    "top-left": 15,
+                    "top-right": 15,
+                    "bottom-left": 15,
+                    "bottom-right": 15
+                  },
+                  "stroke": {
+                    "color": "#ebebeb",
+                    "width": 1
+                  }
+                },
+                "height": {
+                  "type": "fixed",
+                  "value": 300
+                },
+                "width": {
+                  "type": "match_parent"
+                },
+                "orientation": "overlap",
+                "margins": {
+                  "top": 16
+                }
+              }
+            ],
+            "background": [
+              {
+                "type": "solid",
+                "color": "#ffffff"
+              }
+            ],
+            "border": {
+              "corners_radius": {
+                "top-left": 19,
+                "top-right": 19,
+                "bottom-left": 19,
+                "bottom-right": 19
+              },
+              "stroke": {
+                "color": "#ececec",
+                "width": 1
+              },
+              "has_shadow": 1,
+              "shadow": {
+                "offset": {
+                  "x": {
+                    "value": 0
+                  },
+                  "y": {
+                    "value": 4
+                  }
+                },
+                "blur": 17,
+                "color": "#000000",
+                "alpha": 0.03999999910593033
+              }
+            },
+            "height": {
+              "type": "match_parent"
+            },
+            "width": {
+              "type": "match_parent"
+            },
+            "orientation": "vertical",
+            "content_alignment_vertical": "top",
+            "content_alignment_horizontal": "left",
+            "paddings": {
+              "top": 16,
+              "bottom": 16,
+              "left": 16,
+              "right": 16
+            },
+            "margins": {
+              "top": 12,
+              "right": 12,
+              "bottom": 12,
+              "left": 12
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "templates": {
+    "status_template": {
+      "type": "container",
+      "items": [
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "text",
+              "$text": "text",
+              "font_size": 14,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#D73333",
+              "text_alignment_horizontal": "right",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ],
+          "background": [
+            {
+              "type": "solid",
+              "color": "#FBEBEB"
+            }
+          ],
+          "border": {
+            "corners_radius": {
+              "top-left": 29,
+              "top-right": 29,
+              "bottom-left": 29,
+              "bottom-right": 29
+            }
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "width": {
+            "type": "fixed",
+            "value": 140
+          },
+          "orientation": "horizontal",
+          "content_alignment_horizontal": "center",
+          "content_alignment_vertical": "center",
+          "paddings": {
+            "top": 4,
+            "bottom": 4,
+            "left": 8,
+            "right": 8
+          }
+        },
+        {
+          "type": "text",
+          "text": "وضعیت",
+          "font_size": 14,
+          "line_height": 24,
+          "letter_spacing": 0,
+          "text_color": "#7f7f7f",
+          "text_alignment_horizontal": "center",
+          "text_alignment_vertical": "top",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "alignment_horizontal": "right",
+          "alignment_vertical": "center"
+        }
+      ],
+      "height": {
+        "type": "fixed",
+        "value": 24
+      },
+      "width": {
+        "type": "match_parent"
+      },
+      "orientation": "overlap",
+      "content_alignment_horizontal": "left",
+      "content_alignment_vertical": "center"
+    },
+    "item_template": {
+      "type": "container",
+      "items": [
+        {
+          "type": "text",
+          "$text": "text",
+          "font_size": 14,
+          "line_height": 24,
+          "letter_spacing": 0,
+          "text_color": "#2c2c2c",
+          "text_alignment_horizontal": "center",
+          "text_alignment_vertical": "top",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          }
+        },
+        {
+          "type": "text",
+          "$text": "title",
+          "font_size": 14,
+          "line_height": 24,
+          "letter_spacing": 0,
+          "text_color": "#7f7f7f",
+          "text_alignment_horizontal": "center",
+          "text_alignment_vertical": "top",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "alignment_horizontal": "right",
+          "alignment_vertical": "center"
+        }
+      ],
+      "height": {
+        "type": "fixed",
+        "value": 24
+      },
+      "width": {
+        "type": "match_parent"
+      },
+      "orientation": "overlap",
+      "content_alignment_horizontal": "left",
+      "content_alignment_vertical": "center",
+      "margins": {
+        "top": 16
+      }
+    },
+    "entezami_template":{
+      "type": "container",
+      "items": [
+        {
+          "type": "item_template",
+          "$text":"naghsh",
+          "title":"نقش"
+        },
+        {
+          "type": "separator",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "fixed",
+            "value": 10
+          }
+        },
+        {
+          "type": "item_template",
+          "$text":"eteham",
+          "title":"نوع اتهام"
+        },
+        {
+          "type": "separator",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "fixed",
+            "value": 10
+          }
+        },
+        {
+          "type": "item_template",
+          "$text":"jorm",
+          "title":" جرم"
+        },
+        {
+          "type": "separator",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "fixed",
+            "value": 10
+          }
+        },
+        { "type": "item_template",
+          "$text":"organ",
+          "title":" ارگان"
+        },
+        {
+          "type": "separator",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "fixed",
+            "value": 10
+          }
+        },
+        {
+          "type": "item_template",
+          "$text":"shenase",
+          "title":" شناسه پرونده"
+        },
+        {
+          "type": "separator",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "fixed",
+            "value": 10
+          }
+        },
+        {
+          "type": "item_template",
+          "$text":"tarikh",
+          "title":"  تاریخ"
+        },                                {
+          "type": "separator",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "fixed",
+            "value": 10
+          }
+        },
+        {
+          "type": "item_template",
+          "$text":"shomare",
+          "title":" شماره نامه"
+        }
+      ],
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corners_radius": {
+          "top-left": 27,
+          "top-right": 27,
+          "bottom-left": 27,
+          "bottom-right": 27
+        },
+        "stroke": {
+          "color": "#ececec",
+          "width": 1
+        },
+        "has_shadow": 1,
+        "shadow": {
+          "offset": {
+            "x": {
+              "value": 0
+            },
+            "y": {
+              "value": 4
+            }
+          },
+          "blur": 17,
+          "color": "#000000",
+          "alpha": 0.03999999910593033
+        }
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "width": {
+        "type": "match_parent"
+      },
+      "orientation": "vertical",
+      "content_alignment_vertical": "top",
+      "content_alignment_horizontal": "left",
+      "paddings": {
+        "top": 16,
+        "bottom": 16,
+        "left": 16,
+        "right": 16
+      },
+      "alignment_horizontal": "center",
+      "alignment_vertical": "bottom",
+      "margins": {
+        "top": 8,
+        "right": 12,
+        "bottom": 12,
+        "left": 12
+      }
+    }
+  }
+}

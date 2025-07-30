@@ -1,0 +1,152 @@
+{
+  "templates": {
+    "grid_element": {
+      "type": "container",
+      "$actions": "actions",
+      "width": {
+        "type": "match_parent",
+        "weight": 1
+      },
+      "height": {
+        "type": "match_parent",
+        "weight": 1
+      },
+      "margins": {
+        "left": 8,
+        "top": 8,
+        "right": 8,
+        "bottom": 8
+      },
+      "background": [
+        {
+          "type": "solid",
+          "$color": "background_color"
+        }
+      ],
+      "items": [
+        {
+          "type": "image",
+          "$image_url": "icon",
+          "height": {
+            "type": "fixed",
+            "value": 26
+          },
+          "width": {
+            "type": "fixed",
+            "value": 35
+          }
+        },
+        {
+          "type": "text",
+          "$text": "title",
+          "font_size": 12,
+          "font_weight": "bold",
+          "letter_spacing": 0,
+          "text_color": "#193d8d",
+          "text_alignment_horizontal": "left",
+          "text_alignment_vertical": "top",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "content_alignment_vertical": "center",
+          "content_alignment_horizontal": "center",
+          "alignment_horizontal": "center",
+          "alignment_vertical": "center",
+          "margins": {
+            "top": 8,
+            "bottom": 0
+          }
+        }
+      ],
+      "orientation": "vertical",
+      "content_alignment_vertical": "center",
+      "content_alignment_horizontal": "center",
+      "alignment_horizontal": "center",
+      "alignment_vertical": "center",
+      "border": {
+        "corner_radius": 8
+      },
+      "delimiter_style": {
+        "color": "#00000000"
+      }
+    },
+    "empty_element": {
+      "type": "container",
+      "width": {
+        "type": "match_parent",
+        "weight": 1
+      },
+      "height": {
+        "type": "fixed",
+        "value": 100
+      },
+      "margins": {
+        "left": 8,
+        "top": 8,
+        "right": 8,
+        "bottom": 8
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#00000000"
+        }
+      ],
+      "orientation": "vertical",
+      "content_alignment_vertical": "center",
+      "content_alignment_horizontal": "center",
+      "alignment_horizontal": "center",
+      "alignment_vertical": "center",
+      "border": {
+        "corner_radius": 8
+      },
+      "delimiter_style": {
+        "color": "#00000000"
+      }
+    }
+  },
+  "patch": {
+    "mode": "partial",
+    "changes": [
+      {
+        "id": "base_element",
+        "items": [
+          {
+            "type": "grid_element",
+            "row_span": "1",
+            "column_span": "1",
+            "background_color": "#FFFFFF",
+            "icon": "http://172.19.83.16:7001/PoliceHamrah/icon/ph.png",
+            "title": "ثبت تردد اربعين",
+            "actions": [
+              {
+                "log_id": "show_bottom_sheet",
+                "url": "div-action://bottom_sheet_div?jsonName=ph/vt/bottomsheet"
+              }
+            ]          },
+          {
+            "type": "grid_element",
+            "row_span": "1",
+            "column_span": "1",
+            "background_color": "#FFFFFF",
+            "icon": "http://172.19.83.16:7001/Basir/icon/bazresi.png",
+            "title": "ثبت تخلف",
+            "actions": [
+              {
+                "log_id": "show_bottom_sheet",
+                "url": "div-action://bottom_sheet_div?jsonName=ph/vt/bottomsheet"
+              }
+            ]          },
+          {
+            "type": "empty_element",
+            "row_span": "1",
+            "column_span": "1"
+          }
+        ]
+      }
+    ]
+  }
+}

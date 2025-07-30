@@ -1,0 +1,43 @@
+public class com/yandex/div/shimmer/DivShimmerExtensionHandler : com/yandex/div/core/extension/DivExtensionHandler {
+	public fun <init> ()V
+	public fun <init> (J)V
+	public synthetic fun <init> (JILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun bindView (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivBase;)V
+	public fun matches (Lcom/yandex/div2/DivBase;)Z
+	public fun unbindView (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivBase;)V
+}
+
+public final class com/yandex/div/shimmer/ShimmerDrawable : android/graphics/drawable/Drawable, android/graphics/drawable/Animatable {
+	public fun <init> (Lcom/yandex/div/shimmer/ShimmerDrawable$Config;J)V
+	public fun draw (Landroid/graphics/Canvas;)V
+	public final fun getConfig ()Lcom/yandex/div/shimmer/ShimmerDrawable$Config;
+	public fun getOpacity ()I
+	public fun isRunning ()Z
+	public fun onBoundsChange (Landroid/graphics/Rect;)V
+	public fun setAlpha (I)V
+	public fun setColorFilter (Landroid/graphics/ColorFilter;)V
+	public final fun setConfig (Lcom/yandex/div/shimmer/ShimmerDrawable$Config;)V
+	public fun start ()V
+	public fun stop ()V
+}
+
+public final class com/yandex/div/shimmer/ShimmerDrawable$Config {
+	public fun <init> ([I[FDJJJLcom/yandex/div/shimmer/ShimmerDrawable$CornerRadiusConfig;)V
+	public synthetic fun <init> ([I[FDJJJLcom/yandex/div/shimmer/ShimmerDrawable$CornerRadiusConfig;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getAngle ()D
+	public final fun getColors ()[I
+	public final fun getCornerRadius ()Lcom/yandex/div/shimmer/ShimmerDrawable$CornerRadiusConfig;
+	public final fun getDuration ()J
+	public final fun getLocations ()[F
+	public final fun getRepeatDelay ()J
+	public final fun getStartDelay ()J
+}
+
+public final class com/yandex/div/shimmer/ShimmerDrawable$CornerRadiusConfig {
+	public fun <init> (FFFF)V
+	public final fun getBottomLeft ()F
+	public final fun getBottomRight ()F
+	public final fun getTopLeft ()F
+	public final fun getTopRight ()F
+}
+

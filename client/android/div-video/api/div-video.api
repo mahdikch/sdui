@@ -1,0 +1,11 @@
+public final class com/yandex/div/video/ExoDivPlayerFactory : com/yandex/div/core/player/DivPlayerFactory {
+	public fun <init> (Landroid/content/Context;)V
+	public fun makePlayer (Ljava/util/List;Lcom/yandex/div/core/player/DivPlayerPlaybackConfig;)Lcom/yandex/div/core/player/DivPlayer;
+	public fun makePlayerView (Landroid/content/Context;)Lcom/yandex/div/core/player/DivPlayerView;
+}
+
+public final class com/yandex/div/video/ExoPlayerVideoPreloader : com/yandex/div/core/player/DivPlayerPreloader {
+	public fun <init> (Landroid/content/Context;)V
+	public fun preloadVideo (Ljava/util/List;)Lcom/yandex/div/core/DivPreloader$PreloadReference;
+}
+

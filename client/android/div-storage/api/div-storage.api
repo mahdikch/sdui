@@ -1,0 +1,277 @@
+public abstract interface class com/yandex/div/storage/DivDataRepository {
+	public abstract fun get (Ljava/util/List;)Lcom/yandex/div/storage/DivDataRepositoryResult;
+	public abstract fun getAll ()Lcom/yandex/div/storage/DivDataRepositoryResult;
+	public abstract fun put (Lcom/yandex/div/storage/DivDataRepository$Payload;)Lcom/yandex/div/storage/DivDataRepositoryResult;
+	public abstract fun remove (Lkotlin/jvm/functions/Function1;)Lcom/yandex/div/storage/DivDataRepositoryRemoveResult;
+}
+
+public final class com/yandex/div/storage/DivDataRepository$ActionOnError : java/lang/Enum {
+	public static final field ABORT_TRANSACTION Lcom/yandex/div/storage/DivDataRepository$ActionOnError;
+	public static final field SKIP_ELEMENT Lcom/yandex/div/storage/DivDataRepository$ActionOnError;
+	public static fun valueOf (Ljava/lang/String;)Lcom/yandex/div/storage/DivDataRepository$ActionOnError;
+	public static fun values ()[Lcom/yandex/div/storage/DivDataRepository$ActionOnError;
+}
+
+public final class com/yandex/div/storage/DivDataRepository$DivDataWithMeta {
+	public fun <init> (Ljava/lang/String;Lcom/yandex/div2/DivData;Lorg/json/JSONObject;)V
+	public final fun getDivData ()Lcom/yandex/div2/DivData;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getMetadata ()Lorg/json/JSONObject;
+}
+
+public final class com/yandex/div/storage/DivDataRepository$Payload {
+	public fun <init> (Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Lcom/yandex/div/storage/DivDataRepository$ActionOnError;)V
+	public synthetic fun <init> (Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Lcom/yandex/div/storage/DivDataRepository$ActionOnError;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()Ljava/util/Map;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Lcom/yandex/div/storage/DivDataRepository$ActionOnError;
+	public final fun copy (Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Lcom/yandex/div/storage/DivDataRepository$ActionOnError;)Lcom/yandex/div/storage/DivDataRepository$Payload;
+	public static synthetic fun copy$default (Lcom/yandex/div/storage/DivDataRepository$Payload;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Lcom/yandex/div/storage/DivDataRepository$ActionOnError;ILjava/lang/Object;)Lcom/yandex/div/storage/DivDataRepository$Payload;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getActionOnError ()Lcom/yandex/div/storage/DivDataRepository$ActionOnError;
+	public final fun getDivs ()Ljava/util/List;
+	public final fun getSourceType ()Ljava/lang/String;
+	public final fun getTemplates ()Ljava/util/Map;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract class com/yandex/div/storage/DivDataRepositoryException : java/lang/Exception {
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getCardId ()Ljava/lang/String;
+}
+
+public final class com/yandex/div/storage/DivDataRepositoryException$JsonParsingException : com/yandex/div/storage/DivDataRepositoryException {
+	public fun <init> (Ljava/lang/String;Lcom/yandex/div/json/ParsingException;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/yandex/div/json/ParsingException;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class com/yandex/div/storage/DivDataRepositoryException$StorageException : com/yandex/div/storage/DivDataRepositoryException {
+	public fun <init> (Lcom/yandex/div/storage/database/StorageException;)V
+}
+
+public final class com/yandex/div/storage/DivDataRepositoryRemoveResult {
+	public fun <init> (Ljava/util/Set;Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/Set;
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (Ljava/util/Set;Ljava/util/List;)Lcom/yandex/div/storage/DivDataRepositoryRemoveResult;
+	public static synthetic fun copy$default (Lcom/yandex/div/storage/DivDataRepositoryRemoveResult;Ljava/util/Set;Ljava/util/List;ILjava/lang/Object;)Lcom/yandex/div/storage/DivDataRepositoryRemoveResult;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getErrors ()Ljava/util/List;
+	public final fun getIds ()Ljava/util/Set;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/yandex/div/storage/DivDataRepositoryResult {
+	public static final field Companion Lcom/yandex/div/storage/DivDataRepositoryResult$Companion;
+	public fun <init> (Ljava/util/List;Ljava/util/List;)V
+	public final fun addData (Ljava/util/Collection;)Lcom/yandex/div/storage/DivDataRepositoryResult;
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;Ljava/util/List;)Lcom/yandex/div/storage/DivDataRepositoryResult;
+	public static synthetic fun copy$default (Lcom/yandex/div/storage/DivDataRepositoryResult;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)Lcom/yandex/div/storage/DivDataRepositoryResult;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getErrors ()Ljava/util/List;
+	public final fun getResultData ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/yandex/div/storage/DivDataRepositoryResult$Companion {
+	public final fun getEMPTY ()Lcom/yandex/div/storage/DivDataRepositoryResult;
+}
+
+public final class com/yandex/div/storage/DivDatabaseStorage : com/yandex/div/storage/DivTemplateStorage, java/io/Closeable {
+	public fun <init> (Landroid/content/Context;)V
+	public fun <init> (Landroid/content/Context;Ljava/lang/String;)V
+	public synthetic fun <init> (Landroid/content/Context;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun clear ()V
+	public fun close ()V
+	public fun deleteTemplates (Ljava/lang/String;)V
+	public final fun readAllTemplates ()Ljava/util/Map;
+	public fun readTemplates (Ljava/lang/String;)Ljava/util/Map;
+	public fun readTemplatesByIds ([Ljava/lang/String;)Ljava/util/Map;
+	public fun writeTemplates (Ljava/lang/String;Ljava/util/Map;)V
+}
+
+public abstract interface class com/yandex/div/storage/DivStorageComponent {
+	public static final field Companion Lcom/yandex/div/storage/DivStorageComponent$Companion;
+	public abstract fun getRawJsonRepository ()Lcom/yandex/div/storage/RawJsonRepository;
+	public abstract fun getRepository ()Lcom/yandex/div/storage/DivDataRepository;
+}
+
+public final class com/yandex/div/storage/DivStorageComponent$Companion {
+	public final fun create (Landroid/content/Context;)Lcom/yandex/div/storage/DivStorageComponent;
+	public final fun create (Landroid/content/Context;Lcom/yandex/div/histogram/reporter/HistogramReporterDelegate;)Lcom/yandex/div/storage/DivStorageComponent;
+	public final fun create (Landroid/content/Context;Lcom/yandex/div/histogram/reporter/HistogramReporterDelegate;Lcom/yandex/div/storage/histogram/HistogramNameProvider;)Lcom/yandex/div/storage/DivStorageComponent;
+	public final fun create (Landroid/content/Context;Lcom/yandex/div/histogram/reporter/HistogramReporterDelegate;Lcom/yandex/div/storage/histogram/HistogramNameProvider;Lcom/yandex/div/json/ParsingErrorLogger;)Lcom/yandex/div/storage/DivStorageComponent;
+	public final fun create (Landroid/content/Context;Lcom/yandex/div/histogram/reporter/HistogramReporterDelegate;Lcom/yandex/div/storage/histogram/HistogramNameProvider;Lcom/yandex/div/json/ParsingErrorLogger;Ljavax/inject/Provider;)Lcom/yandex/div/storage/DivStorageComponent;
+	public final fun create (Landroid/content/Context;Lcom/yandex/div/histogram/reporter/HistogramReporterDelegate;Lcom/yandex/div/storage/histogram/HistogramNameProvider;Lcom/yandex/div/json/ParsingErrorLogger;Ljavax/inject/Provider;Ljavax/inject/Provider;)Lcom/yandex/div/storage/DivStorageComponent;
+	public final fun create (Landroid/content/Context;Lcom/yandex/div/histogram/reporter/HistogramReporterDelegate;Lcom/yandex/div/storage/histogram/HistogramNameProvider;Lcom/yandex/div/json/ParsingErrorLogger;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljava/lang/String;)Lcom/yandex/div/storage/DivStorageComponent;
+	public static synthetic fun create$default (Lcom/yandex/div/storage/DivStorageComponent$Companion;Landroid/content/Context;Lcom/yandex/div/histogram/reporter/HistogramReporterDelegate;Lcom/yandex/div/storage/histogram/HistogramNameProvider;Lcom/yandex/div/json/ParsingErrorLogger;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljava/lang/String;ILjava/lang/Object;)Lcom/yandex/div/storage/DivStorageComponent;
+}
+
+public final class com/yandex/div/storage/DivStorageErrorException : com/yandex/div/storage/database/StorageException {
+	public static final field Companion Lcom/yandex/div/storage/DivStorageErrorException$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class com/yandex/div/storage/DivStorageErrorException$Companion {
+}
+
+public abstract interface class com/yandex/div/storage/DivTemplateStorage {
+	public abstract fun clear ()V
+	public abstract fun deleteTemplates (Ljava/lang/String;)V
+	public abstract fun readTemplates (Ljava/lang/String;)Ljava/util/Map;
+	public abstract fun readTemplatesByIds ([Ljava/lang/String;)Ljava/util/Map;
+	public abstract fun writeTemplates (Ljava/lang/String;Ljava/util/Map;)V
+}
+
+public abstract interface class com/yandex/div/storage/RawDataAndMetadata {
+	public static final field Companion Lcom/yandex/div/storage/RawDataAndMetadata$Companion;
+	public abstract fun getDivData ()Lorg/json/JSONObject;
+	public abstract fun getId ()Ljava/lang/String;
+	public abstract fun getMetadata ()Lorg/json/JSONObject;
+}
+
+public final class com/yandex/div/storage/RawDataAndMetadata$Companion {
+	public final fun invoke (Ljava/lang/String;Lorg/json/JSONObject;Lorg/json/JSONObject;)Lcom/yandex/div/storage/RawDataAndMetadata;
+	public static synthetic fun invoke$default (Lcom/yandex/div/storage/RawDataAndMetadata$Companion;Ljava/lang/String;Lorg/json/JSONObject;Lorg/json/JSONObject;ILjava/lang/Object;)Lcom/yandex/div/storage/RawDataAndMetadata;
+}
+
+public final class com/yandex/div/storage/RawDataAndMetadata$Ready : com/yandex/div/storage/RawDataAndMetadata {
+	public fun <init> (Ljava/lang/String;Lorg/json/JSONObject;Lorg/json/JSONObject;)V
+	public fun getDivData ()Lorg/json/JSONObject;
+	public fun getId ()Ljava/lang/String;
+	public fun getMetadata ()Lorg/json/JSONObject;
+}
+
+public abstract interface class com/yandex/div/storage/RawJsonRepository {
+	public abstract fun get (Ljava/util/List;)Lcom/yandex/div/storage/RawJsonRepositoryResult;
+	public abstract fun getAll ()Lcom/yandex/div/storage/RawJsonRepositoryResult;
+	public abstract fun put (Lcom/yandex/div/storage/RawJsonRepository$Payload;)Lcom/yandex/div/storage/RawJsonRepositoryResult;
+	public abstract fun remove (Lkotlin/jvm/functions/Function1;)Lcom/yandex/div/storage/RawJsonRepositoryRemoveResult;
+}
+
+public final class com/yandex/div/storage/RawJsonRepository$Payload {
+	public fun <init> (Ljava/util/List;Lcom/yandex/div/storage/DivDataRepository$ActionOnError;)V
+	public synthetic fun <init> (Ljava/util/List;Lcom/yandex/div/storage/DivDataRepository$ActionOnError;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()Lcom/yandex/div/storage/DivDataRepository$ActionOnError;
+	public final fun copy (Ljava/util/List;Lcom/yandex/div/storage/DivDataRepository$ActionOnError;)Lcom/yandex/div/storage/RawJsonRepository$Payload;
+	public static synthetic fun copy$default (Lcom/yandex/div/storage/RawJsonRepository$Payload;Ljava/util/List;Lcom/yandex/div/storage/DivDataRepository$ActionOnError;ILjava/lang/Object;)Lcom/yandex/div/storage/RawJsonRepository$Payload;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getActionOnError ()Lcom/yandex/div/storage/DivDataRepository$ActionOnError;
+	public final fun getJsons ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/yandex/div/storage/RawJsonRepositoryException : java/lang/Exception {
+	public fun <init> (Lcom/yandex/div/storage/database/StorageException;)V
+	public final fun getJsonId ()Ljava/lang/String;
+}
+
+public final class com/yandex/div/storage/RawJsonRepositoryRemoveResult {
+	public fun <init> (Ljava/util/Set;Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/Set;
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (Ljava/util/Set;Ljava/util/List;)Lcom/yandex/div/storage/RawJsonRepositoryRemoveResult;
+	public static synthetic fun copy$default (Lcom/yandex/div/storage/RawJsonRepositoryRemoveResult;Ljava/util/Set;Ljava/util/List;ILjava/lang/Object;)Lcom/yandex/div/storage/RawJsonRepositoryRemoveResult;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getErrors ()Ljava/util/List;
+	public final fun getIds ()Ljava/util/Set;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/yandex/div/storage/RawJsonRepositoryResult {
+	public static final field Companion Lcom/yandex/div/storage/RawJsonRepositoryResult$Companion;
+	public fun <init> (Ljava/util/List;Ljava/util/List;)V
+	public final fun addData (Ljava/util/Collection;)Lcom/yandex/div/storage/RawJsonRepositoryResult;
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;Ljava/util/List;)Lcom/yandex/div/storage/RawJsonRepositoryResult;
+	public static synthetic fun copy$default (Lcom/yandex/div/storage/RawJsonRepositoryResult;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)Lcom/yandex/div/storage/RawJsonRepositoryResult;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getErrors ()Ljava/util/List;
+	public final fun getResultData ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/yandex/div/storage/RawJsonRepositoryResult$Companion {
+	public final fun getEMPTY ()Lcom/yandex/div/storage/RawJsonRepositoryResult;
+}
+
+public class com/yandex/div/storage/database/ExecutionResult {
+	public fun <init> ()V
+	public fun <init> (Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getErrors ()Ljava/util/List;
+	public fun isSuccessful ()Z
+}
+
+public abstract class com/yandex/div/storage/database/StorageException : java/lang/Exception {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getCardId ()Ljava/lang/String;
+}
+
+public abstract interface class com/yandex/div/storage/histogram/HistogramNameProvider {
+	public fun getColdCallTypeSuffix ()Ljava/lang/String;
+	public abstract fun getComponentName ()Ljava/lang/String;
+	public abstract fun getDivDataLoadReportName ()Ljava/lang/String;
+	public abstract fun getDivLoadTemplatesReportName ()Ljava/lang/String;
+	public abstract fun getDivParsingHistogramName ()Ljava/lang/String;
+	public abstract fun getHistogramNameFromCardId (Ljava/lang/String;)Ljava/lang/String;
+	public fun getHotCallTypeSuffix ()Ljava/lang/String;
+}
+
+public abstract interface class com/yandex/div/storage/rawjson/RawJson {
+	public static final field Companion Lcom/yandex/div/storage/rawjson/RawJson$Companion;
+	public abstract fun getData ()Lorg/json/JSONObject;
+	public abstract fun getId ()Ljava/lang/String;
+}
+
+public final class com/yandex/div/storage/rawjson/RawJson$Companion {
+	public final fun invoke (Ljava/lang/String;Lorg/json/JSONObject;)Lcom/yandex/div/storage/rawjson/RawJson;
+}
+
+public final class com/yandex/div/storage/rawjson/RawJson$Ready : com/yandex/div/storage/rawjson/RawJson {
+	public fun <init> (Ljava/lang/String;Lorg/json/JSONObject;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lorg/json/JSONObject;
+	public final fun copy (Ljava/lang/String;Lorg/json/JSONObject;)Lcom/yandex/div/storage/rawjson/RawJson$Ready;
+	public static synthetic fun copy$default (Lcom/yandex/div/storage/rawjson/RawJson$Ready;Ljava/lang/String;Lorg/json/JSONObject;ILjava/lang/Object;)Lcom/yandex/div/storage/rawjson/RawJson$Ready;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getData ()Lorg/json/JSONObject;
+	public fun getId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class com/yandex/div/storage/util/CardErrorTransformer {
+	public abstract fun tryTransformAndLog (Lcom/yandex/div/storage/util/CardErrorTransformer$CardDetailedErrorException;)Z
+}
+
+public final class com/yandex/div/storage/util/CardErrorTransformer$CardDetailedErrorException : java/lang/Exception {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Lorg/json/JSONObject;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Lorg/json/JSONObject;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getCardId ()Ljava/lang/String;
+	public final fun getDetails ()Ljava/util/Map;
+	public final fun getMetadata ()Lorg/json/JSONObject;
+	public final fun getTemplateId ()Ljava/lang/String;
+}
+
+public final class com/yandex/div/storage/util/CardErrorTransformer$Composite : com/yandex/div/storage/util/CardErrorTransformer {
+	public fun <init> ([Lcom/yandex/div/storage/util/CardErrorTransformer;)V
+	public fun tryTransformAndLog (Lcom/yandex/div/storage/util/CardErrorTransformer$CardDetailedErrorException;)Z
+}
+

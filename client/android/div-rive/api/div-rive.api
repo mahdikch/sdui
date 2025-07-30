@@ -1,0 +1,53 @@
+public abstract interface class com/yandex/div/rive/DivRiveLocalResProvider {
+	public static final field Companion Lcom/yandex/div/rive/DivRiveLocalResProvider$Companion;
+	public static fun getSTUB ()Lcom/yandex/div/rive/DivRiveLocalResProvider;
+	public abstract fun provideAssetFile (Ljava/lang/String;)Ljava/lang/String;
+	public abstract fun provideRes (Ljava/lang/String;)Ljava/lang/Integer;
+}
+
+public final class com/yandex/div/rive/DivRiveLocalResProvider$Companion {
+	public final fun getSTUB ()Lcom/yandex/div/rive/DivRiveLocalResProvider;
+}
+
+public abstract interface class com/yandex/div/rive/DivRiveLogger {
+	public static final field Companion Lcom/yandex/div/rive/DivRiveLogger$Companion;
+	public abstract fun error (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public static fun getSTUB ()Lcom/yandex/div/rive/DivRiveLogger;
+	public abstract fun log (Ljava/lang/String;)V
+}
+
+public final class com/yandex/div/rive/DivRiveLogger$Companion {
+	public final fun getSTUB ()Lcom/yandex/div/rive/DivRiveLogger;
+}
+
+public abstract interface class com/yandex/div/rive/DivRiveNetworkDelegate {
+	public abstract fun load (Ljava/lang/String;)[B
+}
+
+public final class com/yandex/div/rive/OkHttpDivRiveNetworkDelegate : com/yandex/div/rive/DivRiveNetworkDelegate {
+	public fun <init> (Lokhttp3/Call$Factory;)V
+	public fun load (Ljava/lang/String;)[B
+}
+
+public final class com/yandex/div/rive/RiveCustomViewAdapter : com/yandex/div/core/DivCustomContainerViewAdapter {
+	public synthetic fun <init> (Landroid/content/Context;ILcom/yandex/div/rive/DivRiveNetworkDelegate;Ljava/util/concurrent/ExecutorService;Lcom/yandex/div/rive/DivRiveLogger;Lcom/yandex/div/rive/DivRiveLocalResProvider;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun bindView (Landroid/view/View;Lcom/yandex/div2/DivCustom;Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Lcom/yandex/div/core/state/DivStatePath;)V
+	public fun createView (Lcom/yandex/div2/DivCustom;Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Lcom/yandex/div/core/state/DivStatePath;)Landroid/view/View;
+	public fun isCustomTypeSupported (Ljava/lang/String;)Z
+	public fun preload (Lcom/yandex/div2/DivCustom;Lcom/yandex/div/core/DivPreloader$Callback;)Lcom/yandex/div/core/DivPreloader$PreloadReference;
+	public fun release (Landroid/view/View;Lcom/yandex/div2/DivCustom;)V
+}
+
+public final class com/yandex/div/rive/RiveCustomViewAdapter$Builder {
+	public static final field Companion Lcom/yandex/div/rive/RiveCustomViewAdapter$Builder$Companion;
+	public fun <init> (Landroid/content/Context;Lcom/yandex/div/rive/DivRiveNetworkDelegate;)V
+	public final fun build ()Lcom/yandex/div/rive/RiveCustomViewAdapter;
+	public final fun loadExecutor (Ljava/util/concurrent/ExecutorService;)Lcom/yandex/div/rive/RiveCustomViewAdapter$Builder;
+	public final fun localResProvider (Lcom/yandex/div/rive/DivRiveLocalResProvider;)Lcom/yandex/div/rive/RiveCustomViewAdapter$Builder;
+	public final fun logger (Lcom/yandex/div/rive/DivRiveLogger;)Lcom/yandex/div/rive/RiveCustomViewAdapter$Builder;
+	public final fun maxCacheSize (I)Lcom/yandex/div/rive/RiveCustomViewAdapter$Builder;
+}
+
+public final class com/yandex/div/rive/RiveCustomViewAdapter$Builder$Companion {
+}
+

@@ -33,6 +33,7 @@
         "has_shadow": true
       },
       "items": [
+
         {
           "type": "image",
           "$image_url": "post_image",

@@ -1,0 +1,33 @@
+public abstract interface class com/yandex/div/sizeprovider/DivSizeProviderErrorLogger {
+	public static final field Companion Lcom/yandex/div/sizeprovider/DivSizeProviderErrorLogger$Companion;
+	public abstract fun logError (Ljava/lang/Throwable;)V
+}
+
+public final class com/yandex/div/sizeprovider/DivSizeProviderErrorLogger$Companion {
+	public final fun getSTUB ()Lcom/yandex/div/sizeprovider/DivSizeProviderErrorLogger;
+}
+
+public final class com/yandex/div/sizeprovider/DivSizeProviderExtensionHandler : com/yandex/div/core/extension/DivExtensionHandler {
+	public fun <init> ()V
+	public fun <init> (Lcom/yandex/div/sizeprovider/DivSizeProviderErrorLogger;)V
+	public synthetic fun <init> (Lcom/yandex/div/sizeprovider/DivSizeProviderErrorLogger;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun bindView (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivBase;)V
+	public fun matches (Lcom/yandex/div2/DivBase;)Z
+	public fun unbindView (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivBase;)V
+}
+
+public final class com/yandex/div/sizeprovider/DivSizeProviderVariablesHolder : com/yandex/div/internal/core/DivVisitor, com/yandex/div/internal/core/ExpressionSubscriber {
+	public fun <init> ()V
+	public final fun clear ()V
+	public final fun contains (Ljava/lang/String;)Z
+	public synthetic fun defaultVisit (Lcom/yandex/div2/Div;Lcom/yandex/div/json/expressions/ExpressionResolver;)Ljava/lang/Object;
+	public fun getSubscriptions ()Ljava/util/List;
+	public final fun observeDivData (Lcom/yandex/div2/DivData;Lcom/yandex/div/json/expressions/ExpressionResolver;)V
+	public synthetic fun visit (Lcom/yandex/div2/Div$Container;Lcom/yandex/div/json/expressions/ExpressionResolver;)Ljava/lang/Object;
+	public synthetic fun visit (Lcom/yandex/div2/Div$Gallery;Lcom/yandex/div/json/expressions/ExpressionResolver;)Ljava/lang/Object;
+	public synthetic fun visit (Lcom/yandex/div2/Div$Grid;Lcom/yandex/div/json/expressions/ExpressionResolver;)Ljava/lang/Object;
+	public synthetic fun visit (Lcom/yandex/div2/Div$Pager;Lcom/yandex/div/json/expressions/ExpressionResolver;)Ljava/lang/Object;
+	public synthetic fun visit (Lcom/yandex/div2/Div$State;Lcom/yandex/div/json/expressions/ExpressionResolver;)Ljava/lang/Object;
+	public synthetic fun visit (Lcom/yandex/div2/Div$Tabs;Lcom/yandex/div/json/expressions/ExpressionResolver;)Ljava/lang/Object;
+}
+

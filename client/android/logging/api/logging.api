@@ -1,0 +1,19 @@
+public final class com/yandex/div/logging/BuildConfig {
+	public static final field BUILD_TYPE Ljava/lang/String;
+	public static final field DEBUG Z
+	public static final field DISABLE_LOGS Z
+	public static final field LIBRARY_PACKAGE_NAME Ljava/lang/String;
+	public fun <init> ()V
+}
+
+public final class com/yandex/div/logging/Severity : java/lang/Enum {
+	public static final field DEBUG Lcom/yandex/div/logging/Severity;
+	public static final field ERROR Lcom/yandex/div/logging/Severity;
+	public static final field INFO Lcom/yandex/div/logging/Severity;
+	public static final field VERBOSE Lcom/yandex/div/logging/Severity;
+	public static final field WARNING Lcom/yandex/div/logging/Severity;
+	public final fun isAtLeast (Lcom/yandex/div/logging/Severity;)Z
+	public static fun valueOf (Ljava/lang/String;)Lcom/yandex/div/logging/Severity;
+	public static fun values ()[Lcom/yandex/div/logging/Severity;
+}
+

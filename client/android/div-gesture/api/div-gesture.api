@@ -1,0 +1,11 @@
+public final class com/yandex/div/gesture/DivGestureExtensionHandler : com/yandex/div/core/extension/DivExtensionHandler {
+	public fun <init> (Lcom/yandex/div/gesture/ParsingErrorLoggerFactory;)V
+	public fun bindView (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivBase;)V
+	public fun matches (Lcom/yandex/div2/DivBase;)Z
+	public fun unbindView (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivBase;)V
+}
+
+public abstract interface class com/yandex/div/gesture/ParsingErrorLoggerFactory {
+	public abstract fun create (Ljava/lang/String;)Lcom/yandex/div/json/ParsingErrorLogger;
+}
+

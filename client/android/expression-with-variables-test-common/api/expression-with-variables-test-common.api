@@ -1,0 +1,7 @@
+public final class com/yandex/div/test/expression/ExpressionTestCaseUtils {
+	public static final field INSTANCE Lcom/yandex/div/test/expression/ExpressionTestCaseUtils;
+	public final fun checkDuplicates (Lkotlin/sequences/Sequence;)V
+	public final fun parseTestCases (Lorg/json/JSONObject;Ljava/lang/String;)Ljava/util/List;
+	public final fun toVariable (Lorg/json/JSONObject;)Lcom/yandex/div/data/Variable;
+}
+
