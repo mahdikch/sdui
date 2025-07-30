@@ -1,0 +1,17 @@
+public final class com/yandex/div/font/YandexSansDisplayDivTypefaceProvider : com/yandex/div/core/font/DivTypefaceProvider {
+	public fun <init> (Landroid/content/Context;)V
+	public fun getBold ()Landroid/graphics/Typeface;
+	public fun getLight ()Landroid/graphics/Typeface;
+	public fun getMedium ()Landroid/graphics/Typeface;
+	public fun getRegular ()Landroid/graphics/Typeface;
+}
+
+public final class com/yandex/div/font/YandexSansDivTypefaceProvider : com/yandex/div/core/font/DivTypefaceProvider {
+	public fun <init> (Landroid/content/Context;)V
+	public fun getBold ()Landroid/graphics/Typeface;
+	public fun getLight ()Landroid/graphics/Typeface;
+	public fun getMedium ()Landroid/graphics/Typeface;
+	public fun getRegular ()Landroid/graphics/Typeface;
+	public fun getRegularLegacy ()Landroid/graphics/Typeface;
+}
+

@@ -1,0 +1,127 @@
+public final class com/yandex/div/core/CompositeDisposable : com/yandex/div/core/Disposable {
+	public fun <init> ()V
+	public final fun add (Lcom/yandex/div/core/Disposable;)V
+	public fun close ()V
+	public final fun remove (Lcom/yandex/div/core/Disposable;)V
+}
+
+public final class com/yandex/div/core/CompositeDisposableKt {
+	public static final fun minusAssign (Lcom/yandex/div/core/CompositeDisposable;Lcom/yandex/div/core/Disposable;)V
+	public static final fun plusAssign (Lcom/yandex/div/core/CompositeDisposable;Lcom/yandex/div/core/Disposable;)V
+}
+
+public abstract interface class com/yandex/div/core/Disposable : java/io/Closeable, java/lang/AutoCloseable {
+	public static final field Companion Lcom/yandex/div/core/Disposable$Companion;
+	public static final field NULL Lcom/yandex/div/core/Disposable;
+	public abstract fun close ()V
+}
+
+public final class com/yandex/div/core/Disposable$Companion {
+}
+
+public class com/yandex/div/core/ObserverList : java/lang/Iterable {
+	public fun <init> ()V
+	public fun addObserver (Ljava/lang/Object;)Z
+	public fun clear ()V
+	public fun hasObserver (Ljava/lang/Object;)Z
+	public fun isEmpty ()Z
+	public fun iterator ()Ljava/util/Iterator;
+	public fun removeObserver (Ljava/lang/Object;)Z
+	public fun reverseIterator ()Lcom/yandex/div/core/ObserverList$RewindableIterator;
+	public fun rewindableIterator ()Lcom/yandex/div/core/ObserverList$RewindableIterator;
+	public fun size ()I
+}
+
+public abstract interface class com/yandex/div/core/ObserverList$RewindableIterator : java/util/Iterator {
+	public abstract fun rewind ()V
+}
+
+public abstract interface annotation class com/yandex/div/core/annotations/ExperimentalApi : java/lang/annotation/Annotation {
+}
+
+public abstract interface annotation class com/yandex/div/core/annotations/InternalApi : java/lang/annotation/Annotation {
+}
+
+public abstract interface annotation class com/yandex/div/core/annotations/Mockable : java/lang/annotation/Annotation {
+}
+
+public abstract interface annotation class com/yandex/div/core/annotations/PublicApi : java/lang/annotation/Annotation {
+}
+
+public abstract interface class com/yandex/div/core/font/DivTypefaceProvider {
+	public static final field DEFAULT Lcom/yandex/div/core/font/DivTypefaceProvider;
+	public abstract fun getBold ()Landroid/graphics/Typeface;
+	public abstract fun getLight ()Landroid/graphics/Typeface;
+	public abstract fun getMedium ()Landroid/graphics/Typeface;
+	public abstract fun getRegular ()Landroid/graphics/Typeface;
+	public fun getRegularLegacy ()Landroid/graphics/Typeface;
+	public fun getTypefaceFor (I)Landroid/graphics/Typeface;
+}
+
+public final class com/yandex/div/core/font/DivTypefaceType : java/lang/Enum {
+	public static final field BOLD Lcom/yandex/div/core/font/DivTypefaceType;
+	public static final field LIGHT Lcom/yandex/div/core/font/DivTypefaceType;
+	public static final field MEDIUM Lcom/yandex/div/core/font/DivTypefaceType;
+	public static final field REGULAR Lcom/yandex/div/core/font/DivTypefaceType;
+	public fun getTypeface (Lcom/yandex/div/core/font/DivTypefaceProvider;)Landroid/graphics/Typeface;
+	public static fun valueOf (Ljava/lang/String;)Lcom/yandex/div/core/font/DivTypefaceType;
+	public static fun values ()[Lcom/yandex/div/core/font/DivTypefaceType;
+}
+
+public final class com/yandex/div/core/images/BitmapSource : java/lang/Enum {
+	public static final field DISK Lcom/yandex/div/core/images/BitmapSource;
+	public static final field MEMORY Lcom/yandex/div/core/images/BitmapSource;
+	public static final field NETWORK Lcom/yandex/div/core/images/BitmapSource;
+	public static fun valueOf (Ljava/lang/String;)Lcom/yandex/div/core/images/BitmapSource;
+	public static fun values ()[Lcom/yandex/div/core/images/BitmapSource;
+}
+
+public class com/yandex/div/core/images/CachedBitmap {
+	public fun <init> (Landroid/graphics/Bitmap;Landroid/net/Uri;Lcom/yandex/div/core/images/BitmapSource;)V
+	public fun <init> (Landroid/graphics/Bitmap;[BLandroid/net/Uri;Lcom/yandex/div/core/images/BitmapSource;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getBitmap ()Landroid/graphics/Bitmap;
+	public fun getBytes ()[B
+	public fun getCacheUri ()Landroid/net/Uri;
+	public fun getFrom ()Lcom/yandex/div/core/images/BitmapSource;
+	public fun hashCode ()I
+}
+
+public class com/yandex/div/core/images/DivImageDownloadCallback {
+	public fun <init> ()V
+	public fun getAdditionalLogInfo ()Ljava/lang/String;
+	public fun onError ()V
+	public fun onScheduling ()V
+	public fun onSuccess (Landroid/graphics/drawable/Drawable;)V
+	public fun onSuccess (Landroid/graphics/drawable/PictureDrawable;)V
+	public fun onSuccess (Lcom/yandex/div/core/images/CachedBitmap;)V
+}
+
+public abstract interface class com/yandex/div/core/images/DivImageLoader {
+	public fun hasSvgSupport ()Ljava/lang/Boolean;
+	public abstract fun loadImage (Ljava/lang/String;Landroid/widget/ImageView;)Lcom/yandex/div/core/images/LoadReference;
+	public abstract fun loadImage (Ljava/lang/String;Lcom/yandex/div/core/images/DivImageDownloadCallback;)Lcom/yandex/div/core/images/LoadReference;
+	public fun loadImage (Ljava/lang/String;Lcom/yandex/div/core/images/DivImageDownloadCallback;I)Lcom/yandex/div/core/images/LoadReference;
+	public abstract fun loadImageBytes (Ljava/lang/String;Lcom/yandex/div/core/images/DivImageDownloadCallback;)Lcom/yandex/div/core/images/LoadReference;
+	public fun loadImageBytes (Ljava/lang/String;Lcom/yandex/div/core/images/DivImageDownloadCallback;I)Lcom/yandex/div/core/images/LoadReference;
+}
+
+public abstract interface annotation class com/yandex/div/core/images/DivImagePriority : java/lang/annotation/Annotation {
+	public static final field Companion Lcom/yandex/div/core/images/DivImagePriority$Companion;
+	public static final field IMAGES_PRIORITY_DEFAULT I
+	public static final field IMAGES_PRIORITY_PRELOAD I
+}
+
+public final class com/yandex/div/core/images/DivImagePriority$Companion {
+	public static final field IMAGES_PRIORITY_DEFAULT I
+	public static final field IMAGES_PRIORITY_PRELOAD I
+}
+
+public abstract interface class com/yandex/div/core/images/LoadReference {
+	public abstract fun cancel ()V
+}
+
+public abstract interface class com/yandex/div/core/uri/UriHandler {
+	public abstract fun handleUri (Landroid/net/Uri;)Z
+}
+

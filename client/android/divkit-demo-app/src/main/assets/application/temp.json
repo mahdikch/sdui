@@ -184,6 +184,7 @@
             {
               "type": "custom",
               "custom_type": "audioPlayerView",
+
               "background": [
                 {
                   "type": "solid",

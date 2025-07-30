@@ -1,0 +1,223 @@
+public abstract interface class com/yandex/div/histogram/CpuUsageHistogramReporter {
+	public abstract fun startReporting (Ljava/lang/String;I)Lcom/yandex/div/histogram/util/Cancelable;
+}
+
+public final class com/yandex/div/histogram/CpuUsageHistogramReporter$NoOp : com/yandex/div/histogram/CpuUsageHistogramReporter {
+	public fun <init> ()V
+	public fun startReporting (Ljava/lang/String;I)Lcom/yandex/div/histogram/util/Cancelable;
+}
+
+public final class com/yandex/div/histogram/DefaultTaskExecutor : com/yandex/div/histogram/TaskExecutor {
+	public fun <init> ()V
+	public fun post (Lkotlin/jvm/functions/Function0;)V
+}
+
+public final class com/yandex/div/histogram/Div2ViewHistogramReporter {
+	public fun <init> (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
+	public final fun getComponent ()Ljava/lang/String;
+	public final fun onBindingFinished ()V
+	public final fun onBindingPaused ()V
+	public final fun onBindingResumed ()V
+	public final fun onBindingStarted ()V
+	public final fun onDrawFinished ()V
+	public final fun onDrawStarted ()V
+	public final fun onLayoutFinished ()V
+	public final fun onLayoutStarted ()V
+	public final fun onMeasureFinished ()V
+	public final fun onMeasureStarted ()V
+	public final fun onRebindingFinished ()V
+	public final fun onRebindingStarted ()V
+	public final fun onRenderStarted ()V
+	public final fun setComponent (Ljava/lang/String;)V
+}
+
+public abstract interface class com/yandex/div/histogram/DivParsingHistogramReporter {
+	public static final field Companion Lcom/yandex/div/histogram/DivParsingHistogramReporter$Companion;
+	public abstract fun measureDataParsing (Lorg/json/JSONObject;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+	public abstract fun measureJsonParsing (Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lorg/json/JSONObject;
+	public abstract fun measureTemplatesParsing (Lorg/json/JSONObject;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+}
+
+public final class com/yandex/div/histogram/DivParsingHistogramReporter$Companion {
+	public final fun getDEFAULT ()Lcom/yandex/div/histogram/DivParsingHistogramReporter;
+}
+
+public final class com/yandex/div/histogram/DivParsingHistogramReporterImpl : com/yandex/div/histogram/DivParsingHistogramReporter {
+	public fun <init> (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
+	public fun measureDataParsing (Lorg/json/JSONObject;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+	public fun measureJsonParsing (Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lorg/json/JSONObject;
+	public fun measureTemplatesParsing (Lorg/json/JSONObject;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+}
+
+public abstract interface class com/yandex/div/histogram/HistogramBridge {
+	public abstract fun recordBooleanHistogram (Ljava/lang/String;Z)V
+	public abstract fun recordCountHistogram (Ljava/lang/String;IIII)V
+	public abstract fun recordEnumeratedHistogram (Ljava/lang/String;II)V
+	public abstract fun recordLinearCountHistogram (Ljava/lang/String;IIII)V
+	public abstract fun recordSparseSlowlyHistogram (Ljava/lang/String;I)V
+	public fun recordTimeHistogram (Ljava/lang/String;JJJLjava/util/concurrent/TimeUnit;I)V
+	public abstract fun recordTimeHistogram (Ljava/lang/String;JJJLjava/util/concurrent/TimeUnit;J)V
+}
+
+public abstract interface annotation class com/yandex/div/histogram/HistogramCallType : java/lang/annotation/Annotation {
+	public static final field CALL_TYPE_COLD Ljava/lang/String;
+	public static final field CALL_TYPE_COOL Ljava/lang/String;
+	public static final field CALL_TYPE_WARM Ljava/lang/String;
+	public static final field Companion Lcom/yandex/div/histogram/HistogramCallType$Companion;
+}
+
+public final class com/yandex/div/histogram/HistogramCallType$Companion {
+	public static final field CALL_TYPE_COLD Ljava/lang/String;
+	public static final field CALL_TYPE_COOL Ljava/lang/String;
+	public static final field CALL_TYPE_WARM Ljava/lang/String;
+}
+
+public abstract class com/yandex/div/histogram/HistogramCallTypeChecker {
+	public fun <init> ()V
+	public final fun addReported (Ljava/lang/String;)Z
+}
+
+public final class com/yandex/div/histogram/HistogramCallTypeProvider : com/yandex/div/histogram/HistogramCallTypeChecker {
+	public fun <init> (Lkotlin/jvm/functions/Function0;)V
+	public final fun getHistogramCallType (Ljava/lang/String;)Ljava/lang/String;
+}
+
+public final class com/yandex/div/histogram/HistogramColdTypeChecker : com/yandex/div/histogram/HistogramCallTypeChecker {
+	public fun <init> ()V
+}
+
+public abstract interface class com/yandex/div/histogram/HistogramConfiguration : com/yandex/div/histogram/HistogramRecordConfiguration {
+	public static final field Companion Lcom/yandex/div/histogram/HistogramConfiguration$Companion;
+	public static final field DEFAULT Lcom/yandex/div/histogram/HistogramConfiguration;
+	public abstract fun getCpuUsageHistogramReporter ()Ljavax/inject/Provider;
+	public abstract fun getHistogramBridge ()Ljavax/inject/Provider;
+	public abstract fun getTaskExecutorProvider ()Ljavax/inject/Provider;
+	public abstract fun isReportingEnabled ()Z
+}
+
+public final class com/yandex/div/histogram/HistogramConfiguration$Companion {
+}
+
+public class com/yandex/div/histogram/HistogramConfiguration$DefaultHistogramConfiguration : com/yandex/div/histogram/HistogramConfiguration {
+	public fun <init> ()V
+	public fun getCpuUsageHistogramReporter ()Ljavax/inject/Provider;
+	public fun getHistogramBridge ()Ljavax/inject/Provider;
+	public fun getRenderConfiguration ()Ljavax/inject/Provider;
+	public fun getTaskExecutorProvider ()Ljavax/inject/Provider;
+	public fun isColdRecordingEnabled ()Z
+	public fun isCoolRecordingEnabled ()Z
+	public fun isReportingEnabled ()Z
+	public fun isSizeRecordingEnabled ()Z
+	public fun isWarmRecordingEnabled ()Z
+}
+
+public abstract interface class com/yandex/div/histogram/HistogramFilter {
+	public static final field Companion Lcom/yandex/div/histogram/HistogramFilter$Companion;
+	public abstract fun report (Ljava/lang/String;)Z
+}
+
+public final class com/yandex/div/histogram/HistogramFilter$Companion {
+	public final fun getOFF ()Lcom/yandex/div/histogram/HistogramFilter;
+	public final fun getON ()Lcom/yandex/div/histogram/HistogramFilter;
+}
+
+public final class com/yandex/div/histogram/HistogramNamesKt {
+	public static final field DIV_CONTEXT_CREATE_HISTOGRAM Ljava/lang/String;
+	public static final field DIV_VIEW_CREATE_HISTOGRAM Ljava/lang/String;
+}
+
+public abstract interface class com/yandex/div/histogram/HistogramRecordConfiguration {
+	public abstract fun getRenderConfiguration ()Ljavax/inject/Provider;
+	public abstract fun isColdRecordingEnabled ()Z
+	public abstract fun isCoolRecordingEnabled ()Z
+	public abstract fun isSizeRecordingEnabled ()Z
+	public abstract fun isWarmRecordingEnabled ()Z
+}
+
+public class com/yandex/div/histogram/HistogramRecorder {
+	public fun <init> (Lcom/yandex/div/histogram/HistogramBridge;)V
+	public fun recordBooleanHistogram (Ljava/lang/String;Z)V
+	public fun recordCount100Histogram (Ljava/lang/String;I)V
+	public fun recordCount100KHistogram (Ljava/lang/String;I)V
+	public fun recordCount10KHistogram (Ljava/lang/String;I)V
+	public fun recordCount1KHistogram (Ljava/lang/String;I)V
+	public fun recordCount1MHistogram (Ljava/lang/String;I)V
+	public fun recordCustomCountHistogram (Ljava/lang/String;IIII)V
+	public fun recordCustomTimeHistogram (Ljava/lang/String;JJJLjava/util/concurrent/TimeUnit;I)V
+	public fun recordEnumeratedHistogram (Ljava/lang/String;II)V
+	public fun recordLargeMemoryMbHistogram (Ljava/lang/String;I)V
+	public fun recordLinearCountHistogram (Ljava/lang/String;IIII)V
+	public fun recordLongTimeHistogram (Ljava/lang/String;JLjava/util/concurrent/TimeUnit;)V
+	public fun recordMediumTimeHistogram (Ljava/lang/String;JLjava/util/concurrent/TimeUnit;)V
+	public fun recordMemoryKbHistogram (Ljava/lang/String;I)V
+	public fun recordMemoryMbHistogram (Ljava/lang/String;I)V
+	public fun recordPercentageHistogram (Ljava/lang/String;I)V
+	public fun recordShortTimeHistogram (Ljava/lang/String;JLjava/util/concurrent/TimeUnit;)V
+	public fun recordSparseSlowlyHistogram (Ljava/lang/String;I)V
+}
+
+public final class com/yandex/div/histogram/NoOpHistogramBridge : com/yandex/div/histogram/HistogramBridge {
+	public fun <init> ()V
+	public fun recordBooleanHistogram (Ljava/lang/String;Z)V
+	public fun recordCountHistogram (Ljava/lang/String;IIII)V
+	public fun recordEnumeratedHistogram (Ljava/lang/String;II)V
+	public fun recordLinearCountHistogram (Ljava/lang/String;IIII)V
+	public fun recordSparseSlowlyHistogram (Ljava/lang/String;I)V
+	public fun recordTimeHistogram (Ljava/lang/String;JJJLjava/util/concurrent/TimeUnit;J)V
+}
+
+public final class com/yandex/div/histogram/RenderConfiguration {
+	public fun <init> ()V
+	public fun <init> (Lcom/yandex/div/histogram/HistogramFilter;)V
+	public fun <init> (Lcom/yandex/div/histogram/HistogramFilter;Lcom/yandex/div/histogram/HistogramFilter;)V
+	public fun <init> (Lcom/yandex/div/histogram/HistogramFilter;Lcom/yandex/div/histogram/HistogramFilter;Lcom/yandex/div/histogram/HistogramFilter;)V
+	public fun <init> (Lcom/yandex/div/histogram/HistogramFilter;Lcom/yandex/div/histogram/HistogramFilter;Lcom/yandex/div/histogram/HistogramFilter;Lcom/yandex/div/histogram/HistogramFilter;)V
+	public synthetic fun <init> (Lcom/yandex/div/histogram/HistogramFilter;Lcom/yandex/div/histogram/HistogramFilter;Lcom/yandex/div/histogram/HistogramFilter;Lcom/yandex/div/histogram/HistogramFilter;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getDrawFilter ()Lcom/yandex/div/histogram/HistogramFilter;
+	public final fun getLayoutFilter ()Lcom/yandex/div/histogram/HistogramFilter;
+	public final fun getMeasureFilter ()Lcom/yandex/div/histogram/HistogramFilter;
+	public final fun getTotalFilter ()Lcom/yandex/div/histogram/HistogramFilter;
+}
+
+public abstract interface class com/yandex/div/histogram/TaskExecutor {
+	public abstract fun post (Lkotlin/jvm/functions/Function0;)V
+}
+
+public class com/yandex/div/histogram/reporter/HistogramReporter {
+	public fun <init> (Lcom/yandex/div/histogram/reporter/HistogramReporterDelegate;)V
+	public fun reportDuration (Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Lcom/yandex/div/histogram/HistogramFilter;)V
+	public static synthetic fun reportDuration$default (Lcom/yandex/div/histogram/reporter/HistogramReporter;Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Lcom/yandex/div/histogram/HistogramFilter;ILjava/lang/Object;)V
+	public fun reportSize (Ljava/lang/String;ILjava/lang/String;Lcom/yandex/div/histogram/HistogramFilter;)V
+	public static synthetic fun reportSize$default (Lcom/yandex/div/histogram/reporter/HistogramReporter;Ljava/lang/String;ILjava/lang/String;Lcom/yandex/div/histogram/HistogramFilter;ILjava/lang/Object;)V
+}
+
+public abstract interface class com/yandex/div/histogram/reporter/HistogramReporterDelegate {
+	public abstract fun reportDuration (Ljava/lang/String;JLjava/lang/String;)V
+	public static synthetic fun reportDuration$default (Lcom/yandex/div/histogram/reporter/HistogramReporterDelegate;Ljava/lang/String;JLjava/lang/String;ILjava/lang/Object;)V
+	public abstract fun reportSize (Ljava/lang/String;I)V
+}
+
+public final class com/yandex/div/histogram/reporter/HistogramReporterDelegate$NoOp : com/yandex/div/histogram/reporter/HistogramReporterDelegate {
+	public static final field INSTANCE Lcom/yandex/div/histogram/reporter/HistogramReporterDelegate$NoOp;
+	public fun reportDuration (Ljava/lang/String;JLjava/lang/String;)V
+	public fun reportSize (Ljava/lang/String;I)V
+}
+
+public final class com/yandex/div/histogram/reporter/HistogramReporterDelegateImpl : com/yandex/div/histogram/reporter/HistogramReporterDelegate {
+	public fun <init> (Ljavax/inject/Provider;Lcom/yandex/div/histogram/HistogramCallTypeProvider;Lcom/yandex/div/histogram/HistogramRecordConfiguration;Ljavax/inject/Provider;)V
+	public fun reportDuration (Ljava/lang/String;JLjava/lang/String;)V
+	public fun reportSize (Ljava/lang/String;I)V
+}
+
+public abstract interface class com/yandex/div/histogram/util/Cancelable {
+	public abstract fun cancel ()V
+}
+
+public final class com/yandex/div/histogram/util/HistogramUtils {
+	public static final field INSTANCE Lcom/yandex/div/histogram/util/HistogramUtils;
+	public final fun calculateUtf8JsonByteSize (Lorg/json/JSONObject;)I
+	public final fun calculateUtf8StringByteSize (Ljava/lang/String;)I
+	public final fun getUtf8CharByteSize (C)I
+	public final fun shouldRecordHistogram (Ljava/lang/String;Lcom/yandex/div/histogram/HistogramRecordConfiguration;)Z
+}
+

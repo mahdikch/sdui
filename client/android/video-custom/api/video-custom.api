@@ -1,0 +1,59 @@
+public abstract interface class com/yandex/div/video/custom/ImageCache {
+	public abstract fun getImageBitmap (Ljava/lang/String;)Landroid/graphics/Bitmap;
+	public abstract fun storeImage (Ljava/lang/String;Landroid/graphics/Bitmap;)V
+}
+
+public final class com/yandex/div/video/custom/VideoCache {
+	public fun <init> (Lcom/yandex/div/core/images/DivImageLoader;Ljavax/inject/Provider;Landroid/content/Context;)V
+	public fun <init> (Lcom/yandex/div/core/images/DivImageLoader;Ljavax/inject/Provider;Landroid/content/Context;Ljava/io/File;)V
+	public fun <init> (Lcom/yandex/div/core/images/DivImageLoader;Ljavax/inject/Provider;Landroid/content/Context;Ljava/io/File;J)V
+	public synthetic fun <init> (Lcom/yandex/div/core/images/DivImageLoader;Ljavax/inject/Provider;Landroid/content/Context;Ljava/io/File;JILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun cacheStubImage (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun cacheVideo (Lcom/google/android/exoplayer2/upstream/DataSpec;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun createMediaSource (Lcom/google/android/exoplayer2/MediaItem;)Lcom/google/android/exoplayer2/source/ProgressiveMediaSource;
+	public final fun getStubImage (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract class com/yandex/div/video/custom/VideoCachingException : java/lang/Exception {
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class com/yandex/div/video/custom/VideoCachingException$ImageCachingFailed : com/yandex/div/video/custom/VideoCachingException {
+	public fun <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class com/yandex/div/video/custom/VideoCachingException$VideoCachingFailed : com/yandex/div/video/custom/VideoCachingException {
+	public fun <init> (Lcom/google/android/exoplayer2/upstream/DataSpec;Ljava/lang/Throwable;)V
+	public synthetic fun <init> (Lcom/google/android/exoplayer2/upstream/DataSpec;Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public abstract interface class com/yandex/div/video/custom/VideoCustomActionListener {
+	public fun onPlaybackError (Ljava/lang/String;Ljava/lang/Exception;)V
+	public fun onPlaybackFinished (Ljava/lang/String;J)V
+	public fun onVideoStartedShowing (Ljava/lang/String;)V
+}
+
+public final class com/yandex/div/video/custom/VideoCustomAdapter : com/yandex/div/core/DivCustomContainerViewAdapter {
+	public fun <init> (Lcom/yandex/div/video/custom/VideoCustomViewController;)V
+	public fun bindView (Landroid/view/View;Lcom/yandex/div2/DivCustom;Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Lcom/yandex/div/core/state/DivStatePath;)V
+	public fun createView (Lcom/yandex/div2/DivCustom;Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Lcom/yandex/div/core/state/DivStatePath;)Landroid/view/View;
+	public fun isCustomTypeSupported (Ljava/lang/String;)Z
+	public fun preload (Lcom/yandex/div2/DivCustom;Lcom/yandex/div/core/DivPreloader$Callback;)Lcom/yandex/div/core/DivPreloader$PreloadReference;
+	public fun release (Landroid/view/View;Lcom/yandex/div2/DivCustom;)V
+}
+
+public final class com/yandex/div/video/custom/VideoCustomUriHandler : com/yandex/div/core/uri/UriHandler {
+	public fun <init> (Lcom/yandex/div/video/custom/VideoCustomViewController;)V
+	public fun handleUri (Landroid/net/Uri;)Z
+}
+
+public final class com/yandex/div/video/custom/VideoCustomViewController {
+	public fun <init> (Lcom/yandex/div/video/custom/VideoCache;Lkotlinx/coroutines/CoroutineScope;Landroid/content/Context;)V
+	public final fun addActionListener (Lcom/yandex/div/video/custom/VideoCustomActionListener;)V
+	public final fun pauseVideo (Ljava/lang/String;)V
+	public final fun playVideo (Ljava/lang/String;)V
+	public final fun removeActionListener (Lcom/yandex/div/video/custom/VideoCustomActionListener;)V
+	public final fun resetVideo (Ljava/lang/String;)V
+}
+

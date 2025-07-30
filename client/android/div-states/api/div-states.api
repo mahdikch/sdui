@@ -1,0 +1,47 @@
+public abstract interface class com/yandex/div/state/DivStateCache {
+	public abstract fun clear ()V
+	public abstract fun getRootState (Ljava/lang/String;)Ljava/lang/String;
+	public abstract fun getState (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public abstract fun putRootState (Ljava/lang/String;Ljava/lang/String;)V
+	public abstract fun putState (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public abstract fun resetCard (Ljava/lang/String;)V
+}
+
+public class com/yandex/div/state/DivStateDatabase : com/yandex/div/state/DivStateStorage {
+	public static final field Companion Lcom/yandex/div/state/DivStateDatabase$Companion;
+	public fun <init> (Landroid/content/Context;Ljava/lang/String;Ljava/util/concurrent/ExecutorService;)V
+	public fun deleteAllStates ()V
+	public fun deleteStatesExceptGiven (Ljava/util/List;)V
+	public fun getCache ()Lcom/yandex/div/state/DivStateCache;
+	public fun preloadState (Ljava/lang/String;)V
+}
+
+public final class com/yandex/div/state/DivStateDatabase$Companion {
+}
+
+public abstract interface class com/yandex/div/state/DivStateStorage {
+	public abstract fun deleteAllStates ()V
+	public abstract fun deleteStatesExceptGiven (Ljava/util/List;)V
+	public abstract fun getCache ()Lcom/yandex/div/state/DivStateCache;
+	public abstract fun preloadState (Ljava/lang/String;)V
+}
+
+public final class com/yandex/div/state/InMemoryDivStateCache : com/yandex/div/state/DivStateCache {
+	public fun <init> ()V
+	public fun clear ()V
+	public fun getRootState (Ljava/lang/String;)Ljava/lang/String;
+	public fun getState (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public fun putRootState (Ljava/lang/String;Ljava/lang/String;)V
+	public fun putState (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun resetCard (Ljava/lang/String;)V
+}
+
+public final class com/yandex/div/state/InMemoryDivStateStorage : com/yandex/div/state/DivStateStorage {
+	public fun <init> ()V
+	public fun deleteAllStates ()V
+	public fun deleteStatesExceptGiven (Ljava/util/List;)V
+	public synthetic fun getCache ()Lcom/yandex/div/state/DivStateCache;
+	public fun getCache ()Lcom/yandex/div/state/InMemoryDivStateCache;
+	public fun preloadState (Ljava/lang/String;)V
+}
+

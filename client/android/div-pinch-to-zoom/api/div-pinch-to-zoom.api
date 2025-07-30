@@ -1,0 +1,19 @@
+public final class com/yandex/div/zoom/DivPinchToZoomConfiguration {
+	public synthetic fun <init> (Landroid/content/Context;Lcom/yandex/div/zoom/ImageHost;ILandroid/view/animation/Interpolator;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class com/yandex/div/zoom/DivPinchToZoomConfiguration$Builder {
+	public fun <init> (Landroid/app/Activity;)V
+	public final fun animationInterpolator (Landroid/view/animation/Interpolator;)Lcom/yandex/div/zoom/DivPinchToZoomConfiguration$Builder;
+	public final fun build ()Lcom/yandex/div/zoom/DivPinchToZoomConfiguration;
+	public final fun dimColor (I)Lcom/yandex/div/zoom/DivPinchToZoomConfiguration$Builder;
+	public final fun host (Landroid/view/Window;)Lcom/yandex/div/zoom/DivPinchToZoomConfiguration$Builder;
+}
+
+public final class com/yandex/div/zoom/DivPinchToZoomExtensionHandler : com/yandex/div/core/extension/DivExtensionHandler {
+	public fun <init> (Lcom/yandex/div/zoom/DivPinchToZoomConfiguration;)V
+	public fun bindView (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivBase;)V
+	public fun matches (Lcom/yandex/div2/DivBase;)Z
+	public fun unbindView (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivBase;)V
+}
+

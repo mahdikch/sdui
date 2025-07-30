@@ -1,0 +1,14 @@
+public final class com/yandex/div/svg/SvgDecoder {
+	public fun <init> ()V
+	public fun <init> (Z)V
+	public synthetic fun <init> (ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun decode (Ljava/io/InputStream;)Landroid/graphics/drawable/PictureDrawable;
+}
+
+public final class com/yandex/div/svg/SvgLoadWrapper : com/yandex/div/core/images/DivImageLoader {
+	public fun <init> (Lcom/yandex/div/core/images/DivImageLoader;)V
+	public fun loadImage (Ljava/lang/String;Landroid/widget/ImageView;)Lcom/yandex/div/core/images/LoadReference;
+	public fun loadImage (Ljava/lang/String;Lcom/yandex/div/core/images/DivImageDownloadCallback;)Lcom/yandex/div/core/images/LoadReference;
+	public fun loadImageBytes (Ljava/lang/String;Lcom/yandex/div/core/images/DivImageDownloadCallback;)Lcom/yandex/div/core/images/LoadReference;
+}
+

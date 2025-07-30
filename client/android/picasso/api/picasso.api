@@ -1,0 +1,20 @@
+public final class com/yandex/div/picasso/PicassoDivImageLoader : com/yandex/div/core/images/DivImageLoader {
+	public static final field DISK_CACHE_SIZE J
+	public fun <init> (Landroid/content/Context;)V
+	public fun <init> (Landroid/content/Context;Lokhttp3/OkHttpClient$Builder;)V
+	public fun hasSvgSupport ()Ljava/lang/Boolean;
+	public final fun isIdle ()Z
+	public fun loadImage (Ljava/lang/String;Landroid/widget/ImageView;)Lcom/yandex/div/core/images/LoadReference;
+	public fun loadImage (Ljava/lang/String;Lcom/yandex/div/core/images/DivImageDownloadCallback;)Lcom/yandex/div/core/images/LoadReference;
+	public fun loadImageBytes (Ljava/lang/String;Lcom/yandex/div/core/images/DivImageDownloadCallback;)Lcom/yandex/div/core/images/LoadReference;
+	public final fun resetIdle ()V
+}
+
+public final class com/yandex/div/picasso/PicassoDivImageLoader$TargetList {
+	public fun <init> (Lcom/yandex/div/picasso/PicassoDivImageLoader;)V
+	public final fun addTarget (Lcom/squareup/picasso/Target;)V
+	public final fun clean ()V
+	public final fun getSize ()I
+	public final fun removeTarget (Lcom/squareup/picasso/Target;)V
+}
+

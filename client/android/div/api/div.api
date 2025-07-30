@@ -1,0 +1,1148 @@
+public class androidx/appcompat/widget/LinearLayoutWithCenteredDividers : androidx/appcompat/widget/LinearLayoutCompat {
+	public fun <init> (Landroid/content/Context;)V
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;)V
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;I)V
+	public synthetic fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	protected fun drawHorizontalDivider (Landroid/graphics/Canvas;I)V
+	protected fun drawVerticalDivider (Landroid/graphics/Canvas;I)V
+}
+
+public final class com/yandex/div/BuildConfig {
+	public static final field BUILD_TYPE Ljava/lang/String;
+	public static final field DEBUG Z
+	public static final field DIV2_JSON_PATH Ljava/lang/String;
+	public static final field LIBRARY_PACKAGE_NAME Ljava/lang/String;
+	public static final field VERSION_NAME Ljava/lang/String;
+	public fun <init> ()V
+}
+
+public class com/yandex/div/core/Div2Context : android/content/ContextWrapper {
+	public static final field Companion Lcom/yandex/div/core/Div2Context$Companion;
+	public static final field RESET_ERROR_COLLECTORS I
+	public static final field RESET_EXPRESSION_RUNTIMES I
+	public static final field RESET_SELECTED_STATES I
+	public static final field RESET_VISIBILITY_COUNTERS I
+	public fun <init> (Landroid/app/Activity;Lcom/yandex/div/core/DivConfiguration;)V
+	public fun <init> (Landroid/view/ContextThemeWrapper;Lcom/yandex/div/core/DivConfiguration;)V
+	public fun <init> (Landroid/view/ContextThemeWrapper;Lcom/yandex/div/core/DivConfiguration;I)V
+	public synthetic fun <init> (Landroid/view/ContextThemeWrapper;Lcom/yandex/div/core/DivConfiguration;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Landroid/view/ContextThemeWrapper;Lcom/yandex/div/core/DivConfiguration;ILandroidx/lifecycle/LifecycleOwner;)V
+	public synthetic fun <init> (Landroid/view/ContextThemeWrapper;Lcom/yandex/div/core/DivConfiguration;ILandroidx/lifecycle/LifecycleOwner;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun childContext (Landroid/view/ContextThemeWrapper;)Lcom/yandex/div/core/Div2Context;
+	public fun childContext (Landroid/view/ContextThemeWrapper;Landroidx/lifecycle/LifecycleOwner;)Lcom/yandex/div/core/Div2Context;
+	public fun childContext (Landroidx/lifecycle/LifecycleOwner;)Lcom/yandex/div/core/Div2Context;
+	public fun getDivVariableController ()Lcom/yandex/div/core/expression/variables/DivVariableController;
+	public fun getGlobalVariableController ()Lcom/yandex/div/core/expression/variables/GlobalVariableController;
+	public fun getPerformanceDependentSessionProfiler ()Lcom/yandex/div/internal/viewpool/optimization/PerformanceDependentSessionProfiler;
+	public fun getSystemService (Ljava/lang/String;)Ljava/lang/Object;
+	public fun getViewPreCreationProfile ()Lcom/yandex/div/internal/viewpool/ViewPreCreationProfile;
+	public fun getViewPreCreationProfileRepository ()Lcom/yandex/div/internal/viewpool/optimization/ViewPreCreationProfileRepository;
+	public fun reset (ILjava/util/List;)V
+	public static synthetic fun reset$default (Lcom/yandex/div/core/Div2Context;ILjava/util/List;ILjava/lang/Object;)V
+	public fun resetVisibilityCounters ()V
+	public fun setViewPreCreationProfile (Lcom/yandex/div/internal/viewpool/ViewPreCreationProfile;)V
+	public fun warmUp ()V
+	public fun warmUp2 ()V
+}
+
+public final class com/yandex/div/core/Div2Context$Companion {
+}
+
+public abstract interface annotation class com/yandex/div/core/Div2Context$ResetFlag : java/lang/annotation/Annotation {
+}
+
+public abstract interface class com/yandex/div/core/Div2ImageStubProvider {
+	public static final field STUB Lcom/yandex/div/core/Div2ImageStubProvider;
+	public abstract fun getImageStubDrawable (I)Landroid/graphics/drawable/Drawable;
+}
+
+public abstract interface class com/yandex/div/core/Div2Logger {
+	public static final field STUB Lcom/yandex/div/core/Div2Logger;
+	public fun logActiveTabTitleClick (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;ILcom/yandex/div2/DivAction;)V
+	public fun logBindingResult (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div2/DivData;Lcom/yandex/div2/DivData;Ljava/lang/String;Ljava/lang/String;)V
+	public fun logClick (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivAction;)V
+	public fun logClick (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivAction;Ljava/lang/String;)V
+	public fun logDoubleClick (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivAction;)V
+	public fun logDoubleClick (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivAction;Ljava/lang/String;)V
+	public fun logFocusChanged (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivAction;Z)V
+	public fun logGalleryCompleteScroll (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Lcom/yandex/div2/DivGallery;IILjava/lang/String;)V
+	public fun logGalleryScroll (Lcom/yandex/div/core/view2/Div2View;)V
+	public fun logHoverChanged (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivAction;Z)V
+	public fun logImeEnter (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivAction;)V
+	public fun logLongClick (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivAction;)V
+	public fun logLongClick (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivAction;Ljava/lang/String;)V
+	public fun logPagerChangePage (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Lcom/yandex/div2/DivPager;ILjava/lang/String;)V
+	public fun logPatchResult (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div2/DivPatch;Ljava/lang/String;Ljava/lang/String;)V
+	public fun logPopupMenuItemClick (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;ILjava/lang/String;Lcom/yandex/div2/DivAction;)V
+	public fun logPressChanged (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivAction;Z)V
+	public fun logSliderDrag (Lcom/yandex/div/core/view2/Div2View;Landroid/view/View;Ljava/lang/Float;)V
+	public fun logSwipedAway (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivAction;)V
+	public fun logTabPageChanged (Lcom/yandex/div/core/view2/Div2View;I)V
+	public fun logTabTitlesScroll (Lcom/yandex/div/core/view2/Div2View;)V
+	public fun logTrigger (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div2/DivAction;)V
+	public fun logViewDisappeared (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivDisappearAction;)V
+	public fun logViewDisappeared (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivDisappearAction;Ljava/lang/String;)V
+	public fun logViewShown (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivVisibilityAction;)V
+	public fun logViewShown (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivVisibilityAction;Ljava/lang/String;)V
+}
+
+public class com/yandex/div/core/DivActionHandler {
+	public fun <init> ()V
+	public fun getUseActionUid ()Z
+	public fun handleAction (Lcom/yandex/div2/DivAction;Lcom/yandex/div/core/DivViewFacade;Lcom/yandex/div/json/expressions/ExpressionResolver;)Z
+	public fun handleAction (Lcom/yandex/div2/DivAction;Lcom/yandex/div/core/DivViewFacade;Lcom/yandex/div/json/expressions/ExpressionResolver;Ljava/lang/String;)Z
+	public fun handleAction (Lcom/yandex/div2/DivDisappearAction;Lcom/yandex/div/core/DivViewFacade;Lcom/yandex/div/json/expressions/ExpressionResolver;)Z
+	public fun handleAction (Lcom/yandex/div2/DivDisappearAction;Lcom/yandex/div/core/DivViewFacade;Lcom/yandex/div/json/expressions/ExpressionResolver;Ljava/lang/String;)Z
+	public fun handleAction (Lcom/yandex/div2/DivSightAction;Lcom/yandex/div/core/DivViewFacade;Lcom/yandex/div/json/expressions/ExpressionResolver;)Z
+	public fun handleAction (Lcom/yandex/div2/DivSightAction;Lcom/yandex/div/core/DivViewFacade;Lcom/yandex/div/json/expressions/ExpressionResolver;Ljava/lang/String;)Z
+	public fun handleAction (Lcom/yandex/div2/DivVisibilityAction;Lcom/yandex/div/core/DivViewFacade;Lcom/yandex/div/json/expressions/ExpressionResolver;)Z
+	public fun handleAction (Lcom/yandex/div2/DivVisibilityAction;Lcom/yandex/div/core/DivViewFacade;Lcom/yandex/div/json/expressions/ExpressionResolver;Ljava/lang/String;)Z
+	public final fun handleActionUrl (Landroid/net/Uri;Lcom/yandex/div/core/DivViewFacade;)Z
+	public final fun handleActionUrl (Landroid/net/Uri;Lcom/yandex/div/core/DivViewFacade;Lcom/yandex/div/json/expressions/ExpressionResolver;)Z
+	public final fun handleActionUrl (Ljava/lang/String;Landroid/net/Uri;Lcom/yandex/div/core/DivViewFacade;Lcom/yandex/div/json/expressions/ExpressionResolver;)Z
+	public fun handleActionWithReason (Lcom/yandex/div2/DivAction;Lcom/yandex/div/core/DivViewFacade;Lcom/yandex/div/json/expressions/ExpressionResolver;Ljava/lang/String;)Z
+	public fun handleActionWithReason (Lcom/yandex/div2/DivAction;Lcom/yandex/div/core/DivViewFacade;Lcom/yandex/div/json/expressions/ExpressionResolver;Ljava/lang/String;Ljava/lang/String;)Z
+	public fun handlePayload (Lorg/json/JSONObject;)V
+	public fun handleUri (Landroid/net/Uri;Lcom/yandex/div/core/DivViewFacade;)Z
+}
+
+public class com/yandex/div/core/DivActionHandler$DivActionReason {
+	public static final field ANIMATION_CANCEL Ljava/lang/String;
+	public static final field ANIMATION_END Ljava/lang/String;
+	public static final field BLUR Ljava/lang/String;
+	public static final field CLICK Ljava/lang/String;
+	public static final field DOUBLE_CLICK Ljava/lang/String;
+	public static final field ENTER Ljava/lang/String;
+	public static final field EXTERNAL Ljava/lang/String;
+	public static final field FOCUS Ljava/lang/String;
+	public static final field HOVER Ljava/lang/String;
+	public static final field LONG_CLICK Ljava/lang/String;
+	public static final field MENU Ljava/lang/String;
+	public static final field PATCH Ljava/lang/String;
+	public static final field PRESS Ljava/lang/String;
+	public static final field RELEASE Ljava/lang/String;
+	public static final field SELECTION Ljava/lang/String;
+	public static final field STATE_SWIPE_OUT Ljava/lang/String;
+	public static final field TIMER Ljava/lang/String;
+	public static final field TRIGGER Ljava/lang/String;
+	public static final field UNHOVER Ljava/lang/String;
+	public static final field VIDEO Ljava/lang/String;
+	public fun <init> ()V
+}
+
+public abstract interface class com/yandex/div/core/DivAutoLogger {
+	public static final field DEFAULT Lcom/yandex/div/core/DivAutoLogger;
+	public fun logPopupMenuItemClick (Landroid/view/View;ILjava/lang/String;)V
+	public fun logPopupMenuItemClick (Landroid/view/View;ILjava/lang/String;Landroid/net/Uri;)V
+	public fun setId (Landroid/view/View;Ljava/lang/String;)V
+}
+
+public class com/yandex/div/core/DivConfiguration {
+	public fun getActionHandler ()Lcom/yandex/div/core/DivActionHandler;
+	public fun getAdditionalTypefaceProviders ()Ljava/util/Map;
+	public fun getAreVisualErrorsEnabled ()Z
+	public fun getDiv2ImageStubProvider ()Lcom/yandex/div/core/Div2ImageStubProvider;
+	public fun getDiv2Logger ()Lcom/yandex/div/core/Div2Logger;
+	public fun getDivCustomContainerViewAdapter ()Lcom/yandex/div/core/DivCustomContainerViewAdapter;
+	public fun getDivCustomViewAdapter ()Lcom/yandex/div/core/DivCustomViewAdapter;
+	public fun getDivCustomViewFactory ()Lcom/yandex/div/core/DivCustomViewFactory;
+	public fun getDivDataChangeListener ()Lcom/yandex/div/core/DivDataChangeListener;
+	public fun getDivDownloader ()Lcom/yandex/div/core/downloader/DivDownloader;
+	public fun getDivPlayerFactory ()Lcom/yandex/div/core/player/DivPlayerFactory;
+	public fun getDivPlayerPreloader ()Lcom/yandex/div/core/player/DivPlayerPreloader;
+	public fun getDivStateCache ()Lcom/yandex/div/state/DivStateCache;
+	public fun getDivStateChangeListener ()Lcom/yandex/div/core/state/DivStateChangeListener;
+	public fun getDivVariableController ()Lcom/yandex/div/core/expression/variables/DivVariableController;
+	public fun getDivVisibilityChangeListener ()Lcom/yandex/div/core/DivVisibilityChangeListener;
+	public fun getDivVisibilityChangeListeners ()Ljava/util/List;
+	public fun getExtensionHandlers ()Ljava/util/List;
+	public fun getGlobalVariableController ()Lcom/yandex/div/core/expression/variables/GlobalVariableController;
+	public fun getImageLoader ()Lcom/yandex/div/core/images/DivImageLoader;
+	public fun getRecyclerScrollInterceptionAngle ()F
+	public fun getTooltipRestrictor ()Lcom/yandex/div/core/DivTooltipRestrictor;
+	public fun getTypefaceProvider ()Lcom/yandex/div/core/font/DivTypefaceProvider;
+	public fun getViewPoolReporter ()Lcom/yandex/div/internal/viewpool/ViewPoolProfiler$Reporter;
+	public fun getViewPreCreationProfile ()Lcom/yandex/div/internal/viewpool/ViewPreCreationProfile;
+	public fun isAccessibilityEnabled ()Z
+	public fun isBindOnAttachEnabled ()Z
+	public fun isComplexRebindEnabled ()Z
+	public fun isContextMenuHandlerOverridden ()Z
+	public fun isDebuggingViewPoolOptimization ()Z
+	public fun isHyphenationSupported ()Z
+	public fun isLongtapActionsPassToChild ()Z
+	public fun isMultipleStateChangeEnabled ()Z
+	public fun isPagerPageClipEnabled ()Z
+	public fun isPermanentDebugPanelEnabled ()Z
+	public fun isResourceCacheEnabled ()Z
+	public fun isSwipeOutBeaconsEnabled ()Z
+	public fun isTapBeaconsEnabled ()Z
+	public fun isViewPoolEnabled ()Z
+	public fun isViewPoolProfilingEnabled ()Z
+	public fun isVisibilityBeaconsEnabled ()Z
+}
+
+public class com/yandex/div/core/DivConfiguration$Builder {
+	public fun <init> (Lcom/yandex/div/core/images/DivImageLoader;)V
+	public fun actionHandler (Lcom/yandex/div/core/DivActionHandler;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun additionalTypefaceProviders (Ljava/util/Map;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun autoLogger (Ljava/lang/Object;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun build ()Lcom/yandex/div/core/DivConfiguration;
+	public fun debugViewPoolOptimization (Z)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun div2ImageStubProvider (Lcom/yandex/div/core/Div2ImageStubProvider;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun div2Logger (Lcom/yandex/div/core/Div2Logger;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun divCustomContainerViewAdapter (Lcom/yandex/div/core/DivCustomContainerViewAdapter;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun divCustomViewAdapter (Lcom/yandex/div/core/DivCustomViewAdapter;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun divCustomViewFactory (Lcom/yandex/div/core/DivCustomViewFactory;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun divDataChangeListener (Lcom/yandex/div/core/DivDataChangeListener;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun divDownloader (Lcom/yandex/div/core/downloader/DivDownloader;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun divLogger (Ljava/lang/Object;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun divPlayerFactory (Lcom/yandex/div/core/player/DivPlayerFactory;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun divPlayerPreloader (Lcom/yandex/div/core/player/DivPlayerPreloader;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun divStateCache (Lcom/yandex/div/state/DivStateCache;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun divStateChangeListener (Lcom/yandex/div/core/state/DivStateChangeListener;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun divVariableController (Lcom/yandex/div/core/expression/variables/DivVariableController;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun divVisibilityChangeListener (Lcom/yandex/div/core/DivVisibilityChangeListener;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun enableAccessibility (Z)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun enableBindOnAttach (Z)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun enableComplexRebind (Z)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun enableLongtapActionsPassingToChild ()Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun enableMultipleStateChange (Z)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun enablePagerPageClipping (Z)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun enablePermanentDebugPanel (Z)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun enableResourceCache (Z)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun enableTapBeacons ()Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun enableViewPool (Z)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun enableViewPoolProfiling (Z)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun enableVisibilityBeacons ()Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun extension (Lcom/yandex/div/core/extension/DivExtensionHandler;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun globalVariableController (Lcom/yandex/div/core/expression/variables/GlobalVariableController;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun overrideContextMenuHandler (Z)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun recyclerScrollInterceptionAngle (F)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun supportHyphenation (Z)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun swipeOutBeacons (Ljava/lang/Boolean;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun tooltipRestrictor (Lcom/yandex/div/core/DivTooltipRestrictor;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun typefaceProvider (Lcom/yandex/div/core/font/DivTypefaceProvider;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun viewPoolReporter (Lcom/yandex/div/internal/viewpool/ViewPoolProfiler$Reporter;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun viewPreCreationProfile (Lcom/yandex/div/internal/viewpool/ViewPreCreationProfile;)Lcom/yandex/div/core/DivConfiguration$Builder;
+	public fun visualErrorsEnabled (Z)Lcom/yandex/div/core/DivConfiguration$Builder;
+}
+
+public final class com/yandex/div/core/DivCustomContainerChildFactory {
+	public final fun bindChildView (Landroid/view/View;ILcom/yandex/div2/Div;Lcom/yandex/div/core/state/DivStatePath;Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;)V
+	public final fun bindChildView (Landroid/view/View;Lcom/yandex/div2/Div;Lcom/yandex/div/core/state/DivStatePath;Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;)V
+	public final fun createChildView (Lcom/yandex/div2/Div;Lcom/yandex/div/core/state/DivStatePath;Lcom/yandex/div/core/view2/Div2View;)Landroid/view/View;
+	public final fun createChildView (Lcom/yandex/div2/Div;Lcom/yandex/div/core/state/DivStatePath;Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;)Landroid/view/View;
+	public static synthetic fun createChildView$default (Lcom/yandex/div/core/DivCustomContainerChildFactory;Lcom/yandex/div2/Div;Lcom/yandex/div/core/state/DivStatePath;Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;ILjava/lang/Object;)Landroid/view/View;
+	public final fun createUnboundChildView (Lcom/yandex/div2/Div;Lcom/yandex/div/core/state/DivStatePath;Lcom/yandex/div/core/view2/Div2View;)Landroid/view/View;
+	public final fun createUnboundChildView (Lcom/yandex/div2/Div;Lcom/yandex/div/core/state/DivStatePath;Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;)Landroid/view/View;
+	public static synthetic fun createUnboundChildView$default (Lcom/yandex/div/core/DivCustomContainerChildFactory;Lcom/yandex/div2/Div;Lcom/yandex/div/core/state/DivStatePath;Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;ILjava/lang/Object;)Landroid/view/View;
+}
+
+public abstract interface class com/yandex/div/core/DivCustomContainerViewAdapter {
+	public static final field Companion Lcom/yandex/div/core/DivCustomContainerViewAdapter$Companion;
+	public static final field STUB Lcom/yandex/div/core/DivCustomContainerViewAdapter;
+	public abstract fun bindView (Landroid/view/View;Lcom/yandex/div2/DivCustom;Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Lcom/yandex/div/core/state/DivStatePath;)V
+	public abstract fun createView (Lcom/yandex/div2/DivCustom;Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Lcom/yandex/div/core/state/DivStatePath;)Landroid/view/View;
+	public abstract fun isCustomTypeSupported (Ljava/lang/String;)Z
+	public fun preload (Lcom/yandex/div2/DivCustom;Lcom/yandex/div/core/DivPreloader$Callback;)Lcom/yandex/div/core/DivPreloader$PreloadReference;
+	public abstract fun release (Landroid/view/View;Lcom/yandex/div2/DivCustom;)V
+}
+
+public final class com/yandex/div/core/DivCustomContainerViewAdapter$Companion {
+	public final fun getDivChildFactory (Lcom/yandex/div/core/view2/Div2View;)Lcom/yandex/div/core/DivCustomContainerChildFactory;
+}
+
+public abstract interface class com/yandex/div/core/DivCustomViewAdapter {
+	public static final field Companion Lcom/yandex/div/core/DivCustomViewAdapter$Companion;
+	public static final field STUB Lcom/yandex/div/core/DivCustomViewAdapter;
+	public abstract fun bindView (Landroid/view/View;Lcom/yandex/div2/DivCustom;Lcom/yandex/div/core/view2/Div2View;)V
+	public abstract fun createView (Lcom/yandex/div2/DivCustom;Lcom/yandex/div/core/view2/Div2View;)Landroid/view/View;
+	public abstract fun isCustomTypeSupported (Ljava/lang/String;)Z
+	public fun preload (Lcom/yandex/div2/DivCustom;Lcom/yandex/div/core/DivPreloader$Callback;)Lcom/yandex/div/core/DivPreloader$PreloadReference;
+	public abstract fun release (Landroid/view/View;Lcom/yandex/div2/DivCustom;)V
+}
+
+public final class com/yandex/div/core/DivCustomViewAdapter$Companion {
+	public final fun getDivChildFactory (Lcom/yandex/div/core/view2/Div2View;)Lcom/yandex/div/core/DivCustomContainerChildFactory;
+}
+
+public abstract interface class com/yandex/div/core/DivCustomViewFactory {
+	public static final field STUB Lcom/yandex/div/core/DivCustomViewFactory;
+	public abstract fun create (Lcom/yandex/div2/DivCustom;Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/core/DivCustomViewFactory$OnViewCreatedListener;)V
+}
+
+public abstract interface class com/yandex/div/core/DivCustomViewFactory$OnViewCreatedListener {
+	public abstract fun onCreate (Landroid/view/View;)V
+}
+
+public abstract interface class com/yandex/div/core/DivDataChangeListener {
+	public static final field Companion Lcom/yandex/div/core/DivDataChangeListener$Companion;
+	public static final field STUB Lcom/yandex/div/core/DivDataChangeListener;
+	public abstract fun afterAnimatedDataChange (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div2/DivData;)V
+	public abstract fun beforeAnimatedDataChange (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div2/DivData;)V
+}
+
+public final class com/yandex/div/core/DivDataChangeListener$Companion {
+}
+
+public final class com/yandex/div/core/DivKit {
+	public static final field Companion Lcom/yandex/div/core/DivKit$Companion;
+	public synthetic fun <init> (Landroid/content/Context;Lcom/yandex/div/core/DivKitConfiguration;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public static final fun configure (Lcom/yandex/div/core/DivKitConfiguration;)V
+	public static final fun enableAssertions (Z)V
+	public static final fun enableLogging (Z)V
+	public final fun getHistogramReporterDelegate ()Lcom/yandex/div/histogram/reporter/HistogramReporterDelegate;
+	public static final fun getInstance (Landroid/content/Context;)Lcom/yandex/div/core/DivKit;
+	public static final fun getLoggingSeverity ()Lcom/yandex/div/logging/Severity;
+	public final fun getParsingHistogramReporter ()Lcom/yandex/div/histogram/DivParsingHistogramReporter;
+	public final fun getSendBeaconManager ()Lcom/yandex/android/beacon/SendBeaconManager;
+	public static final fun getVersionName ()Ljava/lang/String;
+	public static final fun isAssertionsEnabled ()Z
+	public static final fun isLoggingEnabled ()Z
+	public static final fun setLoggingSeverity (Lcom/yandex/div/logging/Severity;)V
+	public static final fun warmUpStatics ()V
+}
+
+public final class com/yandex/div/core/DivKit$Companion {
+	public final fun configure (Lcom/yandex/div/core/DivKitConfiguration;)V
+	public final fun enableAssertions (Z)V
+	public final fun enableLogging (Z)V
+	public final fun getInstance (Landroid/content/Context;)Lcom/yandex/div/core/DivKit;
+	public final fun getLoggingSeverity ()Lcom/yandex/div/logging/Severity;
+	public final fun getVersionName ()Ljava/lang/String;
+	public final fun isAssertionsEnabled ()Z
+	public final fun isLoggingEnabled ()Z
+	public final fun setLoggingSeverity (Lcom/yandex/div/logging/Severity;)V
+	public final fun warmUpStatics ()V
+}
+
+public final class com/yandex/div/core/DivKitConfiguration {
+	public synthetic fun <init> (Ljavax/inject/Provider;Ljava/util/concurrent/ExecutorService;Ljavax/inject/Provider;Ljavax/inject/Provider;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun cpuUsageHistogramReporter ()Lcom/yandex/div/histogram/CpuUsageHistogramReporter;
+	public final fun executorService ()Ljava/util/concurrent/ExecutorService;
+	public final fun externalDivStorageComponent ()Lcom/yandex/div/core/dagger/ExternalOptional;
+	public final fun histogramConfiguration ()Lcom/yandex/div/histogram/HistogramConfiguration;
+	public final fun histogramRecordConfiguration ()Lcom/yandex/div/histogram/HistogramRecordConfiguration;
+	public final fun histogramRecorder ()Lcom/yandex/div/histogram/HistogramRecorder;
+	public final fun sendBeaconConfiguration ()Lcom/yandex/android/beacon/SendBeaconConfiguration;
+}
+
+public final class com/yandex/div/core/DivKitConfiguration$Builder {
+	public fun <init> ()V
+	public final fun build ()Lcom/yandex/div/core/DivKitConfiguration;
+	public final fun divStorageComponent (Ljavax/inject/Provider;)Lcom/yandex/div/core/DivKitConfiguration$Builder;
+	public final fun executorService (Ljava/util/concurrent/ExecutorService;)Lcom/yandex/div/core/DivKitConfiguration$Builder;
+	public final fun histogramConfiguration (Lcom/yandex/div/histogram/HistogramConfiguration;)Lcom/yandex/div/core/DivKitConfiguration$Builder;
+	public final fun histogramConfiguration (Ljavax/inject/Provider;)Lcom/yandex/div/core/DivKitConfiguration$Builder;
+	public final fun sendBeaconConfiguration (Lcom/yandex/android/beacon/SendBeaconConfiguration;)Lcom/yandex/div/core/DivKitConfiguration$Builder;
+	public final fun sendBeaconConfiguration (Ljavax/inject/Provider;)Lcom/yandex/div/core/DivKitConfiguration$Builder;
+}
+
+public class com/yandex/div/core/DivPreloader {
+	public fun <init> (Lcom/yandex/div/core/Div2Context;)V
+	public fun <init> (Lcom/yandex/div/core/view2/DivImagePreloader;Lcom/yandex/div/core/DivCustomViewAdapter;Ljava/util/List;)V
+	public fun preload (Lcom/yandex/div2/Div;Lcom/yandex/div/json/expressions/ExpressionResolver;Lcom/yandex/div/core/DivPreloader$Callback;)Lcom/yandex/div/core/DivPreloader$Ticket;
+	public static synthetic fun preload$default (Lcom/yandex/div/core/DivPreloader;Lcom/yandex/div2/Div;Lcom/yandex/div/json/expressions/ExpressionResolver;Lcom/yandex/div/core/DivPreloader$Callback;ILjava/lang/Object;)Lcom/yandex/div/core/DivPreloader$Ticket;
+}
+
+public abstract interface class com/yandex/div/core/DivPreloader$Callback {
+	public abstract fun finish (Z)V
+}
+
+public final class com/yandex/div/core/DivPreloader$DownloadCallback : com/yandex/div/core/images/DivImageDownloadCallback {
+	public fun <init> (Lcom/yandex/div/core/DivPreloader$Callback;)V
+	public fun onError ()V
+	public final fun onFullPreloadStarted ()V
+	public final fun onSingleLoadingStarted ()V
+	public fun onSuccess (Landroid/graphics/drawable/PictureDrawable;)V
+	public fun onSuccess (Lcom/yandex/div/core/images/CachedBitmap;)V
+}
+
+public abstract interface class com/yandex/div/core/DivPreloader$PreloadReference {
+	public static final field Companion Lcom/yandex/div/core/DivPreloader$PreloadReference$Companion;
+	public abstract fun cancel ()V
+}
+
+public final class com/yandex/div/core/DivPreloader$PreloadReference$Companion {
+	public final fun getEMPTY ()Lcom/yandex/div/core/DivPreloader$PreloadReference;
+}
+
+public abstract interface class com/yandex/div/core/DivPreloader$Ticket {
+	public abstract fun cancel ()V
+}
+
+public abstract interface class com/yandex/div/core/DivTooltipRestrictor {
+	public static final field STUB Lcom/yandex/div/core/DivTooltipRestrictor;
+	public abstract fun canShowTooltip (Landroid/view/View;Lcom/yandex/div2/DivTooltip;)Z
+	public fun canShowTooltip (Lcom/yandex/div/core/view2/Div2View;Landroid/view/View;Lcom/yandex/div2/DivTooltip;)Z
+	public fun canShowTooltip (Lcom/yandex/div/core/view2/Div2View;Landroid/view/View;Lcom/yandex/div2/DivTooltip;Z)Z
+	public fun getTooltipShownCallback ()Lcom/yandex/div/core/DivTooltipRestrictor$DivTooltipShownCallback;
+}
+
+public abstract interface class com/yandex/div/core/DivTooltipRestrictor$DivTooltipShownCallback {
+	public fun onDivTooltipDismissed (Landroid/view/View;Lcom/yandex/div2/DivTooltip;)V
+	public fun onDivTooltipDismissed (Lcom/yandex/div/core/view2/Div2View;Landroid/view/View;Lcom/yandex/div2/DivTooltip;)V
+	public fun onDivTooltipShown (Landroid/view/View;Lcom/yandex/div2/DivTooltip;)V
+	public fun onDivTooltipShown (Lcom/yandex/div/core/view2/Div2View;Landroid/view/View;Lcom/yandex/div2/DivTooltip;)V
+}
+
+public abstract interface class com/yandex/div/core/DivViewConfig {
+	public static final field DEFAULT Lcom/yandex/div/core/DivViewConfig;
+	public fun getLogCardScrollSignificantThreshold ()I
+	public abstract fun isContextMenuEnabled ()Z
+}
+
+public abstract interface class com/yandex/div/core/DivViewFacade {
+	public fun addImageLoadReference (Lcom/yandex/div/core/images/LoadReference;Landroid/view/View;)V
+	public fun addLoadReference (Lcom/yandex/div/core/images/LoadReference;Landroid/view/View;)V
+	public fun cancelTooltips ()V
+	public abstract fun cleanup ()V
+	public abstract fun clearSubscriptions ()V
+	public abstract fun dismissPendingOverflowMenus ()V
+	public abstract fun getConfig ()Lcom/yandex/div/core/DivViewConfig;
+	public abstract fun getCurrentState ()Lcom/yandex/div/core/state/DivViewState;
+	public abstract fun getCurrentStateId ()J
+	public abstract fun getDivTag ()Lcom/yandex/div/DivDataTag;
+	public fun getExpressionResolver ()Lcom/yandex/div/json/expressions/ExpressionResolver;
+	public abstract fun getView ()Landroid/view/View;
+	public abstract fun handleUri (Landroid/net/Uri;)V
+	public abstract fun hasScrollableViewUnder (Landroid/view/MotionEvent;)Z
+	public fun hideTooltip (Ljava/lang/String;)V
+	public abstract fun onConfigurationChangedOutside (Landroid/content/res/Configuration;)V
+	public abstract fun resetToInitialState ()V
+	public abstract fun setConfig (Lcom/yandex/div/core/DivViewConfig;)V
+	public fun showTooltip (Ljava/lang/String;)V
+	public fun showTooltip (Ljava/lang/String;Z)V
+	public abstract fun subscribe (Lcom/yandex/div/internal/widget/menu/OverflowMenuSubscriber$Listener;)V
+	public abstract fun switchToInitialState ()V
+	public fun switchToState (J)V
+	public abstract fun switchToState (JZ)V
+	public fun switchToState (Lcom/yandex/div/core/state/DivStatePath;Z)V
+}
+
+public abstract interface class com/yandex/div/core/DivVisibilityChangeListener {
+	public static final field STUB Lcom/yandex/div/core/DivVisibilityChangeListener;
+	public abstract fun onViewsVisibilityChanged (Ljava/util/Map;)V
+}
+
+public abstract interface annotation class com/yandex/div/core/ScrollDirection : java/lang/annotation/Annotation {
+	public static final field BACK Ljava/lang/String;
+	public static final field NEXT Ljava/lang/String;
+}
+
+public final class com/yandex/div/core/actions/DivActionTypedHandlerProxy {
+	public static final field INSTANCE Lcom/yandex/div/core/actions/DivActionTypedHandlerProxy;
+	public static final fun handleAction (Lcom/yandex/div2/DivAction;Lcom/yandex/div/core/DivViewFacade;Lcom/yandex/div/json/expressions/ExpressionResolver;)Z
+	public static final fun handleVisibilityAction (Lcom/yandex/div2/DivSightAction;Lcom/yandex/div/core/DivViewFacade;Lcom/yandex/div/json/expressions/ExpressionResolver;)Z
+}
+
+public abstract interface class com/yandex/div/core/dagger/Div2Component {
+	public abstract fun getActionBinder ()Lcom/yandex/div/core/view2/divs/DivActionBinder;
+	public abstract fun getActionHandler ()Lcom/yandex/div/core/DivActionHandler;
+	public abstract fun getActionTypedHandlerCombiner ()Lcom/yandex/div/core/actions/DivActionTypedHandlerCombiner;
+	public abstract fun getBitmapEffectHelper ()Lcom/yandex/div/core/view2/divs/widgets/BitmapEffectHelper;
+	public abstract fun getDiv2Builder ()Lcom/yandex/div/core/view2/Div2Builder;
+	public abstract fun getDiv2Logger ()Lcom/yandex/div/core/Div2Logger;
+	public abstract fun getDivBinder ()Lcom/yandex/div/core/view2/DivBinder;
+	public abstract fun getDivCreationTracker ()Lcom/yandex/div/core/DivCreationTracker;
+	public abstract fun getDivCustomContainerChildFactory ()Lcom/yandex/div/core/DivCustomContainerChildFactory;
+	public abstract fun getDivCustomContainerViewAdapter ()Lcom/yandex/div/core/DivCustomContainerViewAdapter;
+	public abstract fun getDivCustomViewAdapter ()Lcom/yandex/div/core/DivCustomViewAdapter;
+	public abstract fun getDivCustomViewFactory ()Lcom/yandex/div/core/DivCustomViewFactory;
+	public abstract fun getDivDataChangeListener ()Lcom/yandex/div/core/DivDataChangeListener;
+	public abstract fun getDivDownloader ()Lcom/yandex/div/core/downloader/DivDownloader;
+	public abstract fun getDivStateChangeListener ()Lcom/yandex/div/core/state/DivStateChangeListener;
+	public abstract fun getDivTimersControllerProvider ()Lcom/yandex/div/core/timer/DivTimerEventDispatcherProvider;
+	public abstract fun getDivVariableController ()Lcom/yandex/div/core/expression/variables/DivVariableController;
+	public abstract fun getDivVideoActionHandler ()Lcom/yandex/div/core/player/DivVideoActionHandler;
+	public abstract fun getDivVideoFactory ()Lcom/yandex/div/core/player/DivPlayerFactory;
+	public abstract fun getDivVideoPreloader ()Lcom/yandex/div/core/player/DivPlayerPreloader;
+	public abstract fun getDivVideoViewMapper ()Lcom/yandex/div/core/player/DivVideoViewMapper;
+	public abstract fun getDivViewCreator ()Lcom/yandex/div/core/view2/DivViewCreator;
+	public abstract fun getErrorCollectors ()Lcom/yandex/div/core/view2/errors/ErrorCollectors;
+	public abstract fun getExpressionsRuntimeProvider ()Lcom/yandex/div/core/expression/ExpressionsRuntimeProvider;
+	public abstract fun getExtensionController ()Lcom/yandex/div/core/extension/DivExtensionController;
+	public abstract fun getGlobalVariableController ()Lcom/yandex/div/core/expression/variables/GlobalVariableController;
+	public abstract fun getHistogramReporter ()Lcom/yandex/div/histogram/reporter/HistogramReporter;
+	public abstract fun getImagePreloader ()Lcom/yandex/div/core/view2/DivImagePreloader;
+	public abstract fun getPatchManager ()Lcom/yandex/div/core/downloader/DivPatchManager;
+	public abstract fun getPerformanceDependentSessionProfiler ()Lcom/yandex/div/internal/viewpool/optimization/PerformanceDependentSessionProfiler;
+	public abstract fun getPreloader ()Lcom/yandex/div/core/DivPreloader;
+	public abstract fun getReleaseManager ()Lcom/yandex/div/core/view2/ReleaseManager;
+	public abstract fun getRenderScript ()Landroid/renderscript/RenderScript;
+	public abstract fun getStateManager ()Lcom/yandex/div/core/state/DivStateManager;
+	public abstract fun getStoredValuesController ()Lcom/yandex/div/core/expression/storedvalues/StoredValuesController;
+	public abstract fun getTabsStateCache ()Lcom/yandex/div/core/state/TabsStateCache;
+	public abstract fun getTemporaryDivStateCache ()Lcom/yandex/div/core/state/TemporaryDivStateCache;
+	public abstract fun getTooltipController ()Lcom/yandex/div/core/tooltip/DivTooltipController;
+	public abstract fun getViewPreCreationProfileRepository ()Lcom/yandex/div/internal/viewpool/optimization/ViewPreCreationProfileRepository;
+	public abstract fun getVisibilityActionDispatcher ()Lcom/yandex/div/core/view2/DivVisibilityActionDispatcher;
+	public abstract fun getVisibilityActionTracker ()Lcom/yandex/div/core/view2/DivVisibilityActionTracker;
+	public abstract fun isBindOnAttachEnabled ()Z
+	public abstract fun isComplexRebindEnabled ()Z
+	public abstract fun isPagerPageClipEnabled ()Z
+	public abstract fun viewComponent ()Lcom/yandex/div/core/dagger/Div2ViewComponent$Builder;
+}
+
+public abstract interface class com/yandex/div/core/dagger/Div2Component$Builder {
+	public abstract fun baseContext (Landroid/view/ContextThemeWrapper;)Lcom/yandex/div/core/dagger/Div2Component$Builder;
+	public abstract fun build ()Lcom/yandex/div/core/dagger/Div2Component;
+	public abstract fun configuration (Lcom/yandex/div/core/DivConfiguration;)Lcom/yandex/div/core/dagger/Div2Component$Builder;
+	public abstract fun divCreationTracker (Lcom/yandex/div/core/DivCreationTracker;)Lcom/yandex/div/core/dagger/Div2Component$Builder;
+	public abstract fun divVariableController (Lcom/yandex/div/core/expression/variables/DivVariableController;)Lcom/yandex/div/core/dagger/Div2Component$Builder;
+	public abstract fun globalVariableController (Lcom/yandex/div/core/expression/variables/GlobalVariableController;)Lcom/yandex/div/core/dagger/Div2Component$Builder;
+	public abstract fun themeId (I)Lcom/yandex/div/core/dagger/Div2Component$Builder;
+}
+
+public abstract class com/yandex/div/core/dagger/Div2Module {
+	public fun <init> ()V
+	public abstract fun bindContext (Landroid/view/ContextThemeWrapper;)Landroid/content/Context;
+	public static fun provideDivPreloader (Lcom/yandex/div/core/view2/DivImagePreloader;Lcom/yandex/div/core/DivCustomViewAdapter;Lcom/yandex/div/core/DivCustomContainerViewAdapter;Lcom/yandex/div/core/player/DivPlayerPreloader;Lcom/yandex/div/core/extension/DivExtensionController;)Lcom/yandex/div/core/DivPreloader;
+	public static fun provideRenderScript (Landroid/content/Context;)Landroid/renderscript/RenderScript;
+	public static fun provideTabTextStyleProvider (Lcom/yandex/div/core/font/DivTypefaceProvider;)Lcom/yandex/div/internal/widget/tabs/TabTextStyleProvider;
+	public static fun provideThemedContext (Landroid/view/ContextThemeWrapper;IZ)Landroid/content/Context;
+	public static fun provideViewPool (ZLcom/yandex/div/core/dagger/ExternalOptional;Lcom/yandex/div/internal/viewpool/optimization/PerformanceDependentSessionProfiler;Lcom/yandex/div/internal/viewpool/ViewCreator;)Lcom/yandex/div/internal/viewpool/ViewPool;
+	public static fun provideViewPoolProfiler (ZLcom/yandex/div/internal/viewpool/ViewPoolProfiler$Reporter;)Lcom/yandex/div/core/dagger/ExternalOptional;
+}
+
+public abstract interface class com/yandex/div/core/dagger/DivKitComponent {
+	public abstract fun div2Component ()Lcom/yandex/div/core/dagger/Div2Component$Builder;
+	public abstract fun getExecutorService ()Ljava/util/concurrent/ExecutorService;
+	public abstract fun getHistogramRecordConfiguration ()Lcom/yandex/div/histogram/HistogramRecordConfiguration;
+	public abstract fun getHistogramRecorder ()Lcom/yandex/div/histogram/HistogramRecorder;
+	public abstract fun getHistogramReporterDelegate ()Lcom/yandex/div/histogram/reporter/HistogramReporterDelegate;
+	public abstract fun getParsingHistogramReporter ()Lcom/yandex/div/histogram/DivParsingHistogramReporter;
+	public abstract fun getSendBeaconManager ()Lcom/yandex/android/beacon/SendBeaconManager;
+}
+
+public abstract interface class com/yandex/div/core/dagger/DivKitComponent$Builder {
+	public abstract fun applicationContext (Landroid/content/Context;)Lcom/yandex/div/core/dagger/DivKitComponent$Builder;
+	public abstract fun build ()Lcom/yandex/div/core/dagger/DivKitComponent;
+	public abstract fun configuration (Lcom/yandex/div/core/DivKitConfiguration;)Lcom/yandex/div/core/dagger/DivKitComponent$Builder;
+}
+
+public abstract interface annotation class com/yandex/div/core/dagger/ExperimentFlag : java/lang/annotation/Annotation {
+	public abstract fun experiment ()Lcom/yandex/div/core/experiments/Experiment;
+}
+
+public final class com/yandex/div/core/dagger/ExternalOptional {
+	public static final field Companion Lcom/yandex/div/core/dagger/ExternalOptional$Companion;
+	public fun <init> (Lcom/yandex/yatagan/Optional;)V
+	public static final fun empty ()Lcom/yandex/div/core/dagger/ExternalOptional;
+	public final fun getOptional ()Lcom/yandex/yatagan/Optional;
+	public static final fun of (Ljava/lang/Object;)Lcom/yandex/div/core/dagger/ExternalOptional;
+	public static final fun ofNullable (Ljava/lang/Object;)Lcom/yandex/div/core/dagger/ExternalOptional;
+	public static final fun wrap (Lcom/yandex/yatagan/Optional;)Lcom/yandex/div/core/dagger/ExternalOptional;
+}
+
+public final class com/yandex/div/core/dagger/ExternalOptional$Companion {
+	public final fun empty ()Lcom/yandex/div/core/dagger/ExternalOptional;
+	public final fun of (Ljava/lang/Object;)Lcom/yandex/div/core/dagger/ExternalOptional;
+	public final fun ofNullable (Ljava/lang/Object;)Lcom/yandex/div/core/dagger/ExternalOptional;
+	public final fun wrap (Lcom/yandex/yatagan/Optional;)Lcom/yandex/div/core/dagger/ExternalOptional;
+}
+
+public final class com/yandex/div/core/dagger/ExternalOptionalKt {
+	public static final fun asExternal (Lcom/yandex/yatagan/Optional;)Lcom/yandex/div/core/dagger/ExternalOptional;
+}
+
+public abstract interface class com/yandex/div/core/downloader/DivDataChangedObserver {
+	public abstract fun onDivPatchApplied (Lcom/yandex/div2/DivData;)V
+}
+
+public final class com/yandex/div/core/downloader/DivDownloadActionHandler {
+	public static final field INSTANCE Lcom/yandex/div/core/downloader/DivDownloadActionHandler;
+	public static final fun canHandle (Landroid/net/Uri;Lcom/yandex/div/core/DivViewFacade;)Z
+	public static final fun handleAction (Lcom/yandex/div2/DivAction;Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;)Z
+	public final fun handleAction (Lcom/yandex/div2/DivActionDownload;Lcom/yandex/div2/DivDownloadCallbacks;Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;)Z
+	public static final fun handleVisibilityAction (Lcom/yandex/div2/DivSightAction;Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;)Z
+}
+
+public abstract interface class com/yandex/div/core/downloader/DivDownloader {
+	public static final field STUB Lcom/yandex/div/core/downloader/DivDownloader;
+	public abstract fun downloadPatch (Lcom/yandex/div/core/view2/Div2View;Ljava/lang/String;Lcom/yandex/div/core/downloader/DivPatchDownloadCallback;)Lcom/yandex/div/core/images/LoadReference;
+}
+
+public abstract interface class com/yandex/div/core/downloader/DivPatchDownloadCallback {
+	public abstract fun onFail ()V
+	public abstract fun onSuccess (Lcom/yandex/div2/DivPatch;)V
+}
+
+public final class com/yandex/div/core/experiments/Experiment : java/lang/Enum {
+	public static final field ACCESSIBILITY_ENABLED Lcom/yandex/div/core/experiments/Experiment;
+	public static final field BIND_ON_ATTACH_ENABLED Lcom/yandex/div/core/experiments/Experiment;
+	public static final field COMPLEX_REBIND_ENABLED Lcom/yandex/div/core/experiments/Experiment;
+	public static final field HYPHENATION_SUPPORT_ENABLED Lcom/yandex/div/core/experiments/Experiment;
+	public static final field IGNORE_ACTION_MENU_ITEMS_ENABLED Lcom/yandex/div/core/experiments/Experiment;
+	public static final field LONGTAP_ACTIONS_PASS_TO_CHILD_ENABLED Lcom/yandex/div/core/experiments/Experiment;
+	public static final field MULTIPLE_STATE_CHANGE_ENABLED Lcom/yandex/div/core/experiments/Experiment;
+	public static final field PAGER_PAGE_CLIP_ENABLED Lcom/yandex/div/core/experiments/Experiment;
+	public static final field PERMANENT_DEBUG_PANEL_ENABLED Lcom/yandex/div/core/experiments/Experiment;
+	public static final field RESOURCE_CACHE_ENABLED Lcom/yandex/div/core/experiments/Experiment;
+	public static final field SHOW_RENDERING_TIME Lcom/yandex/div/core/experiments/Experiment;
+	public static final field SWIPE_OUT_BEACONS_ENABLED Lcom/yandex/div/core/experiments/Experiment;
+	public static final field TAP_BEACONS_ENABLED Lcom/yandex/div/core/experiments/Experiment;
+	public static final field VIEW_POOL_ENABLED Lcom/yandex/div/core/experiments/Experiment;
+	public static final field VIEW_POOL_OPTIMIZATION_DEBUG Lcom/yandex/div/core/experiments/Experiment;
+	public static final field VIEW_POOL_PROFILING_ENABLED Lcom/yandex/div/core/experiments/Experiment;
+	public static final field VISIBILITY_BEACONS_ENABLED Lcom/yandex/div/core/experiments/Experiment;
+	public static final field VISUAL_ERRORS_ENABLED Lcom/yandex/div/core/experiments/Experiment;
+	public final fun getDefaultValue ()Z
+	public final fun getKey ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Lcom/yandex/div/core/experiments/Experiment;
+	public static fun values ()[Lcom/yandex/div/core/experiments/Experiment;
+}
+
+public final class com/yandex/div/core/expression/local/LocalFunction : com/yandex/div/evaluable/Function {
+	public fun <init> (Ljava/lang/String;Ljava/util/List;Lcom/yandex/div/evaluable/EvaluableType;Ljava/util/List;Ljava/lang/String;)V
+	public fun getDeclaredArgs ()Ljava/util/List;
+	public fun getName ()Ljava/lang/String;
+	public fun getResultType ()Lcom/yandex/div/evaluable/EvaluableType;
+	public fun isPure ()Z
+}
+
+public final class com/yandex/div/core/expression/variables/DivVariableController {
+	public fun <init> ()V
+	public fun <init> (Lcom/yandex/div/core/expression/variables/DivVariableController;)V
+	public synthetic fun <init> (Lcom/yandex/div/core/expression/variables/DivVariableController;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun addVariableRequestObserver (Lkotlin/jvm/functions/Function1;)V
+	public final fun declare ([Lcom/yandex/div/data/Variable;)V
+	public final fun get (Ljava/lang/String;)Lcom/yandex/div/data/Variable;
+	public final fun isDeclared (Ljava/lang/String;)Z
+	public final fun putOrUpdate ([Lcom/yandex/div/data/Variable;)V
+	public final fun removeAll ([Ljava/lang/String;)V
+	public final fun removeVariableRequestObserver (Lkotlin/jvm/functions/Function1;)V
+	public final fun replaceAll ([Lcom/yandex/div/data/Variable;)V
+}
+
+public final class com/yandex/div/core/expression/variables/DivVariablesParser {
+	public static final field INSTANCE Lcom/yandex/div/core/expression/variables/DivVariablesParser;
+	public final fun parse (Lorg/json/JSONArray;Lcom/yandex/div/json/ParsingErrorLogger;)Ljava/util/List;
+}
+
+public final class com/yandex/div/core/expression/variables/GlobalVariableController {
+	public fun <init> ()V
+	public final fun addVariableRequestObserver (Lkotlin/jvm/functions/Function1;)V
+	public final fun declare ([Lcom/yandex/div/data/Variable;)V
+	public final fun get (Ljava/lang/String;)Lcom/yandex/div/data/Variable;
+	public final fun isDeclared (Ljava/lang/String;)Z
+	public final fun putOrUpdate ([Lcom/yandex/div/data/Variable;)V
+	public final fun removeVariableRequestObserver (Lkotlin/jvm/functions/Function1;)V
+}
+
+public abstract interface class com/yandex/div/core/extension/DivExtensionHandler {
+	public fun beforeBindView (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivBase;)V
+	public abstract fun bindView (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivBase;)V
+	public abstract fun matches (Lcom/yandex/div2/DivBase;)Z
+	public fun preprocess (Lcom/yandex/div2/DivBase;Lcom/yandex/div/json/expressions/ExpressionResolver;)V
+	public abstract fun unbindView (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div/json/expressions/ExpressionResolver;Landroid/view/View;Lcom/yandex/div2/DivBase;)V
+}
+
+public abstract interface class com/yandex/div/core/player/DivPlayer {
+	public static final field Companion Lcom/yandex/div/core/player/DivPlayer$Companion;
+	public static final field VOLUME_FULL F
+	public static final field VOLUME_MUTED F
+	public fun addObserver (Lcom/yandex/div/core/player/DivPlayer$Observer;)V
+	public fun pause ()V
+	public fun play ()V
+	public fun release ()V
+	public fun removeObserver (Lcom/yandex/div/core/player/DivPlayer$Observer;)V
+	public fun seek (J)V
+	public fun setMuted (Z)V
+	public fun setSource (Ljava/util/List;Lcom/yandex/div/core/player/DivPlayerPlaybackConfig;)V
+}
+
+public final class com/yandex/div/core/player/DivPlayer$Companion {
+	public static final field VOLUME_FULL F
+	public static final field VOLUME_MUTED F
+}
+
+public abstract interface class com/yandex/div/core/player/DivPlayer$Observer {
+	public fun onBuffering ()V
+	public fun onCurrentTimeChange (J)V
+	public fun onEnd ()V
+	public fun onFatal ()V
+	public fun onPause ()V
+	public fun onPlay ()V
+	public fun onReady ()V
+}
+
+public abstract interface class com/yandex/div/core/player/DivPlayerFactory {
+	public static final field Companion Lcom/yandex/div/core/player/DivPlayerFactory$Companion;
+	public static final field STUB Lcom/yandex/div/core/player/DivPlayerFactory;
+	public abstract fun makePlayer (Ljava/util/List;Lcom/yandex/div/core/player/DivPlayerPlaybackConfig;)Lcom/yandex/div/core/player/DivPlayer;
+	public abstract fun makePlayerView (Landroid/content/Context;)Lcom/yandex/div/core/player/DivPlayerView;
+}
+
+public final class com/yandex/div/core/player/DivPlayerFactory$Companion {
+}
+
+public final class com/yandex/div/core/player/DivPlayerPlaybackConfig {
+	public fun <init> ()V
+	public fun <init> (ZZZLorg/json/JSONObject;)V
+	public synthetic fun <init> (ZZZLorg/json/JSONObject;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Z
+	public final fun component2 ()Z
+	public final fun component3 ()Z
+	public final fun component4 ()Lorg/json/JSONObject;
+	public final fun copy (ZZZLorg/json/JSONObject;)Lcom/yandex/div/core/player/DivPlayerPlaybackConfig;
+	public static synthetic fun copy$default (Lcom/yandex/div/core/player/DivPlayerPlaybackConfig;ZZZLorg/json/JSONObject;ILjava/lang/Object;)Lcom/yandex/div/core/player/DivPlayerPlaybackConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAutoplay ()Z
+	public final fun getPayload ()Lorg/json/JSONObject;
+	public final fun getRepeatable ()Z
+	public fun hashCode ()I
+	public final fun isMuted ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class com/yandex/div/core/player/DivPlayerPreloader {
+	public static final field Companion Lcom/yandex/div/core/player/DivPlayerPreloader$Companion;
+	public static final field STUB Lcom/yandex/div/core/player/DivPlayerPreloader;
+	public abstract fun preloadVideo (Ljava/util/List;)Lcom/yandex/div/core/DivPreloader$PreloadReference;
+}
+
+public final class com/yandex/div/core/player/DivPlayerPreloader$Companion {
+}
+
+public final class com/yandex/div/core/player/DivPlayerStatus : java/lang/Enum {
+	public static final field BUFFERING Lcom/yandex/div/core/player/DivPlayerStatus;
+	public static final field END Lcom/yandex/div/core/player/DivPlayerStatus;
+	public static final field FATAL Lcom/yandex/div/core/player/DivPlayerStatus;
+	public static final field IDLE Lcom/yandex/div/core/player/DivPlayerStatus;
+	public static final field PAUSE Lcom/yandex/div/core/player/DivPlayerStatus;
+	public static final field PLAY Lcom/yandex/div/core/player/DivPlayerStatus;
+	public static fun valueOf (Ljava/lang/String;)Lcom/yandex/div/core/player/DivPlayerStatus;
+	public static fun values ()[Lcom/yandex/div/core/player/DivPlayerStatus;
+}
+
+public abstract class com/yandex/div/core/player/DivPlayerView : android/widget/FrameLayout, com/yandex/div/core/player/DivVideoAttachable {
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;I)V
+	public synthetic fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public abstract interface class com/yandex/div/core/player/DivVideoAttachable {
+	public fun attach (Lcom/yandex/div/core/player/DivPlayer;)V
+	public fun detach ()V
+	public fun getAttachedPlayer ()Lcom/yandex/div/core/player/DivPlayer;
+	public fun setScale (Lcom/yandex/div2/DivVideoScale;)V
+	public fun setVisibleOnScreen (Z)V
+}
+
+public final class com/yandex/div/core/player/DivVideoResolution {
+	public fun <init> (II)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun copy (II)Lcom/yandex/div/core/player/DivVideoResolution;
+	public static synthetic fun copy$default (Lcom/yandex/div/core/player/DivVideoResolution;IIILjava/lang/Object;)Lcom/yandex/div/core/player/DivVideoResolution;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getHeight ()I
+	public final fun getWidth ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/yandex/div/core/player/DivVideoSource {
+	public fun <init> (Landroid/net/Uri;Ljava/lang/String;Lcom/yandex/div/core/player/DivVideoResolution;Ljava/lang/Long;)V
+	public synthetic fun <init> (Landroid/net/Uri;Ljava/lang/String;Lcom/yandex/div/core/player/DivVideoResolution;Ljava/lang/Long;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Landroid/net/Uri;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lcom/yandex/div/core/player/DivVideoResolution;
+	public final fun component4 ()Ljava/lang/Long;
+	public final fun copy (Landroid/net/Uri;Ljava/lang/String;Lcom/yandex/div/core/player/DivVideoResolution;Ljava/lang/Long;)Lcom/yandex/div/core/player/DivVideoSource;
+	public static synthetic fun copy$default (Lcom/yandex/div/core/player/DivVideoSource;Landroid/net/Uri;Ljava/lang/String;Lcom/yandex/div/core/player/DivVideoResolution;Ljava/lang/Long;ILjava/lang/Object;)Lcom/yandex/div/core/player/DivVideoSource;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBitrate ()Ljava/lang/Long;
+	public final fun getMimeType ()Ljava/lang/String;
+	public final fun getResolution ()Lcom/yandex/div/core/player/DivVideoResolution;
+	public final fun getUrl ()Landroid/net/Uri;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/yandex/div/core/player/PlayerViewsVisibilityChangeListener : com/yandex/div/core/DivVisibilityChangeListener {
+	public fun <init> ()V
+	public fun onViewsVisibilityChanged (Ljava/util/Map;)V
+}
+
+public final class com/yandex/div/core/state/DefaultDivStateChangeListener : com/yandex/div/core/state/DivStateChangeListener {
+	public fun <init> (Landroid/view/ViewGroup;)V
+	public fun <init> (Landroid/view/ViewGroup;Landroid/view/animation/Interpolator;)V
+	public synthetic fun <init> (Landroid/view/ViewGroup;Landroid/view/animation/Interpolator;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljavax/inject/Provider;)V
+	public fun <init> (Ljavax/inject/Provider;Landroid/view/animation/Interpolator;)V
+	public synthetic fun <init> (Ljavax/inject/Provider;Landroid/view/animation/Interpolator;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun onDivAnimatedStateChanged (Lcom/yandex/div/core/view2/Div2View;)V
+}
+
+public abstract interface class com/yandex/div/core/state/DivStateChangeListener {
+	public static final field Companion Lcom/yandex/div/core/state/DivStateChangeListener$Companion;
+	public static final field STUB Lcom/yandex/div/core/state/DivStateChangeListener;
+	public abstract fun onDivAnimatedStateChanged (Lcom/yandex/div/core/view2/Div2View;)V
+}
+
+public final class com/yandex/div/core/state/DivStateChangeListener$Companion {
+}
+
+public final class com/yandex/div/core/state/DivStatePath {
+	public static final field Companion Lcom/yandex/div/core/state/DivStatePath$Companion;
+	public final fun append (Ljava/lang/String;Ljava/lang/String;)Lcom/yandex/div/core/state/DivStatePath;
+	public final fun appendDiv (Ljava/lang/String;)Lcom/yandex/div/core/state/DivStatePath;
+	public final fun component1 ()J
+	public final fun copy (JLjava/util/List;Ljava/util/List;)Lcom/yandex/div/core/state/DivStatePath;
+	public static synthetic fun copy$default (Lcom/yandex/div/core/state/DivStatePath;JLjava/util/List;Ljava/util/List;ILjava/lang/Object;)Lcom/yandex/div/core/state/DivStatePath;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLastStateId ()Ljava/lang/String;
+	public final fun getPathToLastState ()Ljava/lang/String;
+	public final fun getStates ()Ljava/util/List;
+	public final fun getTopLevelStateId ()J
+	public fun hashCode ()I
+	public final fun isAncestorOf (Lcom/yandex/div/core/state/DivStatePath;)Z
+	public final fun isRootPath ()Z
+	public final fun parentState ()Lcom/yandex/div/core/state/DivStatePath;
+	public static final fun parse (Ljava/lang/String;)Lcom/yandex/div/core/state/DivStatePath;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/yandex/div/core/state/DivStatePath$Companion {
+	public final fun fromState (J)Lcom/yandex/div/core/state/DivStatePath;
+	public final fun parse (Ljava/lang/String;)Lcom/yandex/div/core/state/DivStatePath;
+}
+
+public final class com/yandex/div/core/state/DivStateTransition : androidx/transition/ChangeBounds {
+	public fun <init> (Landroid/view/View;)V
+	public fun <init> (Landroid/view/View;Z)V
+	public synthetic fun <init> (Landroid/view/View;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public class com/yandex/div/core/state/DivViewState {
+	public fun getBlockState (Ljava/lang/String;)Lcom/yandex/div/core/state/DivViewState$BlockState;
+	public fun getCurrentDivStateId ()J
+	public fun putBlockState (Ljava/lang/String;Lcom/yandex/div/core/state/DivViewState$BlockState;)V
+	public fun reset ()V
+}
+
+public final class com/yandex/div/core/state/PathFormatException : java/lang/Exception {
+	public fun <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class com/yandex/div/core/util/DivDataExtensionsKt {
+	public static final fun applyPatch (Lcom/yandex/div2/DivData;Lcom/yandex/div2/DivPatch;)Lcom/yandex/div2/DivData;
+}
+
+public abstract interface class com/yandex/div/core/util/ImageRepresentation {
+}
+
+public final class com/yandex/div/core/util/ImageRepresentation$Bitmap : com/yandex/div/core/util/ImageRepresentation {
+	public static final synthetic fun box-impl (Landroid/graphics/Bitmap;)Lcom/yandex/div/core/util/ImageRepresentation$Bitmap;
+	public static fun constructor-impl (Landroid/graphics/Bitmap;)Landroid/graphics/Bitmap;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Landroid/graphics/Bitmap;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Landroid/graphics/Bitmap;Landroid/graphics/Bitmap;)Z
+	public final fun getValue ()Landroid/graphics/Bitmap;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Landroid/graphics/Bitmap;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Landroid/graphics/Bitmap;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Landroid/graphics/Bitmap;
+}
+
+public final class com/yandex/div/core/util/ImageRepresentation$PictureDrawable : com/yandex/div/core/util/ImageRepresentation {
+	public static final synthetic fun box-impl (Landroid/graphics/drawable/PictureDrawable;)Lcom/yandex/div/core/util/ImageRepresentation$PictureDrawable;
+	public static fun constructor-impl (Landroid/graphics/drawable/PictureDrawable;)Landroid/graphics/drawable/PictureDrawable;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Landroid/graphics/drawable/PictureDrawable;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Landroid/graphics/drawable/PictureDrawable;Landroid/graphics/drawable/PictureDrawable;)Z
+	public final fun getValue ()Landroid/graphics/drawable/PictureDrawable;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Landroid/graphics/drawable/PictureDrawable;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Landroid/graphics/drawable/PictureDrawable;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Landroid/graphics/drawable/PictureDrawable;
+}
+
+public final class com/yandex/div/core/util/SafeAlertDialog {
+	public fun <init> (Landroidx/appcompat/app/AlertDialog;)V
+	public final fun cancel ()V
+	public final fun checkEqualReference (Landroid/content/DialogInterface;)Z
+	public final fun dismiss ()V
+	public final fun findViewById (I)Landroid/view/View;
+	public final fun hide ()V
+	public final fun show ()V
+}
+
+public final class com/yandex/div/core/util/SafeAlertDialogBuilder {
+	public fun <init> (Landroid/content/Context;)V
+	public final fun create ()Lcom/yandex/div/core/util/SafeAlertDialog;
+	public final fun setMessage (I)Lcom/yandex/div/core/util/SafeAlertDialogBuilder;
+	public final fun setMessage (Ljava/lang/CharSequence;)Lcom/yandex/div/core/util/SafeAlertDialogBuilder;
+	public final fun setNegativeButton (ILandroid/content/DialogInterface$OnClickListener;)Lcom/yandex/div/core/util/SafeAlertDialogBuilder;
+	public final fun setNegativeButton (Ljava/lang/String;Landroid/content/DialogInterface$OnClickListener;)Lcom/yandex/div/core/util/SafeAlertDialogBuilder;
+	public final fun setOnCancelListener (Landroid/content/DialogInterface$OnCancelListener;)Lcom/yandex/div/core/util/SafeAlertDialogBuilder;
+	public final fun setOnDismissListener (Landroid/content/DialogInterface$OnDismissListener;)Lcom/yandex/div/core/util/SafeAlertDialogBuilder;
+	public final fun setPositiveButton (ILandroid/content/DialogInterface$OnClickListener;)Lcom/yandex/div/core/util/SafeAlertDialogBuilder;
+	public final fun setPositiveButton (Ljava/lang/String;Landroid/content/DialogInterface$OnClickListener;)Lcom/yandex/div/core/util/SafeAlertDialogBuilder;
+	public final fun setTitle (I)Lcom/yandex/div/core/util/SafeAlertDialogBuilder;
+	public final fun setTitle (Ljava/lang/CharSequence;)Lcom/yandex/div/core/util/SafeAlertDialogBuilder;
+	public final fun setView (Landroid/view/View;)Lcom/yandex/div/core/util/SafeAlertDialogBuilder;
+	public final fun show ()Lcom/yandex/div/core/util/SafeAlertDialog;
+}
+
+public class com/yandex/div/core/util/SafePopupWindow : android/widget/PopupWindow {
+	public fun <init> (Landroid/view/View;II)V
+	public fun <init> (Landroid/view/View;IIZ)V
+	public fun setContentView (Landroid/view/View;)V
+}
+
+public final class com/yandex/div/core/util/TypeConverterKt {
+	public static final fun toIntSafely (J)I
+}
+
+public final class com/yandex/div/core/util/ViewsKt {
+	public static final fun doOnActualLayout (Landroid/view/View;Lkotlin/jvm/functions/Function1;)V
+	public static final fun isActuallyLaidOut (Landroid/view/View;)Z
+}
+
+public class com/yandex/div/core/view2/Div2View : com/yandex/div/internal/widget/FrameContainerLayout, com/yandex/div/core/DivViewFacade {
+	public fun <init> (Lcom/yandex/div/core/Div2Context;)V
+	public fun <init> (Lcom/yandex/div/core/Div2Context;Landroid/util/AttributeSet;)V
+	public fun <init> (Lcom/yandex/div/core/Div2Context;Landroid/util/AttributeSet;I)V
+	public synthetic fun <init> (Lcom/yandex/div/core/Div2Context;Landroid/util/AttributeSet;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun addDivDataChangeObserver (Lcom/yandex/div/core/downloader/DivDataChangedObserver;)V
+	public fun addLoadReference (Lcom/yandex/div/core/images/LoadReference;Landroid/view/View;)V
+	public fun applyPatch (Lcom/yandex/div2/DivPatch;)Z
+	public fun applyTimerCommand (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun applyVideoCommand (Ljava/lang/String;Ljava/lang/String;)Z
+	public fun applyVideoCommand (Ljava/lang/String;Ljava/lang/String;Lcom/yandex/div/json/expressions/ExpressionResolver;)Z
+	public static synthetic fun applyVideoCommand$default (Lcom/yandex/div/core/view2/Div2View;Ljava/lang/String;Ljava/lang/String;Lcom/yandex/div/json/expressions/ExpressionResolver;ILjava/lang/Object;)Z
+	public fun cancelTooltips ()V
+	public fun cleanup ()V
+	public fun clearSubscriptions ()V
+	public fun dismissPendingOverflowMenus ()V
+	protected fun dispatchDraw (Landroid/graphics/Canvas;)V
+	public fun draw (Landroid/graphics/Canvas;)V
+	public fun getActionHandler ()Lcom/yandex/div/core/DivActionHandler;
+	public fun getComponentName ()Ljava/lang/String;
+	public fun getConfig ()Lcom/yandex/div/core/DivViewConfig;
+	public fun getCurrentState ()Lcom/yandex/div/core/state/DivViewState;
+	public fun getCurrentStateId ()J
+	public fun getDataTag ()Lcom/yandex/div/DivDataTag;
+	public fun getDivData ()Lcom/yandex/div2/DivData;
+	public fun getDivTag ()Lcom/yandex/div/DivDataTag;
+	public fun getExpressionResolver ()Lcom/yandex/div/json/expressions/ExpressionResolver;
+	public fun getForceCanvasClipping ()Z
+	public fun getLogId ()Ljava/lang/String;
+	public fun getPrevDataTag ()Lcom/yandex/div/DivDataTag;
+	public synthetic fun getView ()Landroid/view/View;
+	public fun getView ()Lcom/yandex/div/core/view2/Div2View;
+	public fun getVisualErrorsEnabled ()Z
+	public final fun handleAction (Lcom/yandex/div2/DivAction;)V
+	public final fun handleAction (Lcom/yandex/div2/DivAction;Ljava/lang/String;)V
+	public fun handleAction (Lcom/yandex/div2/DivAction;Ljava/lang/String;Lcom/yandex/div/json/expressions/ExpressionResolver;)V
+	public static synthetic fun handleAction$default (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div2/DivAction;Ljava/lang/String;Lcom/yandex/div/json/expressions/ExpressionResolver;ILjava/lang/Object;)V
+	public final fun handleActionWithResult (Lcom/yandex/div2/DivAction;)Z
+	public final fun handleActionWithResult (Lcom/yandex/div2/DivAction;Ljava/lang/String;)Z
+	public fun handleActionWithResult (Lcom/yandex/div2/DivAction;Ljava/lang/String;Lcom/yandex/div/json/expressions/ExpressionResolver;)Z
+	public static synthetic fun handleActionWithResult$default (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div2/DivAction;Ljava/lang/String;Lcom/yandex/div/json/expressions/ExpressionResolver;ILjava/lang/Object;)Z
+	public fun handleUri (Landroid/net/Uri;)V
+	public fun hasScrollableViewUnder (Landroid/view/MotionEvent;)Z
+	public fun hideTooltip (Ljava/lang/String;)V
+	public fun isInState (Lcom/yandex/div/core/state/DivStatePath;)Z
+	protected fun onAttachedToWindow ()V
+	public fun onConfigurationChangedOutside (Landroid/content/res/Configuration;)V
+	protected fun onDetachedFromWindow ()V
+	protected fun onLayout (ZIIII)V
+	protected fun onMeasure (II)V
+	public fun prepareForRecycleOrCleanup (Lcom/yandex/div2/DivData;Lcom/yandex/div2/DivData;Lcom/yandex/div/DivDataTag;)Z
+	public static synthetic fun prepareForRecycleOrCleanup$default (Lcom/yandex/div/core/view2/Div2View;Lcom/yandex/div2/DivData;Lcom/yandex/div2/DivData;Lcom/yandex/div/DivDataTag;ILjava/lang/Object;)Z
+	public fun releaseMedia ()V
+	public fun removeDivDataChangeObserver (Lcom/yandex/div/core/downloader/DivDataChangedObserver;)V
+	public fun resetToInitialState ()V
+	public fun setActionHandler (Lcom/yandex/div/core/DivActionHandler;)V
+	public fun setComponentName (Ljava/lang/String;)V
+	public fun setConfig (Lcom/yandex/div/core/DivViewConfig;)V
+	public fun setData (Lcom/yandex/div2/DivData;Lcom/yandex/div/DivDataTag;)Z
+	public fun setData (Lcom/yandex/div2/DivData;Lcom/yandex/div2/DivData;Lcom/yandex/div/DivDataTag;)Z
+	public fun setDataWithStates (Lcom/yandex/div2/DivData;Lcom/yandex/div/DivDataTag;Ljava/util/List;Z)Z
+	public fun setForceCanvasClipping (Z)V
+	public fun setVariable (Ljava/lang/String;Ljava/lang/String;)Lcom/yandex/div/data/VariableMutationException;
+	public fun setVisualErrorsEnabled (Z)V
+	public fun showTooltip (Ljava/lang/String;)V
+	public fun showTooltip (Ljava/lang/String;Z)V
+	public fun startDivAnimation ()V
+	public fun stateToBind (Lcom/yandex/div2/DivData;)Lcom/yandex/div2/DivData$State;
+	public fun stopDivAnimation ()V
+	public fun subscribe (Lcom/yandex/div/internal/widget/menu/OverflowMenuSubscriber$Listener;)V
+	public fun switchToInitialState ()V
+	public fun switchToMultipleStates (Ljava/util/List;ZZ)V
+	public fun switchToState (JZ)V
+	public fun switchToState (Lcom/yandex/div/core/state/DivStatePath;Z)V
+	public fun trackChildrenVisibility ()V
+	public fun tryLogVisibility ()V
+}
+
+public class com/yandex/div/core/view2/DivImagePreloader {
+	public fun <init> (Lcom/yandex/div/core/images/DivImageLoader;)V
+	public fun preload (Lcom/yandex/div2/Div;Lcom/yandex/div/json/expressions/ExpressionResolver;Lcom/yandex/div/core/view2/DivImagePreloader$Callback;)Lcom/yandex/div/core/view2/DivImagePreloader$Ticket;
+	public static synthetic fun preload$default (Lcom/yandex/div/core/view2/DivImagePreloader;Lcom/yandex/div2/Div;Lcom/yandex/div/json/expressions/ExpressionResolver;Lcom/yandex/div/core/view2/DivImagePreloader$Callback;ILjava/lang/Object;)Lcom/yandex/div/core/view2/DivImagePreloader$Ticket;
+	public fun preloadImage (Lcom/yandex/div2/Div;Lcom/yandex/div/json/expressions/ExpressionResolver;Lcom/yandex/div/core/DivPreloader$DownloadCallback;)Ljava/util/List;
+	public fun toPreloadCallback (Lcom/yandex/div/core/view2/DivImagePreloader$Callback;)Lcom/yandex/div/core/DivPreloader$Callback;
+}
+
+public abstract interface class com/yandex/div/core/view2/DivImagePreloader$Callback {
+	public abstract fun finish (Z)V
+}
+
+public abstract interface class com/yandex/div/core/view2/DivImagePreloader$Ticket {
+	public abstract fun cancel ()V
+}
+
+public final class com/yandex/div/core/view2/DivViewsKt {
+	public static final fun withCanvasClipping (Lcom/yandex/div/core/view2/Div2View;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+	public static final fun withDivViewCanvasClipping (Landroid/view/ViewGroup;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+}
+
+public abstract interface class com/yandex/div/core/view2/Releasable {
+	public abstract fun release ()V
+}
+
+public final class com/yandex/div/core/view2/ViewLocator {
+	public static final field INSTANCE Lcom/yandex/div/core/view2/ViewLocator;
+	public static final fun findSingleViewWithTag (Lcom/yandex/div/core/view2/Div2View;Ljava/lang/String;)Landroid/view/View;
+	public static final fun findViewsWithTag (Lcom/yandex/div/core/view2/Div2View;Ljava/lang/String;)Ljava/util/List;
+}
+
+public final class com/yandex/div/core/view2/divs/BaseDivViewExtensionsKt {
+	public static final fun dpToPx (Ljava/lang/Long;Landroid/util/DisplayMetrics;)I
+	public static final fun dpToPx (Ljava/lang/Number;Landroid/util/DisplayMetrics;)I
+	public static final fun dpToPxF (Ljava/lang/Number;Landroid/util/DisplayMetrics;)F
+	public static final fun pxToDp (Ljava/lang/Long;Landroid/util/DisplayMetrics;)I
+	public static final fun pxToDp (Ljava/lang/Number;Landroid/util/DisplayMetrics;)I
+	public static final fun pxToDpF (Ljava/lang/Number;Landroid/util/DisplayMetrics;)F
+	public static final fun pxToSp (Ljava/lang/Long;Landroid/util/DisplayMetrics;)I
+	public static final fun pxToSp (Ljava/lang/Number;Landroid/util/DisplayMetrics;)I
+	public static final fun pxToSpF (Ljava/lang/Number;Landroid/util/DisplayMetrics;)F
+	public static final fun spToPx (Ljava/lang/Long;Landroid/util/DisplayMetrics;)I
+	public static final fun spToPx (Ljava/lang/Number;Landroid/util/DisplayMetrics;)I
+	public static final fun spToPxF (Ljava/lang/Number;Landroid/util/DisplayMetrics;)F
+	public static final fun unitToPx (Ljava/lang/Long;Landroid/util/DisplayMetrics;Lcom/yandex/div2/DivSizeUnit;)I
+	public static final fun unitToPx (Ljava/lang/Number;Landroid/util/DisplayMetrics;Lcom/yandex/div2/DivSizeUnit;)I
+	public static final fun unitToPxF (Ljava/lang/Number;Landroid/util/DisplayMetrics;Lcom/yandex/div2/DivSizeUnit;)F
+}
+
+public final class com/yandex/div/core/view2/divs/DivLayoutProviderVariablesHolder : com/yandex/div/internal/core/DivVisitor, com/yandex/div/internal/core/ExpressionSubscriber {
+	public fun <init> ()V
+	public final fun clear ()V
+	public final fun contains (Ljava/lang/String;)Z
+	public synthetic fun defaultVisit (Lcom/yandex/div2/Div;Lcom/yandex/div/json/expressions/ExpressionResolver;)Ljava/lang/Object;
+	public fun getSubscriptions ()Ljava/util/List;
+	public final fun observeDivData (Lcom/yandex/div2/DivData;Lcom/yandex/div/json/expressions/ExpressionResolver;)V
+	public synthetic fun visit (Lcom/yandex/div2/Div$Container;Lcom/yandex/div/json/expressions/ExpressionResolver;)Ljava/lang/Object;
+	public synthetic fun visit (Lcom/yandex/div2/Div$Gallery;Lcom/yandex/div/json/expressions/ExpressionResolver;)Ljava/lang/Object;
+	public synthetic fun visit (Lcom/yandex/div2/Div$Grid;Lcom/yandex/div/json/expressions/ExpressionResolver;)Ljava/lang/Object;
+	public synthetic fun visit (Lcom/yandex/div2/Div$Pager;Lcom/yandex/div/json/expressions/ExpressionResolver;)Ljava/lang/Object;
+	public synthetic fun visit (Lcom/yandex/div2/Div$State;Lcom/yandex/div/json/expressions/ExpressionResolver;)Ljava/lang/Object;
+	public synthetic fun visit (Lcom/yandex/div2/Div$Tabs;Lcom/yandex/div/json/expressions/ExpressionResolver;)Ljava/lang/Object;
+}
+
+public final class com/yandex/div/core/view2/divs/DivVideoBinderKt {
+	public static final fun createPreview (Lcom/yandex/div2/DivVideo;Lcom/yandex/div/json/expressions/ExpressionResolver;)Landroid/graphics/Bitmap;
+	public static final fun createSource (Lcom/yandex/div2/DivVideo;Lcom/yandex/div/json/expressions/ExpressionResolver;)Ljava/util/List;
+}
+
+public final class com/yandex/div/core/view2/divs/gallery/ScrollPosition : java/lang/Enum {
+	public static final field CENTER Lcom/yandex/div/core/view2/divs/gallery/ScrollPosition;
+	public static final field DEFAULT Lcom/yandex/div/core/view2/divs/gallery/ScrollPosition;
+	public static fun valueOf (Ljava/lang/String;)Lcom/yandex/div/core/view2/divs/gallery/ScrollPosition;
+	public static fun values ()[Lcom/yandex/div/core/view2/divs/gallery/ScrollPosition;
+}
+
+public final class com/yandex/div/core/view2/divs/gallery/ScrollPositionKt {
+	public static final fun toScrollPosition (Lcom/yandex/div2/DivGallery$ScrollMode;)Lcom/yandex/div/core/view2/divs/gallery/ScrollPosition;
+}
+
+public abstract interface class com/yandex/div/core/view2/divs/widgets/LoadableImage {
+	public abstract fun cleanLoadingTask ()V
+	public abstract fun getLoadingTask ()Ljava/util/concurrent/Future;
+	public abstract fun imageLoaded ()V
+	public fun isImageLoaded ()Z
+	public fun isImagePreview ()Z
+	public abstract fun previewLoaded ()V
+	public abstract fun resetImageLoaded ()V
+	public abstract fun saveLoadingTask (Ljava/util/concurrent/Future;)V
+	public abstract fun setImage (Landroid/graphics/Bitmap;)V
+	public abstract fun setImage (Landroid/graphics/drawable/Drawable;)V
+	public abstract fun setPlaceholder (Landroid/graphics/drawable/Drawable;)V
+	public abstract fun setPreview (Landroid/graphics/Bitmap;)V
+	public abstract fun setPreview (Landroid/graphics/drawable/Drawable;)V
+}
+
+public abstract interface annotation class com/yandex/div/core/view2/logging/patch/PatchResult : java/lang/annotation/Annotation {
+	public static final field Companion Lcom/yandex/div/core/view2/logging/patch/PatchResult$Companion;
+	public static final field FAIL_NO_STATE Ljava/lang/String;
+	public static final field SUCCESS Ljava/lang/String;
+}
+
+public final class com/yandex/div/core/view2/logging/patch/PatchResult$Companion {
+	public static final field FAIL_NO_STATE Ljava/lang/String;
+	public static final field SUCCESS Ljava/lang/String;
+}
+
+public abstract interface class com/yandex/div/core/widget/DivExtendableView {
+	public abstract fun getDelegate ()Lcom/yandex/div/core/widget/DivViewDelegate;
+	public abstract fun setDelegate (Lcom/yandex/div/core/widget/DivViewDelegate;)V
+}
+
+public abstract interface class com/yandex/div/core/widget/DivViewDelegate {
+	public abstract fun buildDrawingCache (Z)V
+	public abstract fun invalidateDrawable (Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
+	public abstract fun onAttachedToWindow ()V
+	public abstract fun onDetachedFromWindow ()V
+	public abstract fun onVisibilityChanged (Landroid/view/View;I)Z
+	public abstract fun unscheduleDrawable (Landroid/graphics/drawable/Drawable;)V
+}
+
+public class com/yandex/div/core/widget/LoadableImageView : com/yandex/div/internal/widget/AspectImageView, com/yandex/div/core/view2/divs/widgets/LoadableImage, com/yandex/div/core/widget/DivExtendableView {
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;I)V
+	public synthetic fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun buildDrawingCache (Z)V
+	public fun cleanLoadingTask ()V
+	public fun getDelegate ()Lcom/yandex/div/core/widget/DivViewDelegate;
+	public final fun getExternalImage ()Landroid/graphics/drawable/Drawable;
+	public final fun getImageTransformer ()Lcom/yandex/div/core/widget/LoadableImageView$ImageTransformer;
+	public fun getLoadingTask ()Ljava/util/concurrent/Future;
+	public fun imageLoaded ()V
+	public fun invalidateDrawable (Landroid/graphics/drawable/Drawable;)V
+	public fun isImageLoaded ()Z
+	public fun isImagePreview ()Z
+	protected fun onAttachedToWindow ()V
+	protected fun onDetachedFromWindow ()V
+	protected fun onVisibilityChanged (Landroid/view/View;I)V
+	public fun previewLoaded ()V
+	public fun resetImageLoaded ()V
+	public fun saveLoadingTask (Ljava/util/concurrent/Future;)V
+	public fun setDelegate (Lcom/yandex/div/core/widget/DivViewDelegate;)V
+	public final fun setExternalImage (Landroid/graphics/drawable/Drawable;)V
+	public fun setImage (Landroid/graphics/Bitmap;)V
+	public fun setImage (Landroid/graphics/drawable/Drawable;)V
+	public fun setImageBitmap (Landroid/graphics/Bitmap;)V
+	public final fun setImageChangeCallback (Lkotlin/jvm/functions/Function0;)V
+	public static synthetic fun setImageChangeCallback$default (Lcom/yandex/div/core/widget/LoadableImageView;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public fun setImageDrawable (Landroid/graphics/drawable/Drawable;)V
+	public final fun setImageTransformer (Lcom/yandex/div/core/widget/LoadableImageView$ImageTransformer;)V
+	public fun setPlaceholder (Landroid/graphics/drawable/Drawable;)V
+	public fun setPreview (Landroid/graphics/Bitmap;)V
+	public fun setPreview (Landroid/graphics/drawable/Drawable;)V
+	public fun unscheduleDrawable (Landroid/graphics/drawable/Drawable;)V
+}
+
+public abstract interface class com/yandex/div/core/widget/LoadableImageView$ImageTransformer {
+	public abstract fun transform (Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
+}
+
+public final class com/yandex/div/core/widget/LoadableImageView$ImageTransformer$NOP : com/yandex/div/core/widget/LoadableImageView$ImageTransformer {
+	public static final field INSTANCE Lcom/yandex/div/core/widget/LoadableImageView$ImageTransformer$NOP;
+	public fun transform (Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
+}
+
