@@ -1,0 +1,240 @@
+{
+  "patch": {
+    "mode": "partial",
+    "changes": [
+      {
+        "id": "page",
+        "items": [
+          {
+            "id": "page",
+            "type": "gallery",
+            "items": [
+              {
+                "type": "report_template",
+                "title": "تست",
+                "image":"test",
+                "actions": [
+                  {
+                    "log_id": "show_main",
+                    "url": "div-action://load_screen?screen=ph/reports"
+                  }
+                ]
+              }
+            ],
+            "border": {
+              "corner_radius": 4,
+              "stroke": {
+                "color": "#c8d0e4",
+                "width": 1
+              }
+            },
+            "height": {
+              "type": "match_parent"
+            },
+            "width": {
+              "type": "match_parent"
+            },
+            "orientation": "vertical",
+            "content_alignment_vertical": "center",
+            "content_alignment_horizontal": "center"
+          }
+        ]
+      }
+    ]
+  },
+  "templates": {
+    "report_template": {
+      "type": "container",
+      "$actions": "actions",
+
+      "items": [
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "$text": "title",
+                  "font_size": 14,
+                  "font_weight": "regular",
+                  "letter_spacing": 0,
+                  "text_color": "#343333",
+                  "text_alignment_horizontal": "center",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "wrap_content"
+              },
+              "orientation": "vertical",
+              "content_alignment_vertical": "center",
+              "content_alignment_horizontal": "right"
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "image",
+                      "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/35b6fa9b-2fea-44de-9938-7b27f44ea0e7",
+                      "height": {
+                        "type": "match_parent"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      }
+                    }
+                  ],
+                  "height": {
+                    "type": "fixed",
+                    "value": 40
+                  },
+                  "width": {
+                    "type": "fixed",
+                    "value": 40
+                  },
+                  "orientation": "overlap",
+                  "content_alignment_vertical": "center",
+                  "content_alignment_horizontal": "center",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "left": 8,
+                    "right": 8,
+                    "top": 8,
+                    "bottom": 8
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#e8ecf4"
+                }
+              ],
+              "border": {
+                "corner_radius": 4
+              },
+              "height": {
+                "type": "fixed",
+                "value": 56
+              },
+              "width": {
+                "type": "fixed",
+                "value": 56
+              },
+              "orientation": "overlap",
+              "content_alignment_vertical": "center",
+              "content_alignment_horizontal": "center",
+              "margins": {
+                "left": 12
+              }
+            }
+          ],
+          "height": {
+            "type": "wrap_content"
+          },
+          "width": {
+            "type": "wrap_content"
+          },
+          "orientation": "horizontal",
+          "content_alignment_horizontal": "center",
+          "content_alignment_vertical": "center",
+          "alignment_horizontal": "right",
+          "alignment_vertical": "center",
+          "margins": {
+            "right": 12,
+            "top": 12,
+            "bottom": 12
+          }
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "image",
+              "$image_url": "image",
+              "height": {
+                "type": "fixed",
+                "value": 11
+              },
+              "width": {
+                "type": "fixed",
+                "value": 5
+              }
+            },
+            {
+              "type": "image",
+              "image_url": "empty://",
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              }
+            }
+          ],
+          "height": {
+            "type": "fixed",
+            "value": 16
+          },
+          "width": {
+            "type": "fixed",
+            "value": 16
+          },
+          "orientation": "overlap",
+          "content_alignment_vertical": "center",
+          "content_alignment_horizontal": "center",
+          "alignment_horizontal": "left",
+          "alignment_vertical": "center",
+          "margins": {
+            "left": 11,
+            "top": 32,
+            "bottom": 32
+          }
+        }
+      ],
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 4,
+        "stroke": {
+          "color": "#e6e6e6",
+          "width": 1
+        }
+      },
+      "height": {
+        "type": "fixed",
+        "value": 80
+      },
+      "width": {
+        "type": "match_parent"
+      },
+      "orientation": "overlap",
+      "alignment_horizontal": "center",
+      "alignment_vertical": "top",
+      "margins": {
+        "left": 12,
+        "right": 12,
+        "top": 12
+      }
+    }
+  }
+}

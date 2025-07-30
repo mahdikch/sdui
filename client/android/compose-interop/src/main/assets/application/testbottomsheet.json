@@ -1,0 +1,1819 @@
+{
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "container",
+
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "@{text___1}",
+                      "font_size": 14,
+                      "font_weight": "regular",
+                      "line_height": 32,
+                      "letter_spacing": 0,
+                      "text_color": "#757575",
+                      "text_alignment_horizontal": "right",
+                      "text_alignment_vertical": "top",
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    }
+                  ],
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "@{motor_selected}"
+                    }
+                  ],
+                  "border": {
+                    "corners_radius": {
+                      "top-left": 13,
+                      "top-right": 13,
+                      "bottom-left": 13,
+                      "bottom-right": 13
+                    }
+                  },
+                  "actions": [
+                    {
+                      "log_id": "update_visibility",
+                      "url": "div-action://set_variable?name=car_visibility&value=gone"
+                    },
+                    {
+                      "log_id": "update_visibility",
+                      "url": "div-action://set_variable?name=motor_visibility&value=visible"
+                    },
+                    {
+                      "log_id": "change_motor_tab_background",
+                      "url": "div-action://change_color?name=motor_selected&value=@{selected_tab_color}"
+                    },
+                    {
+                      "log_id": "change_mashin_tab_background",
+                      "url": "div-action://change_color?name=mashin_selected&value=@{unselected_tab_color}"
+                    }
+                  ],
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "center",
+                  "content_alignment_vertical": "center",
+                  "paddings": {
+                    "top": 8,
+                    "bottom": 8,
+                    "left": 12,
+                    "right": 12
+                  }
+                },
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "@{text___2}",
+                      "font_size": 14,
+                      "font_weight": "regular",
+                      "line_height": 32,
+                      "letter_spacing": 0,
+                      "text_color": "#193d8d",
+                      "text_alignment_horizontal": "right",
+                      "text_alignment_vertical": "top",
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    }
+                  ],
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "@{mashin_selected}"
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "log_id": "update_visibility",
+                      "url": "div-action://set_variable?name=car_visibility&value=visible"
+                    },
+                    {
+                      "log_id": "update_visibility",
+                      "url": "div-action://set_variable?name=motor_visibility&value=gone"
+                    },
+                    {
+                      "log_id": "change_motor_tab_background",
+                      "url": "div-action://change_color?name=motor_selected&value=@{unselected_tab_color}"
+                    },
+                    {
+                      "log_id": "change_mashin_tab_background",
+                      "url": "div-action://change_color?name=mashin_selected&value=@{selected_tab_color}"
+                    }
+                  ],
+                  "border": {
+                    "corners_radius": {
+                      "top-left": 13,
+                      "top-right": 13,
+                      "bottom-left": 13,
+                      "bottom-right": 13
+                    }
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "center",
+                  "content_alignment_vertical": "center",
+                  "paddings": {
+                    "top": 8,
+                    "bottom": 8,
+                    "left": 12,
+                    "right": 12
+                  },
+                  "margins": {
+                    "left": 8
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ],
+              "border": {
+                "corners_radius": {
+                  "top-left": 13,
+                  "top-right": 13,
+                  "bottom-left": 13,
+                  "bottom-right": 13
+                }
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "horizontal",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "paddings": {
+                "top": 8,
+                "bottom": 8,
+                "left": 8,
+                "right": 8
+              },
+              "alignment_horizontal": "center",
+              "alignment_vertical": "top",
+              "margins": {
+                "left": 24,
+                "right": 24,
+                "top": 24
+              }
+            },
+            {
+              "visibility": "@{car_visibility}",
+              "type": "gallery",
+              "items": [
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "قدیم دولتی بدون کد",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 25
+                          }
+                        }
+                      ],
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 15,
+                          "top-right": 15,
+                          "bottom-left": 15,
+                          "bottom-right": 15
+                        },
+                        "stroke": {
+                          "color": "#193d8d",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "منطقه ای",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "log_id": "set_patch",
+                          "url": "div-action://set_patch?patch=@{mashin_plate}"
+                        }
+                      ],
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 15,
+                          "top-right": 15,
+                          "bottom-left": 15,
+                          "bottom-right": 15
+                        },
+                        "stroke": {
+                          "color": "#193d8d",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      }
+                    }
+                  ],
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "left",
+                  "content_alignment_vertical": "top",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "top",
+                  "margins": {
+                    "top": 24,
+                    "right": 24,
+                    "left": 24
+                  },
+                  "paddings": {
+                    "top": 2,
+                    "bottom": 4
+                  }
+                },
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "مناطق آزاد",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 25
+                          }
+                        }
+                      ],
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 16,
+                          "top-right": 16,
+                          "bottom-left": 16,
+                          "bottom-right": 16
+                        },
+                        "stroke": {
+                          "color": "#193d8d",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "نظامی",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        }
+                      ],
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 16,
+                          "top-right": 16,
+                          "bottom-left": 16,
+                          "bottom-right": 16
+                        },
+                        "stroke": {
+                          "color": "#193d8d",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      }
+                    }
+                  ],
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "left",
+                  "content_alignment_vertical": "top",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "top",
+                  "margins": {
+                    "top": 4,
+                    "right": 24,
+                    "left": 24
+                  },
+                  "paddings": {
+                    "top": 4,
+                    "bottom": 4
+                  }
+                },
+                {
+                  "type": "container",
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "left",
+                  "content_alignment_vertical": "top",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "top",
+                  "margins": {
+                    "top": 4,
+                    "right": 24,
+                    "left": 24
+                  },
+                  "items": [
+                    {
+                      "type": "container",
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 16,
+                          "top-right": 16,
+                          "bottom-left": 16,
+                          "bottom-right": 16
+                        },
+                        "stroke": {
+                          "color": "#193d8d",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      },
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "ترانزیت",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 25
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "container",
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 16,
+                          "top-right": 16,
+                          "bottom-left": 16,
+                          "bottom-right": 16
+                        },
+                        "stroke": {
+                          "color": "#193d8d",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      },
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "تاریخی",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "paddings": {
+                    "top": 4,
+                    "bottom": 4
+                  }
+                },
+                {
+                  "type": "container",
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "left",
+                  "content_alignment_vertical": "top",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "top",
+                  "margins": {
+                    "top": 4,
+                    "right": 24,
+                    "left": 24
+                  },
+                  "items": [
+                    {
+                      "type": "container",
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 16,
+                          "top-right": 16,
+                          "bottom-left": 16,
+                          "bottom-right": 16
+                        },
+                        "stroke": {
+                          "color": "#193d8d",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      },
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "سیاسی",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 25
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "container",
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 16,
+                          "top-right": 16,
+                          "bottom-left": 16,
+                          "bottom-right": 16
+                        },
+                        "stroke": {
+                          "color": "#193d8d",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      },
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "گذر موقت ملی",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "paddings": {
+                    "top": 4,
+                    "bottom": 4
+                  }
+                },
+                {
+                  "type": "container",
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "left",
+                  "content_alignment_vertical": "top",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "top",
+                  "margins": {
+                    "top": 4,
+                    "right": 24,
+                    "left": 24
+                  },
+                  "items": [
+                    {
+                      "type": "container",
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 17,
+                          "top-right": 17,
+                          "bottom-left": 17,
+                          "bottom-right": 17
+                        },
+                        "stroke": {
+                          "color": "#193d8d",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      },
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "مناطق آزاد",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 25
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "container",
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 17,
+                          "top-right": 17,
+                          "bottom-left": 17,
+                          "bottom-right": 17
+                        },
+                        "stroke": {
+                          "color": "#193d8d",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      },
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "شماره موقت تهران",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "paddings": {
+                    "top": 4,
+                    "bottom": 4
+                  }
+                },
+                {
+                  "type": "container",
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "left",
+                  "content_alignment_vertical": "top",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "top",
+                  "margins": {
+                    "top": 4,
+                    "right": 24,
+                    "left": 24
+                  },
+                  "items": [
+                    {
+                      "type": "container",
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 18,
+                          "top-right": 18,
+                          "bottom-left": 18,
+                          "bottom-right": 18
+                        },
+                        "stroke": {
+                          "color": "#193d8d",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      },
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "سرویس ملی",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 25
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "container",
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 18,
+                          "top-right": 18,
+                          "bottom-left": 18,
+                          "bottom-right": 18
+                        },
+                        "stroke": {
+                          "color": "#193d8d",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      },
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "سیاسی ملی",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "paddings": {
+                    "top": 4,
+                    "bottom": 4
+                  }
+                },
+                {
+                  "type": "container",
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "left",
+                  "content_alignment_vertical": "top",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "top",
+                  "margins": {
+                    "top": 4,
+                    "right": 24,
+                    "left": 24
+                  },
+                  "items": [
+                    {
+                      "type": "container",
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 18,
+                          "top-right": 18,
+                          "bottom-left": 18,
+                          "bottom-right": 18
+                        },
+                        "stroke": {
+                          "color": "#d73333",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      },
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "فاقد پلاک",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#d73333",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 25
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "container",
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 18,
+                          "top-right": 18,
+                          "bottom-left": 18,
+                          "bottom-right": 18
+                        },
+                        "stroke": {
+                          "color": "#193d8d",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      },
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "گذر موقت",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "paddings": {
+                    "top": 4,
+                    "bottom": 4
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#ffffff"
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "vertical",
+              "content_alignment_vertical": "center",
+              "content_alignment_horizontal": "center",
+              "alignment_horizontal": "center",
+              "alignment_vertical": "top"
+            },
+            {
+              "visibility": "@{motor_visibility}",
+              "type": "gallery",
+              "items": [
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "موتور سیکلت نظامی",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 25
+                          }
+                        }
+                      ],
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 15,
+                          "top-right": 15,
+                          "bottom-left": 15,
+                          "bottom-right": 15
+                        },
+                        "stroke": {
+                          "color": "#193d8d",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "موتور سیکلت شخصی",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "log_id": "set_patch",
+                          "url": "div-action://set_patch?patch=@{motor_plate}"
+                        }
+                      ],
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 15,
+                          "top-right": 15,
+                          "bottom-left": 15,
+                          "bottom-right": 15
+                        },
+                        "stroke": {
+                          "color": "#193d8d",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      }
+                    }
+                  ],
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "left",
+                  "content_alignment_vertical": "top",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "top",
+                  "margins": {
+                    "top": 24,
+                    "right": 24,
+                    "left": 24
+                  },
+                  "paddings": {
+                    "top": 2,
+                    "bottom": 4
+                  }
+                },
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "موتور سیکلت پلیس",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 25
+                          }
+                        }
+                      ],
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 16,
+                          "top-right": 16,
+                          "bottom-left": 16,
+                          "bottom-right": 16
+                        },
+                        "stroke": {
+                          "color": "#193d8d",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "موتور سیکلت دولتی",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        }
+                      ],
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 16,
+                          "top-right": 16,
+                          "bottom-left": 16,
+                          "bottom-right": 16
+                        },
+                        "stroke": {
+                          "color": "#193d8d",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      }
+                    }
+                  ],
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "left",
+                  "content_alignment_vertical": "top",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "top",
+                  "margins": {
+                    "top": 4,
+                    "right": 24,
+                    "left": 24
+                  },
+                  "paddings": {
+                    "top": 4,
+                    "bottom": 4
+                  }
+                },
+                {
+                  "type": "container",
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "left",
+                  "content_alignment_vertical": "top",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "top",
+                  "margins": {
+                    "top": 4,
+                    "right": 24,
+                    "left": 24
+                  },
+                  "items": [
+                    {
+                      "type": "container",
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 16,
+                          "top-right": 16,
+                          "bottom-left": 16,
+                          "bottom-right": 16
+                        },
+                        "stroke": {
+                          "color": "#193d8d",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      },
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "منطقه ای موتور شخصی",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 25
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "container",
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 16,
+                          "top-right": 16,
+                          "bottom-left": 16,
+                          "bottom-right": 16
+                        },
+                        "stroke": {
+                          "color": "#193d8d",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      },
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "منطقه ای موتور دولتی",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "paddings": {
+                    "top": 4,
+                    "bottom": 4
+                  }
+                },
+                {
+                  "type": "container",
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "left",
+                  "content_alignment_vertical": "top",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "top",
+                  "margins": {
+                    "top": 4,
+                    "right": 24,
+                    "left": 24
+                  },
+                  "items": [
+                    {
+                      "type": "container",
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 16,
+                          "top-right": 16,
+                          "bottom-left": 16,
+                          "bottom-right": 16
+                        },
+                        "stroke": {
+                          "color": "#d73333",
+                          "width": 1
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 56
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "right": 12,
+                        "left": 12
+                      },
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "فاقد پلاک",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#d73333",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "paddings": {
+                    "top": 4,
+                    "bottom": 4
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#ffffff"
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "vertical",
+              "content_alignment_vertical": "center",
+              "content_alignment_horizontal": "center",
+              "alignment_horizontal": "center",
+              "alignment_vertical": "top"
+            }
+          ],
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "border": {
+            "corners_radius": {
+              "top-left": 29,
+              "top-right": 29,
+              "bottom-right": 9,
+              "bottom-left": 9
+            }
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "vertical",
+          "content_alignment_vertical": "center",
+          "content_alignment_horizontal": "center"
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "string",
+        "name": "text___1",
+        "value": "موتور"
+      },
+      {
+        "type": "string",
+        "name": "text___2",
+        "value": "ماشین"
+      },
+      {
+        "type": "string",
+        "name": "text___3",
+        "value": "مناطق آزاد"
+      },
+      {
+        "type": "string",
+        "name": "text___4",
+        "value": "نظامی"
+      },
+      {
+        "type": "string",
+        "name": "text___5",
+        "value": "قدیم دولتی بدون کد"
+      },
+      {
+        "type": "string",
+        "name": "text___6",
+        "value": "منطقه ای "
+      },
+      {
+        "type": "string",
+        "name": "text___7",
+        "value": "گذر موقت"
+      },
+      {
+        "type": "string",
+        "name": "text___8",
+        "value": "فاقد پلاک"
+      },
+      {
+        "type": "string",
+        "name": "text___9",
+        "value": "سرویس ملی"
+      },
+      {
+        "type": "string",
+        "name": "text___10",
+        "value": "سیاسی ملی"
+      },
+      {
+        "type": "string",
+        "name": "text___11",
+        "value": "مناطق آزاد"
+      },
+      {
+        "type": "string",
+        "name": "text___12",
+        "value": "شماره موقت تهران"
+      },
+      {
+        "type": "string",
+        "name": "text___13",
+        "value": "سیاسی"
+      },
+      {
+        "type": "string",
+        "name": "text___14",
+        "value": "گذر موقت ملی"
+      },
+      {
+        "type": "string",
+        "name": "text___15",
+        "value": "ترانزیت"
+      },
+      {
+        "type": "string",
+        "name": "text___16",
+        "value": "تاریخی"
+      },
+      {
+        "type": "string",
+        "name": "motor_visibility",
+        "value": "gone"
+      },
+      {
+        "type": "string",
+        "name": "car_visibility",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "selected_tab_color",
+        "value": "ffffff"
+      },
+      {
+        "type": "string",
+        "name": "unselected_tab_color",
+        "value": "f3f5f9"
+      },
+      {
+        "type": "string",
+        "name": "motor_selected",
+        "value": "#f3f5f9"
+      },
+      {
+        "type": "string",
+        "name": "mashin_selected",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "motor_plate",
+        "value": "patchMotorPlate"
+      },
+      {
+        "type": "string",
+        "name": "mashin_plate",
+        "value": "patchVehiclePlate"
+      }
+    ]
+  },
+  "templates": {}
+}

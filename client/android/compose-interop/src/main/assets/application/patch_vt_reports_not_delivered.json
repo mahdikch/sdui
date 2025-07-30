@@ -1,0 +1,977 @@
+{
+
+  "patch": {
+    "mode": "partial",
+    "changes": [
+      {
+        "id": "notdelivered",
+        "items": [
+          {
+            "id": "notdelivered",
+            "visibility": "@{notdelivered_visibility}",
+            "type": "container",
+            "items": [
+              {
+                "type": "not_delivered_template",
+                "model&color":"test",
+                "violation":"test",
+                "location":"test",
+                "time":"test",
+                "margins": {
+                  "top": 8,
+                  "right": 12,
+                  "left": 12
+                }
+              }
+            ],
+            "background": [
+              {
+                "type": "solid",
+                "color": "#ffffff"
+              }
+            ],
+            "height": {
+              "type": "wrap_content"
+            },
+            "width": {
+              "type": "match_parent"
+            },
+            "orientation": "vertical",
+            "content_alignment_vertical": "top",
+            "content_alignment_horizontal": "center"
+          }       ]
+      }
+    ]
+  },
+  "templates": {
+    "not_delivered_template": {
+      "type": "container",
+      "items": [
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "text": "ارسال ناموفق",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#dd7e10",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "image",
+                      "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/3d39be73-a552-4713-9bfe-b08d74577de8",
+                      "height": {
+                        "type": "fixed",
+                        "value": 13
+                      },
+                      "width": {
+                        "type": "fixed",
+                        "value": 13
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/a60e6a63-01b2-4c98-943e-400b500c63e8",
+                      "height": {
+                        "type": "fixed",
+                        "value": 5
+                      },
+                      "width": {
+                        "type": "fixed",
+                        "value": 3
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image_url": "empty://",
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      }
+                    }
+                  ],
+                  "height": {
+                    "type": "fixed",
+                    "value": 16
+                  },
+                  "width": {
+                    "type": "fixed",
+                    "value": 16
+                  },
+                  "orientation": "overlap",
+                  "content_alignment_vertical": "center",
+                  "content_alignment_horizontal": "center",
+                  "margins": {
+                    "left": 8
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#1add7e10"
+                }
+              ],
+              "border": {
+                "corners_radius": {
+                  "top-left": 7,
+                  "top-right": 7,
+                  "bottom-left": 7,
+                  "bottom-right": 7
+                }
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "horizontal",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "paddings": {
+                "top": 8,
+                "bottom": 8,
+                "left": 24,
+                "right": 24
+              }
+            }
+          ],
+          "height": {
+            "type": "wrap_content"
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "horizontal",
+          "content_alignment_horizontal": "left",
+          "content_alignment_vertical": "top"
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "$text":"model&color",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#161515",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": ":مدل و رنگ خودرو ",
+                  "font_size": 12,
+                  "line_height": 16,
+                  "letter_spacing": 0,
+                  "text_color": "#757575",
+                  "text_alignment_horizontal": "left",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center"
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "content_alignment_horizontal": "left",
+              "content_alignment_vertical": "center"
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "$text":"violation",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#161515",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": ":نوع جریمه (۳ مورد) ",
+                  "font_size": 12,
+                  "line_height": 16,
+                  "letter_spacing": 0,
+                  "text_color": "#757575",
+                  "text_alignment_horizontal": "left",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center"
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "content_alignment_horizontal": "left",
+              "content_alignment_vertical": "center",
+              "margins": {
+                "top": 12
+              }
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "$text":"location",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#161515",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": ":موقعیت",
+                  "font_size": 12,
+                  "line_height": 16,
+                  "letter_spacing": 0,
+                  "text_color": "#757575",
+                  "text_alignment_horizontal": "left",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center"
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "content_alignment_horizontal": "left",
+              "content_alignment_vertical": "center",
+              "margins": {
+                "top": 12
+              }
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "$text": "time",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#161515",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": ":زمان تنظیم",
+                  "font_size": 12,
+                  "line_height": 16,
+                  "letter_spacing": 0,
+                  "text_color": "#757575",
+                  "text_alignment_horizontal": "left",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center"
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "content_alignment_horizontal": "left",
+              "content_alignment_vertical": "center",
+              "margins": {
+                "top": 12
+              }
+            }
+          ],
+          "height": {
+            "type": "wrap_content"
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "vertical",
+          "content_alignment_vertical": "top",
+          "content_alignment_horizontal": "left",
+          "margins": {
+            "top": 16
+          }
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "image",
+                  "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b2ed4b6f-8d91-4768-996e-4421f4e13b74",
+                  "height": {
+                    "type": "fixed",
+                    "value": 13
+                  },
+                  "width": {
+                    "type": "fixed",
+                    "value": 13
+                  }
+                },
+                {
+                  "type": "image",
+                  "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/29e6f0b7-cb2f-4b38-b680-0a84226a0836",
+                  "height": {
+                    "type": "fixed",
+                    "value": 7
+                  },
+                  "width": {
+                    "type": "fixed",
+                    "value": 7
+                  }
+                },
+                {
+                  "type": "image",
+                  "image_url": "empty://",
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  }
+                }
+              ],
+              "height": {
+                "type": "fixed",
+                "value": 16
+              },
+              "width": {
+                "type": "fixed",
+                "value": 16
+              },
+              "orientation": "overlap",
+              "content_alignment_vertical": "center",
+              "content_alignment_horizontal": "center"
+            },
+            {
+              "type": "text",
+              "text": "بررسی و ارسال",
+              "font_size": 12,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#193d8d",
+              "text_alignment_horizontal": "left",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "left": 4
+              }
+            }
+          ],
+          "height": {
+            "type": "wrap_content"
+          },
+          "width": {
+            "type": "wrap_content"
+          },
+          "orientation": "horizontal",
+          "content_alignment_horizontal": "right",
+          "content_alignment_vertical": "center",
+          "margins": {
+            "top": 16
+          }
+        }
+      ],
+      "background": [
+        {
+          "type": "solid",
+          "color": "#fdfdfd"
+        }
+      ],
+      "border": {
+        "corners_radius": {
+          "top-left": 8,
+          "top-right": 8,
+          "bottom-left": 8,
+          "bottom-right": 8
+        },
+        "stroke": {
+          "color": "#e6e6e6",
+          "width": 1
+        }
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "width": {
+        "type": "match_parent"
+      },
+      "orientation": "vertical",
+      "content_alignment_vertical": "top",
+      "content_alignment_horizontal": "center",
+      "paddings": {
+        "top": 12,
+        "bottom": 12,
+        "left": 12,
+        "right": 12
+      },
+      "alignment_horizontal": "center",
+      "alignment_vertical": "top",
+      "margins": {
+        "left": 12,
+        "right": 12,
+        "top": 12
+      }
+    },
+    "delivered_template": {
+      "type": "container",
+      "items": [
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "text": "ارسال موفق",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#dd7e10",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "image",
+                      "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/3d39be73-a552-4713-9bfe-b08d74577de8",
+                      "height": {
+                        "type": "fixed",
+                        "value": 13
+                      },
+                      "width": {
+                        "type": "fixed",
+                        "value": 13
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/a60e6a63-01b2-4c98-943e-400b500c63e8",
+                      "height": {
+                        "type": "fixed",
+                        "value": 5
+                      },
+                      "width": {
+                        "type": "fixed",
+                        "value": 3
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image_url": "empty://",
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      }
+                    }
+                  ],
+                  "height": {
+                    "type": "fixed",
+                    "value": 16
+                  },
+                  "width": {
+                    "type": "fixed",
+                    "value": 16
+                  },
+                  "orientation": "overlap",
+                  "content_alignment_vertical": "center",
+                  "content_alignment_horizontal": "center",
+                  "margins": {
+                    "left": 8
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#1a008c1f"
+                }
+              ],
+              "border": {
+                "corners_radius": {
+                  "top-left": 7,
+                  "top-right": 7,
+                  "bottom-left": 7,
+                  "bottom-right": 7
+                }
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "horizontal",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "paddings": {
+                "top": 8,
+                "bottom": 8,
+                "left": 24,
+                "right": 24
+              }
+            }
+          ],
+          "height": {
+            "type": "wrap_content"
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "horizontal",
+          "content_alignment_horizontal": "left",
+          "content_alignment_vertical": "top"
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#161515",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": ":مدل و رنگ خودرو ",
+                  "font_size": 12,
+                  "line_height": 16,
+                  "letter_spacing": 0,
+                  "text_color": "#757575",
+                  "text_alignment_horizontal": "left",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center"
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "content_alignment_horizontal": "left",
+              "content_alignment_vertical": "center"
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#161515",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": ":نوع جریمه (۳ مورد) ",
+                  "font_size": 12,
+                  "line_height": 16,
+                  "letter_spacing": 0,
+                  "text_color": "#757575",
+                  "text_alignment_horizontal": "left",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center"
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "content_alignment_horizontal": "left",
+              "content_alignment_vertical": "center",
+              "margins": {
+                "top": 12
+              }
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#161515",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": ":موقعیت",
+                  "font_size": 12,
+                  "line_height": 16,
+                  "letter_spacing": 0,
+                  "text_color": "#757575",
+                  "text_alignment_horizontal": "left",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center"
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "content_alignment_horizontal": "left",
+              "content_alignment_vertical": "center",
+              "margins": {
+                "top": 12
+              }
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "$text": "time",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#161515",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": ":زمان تنظیم",
+                  "font_size": 12,
+                  "line_height": 16,
+                  "letter_spacing": 0,
+                  "text_color": "#757575",
+                  "text_alignment_horizontal": "left",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center"
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "content_alignment_horizontal": "left",
+              "content_alignment_vertical": "center",
+              "margins": {
+                "top": 12
+              }
+            }
+          ],
+          "height": {
+            "type": "wrap_content"
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "vertical",
+          "content_alignment_vertical": "top",
+          "content_alignment_horizontal": "left",
+          "margins": {
+            "top": 16
+          }
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "image",
+                  "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b2ed4b6f-8d91-4768-996e-4421f4e13b74",
+                  "height": {
+                    "type": "fixed",
+                    "value": 13
+                  },
+                  "width": {
+                    "type": "fixed",
+                    "value": 13
+                  }
+                },
+                {
+                  "type": "image",
+                  "image_url": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/29e6f0b7-cb2f-4b38-b680-0a84226a0836",
+                  "height": {
+                    "type": "fixed",
+                    "value": 7
+                  },
+                  "width": {
+                    "type": "fixed",
+                    "value": 7
+                  }
+                },
+                {
+                  "type": "image",
+                  "image_url": "empty://",
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  }
+                }
+              ],
+              "height": {
+                "type": "fixed",
+                "value": 16
+              },
+              "width": {
+                "type": "fixed",
+                "value": 16
+              },
+              "orientation": "overlap",
+              "content_alignment_vertical": "center",
+              "content_alignment_horizontal": "center"
+            },
+            {
+              "type": "text",
+              "text": "مشاهده خطا و ویرایش",
+              "font_size": 12,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#193d8d",
+              "text_alignment_horizontal": "left",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "left": 4
+              }
+            }
+          ],
+          "height": {
+            "type": "wrap_content"
+          },
+          "width": {
+            "type": "wrap_content"
+          },
+          "orientation": "horizontal",
+          "content_alignment_horizontal": "right",
+          "content_alignment_vertical": "center",
+          "margins": {
+            "top": 16
+          }
+        }
+      ],
+      "background": [
+        {
+          "type": "solid",
+          "color": "#fdfdfd"
+        }
+      ],
+      "border": {
+        "corners_radius": {
+          "top-left": 8,
+          "top-right": 8,
+          "bottom-left": 8,
+          "bottom-right": 8
+        },
+        "stroke": {
+          "color": "#e6e6e6",
+          "width": 1
+        }
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "width": {
+        "type": "match_parent"
+      },
+      "orientation": "vertical",
+      "content_alignment_vertical": "top",
+      "content_alignment_horizontal": "center",
+      "paddings": {
+        "top": 12,
+        "bottom": 12,
+        "left": 12,
+        "right": 12
+      },
+      "alignment_horizontal": "center",
+      "alignment_vertical": "top",
+      "margins": {
+        "left": 12,
+        "right": 12,
+        "top": 12
+      }
+    }
+  }
+}

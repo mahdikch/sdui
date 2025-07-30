@@ -1,0 +1,1032 @@
+{
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "items": [
+            {
+              "type": "image",
+              "image_url": "divkit-asset://login.png",
+              "height": {
+                "type": "match_parent"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "alignment_horizontal": "center",
+              "alignment_vertical": "top",
+              "margins": {
+                "left": 0,
+                "right": 0,
+                "top": 0
+              }
+            },
+            {
+              "type": "container",
+              "width": {
+                "type": "match_parent"
+              },
+              "items": [
+                {
+                  "type": "container",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "match_parent",
+                    "weight": 0.5
+                  },
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "center"
+                },
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "image",
+                          "image_url": "@{naja}",
+                          "height": {
+                            "type": "fixed",
+                            "value": 64
+                          },
+                          "width": {
+                            "type": "fixed",
+                            "value": 44
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "text": "@{text___1}",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#252424",
+                          "text_alignment_horizontal": "center",
+                          "text_alignment_vertical": "center",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 16
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "input",
+                                      "text_variable": "username",
+                                      "hint_text": "شماره پرسنلی",
+                                      "font_size": 14,
+                                      "font_weight": "regular",
+                                      "line_height": 32,
+                                      "letter_spacing": 0,
+                                      "text_color": "#a3a3a3",
+                                      "text_alignment_horizontal": "right",
+                                      "text_alignment_vertical": "top",
+                                      "validators": [
+                                        {
+                                          "type": "regex",
+                                          "pattern": ".{3,}",
+                                          "allow_empty": "@{allow_empty_username}",
+                                          "label_id": "too_short_title_username",
+                                          "variable": "text_not_are_too_short_username"
+                                        },
+                                        {
+                                          "type": "regex",
+                                          "pattern": "@{regex}",
+                                          "allow_empty": "@{allow_empty_username}",
+                                          "label_id": "contains_only_valid_characters_username_title_username",
+                                          "variable": "text_contains_only_valid_characters_username"
+                                        }
+                                      ],
+                                      "width": {
+                                        "type": "wrap_content"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      }
+                                    },
+                                    {
+                                      "type": "container",
+                                      "items": [
+                                        {
+                                          "type": "image",
+                                          "image_url": "@{profile_circle}",
+                                          "height": {
+                                            "type": "fixed",
+                                            "value": 20
+                                          },
+                                          "width": {
+                                            "type": "fixed",
+                                            "value": 20
+                                          }
+                                        }
+                                      ],
+                                      "height": {
+                                        "type": "fixed",
+                                        "value": 24
+                                      },
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 24
+                                      },
+                                      "orientation": "overlap",
+                                      "content_alignment_vertical": "center",
+                                      "content_alignment_horizontal": "center",
+                                      "margins": {
+                                        "left": 4
+                                      }
+                                    }
+                                  ],
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "right",
+                                  "content_alignment_vertical": "center"
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#ffffff"
+                                }
+                              ],
+                              "border": {
+                                "corner_radius": 4
+                              ,
+                                "stroke": {
+                                  "color": "#dedede",
+                                  "width": 1
+                                }
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "left",
+                              "content_alignment_vertical": "center",
+                              "paddings": {
+                                "top": 12,
+                                "bottom": 12,
+                                "left": 8,
+                                "right": 12
+                              }
+                            }
+                          ],
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "vertical",
+                          "content_alignment_vertical": "top",
+                          "content_alignment_horizontal": "right",
+                          "margins": {
+                            "top": 16
+                          }
+                        },
+                        {
+                          "id": "too_short_title_username",
+                          "type": "pretty_text",
+                          "text": "نام کاربری کوتاه است",
+                          "text_color": "#ff0000",
+                          "font_size": 10,
+                          "visibility": "@{text_not_are_too_short_username ? 'invisible' : 'visible'}"
+                        },
+                        {
+                          "id": "contains_only_valid_characters_username_title_username",
+                          "type": "pretty_text",
+                          "text": "استفاده از کاراکتر نا معتبر",
+                          "text_color": "#ff0000",
+                          "font_size": 10,
+                          "visibility": "@{text_contains_only_valid_characters_username ? 'invisible' : 'visible'}"
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "image",
+                                      "image_url": "@{eye_slash}",
+                                      "height": {
+                                        "type": "fixed",
+                                        "value": 20
+                                      },
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 20
+                                      },
+                                      "action": {
+                                        "log_id": "toggle",
+                                        "url": "div-action://set_variable?name=is_masked&value=@{is_masked ? 'false' : 'true'}"
+                                      }
+                                    }
+                                  ],
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 24
+                                  },
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 24
+                                  },
+                                  "orientation": "overlap",
+                                  "content_alignment_vertical": "center",
+                                  "content_alignment_horizontal": "center"
+                                },
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "input",
+                                      "text_variable": "password",
+                                      "hint_text": "رمز عبور",
+                                      "keyboard_type": "@{is_masked ? 'password' : 'single_line_text'}",
+                                      "font_size": 14,
+                                      "font_weight": "regular",
+                                      "line_height": 32,
+                                      "letter_spacing": 0,
+                                      "text_color": "#a3a3a3",
+                                      "text_alignment_horizontal": "right",
+                                      "text_alignment_vertical": "top",
+                                      "validators": [
+                                        {
+                                          "type": "regex",
+                                          "pattern": ".{3,}",
+                                          "allow_empty": "@{allow_empty_username}",
+                                          "label_id": "too_short_title_password",
+                                          "variable": "text_not_are_too_short_password"
+                                        },
+                                        {
+                                          "type": "regex",
+                                          "pattern": "@{regex}",
+                                          "allow_empty": "@{allow_empty_username}",
+                                          "label_id": "contains_only_valid_characters_password_title",
+                                          "variable": "text_contains_only_valid_characters_password"
+                                        }
+                                      ],
+                                      "width": {
+                                        "type": "wrap_content"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      }
+                                    },
+                                    {
+                                      "type": "container",
+                                      "items": [
+                                        {
+                                          "type": "image",
+                                          "image_url": "@{lock}",
+                                          "height": {
+                                            "type": "fixed",
+                                            "value": 20
+                                          },
+                                          "width": {
+                                            "type": "fixed",
+                                            "value": 20
+                                          }
+                                        }
+                                      ],
+                                      "height": {
+                                        "type": "fixed",
+                                        "value": 24
+                                      },
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 24
+                                      },
+                                      "orientation": "overlap",
+                                      "content_alignment_vertical": "center",
+                                      "content_alignment_horizontal": "center",
+                                      "margins": {
+                                        "left": 4
+                                      }
+                                    }
+                                  ],
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "right",
+                                  "content_alignment_vertical": "center",
+                                  "margins": {
+                                    "left": 120
+                                  }
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#ffffff"
+                                }
+                              ],
+                              "border": {
+                                "corner_radius": 4
+                              ,
+                                "stroke": {
+                                  "color": "#dedede",
+                                  "width": 1
+                                }
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "left",
+                              "content_alignment_vertical": "center",
+                              "paddings": {
+                                "top": 12,
+                                "bottom": 12,
+                                "left": 8,
+                                "right": 12
+                              }
+                            }
+                          ],
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "vertical",
+                          "content_alignment_vertical": "top",
+                          "content_alignment_horizontal": "right",
+                          "margins": {
+                            "top": 16
+                          }
+                        },
+                        {
+                          "id": "too_short_title_password",
+                          "type": "pretty_text",
+                          "text": "رمز عبور کوتاه است",
+                          "text_color": "#ff0000",
+                          "font_size": 10,
+                          "visibility": "@{text_not_are_too_short_password ? 'invisible' : 'visible'}"
+                        },
+                        {
+                          "id": "contains_only_valid_characters_password_title",
+                          "type": "pretty_text",
+                          "text": "استفاده از کاراکتر نا معتبر",
+                          "text_color": "#ff0000",
+                          "font_size": 10,
+                          "visibility": "@{text_contains_only_valid_characters_password ? 'invisible' : 'visible'}"
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "image",
+                                      "image_url": "empty://",
+                                      "preview": "@{variable_captcha}",
+                                      "height": {
+                                        "type": "match_parent"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      }
+                                    }
+                                  ],
+                                  "height": {
+                                    "type": "match_parent"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "top",
+                                  "alignment_horizontal": "right",
+                                  "alignment_vertical": "center"
+                                },
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "image",
+                                      "image_url": "@{refresh}",
+                                      "height": {
+                                        "type": "fixed",
+                                        "value": 20
+                                      },
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 20
+                                      },
+                                      "actions": [
+                                        {
+                                          "log_id": "call_service",
+                                          "url": "div-action://call_service?path=getCaptcha&token=empty"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 24
+                                  },
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 24
+                                  },
+                                  "orientation": "overlap",
+                                  "content_alignment_vertical": "center",
+                                  "content_alignment_horizontal": "center",
+                                  "alignment_horizontal": "right",
+                                  "alignment_vertical": "center",
+                                  "margins": {
+                                    "right": 8,
+                                    "top": 16,
+                                    "bottom": 16
+                                  }
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#c8d0e4"
+                                }
+                              ],
+                              "border": {
+                                "corner_radius": 4
+                              ,
+                                "stroke": {
+                                  "color": "#dedede",
+                                  "width": 1
+                                }
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 56
+                              },
+                              "width": {
+                                "type": "match_parent",
+                                "weight": 2
+                              },
+                              "orientation": "overlap",
+                              "content_alignment_vertical": "center",
+                              "content_alignment_horizontal": "center"
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "items": [
+                                        {
+                                          "type": "input",
+                                          "text_variable": "inputResultCaptcha",
+                                          "hint_text": "کد امنیتی",
+                                          "keyboard_type": "phone",
+                                          "font_size": 14,
+                                          "font_weight": "regular",
+                                          "line_height": 32,
+                                          "letter_spacing": 0,
+                                          "text_color": "#a3a3a3",
+                                          "text_alignment_horizontal": "right",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "wrap_content"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        }
+                                      ],
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "right",
+                                      "content_alignment_vertical": "center"
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corner_radius": 4
+                                  ,
+                                    "stroke": {
+                                      "color": "#dedede",
+                                      "width": 1
+                                    }
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 8,
+                                    "right": 12
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent",
+                                "weight": 1
+                              },
+                              "orientation": "vertical",
+                              "content_alignment_vertical": "top",
+                              "content_alignment_horizontal": "right",
+                              "margins": {
+                                "left": 16
+                              }
+                            }
+                          ],
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "center",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 16
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{text___8}",
+                              "font_size": 14,
+                              "font_weight": "regular",
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#ffffff",
+                              "text_alignment_horizontal": "left",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              }
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "@{loginbtn}",
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 24
+                                  },
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 24
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "fixed",
+                                "value": 24
+                              },
+                              "width": {
+                                "type": "fixed",
+                                "value": 24
+                              },
+                              "orientation": "overlap",
+                              "content_alignment_vertical": "center",
+                              "content_alignment_horizontal": "center",
+                              "margins": {
+                                "left": 8
+                              }
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#193d8d"
+                            }
+                          ],
+                          "actions": [
+                            {
+                              "log_id": "call_service",
+                              "is_enabled": "@{is_valid}",
+                              "url": "div-action://call_service?path=getLoginData&username=@{username}&password=@{password}"
+                            }
+                          ],
+                          "action_animation": {
+                            "name": "scale",
+                            "start_value": 1,
+                            "end_value": 0.95,
+                            "duration": 300,
+                            "interpolator": "ease_in_out"
+                          },
+                          "border": {
+                            "corner_radius": 4
+
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 48
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "center",
+                          "content_alignment_vertical": "center",
+                          "paddings": {
+                            "top": 12,
+                            "bottom": 12,
+                            "left": 12,
+                            "right": 12
+                          },
+                          "margins": {
+                            "top": 16
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "text": "@{text___9}",
+                          "font_size": 12,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#5d5c5c",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "center",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 16
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "match_parent",
+                        "weight": 1
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center",
+                      "alignment_horizontal": "center",
+                      "alignment_vertical": "center",
+                      "margins": {
+                        "left": 12,
+                        "right": 12,
+                        "top": 8,
+                        "bottom": 8
+                      }
+                    }
+                  ],
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#fafafa"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 4
+                  ,
+                    "has_shadow": 1,
+                    "shadow": {
+                      "offset": {
+                        "x": {
+                          "value": 0
+                        },
+                        "y": {
+                          "value": -4
+                        }
+                      },
+                      "blur": 16,
+                      "color": "#000000",
+                      "alpha": 0.05000000074505806
+                    }
+                  },
+                  "height": {
+                    "type": "match_parent",
+                    "weight": 1.5
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "vertical",
+                  "content_alignment_vertical": "center",
+                  "content_alignment_horizontal": "center",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "bottom",
+                  "margins": {
+                    "left": 0,
+                    "right": 0,
+                    "bottom": 0
+                  }
+                }
+              ],
+              "height": {
+                "type": "match_parent"
+              },
+              "alignment_horizontal": "center",
+              "alignment_vertical": "center"
+            }
+          ],
+          "background": [
+            {
+              "type": "solid",
+              "color": "#fafafa"
+            }
+          ],
+          "height": {
+            "type": "match_parent"
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "content_alignment_vertical": "center",
+          "content_alignment_horizontal": "center",
+          "visibility_actions": [
+            {
+              "log_id": "set_variable_from_db",
+              "url": "div-action://set_variable_from_db?name=variable_resultCaptcha",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "set_variable_from",
+              "url": "div-action://set_variable_from_db?name=variable_captcha",
+              "visibility_duration": 0
+            }
+          ]
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "string",
+        "name": "text___1",
+        "value": "کاربر گرامی لطفا جهت ورود به سامانه شماره پرسنلی و رمز عبور خود را وارد کنید."
+      },
+      {
+        "type": "string",
+        "name": "naja",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "username",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "password",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_captcha",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "text___2",
+        "value": "شماره پرسنلی"
+      },
+      {
+        "type": "string",
+        "name": "text___3",
+        "value": "رمز عبور"
+      },
+      {
+        "type": "string",
+        "name": "text___7",
+        "value": "کد امنیتی"
+      },
+      {
+        "type": "string",
+        "name": "text___8",
+        "value": "ورود"
+      },
+      {
+        "type": "string",
+        "name": "text___9",
+        "value": "نسخه ۱.۰.۹"
+      },
+      {
+        "type": "string",
+        "name": "variable_resultCaptcha",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "inputResultCaptcha",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "eye_slash",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "loginbtn",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "refresh",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "profile_circle",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "lock",
+        "value": ""
+      },
+      {
+        "name": "regex",
+        "type": "string",
+        "value": "[a-zA-Z0-9-@#!$_*+&]+"
+      },
+      {
+        "name": "allow_empty_username",
+        "type": "boolean",
+        "value": 0
+      },
+      {
+        "name": "allow_empty_password",
+        "type": "boolean",
+        "value": 0
+      },
+      {
+        "name": "text_not_are_too_short_password",
+        "type": "boolean",
+        "value": 0
+      },
+      {
+        "name": "text_not_are_too_short_username",
+        "type": "boolean",
+        "value": 0
+      },
+      {
+        "name": "text_contains_only_valid_characters_username",
+        "type": "boolean",
+        "value": 0
+      },
+      {
+        "name": "text_contains_only_valid_characters_password",
+        "type": "boolean",
+        "value": 0
+      },
+      {
+        "type": "boolean",
+        "name": "is_masked",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "is_valid",
+        "value": false
+      }
+    ,{
+        "type": "boolean",
+        "name": "is_valid",
+        "value": false
+      }
+    ],
+    "variable_triggers": [
+      {
+        "condition": "@{text_contains_only_valid_characters_password && text_contains_only_valid_characters_username && text_not_are_too_short_username && text_not_are_too_short_password && inputResultCaptcha==variable_resultCaptcha }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=is_valid&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{!text_contains_only_valid_characters_password || !text_contains_only_valid_characters_username || !text_not_are_too_short_username || !text_not_are_too_short_password || inputResultCaptcha!=variable_resultCaptcha}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=is_valid&value=false"
+          }
+        ]
+      }
+    ]
+  },
+  "templates": {
+    "btn": {
+      "type": "text",
+      "text_color": "#FFFFFF",
+      "text_alignment_horizontal": "center",
+      "text_alignment_vertical": "center",
+      "font_size": 24,
+      "line_height": 28,
+      "border": {
+        "corner_radius": 4
+
+      },
+      "action_animation": {
+        "name": "scale",
+        "start_value": 1,
+        "end_value": 0.95,
+        "duration": 300,
+        "interpolator": "ease_in_out"
+      }
+    },
+    "pretty_text": {
+      "type": "text",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "paddings": {
+        "left": 32,
+        "top": 4,
+        "right": 16,
+        "bottom": 4
+      },
+      "alpha": 1.0,
+      "alignment_horizontal": "center",
+      "alignment_vertical": "center",
+      "font_size": 16,
+      "font_weight": "medium",
+      "text_alignment_horizontal": "right",
+      "text_alignment_vertical": "center",
+      "text_color": "#000000"
+    }
+  }
+}

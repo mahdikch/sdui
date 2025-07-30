@@ -1,0 +1,209 @@
+{
+  "patch": {
+    "mode": "partial",
+    "changes": [
+      {
+        "id": "vehiclePlate",
+        "items": [
+          {
+            "id": "vehiclePlate",
+            "type": "container",
+            "items": [
+              {
+                "type": "container",
+                "items": [
+                  {
+                    "type": "text",
+                    "text": "@{text_1}",
+                    "font_size": 32,
+                    "font_weight": "semibold",
+                    "letter_spacing": 0,
+                    "text_color": "#4f4f4f",
+                    "text_alignment_horizontal": "left",
+                    "text_alignment_vertical": "top",
+                    "width": {
+                      "type": "wrap_content"
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "alignment_horizontal": "center",
+                    "alignment_vertical": "center"
+                  }
+                ],
+                "background": [
+                  {
+                    "type": "solid",
+                    "color": "#ffffff"
+                  }
+                ],
+                "border": {
+                  "corners_radius": {
+                    "top-left": 6,
+                    "top-right": 6,
+                    "bottom-left": 6,
+                    "bottom-right": 6
+                  }
+                },
+                "height": {
+                  "type": "fixed",
+                  "value": 50
+                },
+                "width": {
+                  "type": "match_parent"
+                },
+                "orientation": "overlap",
+                "content_alignment_vertical": "center",
+                "content_alignment_horizontal": "center",
+                "alignment_horizontal": "right",
+                "alignment_vertical": "top",
+                "margins": {
+                  "top": 8,
+                  "right": 12,
+                  "left": 12
+                }
+              },
+              {
+                "type": "container",
+                "items": [
+                  {
+                    "type": "text",
+                    "text": "@{text_2}",
+                    "font_size": 32,
+                    "font_weight": "semibold",
+                    "letter_spacing": 0,
+                    "text_color": "#4f4f4f",
+                    "text_alignment_horizontal": "left",
+                    "text_alignment_vertical": "top",
+                    "width": {
+                      "type": "wrap_content"
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "alignment_horizontal": "center",
+                    "alignment_vertical": "center"
+                  }
+                ],
+                "background": [
+                  {
+                    "type": "solid",
+                    "color": "#ffffff"
+                  }
+                ],
+                "border": {
+                  "corners_radius": {
+                    "top-left": 6,
+                    "top-right": 6,
+                    "bottom-left": 6,
+                    "bottom-right": 6
+                  }
+                },
+                "height": {
+                  "type": "fixed",
+                  "value": 50
+                },
+                "width": {
+                  "type": "match_parent"
+                },
+                "orientation": "overlap",
+                "content_alignment_vertical": "center",
+                "content_alignment_horizontal": "center",
+                "alignment_horizontal": "right",
+                "alignment_vertical": "bottom",
+                "margins": {
+                  "top": 8,
+                  "right": 12,
+                  "bottom": 8,
+                  "left": 12
+                }
+              },
+              {
+                "type": "container",
+                "items": [
+                  {
+                    "type": "image",
+                    "image_url": "divkit-asset://ir.png",
+                    "height": {
+                      "type": "match_parent"
+                    },
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "alignment_horizontal": "right",
+                    "alignment_vertical": "top",
+                    "paddings": {
+                      "top": 2,
+                      "bottom": 2
+                    }
+                  }
+                ],
+                "background": [
+                  {
+                    "type": "solid",
+                    "color": "#003299"
+                  }
+                ],
+                "border": {
+                  "corners_radius": {
+                    "top-left": 5,
+                    "top-right": 5,
+                    "bottom-left": 5,
+                    "bottom-right": 5
+                  }
+                },
+                "height": {
+                  "type": "match_parent"
+                },
+                "width": {
+                  "type": "fixed",
+                  "value": 50
+                },
+                "orientation": "overlap",
+                "content_alignment_vertical": "center",
+                "content_alignment_horizontal": "center",
+                "alignment_horizontal": "left",
+                "alignment_vertical": "top",
+                "margins": {
+                  "top": 8,
+                  "bottom": 8,
+                  "left": 12
+                }
+              }
+            ],
+            "background": [
+              {
+                "type": "solid",
+                "color": "#f3f5f9"
+              }
+            ],
+            "border": {
+              "corners_radius": {
+                "top-left": 6,
+                "top-right": 6,
+                "bottom-left": 6,
+                "bottom-right": 6
+              }
+            },
+            "height": {
+              "type": "fixed",
+              "value": 120
+            },
+            "width": {
+              "type": "match_parent"
+            },
+            "orientation": "overlap",
+            "content_alignment_vertical": "center",
+            "content_alignment_horizontal": "center",
+            "margins": {
+              "top": 8,
+              "right": 12,
+              "bottom": 8,
+              "left": 12
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

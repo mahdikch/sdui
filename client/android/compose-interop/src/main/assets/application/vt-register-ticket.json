@@ -1,0 +1,1722 @@
+{
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "gallery",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "image",
+                      "image_url": "@{info_circle}",
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      }
+                    }
+                  ],
+                  "height": {
+                    "type": "fixed",
+                    "value": 40
+                  },
+                  "width": {
+                    "type": "fixed",
+                    "value": 40
+                  },
+                  "orientation": "overlap",
+                  "content_alignment_vertical": "center",
+                  "content_alignment_horizontal": "center",
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 4,
+                    "left": 0
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{text___1}",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#343333",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "right": 48
+                  }
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "alignment_horizontal": "right",
+              "alignment_vertical": "top",
+              "margins": {
+                "top": 8,
+                "bottom": 8
+              }
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "text": "@{police_code}",
+                  "font_size": 14,
+                  "letter_spacing": 0,
+                  "text_color": "#252424",
+                  "text_alignment_horizontal": "left",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 17,
+                    "right": 72,
+                    "bottom": 17,
+                    "left": 16
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{text___6}",
+                  "font_size": 12,
+                  "letter_spacing": 0,
+                  "text_color": "#777676",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 19,
+                    "right": 16,
+                    "bottom": 19
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ],
+              "height": {
+                "type": "fixed",
+                "value": 56
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "alignment_horizontal": "center",
+              "alignment_vertical": "top"
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "text": "@{ticket_type}",
+                  "font_size": 14,
+                  "letter_spacing": 0,
+                  "text_color": "#252424",
+                  "text_alignment_horizontal": "left",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 17,
+                    "right": 72,
+                    "bottom": 17,
+                    "left": 16
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{text___21}",
+                  "font_size": 12,
+                  "letter_spacing": 0,
+                  "text_color": "#777676",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 19,
+                    "right": 16,
+                    "bottom": 19
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#ffffff"
+                }
+              ],
+              "height": {
+                "type": "fixed",
+                "value": 56
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "alignment_horizontal": "center",
+              "alignment_vertical": "top"
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "text": "@{address}",
+                  "font_size": 14,
+                  "letter_spacing": 0,
+                  "text_color": "#252424",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 17,
+                    "right": 64,
+                    "bottom": 17,
+                    "left": 16
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{text___19}",
+                  "font_size": 12,
+                  "letter_spacing": 0,
+                  "text_color": "#777676",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "top",
+                  "margins": {
+                    "top": 29,
+                    "right": 16
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ],
+              "height": {
+                "type": "fixed",
+                "value": 78
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "alignment_horizontal": "center",
+              "alignment_vertical": "top"
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "container",
+                  "height": {
+                    "type": "fixed",
+                    "value": 40
+                  },
+                  "width": {
+                    "type": "fixed",
+                    "value": 40
+                  },
+                  "orientation": "overlap",
+                  "content_alignment_vertical": "center",
+                  "content_alignment_horizontal": "center",
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 4,
+                    "left": 0
+                  },
+                  "items": [
+                    {
+                      "type": "image",
+                      "image_url": "@{car}",
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "مشخصات خودرو",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#343333",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "right": 48
+                  }
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "alignment_horizontal": "right",
+              "alignment_vertical": "top",
+              "margins": {
+                "top": 8,
+                "bottom": 8
+              }
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "text": "@{car_plate}",
+                  "font_size": 14,
+                  "letter_spacing": 0,
+                  "text_color": "#252424",
+                  "text_alignment_horizontal": "left",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 17,
+                    "right": 72,
+                    "bottom": 17,
+                    "left": 16
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{text___8}",
+                  "font_size": 12,
+                  "letter_spacing": 0,
+                  "text_color": "#777676",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 19,
+                    "right": 16,
+                    "bottom": 19
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ],
+              "height": {
+                "type": "fixed",
+                "value": 56
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "alignment_horizontal": "center",
+              "alignment_vertical": "top"
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "text": "@{car_model}",
+                  "font_size": 14,
+                  "letter_spacing": 0,
+                  "text_color": "#252424",
+                  "text_alignment_horizontal": "left",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 17,
+                    "right": 72,
+                    "bottom": 17,
+                    "left": 16
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{text___23}",
+                  "font_size": 12,
+                  "letter_spacing": 0,
+                  "text_color": "#777676",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 19,
+                    "right": 16,
+                    "bottom": 19
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#ffffff"
+                }
+              ],
+              "height": {
+                "type": "fixed",
+                "value": 56
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "alignment_horizontal": "center",
+              "alignment_vertical": "top"
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "text": "@{plate_description}",
+                  "font_size": 14,
+                  "letter_spacing": 0,
+                  "text_color": "#252424",
+                  "text_alignment_horizontal": "left",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 17,
+                    "right": 88,
+                    "bottom": 17,
+                    "left": 16
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{text___15}",
+                  "font_size": 12,
+                  "letter_spacing": 0,
+                  "text_color": "#777676",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 19,
+                    "right": 16,
+                    "bottom": 19
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ],
+              "height": {
+                "type": "fixed",
+                "value": 56
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "alignment_horizontal": "center",
+              "alignment_vertical": "top"
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "text": "@{countPeople}",
+                  "font_size": 14,
+                  "letter_spacing": 0,
+                  "text_color": "#252424",
+                  "text_alignment_horizontal": "left",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 17,
+                    "right": 88,
+                    "bottom": 17,
+                    "left": 16
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{text___27}",
+                  "font_size": 12,
+                  "letter_spacing": 0,
+                  "text_color": "#777676",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 19,
+                    "right": 16,
+                    "bottom": 19
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#ffffff"
+                }
+              ],
+              "height": {
+                "type": "fixed",
+                "value": 56
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "alignment_horizontal": "center",
+              "alignment_vertical": "top"
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "text": "@{name}",
+                  "font_size": 14,
+                  "letter_spacing": 0,
+                  "text_color": "#252424",
+                  "text_alignment_horizontal": "left",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 17,
+                    "right": 72,
+                    "bottom": 17,
+                    "left": 16
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{text___17}",
+                  "font_size": 12,
+                  "letter_spacing": 0,
+                  "text_color": "#777676",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 19,
+                    "right": 16,
+                    "bottom": 19
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ],
+              "height": {
+                "type": "fixed",
+                "value": 56
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "alignment_horizontal": "center",
+              "alignment_vertical": "bottom"
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "text": "@{license_number}",
+                  "font_size": 14,
+                  "letter_spacing": 0,
+                  "text_color": "#252424",
+                  "text_alignment_horizontal": "left",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 17,
+                    "right": 72,
+                    "bottom": 17,
+                    "left": 16
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{text___29}",
+                  "font_size": 12,
+                  "letter_spacing": 0,
+                  "text_color": "#777676",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 19,
+                    "right": 16,
+                    "bottom": 19
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#ffffff"
+                }
+              ],
+              "height": {
+                "type": "fixed",
+                "value": 56
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "alignment_horizontal": "center",
+              "alignment_vertical": "bottom"
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "container",
+                  "height": {
+                    "type": "fixed",
+                    "value": 40
+                  },
+                  "width": {
+                    "type": "fixed",
+                    "value": 40
+                  },
+                  "orientation": "overlap",
+                  "content_alignment_vertical": "center",
+                  "content_alignment_horizontal": "center",
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 4,
+                    "left": 0
+                  },
+                  "items": [
+                    {
+                      "type": "image",
+                      "image_url": "@{info_circle}",
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "مشخصات جریمه",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#343333",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "right": 48
+                  }
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "alignment_horizontal": "right",
+              "alignment_vertical": "top",
+              "margins": {
+                "top": 8,
+                "bottom": 8
+              }
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "ticket",
+                  "ticket_title": "-",
+                  "ticket_code": "-"
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "container",
+                  "height": {
+                    "type": "fixed",
+                    "value": 40
+                  },
+                  "width": {
+                    "type": "fixed",
+                    "value": 40
+                  },
+                  "orientation": "overlap",
+                  "content_alignment_vertical": "center",
+                  "content_alignment_horizontal": "center",
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "top": 4,
+                    "left": 0
+                  },
+                  "items": [
+                    {
+                      "type": "image",
+                      "image_url": "@{receipt}",
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "جمع مبالغ تخلفات",
+                  "font_size": 12,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#343333",
+                  "text_alignment_horizontal": "right",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "right": 48
+                  }
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "alignment_horizontal": "right",
+              "alignment_vertical": "top"
+            },
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "@{text___12}",
+                      "font_size": 14,
+                      "line_height": 24,
+                      "letter_spacing": 0,
+                      "text_color": "#252424",
+                      "text_alignment_horizontal": "right",
+                      "text_alignment_vertical": "center",
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": "@{price}",
+                      "font_size": 14,
+                      "line_height": 24,
+                      "letter_spacing": 0,
+                      "text_color": "#252424",
+                      "text_alignment_horizontal": "right",
+                      "text_alignment_vertical": "center",
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "left": 4
+                      }
+                    }
+                  ],
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "right",
+                  "content_alignment_vertical": "top",
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "left": 16
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ],
+              "height": {
+                "type": "fixed",
+                "value": 56
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "alignment_horizontal": "center",
+              "alignment_vertical": "bottom"
+            },
+            {
+              "type": "container",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "items": [
+                {
+                  "type": "container",
+                  "actions": [
+                    {
+                      "log_id": "set_variable_from_db",
+                      "url": "div-action://set_variable_from_db?name=userName"
+                    },
+                    {
+                      "log_id": "set_variable_from_db",
+                      "url": "div-action://set_variable_from_db?name=zone"
+                    },
+                    {
+                      "log_id": "set_variable_from_db",
+                      "url": "div-action://set_variable_from_db?name=phoneNumber"
+                    },
+                    {
+                      "log_id": "call_service",
+                      "url": "div-action://call_service?path=registerTickets&ph/token=empty&typeVehicle=tickets&sysName=vt&plate=@{digitPlate}&numberOfPeople=@{countPeople}&username=@{userName}&licenseDate=@{licenseDate}&latitude=@{latitude}&longitude=@{longitude}&licenseCityId=@{licenseCityId}&licenseTypeId=@{licenseTypeId}&carColorId=@{carColorId}&registerCityId=@{registerCityId}&carSystemId=@{carSystemId}&fineId1=@{fineId1}&fineId2=@{fineId2}&fineId3=@{fineId3}&ticketTypeId=@{ticketTypeId}&carUsageId=@{carUsageId}&name=@{name}&nationalId=@{nationalId}&address=@{address}&licenseNumber=@{license_number}&isBig=@{isBig}&zone=@{zone}&finePrice=@{price}&paperId=@{paperId}&paymentId=@{paymentId}&isPrevent=@{isPrevent}&warningPoliceDesc=@{warningPoliceDesc}&policeStationCode=@{policeStationCode}&imeiCode=@{imeiCode}&phoneNumber=@{phoneNumber}&version=@{version}&base64Image=@{base64Image}&isOnline=@{isOnline}&date=@{date}"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "@{text___30}",
+                      "font_size": 14,
+                      "line_height": 24,
+                      "letter_spacing": 0,
+                      "text_color": "#ffffff",
+                      "text_alignment_horizontal": "left",
+                      "text_alignment_vertical": "top",
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    }
+                  ],
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#193d8d"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 4
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 56
+                  },
+                  "width": {
+                    "type": "fixed",
+                    "value": 167
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "center",
+                  "content_alignment_vertical": "center",
+                  "paddings": {
+                    "top": 12,
+                    "bottom": 12,
+                    "left": 12,
+                    "right": 12
+                  },
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "left": 0,
+                    "bottom": 0
+                  }
+                },
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "@{text___31}",
+                      "font_size": 14,
+                      "line_height": 24,
+                      "letter_spacing": 0,
+                      "text_color": "#8d1919",
+                      "text_alignment_horizontal": "left",
+                      "text_alignment_vertical": "top",
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    }
+                  ],
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#4d8d1919"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 4
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 56
+                  },
+                  "width": {
+                    "type": "fixed",
+                    "value": 167
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "center",
+                  "content_alignment_vertical": "center",
+                  "paddings": {
+                    "top": 12,
+                    "bottom": 12,
+                    "left": 12,
+                    "right": 12
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "right": 0,
+                    "bottom": 0
+                  }
+                }
+              ],
+              "orientation": "overlap",
+              "margins": {
+                "top": 8,
+                "right": 8,
+                "bottom": 8,
+                "left": 8
+              }
+            }
+          ],
+          "height": {
+            "type": "match_parent"
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "vertical",
+          "content_alignment_vertical": "center",
+          "content_alignment_horizontal": "center",
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "paddings": {
+            "right": 8,
+            "left": 8
+          }
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "string",
+        "name": "info_circle",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "close_circle",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "car",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "receipt",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "text___1",
+        "value": "مشخصات مامور"
+      },
+      {
+        "type": "string",
+        "name": "text___2",
+        "value": "مشخصات خودرو"
+      },
+      {
+        "type": "string",
+        "name": "text___3",
+        "value": "مشخصات جریمه"
+      },
+      {
+        "type": "string",
+        "name": "text___4",
+        "value": "جمع مبالغ تخلفات"
+      },
+      {
+        "type": "string",
+        "name": "police_code",
+        "value": "۱۸۹۰۰"
+      },
+      {
+        "type": "string",
+        "name": "text___6",
+        "value": "کد مامور"
+      },
+      {
+        "type": "string",
+        "name": "car_plate",
+        "value": "۹۹ ب ۹۹۹ - ایران ۲۰"
+      },
+      {
+        "type": "string",
+        "name": "text___8",
+        "value": "پلاک خودرو"
+      },
+      {
+        "type": "string",
+        "name": "text___9",
+        "value": "تجاوز از سرعت مجاز ۳۰ کیلومتر بر ساعت"
+      },
+      {
+        "type": "string",
+        "name": "text___10",
+        "value": "عنوان تخلف"
+      },
+      {
+        "type": "string",
+        "name": "text___11",
+        "value": "جمع کل"
+      },
+      {
+        "type": "string",
+        "name": "text___12",
+        "value": "ریال"
+      },
+      {
+        "type": "string",
+        "name": "price",
+        "value": "۱۲,۳۰۰,۰۰۰"
+      },
+      {
+        "type": "string",
+        "name": "plate_description",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___15",
+        "value": "توضیحات پلاک"
+      },
+      {
+        "type": "string",
+        "name": "name",
+        "value": "بهراد آب نیکی"
+      },
+      {
+        "type": "string",
+        "name": "text___17",
+        "value": "نام متخلف"
+      },
+      {
+        "type": "string",
+        "name": "address",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___19",
+        "value": "آدرس"
+      },
+      {
+        "type": "string",
+        "name": "ticket_type",
+        "value": "تسلیمی"
+      },
+      {
+        "type": "string",
+        "name": "text___21",
+        "value": "نوع تحویل"
+      },
+      {
+        "type": "string",
+        "name": "car_model",
+        "value": "دنا پلاس توربو اتوماتیک"
+      },
+      {
+        "type": "string",
+        "name": "text___23",
+        "value": "مدل خودرو"
+      },
+      {
+        "type": "string",
+        "name": "text___24",
+        "value": "۲۰۱۵"
+      },
+      {
+        "type": "string",
+        "name": "text___25",
+        "value": "کد تخلف"
+      },
+      {
+        "type": "string",
+        "name": "numberOfPeople",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___27",
+        "value": "تعداد سرنشین"
+      },
+      {
+        "type": "string",
+        "name": "license_number",
+        "value": "۹۰۲۳۸۴۲۱"
+      },
+      {
+        "type": "string",
+        "name": "text___29",
+        "value": "شماره گواهینامه"
+      },
+      {
+        "type": "string",
+        "name": "text___30",
+        "value": "ثبت جریمه"
+      },
+      {
+        "type": "string",
+        "name": "text___31",
+        "value": "انصراف"
+      },
+      {
+        "type": "string",
+        "name": "color_code",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "usage_code",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "system_code",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "iranian",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "nationalId",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "plateA",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "plateB",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "plateC",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "plateD",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "plateType",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "plateNo",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "date",
+        "value": "1403/09/11"
+      },
+      {
+        "type": "string",
+        "name": "isBig",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "isInternal",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "fineId1",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "fineId2",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "fineId3",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "countPeaple",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "isOnline",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "userName",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "licenseDate",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "datePda",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "timePda",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "latitude",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "longitude",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "licenseCityId",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "licenseTypeId",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "carColorId",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "registerCityId",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "carSystemId",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "ticketTypeId",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "carUsageId",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "name",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "address",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "zone",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "countPeople",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "barCode",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "finePrice",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "paperId",
+        "value": "0"
+      },
+      {
+        "type": "string",
+        "name": "paymentId",
+        "value": "0"
+      },
+      {
+        "type": "string",
+        "name": "isPrevent",
+        "value": "0"
+      },
+      {
+        "type": "string",
+        "name": "warningPoliceDesc",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "policeStationCode",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "imeiCode",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "phoneNumber",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "version",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "policeCode",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "base64Image",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "digitPlate",
+        "value": "-"
+      }
+    ]
+  },
+  "templates": {
+    "ticket": {
+      "type": "container",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "orientation": "vertical",
+      "items": [
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "text",
+              "$text": "ticket_title",
+              "font_size": 14,
+              "letter_spacing": 0,
+              "text_color": "#252424",
+              "text_alignment_horizontal": "left",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center",
+              "margins": {
+                "top": 6,
+                "right": 82,
+                "bottom": 6,
+                "left": 16
+              }
+            },
+            {
+              "type": "text",
+              "text": "@{text___10}",
+              "font_size": 12,
+              "letter_spacing": 0,
+              "text_color": "#777676",
+              "text_alignment_horizontal": "right",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center",
+              "margins": {
+                "top": 19,
+                "right": 16,
+                "bottom": 19
+              }
+            }
+          ],
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "height": {
+            "type": "fixed",
+            "value": 56
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "alignment_horizontal": "center",
+          "alignment_vertical": "bottom"
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "text",
+              "$text": "ticket_code",
+              "font_size": 14,
+              "letter_spacing": 0,
+              "text_color": "#252424",
+              "text_alignment_horizontal": "right",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center",
+              "margins": {
+                "left": 16
+              }
+            },
+            {
+              "type": "text",
+              "text": "@{text___25}",
+              "font_size": 12,
+              "letter_spacing": 0,
+              "text_color": "#777676",
+              "text_alignment_horizontal": "right",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center",
+              "margins": {
+                "top": 19,
+                "right": 16,
+                "bottom": 19
+              }
+            }
+          ],
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "height": {
+            "type": "fixed",
+            "value": 56
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "alignment_horizontal": "center",
+          "alignment_vertical": "bottom"
+        }
+      ]
+    }
+  }
+}
