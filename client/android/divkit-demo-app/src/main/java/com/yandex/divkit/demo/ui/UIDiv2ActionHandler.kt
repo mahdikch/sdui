@@ -34,6 +34,7 @@ import com.yandex.div.core.downloader.DivDownloadActionHandler.handleVisibilityA
 import com.yandex.div.core.view2.Div2View
 import com.yandex.div.data.VariableMutationException
 import com.yandex.div.internal.Assert
+import com.yandex.div.internal.Log
 import com.yandex.div.json.expressions.ExpressionResolver
 import com.yandex.div2.DivAction
 import com.yandex.div2.DivSightAction
@@ -54,6 +55,8 @@ import com.yandex.divkit.demo.ui.bottomSheetSpinner.AdapterBottomSheetSpinner
 import com.yandex.divkit.demo.ui.bottomSheetSpinner.BottomSheetSpinner
 import com.yandex.divkit.demo.ui.toastDiv.CustomToast
 import com.yandex.divkit.demo.utils.DivkitDemoUriHandler
+import com.yandex.divkit.demo.utils.ScreenGenerator
+import com.yandex.divkit.demo.utils.PatchGenerator
 import com.yandex.divkit.regression.RegressionActivity
 import ir.nrdc.camera.Naji
 import ir.nrdc.camera.com.github.dhaval2404.imagepicker.OnCallBackListener
@@ -69,6 +72,8 @@ import java.util.UUID
 private const val AUTHORITY_OPEN_SCREEN = "open_screen"
 private const val AUTHORITY_SET_PATCH = "set_patch"
 private const val AUTHORITY_LOAD_SCREEN = "load_screen"
+private const val AUTHORITY_GENERATE_SCREEN = "generateScreen"
+private const val AUTHORITY_GENERATE_PATCH = "generatePatch"
 private const val AUTHORITY_OPEN_CAMERA = "open_camera"
 private const val AUTHORITY_SHOW_MASSAGE = "show_toast"
 private const val AUTHORITY_SHOW_DIV_TOAST = "show_toast_div"
@@ -113,6 +118,11 @@ private const val ACTIVITY_REGRESSION = "regression"
 private const val ACTIVITY_SETTINGS = "settings"
 private const val ACTIVITY_MEHDI = "mehdi"
 
+private const val PARAM_CONTAINERID = "containerId"
+private const val PARAM_TEMPLATE_NAME = "templateName"
+private const val PARAM_SCREEN_NAME = "screenName"
+private const val PARAM_PATCH_NAME = "patchName"
+private const val PARAM_DATA_JSON = "dataJson"
 private const val PARAM_ACTIVITY = "activity"
 private const val PARAM_SCREEN = "screen"
 private const val PARAM_UPDATE_URL = "url"
@@ -257,14 +267,271 @@ class UIDiv2ActionHandler(
 //                MehdiActivity::class.java,
 //                uri.getQueryParameter(PARAM_SCREEN).toString()
 //            )
+        } else if (uri.authority == AUTHORITY_GENERATE_SCREEN) {
+            val containerId = uri.getQueryParameter(PARAM_CONTAINERID)
+            val templateName = uri.getQueryParameter(PARAM_TEMPLATE_NAME)
+            val screenName = uri.getQueryParameter(PARAM_PATCH_NAME)
+            
+            Log.d("UIDiv2ActionHandler", "Generate screen parameters:")
+            Log.d("UIDiv2ActionHandler", "containerId: $containerId")
+            Log.d("UIDiv2ActionHandler", "templateName: $templateName")
+            Log.d("UIDiv2ActionHandler", "screenName: $screenName")
+            
+//            val dataJsonName = uri.getQueryParameter(PARAM_DATA_JSON)
+//            val dataJson = mehdiViewModel?.getValueByKey(dataJsonName.toString())?.value
+            val dataJson ="[\n" +
+                    "  {\n" +
+                    "    \"name\": \"Alice\",\n" +
+                    "    \"family\": \"Johnson\",\n" +
+                    "    \"city\": \"New York\"\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Mohammed\",\n" +
+                    "    \"family\": \"Khan\",\n" +
+                    "    \"city\": \"London\"\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Sophie\",\n" +
+                    "    \"family\": \"Lemoine\",\n" +
+                    "    \"city\": \"Paris\"\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Kenji\",\n" +
+                    "    \"family\": \"Takahashi\",\n" +
+                    "    \"city\": \"Tokyo\"\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Carlos\",\n" +
+                    "    \"family\": \"Martínez\",\n" +
+                    "    \"city\": \"Madrid\"\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Fatima\",\n" +
+                    "    \"family\": \"Ali\",\n" +
+                    "    \"city\": \"Cairo\"\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Liam\",\n" +
+                    "    \"family\": \"O'Reilly\",\n" +
+                    "    \"city\": \"Dublin\"\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Chen\",\n" +
+                    "    \"family\": \"Wang\",\n" +
+                    "    \"city\": \"Beijing\"\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Isabella\",\n" +
+                    "    \"family\": \"Rossi\",\n" +
+                    "    \"city\": \"Rome\"\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Ava\",\n" +
+                    "    \"family\": \"Smith\",\n" +
+                    "    \"city\": \"Toronto\"\n" +
+                    "  }\n" +
+                    "]\n"
+
+            // Check if all required parameters are present
+            if (containerId != null && templateName != null && screenName != null && dataJson != null) {
+                                val screenGenerator = ScreenGenerator(context,mehdiViewModel)
+                
+                // Test template replacement logic
+                screenGenerator.testTemplateReplacement()
+                
+                // Test database fetch
+                screenGenerator.testDatabaseFetch(screenName)
+                
+                // Save test.json to database for testing
+                screenGenerator.saveTestJsonToDatabase()
+                
+                // Run comprehensive test
+                screenGenerator.testFullScreenGeneration()
+                
+                val generatedScreen = screenGenerator.generateScreen(
+                    containerId = containerId,
+                    templateName = templateName,
+                    screenName = screenName,
+                    dataJson = dataJson
+                )
+                
+                // Log the result
+                if (generatedScreen.isNotEmpty()) {
+                    Log.d("UIDiv2ActionHandler", "Screen generated successfully: $screenName")
+                    Log.d("UIDiv2ActionHandler", "generatedScreen: $generatedScreen")
+                    uri.getQueryParameter(PARAM_SCREEN_NAME)?.let {
+                        loadScreenListener.onLoad(it)
+                    }
+                } else {
+                    Log.e("UIDiv2ActionHandler", "Failed to generate screen: $screenName")
+                }
+            } else {
+                Log.e("UIDiv2ActionHandler", "Missing required parameters for screen generation")
+            }
+        } else if (uri.authority == AUTHORITY_GENERATE_PATCH) {
+            Log.d("UIDiv2ActionHandler", "=== PATCH GENERATION REQUEST ===")
+            Log.d("UIDiv2ActionHandler", "URI: $uri")
+            Log.d("UIDiv2ActionHandler", "URI authority: ${uri.authority}")
+            Log.d("UIDiv2ActionHandler", "URI scheme: ${uri.scheme}")
+            Log.d("UIDiv2ActionHandler", "URI host: ${uri.host}")
+            Log.d("UIDiv2ActionHandler", "URI path: ${uri.path}")
+            Log.d("UIDiv2ActionHandler", "URI query: ${uri.query}")
+            
+            val containerId = uri.getQueryParameter("containerId")
+            val templateName = uri.getQueryParameter("templateName")
+            val patchName = uri.getQueryParameter("patchName")
+            
+            Log.d("UIDiv2ActionHandler", "Extracted parameters:")
+            Log.d("UIDiv2ActionHandler", "  containerId: $containerId")
+            Log.d("UIDiv2ActionHandler", "  templateName: $templateName")
+            Log.d("UIDiv2ActionHandler", "  patchName: $patchName")
+
+            val dataJson ="[\n" +
+                    "  {\n" +
+                    "    \"name\": \"Alice\",\n" +
+                    "    \"family\": \"Johnson\",\n" +
+                    "    \"city\": \"New York\"\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Mohammed\",\n" +
+                    "    \"family\": \"Khan\",\n" +
+                    "    \"city\": \"London\"\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Sophie\",\n" +
+                    "    \"family\": \"Lemoine\",\n" +
+                    "    \"city\": \"Paris\"\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Kenji\",\n" +
+                    "    \"family\": \"Takahashi\",\n" +
+                    "    \"city\": \"Tokyo\"\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Carlos\",\n" +
+                    "    \"family\": \"Martínez\",\n" +
+                    "    \"city\": \"Madrid\"\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Fatima\",\n" +
+                    "    \"family\": \"Ali\",\n" +
+                    "    \"city\": \"Cairo\"\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Liam\",\n" +
+                    "    \"family\": \"O'Reilly\",\n" +
+                    "    \"city\": \"Dublin\"\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Chen\",\n" +
+                    "    \"family\": \"Wang\",\n" +
+                    "    \"city\": \"Beijing\"\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Isabella\",\n" +
+                    "    \"family\": \"Rossi\",\n" +
+                    "    \"city\": \"Rome\"\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Ava\",\n" +
+                    "    \"family\": \"Smith\",\n" +
+                    "    \"city\": \"Toronto\"\n" +
+                    "  }\n" +
+                    "]\n"
+
+            Log.d("UIDiv2ActionHandler", "Using test data JSON: $dataJson")
+
+            // Check if all required parameters are present
+            if (containerId != null && templateName != null && patchName != null && dataJson != null) {
+                Log.d("UIDiv2ActionHandler", "All required parameters present, creating PatchGenerator")
+                Log.d("UIDiv2ActionHandler", "mehdiViewModel: $mehdiViewModel")
+                
+                val patchGenerator = PatchGenerator(mehdiViewModel)
+                Log.d("UIDiv2ActionHandler", "PatchGenerator created successfully")
+                
+                // Test patch generation
+                Log.d("UIDiv2ActionHandler", "Running test patch generation...")
+                patchGenerator.testPatchGeneration()
+                
+                Log.d("UIDiv2ActionHandler", "Generating actual patch...")
+                val success = patchGenerator.generatePatch(
+                    containerId = containerId,
+                    templateName = templateName,
+                    patchName = patchName,
+                    dataJson = dataJson
+                )
+                
+                // Log the result
+                if (success) {
+                    Log.d("UIDiv2ActionHandler", "=== PATCH GENERATION SUCCESS ===")
+                    Log.d("UIDiv2ActionHandler", "Patch generated successfully: $patchName")
+                    
+                    // Fetch the generated patch from database
+                    Log.d("UIDiv2ActionHandler", "Fetching patch from database...")
+                    val patchJson = patchGenerator.fetchPatchFromDatabase(patchName)
+                    
+                    if (patchJson != null) {
+                        Log.d("UIDiv2ActionHandler", "Patch fetched successfully: $patchJson")
+                        Log.d("UIDiv2ActionHandler", "Applying patch to view...")
+                        Log.d("UIDiv2ActionHandler", "loadScreenListener: $loadScreenListener")
+                        
+                        // Apply the patch
+                        try {
+                            Log.d("UIDiv2ActionHandler", "About to call onApplyOnbase with:")
+                            Log.d("UIDiv2ActionHandler", "  patchJson: $patchJson")
+                            Log.d("UIDiv2ActionHandler", "  patchName: $patchName")
+                            Log.d("UIDiv2ActionHandler", "  loadScreenListener: $loadScreenListener")
+                            
+                            loadScreenListener.onApplyOnbase(patchJson, patchName, "تست", "تست")
+                            Log.d("UIDiv2ActionHandler", "Patch applied successfully via onApplyOnbase")
+                        } catch (e: Exception) {
+                            Log.e("UIDiv2ActionHandler", "Error applying patch via onApplyOnbase", e)
+                            Log.e("UIDiv2ActionHandler", "Exception details: ${e.message}")
+                            e.printStackTrace()
+                            try {
+                                // Try alternative method if available
+                                Log.d("UIDiv2ActionHandler", "Trying alternative patch application method...")
+                                // You might need to implement this method in your LoadScreenListener
+                                Log.d("UIDiv2ActionHandler", "Alternative method not available")
+                            } catch (e2: Exception) {
+                                Log.e("UIDiv2ActionHandler", "Error with alternative patch application", e2)
+                                Log.e("UIDiv2ActionHandler", "Second exception details: ${e2.message}")
+                                e2.printStackTrace()
+                            }
+                        }
+                        
+                        Log.d("UIDiv2ActionHandler", "Patch application process completed")
+                    } else {
+                        Log.e("UIDiv2ActionHandler", "Failed to fetch patch from database: $patchName")
+                        Log.e("UIDiv2ActionHandler", "This might indicate a database issue or the patch wasn't saved properly")
+                    }
+                } else {
+                    Log.e("UIDiv2ActionHandler", "=== PATCH GENERATION FAILED ===")
+                    Log.e("UIDiv2ActionHandler", "Failed to generate patch: $patchName")
+                    Log.e("UIDiv2ActionHandler", "Check the PatchGenerator logs for more details")
+                }
+            } else {
+                Log.e("UIDiv2ActionHandler", "=== MISSING PARAMETERS ===")
+                Log.e("UIDiv2ActionHandler", "Missing required parameters for patch generation")
+                Log.e("UIDiv2ActionHandler", "containerId: $containerId")
+                Log.e("UIDiv2ActionHandler", "templateName: $templateName")
+                Log.e("UIDiv2ActionHandler", "patchName: $patchName")
+                Log.e("UIDiv2ActionHandler", "dataJson: ${if (dataJson != null) "present" else "null"}")
+                Log.e("UIDiv2ActionHandler", "All parameters must be present in the URI query")
+            }
+
+//            startActivityForLoad(
+//                MehdiActivity::class.java,
+//                uri.getQueryParameter(PARAM_SCREEN).toString()
+//            )
         } else if (uri.authority == AUTHORITY_UPDATE) {
             val url = uri.getQueryParameter(PARAM_UPDATE_URL)
             if (url != null) {
                 loadScreenListener.update(url)
             }
 
-        }  else if (uri.authority == AUTHORITY_START_RECORDIN) {
-           loadScreenListener.startRecording()
+        } else if (uri.authority == AUTHORITY_START_RECORDIN) {
+            loadScreenListener.startRecording()
 
         } else if (uri.authority == AUTHORITY_GET_PERSIAN_DATE) {
             val varName = uri.getQueryParameter(PARAM_DATE_PICKER)
@@ -588,34 +855,36 @@ class UIDiv2ActionHandler(
             if (name != null) {
 //                    json == it[0].value
                 val div2View = if (view is Div2View) view as Div2View? else null
-                val androidId = Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
+                val androidId =
+                    Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
                 div2View?.setVariable(name, androidId)
             }
             return true
-        }  else if (uri.authority == AUTHORITY_SET_IP) {
+        } else if (uri.authority == AUTHORITY_SET_IP) {
             val name = uri.getQueryParameter(PARAM_VARIABLE_NAME)
 
             if (name != null) {
 //                    json == it[0].value
                 val div2View = if (view is Div2View) view as Div2View? else null
-                val androidId = Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
+                val androidId =
+                    Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
                 div2View?.setVariable(name, androidId)
             }
             return true
-        }  else if (uri.authority == AUTHORITY_SET_DEVICE_MODEL) {
+        } else if (uri.authority == AUTHORITY_SET_DEVICE_MODEL) {
             val name = uri.getQueryParameter(PARAM_VARIABLE_NAME)
 
             if (name != null) {
 //                    json == it[0].value
                 val div2View = if (view is Div2View) view as Div2View? else null
-                val androidId =android.os.Build.MODEL
+                val androidId = android.os.Build.MODEL
 
 //                val androidId =
 //                    Settings.Secure.getString(context.contentResolver, Settings.Secure.)
                 div2View?.setVariable(name, androidId)
             }
             return true
-        }else if (uri.authority == AUTHORITY_RESET_PHID) {
+        } else if (uri.authority == AUTHORITY_RESET_PHID) {
             var phId = UUID.randomUUID().toString()
             mehdiViewModel?.insertItemToDb(PhPlusDB(null, "phid", phId))
             return true

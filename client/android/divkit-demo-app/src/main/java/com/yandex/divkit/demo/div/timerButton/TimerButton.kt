@@ -14,6 +14,7 @@ class TimerButton @JvmOverloads constructor(
 ) : AppCompatButton(context, attrs, defStyleAttr) {
 
     private var timer: CountDownTimer? = null
+
      // پیش‌فرض ۲ دقیقه
 
     init {

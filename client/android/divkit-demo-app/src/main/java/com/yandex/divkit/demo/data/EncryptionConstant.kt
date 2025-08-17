@@ -50,6 +50,7 @@ object EncryptionConstant {
         val USER_ID = "userId"
         val USER_NAME = "username"
         val PERSON_ID = "personId"
+        val SCREEN_PREFIX = "screen_"
     }
 
 

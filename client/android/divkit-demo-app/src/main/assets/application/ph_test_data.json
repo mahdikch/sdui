@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Alice",
+    "family": "Johnson",
+    "city": "New York"
+  },
+  {
+    "name": "Mohammed",
+    "family": "Khan",
+    "city": "London"
+  },
+  {
+    "name": "Sophie",
+    "family": "Lemoine",
+    "city": "Paris"
+  },
+  {
+    "name": "Kenji",
+    "family": "Takahashi",
+    "city": "Tokyo"
+  },
+  {
+    "name": "Carlos",
+    "family": "Martínez",
+    "city": "Madrid"
+  },
+  {
+    "name": "Fatima",
+    "family": "Ali",
+    "city": "Cairo"
+  },
+  {
+    "name": "Liam",
+    "family": "O'Reilly",
+    "city": "Dublin"
+  },
+  {
+    "name": "Chen",
+    "family": "Wang",
+    "city": "Beijing"
+  },
+  {
+    "name": "Isabella",
+    "family": "Rossi",
+    "city": "Rome"
+  },
+  {
+    "name": "Ava",
+    "family": "Smith",
+    "city": "Toronto"
+  }
+]

@@ -11,6 +11,7 @@ import com.yandex.divkit.demo.data.EncryptionConstant.ConstantSharedPreferences.
 import com.yandex.divkit.demo.data.EncryptionConstant.ConstantSharedPreferences.POLICE_CODE
 import com.yandex.divkit.demo.data.EncryptionConstant.ConstantSharedPreferences.USER_ID
 import com.yandex.divkit.demo.data.EncryptionConstant.ConstantSharedPreferences.USER_NAME
+import com.yandex.divkit.demo.data.EncryptionConstant.ConstantSharedPreferences.SCREEN_PREFIX
 import com.yandex.divkit.demo.data.EncryptionConstant.TOKEN
 
 import javax.inject.Inject
@@ -104,5 +105,52 @@ class SharePref @Inject constructor(private val sharePref: SharedPreferences) {
                 edit().putString(PERSON_ID, value).apply()
             }
         }
+
+    /**
+     * Saves a screen JSON to the database
+     * @param screenName The name of the screen
+     * @param screenJson The JSON string of the screen
+     */
+    fun saveScreen(screenName: String, screenJson: String) {
+        val key = "$SCREEN_PREFIX$screenName"
+        sharePref.edit().putString(key, screenJson).apply()
+    }
+
+    /**
+     * Gets a screen JSON from the database
+     * @param screenName The name of the screen
+     * @return The JSON string of the screen, or null if not found
+     */
+    fun getScreenByName(screenName: String): String? {
+        val key = "$SCREEN_PREFIX$screenName"
+        return sharePref.getString(key, null)
+    }
+
+    /**
+     * Deletes a screen from the database
+     * @param screenName The name of the screen to delete
+     */
+    fun deleteScreen(screenName: String) {
+        val key = "$SCREEN_PREFIX$screenName"
+        sharePref.edit().remove(key).apply()
+    }
+
+    /**
+     * Gets all screen names from the database
+     * @return List of screen names
+     */
+    fun getAllScreenNames(): List<String> {
+        val screenNames = mutableListOf<String>()
+        val allPrefs = sharePref.all
+        
+        for ((key, _) in allPrefs) {
+            if (key.startsWith(SCREEN_PREFIX)) {
+                val screenName = key.substring(SCREEN_PREFIX.length)
+                screenNames.add(screenName)
+            }
+        }
+        
+        return screenNames
+    }
 
 }
