@@ -29,6 +29,7 @@ import com.yandex.divkit.demo.data.repository.PhPlusRepository
 import com.yandex.divkit.demo.databinding.BottomSheetSpinnerBinding
 import com.yandex.divkit.demo.screenshot.DivAssetReader
 import com.yandex.divkit.demo.utils.SingletonObjects
+
 //import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -120,9 +121,14 @@ class BottomSheetSpinner(
 //        var divMotorJson:PhPlusDB = viewModelBottomSheetSpinner.getValueByKey("patchMotorPlate")
 //        var divVehicleJson:PhPlusDB = viewModelBottomSheetSpinner.getValueByKey("patchVehiclePlate")
         var varName = map["varName"]
+        var path = map["path"]
+        var sysName = map["sysName"]
         val selectionMode = map["selection"] ?: "single"
         val isMulti = selectionMode.equals("multi", ignoreCase = true)
-        Log.d("BottomSheetSpinner", "setUp: selectionMode=$selectionMode isMulti=$isMulti key=$key title=$title codeVar=$codeVar titleVar=$titleVar")
+        Log.d(
+            "BottomSheetSpinner",
+            "setUp: selectionMode=$selectionMode isMulti=$isMulti key=$key title=$title codeVar=$codeVar titleVar=$titleVar"
+        )
         adapter.setMultiSelect(isMulti)
 
         var json: PhPlusDB = viewModelBottomSheetSpinner.getValueByKey(key)
@@ -216,22 +222,30 @@ class BottomSheetSpinner(
         }
         Log.d("BottomSheetSpinner", "After filtering: size=${arrayList.size} filters=${map}")
         if (varName != null) {
-            Log.d("BottomSheetSpinner", "Adapter addItem with varName=$varName, titleVar=$titleVar, codeVar=$codeVar")
-            adapter.addItem(ArrayList(arrayList), varName,titleVar,codeVar)
+            Log.d(
+                "BottomSheetSpinner",
+                "Adapter addItem with varName=$varName, titleVar=$titleVar, codeVar=$codeVar"
+            )
+            adapter.addItem(ArrayList(arrayList), varName, titleVar, codeVar, sysName, path)
         }
 
         if (isMulti) {
             // Preselect using selected_codes query param (comma-separated)
             val selectedCodesCsv = map["selected_codes"]
-            val preselected = selectedCodesCsv?.split(',')?.map { it.trim() }?.filter { it.isNotEmpty() } ?: emptyList()
-            Log.d("BottomSheetSpinner", "Preselect ids=$preselected from selected_codes='$selectedCodesCsv'")
+            val preselected =
+                selectedCodesCsv?.split(',')?.map { it.trim() }?.filter { it.isNotEmpty() }
+                    ?: emptyList()
+            Log.d(
+                "BottomSheetSpinner",
+                "Preselect ids=$preselected from selected_codes='$selectedCodesCsv'"
+            )
             adapter.setPreselected(preselected)
 
             // Show multi-select action bar (Done only per spec)
             binding.actions.visibility = View.VISIBLE
             binding.btnDone.visibility = View.VISIBLE
-            binding.btnCancel.visibility = View.GONE
-            binding.btnClear.visibility = View.GONE
+//            binding.btnCancel.visibility = View.GONE
+//            binding.btnClear.visibility = View.GONE
 
             binding.btnDone.setOnClickListener {
                 val selected = adapter.getSelectedItems()
@@ -247,23 +261,28 @@ class BottomSheetSpinner(
             }
             // Cancel/Clear kept hidden
         } else {
+
+
+            ;
             // Single select: hide actions
             binding.actions.visibility = View.GONE
         }
 //            val gridLayoutManager = GridLayoutManager(context, 1)
         val gridLayoutManager = LinearLayoutManager(context)
-        binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = gridLayoutManager
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.hasFixedSize()
 
         binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                var fiterList = arrayList!!.filter { it.titleFa.contains(query.toString()) || it.id.contains(query.toString()) }
+                var fiterList = arrayList!!.filter {
+                    it.titleFa.contains(query.toString()) || it.id.contains(query.toString())
+                }
                 if (fiterList.isNotEmpty()) {
                     if (varName != null) {
-                        adapter.addItem(ArrayList(fiterList), varName,titleVar,codeVar)
+                        adapter.addItem(ArrayList(fiterList), varName, titleVar, codeVar)
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(context, "No Match Found", Toast.LENGTH_SHORT).show()
                 }
 //                if (arrayList.contains(query)) {
@@ -275,13 +294,14 @@ class BottomSheetSpinner(
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                var fiterList = arrayList!!.filter { it.titleFa.contains(newText.toString()) ||  it.id.contains(newText.toString()) }
+                var fiterList = arrayList!!.filter {
+                    it.titleFa.contains(newText.toString()) || it.id.contains(newText.toString())
+                }
                 if (fiterList.isNotEmpty()) {
                     if (varName != null) {
-                        adapter.addItem(ArrayList(fiterList), varName,titleVar,codeVar)
+                        adapter.addItem(ArrayList(fiterList), varName, titleVar, codeVar)
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(context, "No Match Found", Toast.LENGTH_SHORT).show()
                 }
                 return false

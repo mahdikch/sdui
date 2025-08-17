@@ -10,25 +10,46 @@ import com.yandex.divkit.demo.data.entities.ListItemDto
 import com.yandex.divkit.demo.databinding.ItemBottomSheetSpinnerBinding
 
 
-class AdapterBottomSheetSpinner(private val listener: CustomItemListener) : RecyclerView.Adapter<AdapterBottomSheetSpinner.ViewHolder>() {
+class AdapterBottomSheetSpinner(private val listener: CustomItemListener) :
+    RecyclerView.Adapter<AdapterBottomSheetSpinner.ViewHolder>() {
     interface CustomItemListener {
-        fun onClicked(programs: ListItemDto,varName:String,titleVar:String,codeVar:String)
+        fun onClicked(programs: ListItemDto, varName: String, titleVar: String, codeVar: String,sysName: String, path: String)
     }
+
     private var items = ArrayList<ListItemDto>()
     private var varName = String()
     private var titleVar = String()
     private var codeVar = String()
+    private var sysName = String()
+    private var path = ""
     private var multiSelect: Boolean = false
     private val selectedIds: MutableSet<String> = linkedSetOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemBottomSheetSpinnerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding, listener, varName, titleVar, codeVar, ::onItemToggle, ::isSelected, multiSelect)
+        val binding = ItemBottomSheetSpinnerBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return ViewHolder(
+            binding,
+            listener,
+            varName,
+            titleVar,
+            codeVar,
+            ::onItemToggle,
+            ::isSelected,
+            multiSelect,
+            sysName, path
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
-        Log.d("AdapterBottomSheetSpinner", "bind pos=$position id=${item.id} title=${item.titleFa} selected=${isSelected(item.id)} multi=$multiSelect")
+        Log.d(
+            "AdapterBottomSheetSpinner",
+            "bind pos=$position id=${item.id} title=${item.titleFa} selected=${isSelected(item.id)} multi=$multiSelect"
+        )
         holder.bind(item, isSelected(item.id))
     }
 
@@ -36,13 +57,29 @@ class AdapterBottomSheetSpinner(private val listener: CustomItemListener) : Recy
         return items.size
     }
 
-    fun addItem(items: java.util.ArrayList<ListItemDto>, varName: String, titleVar: String, codeVar: String) {
+    fun addItem(
+        items: java.util.ArrayList<ListItemDto>,
+        varName: String,
+        titleVar: String,
+        codeVar: String,
+        sysName: String? = "",
+        path: String? = ""
+    ) {
         this.items.clear()
         this.items = items
         this.varName = varName
         this.titleVar = titleVar
         this.codeVar = codeVar
-        Log.d("AdapterBottomSheetSpinner", "addItem size=${items.size} varName=$varName titleVar=$titleVar codeVar=$codeVar")
+        if (sysName != null) {
+            this.sysName = sysName
+        }
+        if (path != null) {
+            this.path = path
+        }
+        Log.d(
+            "AdapterBottomSheetSpinner",
+            "addItem size=${items.size} varName=$varName titleVar=$titleVar codeVar=$codeVar"
+        )
         notifyDataSetChanged()
     }
 
@@ -65,7 +102,10 @@ class AdapterBottomSheetSpinner(private val listener: CustomItemListener) : Recy
             return emptyList()
         }
         val selected = items.filter { selectedIds.contains(it.id) }
-        Log.d("AdapterBottomSheetSpinner", "getSelectedItems selectedCount=${selected.size} selectedIds=$selectedIds")
+        Log.d(
+            "AdapterBottomSheetSpinner",
+            "getSelectedItems selectedCount=${selected.size} selectedIds=$selectedIds"
+        )
         return selected
     }
 
@@ -91,17 +131,22 @@ class AdapterBottomSheetSpinner(private val listener: CustomItemListener) : Recy
         private val codeVar: String,
         private val toggle: (ListItemDto) -> Unit,
         private val isSelected: (String) -> Boolean,
-        private val multiSelect: Boolean
+        private val multiSelect: Boolean,
+        private val sysName: String,
+        private val path: String
     ) : RecyclerView.ViewHolder(itemBinding.root), View.OnClickListener {
 
-//        val title = itemBinding.title
+        //        val title = itemBinding.title
         private lateinit var item: ListItemDto
 
         init {
             itemBinding.root.setOnClickListener(this)
             itemBinding.checkbox.setOnCheckedChangeListener { _: CompoundButton, checked: Boolean ->
                 if (this::item.isInitialized) {
-                    Log.d("AdapterBottomSheetSpinner", "checkbox click id=${item.id} checked=$checked")
+                    Log.d(
+                        "AdapterBottomSheetSpinner",
+                        "checkbox click id=${item.id} checked=$checked"
+                    )
                     toggle(item)
                 }
             }
@@ -117,7 +162,10 @@ class AdapterBottomSheetSpinner(private val listener: CustomItemListener) : Recy
                 itemBinding.checkbox.setOnCheckedChangeListener(null)
                 itemBinding.checkbox.isChecked = selected
                 itemBinding.checkbox.setOnCheckedChangeListener { _: CompoundButton, checked: Boolean ->
-                    Log.d("AdapterBottomSheetSpinner", "checkbox change id=${item.id} checked=$checked")
+                    Log.d(
+                        "AdapterBottomSheetSpinner",
+                        "checkbox change id=${item.id} checked=$checked"
+                    )
                     toggle(item)
                 }
             } else {
@@ -130,7 +178,7 @@ class AdapterBottomSheetSpinner(private val listener: CustomItemListener) : Recy
                 Log.d("AdapterBottomSheetSpinner", "row click toggle id=${item.id}")
                 toggle(item)
             } else {
-                listener.onClicked(item, varName, titleVar, codeVar)
+                listener.onClicked(item, varName, titleVar, codeVar,sysName,path)
             }
         }
     }

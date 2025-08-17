@@ -8,298 +8,45 @@
           "type": "gallery",
           "items": [
             {
-              "type": "container",
-              "width": {
-                "type": "match_parent"
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "items": [
-                {
-                  "type": "text",
-                  "text": "سنجش احساس امنیت و سرمایه اجتماعی ",
-                  "font_size": 20,
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "text_alignment_horizontal": "center",
-                  "height": {
-                    "type": "fixed",
-                    "value": 36
-                  },
-                  "actions": [
-                    {
-                      "log_id": "action_id",
-                      "url": "https://",
-                      "log_url": "@{on_click_log_url}"
-                    }
-                  ],
-                  "margins": {
-                    "top": 20,
-                    "bottom": 10
-                  }
-                },
-                {
-                  "type": "separator",
-                  "width": {
-                    "type": "fixed",
-                    "value": 483
-                  },
-                  "height": {
-                    "type": "fixed",
-                    "value": 17
-                  },
-                  "delimiter_style": {
-                    "color": "#ececec"
-                  },
-                  "alignment_horizontal": "center",
-                  "margins": {
-                    "bottom": 30
-                  }
-                },
-                {
-                  "type": "text",
-                  "text": "@{text___1}",
-                  "font_size": 16,
-                  "letter_spacing": 0,
-                  "text_color": "#121212",
-                  "text_alignment_horizontal": "right",
-                  "text_alignment_vertical": "top",
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "height": {
-                    "type": "fixed",
-                    "value": 39
-                  },
-                  "background": [
-                    {
-                      "type": "solid",
-                      "color": "#ffffff"
-                    }
-                  ],
-                  "alignment_horizontal": "right",
-                  "margins": {
-                    "right": 35,
-                    "left": 35
-                  }
-                },
-                {
-                  "type": "text",
-                  "text": "@{text___2}",
-                  "ranges": [
-                    {
-                      "start": 9,
-                      "end": 185
-                    },
-                    {
-                      "start": 212,
-                      "end": 547
-                    },
-                    {
-                      "start": 564,
-                      "end": 823
-                    },
-                    {
-                      "start": 841,
-                      "end": 1116
-                    },
-                    {
-                      "start": 1131,
-                      "end": 1351
-                    },
-                    {
-                      "start": 1368,
-                      "end": 1526
-                    },
-                    {
-                      "start": 1545,
-                      "end": 1714
-                    }
-                  ],
-                  "text_alignment_horizontal": "right",
-                  "text_alignment_vertical": "top",
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "height": {
-                    "type": "match_parent"
-                  },
-                  "margins": {
-                    "top": 8,
-                    "right": 30,
-                    "left": 30
-                  },
-                  "font_size": 13,
-                  "line_height": 24,
-                  "letter_spacing": 0,
-                  "text_color": "#353535",
-                  "background": [
-                    {
-                      "type": "solid",
-                      "color": "#ffffff"
-                    }
-                  ]
-                }
-              ],
-              "background": [
-                {
-                  "type": "solid",
-                  "color": "#ffffff"
-                }
-              ]
-            },
-            {
-              "type": "container",
-              "width": {
-                "type": "match_parent"
-              },
-              "height": {
-                "type": "fixed",
-                "value": 100
-              },
-              "items": [
-                {
-                  "type": "text",
-                  "text": "\n",
-                  "width": {
-                    "type": "fixed",
-                    "value": 100
-                  },
-                  "alignment_horizontal": "center"
-                }
-              ],
-              "margins": {
-                "top": 8,
-                "bottom": 8,
-                "start": 30,
-                "end": 30
-              }
-            },
-            {
-              "type": "container",
-              "width": {
-                "type": "match_parent"
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "items": [
-                {
-                  "type": "text",
-                  "text": "\n\nپذیرش شرایط  \n\nبا امضای این سند یا تائید کتبی /الکترونیکی ، شما متعهد می شوید که تمامی شرایط و ضوابط فوق را رعایت کنید . ",
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "ranges": [
-                    {
-                      "start": 16,
-                      "end": 123
-                    }
-                  ],
-                  "alignment_horizontal": "center",
-                  "height": {
-                    "type": "wrap_content"
-                  },
-                  "text_alignment_horizontal": "right",
-                  "font_size": 15,
-                  "margins": {
-                    "right": 30,
-                    "left": 30
-                  }
-                }
-              ]
-            },
-            {
-              "type": "container",
-              "width": {
-                "type": "match_parent"
-              },
-              "height": {
-                "type": "fixed",
-                "value": 53
-              },
-              "items": [
-                {
-                  "type": "container",
-                  "items": [
-                    {
-                      "type": "image",
-                      "image_url": "@{index1?checked:unchecked}",
-                      "width": {
-                        "type": "fixed",
-                        "value": 24
-                      },
-                      "height": {
-                        "type": "fixed",
-                        "value": 24
-                      },
-                      "preload_required": true,
-                      "alignment_horizontal": "end",
-                      "alignment_vertical": "center"
-                    },
-                    {
-                      "type": "text_template",
-                      "text_template_text": "its ok"
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "log_id": "select hoviati",
-                      "url": "div-action://set_variable?name=index1&value=@{index1?false:true}"
-                    }
-                  ],
-                  "background": [
-                    {
-                      "type": "solid",
-                      "color": "#ffffff"
-                    }
-                  ],
-                  "border": {
-                    "corners_radius": {
-                      "top-left": 20,
-                      "top-right": 20,
-                      "bottom-left": 20,
-                      "bottom-right": 20
-                    }
-                  },
-                  "height": {
-                    "type": "wrap_content"
-                  },
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "orientation": "overlap",
-                  "content_alignment_horizontal": "center",
-                  "content_alignment_vertical": "center",
-                  "paddings": {
-                    "top": 8,
-                    "bottom": 8,
-                    "left": 12,
-                    "right": 12
-                  },
-                  "alignment_horizontal": "right",
-                  "alignment_vertical": "center",
-                  "margins": {
-                    "top": 8,
-                    "bottom": 8
-                  }
-                }
-              ],
-              "margins": {
-                "top": 12
-              }
-            },
-            {
               "type": "custom_template",
-              "seconds": "10"
+              "custom_props":{
+                "inner_percent": "80",
+                "outer_percent": "20",
+                "center_percent": "56",
+                "inner_color": "#ff7816",
+
+                "outer_color": "#ff7816"
+              }
+            },    {
+              "type": "custom_template",
+              "custom_props":{
+                "inner_percent": "25",
+                "outer_percent": "99",
+                "center_percent": "99",
+                "inner_color": "#ff7816",
+                "outer_color": "#ff7816"
+              }
+            },
+
+            {
+              "type": "age_template",
+              "title": "بازه سنی پاسخ دهندگان",
+              "age": "20 تا 29 سال"
             }
           ],
           "height": {
             "type": "match_parent"
           },
-          "orientation": "vertical"
+          "orientation": "vertical",
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "width": {
+            "type": "match_parent"
+          }
         }
       }
     ],
@@ -323,12 +70,17 @@
       {
         "type": "string",
         "name": "text___1",
-        "value": "شرایط و ضوابط"
+        "value": "راهنما"
       },
       {
         "type": "string",
         "name": "text___2",
-        "value": "هدف پروژه  این پروژه با هدف سنجش احساس امنیت و سرمایه اجتماعی در جامعه اجرا می‌شود. داده‌های جمع‌آوری‌شده برای اهداف پژوهشی، برنامه‌ریزی اجتماعی یا بهبود سیاست‌گذاری استفاده خواهد  شد  .\n\nوظایف و مسئولیت‌های پرسشگر\nپرسشگران موظفند پرسشنامه را دقیقاً طبق دستورالعمل‌های ارائه‌شده اجرا کنند.\nپرسشگران باید با پاسخ‌دهندگان با احترام و حرفه‌ای رفتار کنند و از هرگونه رفتار یا گفتاری که ممکن است باعث ناراحتی یا سوءتفاهم شود، خودداری کنند.\nپرسشگران باید از بی‌طرف بودن در طرح سؤالات اطمینان حاصل کنند و از تأثیرگذاری بر پاسخ‌های پاسخ‌دهندگان پرهیز کنند.\n\nمحرمانگی اطلاعات\nپرسشگران موظفند اطلاعات جمع‌آوری‌شده از پاسخ‌دهندگان را کاملاً محرمانه نگه دارند.\nهیچ‌گونه اطلاعات شخصی یا پاسخ‌های پاسخ‌دهندگان نباید با افراد غیرمجاز به اشتراک گذاشته شود.\nداده‌های جمع‌آوری‌شده باید تنها به سرپرست پروژه یا افراد تعیین‌شده تحویل داده شوند.\n\nرعایت اصول اخلاقی\nپرسشگران باید از رضایت داوطلبانه پاسخ‌دهندگان اطمینان حاصل کنند و به آن‌ها اطلاع دهند که می‌توانند در هر زمان از پاسخ‌دادن انصراف دهند.\nهرگونه اجبار یا فشار برای مشارکت در پرسشنامه ممنوع است.\nپرسشگران باید از هرگونه تبعیض یا پیش‌داوری در تعامل با پاسخ‌دهندگان خودداری کنند.\n\nمدیریت داده‌ها\nپرسشگران موظفند پرسشنامه‌های تکمیل‌شده را با دقت و به‌موقع به تیم پروژه تحویل دهند.\nهرگونه خطا یا نقص در جمع‌آوری داده‌ها باید فوراً به سرپرست پروژه گزارش شود.\nاستفاده از داده‌ها برای مقاصد غیرمرتبط با پروژه ممنوع است.\n\nآموزش و پشتیبانی\nپرسشگران قبل از شروع کار، آموزش‌های لازم را دریافت خواهند کرد.\nدر صورت بروز هرگونه سؤال یا مشکل در حین اجرا، پرسشگران می‌توانند با سرپرست پروژه تماس بگیرند.\n\nپیامدهای نقض شرایط\nعدم رعایت این شرایط ممکن است منجر به توقف همکاری با پرسشگر و در صورت لزوم، پیگیری قانونی شود.\nهرگونه سوءاستفاده از اطلاعات جمع‌آوری‌شده تحت پیگرد قانونی قرار خواهد گرفت."
+        "value": "آمادگی اولیه\nدستورالعمل‌های پروژه و پرسشنامه را به‌دقت مطالعه کنید.\nابزارهای موردنیاز (مانند پرسشنامه، قلم، تبلت) را بررسی و آماده کنید.\n\nتعامل با پاسخ‌دهندگان\nخود را معرفی کنید و هدف پرسشنامه را به‌صورت مختصر توضیح دهید.\nاطمینان دهید که پاسخ‌ها محرمانه است و مشارکت داوطلبانه است.\nبا احترام و بی‌طرفی سؤالات را مطرح کنید و از جهت‌دهی به پاسخ‌ها خودداری کنید.\n\nجمع‌آوری داده‌ها\nسؤالات را دقیق و طبق ترتیب پرسشنامه بپرسید.\nپاسخ‌ها را با دقت ثبت کنید و از کامل بودن اطلاعات مطمئن شوید.\nدر صورت انصراف پاسخ‌دهنده، با احترام از او تشکر کنید و ادامه ندهید.\n\nمدیریت اطلاعات\nپرسشنامه‌های تکمیل‌شده را مرتب و ایمن نگه دارید.\nداده‌ها را فقط به سرپرست پروژه تحویل دهید و از اشتراک‌گذاری با دیگران خودداری کنید."
+      },
+      {
+        "type": "string",
+        "name": "mesurementId",
+        "value": ""
       },
       {
         "type": "boolean",
@@ -354,70 +106,156 @@
         "type": "string",
         "name": "index1_color",
         "value": "#e8ecf4"
-      },
-      {
-        "type": "string",
-        "name": "seconds",
-        "value": "10"
       }
     ]
   },
   "templates": {
-    "custom_template": {
-      "type": "custom",
-      "custom_type": "timer_button",
-      "custom_props": {
-        "$seconds": "seconds",
-        "next_page": "op/guide"
-      },
-      "background": [
-        {
-          "type": "solid",
-          "color": "#ffffff"
-        }
-      ],
-      "border": {
-        "corner_radius": 4,
-        "stroke": {
-          "color": "#d9e0e9",
-          "width": 1
-        }
-      },
-      "height": {
-        "type": "wrap_content"
-      },
+
+    "age_template": {
+      "type": "container",
       "width": {
         "type": "match_parent"
       },
-      "orientation": "overlap",
-      "content_alignment_vertical": "center",
-      "content_alignment_horizontal": "center",
-      "alignment_horizontal": "center",
-      "alignment_vertical": "bottom",
+      "height": {
+        "type": "fixed",
+        "value": 63
+      },
+      "items": [
+        {
+          "type": "container",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "match_parent"
+          },
+          "items": [
+            {
+              "type": "container",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "match_parent"
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "$text": "age",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "text_alignment_horizontal": "center",
+                  "font_size": 16,
+                  "paddings": {
+                    "start": 4,
+                    "end": 4
+                  }
+                }
+              ],
+              "margins": {
+                "top": 10,
+                "bottom": 10,
+                "start": 20,
+                "end": 20
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#ffffff"
+                }
+              ],
+              "border": {
+                "corner_radius": 12
+              },
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center"
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "match_parent"
+          },
+          "items": [
+            {
+              "type": "text",
+              "$text": "title",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "font_size": 16,
+              "alignment_vertical": "center",
+              "paddings": {
+                "top": 5,
+                "bottom": 5,
+                "start": 5,
+                "end": 5
+              },
+              "text_alignment_horizontal": "end"
+            },
+            {
+              "type": "image",
+              "image_url": "https://yastatic.net/s3/home/divkit/empty2.png",
+              "width": {
+                "type": "fixed",
+                "value": 33
+              },
+              "height": {
+                "type": "fixed",
+                "value": 32
+              },
+              "preload_required": true,
+              "alignment_vertical": "center"
+            }
+          ],
+          "margins": {
+            "end": 30
+          },
+          "orientation": "horizontal"
+        }
+      ],
+      "background": [
+        {
+          "type": "solid",
+          "color": "#e8e9eb"
+        }
+      ],
       "margins": {
-        "top": 4,
-        "right": 16,
-        "bottom": 4,
-        "left": 16
-      }
+        "top": 10,
+        "bottom": 10,
+        "start": 16,
+        "end": 16
+      },
+      "border": {
+        "corner_radius": 16,
+        "corners_radius": {
+          "top-left": 10,
+          "top-right": 10,
+          "bottom-left": 10,
+          "bottom-right": 10
+        }
+      },
+      "orientation": "horizontal"
     },
-    "text_template": {
-      "type": "text",
-      "$text": "text_template_text",
-      "font_size": 14,
-      "line_height": 32,
-      "letter_spacing": 0,
-      "text_color": "#000000",
-      "text_alignment_horizontal": "right",
-      "text_alignment_vertical": "top",
+    "custom_template": {
+      "type": "custom",
+      "custom_type": "double_circular_progressView",
+      "custom_props": "$custom_props",
       "width": {
-        "type": "wrap_content"
+        "type": "match_parent"
       },
       "height": {
-        "type": "wrap_content"
-      },
-      "alignment_horizontal": "center",
-      "alignment_vertical": "center"
+        "type": "fixed",
+        "value": 158
+      }
     }
   }
 }

@@ -10,8 +10,14 @@ import android.util.AttributeSet
 import android.view.View
 
 class DoubleCircularProgressView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyle: Int = 0, var innerPercent: Float = 45f,
-    var outerPercent: Float = 65f, var centerPercent: Int = 50
+    context: Context, 
+    attrs: AttributeSet? = null, 
+    defStyle: Int = 0, 
+    var innerPercent: Float = 45f,
+    var outerPercent: Float = 65f, 
+    var centerPercent: Int = 50,
+    var innerCircleColor: String = "#FFD700",
+    var outerCircleColor: String = "#3A86FF"
 ) : View(context, attrs, defStyle) {
 
     // عدد نمایشی وسط
@@ -58,9 +64,9 @@ class DoubleCircularProgressView @JvmOverloads constructor(
         val innerRect = RectF(centerX - innerRadius, centerY - innerRadius, centerX + innerRadius, centerY + innerRadius)
 
 
-        // رنگ آبی
-        outerPaint.color = Color.parseColor("#3A86FF")
-        innerPaint.color = Color.parseColor("#FFD700")
+        // رنگ‌های حلقه‌ها
+        outerPaint.color = Color.parseColor(outerCircleColor)
+        innerPaint.color = Color.parseColor(innerCircleColor)
 
         // رسم قوس‌ها
         canvas.drawArc(outerRect, -90f, 360f * outerPercent / 100f, false, outerPaint)

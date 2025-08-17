@@ -263,8 +263,8 @@ class UIDiv2ActionHandler(
                 loadScreenListener.update(url)
             }
 
-        }  else if (uri.authority == AUTHORITY_START_RECORDIN) {
-           loadScreenListener.startRecording()
+        } else if (uri.authority == AUTHORITY_START_RECORDIN) {
+            loadScreenListener.startRecording()
 
         } else if (uri.authority == AUTHORITY_GET_PERSIAN_DATE) {
             val varName = uri.getQueryParameter(PARAM_DATE_PICKER)
@@ -588,34 +588,36 @@ class UIDiv2ActionHandler(
             if (name != null) {
 //                    json == it[0].value
                 val div2View = if (view is Div2View) view as Div2View? else null
-                val androidId = Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
+                val androidId =
+                    Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
                 div2View?.setVariable(name, androidId)
             }
             return true
-        }  else if (uri.authority == AUTHORITY_SET_IP) {
+        } else if (uri.authority == AUTHORITY_SET_IP) {
             val name = uri.getQueryParameter(PARAM_VARIABLE_NAME)
 
             if (name != null) {
 //                    json == it[0].value
                 val div2View = if (view is Div2View) view as Div2View? else null
-                val androidId = Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
+                val androidId =
+                    Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
                 div2View?.setVariable(name, androidId)
             }
             return true
-        }  else if (uri.authority == AUTHORITY_SET_DEVICE_MODEL) {
+        } else if (uri.authority == AUTHORITY_SET_DEVICE_MODEL) {
             val name = uri.getQueryParameter(PARAM_VARIABLE_NAME)
 
             if (name != null) {
 //                    json == it[0].value
                 val div2View = if (view is Div2View) view as Div2View? else null
-                val androidId =android.os.Build.MODEL
+                val androidId = android.os.Build.MODEL
 
 //                val androidId =
 //                    Settings.Secure.getString(context.contentResolver, Settings.Secure.)
                 div2View?.setVariable(name, androidId)
             }
             return true
-        }else if (uri.authority == AUTHORITY_RESET_PHID) {
+        } else if (uri.authority == AUTHORITY_RESET_PHID) {
             var phId = UUID.randomUUID().toString()
             mehdiViewModel?.insertItemToDb(PhPlusDB(null, "phid", phId))
             return true
@@ -864,13 +866,24 @@ class UIDiv2ActionHandler(
         programs: ListItemDto,
         varName: String,
         titleVar: String,
-        codeVar: String
+        codeVar: String,
+        sysName: String,
+        path: String
     ) {
+        if (path != "") {
+            val map: java.util.HashMap<String, String> = HashMap()
+            map["path"] = path
+            map["sysName"] = sysName
+            map["selectedId"] = programs.id
+            map["ph/token"] = "empty"
+            loadScreenListener.onRequest(map)
 
+        }
         btmSheet_list.dismiss()
         val div2View = if (view is Div2View) view as Div2View? else null
         div2View?.setVariable(codeVar, programs.id)
         div2View?.setVariable(titleVar, programs.titleFa)
+
 //        try {
 //            when (varName) {
 //                "usage" -> {

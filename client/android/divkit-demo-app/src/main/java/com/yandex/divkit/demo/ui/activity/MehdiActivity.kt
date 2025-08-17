@@ -190,13 +190,13 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
             var divrpatchInqueryPlatesJson = assetReader.read("application/patchInqueryPlates.json")
             var divVtBottomSheet = assetReader.read("application/vt_bottom_sheet.json")
 //            var divVehicleJson = assetReader.read("application/vt-register-ticket.json")
-            mehdiViewModel.insertItemToDb(
-                PhPlusDB(
-                    null,
-                    "ph/vt/bottomsheet",
-                    divVtBottomSheet.toString()
-                )
-            )
+//            mehdiViewModel.insertItemToDb(
+//                PhPlusDB(
+//                    null,
+//                    "ph/vt/bottomsheet",
+//                    divVtBottomSheet.toString()
+//                )
+//            )
 //            mehdiViewModel.insertItemToDb(
 //                PhPlusDB(
 //                    null,
@@ -317,7 +317,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 //                Configuration.ORIENTATION_PORTRAIT -> "application/mehdi.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/menu.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/test.json"
-//                Configuration.ORIENTATION_PORTRAIT -> "application/temp.json"
+//                Configuration.ORIENTATION_PORTRAIT -> "application/temp.json"462711245
 //                Configuration.ORIENTATION_PORTRAIT -> "application/switch.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/patchTest.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/main.json"
