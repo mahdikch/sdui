@@ -64,6 +64,8 @@ class DemoCustomContainerAdapter(
     private var innerPercent: Int = 0
     private var outerPercent: Int = 0
     private var centerPercent: Int = 0
+    private var innerColor: String = ""
+    private var outerColor: String = ""
     private var seconds: Int = 0
     private var textSize: Int = 0
     private var counter: Int = 0
@@ -107,6 +109,8 @@ class DemoCustomContainerAdapter(
             innerPercent = evaluateCustomProp(div, "inner_percent", expressionResolver, 0)
             outerPercent = evaluateCustomProp(div, "outer_percent", expressionResolver, 0)
             centerPercent = evaluateCustomProp(div, "center_percent", expressionResolver, 0)
+            innerColor = evaluateCustomPropString(div, "inner_color", expressionResolver, "#ff7816").toString()
+            outerColor = evaluateCustomPropString(div, "outer_color", expressionResolver, "#ff7816").toString()
         }
         if (div.customType == "timer_button") {
             Log.d("DemoCustomContainer", "=== TIMER BUTTON DEBUG ===")
@@ -439,7 +443,9 @@ class DemoCustomContainerAdapter(
             this,
             innerPercent = innerPercent.toFloat(),
             outerPercent = outerPercent.toFloat(),
-            centerPercent = centerPercent
+            centerPercent = centerPercent,
+            innerCircleColor = innerColor,
+            outerCircleColor = outerColor
         )
 
     private fun Context.createCustomMap(): View = LinearLayout(this).apply {

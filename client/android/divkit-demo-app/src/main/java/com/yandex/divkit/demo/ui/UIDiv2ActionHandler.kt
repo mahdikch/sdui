@@ -1133,13 +1133,24 @@ class UIDiv2ActionHandler(
         programs: ListItemDto,
         varName: String,
         titleVar: String,
-        codeVar: String
+        codeVar: String,
+        sysName: String,
+        path: String
     ) {
+        if (path != "") {
+            val map: java.util.HashMap<String, String> = HashMap()
+            map["path"] = path
+            map["sysName"] = sysName
+            map["selectedId"] = programs.id
+            map["ph/token"] = "empty"
+            loadScreenListener.onRequest(map)
 
+        }
         btmSheet_list.dismiss()
         val div2View = if (view is Div2View) view as Div2View? else null
         div2View?.setVariable(codeVar, programs.id)
         div2View?.setVariable(titleVar, programs.titleFa)
+
 //        try {
 //            when (varName) {
 //                "usage" -> {

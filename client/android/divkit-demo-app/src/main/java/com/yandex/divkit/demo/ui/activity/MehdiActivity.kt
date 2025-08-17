@@ -170,9 +170,6 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
             var phId = UUID.randomUUID().toString()
             mehdiViewModel.insertItemToDb(PhPlusDB(null, "phid", phId))
             var divMotorJson = assetReader.read("application/patchMotorPlate.json")
-            var testJson = assetReader.read("application/test.json")
-            var testPatch = assetReader.read("application/testPatch.json")
-//            var testJsondata = assetReader.read("application/ph_test_data.json")
 
             var divpatchTestJson = assetReader.read("application/patchTest.json")
             var divpatchReportsJson = assetReader.read("application/patchReports.json")
@@ -200,20 +197,13 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 //                    divVtBottomSheet.toString()
 //                )
 //            )
-            mehdiViewModel.insertItemToDb(
-                PhPlusDB(
-                    null,
-                    "ph/test",
-                    testJson.toString()
-                )
-            )
-            mehdiViewModel.insertItemToDb(
-                PhPlusDB(
-                    null,
-                    "ph/test/patch",
-                    testPatch.toString()
-                )
-            )
+//            mehdiViewModel.insertItemToDb(
+//                PhPlusDB(
+//                    null,
+//                    "ph/patchInqueryEntezami",
+//                    divrpatchInqueryEntezamiJson.toString()
+//                )
+//            )
 //            mehdiViewModel.insertItemToDb(
 //                PhPlusDB(
 //                    null,
@@ -327,7 +317,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 //                Configuration.ORIENTATION_PORTRAIT -> "application/mehdi.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/menu.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/test.json"
-//                Configuration.ORIENTATION_PORTRAIT -> "application/temp.json"
+                Configuration.ORIENTATION_PORTRAIT -> "application/temp.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/switch.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/patchTest.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/main.json"
