@@ -317,7 +317,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 //                Configuration.ORIENTATION_PORTRAIT -> "application/mehdi.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/menu.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/test.json"
-                Configuration.ORIENTATION_PORTRAIT -> "application/temp.json"
+//                Configuration.ORIENTATION_PORTRAIT -> "application/temp.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/switch.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/patchTest.json"
 //                Configuration.ORIENTATION_PORTRAIT -> "application/main.json"

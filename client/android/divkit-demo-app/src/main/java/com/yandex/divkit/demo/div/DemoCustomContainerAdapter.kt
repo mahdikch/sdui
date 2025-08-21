@@ -84,6 +84,8 @@ class DemoCustomContainerAdapter(
     private var systemForOffline: String = ""
     private var audioUrl: String = ""
     private var labelList: String = ""
+    private var labelId: String = ""
+    private var labelVariable: String = ""
     private lateinit var sharePref: SharePref
     private lateinit var adapter: VtReportAdapter
 
@@ -121,18 +123,8 @@ class DemoCustomContainerAdapter(
             innerPercent = evaluateCustomProp(div, "inner_percent", expressionResolver, 0)
             outerPercent = evaluateCustomProp(div, "outer_percent", expressionResolver, 0)
             centerPercent = evaluateCustomProp(div, "center_percent", expressionResolver, 0)
-            innerColor = evaluateCustomPropString(
-                div,
-                "inner_color",
-                expressionResolver,
-                "#ff7816"
-            ).toString()
-            outerColor = evaluateCustomPropString(
-                div,
-                "outer_color",
-                expressionResolver,
-                "#ff7816"
-            ).toString()
+            innerColor = evaluateCustomPropString(div, "inner_color", expressionResolver, "#ff7816").toString()
+            outerColor = evaluateCustomPropString(div, "outer_color", expressionResolver, "#ff7816").toString()
         }
         if (div.customType == "timer_button") {
             Log.d("DemoCustomContainer", "=== TIMER BUTTON DEBUG ===")
@@ -182,6 +174,8 @@ class DemoCustomContainerAdapter(
         }
         if (div.customType == "labelledSliderView") {
             labelList = evaluateCustomPropString(div, "label_list", expressionResolver, "")
+            labelId = evaluateCustomPropString(div, "label_id_list", expressionResolver, "")
+            labelVariable = evaluateCustomPropString(div, "variable_name", expressionResolver, "")
         }
         val customView = factories[div.customType]?.invoke(divView.context)
             ?: throw IllegalStateException("Can not create view for unsupported custom type ${div.customType}")
@@ -209,10 +203,7 @@ class DemoCustomContainerAdapter(
         defaultValue: Int
     ): Int {
         Log.d("DemoCustomContainer", "evaluateCustomProp called with key: '$key'")
-        Log.d(
-            "DemoCustomContainer",
-            "div.customProps type: ${div.customProps?.javaClass?.simpleName}"
-        )
+        Log.d("DemoCustomContainer", "div.customProps type: ${div.customProps?.javaClass?.simpleName}")
         Log.d("DemoCustomContainer", "div.customProps content: ${div.customProps}")
 
         // Safely get the raw value from customProps
@@ -244,17 +235,11 @@ class DemoCustomContainerAdapter(
             }
         } catch (e: Exception) {
             // If there's an exception accessing customProps, return default value
-            Log.e(
-                "DemoCustomContainer",
-                "Exception accessing customProps for key '$key': ${e.message}"
-            )
+            Log.e("DemoCustomContainer", "Exception accessing customProps for key '$key': ${e.message}")
             return defaultValue
         }
 
-        Log.d(
-            "DemoCustomContainer",
-            "Processing rawValue: $rawValue (type: ${rawValue?.javaClass?.simpleName})"
-        )
+        Log.d("DemoCustomContainer", "Processing rawValue: $rawValue (type: ${rawValue?.javaClass?.simpleName})")
 
         return when (rawValue) {
             is String -> {
@@ -269,10 +254,7 @@ class DemoCustomContainerAdapter(
                         // Create a proper expression string and evaluate it
                         val expressionString = "@{$variableName}"
                         val evaluable = com.yandex.div.evaluable.Evaluable.lazy(expressionString)
-                        Log.d(
-                            "DemoCustomContainer",
-                            "Created evaluable for expression: '$expressionString'"
-                        )
+                        Log.d("DemoCustomContainer", "Created evaluable for expression: '$expressionString'")
 
                         // Use the expression resolver to get the value
                         val result = expressionResolver.get<Any, Any>(
@@ -290,10 +272,7 @@ class DemoCustomContainerAdapter(
                             ParsingErrorLogger.LOG
                         )
 
-                        Log.d(
-                            "DemoCustomContainer",
-                            "Expression resolver result: $result (type: ${result?.javaClass?.simpleName})"
-                        )
+                        Log.d("DemoCustomContainer", "Expression resolver result: $result (type: ${result?.javaClass?.simpleName})")
 
                         val finalResult = when (result) {
                             is Number -> result.toInt()
@@ -303,10 +282,7 @@ class DemoCustomContainerAdapter(
                         Log.d("DemoCustomContainer", "Final result: $finalResult")
                         finalResult
                     } catch (e: Exception) {
-                        Log.e(
-                            "DemoCustomContainer",
-                            "Exception evaluating expression: ${e.message}"
-                        )
+                        Log.e("DemoCustomContainer", "Exception evaluating expression: ${e.message}")
                         // If evaluation fails, try to parse as integer directly
                         val fallbackResult = rawValue.toIntOrNull() ?: defaultValue
                         Log.d("DemoCustomContainer", "Fallback result: $fallbackResult")
@@ -314,18 +290,12 @@ class DemoCustomContainerAdapter(
                     }
                 } else {
                     // Check if this might be a direct variable name (not wrapped in @{})
-                    Log.d(
-                        "DemoCustomContainer",
-                        "rawValue is not a variable expression, checking if it's a direct variable name"
-                    )
+                    Log.d("DemoCustomContainer", "rawValue is not a variable expression, checking if it's a direct variable name")
                     try {
                         // Try to evaluate it as a direct variable name
                         val expressionString = "@{$rawValue}"
                         val evaluable = com.yandex.div.evaluable.Evaluable.lazy(expressionString)
-                        Log.d(
-                            "DemoCustomContainer",
-                            "Trying to evaluate as direct variable: '$expressionString'"
-                        )
+                        Log.d("DemoCustomContainer", "Trying to evaluate as direct variable: '$expressionString'")
 
                         val result = expressionResolver.get<Any, Any>(
                             key,
@@ -342,26 +312,17 @@ class DemoCustomContainerAdapter(
                             ParsingErrorLogger.LOG
                         )
 
-                        Log.d(
-                            "DemoCustomContainer",
-                            "Direct variable evaluation result: $result (type: ${result?.javaClass?.simpleName})"
-                        )
+                        Log.d("DemoCustomContainer", "Direct variable evaluation result: $result (type: ${result?.javaClass?.simpleName})")
 
                         val finalResult = when (result) {
                             is Number -> result.toInt()
                             is String -> result.toIntOrNull() ?: defaultValue
                             else -> defaultValue
                         }
-                        Log.d(
-                            "DemoCustomContainer",
-                            "Final result from direct variable: $finalResult"
-                        )
+                        Log.d("DemoCustomContainer", "Final result from direct variable: $finalResult")
                         finalResult
                     } catch (e: Exception) {
-                        Log.e(
-                            "DemoCustomContainer",
-                            "Exception evaluating direct variable: ${e.message}"
-                        )
+                        Log.e("DemoCustomContainer", "Exception evaluating direct variable: ${e.message}")
                         // If evaluation fails, try to parse as integer directly
                         val result = rawValue.toIntOrNull() ?: defaultValue
                         Log.d("DemoCustomContainer", "Parsed integer result: $result")
@@ -369,18 +330,13 @@ class DemoCustomContainerAdapter(
                     }
                 }
             }
-
             is Number -> {
                 val result = rawValue.toInt()
                 Log.d("DemoCustomContainer", "rawValue is Number, converted to int: $result")
                 result
             }
-
             else -> {
-                Log.d(
-                    "DemoCustomContainer",
-                    "rawValue is neither String nor Number, using default: $defaultValue"
-                )
+                Log.d("DemoCustomContainer", "rawValue is neither String nor Number, using default: $defaultValue")
                 defaultValue
             }
         }
@@ -459,7 +415,6 @@ class DemoCustomContainerAdapter(
                     rawValue
                 }
             }
-
             else -> defaultValue
         }
     }
@@ -528,17 +483,19 @@ class DemoCustomContainerAdapter(
 
     private fun Context.labelledSliderView(): View = LabelledSliderView(this).apply {
         val list = labelList.split(",").map { it.trim() }
+        val idList = labelId.split(",").map { it.trim() }
+
         setItems(list)
 //        setItems(listOf("کم", "متوسط", "زیاد", "خیلی زیاد"))
-        setOnItemSelectedListener { label, index ->
-            Toast.makeText(context, "انتخاب شده: $label", Toast.LENGTH_SHORT).show()
-        }
-    }
+            setOnItemSelectedListener { label, index ->
+                loadScreenListener?.setVariableToBase(labelVariable,idList[index])
+                Toast.makeText(context, "انتخاب شده: $label", Toast.LENGTH_SHORT).show()}
 
+    }
     private fun Context.audioPlayerView(): View = AudioPlayerView(this).apply {
 
 //   setAudioUrl("https://github.com/rafaelreis-hotmart/Audio-Sample-files/raw/master/sample.mp3")
-        setAudioUrl(audioUrl)
+   setAudioUrl(audioUrl)
     }
 
     private fun Context.doubleCircularProgressView(): View =
