@@ -70,6 +70,17 @@ class DemoCustomContainerAdapter(
     private var textSize: Int = 0
     private var counter: Int = 0
     private var timerButtonNext: String = ""
+    private var timerButtonPath: String = ""
+    private var timerButtonParam1: String = ""
+    private var timerButtonParam2: String = ""
+    private var timerButtonParam3: String = ""
+    private var timerButtonParam4: String = ""
+    private var timerButtonParam5: String = ""
+    private var timerButtonParam6: String = ""
+    private var timerButtonParam7: String = ""
+    private var timerButtonParam8: String = ""
+    private var timerButtonParam9: String = ""
+    private var timerButtonParam10: String = ""
     private var systemForOffline: String = ""
     private var audioUrl: String = ""
     private var labelList: String = ""
@@ -84,6 +95,7 @@ class DemoCustomContainerAdapter(
         "circular_progress" to { context: Context -> context.circularProgress() },
         "double_circular_progressView" to { context: Context -> context.doubleCircularProgressView() },
         "timer_button" to { context: Context -> context.timerButton() },
+        "timer_button_call_service" to { context: Context -> context.timerButtonCallService() },
         "audioPlayerView" to { context: Context -> context.audioPlayerView() },
         "labelledSliderView" to { context: Context -> context.labelledSliderView() },
 //        "offline_vt_reports_container" to { context: Context -> context.createOfflineVtReportsContainer() },
@@ -109,8 +121,18 @@ class DemoCustomContainerAdapter(
             innerPercent = evaluateCustomProp(div, "inner_percent", expressionResolver, 0)
             outerPercent = evaluateCustomProp(div, "outer_percent", expressionResolver, 0)
             centerPercent = evaluateCustomProp(div, "center_percent", expressionResolver, 0)
-            innerColor = evaluateCustomPropString(div, "inner_color", expressionResolver, "#ff7816").toString()
-            outerColor = evaluateCustomPropString(div, "outer_color", expressionResolver, "#ff7816").toString()
+            innerColor = evaluateCustomPropString(
+                div,
+                "inner_color",
+                expressionResolver,
+                "#ff7816"
+            ).toString()
+            outerColor = evaluateCustomPropString(
+                div,
+                "outer_color",
+                expressionResolver,
+                "#ff7816"
+            ).toString()
         }
         if (div.customType == "timer_button") {
             Log.d("DemoCustomContainer", "=== TIMER BUTTON DEBUG ===")
@@ -121,7 +143,35 @@ class DemoCustomContainerAdapter(
             Log.d("DemoCustomContainer", "evaluateCustomProp result for 'seconds': $seconds")
 
             timerButtonNext = evaluateCustomPropString(div, "next_page", expressionResolver, "")
-            Log.d("DemoCustomContainer", "evaluateCustomPropString result for 'next_page': $timerButtonNext")
+            Log.d(
+                "DemoCustomContainer",
+                "evaluateCustomPropString result for 'next_page': $timerButtonNext"
+            )
+            Log.d("DemoCustomContainer", "=== END TIMER BUTTON DEBUG ===")
+        }
+        if (div.customType == "timer_button_call_service") {
+            Log.d("DemoCustomContainer", "=== TIMER BUTTON DEBUG ===")
+            Log.d("DemoCustomContainer", "div.customProps: ${div.customProps}")
+            Log.d("DemoCustomContainer", "div.customType: ${div.customType}")
+
+            seconds = evaluateCustomProp(div, "seconds", expressionResolver, 0)
+            Log.d("DemoCustomContainer", "evaluateCustomProp result for 'seconds': $seconds")
+
+            timerButtonPath = evaluateCustomPropString(div, "path", expressionResolver, "")
+            timerButtonParam1 = evaluateCustomPropString(div, "param1", expressionResolver, "")
+            timerButtonParam2 = evaluateCustomPropString(div, "param2", expressionResolver, "")
+            timerButtonParam3 = evaluateCustomPropString(div, "param3", expressionResolver, "")
+            timerButtonParam4 = evaluateCustomPropString(div, "param4", expressionResolver, "")
+            timerButtonParam5 = evaluateCustomPropString(div, "param5", expressionResolver, "")
+            timerButtonParam6 = evaluateCustomPropString(div, "param6", expressionResolver, "")
+            timerButtonParam7 = evaluateCustomPropString(div, "param7", expressionResolver, "")
+            timerButtonParam8 = evaluateCustomPropString(div, "param8", expressionResolver, "")
+            timerButtonParam9 = evaluateCustomPropString(div, "param9", expressionResolver, "")
+            timerButtonParam10 = evaluateCustomPropString(div, "param10", expressionResolver, "")
+            Log.d(
+                "DemoCustomContainer",
+                "evaluateCustomPropString result for 'next_page': $timerButtonNext"
+            )
             Log.d("DemoCustomContainer", "=== END TIMER BUTTON DEBUG ===")
         }
         if (div.customType == "offline_list_container") {
@@ -159,7 +209,10 @@ class DemoCustomContainerAdapter(
         defaultValue: Int
     ): Int {
         Log.d("DemoCustomContainer", "evaluateCustomProp called with key: '$key'")
-        Log.d("DemoCustomContainer", "div.customProps type: ${div.customProps?.javaClass?.simpleName}")
+        Log.d(
+            "DemoCustomContainer",
+            "div.customProps type: ${div.customProps?.javaClass?.simpleName}"
+        )
         Log.d("DemoCustomContainer", "div.customProps content: ${div.customProps}")
 
         // Safely get the raw value from customProps
@@ -191,11 +244,17 @@ class DemoCustomContainerAdapter(
             }
         } catch (e: Exception) {
             // If there's an exception accessing customProps, return default value
-            Log.e("DemoCustomContainer", "Exception accessing customProps for key '$key': ${e.message}")
+            Log.e(
+                "DemoCustomContainer",
+                "Exception accessing customProps for key '$key': ${e.message}"
+            )
             return defaultValue
         }
 
-        Log.d("DemoCustomContainer", "Processing rawValue: $rawValue (type: ${rawValue?.javaClass?.simpleName})")
+        Log.d(
+            "DemoCustomContainer",
+            "Processing rawValue: $rawValue (type: ${rawValue?.javaClass?.simpleName})"
+        )
 
         return when (rawValue) {
             is String -> {
@@ -210,7 +269,10 @@ class DemoCustomContainerAdapter(
                         // Create a proper expression string and evaluate it
                         val expressionString = "@{$variableName}"
                         val evaluable = com.yandex.div.evaluable.Evaluable.lazy(expressionString)
-                        Log.d("DemoCustomContainer", "Created evaluable for expression: '$expressionString'")
+                        Log.d(
+                            "DemoCustomContainer",
+                            "Created evaluable for expression: '$expressionString'"
+                        )
 
                         // Use the expression resolver to get the value
                         val result = expressionResolver.get<Any, Any>(
@@ -228,7 +290,10 @@ class DemoCustomContainerAdapter(
                             ParsingErrorLogger.LOG
                         )
 
-                        Log.d("DemoCustomContainer", "Expression resolver result: $result (type: ${result?.javaClass?.simpleName})")
+                        Log.d(
+                            "DemoCustomContainer",
+                            "Expression resolver result: $result (type: ${result?.javaClass?.simpleName})"
+                        )
 
                         val finalResult = when (result) {
                             is Number -> result.toInt()
@@ -238,7 +303,10 @@ class DemoCustomContainerAdapter(
                         Log.d("DemoCustomContainer", "Final result: $finalResult")
                         finalResult
                     } catch (e: Exception) {
-                        Log.e("DemoCustomContainer", "Exception evaluating expression: ${e.message}")
+                        Log.e(
+                            "DemoCustomContainer",
+                            "Exception evaluating expression: ${e.message}"
+                        )
                         // If evaluation fails, try to parse as integer directly
                         val fallbackResult = rawValue.toIntOrNull() ?: defaultValue
                         Log.d("DemoCustomContainer", "Fallback result: $fallbackResult")
@@ -246,12 +314,18 @@ class DemoCustomContainerAdapter(
                     }
                 } else {
                     // Check if this might be a direct variable name (not wrapped in @{})
-                    Log.d("DemoCustomContainer", "rawValue is not a variable expression, checking if it's a direct variable name")
+                    Log.d(
+                        "DemoCustomContainer",
+                        "rawValue is not a variable expression, checking if it's a direct variable name"
+                    )
                     try {
                         // Try to evaluate it as a direct variable name
                         val expressionString = "@{$rawValue}"
                         val evaluable = com.yandex.div.evaluable.Evaluable.lazy(expressionString)
-                        Log.d("DemoCustomContainer", "Trying to evaluate as direct variable: '$expressionString'")
+                        Log.d(
+                            "DemoCustomContainer",
+                            "Trying to evaluate as direct variable: '$expressionString'"
+                        )
 
                         val result = expressionResolver.get<Any, Any>(
                             key,
@@ -268,17 +342,26 @@ class DemoCustomContainerAdapter(
                             ParsingErrorLogger.LOG
                         )
 
-                        Log.d("DemoCustomContainer", "Direct variable evaluation result: $result (type: ${result?.javaClass?.simpleName})")
+                        Log.d(
+                            "DemoCustomContainer",
+                            "Direct variable evaluation result: $result (type: ${result?.javaClass?.simpleName})"
+                        )
 
                         val finalResult = when (result) {
                             is Number -> result.toInt()
                             is String -> result.toIntOrNull() ?: defaultValue
                             else -> defaultValue
                         }
-                        Log.d("DemoCustomContainer", "Final result from direct variable: $finalResult")
+                        Log.d(
+                            "DemoCustomContainer",
+                            "Final result from direct variable: $finalResult"
+                        )
                         finalResult
                     } catch (e: Exception) {
-                        Log.e("DemoCustomContainer", "Exception evaluating direct variable: ${e.message}")
+                        Log.e(
+                            "DemoCustomContainer",
+                            "Exception evaluating direct variable: ${e.message}"
+                        )
                         // If evaluation fails, try to parse as integer directly
                         val result = rawValue.toIntOrNull() ?: defaultValue
                         Log.d("DemoCustomContainer", "Parsed integer result: $result")
@@ -286,13 +369,18 @@ class DemoCustomContainerAdapter(
                     }
                 }
             }
+
             is Number -> {
                 val result = rawValue.toInt()
                 Log.d("DemoCustomContainer", "rawValue is Number, converted to int: $result")
                 result
             }
+
             else -> {
-                Log.d("DemoCustomContainer", "rawValue is neither String nor Number, using default: $defaultValue")
+                Log.d(
+                    "DemoCustomContainer",
+                    "rawValue is neither String nor Number, using default: $defaultValue"
+                )
                 defaultValue
             }
         }
@@ -371,6 +459,7 @@ class DemoCustomContainerAdapter(
                     rawValue
                 }
             }
+
             else -> defaultValue
         }
     }
@@ -425,17 +514,31 @@ class DemoCustomContainerAdapter(
             loadScreenListener?.onLoad(timerButtonNext)
         }
     }
+
+    private fun Context.timerButtonCallService(): View = TimerButton(this, seconds = seconds).apply {
+            setOnClickListener {
+                val map: HashMap<String, String> = HashMap()
+                map["path"] = timerButtonPath
+                map[timerButtonParam1] = "empty"
+                map[timerButtonParam2] = "empty"
+                map[timerButtonParam3] = "empty"
+                loadScreenListener?.onRequest(map)
+            }
+        }
+
     private fun Context.labelledSliderView(): View = LabelledSliderView(this).apply {
         val list = labelList.split(",").map { it.trim() }
         setItems(list)
 //        setItems(listOf("کم", "متوسط", "زیاد", "خیلی زیاد"))
-            setOnItemSelectedListener { label, index ->
-                Toast.makeText(context, "انتخاب شده: $label", Toast.LENGTH_SHORT).show()}
+        setOnItemSelectedListener { label, index ->
+            Toast.makeText(context, "انتخاب شده: $label", Toast.LENGTH_SHORT).show()
+        }
     }
+
     private fun Context.audioPlayerView(): View = AudioPlayerView(this).apply {
 
 //   setAudioUrl("https://github.com/rafaelreis-hotmart/Audio-Sample-files/raw/master/sample.mp3")
-   setAudioUrl(audioUrl)
+        setAudioUrl(audioUrl)
     }
 
     private fun Context.doubleCircularProgressView(): View =
