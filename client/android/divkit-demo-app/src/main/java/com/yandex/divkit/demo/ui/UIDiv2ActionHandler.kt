@@ -21,6 +21,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.node.ObjectNode
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_CLOCK
@@ -67,6 +71,7 @@ import java.io.Serializable
 import java.util.Calendar
 import java.util.Date
 import java.util.UUID
+import kotlin.math.log
 
 
 private const val AUTHORITY_OPEN_SCREEN = "open_screen"
@@ -85,6 +90,7 @@ private const val AUTHORITY_SET_IMEI = "set_imei"
 private const val AUTHORITY_SET_IP = "set_ip"
 private const val AUTHORITY_SET_DEVICE_MODEL = "set_device_model"
 private const val AUTHORITY_SET_VARIABLE_TO_DB = "set_variable_to_db"
+private const val AUTHORITY_SET_VARIABLE_TO_DB_PLUS_ONE = "set_variable_to_db_plus_one"
 private const val AUTHORITY_CHANGE_COLOR = "change_color"
 private const val AUTHORITY_SET_CAPTCHA = "refresh_captcha"
 private const val AUTHORITY_CALL_SERVICE = "call_service"
@@ -103,6 +109,7 @@ private const val AUTHORITY_SET_VARIABLE_TO_BASE = "set_variable_to_base"
 private const val AUTHORITY_CHECK_VERSION = "check_version"
 private const val AUTHORITY_SET_OBJECT_TO_DB = "set_object_to_db"
 private const val AUTHORITY_SET_PAGE_TO_DB = "set_page_to_db"
+private const val AUTHORITY_SET_PAGE_WITH_CHANGES_TO_DB = "set_page_with_changes_to_db"
 private const val AUTHORITY_GET_CAMERA_PERMISSION = "get_camera_permission"
 private const val AUTHORITY_GET_LOCATION_PERMISSION = "get_location_permission"
 private const val AUTHORITY_GET_WRITE_PERMISSION = "get_write_permission"
@@ -260,7 +267,7 @@ class UIDiv2ActionHandler(
         } else if (uri.authority == AUTHORITY_LOAD_SCREEN) {
 //            ScreenToLoad.value.value = uri.getQueryParameter(PARAM_SCREEN)
             uri.getQueryParameter(PARAM_SCREEN)?.let {
-                loadScreenListener.onLoad(it)
+                    loadScreenListener.onLoad(it)
             }
 
 //            startActivityForLoad(
@@ -271,15 +278,15 @@ class UIDiv2ActionHandler(
             val containerId = uri.getQueryParameter(PARAM_CONTAINERID)
             val templateName = uri.getQueryParameter(PARAM_TEMPLATE_NAME)
             val screenName = uri.getQueryParameter(PARAM_PATCH_NAME)
-            
+
             Log.d("UIDiv2ActionHandler", "Generate screen parameters:")
             Log.d("UIDiv2ActionHandler", "containerId: $containerId")
             Log.d("UIDiv2ActionHandler", "templateName: $templateName")
             Log.d("UIDiv2ActionHandler", "screenName: $screenName")
-            
+
 //            val dataJsonName = uri.getQueryParameter(PARAM_DATA_JSON)
 //            val dataJson = mehdiViewModel?.getValueByKey(dataJsonName.toString())?.value
-            val dataJson ="[\n" +
+            val dataJson = "[\n" +
                     "  {\n" +
                     "    \"name\": \"Alice\",\n" +
                     "    \"family\": \"Johnson\",\n" +
@@ -334,27 +341,27 @@ class UIDiv2ActionHandler(
 
             // Check if all required parameters are present
             if (containerId != null && templateName != null && screenName != null && dataJson != null) {
-                                val screenGenerator = ScreenGenerator(context,mehdiViewModel)
-                
+                val screenGenerator = ScreenGenerator(context, mehdiViewModel)
+
                 // Test template replacement logic
                 screenGenerator.testTemplateReplacement()
-                
+
                 // Test database fetch
                 screenGenerator.testDatabaseFetch(screenName)
-                
+
                 // Save test.json to database for testing
                 screenGenerator.saveTestJsonToDatabase()
-                
+
                 // Run comprehensive test
                 screenGenerator.testFullScreenGeneration()
-                
+
                 val generatedScreen = screenGenerator.generateScreen(
                     containerId = containerId,
                     templateName = templateName,
                     screenName = screenName,
                     dataJson = dataJson
                 )
-                
+
                 // Log the result
                 if (generatedScreen.isNotEmpty()) {
                     Log.d("UIDiv2ActionHandler", "Screen generated successfully: $screenName")
@@ -376,17 +383,17 @@ class UIDiv2ActionHandler(
             Log.d("UIDiv2ActionHandler", "URI host: ${uri.host}")
             Log.d("UIDiv2ActionHandler", "URI path: ${uri.path}")
             Log.d("UIDiv2ActionHandler", "URI query: ${uri.query}")
-            
+
             val containerId = uri.getQueryParameter("containerId")
             val templateName = uri.getQueryParameter("templateName")
             val patchName = uri.getQueryParameter("patchName")
-            
+
             Log.d("UIDiv2ActionHandler", "Extracted parameters:")
             Log.d("UIDiv2ActionHandler", "  containerId: $containerId")
             Log.d("UIDiv2ActionHandler", "  templateName: $templateName")
             Log.d("UIDiv2ActionHandler", "  patchName: $patchName")
 
-            val dataJson ="[\n" +
+            val dataJson = "[\n" +
                     "  {\n" +
                     "    \"name\": \"Alice\",\n" +
                     "    \"family\": \"Johnson\",\n" +
@@ -443,16 +450,19 @@ class UIDiv2ActionHandler(
 
             // Check if all required parameters are present
             if (containerId != null && templateName != null && patchName != null && dataJson != null) {
-                Log.d("UIDiv2ActionHandler", "All required parameters present, creating PatchGenerator")
+                Log.d(
+                    "UIDiv2ActionHandler",
+                    "All required parameters present, creating PatchGenerator"
+                )
                 Log.d("UIDiv2ActionHandler", "mehdiViewModel: $mehdiViewModel")
-                
+
                 val patchGenerator = PatchGenerator(mehdiViewModel)
                 Log.d("UIDiv2ActionHandler", "PatchGenerator created successfully")
-                
+
                 // Test patch generation
                 Log.d("UIDiv2ActionHandler", "Running test patch generation...")
                 patchGenerator.testPatchGeneration()
-                
+
                 Log.d("UIDiv2ActionHandler", "Generating actual patch...")
                 val success = patchGenerator.generatePatch(
                     containerId = containerId,
@@ -460,50 +470,76 @@ class UIDiv2ActionHandler(
                     patchName = patchName,
                     dataJson = dataJson
                 )
-                
+
                 // Log the result
                 if (success) {
                     Log.d("UIDiv2ActionHandler", "=== PATCH GENERATION SUCCESS ===")
                     Log.d("UIDiv2ActionHandler", "Patch generated successfully: $patchName")
-                    
+
                     // Fetch the generated patch from database
                     Log.d("UIDiv2ActionHandler", "Fetching patch from database...")
                     val patchJson = patchGenerator.fetchPatchFromDatabase(patchName)
-                    
+
                     if (patchJson != null) {
                         Log.d("UIDiv2ActionHandler", "Patch fetched successfully: $patchJson")
                         Log.d("UIDiv2ActionHandler", "Applying patch to view...")
                         Log.d("UIDiv2ActionHandler", "loadScreenListener: $loadScreenListener")
-                        
+
                         // Apply the patch
                         try {
                             Log.d("UIDiv2ActionHandler", "About to call onApplyOnbase with:")
                             Log.d("UIDiv2ActionHandler", "  patchJson: $patchJson")
                             Log.d("UIDiv2ActionHandler", "  patchName: $patchName")
-                            Log.d("UIDiv2ActionHandler", "  loadScreenListener: $loadScreenListener")
-                            
+                            Log.d(
+                                "UIDiv2ActionHandler",
+                                "  loadScreenListener: $loadScreenListener"
+                            )
+
                             loadScreenListener.onApplyOnbase(patchJson, patchName, "تست", "تست")
-                            Log.d("UIDiv2ActionHandler", "Patch applied successfully via onApplyOnbase")
+                            Log.d(
+                                "UIDiv2ActionHandler",
+                                "Patch applied successfully via onApplyOnbase"
+                            )
                         } catch (e: Exception) {
-                            Log.e("UIDiv2ActionHandler", "Error applying patch via onApplyOnbase", e)
+                            Log.e(
+                                "UIDiv2ActionHandler",
+                                "Error applying patch via onApplyOnbase",
+                                e
+                            )
                             Log.e("UIDiv2ActionHandler", "Exception details: ${e.message}")
                             e.printStackTrace()
                             try {
                                 // Try alternative method if available
-                                Log.d("UIDiv2ActionHandler", "Trying alternative patch application method...")
+                                Log.d(
+                                    "UIDiv2ActionHandler",
+                                    "Trying alternative patch application method..."
+                                )
                                 // You might need to implement this method in your LoadScreenListener
                                 Log.d("UIDiv2ActionHandler", "Alternative method not available")
                             } catch (e2: Exception) {
-                                Log.e("UIDiv2ActionHandler", "Error with alternative patch application", e2)
-                                Log.e("UIDiv2ActionHandler", "Second exception details: ${e2.message}")
+                                Log.e(
+                                    "UIDiv2ActionHandler",
+                                    "Error with alternative patch application",
+                                    e2
+                                )
+                                Log.e(
+                                    "UIDiv2ActionHandler",
+                                    "Second exception details: ${e2.message}"
+                                )
                                 e2.printStackTrace()
                             }
                         }
-                        
+
                         Log.d("UIDiv2ActionHandler", "Patch application process completed")
                     } else {
-                        Log.e("UIDiv2ActionHandler", "Failed to fetch patch from database: $patchName")
-                        Log.e("UIDiv2ActionHandler", "This might indicate a database issue or the patch wasn't saved properly")
+                        Log.e(
+                            "UIDiv2ActionHandler",
+                            "Failed to fetch patch from database: $patchName"
+                        )
+                        Log.e(
+                            "UIDiv2ActionHandler",
+                            "This might indicate a database issue or the patch wasn't saved properly"
+                        )
                     }
                 } else {
                     Log.e("UIDiv2ActionHandler", "=== PATCH GENERATION FAILED ===")
@@ -516,7 +552,10 @@ class UIDiv2ActionHandler(
                 Log.e("UIDiv2ActionHandler", "containerId: $containerId")
                 Log.e("UIDiv2ActionHandler", "templateName: $templateName")
                 Log.e("UIDiv2ActionHandler", "patchName: $patchName")
-                Log.e("UIDiv2ActionHandler", "dataJson: ${if (dataJson != null) "present" else "null"}")
+                Log.e(
+                    "UIDiv2ActionHandler",
+                    "dataJson: ${if (dataJson != null) "present" else "null"}"
+                )
                 Log.e("UIDiv2ActionHandler", "All parameters must be present in the URI query")
             }
 
@@ -634,25 +673,72 @@ class UIDiv2ActionHandler(
 
         } else if (uri.authority == AUTHORITY_SET_PAGE_TO_DB) {
             val key = uri.getQueryParameter(PARAM_SET_PAGE_TO_DB)
+//            val div2View = if (view is Div2View) view as Div2View? else null
+//            val divData = div2View?.divData
+//            Log.d("page_json",divData?.writeToJSON().toString())
             if (key != null) {
+//                mehdiViewModel?.insertItemToDb(PhPlusDB(null, key, divData?.writeToJSON().toString()))
+
                 loadScreenListener.setPageToDB(key)
             }
-//            val parameterNames = uri.queryParameterNames
-//            val map: MutableMap<String, String> = HashMap()
-//            var sysName = ""
-//            for (parameterName in parameterNames) {
-//                map[parameterName] = uri.getQueryParameter(parameterName).toString()
-//                if (parameterName == "next")
-//                    sysName = uri.getQueryParameter(parameterName).toString()
-//            }
-//
-//            var username = mehdiViewModel?.getValueByKey("userName")?.value
-//            val pdf = PersianDateFormat("Y/m/d-H:i:s")
-//            val currentDate = pdf.format(PersianDate())
-//            map.put("offline_register_date", currentDate)
-//            val json = Gson().toJson(map).toString()
-//
-//            mehdiViewModel?.insertItemToDb(PhPlusDB(null, "$username/$sysName/$currentDate", json))
+
+
+        } else if (uri.authority == AUTHORITY_SET_PAGE_WITH_CHANGES_TO_DB) {
+            Log.d("UIDiv2ActionHandler", "=== AUTHORITY_SET_PAGE_WITH_CHANGES_TO_DB action triggered ===")
+            
+            val key = uri.getQueryParameter(PARAM_SET_PAGE_TO_DB)
+            Log.d("UIDiv2ActionHandler", "Key parameter: $key")
+            
+            val mapper: ObjectMapper = jacksonObjectMapper()
+
+            val dbPageValue = key?.let { mehdiViewModel?.getValueByKey(it)?.value }
+            Log.d("UIDiv2ActionHandler", "DB page value exists: ${dbPageValue != null}")
+            Log.d("UIDiv2ActionHandler", "DB page value (first 200 chars): ${dbPageValue?.take(200)}...")
+            
+            val dbPage = mapper.readTree(dbPageValue)
+            val div2View = if (view is Div2View) view as Div2View? else null
+            Log.d("UIDiv2ActionHandler", "Div2View exists: ${div2View != null}")
+            
+            // Using hardcoded current page for testing
+            val currentPage = mapper.readTree(div2View?.divData?.writeToJSON().toString())
+            mehdiViewModel?.insertItemToDb(PhPlusDB(null, "mamad", currentPage.toString()))
+
+            Log.d("UIDiv2ActionHandler", "Current page loaded from hardcoded JSON")
+
+            // Replace card content in dbPage with currentPage card content
+            if (dbPage != null && currentPage != null) {
+                Log.d("UIDiv2ActionHandler", "Both dbPage and currentPage are not null - proceeding with replacement")
+                
+                val currentCard = currentPage["states"]
+                val currentVariable = currentPage["variables"]
+                Log.d("UIDiv2ActionHandler", "Current states found: ${currentCard != null}")
+                Log.d("UIDiv2ActionHandler", "Current variables found: ${currentVariable != null}")
+                
+                if (currentCard != null) {
+                    Log.d("UIDiv2ActionHandler", "Replacing states and variables in dbPage")
+                    Log.d("UIDiv2ActionHandler", "Original dbPage structure: card=${dbPage["card"] != null}, states=${dbPage["states"] != null}")
+                    
+                    // Replace the entire card content in dbPage with currentPage card
+                    val modifiedDbPage = dbPage.deepCopy() as ObjectNode
+                    modifiedDbPage.set<JsonNode>("states", currentCard.deepCopy())
+                    modifiedDbPage.set<JsonNode>("variables", currentVariable.deepCopy())
+                    
+                    val modifiedDbPageString = modifiedDbPage.toString()
+                    Log.d("UIDiv2ActionHandler", "Modified DB page size: ${modifiedDbPageString.length} characters")
+                    Log.d("UIDiv2ActionHandler", "Modified DB page (first 300 chars): ${modifiedDbPageString.take(300)}...")
+
+                    mehdiViewModel?.insertItemToDb(PhPlusDB(null, key, modifiedDbPageString))
+                    Log.d("UIDiv2ActionHandler", "Successfully saved modified page to database with key: $key")
+                } else {
+                    Log.w("UIDiv2ActionHandler", "Current states is null - cannot proceed with replacement")
+                }
+            } else {
+                Log.w("UIDiv2ActionHandler", "dbPage is null: ${dbPage == null}, currentPage is null: ${currentPage == null}")
+            }
+            
+            Log.d("UIDiv2ActionHandler", "=== AUTHORITY_SET_PAGE_WITH_CHANGES_TO_DB action completed ===")
+
+
 
         } else if (uri.authority == AUTHORITY_SHOW_TIME_PICKER) {
             val div2View: Div2View = view as Div2View
@@ -805,7 +891,6 @@ class UIDiv2ActionHandler(
 
 
             val div2View = if (view is Div2View) view as Div2View? else null
-
             if (div2View == null) {
                 Assert.fail(
                     "Variable '" + name + "' mutation failed! View(" +
@@ -897,6 +982,22 @@ class UIDiv2ActionHandler(
             }
 
             if (key != null) {
+                value?.let { PhPlusDB(null, key, it) }?.let { mehdiViewModel?.insertItemToDb(it) }
+            }
+            return true
+        } else if (uri.authority == AUTHORITY_SET_VARIABLE_TO_DB_PLUS_ONE) {
+            val key = uri.getQueryParameter(PARAM_SET_VARIABLE_TO_DB_KEY)
+            var value = uri.getQueryParameter(PARAM_SET_VARIABLE_TO_DB_value)
+            value = (value?.toInt()?.plus(1)).toString()
+            val div2View = if (view is Div2View) view as Div2View? else null
+
+            if (key == null) {
+                Assert.fail(PARAM_VARIABLE_NAME + " param is required")
+                return false
+            }
+
+            if (key != null) {
+                div2View?.setVariable(key, value)
                 value?.let { PhPlusDB(null, key, it) }?.let { mehdiViewModel?.insertItemToDb(it) }
             }
             return true

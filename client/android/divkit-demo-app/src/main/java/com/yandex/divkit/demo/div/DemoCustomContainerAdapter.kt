@@ -477,6 +477,13 @@ class DemoCustomContainerAdapter(
                 map[timerButtonParam1] = "empty"
                 map[timerButtonParam2] = "empty"
                 map[timerButtonParam3] = "empty"
+                map[timerButtonParam4] = "empty"
+                map[timerButtonParam5] = "empty"
+                map[timerButtonParam6] = "empty"
+                map[timerButtonParam7] = "empty"
+                map[timerButtonParam8] = "empty"
+                map[timerButtonParam9] = "empty"
+                map[timerButtonParam10] = "empty"
                 loadScreenListener?.onRequest(map)
             }
         }

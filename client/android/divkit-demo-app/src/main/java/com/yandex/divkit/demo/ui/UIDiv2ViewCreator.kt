@@ -75,6 +75,7 @@ class UIDiv2ViewCreator(private val context: Context, private val lo:LifecycleOw
         logDelegate: ScenarioLogDelegate
     ): Div2View {
 //        val divJson = assetReader.read(scenarioPath)
+
         val transitionScheduler = Div2Activity.DivParentTransitionScheduler(parent)
         val divConfiguration =
             divConfiguration(activity, logDelegate,mehdiViewModel,lo,context as LoadScreenListener)
