@@ -92,9 +92,6 @@ class DemoCustomContainerAdapter(
     private var multiIds: String = ""
     private var multiVariableName: String = ""
     private var multiSelectionLimit: Int = 0
-    private var inputVariableName: String = ""
-    private var inputHint: String = ""
-    private var inputType: String = ""
     private lateinit var sharePref: SharePref
     private lateinit var adapter: VtReportAdapter
 
@@ -110,12 +107,11 @@ class DemoCustomContainerAdapter(
         "audioPlayerView" to { context: Context -> context.audioPlayerView() },
         "labelledSliderView" to { context: Context -> context.labelledSliderView() },
         "multi_selection" to { context: Context -> context.createMultiSelection() },
-        "custom_input" to { context: Context -> context.createCustomInput() },
 //        "offline_vt_reports_container" to { context: Context -> context.createOfflineVtReportsContainer() },
         "offline_list_container" to { context: Context -> context.createOfflineListContainer() }
     )
 
-    override fun isCustomTypeSupported(type: String): Boolean = type in factories.keys
+    override fun isCustomTypeSupported(type: String): Boolean = type in factories.keys || type == "custom_input"
     override fun release(view: View, div: DivCustom) = Unit
 
     override fun createView(
@@ -194,13 +190,16 @@ class DemoCustomContainerAdapter(
             multiVariableName = evaluateCustomPropString(div, "variable_name", expressionResolver, "")
             multiSelectionLimit = evaluateCustomProp(div, "selection_limit", expressionResolver, 0)
         }
-        if (div.customType == "custom_input") {
-            inputVariableName = evaluateCustomPropString(div, "variable_name", expressionResolver, "")
-            inputHint = evaluateCustomPropString(div, "hint", expressionResolver, "")
-            inputType = evaluateCustomPropString(div, "input_type", expressionResolver, "text")
+        val customView = if (div.customType == "custom_input") {
+            // Handle custom_input specially to ensure unique variable names
+            val currentInputVariableName = evaluateCustomPropString(div, "variable_name", expressionResolver, "")
+            val currentInputHint = evaluateCustomPropString(div, "hint", expressionResolver, "")
+            val currentInputType = evaluateCustomPropString(div, "input_type", expressionResolver, "text")
+            divView.context.createCustomInput(currentInputVariableName, currentInputHint, currentInputType)
+        } else {
+            factories[div.customType]?.invoke(divView.context)
+                ?: throw IllegalStateException("Can not create view for unsupported custom type ${div.customType}")
         }
-        val customView = factories[div.customType]?.invoke(divView.context)
-            ?: throw IllegalStateException("Can not create view for unsupported custom type ${div.customType}")
         if (div.customType == "new_custom_container_1" && div.items != null) {
             div.items!!.forEach {
                 val childDivView = getDivChildFactory(divView).createChildView(
@@ -558,9 +557,13 @@ class DemoCustomContainerAdapter(
         }
     }
 
-    private fun Context.createCustomInput(): View = CustomInputView(this).apply {
-        if (inputHint.isNotEmpty()) {
-            setHint(inputHint)
+    private fun Context.createCustomInput(
+        variableName: String,
+        hint: String, 
+        inputType: String
+    ): View = CustomInputView(this).apply {
+        if (hint.isNotEmpty()) {
+            setHint(hint)
         }
         
         if (inputType.isNotEmpty()) {
@@ -568,8 +571,8 @@ class DemoCustomContainerAdapter(
         }
         
         setOnTextChangedListener { text ->
-            if (inputVariableName.isNotEmpty()) {
-                loadScreenListener?.setVariableToBase(inputVariableName, text)
+            if (variableName.isNotEmpty()) {
+                loadScreenListener?.setVariableToBase(variableName, text)
             }
         }
     }
