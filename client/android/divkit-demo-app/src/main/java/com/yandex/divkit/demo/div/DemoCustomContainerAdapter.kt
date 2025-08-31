@@ -381,38 +381,58 @@ class DemoCustomContainerAdapter(
 
         return when (rawValue) {
             is String -> {
-                if (rawValue.startsWith("@{") && rawValue.endsWith("}")) {
+                val stringValue = rawValue as String
+                // Check if string contains variable expressions @{...}
+                if (stringValue.contains("@{")) {
                     try {
-                        // Extract the variable name from @{variable_name}
-                        val variableName = rawValue.substring(2, rawValue.length - 1)
-
-                        // Create a proper expression string and evaluate it
-                        val expressionString = "@{$variableName}"
-                        val evaluable = com.yandex.div.evaluable.Evaluable.lazy(expressionString)
-
-                        // Use the expression resolver to get the value
-                        val result = expressionResolver.get<Any, String>(
-                            key,
-                            expressionString,
-                            evaluable,
-                            null,
-                            object : ValueValidator<String> {
-                                override fun isValid(value: String): Boolean = true
-                            },
-                            object : TypeHelper<String> {
-                                override fun isTypeValid(value: Any): Boolean = value is String
-                                override val typeDefault: String = defaultValue
-                            },
-                            ParsingErrorLogger.LOG
-                        )
-
-                        result ?: defaultValue
+                        // Use regex to find all @{variable_name} patterns
+                        val variablePattern = Regex("@\\{([^}]+)\\}")
+                        var result = stringValue
+                        
+                        // Find all matches and replace them
+                        variablePattern.findAll(stringValue).forEach { matchResult ->
+                            val fullMatch = matchResult.value // e.g., "@{my_variable}"
+                            val variableName = matchResult.groupValues[1] // e.g., "my_variable"
+                            
+                            try {
+                                // Create expression and evaluate it
+                                val expressionString = "@{$variableName}"
+                                val evaluable = com.yandex.div.evaluable.Evaluable.lazy(expressionString)
+                                
+                                // Get the variable value (using same pattern as original code)
+                                val variableValue = expressionResolver.get<Any, Any>(
+                                    "${key}_${variableName}",
+                                    expressionString,
+                                    evaluable,
+                                    null,
+                                    object : ValueValidator<Any> {
+                                        override fun isValid(value: Any): Boolean = true
+                                    },
+                                    object : TypeHelper<Any> {
+                                        override fun isTypeValid(value: Any): Boolean = true
+                                        override val typeDefault: Any = ""
+                                    },
+                                    ParsingErrorLogger.LOG
+                                )
+                                
+                                // Convert to string (handle any type like the original code)
+                                val evaluatedStringValue = variableValue?.toString() ?: ""
+                                result = result.replace(fullMatch, evaluatedStringValue)
+                                
+                            } catch (e: Exception) {
+                                // If individual variable evaluation fails, keep the original expression
+                                // This allows partial interpolation to work
+                            }
+                        }
+                        
+                        result
                     } catch (e: Exception) {
-                        // If evaluation fails, return the raw value
-                        rawValue
+                        // If overall evaluation fails, return the raw value
+                        stringValue
                     }
                 } else {
-                    rawValue
+                    // No variable expressions, return as-is
+                    stringValue
                 }
             }
             else -> defaultValue
@@ -495,6 +515,7 @@ class DemoCustomContainerAdapter(
         setItems(list)
 //        setItems(listOf("کم", "متوسط", "زیاد", "خیلی زیاد"))
             setOnItemSelectedListener { label, index ->
+                Log.d("variable_name",labelVariable)
                 loadScreenListener?.setVariableToBase(labelVariable,idList[index])
                 Toast.makeText(context, "انتخاب شده: $label", Toast.LENGTH_SHORT).show()}
 

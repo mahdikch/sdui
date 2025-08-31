@@ -86,6 +86,7 @@ private const val AUTHORITY_SHOW_DIV_DIALOG = "show_dialog_div"
 private const val AUTHORITY_SHOW_DIALOG = "show_dialog"
 private const val AUTHORITY_SET_VARIABLE = "set_variable"
 private const val AUTHORITY_SET_VARIABLE_FROM_DB = "set_variable_from_db"
+private const val AUTHORITY_SET_VARIABLE_FROM_DB_AND_SET_PATCH = "set_variable_from_db_and_set_patch"
 private const val AUTHORITY_SET_IMEI = "set_imei"
 private const val AUTHORITY_SET_IP = "set_ip"
 private const val AUTHORITY_SET_DEVICE_MODEL = "set_device_model"
@@ -267,7 +268,7 @@ class UIDiv2ActionHandler(
         } else if (uri.authority == AUTHORITY_LOAD_SCREEN) {
 //            ScreenToLoad.value.value = uri.getQueryParameter(PARAM_SCREEN)
             uri.getQueryParameter(PARAM_SCREEN)?.let {
-                    loadScreenListener.onLoad(it)
+                loadScreenListener.onLoad(it)
             }
 
 //            startActivityForLoad(
@@ -684,21 +685,27 @@ class UIDiv2ActionHandler(
 
 
         } else if (uri.authority == AUTHORITY_SET_PAGE_WITH_CHANGES_TO_DB) {
-            Log.d("UIDiv2ActionHandler", "=== AUTHORITY_SET_PAGE_WITH_CHANGES_TO_DB action triggered ===")
-            
+            Log.d(
+                "UIDiv2ActionHandler",
+                "=== AUTHORITY_SET_PAGE_WITH_CHANGES_TO_DB action triggered ==="
+            )
+
             val key = uri.getQueryParameter(PARAM_SET_PAGE_TO_DB)
             Log.d("UIDiv2ActionHandler", "Key parameter: $key")
-            
+
             val mapper: ObjectMapper = jacksonObjectMapper()
 
             val dbPageValue = key?.let { mehdiViewModel?.getValueByKey(it)?.value }
             Log.d("UIDiv2ActionHandler", "DB page value exists: ${dbPageValue != null}")
-            Log.d("UIDiv2ActionHandler", "DB page value (first 200 chars): ${dbPageValue?.take(200)}...")
-            
+            Log.d(
+                "UIDiv2ActionHandler",
+                "DB page value (first 200 chars): ${dbPageValue?.take(200)}..."
+            )
+
             val dbPage = mapper.readTree(dbPageValue)
             val div2View = if (view is Div2View) view as Div2View? else null
             Log.d("UIDiv2ActionHandler", "Div2View exists: ${div2View != null}")
-            
+
             // Using hardcoded current page for testing
             val currentPage = mapper.readTree(div2View?.divData?.writeToJSON().toString())
             mehdiViewModel?.insertItemToDb(PhPlusDB(null, "mamad", currentPage.toString()))
@@ -707,37 +714,60 @@ class UIDiv2ActionHandler(
 
             // Replace card content in dbPage with currentPage card content
             if (dbPage != null && currentPage != null) {
-                Log.d("UIDiv2ActionHandler", "Both dbPage and currentPage are not null - proceeding with replacement")
-                
+                Log.d(
+                    "UIDiv2ActionHandler",
+                    "Both dbPage and currentPage are not null - proceeding with replacement"
+                )
+
                 val currentCard = currentPage["states"]
                 val currentVariable = currentPage["variables"]
                 Log.d("UIDiv2ActionHandler", "Current states found: ${currentCard != null}")
                 Log.d("UIDiv2ActionHandler", "Current variables found: ${currentVariable != null}")
-                
+
                 if (currentCard != null) {
                     Log.d("UIDiv2ActionHandler", "Replacing states and variables in dbPage")
-                    Log.d("UIDiv2ActionHandler", "Original dbPage structure: card=${dbPage["card"] != null}, states=${dbPage["states"] != null}")
-                    
+                    Log.d(
+                        "UIDiv2ActionHandler",
+                        "Original dbPage structure: card=${dbPage["card"] != null}, states=${dbPage["states"] != null}"
+                    )
+
                     // Replace the entire card content in dbPage with currentPage card
                     val modifiedDbPage = dbPage.deepCopy() as ObjectNode
                     modifiedDbPage.set<JsonNode>("states", currentCard.deepCopy())
                     modifiedDbPage.set<JsonNode>("variables", currentVariable.deepCopy())
-                    
+
                     val modifiedDbPageString = modifiedDbPage.toString()
-                    Log.d("UIDiv2ActionHandler", "Modified DB page size: ${modifiedDbPageString.length} characters")
-                    Log.d("UIDiv2ActionHandler", "Modified DB page (first 300 chars): ${modifiedDbPageString.take(300)}...")
+                    Log.d(
+                        "UIDiv2ActionHandler",
+                        "Modified DB page size: ${modifiedDbPageString.length} characters"
+                    )
+                    Log.d(
+                        "UIDiv2ActionHandler",
+                        "Modified DB page (first 300 chars): ${modifiedDbPageString.take(300)}..."
+                    )
 
                     mehdiViewModel?.insertItemToDb(PhPlusDB(null, key, modifiedDbPageString))
-                    Log.d("UIDiv2ActionHandler", "Successfully saved modified page to database with key: $key")
+                    Log.d(
+                        "UIDiv2ActionHandler",
+                        "Successfully saved modified page to database with key: $key"
+                    )
                 } else {
-                    Log.w("UIDiv2ActionHandler", "Current states is null - cannot proceed with replacement")
+                    Log.w(
+                        "UIDiv2ActionHandler",
+                        "Current states is null - cannot proceed with replacement"
+                    )
                 }
             } else {
-                Log.w("UIDiv2ActionHandler", "dbPage is null: ${dbPage == null}, currentPage is null: ${currentPage == null}")
+                Log.w(
+                    "UIDiv2ActionHandler",
+                    "dbPage is null: ${dbPage == null}, currentPage is null: ${currentPage == null}"
+                )
             }
-            
-            Log.d("UIDiv2ActionHandler", "=== AUTHORITY_SET_PAGE_WITH_CHANGES_TO_DB action completed ===")
 
+            Log.d(
+                "UIDiv2ActionHandler",
+                "=== AUTHORITY_SET_PAGE_WITH_CHANGES_TO_DB action completed ==="
+            )
 
 
         } else if (uri.authority == AUTHORITY_SHOW_TIME_PICKER) {
@@ -850,7 +880,7 @@ class UIDiv2ActionHandler(
             if (patchName != null) {
                 json = mehdiViewModel?.getValueByKey(patchName)?.value.toString()
             }
-            if (patchName != null) {
+            if (patchName != null && json != "null") {
                 loadScreenListener.onApplyOnbase(json, patchName, patchTitle, vehicle_type)
 
             }
@@ -922,16 +952,36 @@ class UIDiv2ActionHandler(
 
                 }
             }
-//            VariableToGet.value.value = name
-//            if (flag  == 1)
-//            VariableToSet.value.observe(lo) {
-//                val div2View = if (view is Div2View) view as Div2View? else null
-//                try {
-//                    div2View?.setVariable(name, it)
-//                } catch (e: VariableMutationException) {
-//                    Assert.fail("Variable '" + name + "' mutation failed: " + e.message, e)
-//                }
+//
+//            val name = uri.getQueryParameter(PARAM_VARIABLE_NAME)
+//            if (name == null) {
+//                Assert.fail(PARAM_VARIABLE_NAME + " param is required")
+//                return false
 //            }
+//            var value=mehdiViewModel?.getValueByKey(name)?.value
+//            val div2View = if (view is Div2View) view as Div2View? else null
+//
+//            if (value != null) {
+//                div2View?.setVariable(name, value)
+//            }
+
+            return true
+        } else if (uri.authority == AUTHORITY_SET_VARIABLE_FROM_DB_AND_SET_PATCH) {
+            val name = uri.getQueryParameter(PARAM_VARIABLE_NAME)
+            if (name == null) {
+                Assert.fail(PARAM_VARIABLE_NAME + " param is required")
+                return false
+            }
+            if (name != null) {
+                var value=mehdiViewModel?.getValueByKey(name)?.value
+                val div2View = if (view is Div2View) view as Div2View? else null
+
+                if (value != null) {
+                    div2View?.setVariable(name, value)
+                }
+
+            }
+//
 
             return true
         } else if (uri.authority == AUTHORITY_SET_IMEI) {
