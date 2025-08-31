@@ -880,7 +880,7 @@ class UIDiv2ActionHandler(
             if (patchName != null) {
                 json = mehdiViewModel?.getValueByKey(patchName)?.value.toString()
             }
-            if (patchName != null && json != "null") {
+            if (patchName != null) {
                 loadScreenListener.onApplyOnbase(json, patchName, patchTitle, vehicle_type)
 
             }
@@ -952,17 +952,15 @@ class UIDiv2ActionHandler(
 
                 }
             }
-//
-//            val name = uri.getQueryParameter(PARAM_VARIABLE_NAME)
-//            if (name == null) {
-//                Assert.fail(PARAM_VARIABLE_NAME + " param is required")
-//                return false
-//            }
-//            var value=mehdiViewModel?.getValueByKey(name)?.value
-//            val div2View = if (view is Div2View) view as Div2View? else null
-//
-//            if (value != null) {
-//                div2View?.setVariable(name, value)
+//            VariableToGet.value.value = name
+//            if (flag  == 1)
+//            VariableToSet.value.observe(lo) {
+//                val div2View = if (view is Div2View) view as Div2View? else null
+//                try {
+//                    div2View?.setVariable(name, it)
+//                } catch (e: VariableMutationException) {
+//                    Assert.fail("Variable '" + name + "' mutation failed: " + e.message, e)
+//                }
 //            }
 
             return true

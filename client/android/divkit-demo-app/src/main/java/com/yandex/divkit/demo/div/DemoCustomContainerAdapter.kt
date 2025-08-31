@@ -44,6 +44,8 @@ import com.yandex.divkit.demo.div.offlineView.VtReportAdapter
 import com.yandex.divkit.demo.div.timerButton.TimerButton
 import com.yandex.divkit.demo.div.labelledSliderView.LabelledSliderView
 import com.yandex.divkit.demo.div.audioPlayerView.AudioPlayerView
+import com.yandex.divkit.demo.div.multiSelection.MultiSelectionView
+import com.yandex.divkit.demo.div.customInput.CustomInputView
 import com.yandex.divkit.demo.ui.LoadScreenListener
 import com.yandex.divkit.demo.ui.activity.MehdiViewModel
 import java.util.ArrayList
@@ -86,6 +88,13 @@ class DemoCustomContainerAdapter(
     private var labelList: String = ""
     private var labelId: String = ""
     private var labelVariable: String = ""
+    private var multiOptions: String = ""
+    private var multiIds: String = ""
+    private var multiVariableName: String = ""
+    private var multiSelectionLimit: Int = 0
+    private var inputVariableName: String = ""
+    private var inputHint: String = ""
+    private var inputType: String = ""
     private lateinit var sharePref: SharePref
     private lateinit var adapter: VtReportAdapter
 
@@ -100,6 +109,8 @@ class DemoCustomContainerAdapter(
         "timer_button_call_service" to { context: Context -> context.timerButtonCallService() },
         "audioPlayerView" to { context: Context -> context.audioPlayerView() },
         "labelledSliderView" to { context: Context -> context.labelledSliderView() },
+        "multi_selection" to { context: Context -> context.createMultiSelection() },
+        "custom_input" to { context: Context -> context.createCustomInput() },
 //        "offline_vt_reports_container" to { context: Context -> context.createOfflineVtReportsContainer() },
         "offline_list_container" to { context: Context -> context.createOfflineListContainer() }
     )
@@ -176,6 +187,17 @@ class DemoCustomContainerAdapter(
             labelList = evaluateCustomPropString(div, "label_list", expressionResolver, "")
             labelId = evaluateCustomPropString(div, "label_id_list", expressionResolver, "")
             labelVariable = evaluateCustomPropString(div, "variable_name", expressionResolver, "")
+        }
+        if (div.customType == "multi_selection") {
+            multiOptions = evaluateCustomPropString(div, "options", expressionResolver, "")
+            multiIds = evaluateCustomPropString(div, "ids", expressionResolver, "")
+            multiVariableName = evaluateCustomPropString(div, "variable_name", expressionResolver, "")
+            multiSelectionLimit = evaluateCustomProp(div, "selection_limit", expressionResolver, 0)
+        }
+        if (div.customType == "custom_input") {
+            inputVariableName = evaluateCustomPropString(div, "variable_name", expressionResolver, "")
+            inputHint = evaluateCustomPropString(div, "hint", expressionResolver, "")
+            inputType = evaluateCustomPropString(div, "input_type", expressionResolver, "text")
         }
         val customView = factories[div.customType]?.invoke(divView.context)
             ?: throw IllegalStateException("Can not create view for unsupported custom type ${div.customType}")
@@ -519,6 +541,37 @@ class DemoCustomContainerAdapter(
                 loadScreenListener?.setVariableToBase(labelVariable,idList[index])
                 Toast.makeText(context, "انتخاب شده: $label", Toast.LENGTH_SHORT).show()}
 
+    }
+
+    private fun Context.createMultiSelection(): View = MultiSelectionView(this).apply {
+        val optionsList = multiOptions.split(",").map { it.trim() }
+        val idsList = multiIds.split(",").map { it.trim() }
+
+        if (optionsList.isNotEmpty() && idsList.isNotEmpty()) {
+            setItems(optionsList, idsList, multiSelectionLimit)
+            
+            setOnSelectionChangedListener { selectedIds ->
+                if (multiVariableName.isNotEmpty()) {
+                    loadScreenListener?.setVariableToBase(multiVariableName, selectedIds)
+                }
+            }
+        }
+    }
+
+    private fun Context.createCustomInput(): View = CustomInputView(this).apply {
+        if (inputHint.isNotEmpty()) {
+            setHint(inputHint)
+        }
+        
+        if (inputType.isNotEmpty()) {
+            setInputType(inputType)
+        }
+        
+        setOnTextChangedListener { text ->
+            if (inputVariableName.isNotEmpty()) {
+                loadScreenListener?.setVariableToBase(inputVariableName, text)
+            }
+        }
     }
     private fun Context.audioPlayerView(): View = AudioPlayerView(this).apply {
 
