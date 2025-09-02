@@ -111,7 +111,9 @@ class DemoCustomContainerAdapter(
         "offline_list_container" to { context: Context -> context.createOfflineListContainer() }
     )
 
-    override fun isCustomTypeSupported(type: String): Boolean = type in factories.keys || type == "custom_input"
+    override fun isCustomTypeSupported(type: String): Boolean =
+        type in factories.keys || type == "custom_input"
+
     override fun release(view: View, div: DivCustom) = Unit
 
     override fun createView(
@@ -130,8 +132,18 @@ class DemoCustomContainerAdapter(
             innerPercent = evaluateCustomProp(div, "inner_percent", expressionResolver, 0)
             outerPercent = evaluateCustomProp(div, "outer_percent", expressionResolver, 0)
             centerPercent = evaluateCustomProp(div, "center_percent", expressionResolver, 0)
-            innerColor = evaluateCustomPropString(div, "inner_color", expressionResolver, "#ff7816").toString()
-            outerColor = evaluateCustomPropString(div, "outer_color", expressionResolver, "#ff7816").toString()
+            innerColor = evaluateCustomPropString(
+                div,
+                "inner_color",
+                expressionResolver,
+                "#ff7816"
+            ).toString()
+            outerColor = evaluateCustomPropString(
+                div,
+                "outer_color",
+                expressionResolver,
+                "#ff7816"
+            ).toString()
         }
         if (div.customType == "timer_button") {
             Log.d("DemoCustomContainer", "=== TIMER BUTTON DEBUG ===")
@@ -187,15 +199,22 @@ class DemoCustomContainerAdapter(
         if (div.customType == "multi_selection") {
             multiOptions = evaluateCustomPropString(div, "options", expressionResolver, "")
             multiIds = evaluateCustomPropString(div, "ids", expressionResolver, "")
-            multiVariableName = evaluateCustomPropString(div, "variable_name", expressionResolver, "")
+            multiVariableName =
+                evaluateCustomPropString(div, "variable_name", expressionResolver, "")
             multiSelectionLimit = evaluateCustomProp(div, "selection_limit", expressionResolver, 0)
         }
         val customView = if (div.customType == "custom_input") {
             // Handle custom_input specially to ensure unique variable names
-            val currentInputVariableName = evaluateCustomPropString(div, "variable_name", expressionResolver, "")
+            val currentInputVariableName =
+                evaluateCustomPropString(div, "variable_name", expressionResolver, "")
             val currentInputHint = evaluateCustomPropString(div, "hint", expressionResolver, "")
-            val currentInputType = evaluateCustomPropString(div, "input_type", expressionResolver, "text")
-            divView.context.createCustomInput(currentInputVariableName, currentInputHint, currentInputType)
+            val currentInputType =
+                evaluateCustomPropString(div, "input_type", expressionResolver, "text")
+            divView.context.createCustomInput(
+                currentInputVariableName,
+                currentInputHint,
+                currentInputType
+            )
         } else {
             factories[div.customType]?.invoke(divView.context)
                 ?: throw IllegalStateException("Can not create view for unsupported custom type ${div.customType}")
@@ -224,7 +243,10 @@ class DemoCustomContainerAdapter(
         defaultValue: Int
     ): Int {
         Log.d("DemoCustomContainer", "evaluateCustomProp called with key: '$key'")
-        Log.d("DemoCustomContainer", "div.customProps type: ${div.customProps?.javaClass?.simpleName}")
+        Log.d(
+            "DemoCustomContainer",
+            "div.customProps type: ${div.customProps?.javaClass?.simpleName}"
+        )
         Log.d("DemoCustomContainer", "div.customProps content: ${div.customProps}")
 
         // Safely get the raw value from customProps
@@ -256,11 +278,17 @@ class DemoCustomContainerAdapter(
             }
         } catch (e: Exception) {
             // If there's an exception accessing customProps, return default value
-            Log.e("DemoCustomContainer", "Exception accessing customProps for key '$key': ${e.message}")
+            Log.e(
+                "DemoCustomContainer",
+                "Exception accessing customProps for key '$key': ${e.message}"
+            )
             return defaultValue
         }
 
-        Log.d("DemoCustomContainer", "Processing rawValue: $rawValue (type: ${rawValue?.javaClass?.simpleName})")
+        Log.d(
+            "DemoCustomContainer",
+            "Processing rawValue: $rawValue (type: ${rawValue?.javaClass?.simpleName})"
+        )
 
         return when (rawValue) {
             is String -> {
@@ -275,7 +303,10 @@ class DemoCustomContainerAdapter(
                         // Create a proper expression string and evaluate it
                         val expressionString = "@{$variableName}"
                         val evaluable = com.yandex.div.evaluable.Evaluable.lazy(expressionString)
-                        Log.d("DemoCustomContainer", "Created evaluable for expression: '$expressionString'")
+                        Log.d(
+                            "DemoCustomContainer",
+                            "Created evaluable for expression: '$expressionString'"
+                        )
 
                         // Use the expression resolver to get the value
                         val result = expressionResolver.get<Any, Any>(
@@ -293,7 +324,10 @@ class DemoCustomContainerAdapter(
                             ParsingErrorLogger.LOG
                         )
 
-                        Log.d("DemoCustomContainer", "Expression resolver result: $result (type: ${result?.javaClass?.simpleName})")
+                        Log.d(
+                            "DemoCustomContainer",
+                            "Expression resolver result: $result (type: ${result?.javaClass?.simpleName})"
+                        )
 
                         val finalResult = when (result) {
                             is Number -> result.toInt()
@@ -303,7 +337,10 @@ class DemoCustomContainerAdapter(
                         Log.d("DemoCustomContainer", "Final result: $finalResult")
                         finalResult
                     } catch (e: Exception) {
-                        Log.e("DemoCustomContainer", "Exception evaluating expression: ${e.message}")
+                        Log.e(
+                            "DemoCustomContainer",
+                            "Exception evaluating expression: ${e.message}"
+                        )
                         // If evaluation fails, try to parse as integer directly
                         val fallbackResult = rawValue.toIntOrNull() ?: defaultValue
                         Log.d("DemoCustomContainer", "Fallback result: $fallbackResult")
@@ -311,12 +348,18 @@ class DemoCustomContainerAdapter(
                     }
                 } else {
                     // Check if this might be a direct variable name (not wrapped in @{})
-                    Log.d("DemoCustomContainer", "rawValue is not a variable expression, checking if it's a direct variable name")
+                    Log.d(
+                        "DemoCustomContainer",
+                        "rawValue is not a variable expression, checking if it's a direct variable name"
+                    )
                     try {
                         // Try to evaluate it as a direct variable name
                         val expressionString = "@{$rawValue}"
                         val evaluable = com.yandex.div.evaluable.Evaluable.lazy(expressionString)
-                        Log.d("DemoCustomContainer", "Trying to evaluate as direct variable: '$expressionString'")
+                        Log.d(
+                            "DemoCustomContainer",
+                            "Trying to evaluate as direct variable: '$expressionString'"
+                        )
 
                         val result = expressionResolver.get<Any, Any>(
                             key,
@@ -333,17 +376,26 @@ class DemoCustomContainerAdapter(
                             ParsingErrorLogger.LOG
                         )
 
-                        Log.d("DemoCustomContainer", "Direct variable evaluation result: $result (type: ${result?.javaClass?.simpleName})")
+                        Log.d(
+                            "DemoCustomContainer",
+                            "Direct variable evaluation result: $result (type: ${result?.javaClass?.simpleName})"
+                        )
 
                         val finalResult = when (result) {
                             is Number -> result.toInt()
                             is String -> result.toIntOrNull() ?: defaultValue
                             else -> defaultValue
                         }
-                        Log.d("DemoCustomContainer", "Final result from direct variable: $finalResult")
+                        Log.d(
+                            "DemoCustomContainer",
+                            "Final result from direct variable: $finalResult"
+                        )
                         finalResult
                     } catch (e: Exception) {
-                        Log.e("DemoCustomContainer", "Exception evaluating direct variable: ${e.message}")
+                        Log.e(
+                            "DemoCustomContainer",
+                            "Exception evaluating direct variable: ${e.message}"
+                        )
                         // If evaluation fails, try to parse as integer directly
                         val result = rawValue.toIntOrNull() ?: defaultValue
                         Log.d("DemoCustomContainer", "Parsed integer result: $result")
@@ -351,13 +403,18 @@ class DemoCustomContainerAdapter(
                     }
                 }
             }
+
             is Number -> {
                 val result = rawValue.toInt()
                 Log.d("DemoCustomContainer", "rawValue is Number, converted to int: $result")
                 result
             }
+
             else -> {
-                Log.d("DemoCustomContainer", "rawValue is neither String nor Number, using default: $defaultValue")
+                Log.d(
+                    "DemoCustomContainer",
+                    "rawValue is neither String nor Number, using default: $defaultValue"
+                )
                 defaultValue
             }
         }
@@ -409,17 +466,18 @@ class DemoCustomContainerAdapter(
                         // Use regex to find all @{variable_name} patterns
                         val variablePattern = Regex("@\\{([^}]+)\\}")
                         var result = stringValue
-                        
+
                         // Find all matches and replace them
                         variablePattern.findAll(stringValue).forEach { matchResult ->
                             val fullMatch = matchResult.value // e.g., "@{my_variable}"
                             val variableName = matchResult.groupValues[1] // e.g., "my_variable"
-                            
+
                             try {
                                 // Create expression and evaluate it
                                 val expressionString = "@{$variableName}"
-                                val evaluable = com.yandex.div.evaluable.Evaluable.lazy(expressionString)
-                                
+                                val evaluable =
+                                    com.yandex.div.evaluable.Evaluable.lazy(expressionString)
+
                                 // Get the variable value (using same pattern as original code)
                                 val variableValue = expressionResolver.get<Any, Any>(
                                     "${key}_${variableName}",
@@ -435,17 +493,17 @@ class DemoCustomContainerAdapter(
                                     },
                                     ParsingErrorLogger.LOG
                                 )
-                                
+
                                 // Convert to string (handle any type like the original code)
                                 val evaluatedStringValue = variableValue?.toString() ?: ""
                                 result = result.replace(fullMatch, evaluatedStringValue)
-                                
+
                             } catch (e: Exception) {
                                 // If individual variable evaluation fails, keep the original expression
                                 // This allows partial interpolation to work
                             }
                         }
-                        
+
                         result
                     } catch (e: Exception) {
                         // If overall evaluation fails, return the raw value
@@ -456,6 +514,7 @@ class DemoCustomContainerAdapter(
                     stringValue
                 }
             }
+
             else -> defaultValue
         }
     }
@@ -511,7 +570,8 @@ class DemoCustomContainerAdapter(
         }
     }
 
-    private fun Context.timerButtonCallService(): View = TimerButton(this, seconds = seconds).apply {
+    private fun Context.timerButtonCallService(): View =
+        TimerButton(this, seconds = seconds).apply {
             setOnClickListener {
                 val map: HashMap<String, String> = HashMap()
                 map["path"] = timerButtonPath
@@ -535,23 +595,30 @@ class DemoCustomContainerAdapter(
 
         setItems(list)
 //        setItems(listOf("کم", "متوسط", "زیاد", "خیلی زیاد"))
-            setOnItemSelectedListener { label, index ->
-                Log.d("variable_name",labelVariable)
-                loadScreenListener?.setVariableToBase(labelVariable,idList[index])
-                Toast.makeText(context, "انتخاب شده: $label", Toast.LENGTH_SHORT).show()}
+        setOnItemSelectedListener { label, index ->
+            Log.d("variable_name", labelVariable)
+            loadScreenListener?.setVariableToBase(labelVariable, idList[index])
+            Toast.makeText(context, "انتخاب شده: $label", Toast.LENGTH_SHORT).show()
+        }
 
     }
 
     private fun Context.createMultiSelection(): View = MultiSelectionView(this).apply {
         val optionsList = multiOptions.split(",").map { it.trim() }
         val idsList = multiIds.split(",").map { it.trim() }
+        var value = mehdiViewModel?.getValueByKey(multiVariableName)?.value
+        if (value != null) {
+            loadScreenListener?.setVariableToBase(multiVariableName, value)
+        }
 
         if (optionsList.isNotEmpty() && idsList.isNotEmpty()) {
             setItems(optionsList, idsList, multiSelectionLimit)
-            
+
             setOnSelectionChangedListener { selectedIds ->
                 if (multiVariableName.isNotEmpty()) {
                     loadScreenListener?.setVariableToBase(multiVariableName, selectedIds)
+                    mehdiViewModel?.insertItemToDb(PhPlusDB(null, multiVariableName, selectedIds))
+
                 }
             }
         }
@@ -559,27 +626,35 @@ class DemoCustomContainerAdapter(
 
     private fun Context.createCustomInput(
         variableName: String,
-        hint: String, 
+        hint: String,
         inputType: String
     ): View = CustomInputView(this).apply {
+        val value=mehdiViewModel?.getValueByKey(variableName)?.value
+        if (value != null) {
+            setText(value)
+            loadScreenListener?.setVariableToBase(variableName, value)
+
+        }
         if (hint.isNotEmpty()) {
             setHint(hint)
         }
-        
+
         if (inputType.isNotEmpty()) {
             setInputType(inputType)
         }
-        
+
         setOnTextChangedListener { text ->
             if (variableName.isNotEmpty()) {
                 loadScreenListener?.setVariableToBase(variableName, text)
+                mehdiViewModel?.insertItemToDb(PhPlusDB(null, variableName, text))
             }
         }
     }
+
     private fun Context.audioPlayerView(): View = AudioPlayerView(this).apply {
 
 //   setAudioUrl("https://github.com/rafaelreis-hotmart/Audio-Sample-files/raw/master/sample.mp3")
-   setAudioUrl(audioUrl)
+        setAudioUrl(audioUrl)
     }
 
     private fun Context.doubleCircularProgressView(): View =
