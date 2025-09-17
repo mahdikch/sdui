@@ -45,6 +45,12 @@ class LabelledSliderView @JvmOverloads constructor(
         onItemSelected = listener
     }
 
+    fun setSelectedItem(index: Int) {
+        if (index in items.indices) {
+            seekBar.progress = index
+        }
+    }
+
     private fun buildLabels() {
         labelsLayout.removeAllViews()
         for (item in items) {

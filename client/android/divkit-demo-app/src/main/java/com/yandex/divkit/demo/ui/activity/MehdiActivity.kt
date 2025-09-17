@@ -17,6 +17,7 @@ import android.provider.Settings
 import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -89,6 +90,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
     private lateinit var remoteDataSource: PhPlusRemoteDataSource
     private lateinit var sharePref: SharePref
     private lateinit var phPlusDBDao: PhPlusDBDao
+    private var pendingRecordingId: String? = null
     private lateinit var observerRemoteData: Observer<HashMap<String, String>>
     private lateinit var observerScreenToLoad: Observer<String>
     private lateinit var observerVariableToSet: Observer<String>
@@ -119,18 +121,19 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Add modern back navigation handling
+        onBackPressedDispatcher.addCallback(this) {
+            android.util.Log.d("MehdiActivity", "=== OnBackPressedDispatcher callback called ===")
+            android.util.Log.d("MehdiActivity", "Stopping recording before back navigation")
+            stopRecording()
+            finish()
+        }
+        
         val intent = intent
         val bundle = intent.extras
         val json = bundle?.getString("json")
         val sysname = bundle?.getString("sysName")
-        var requestPermissionLauncher =
-            registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-                if (isGranted) {
-                    startRecordingService()
-                } else {
-                    Toast.makeText(this, "دسترسی ضبط صدا رد شد", Toast.LENGTH_SHORT).show()
-                }
-            }
         binding = ActivityMehdiBinding.inflate(layoutInflater)
         setContentView(binding.root)
 //        checkAndRequestPermissions()
@@ -463,12 +466,17 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
     override fun onPause() {
         super.onPause()
+        android.util.Log.d("MehdiActivity", "=== onPause() called ===")
+        // Stop recording if it's currently active when activity goes to background
+        android.util.Log.d("MehdiActivity", "Stopping recording before activity pause")
+        stopRecording()
         RemoteData.value.removeObserver(observerRemoteData)
         ScreenToLoad.value.removeObserver(observerScreenToLoad)
         VariableToGet.value.removeObserver(observerVariableToGet)
     }
 
     override fun onStop() {
+        stopRecording()
         super.onStop()
 
     }
@@ -658,8 +666,19 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
 
     override fun onBackPressed() {
+        android.util.Log.d("MehdiActivity", "=== onBackPressed() called ===")
+        // Stop recording if it's currently active
+        android.util.Log.d("MehdiActivity", "Stopping recording before activity destruction")
+        stopRecording()
         super.onBackPressed()
+    }
 
+    override fun onDestroy() {
+        android.util.Log.d("MehdiActivity", "=== onDestroy() called ===")
+        // Stop recording if it's currently active
+        android.util.Log.d("MehdiActivity", "Stopping recording before activity destruction")
+        stopRecording()
+        super.onDestroy()
     }
 
     private fun startActivityForLoad(klass: Class<out Activity>, jsonName: String) {
@@ -750,6 +769,16 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
             } else {
                 // Some permissions are denied, show a message or disable functionality
                 Toast.makeText(this, "Permissions denied", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    private val audioPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            android.util.Log.d("MehdiActivity", "Permission result: $isGranted")
+            if (isGranted) {
+                onAudioPermissionGranted()
+            } else {
+                Toast.makeText(this, "دسترسی ضبط صدا رد شد", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -1106,26 +1135,70 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         mehdiViewModel.insertItemToDb(PhPlusDB(null, key, nextJson))
     }
 
-    fun requestAudioPermissionAndStart() {
-
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            requestPermissionLauncher.launch(arrayOf(Manifest.permission.RECORD_AUDIO))
+    fun requestAudioPermissionAndStart(recordingId: String? = null) {
+        android.util.Log.d("MehdiActivity", "=== requestAudioPermissionAndStart() called ===")
+        android.util.Log.d("MehdiActivity", "Recording ID: $recordingId")
+        pendingRecordingId = recordingId
+        val hasPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED
+        android.util.Log.d("MehdiActivity", "Has RECORD_AUDIO permission: $hasPermission")
+        
+        if (!hasPermission) {
+            android.util.Log.d("MehdiActivity", "Permission not granted, launching permission dialog")
+            audioPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
         } else {
-            startRecordingService()
+            android.util.Log.d("MehdiActivity", "Permission already granted, calling onAudioPermissionGranted()")
+            onAudioPermissionGranted()
+            android.util.Log.d("MehdiActivity", "Starting recording service")
+            startRecordingService(recordingId)
         }
+        android.util.Log.d("MehdiActivity", "=== requestAudioPermissionAndStart() completed ===")
     }
 
 
-    fun startRecordingService() {
-        val intent = Intent(this, AudioRecordingService::class.java)
+    fun startRecordingService(recordingId: String? = null) {
+        android.util.Log.d("MehdiActivity", "=== startRecordingService() called ===")
+        android.util.Log.d("MehdiActivity", "Recording ID: $recordingId")
+        val intent = Intent(this, AudioRecordingService::class.java).apply {
+            recordingId?.let { putExtra("RECORDING_ID", it) }
+        }
+        android.util.Log.d("MehdiActivity", "Created intent for AudioRecordingService with ID: $recordingId")
+        android.util.Log.d("MehdiActivity", "Starting foreground service")
         ContextCompat.startForegroundService(this, intent)
+        android.util.Log.d("MehdiActivity", "=== startRecordingService() completed ===")
     }
 
-    override fun startRecording() {
-        requestAudioPermissionAndStart()
+    override fun startRecording(recordingId: String? = null) {
+        android.util.Log.d("MehdiActivity", "=== startRecording() called ===")
+        android.util.Log.d("MehdiActivity", "Recording ID: $recordingId")
+        android.util.Log.d("MehdiActivity", "Calling requestAudioPermissionAndStart()")
+        requestAudioPermissionAndStart(recordingId)
+        android.util.Log.d("MehdiActivity", "=== startRecording() completed ===")
+    }
+
+    override fun stopRecording() {
+        android.util.Log.d("MehdiActivity", "=== stopRecording() called ===")
+        val intent = Intent(this, AudioRecordingService::class.java).apply {
+            action = AudioRecordingService.ACTION_STOP
+        }
+        android.util.Log.d("MehdiActivity", "Creating stop intent with action: ${AudioRecordingService.ACTION_STOP}")
+        android.util.Log.d("MehdiActivity", "Starting service to stop recording")
+        try {
+            startService(intent)
+            android.util.Log.d("MehdiActivity", "Service start command sent successfully")
+        } catch (e: Exception) {
+            android.util.Log.e("MehdiActivity", "Error starting service to stop recording: ${e.message}", e)
+        }
+        android.util.Log.d("MehdiActivity", "=== stopRecording() completed ===")
+    }
+
+    override fun onAudioPermissionGranted() {
+        // This method can be used to notify AudioRecorderView that permission was granted
+        // The actual implementation would depend on how you want to communicate with the view
+        android.util.Log.d("MehdiActivity", "=== onAudioPermissionGranted() called ===")
+        android.util.Log.d("MehdiActivity", "Pending recording ID: $pendingRecordingId")
+        Toast.makeText(this, "مجوز ضبط صدا اعطا شد - حالا می‌توانید ضبط کنید", Toast.LENGTH_LONG).show()
+        startRecordingService(pendingRecordingId)
+        pendingRecordingId = null
     }
 
 

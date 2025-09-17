@@ -74,15 +74,18 @@ internal class DivCustomBinder @Inject constructor(
         createView: () -> View,
         bindView: (View) -> Unit
     ) {
-        val customView = if (oldCustomView != null && previousWrapper.div?.customType == div.customType
-                && oldDiv?.nonNullItems?.size == div.nonNullItems.size
-        ) {
-            oldCustomView
-        } else {
+        val customView =
+        //        if (oldCustomView != null &&
+//            previousWrapper.div?.customType == div.customType
+//            && previousWrapper.div?.id == div.id
+//                && oldDiv?.nonNullItems?.size == div.nonNullItems.size
+//        ) {
+//            oldCustomView
+//        } else {
             createView().apply {
                 setTag(R.id.div_custom_tag, div)
             }
-        }
+//        }
 
         val divView = context.divView
 

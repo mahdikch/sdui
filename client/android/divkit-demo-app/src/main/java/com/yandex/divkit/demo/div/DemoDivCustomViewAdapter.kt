@@ -28,11 +28,13 @@ class DemoDivCustomViewAdapter(
     loadScreenListener: LoadScreenListener?=null,
 ): DivCustomContainerViewAdapter {
 
-    private val demoCustomContainerAdapter: DemoCustomContainerAdapter = DemoCustomContainerAdapter(mehdiViewModel, lo, loadScreenListener)
+    private val demoCustomContainerAdapter: DemoCustomContainerAdapter = DemoCustomContainerAdapter(mehdiViewModel, lo, loadScreenListener).also {
+        android.util.Log.d("DemoDivCustomViewAdapter", "Created DemoCustomContainerAdapter with loadScreenListener: ${loadScreenListener != null}")
+    }
     private val videoCustomAdapter = VideoCustomAdapter(videoCustomViewController)
     private val divRiveAdapter =
         RiveCustomViewAdapter.Builder(baseContext, OkHttpDivRiveNetworkDelegate(OkHttpClient.Builder().build())).build()
-    private val adapters = listOf(videoCustomAdapter, divRiveAdapter, demoCustomContainerAdapter)
+    private val adapters = listOf(videoCustomAdapter, divRiveAdapter, demoCustomContainerAdapter,demoCustomContainerAdapter,demoCustomContainerAdapter,demoCustomContainerAdapter)
     override fun preload(
         div: DivCustom,
         callBack: DivPreloader.Callback
@@ -51,11 +53,14 @@ class DemoDivCustomViewAdapter(
         expressionResolver: ExpressionResolver,
         path: DivStatePath
     ): View {
+        android.util.Log.d("DemoDivCustomViewAdapter", "createView called for type: ${div.customType}")
         for (adapter in adapters) {
             if (adapter.isCustomTypeSupported(div.customType)) {
+                android.util.Log.d("DemoDivCustomViewAdapter", "Using adapter: ${adapter.javaClass.simpleName}")
                 return adapter.createView(div, divView, expressionResolver, path)
             }
         }
+        android.util.Log.d("DemoDivCustomViewAdapter", "Using fallback demoCustomContainerAdapter")
         return demoCustomContainerAdapter.createView(div, divView, expressionResolver, path)
     }
 

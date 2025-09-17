@@ -18,6 +18,8 @@ interface LoadScreenListener {
     fun getCameraPermission()
     fun getAllPermissions()
     fun setPageToDB(key:String)
-    fun startRecording()
+    fun startRecording(recordingId: String? = null)
+    fun stopRecording()
+    fun onAudioPermissionGranted()
 //    fun showImage(decodedBitmap: Bitmap)
 }

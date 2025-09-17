@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="@android:color/white"
+        android:elevation="4dp">
+
+        <!-- Status Text -->
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="آماده برای ضبط"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Duration Text -->
+        <TextView
+            android:id="@+id/tv_duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="monospace" />
+
+        <!-- Control Buttons -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="8dp">
+
+            <!-- Record Button -->
+            <ImageButton
+                android:id="@+id/btn_record"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="?android:selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_btn_speak_now"
+                android:contentDescription="ضبط صدا"
+                android:layout_marginEnd="16dp" />
+
+            <!-- Play Button -->
+            <ImageButton
+                android:id="@+id/btn_play"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="?android:selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_media_play"
+                android:contentDescription="پخش صدا"
+                android:enabled="false"
+                android:layout_marginEnd="16dp" />
+
+            <!-- Delete Button -->
+            <ImageButton
+                android:id="@+id/btn_delete"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="?android:selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_menu_delete"
+                android:contentDescription="حذف ضبط"
+                android:enabled="false" />
+
+        </LinearLayout>
+
+        <!-- File Info -->
+        <TextView
+            android:id="@+id/tv_file_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="فایل صوتی در حافظه داخلی ذخیره می‌شود"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+
+</merge>

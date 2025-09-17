@@ -76,6 +76,7 @@ import kotlin.math.log
 
 private const val AUTHORITY_OPEN_SCREEN = "open_screen"
 private const val AUTHORITY_SET_PATCH = "set_patch"
+private const val AUTHORITY_SET_TIME_TO_DB = "set_time_to_db"
 private const val AUTHORITY_LOAD_SCREEN = "load_screen"
 private const val AUTHORITY_GENERATE_SCREEN = "generateScreen"
 private const val AUTHORITY_GENERATE_PATCH = "generatePatch"
@@ -118,6 +119,7 @@ private const val AUTHORITY_GET_ALL_PERMISSION = "get_all_permission"
 private const val AUTHORITY_UPDATE = "update"
 private const val AUTHORITY_RESET_PHID = "reset_phid"
 private const val AUTHORITY_START_RECORDIN = "start_recording"
+private const val AUTHORITY_STOP_RECORDING = "stop_recording"
 const val SCHEME_DIV_ACTION = "div-action"
 
 private const val ACTIVITY_DEMO = "demo"
@@ -206,11 +208,51 @@ class UIDiv2ActionHandler(
 //        if (DivActionTypedHandlerProxy.handleAction(action, view, localResolver)) {
 //            return true
 //        }
-        val url =
-            action.url?.evaluate(resolver) ?: return super.handleAction(action, view, resolver)
+        // Debug: Log the action details
+        com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "=== handleAction called ===")
+        com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "Action URL: ${action.url}")
+        com.yandex.div.internal.Log.d(
+            "UIDiv2ActionHandler",
+            "Action URL type: ${action.url?.javaClass?.simpleName}"
+        )
+        
+        // Check if this might be a recording action
+        val urlString = action.url?.toString() ?: ""
+        if (urlString.contains("start_recording") || urlString.contains("stop_recording")) {
+            com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "*** POTENTIAL RECORDING ACTION DETECTED ***")
+            com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "URL string: $urlString")
+        }
+
+        // Try to evaluate the URL
+        val url = try {
+            action.url?.evaluate(resolver)
+        } catch (e: Exception) {
+            com.yandex.div.internal.Log.e(
+                "UIDiv2ActionHandler",
+                "Error evaluating URL: ${e.message}",
+                e
+            )
+            null
+        }
+
+        com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "Evaluated URL: $url")
+        com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "URL is null: ${url == null}")
+        
+        // Check if evaluated URL contains recording actions
+        if (url != null && (url.toString().contains("start_recording") || url.toString().contains("stop_recording"))) {
+            com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "*** EVALUATED URL CONTAINS RECORDING ACTION ***")
+            com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "Evaluated URL string: ${url.toString()}")
+        }
+
+        if (url == null) {
+            com.yandex.div.internal.Log.w(
+                "UIDiv2ActionHandler",
+                "URL evaluation returned null, cannot proceed"
+            )
+            return super.handleAction(action, view, resolver)
+        }
 
         if (action.url == null) return false
-//        val uri = action.url!!.evaluate(resolver)
 
         return (handleActivityActionUrl(url, view) || SettingsActionHandler.handleActionUrl(url)
                 || super.handleAction(action, view, resolver))
@@ -254,6 +296,26 @@ class UIDiv2ActionHandler(
     @SuppressLint("HardwareIds", "SuspiciousIndentation")
     private fun handleActivityActionUrl(uri: Uri, view: DivViewFacade): Boolean {
         this.view = view
+
+        // Debug: Log the URI details
+        com.yandex.div.internal.Log.d(
+            "UIDiv2ActionHandler",
+            "=== handleActivityActionUrl called ==="
+        )
+        com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "URI: $uri")
+        com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "URI scheme: ${uri.scheme}")
+        com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "URI authority: ${uri.authority}")
+        com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "URI query: ${uri.query}")
+        com.yandex.div.internal.Log.d(
+            "UIDiv2ActionHandler",
+            "URI is empty: ${uri.toString().isEmpty()}"
+        )
+        
+        // Check if this is a recording action
+        if (uri.authority == AUTHORITY_START_RECORDIN || uri.authority == AUTHORITY_STOP_RECORDING) {
+            com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "*** RECORDING ACTION DETECTED ***")
+            com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "Action type: ${uri.authority}")
+        }
 
         if (uri.scheme != SCHEME_DIV_ACTION) return false
         if (uri.authority == AUTHORITY_OPEN_SCREEN) {
@@ -571,7 +633,18 @@ class UIDiv2ActionHandler(
             }
 
         } else if (uri.authority == AUTHORITY_START_RECORDIN) {
-            loadScreenListener.startRecording()
+            android.util.Log.d("UIDiv2ActionHandler", "=== START RECORDING ACTION ===")
+            val recordingId = uri.getQueryParameter("id")
+            android.util.Log.d("UIDiv2ActionHandler", "Recording ID: $recordingId")
+            android.util.Log.d("UIDiv2ActionHandler", "Calling loadScreenListener.startRecording() with ID: $recordingId")
+            loadScreenListener.startRecording(recordingId)
+            android.util.Log.d("UIDiv2ActionHandler", "=== END START RECORDING ACTION ===")
+
+        } else if (uri.authority == AUTHORITY_STOP_RECORDING) {
+            android.util.Log.d("UIDiv2ActionHandler", "=== STOP RECORDING ACTION ===")
+            android.util.Log.d("UIDiv2ActionHandler", "Calling loadScreenListener.stopRecording()")
+            loadScreenListener.stopRecording()
+            android.util.Log.d("UIDiv2ActionHandler", "=== END STOP RECORDING ACTION ===")
 
         } else if (uri.authority == AUTHORITY_GET_PERSIAN_DATE) {
             val varName = uri.getQueryParameter(PARAM_DATE_PICKER)
@@ -887,12 +960,57 @@ class UIDiv2ActionHandler(
 //            view.applyPatch(JSONObject(json).asDivPatchWithTemplates())
 
         } else if (uri.authority == AUTHORITY_CALL_SERVICE) {
+            com.yandex.div.internal.Log.d(
+                "UIDiv2ActionHandler",
+                "=== Processing AUTHORITY_CALL_SERVICE ==="
+            )
+            com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "URI: $uri")
+
             val parameterNames = uri.queryParameterNames
+            com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "Parameter names: $parameterNames")
+            com.yandex.div.internal.Log.d(
+                "UIDiv2ActionHandler",
+                "Parameter count: ${parameterNames.size}"
+            )
+
             val map: java.util.HashMap<String, String> = HashMap()
-            var parametersMap: java.util.HashMap<String, String> = HashMap<String, String>()
+            val div2View = if (view is Div2View) view as Div2View? else null
+            val expressionResolver = div2View?.expressionResolver
+
+            com.yandex.div.internal.Log.d(
+                "UIDiv2ActionHandler",
+                "Div2View available: ${div2View != null}"
+            )
+            com.yandex.div.internal.Log.d(
+                "UIDiv2ActionHandler",
+                "ExpressionResolver available: ${expressionResolver != null}"
+            )
+
             for (parameterName in parameterNames) {
-                map[parameterName] = uri.getQueryParameter(parameterName).toString()
+                var parameterValue = uri.getQueryParameter(parameterName).toString()
+                com.yandex.div.internal.Log.d(
+                    "UIDiv2ActionHandler",
+                    "Processing parameter: $parameterName = $parameterValue"
+                )
+
+                // Process nested variable expressions if expressionResolver is available
+                if (expressionResolver != null && parameterValue.contains("@{")) {
+                    com.yandex.div.internal.Log.d(
+                        "UIDiv2ActionHandler",
+                        "Processing nested variables for: $parameterValue"
+                    )
+                    parameterValue =
+                        processNestedVariableExpressions(parameterValue, expressionResolver)
+                    com.yandex.div.internal.Log.d(
+                        "UIDiv2ActionHandler",
+                        "After processing: $parameterValue"
+                    )
+                }
+
+                map[parameterName] = parameterValue
             }
+
+            com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "Final map: $map")
             loadScreenListener.onRequest(map)
 
 
@@ -971,7 +1089,7 @@ class UIDiv2ActionHandler(
                 return false
             }
             if (name != null) {
-                var value=mehdiViewModel?.getValueByKey(name)?.value
+                var value = mehdiViewModel?.getValueByKey(name)?.value
                 val div2View = if (view is Div2View) view as Div2View? else null
 
                 if (value != null) {
@@ -1031,6 +1149,17 @@ class UIDiv2ActionHandler(
 
             if (key != null) {
                 value?.let { PhPlusDB(null, key, it) }?.let { mehdiViewModel?.insertItemToDb(it) }
+            }
+            return true
+        } else if (uri.authority == AUTHORITY_SET_TIME_TO_DB) {
+            val key = uri.getQueryParameter(PARAM_SET_VARIABLE_TO_DB_KEY)
+            if (key == null) {
+                Assert.fail(PARAM_VARIABLE_NAME + " param is required")
+                return false
+            }
+
+            if (key != null) {
+                mehdiViewModel?.insertItemToDb(PhPlusDB(null, key, PersianDate.today().toString()))
             }
             return true
         } else if (uri.authority == AUTHORITY_SET_VARIABLE_TO_DB_PLUS_ONE) {
@@ -1472,5 +1601,116 @@ class UIDiv2ActionHandler(
 //    override fun loadscreen(json: String) {
 //        startActivityForLoad(MehdiActivity::class.java,json)
 //    }
+
+    /**
+     * Processes nested variable expressions like @{variable_name1@{variable_name2}}
+     * Similar to the implementation in DemoCustomContainerAdapter
+     */
+    private fun processNestedVariableExpressions(
+        inputString: String,
+        expressionResolver: ExpressionResolver
+    ): String {
+        com.yandex.div.internal.Log.d(
+            "UIDiv2ActionHandler",
+            "=== processNestedVariableExpressions called ==="
+        )
+        com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "Input string: $inputString")
+
+        if (!inputString.contains("@{")) {
+            com.yandex.div.internal.Log.d(
+                "UIDiv2ActionHandler",
+                "No @{ patterns found, returning original string"
+            )
+            return inputString
+        }
+
+        try {
+            // Use regex to find all @{variable_name} patterns
+            val variablePattern = Regex("@\\{([^}]+)\\}")
+            var result = inputString
+
+            com.yandex.div.internal.Log.d(
+                "UIDiv2ActionHandler",
+                "Processing string with regex pattern"
+            )
+
+            // Find all matches and replace them
+            val matches = variablePattern.findAll(inputString).toList()
+            com.yandex.div.internal.Log.d(
+                "UIDiv2ActionHandler",
+                "Found ${matches.size} variable expressions to process"
+            )
+
+            matches.forEach { matchResult ->
+                val fullMatch = matchResult.value // e.g., "@{my_variable}"
+                val variableName = matchResult.groupValues[1] // e.g., "my_variable"
+
+                com.yandex.div.internal.Log.d(
+                    "UIDiv2ActionHandler",
+                    "Processing variable: $variableName (full match: $fullMatch)"
+                )
+
+                try {
+                    // Create expression and evaluate it
+                    val expressionString = "@{$variableName}"
+                    com.yandex.div.internal.Log.d(
+                        "UIDiv2ActionHandler",
+                        "Created expression: $expressionString"
+                    )
+                    val evaluable = com.yandex.div.evaluable.Evaluable.lazy(expressionString)
+
+                    // Get the variable value using the expression resolver
+                    com.yandex.div.internal.Log.d(
+                        "UIDiv2ActionHandler",
+                        "Evaluating variable: $variableName"
+                    )
+                    val variableValue = expressionResolver.get<Any, Any>(
+                        "nested_var_$variableName",
+                        expressionString,
+                        evaluable,
+                        null,
+                        object : com.yandex.div.internal.parser.ValueValidator<Any> {
+                            override fun isValid(value: Any): Boolean = true
+                        },
+                        object : com.yandex.div.internal.parser.TypeHelper<Any> {
+                            override fun isTypeValid(value: Any): Boolean = true
+                            override val typeDefault: Any = ""
+                        },
+                        com.yandex.div.json.ParsingErrorLogger.LOG
+                    )
+
+                    // Convert to string and replace the expression
+                    val evaluatedStringValue = variableValue?.toString() ?: ""
+                    com.yandex.div.internal.Log.d(
+                        "UIDiv2ActionHandler",
+                        "Variable '$variableName' evaluated to: '$evaluatedStringValue'"
+                    )
+                    result = result.replace(fullMatch, evaluatedStringValue)
+                    com.yandex.div.internal.Log.d(
+                        "UIDiv2ActionHandler",
+                        "Result after replacement: $result"
+                    )
+
+                } catch (e: Exception) {
+                    // If individual variable evaluation fails, keep the original expression
+                    // This allows partial interpolation to work
+                    com.yandex.div.internal.Log.w(
+                        "UIDiv2ActionHandler",
+                        "Failed to evaluate variable '$variableName': ${e.message}"
+                    )
+                }
+            }
+
+            com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "Final result: $result")
+            return result
+        } catch (e: Exception) {
+            // If overall evaluation fails, return the original string
+            com.yandex.div.internal.Log.e(
+                "UIDiv2ActionHandler",
+                "Failed to process nested variables: ${e.message}"
+            )
+            return inputString
+        }
+    }
 }
 

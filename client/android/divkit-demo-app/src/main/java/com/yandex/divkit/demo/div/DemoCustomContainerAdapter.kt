@@ -44,11 +44,11 @@ import com.yandex.divkit.demo.div.offlineView.VtReportAdapter
 import com.yandex.divkit.demo.div.timerButton.TimerButton
 import com.yandex.divkit.demo.div.labelledSliderView.LabelledSliderView
 import com.yandex.divkit.demo.div.audioPlayerView.AudioPlayerView
+import com.yandex.divkit.demo.div.audioRecorderView.AudioRecorderView
 import com.yandex.divkit.demo.div.multiSelection.MultiSelectionView
 import com.yandex.divkit.demo.div.customInput.CustomInputView
 import com.yandex.divkit.demo.ui.LoadScreenListener
 import com.yandex.divkit.demo.ui.activity.MehdiViewModel
-import java.util.ArrayList
 import android.util.Log
 
 class DemoCustomContainerAdapter(
@@ -58,6 +58,10 @@ class DemoCustomContainerAdapter(
 ) : DivCustomContainerViewAdapter,
     OfflineViewListAdapter.OfflineViewListItemListener {
     private var loadScreenListener = loadScreenListener
+    
+    init {
+        android.util.Log.d("DemoCustomContainerAdapter", "Constructor called with loadScreenListener: ${loadScreenListener != null}")
+    }
     private var lo = lo
     private var mehdiViewModel = mehdiViewModel
     private var current: Int = 0
@@ -73,25 +77,40 @@ class DemoCustomContainerAdapter(
     private var counter: Int = 0
     private var timerButtonNext: String = ""
     private var timerButtonPath: String = ""
-    private var timerButtonParam1: String = ""
-    private var timerButtonParam2: String = ""
-    private var timerButtonParam3: String = ""
-    private var timerButtonParam4: String = ""
-    private var timerButtonParam5: String = ""
-    private var timerButtonParam6: String = ""
-    private var timerButtonParam7: String = ""
-    private var timerButtonParam8: String = ""
-    private var timerButtonParam9: String = ""
-    private var timerButtonParam10: String = ""
+//    private var timerButtonParam1: String = ""
+//    private var timerButtonParam2: String = ""
+//    private var timerButtonParam3: String = ""
+//    private var timerButtonParam4: String = ""
+//    private var timerButtonParam5: String = ""
+//    private var timerButtonParam6: String = ""
+//    private var timerButtonParam7: String = ""
+//    private var timerButtonParam8: String = ""
+//    private var timerButtonParam9: String = ""
+//    private var timerButtonParam10: String = ""
+//    private var timerButtonParam11: String = ""
+//    private var timerButtonParam12: String = ""
+//    private var timerButtonParam13: String = ""
+//    private var timerButtonParam14: String = ""
+//    private var timerButtonParam15: String = ""
+//    private var timerButtonParam16: String = ""
+//    private var timerButtonParam17: String = ""
+//    private var timerButtonParam18: String = ""
+//    private var timerButtonParam19: String = ""
+//    private var timerButtonParam20: String = ""
+//    private var timerButtonParam21: String = ""
+//    private var timerButtonParam22: String = ""
+//    private var timerButtonParam23: String = ""
+//    private var timerButtonParam24: String = ""
+//    private var timerButtonParam25: String = ""
+//    private var timerButtonParam26: String = ""
+//    private var timerButtonParam27: String = ""
+//    private var timerButtonParam28: String = ""
+//    private var timerButtonParam29: String = ""
+//    private var timerButtonParam30: String = ""
+    private var paramList = mutableListOf<String>()
+
     private var systemForOffline: String = ""
     private var audioUrl: String = ""
-    private var labelList: String = ""
-    private var labelId: String = ""
-    private var labelVariable: String = ""
-    private var multiOptions: String = ""
-    private var multiIds: String = ""
-    private var multiVariableName: String = ""
-    private var multiSelectionLimit: Int = 0
     private lateinit var sharePref: SharePref
     private lateinit var adapter: VtReportAdapter
 
@@ -105,14 +124,21 @@ class DemoCustomContainerAdapter(
         "timer_button" to { context: Context -> context.timerButton() },
         "timer_button_call_service" to { context: Context -> context.timerButtonCallService() },
         "audioPlayerView" to { context: Context -> context.audioPlayerView() },
-        "labelledSliderView" to { context: Context -> context.labelledSliderView() },
-        "multi_selection" to { context: Context -> context.createMultiSelection() },
+        "audioRecorderView" to { context: Context -> context.audioRecorderView() },
+        "labelledSliderView" to { context: Context ->
+            // This will be handled specially in createView method
+            context.labelledSliderView("", "", "")
+        },
+        "multi_selection" to { context: Context ->
+            // This will be handled specially in createView method
+            context.createMultiSelection("", "", "", 0)
+        },
 //        "offline_vt_reports_container" to { context: Context -> context.createOfflineVtReportsContainer() },
         "offline_list_container" to { context: Context -> context.createOfflineListContainer() }
     )
 
     override fun isCustomTypeSupported(type: String): Boolean =
-        type in factories.keys || type == "custom_input"
+            type in factories.keys || type == "custom_input"
 
     override fun release(view: View, div: DivCustom) = Unit
 
@@ -169,16 +195,39 @@ class DemoCustomContainerAdapter(
             Log.d("DemoCustomContainer", "evaluateCustomProp result for 'seconds': $seconds")
 
             timerButtonPath = evaluateCustomPropString(div, "path", expressionResolver, "")
-            timerButtonParam1 = evaluateCustomPropString(div, "param1", expressionResolver, "")
-            timerButtonParam2 = evaluateCustomPropString(div, "param2", expressionResolver, "")
-            timerButtonParam3 = evaluateCustomPropString(div, "param3", expressionResolver, "")
-            timerButtonParam4 = evaluateCustomPropString(div, "param4", expressionResolver, "")
-            timerButtonParam5 = evaluateCustomPropString(div, "param5", expressionResolver, "")
-            timerButtonParam6 = evaluateCustomPropString(div, "param6", expressionResolver, "")
-            timerButtonParam7 = evaluateCustomPropString(div, "param7", expressionResolver, "")
-            timerButtonParam8 = evaluateCustomPropString(div, "param8", expressionResolver, "")
-            timerButtonParam9 = evaluateCustomPropString(div, "param9", expressionResolver, "")
-            timerButtonParam10 = evaluateCustomPropString(div, "param10", expressionResolver, "")
+            for (i in 1..200)
+                paramList.add( evaluateCustomPropString(div, "param$i", expressionResolver, ""))
+
+//            timerButtonParam1 = evaluateCustomPropString(div, "param1", expressionResolver, "")
+//            timerButtonParam2 = evaluateCustomPropString(div, "param2", expressionResolver, "")
+//            timerButtonParam3 = evaluateCustomPropString(div, "param3", expressionResolver, "")
+//            timerButtonParam4 = evaluateCustomPropString(div, "param4", expressionResolver, "")
+//            timerButtonParam5 = evaluateCustomPropString(div, "param5", expressionResolver, "")
+//            timerButtonParam6 = evaluateCustomPropString(div, "param6", expressionResolver, "")
+//            timerButtonParam7 = evaluateCustomPropString(div, "param7", expressionResolver, "")
+//            timerButtonParam8 = evaluateCustomPropString(div, "param8", expressionResolver, "")
+//            timerButtonParam9 = evaluateCustomPropString(div, "param9", expressionResolver, "")
+//            timerButtonParam10 = evaluateCustomPropString(div, "param10", expressionResolver, "")
+//            timerButtonParam11 = evaluateCustomPropString(div, "param11", expressionResolver, "")
+//            timerButtonParam12 = evaluateCustomPropString(div, "param12", expressionResolver, "")
+//            timerButtonParam13 = evaluateCustomPropString(div, "param13", expressionResolver, "")
+//            timerButtonParam14 = evaluateCustomPropString(div, "param14", expressionResolver, "")
+//            timerButtonParam15 = evaluateCustomPropString(div, "param15", expressionResolver, "")
+//            timerButtonParam16 = evaluateCustomPropString(div, "param16", expressionResolver, "")
+//            timerButtonParam17 = evaluateCustomPropString(div, "param17", expressionResolver, "")
+//            timerButtonParam18 = evaluateCustomPropString(div, "param18", expressionResolver, "")
+//            timerButtonParam19 = evaluateCustomPropString(div, "param19", expressionResolver, "")
+//            timerButtonParam20 = evaluateCustomPropString(div, "param20", expressionResolver, "")
+//            timerButtonParam21 = evaluateCustomPropString(div, "param21", expressionResolver, "")
+//            timerButtonParam22 = evaluateCustomPropString(div, "param22", expressionResolver, "")
+//            timerButtonParam23 = evaluateCustomPropString(div, "param23", expressionResolver, "")
+//            timerButtonParam24 = evaluateCustomPropString(div, "param24", expressionResolver, "")
+//            timerButtonParam25 = evaluateCustomPropString(div, "param25", expressionResolver, "")
+//            timerButtonParam26 = evaluateCustomPropString(div, "param26", expressionResolver, "")
+//            timerButtonParam27 = evaluateCustomPropString(div, "param27", expressionResolver, "")
+//            timerButtonParam28 = evaluateCustomPropString(div, "param28", expressionResolver, "")
+//            timerButtonParam29 = evaluateCustomPropString(div, "param29", expressionResolver, "")
+//            timerButtonParam30 = evaluateCustomPropString(div, "param30", expressionResolver, "")
             Log.d(
                 "DemoCustomContainer",
                 "evaluateCustomPropString result for 'next_page': $timerButtonNext"
@@ -191,18 +240,7 @@ class DemoCustomContainerAdapter(
         if (div.customType == "audioPlayerView") {
             audioUrl = evaluateCustomPropString(div, "url", expressionResolver, "")
         }
-        if (div.customType == "labelledSliderView") {
-            labelList = evaluateCustomPropString(div, "label_list", expressionResolver, "")
-            labelId = evaluateCustomPropString(div, "label_id_list", expressionResolver, "")
-            labelVariable = evaluateCustomPropString(div, "variable_name", expressionResolver, "")
-        }
-        if (div.customType == "multi_selection") {
-            multiOptions = evaluateCustomPropString(div, "options", expressionResolver, "")
-            multiIds = evaluateCustomPropString(div, "ids", expressionResolver, "")
-            multiVariableName =
-                evaluateCustomPropString(div, "variable_name", expressionResolver, "")
-            multiSelectionLimit = evaluateCustomProp(div, "selection_limit", expressionResolver, 0)
-        }
+        // labelledSliderView and multi_selection are now handled specially in the customView creation
         val customView = if (div.customType == "custom_input") {
             // Handle custom_input specially to ensure unique variable names
             val currentInputVariableName =
@@ -214,6 +252,34 @@ class DemoCustomContainerAdapter(
                 currentInputVariableName,
                 currentInputHint,
                 currentInputType
+            )
+        } else if (div.customType == "labelledSliderView") {
+            // Handle labelledSliderView specially to pass parameters directly
+            val currentLabelList =
+                evaluateCustomPropString(div, "label_list", expressionResolver, "")
+            val currentLabelId =
+                evaluateCustomPropString(div, "label_id_list", expressionResolver, "")
+            val currentLabelVariable =
+                evaluateCustomPropString(div, "variable_name", expressionResolver, "")
+            divView.context.labelledSliderView(
+                currentLabelList,
+                currentLabelId,
+                currentLabelVariable
+            )
+        } else if (div.customType == "multi_selection") {
+            // Handle multi_selection specially to pass parameters directly
+            val currentMultiOptions =
+                evaluateCustomPropString(div, "options", expressionResolver, "")
+            val currentMultiIds = evaluateCustomPropString(div, "ids", expressionResolver, "")
+            val currentMultiVariableName =
+                evaluateCustomPropString(div, "variable_name", expressionResolver, "")
+            val currentMultiSelectionLimit =
+                evaluateCustomProp(div, "selection_limit", expressionResolver, 0)
+            divView.context.createMultiSelection(
+                currentMultiOptions,
+                currentMultiIds,
+                currentMultiVariableName,
+                currentMultiSelectionLimit
             )
         } else {
             factories[div.customType]?.invoke(divView.context)
@@ -575,50 +641,96 @@ class DemoCustomContainerAdapter(
             setOnClickListener {
                 val map: HashMap<String, String> = HashMap()
                 map["path"] = timerButtonPath
-                map[timerButtonParam1] = "empty"
-                map[timerButtonParam2] = "empty"
-                map[timerButtonParam3] = "empty"
-                map[timerButtonParam4] = "empty"
-                map[timerButtonParam5] = "empty"
-                map[timerButtonParam6] = "empty"
-                map[timerButtonParam7] = "empty"
-                map[timerButtonParam8] = "empty"
-                map[timerButtonParam9] = "empty"
-                map[timerButtonParam10] = "empty"
+                map["ph/token"] = "empty"
+                for (i in paramList)
+                    map[i]="empty"
+//                map[timerButtonParam1] = "empty"
+//                map[timerButtonParam2] = "empty"
+//                map[timerButtonParam3] = "empty"
+//                map[timerButtonParam4] = "empty"
+//                map[timerButtonParam5] = "empty"
+//                map[timerButtonParam6] = "empty"
+//                map[timerButtonParam7] = "empty"
+//                map[timerButtonParam8] = "empty"
+//                map[timerButtonParam9] = "empty"
+//                map[timerButtonParam10] = "empty"
+//                map[timerButtonParam11] = "empty"
+//                map[timerButtonParam12] = "empty"
+//                map[timerButtonParam13] = "empty"
+//                map[timerButtonParam14] = "empty"
+//                map[timerButtonParam15] = "empty"
+//                map[timerButtonParam16] = "empty"
+//                map[timerButtonParam17] = "empty"
+//                map[timerButtonParam18] = "empty"
+//                map[timerButtonParam19] = "empty"
+//                map[timerButtonParam20] = "empty"
+//                map[timerButtonParam21] = "empty"
+//                map[timerButtonParam22] = "empty"
+//                map[timerButtonParam23] = "empty"
+//                map[timerButtonParam24] = "empty"
+//                map[timerButtonParam25] = "empty"
+//                map[timerButtonParam26] = "empty"
+//                map[timerButtonParam27] = "empty"
+//                map[timerButtonParam28] = "empty"
+//                map[timerButtonParam29] = "empty"
+//                map[timerButtonParam30] = "empty"
                 loadScreenListener?.onRequest(map)
             }
         }
 
-    private fun Context.labelledSliderView(): View = LabelledSliderView(this).apply {
+    private fun Context.labelledSliderView(
+        labelList: String,
+        labelId: String,
+        labelVariable: String
+    ): View = LabelledSliderView(this).apply {
         val list = labelList.split(",").map { it.trim() }
         val idList = labelId.split(",").map { it.trim() }
+        val value = mehdiViewModel?.getValueByKey(labelVariable)?.value
 
         setItems(list)
-//        setItems(listOf("کم", "متوسط", "زیاد", "خیلی زیاد"))
+
+        // Set default selection from database if value exists
+        if (value != null && value.isNotEmpty()) {
+            // Find the index of the stored value in the idList
+            val selectedIndex = idList.indexOf(value)
+            if (selectedIndex != -1) {
+                setSelectedItem(selectedIndex)
+                loadScreenListener?.setVariableToBase(labelVariable, value)
+            }
+        }
+
         setOnItemSelectedListener { label, index ->
             Log.d("variable_name", labelVariable)
             loadScreenListener?.setVariableToBase(labelVariable, idList[index])
+            mehdiViewModel?.insertItemToDb(PhPlusDB(null, labelVariable, idList[index]))
             Toast.makeText(context, "انتخاب شده: $label", Toast.LENGTH_SHORT).show()
         }
-
     }
 
-    private fun Context.createMultiSelection(): View = MultiSelectionView(this).apply {
+    private fun Context.createMultiSelection(
+        multiOptions: String,
+        multiIds: String,
+        multiVariableName: String,
+        multiSelectionLimit: Int
+    ): View = MultiSelectionView(this).apply {
         val optionsList = multiOptions.split(",").map { it.trim() }
         val idsList = multiIds.split(",").map { it.trim() }
         var value = mehdiViewModel?.getValueByKey(multiVariableName)?.value
-        if (value != null) {
-            loadScreenListener?.setVariableToBase(multiVariableName, value)
-        }
 
         if (optionsList.isNotEmpty() && idsList.isNotEmpty()) {
             setItems(optionsList, idsList, multiSelectionLimit)
+
+            // Set default selection from database if value exists
+            if (value != null && value.isNotEmpty()) {
+                val selectedIdsList = value.split(",").map { it.trim() }
+                setSelectedItems(selectedIdsList)
+                loadScreenListener?.setVariableToBase(multiVariableName, value)
+            }
 
             setOnSelectionChangedListener { selectedIds ->
                 if (multiVariableName.isNotEmpty()) {
                     loadScreenListener?.setVariableToBase(multiVariableName, selectedIds)
                     mehdiViewModel?.insertItemToDb(PhPlusDB(null, multiVariableName, selectedIds))
-
                 }
             }
         }
@@ -629,7 +741,7 @@ class DemoCustomContainerAdapter(
         hint: String,
         inputType: String
     ): View = CustomInputView(this).apply {
-        val value=mehdiViewModel?.getValueByKey(variableName)?.value
+        val value = mehdiViewModel?.getValueByKey(variableName)?.value
         if (value != null) {
             setText(value)
             loadScreenListener?.setVariableToBase(variableName, value)
@@ -655,6 +767,11 @@ class DemoCustomContainerAdapter(
 
 //   setAudioUrl("https://github.com/rafaelreis-hotmart/Audio-Sample-files/raw/master/sample.mp3")
         setAudioUrl(audioUrl)
+    }
+
+    private fun Context.audioRecorderView(): View = AudioRecorderView(this).apply {
+        android.util.Log.d("DemoCustomContainerAdapter", "Creating AudioRecorderView with loadScreenListener: ${loadScreenListener != null}")
+        setLoadScreenListener(loadScreenListener)
     }
 
     private fun Context.doubleCircularProgressView(): View =

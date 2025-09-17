@@ -152,6 +152,7 @@
                   "type": "question",
                   "text": "@{text___1}"
                 },
+
                 {
                   "type": "sub_question",
                   "text": "@{text___2}"
@@ -184,6 +185,11 @@
                 {
                   "type": "take_video"
                 },
+                {
+                  "type": "custom",
+                  "custom_type": "audioRecorderView"
+                },
+
                 {
                   "type": "single_line_text",
                   "hint_text": "توضیحات",
@@ -330,6 +336,13 @@
                       "content_alignment_vertical": "center"
                     }
                   ]
+                },
+                {
+                  "type": "record"
+                },
+                {
+                  "type": "custom",
+                  "custom_type": "audioRecorderView"
                 }
               ]
             }

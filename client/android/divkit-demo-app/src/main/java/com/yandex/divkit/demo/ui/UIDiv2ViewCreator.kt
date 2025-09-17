@@ -43,7 +43,7 @@ class UIDiv2ViewCreator(private val context: Context, private val lo:LifecycleOw
         val divJson = assetReader.read(scenarioPath)
         val transitionScheduler = Div2Activity.DivParentTransitionScheduler(parent)
         val divConfiguration =
-            divConfiguration(activity, logDelegate)
+            divConfiguration(activity, logDelegate, mehdiViewModel, lo, context as LoadScreenListener)
                 .extension(
                     DivPinchToZoomExtensionHandler(
                         DivPinchToZoomConfiguration.Builder(activity).build()
