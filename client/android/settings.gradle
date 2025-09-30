@@ -60,6 +60,8 @@ include ':ui-test-common'
 include ':utils'
 include ':video-custom'
 include ':najicamera'
+include ':pushSdk'
+
 def internalSettings = file("settings.internal.gradle")
 if (internalSettings.exists()) {
     apply from: internalSettings

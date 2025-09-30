@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:padding="8dp"
+    android:background="@android:color/transparent">
+
+    <!-- تصویر دایره‌ای با عدد روز -->
+    <ImageView
+        android:id="@+id/image_day"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:scaleType="centerInside" />
+
+    <!-- تاریخ شمسی -->
+    <TextView
+        android:id="@+id/text_shamsi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="دوشنبه ۲۳ تیر ۱۴۰۴"
+        android:textSize="16sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="64dp" />
+
+    <!-- تاریخ میلادی و قمری -->
+    <TextView
+        android:id="@+id/text_miladi_ghamari"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="۱۴ ژوئیه ۲۰۲۵ ، ۱۸ محرم ۱۴۴۷"
+        android:textSize="13sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_below="@id/text_shamsi"
+        android:layout_alignStart="@id/text_shamsi" />
+</RelativeLayout>

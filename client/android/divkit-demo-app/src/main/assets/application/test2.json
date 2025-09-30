@@ -1,0 +1,34 @@
+{
+  "text": "شروع ماموریت",
+  "senderTitle" : "رخداد",
+  "serviceData": {
+    "path" : "push/thirdParty",
+    "senderId" : "0",
+    "State" : "0",
+    "_id" : "0",
+    "address" : "  خ رودکی  خ دامپزشکی  ",
+    "comeOffDateTime" : "50.871849",
+    "comeOffType" : "34.639493",
+    "comeOffTypeDetail" : "عادی در حین وقوع",
+    "crime" : "جرائم و وقایع_ جرایم_ نزاع و درگیری_ فردی_ سایر",
+    "description" : "درگیری",
+    "dispatchDateTime" : "1401.06.27  15:2 0:00",
+    "easting" : "35.729259573854506",
+    "errorText" : "",
+    "newsNumber" : "1815919777543",
+    "northing" : "51.42507034353912",
+    "otpCode" : "12345",
+    "priority" : "عادی",
+    "userCode" : ""
+  },
+  "actions": [
+    {
+      "log_id": "set_car_total_ticket_to_db",
+      "url": "div-action://set_variable_to_db?key=car_total_ticket_information_vt&value=12121"
+    },
+    {
+      "log_id": "set_car_total_ticket_to_db",
+      "url": "div-action://set_variable_to_db?key=motor&value=honda"
+    }
+  ]
+}

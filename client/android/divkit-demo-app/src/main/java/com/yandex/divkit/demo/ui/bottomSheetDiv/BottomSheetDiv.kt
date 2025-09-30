@@ -43,7 +43,7 @@ class BottomSheetDiv(
     private val jsonName: String,
     private val mehdiViewModel: MehdiViewModel,
     private val lo: LifecycleOwner,
-
+    private val bottomSheetManager: BottomSheetManager? = null
     ) :
     BottomSheetDialogFragment() {
     lateinit var dialog: BottomSheetDialog
@@ -56,9 +56,21 @@ class BottomSheetDiv(
     private lateinit var repository: PhPlusRepository
     private lateinit var remoteDataSource: PhPlusRemoteDataSource
     private lateinit var sharePref: SharePref
+    
+    // Unique ID assigned by BottomSheetManager
+    var assignedId: String? = null
 
      fun setVariableOnBottomSheet(key: String, value: String) {
-        div.setVariable(key,value)
+        println("BottomSheetDiv: Setting variable - key=$key, value=$value")
+        println("BottomSheetDiv: Bottom sheet ID: $assignedId")
+        println("BottomSheetDiv: div is initialized? ${::div.isInitialized}")
+        try {
+            div.setVariable(key, value)
+            println("BottomSheetDiv: Variable set successfully!")
+        } catch (e: Exception) {
+            println("BottomSheetDiv: Failed to set variable: ${e.message}")
+            e.printStackTrace()
+        }
     }
     fun onApply(json: String, patchName: String) {
         if (json != null)
@@ -109,7 +121,13 @@ class BottomSheetDiv(
             val nextJson = JsonDto!!.value
             val divJson = JSONObject(nextJson)
 
-            div = UIDiv2ViewCreator(context, lo, mehdiViewModel, activity,this).createDiv2ViewMehdi(
+            println("BottomSheetDiv: Creating UIDiv2ViewCreator with BottomSheetManager - is null? ${bottomSheetManager == null}")
+            val divCreator = UIDiv2ViewCreator(context, lo, mehdiViewModel, activity, this, bottomSheetManager)
+            
+            // Update BottomSheetManager reference in action handler
+            println("BottomSheetDiv: Updating BottomSheetManager in action handler")
+            divCreator.updateBottomSheetManager(bottomSheetManager)
+            div = divCreator.createDiv2ViewMehdi(
                 activity,
                 divJson,
                 binding.root,

@@ -19,6 +19,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
     <uses-permission
         android:name="android.permission.READ_SMS"
         tools:node="remove" />
@@ -160,6 +162,22 @@
             android:name=".service.AudioRecordingService"
             android:exported="false"
             android:foregroundServiceType="microphone" />
+
+        <service android:name="ir.naja.pushsdk.android.service.MqttService"
+            android:exported="false"
+            android:enabled="true"
+            android:foregroundServiceType="dataSync"
+            />
+
+        <receiver android:name="ir.naja.pushsdk.android.service.BootReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

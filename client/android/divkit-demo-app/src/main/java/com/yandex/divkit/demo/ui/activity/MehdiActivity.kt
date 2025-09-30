@@ -52,11 +52,14 @@ import com.yandex.divkit.demo.service.AudioRecordingService
 import com.yandex.divkit.demo.ui.LoadScreenListener
 import com.yandex.divkit.demo.ui.UIDiv2ViewCreator
 import com.yandex.divkit.demo.ui.bottomSheetDiv.BottomSheetDiv
+import com.yandex.divkit.demo.ui.bottomSheetDiv.BottomSheetManager
 import com.yandex.divkit.demo.ui.dialogDiv.DialogDiv
 import com.yandex.divkit.demo.ui.toastDiv.CustomToast
 import com.yandex.divkit.demo.utils.ErrorDialog
 import com.yandex.divkit.demo.utils.LoadingDialog
 import com.yandex.divkit.demo.utils.SingletonObjects
+import com.yandex.divkit.demo.push.PushHelper
+import com.yandex.divkit.demo.div.notificationList.NotificationManager
 import com.yandex.divkit.regression.ScenarioLogDelegate
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -98,7 +101,8 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
     // لیست برای ذخیره متغیرهای شامل "variable"
     private var varlist: ArrayList<String> = arrayListOf()
     private lateinit var div: Div2View
-    private lateinit var btmSheet: BottomSheetDiv
+    private var bottomSheetManager: BottomSheetManager? = null
+    private lateinit var divViewCreator: UIDiv2ViewCreator
     private val REQUEST_CODE_STORAGE = 1001
 //    private lateinit var observerRemoteData: Observer<String>
 //    private lateinit var observerRemoteData: Observer<MutableMap<String, String>>
@@ -122,6 +126,16 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
+        // Initialize BottomSheetManager
+        try {
+            bottomSheetManager = BottomSheetManager()
+            println("MehdiActivity: BottomSheetManager initialized successfully")
+        } catch (e: Exception) {
+            println("MehdiActivity: Failed to initialize BottomSheetManager: ${e.message}")
+            e.printStackTrace()
+            bottomSheetManager = null
+        }
+        
         // Add modern back navigation handling
         onBackPressedDispatcher.addCallback(this) {
             android.util.Log.d("MehdiActivity", "=== OnBackPressedDispatcher callback called ===")
@@ -139,6 +153,12 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 //        checkAndRequestPermissions()
         loading = LoadingDialog(this)
         error = ErrorDialog(this)
+        
+        // Setup push notifications (safe to call multiple times)
+        PushHelper.setupPushNotifications(this)
+        
+        // Handle push notification data if present
+        handlePushNotificationData()
 //        loading.showLoadingDialog("لطفا شکیبا باشید...")
 
         // مقداردهی اولیه سرویس‌ها و Repository
@@ -154,6 +174,10 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         repository = PhPlusRepository(remoteDataSource, sharePref, database.phPlusDBDao())
         val factory = MyViewModelFactory(repository)
         mehdiViewModel = ViewModelProvider(this, factory)[MehdiViewModel::class.java]
+
+        // Initialize NotificationManager with database access and action handler
+        // Note: actionHandler will be available after divViewCreator is created
+        NotificationManager.initialize(mehdiViewModel, null)
 
         // تنظیم امنیت صفحه (جلوگیری از گرفتن اسکرین‌شات)
         window.setFlags(
@@ -335,12 +359,26 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 //                Configuration.ORIENTATION_LANDSCAPE -> "application/login.json"
                 else -> "application/startPoint.json"
             }
-            div = UIDiv2ViewCreator(this, this, mehdiViewModel, this).createDiv2View(
+            divViewCreator = UIDiv2ViewCreator(this, this, mehdiViewModel, this, null, bottomSheetManager)
+            
+            // Update BottomSheetManager reference in action handler
+            try {
+                divViewCreator.updateBottomSheetManager(bottomSheetManager)
+                println("MehdiActivity: Successfully updated BottomSheetManager in action handler")
+            } catch (e: Exception) {
+                println("MehdiActivity: Failed to update BottomSheetManager in action handler: ${e.message}")
+                e.printStackTrace()
+            }
+            
+            div = divViewCreator.createDiv2View(
                 this,
                 path,
                 binding.root,
                 ScenarioLogDelegate.Stub
             )
+            
+            // Set action handler for NotificationManager now that divViewCreator is created
+            NotificationManager.setActionHandler(divViewCreator.actionHandler)
             div.layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT
@@ -355,12 +393,26 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                 nextJson = nextJsonDto!!.value.toString()
                 divJson = JSONObject(nextJson)
 
-                div = UIDiv2ViewCreator(this, this, mehdiViewModel, this).createDiv2ViewMehdi(
+                divViewCreator = UIDiv2ViewCreator(this, this, mehdiViewModel, this, null, bottomSheetManager)
+                
+                // Update BottomSheetManager reference in action handler
+                try {
+                    divViewCreator.updateBottomSheetManager(bottomSheetManager)
+                    println("MehdiActivity: Successfully updated BottomSheetManager in action handler")
+                } catch (e: Exception) {
+                    println("MehdiActivity: Failed to update BottomSheetManager in action handler: ${e.message}")
+                    e.printStackTrace()
+                }
+                
+                div = divViewCreator.createDiv2ViewMehdi(
                     this,
                     divJson,
                     binding.root,
                     ScenarioLogDelegate.Stub
                 )
+                
+                // Set action handler for NotificationManager now that divViewCreator is created
+                NotificationManager.setActionHandler(divViewCreator.actionHandler)
                 div.layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.MATCH_PARENT
@@ -493,6 +545,31 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         }
     }
 
+    private fun handlePushNotificationData() {
+        try {
+            val pushMessage = intent.getStringExtra("push_message")
+            val pushTopic = intent.getStringExtra("push_topic")
+            
+            if (pushMessage != null) {
+                android.util.Log.d("MehdiActivity", "=== PUSH NOTIFICATION RECEIVED ===")
+                android.util.Log.d("MehdiActivity", "Push message: $pushMessage")
+                android.util.Log.d("MehdiActivity", "Push topic: $pushTopic")
+                
+                // You can parse the push message and load specific JSON screen
+                // Example: If push message contains JSON screen name
+                // val payload = Gson().fromJson(pushMessage, YourPayloadClass::class.java)
+                // loadScreen(payload.screenName)
+                
+                // Ensure Toast runs on main thread
+                runOnUiThread {
+                    Toast.makeText(this, "Push notification received: $pushMessage", Toast.LENGTH_LONG).show()
+                }
+            }
+        } catch (e: Exception) {
+            android.util.Log.e("MehdiActivity", "Error handling push notification data", e)
+        }
+    }
+
     private fun setupObservers() {
 
         mehdiViewModel.phPlus.observe(this) {
@@ -548,8 +625,29 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
                                 if (key.contains("variable"))
                                     div.setVariable(key, value)
-                                if (key.contains("bottom_sheet_variable"))
-                                    btmSheet.setVariableOnBottomSheet(key, value)
+                                if (key.contains("bottom_sheet_variable")) {
+                                    // Parse targeting information from key
+                                    // Format: bottom_sheet_variable_[target]_[variableName]
+                                    val parts = key.split("_")
+                                    println("MehdiActivity: Processing bottom_sheet_variable key=$key, parts=${parts.toList()}")
+                                    println("MehdiActivity: bottomSheetManager is null? ${bottomSheetManager == null}")
+                                    val manager = bottomSheetManager
+                                    if (manager != null) {
+                                        if (parts.size >= 4) {
+                                            val target = parts[2] // target (current, first, id, position)
+                                            val variableName = parts.drop(3).joinToString("_") // variable name
+                                            println("MehdiActivity: Setting variable - target=$target, variableName=$variableName, value=$value")
+                                            val success = manager.setVariableOnTarget(target, variableName, value)
+                                            println("MehdiActivity: Variable setting success=$success")
+                                        } else {
+                                            // Fallback to current bottom sheet
+                                            println("MehdiActivity: Fallback to current bottom sheet")
+                                            manager.getCurrentBottomSheet()?.setVariableOnBottomSheet(key, value)
+                                        }
+                                    } else {
+                                        println("MehdiActivity: bottomSheetManager is null, skipping variable setting")
+                                    }
+                                }
 
                             }
                         }
@@ -583,15 +681,29 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                             }
                         }
                         if (bottomSheet != "") {
-//                            if (btmSheet!=null)
-//                                btmSheet.dismiss()
                             println("bottomSheet1:${bottomSheet}")
-                            btmSheet = BottomSheetDiv(this, this, bottomSheet, mehdiViewModel, this)
+                            println("MehdiActivity: Creating bottom sheet with manager - bottomSheetManager is null? ${bottomSheetManager == null}")
+                            val manager = bottomSheetManager
+                            if (manager != null) {
+                                val newBottomSheet = manager.createAndAddBottomSheet(
+                                    this, this, bottomSheet, mehdiViewModel, this
+                                )
+                            println("MehdiActivity: Bottom sheet created with ID: ${newBottomSheet.assignedId}")
+                            println("MehdiActivity: Total bottom sheets: ${manager.getBottomSheetCount()}")
+                            println("MehdiActivity: All bottom sheet IDs: ${manager.getAllBottomSheetIds()}")
 
-                            btmSheet.show(
-                                (this as FragmentActivity).supportFragmentManager,
-                                "bottomSheetList"
-                            )
+                                newBottomSheet.show(
+                                    (this as FragmentActivity).supportFragmentManager,
+                                    "bottomSheetList"
+                                )
+                            } else {
+                                println("MehdiActivity: bottomSheetManager is null, creating bottom sheet without manager")
+                                val newBottomSheet = BottomSheetDiv(this, this, bottomSheet, mehdiViewModel, this, null)
+                                newBottomSheet.show(
+                                    (this as FragmentActivity).supportFragmentManager,
+                                    "bottomSheetList"
+                                )
+                            }
                         }
                         if (dialog != "") {
                             DialogDiv(
@@ -616,8 +728,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
                         }
                         if (bottomSheetPatch != "") {
-                            btmSheet.onApply(bottomSheetPatch, "")
-
+                            bottomSheetManager?.getCurrentBottomSheet()?.onApply(bottomSheetPatch, "")
                         }
                         if (reset != "") {
                             resetActivityForLoad(
@@ -1009,7 +1120,8 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
     }
 
     override fun getBtmSheetInstance(btmSheet: BottomSheetDiv) {
-        this.btmSheet = btmSheet
+        // Bottom sheet is already managed by BottomSheetManager
+        // This method is kept for compatibility but may not be needed anymore
     }
 
     override fun setVariableToBase(key: String, value: String) {
@@ -1167,7 +1279,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         android.util.Log.d("MehdiActivity", "=== startRecordingService() completed ===")
     }
 
-    override fun startRecording(recordingId: String? = null) {
+    override fun startRecording(recordingId: String?) {
         android.util.Log.d("MehdiActivity", "=== startRecording() called ===")
         android.util.Log.d("MehdiActivity", "Recording ID: $recordingId")
         android.util.Log.d("MehdiActivity", "Calling requestAudioPermissionAndStart()")

@@ -54,6 +54,7 @@ import com.yandex.divkit.demo.settings.SettingsActivity
 import com.yandex.divkit.demo.ui.activity.MehdiActivity
 import com.yandex.divkit.demo.ui.activity.MehdiViewModel
 import com.yandex.divkit.demo.ui.bottomSheetDiv.BottomSheetDiv
+import com.yandex.divkit.demo.ui.bottomSheetDiv.BottomSheetManager
 import com.yandex.divkit.demo.ui.bottomSheetPlate.BottomSheetPlate
 import com.yandex.divkit.demo.ui.bottomSheetSpinner.AdapterBottomSheetSpinner
 import com.yandex.divkit.demo.ui.bottomSheetSpinner.BottomSheetSpinner
@@ -108,6 +109,7 @@ private const val AUTHORITY_SHOW_IMAGE = "show_image"
 private const val AUTHORITY_GET_PERSIAN_DATE = "get_persian_date"
 private const val AUTHORITY_BOTTOM_SHEET_DISMISS = "bottom_sheet_dismiss"
 private const val AUTHORITY_SET_VARIABLE_TO_BASE = "set_variable_to_base"
+private const val AUTHORITY_SET_VARIABLE_TO_BOTTOM_SHEET = "set_variable_to_bottomsheet"
 private const val AUTHORITY_CHECK_VERSION = "check_version"
 private const val AUTHORITY_SET_OBJECT_TO_DB = "set_object_to_db"
 private const val AUTHORITY_SET_PAGE_TO_DB = "set_page_to_db"
@@ -141,6 +143,7 @@ private const val PARAM_DIALOG_TITLE = "title"
 private const val PARAM_DIALOG_MASSAGE = "massage"
 private const val PARAM_VARIABLE_NAME = "name"
 private const val PARAM_VARIABLE_VALUE = "value"
+private const val PARAM_TARGET_BOTTOM_SHEET = "target"
 private const val PARAM_CAPTCHA_NAME = "name"
 private const val PARAM_CAPTCHA_IMAGE = "image"
 private const val PARAM_BOTTOM_SHEET_LIST_ID = "id"
@@ -179,11 +182,23 @@ class UIDiv2ActionHandler(
     private val lo: LifecycleOwner,
     private var loadScreenListener: LoadScreenListener,
     private val mehdiViewModel: MehdiViewModel?,
-    private var btmSheet_div: BottomSheetDiv? = null
+    private var btmSheet_div: BottomSheetDiv? = null,
+    private var bottomSheetManager: BottomSheetManager? = null
 ) : /*DemoDivActionHandler(uriHandler),*/ DivActionHandler(), BottomSheetPlate.PlateItemListener,
     OnCallBackListener,
     Serializable,
     AdapterBottomSheetSpinner.CustomItemListener {
+    
+    // Method to update the BottomSheetManager reference
+    fun setBottomSheetManager(bottomSheetManager: BottomSheetManager?) {
+        try {
+            this.bottomSheetManager = bottomSheetManager
+            println("UIDiv2ActionHandler: BottomSheetManager updated - is null? ${bottomSheetManager == null}")
+        } catch (e: Exception) {
+            println("UIDiv2ActionHandler: Failed to set BottomSheetManager: ${e.message}")
+            e.printStackTrace()
+        }
+    }
     lateinit var view: DivViewFacade
 //    private lateinit var btmSheet_div: BottomSheetDiv
 
@@ -1289,6 +1304,39 @@ class UIDiv2ActionHandler(
                 }
             }
 //            btmSheet_div.dismiss()
+        } else if (uri.authority == AUTHORITY_SET_VARIABLE_TO_BOTTOM_SHEET) {
+            val name = uri.getQueryParameter(PARAM_VARIABLE_NAME)
+            val value = uri.getQueryParameter(PARAM_VARIABLE_VALUE)
+            val target = uri.getQueryParameter(PARAM_TARGET_BOTTOM_SHEET)
+            
+            println("UIDiv2ActionHandler: ========== SETTING VARIABLE TO BOTTOM SHEET ==========")
+            println("UIDiv2ActionHandler: name=$name")
+            println("UIDiv2ActionHandler: value=$value")
+            println("UIDiv2ActionHandler: target=$target")
+            println("UIDiv2ActionHandler: bottomSheetManager is null? ${bottomSheetManager == null}")
+            
+            if (name != null && value != null && target != null) {
+                println("UIDiv2ActionHandler: All parameters are valid, attempting to set variable...")
+                val success = bottomSheetManager?.setVariableOnTarget(target, name, value) ?: false
+                println("UIDiv2ActionHandler: Variable setting success=$success")
+                if (!success) {
+                    // Fallback: try to set on current bottom sheet
+                    println("UIDiv2ActionHandler: Primary method failed, trying fallback...")
+                    val currentSheet = bottomSheetManager?.getCurrentBottomSheet()
+                    println("UIDiv2ActionHandler: Fallback - currentSheet is null? ${currentSheet == null}")
+                    if (currentSheet != null) {
+                        println("UIDiv2ActionHandler: Setting variable on current bottom sheet as fallback")
+                        currentSheet.setVariableOnBottomSheet(name, value)
+                    } else {
+                        println("UIDiv2ActionHandler: No current bottom sheet available for fallback")
+                    }
+                } else {
+                    println("UIDiv2ActionHandler: Variable successfully set on target bottom sheet!")
+                }
+            } else {
+                println("UIDiv2ActionHandler: Missing parameters - name=$name, value=$value, target=$target")
+            }
+            println("UIDiv2ActionHandler: ========== END VARIABLE SETTING ==========")
         } else if (uri.authority == AUTHORITY_SHOW_DIV_TOAST) {
 
             val JsonDto = uri.getQueryParameter(PARAM_TOAST_DIV)
@@ -1340,9 +1388,10 @@ class UIDiv2ActionHandler(
             if (mehdiViewModel != null) {
 
                 uri.getQueryParameter(PARAM_BOTTOM_SHEET_DIV)?.let {
-                    btmSheet_div = BottomSheetDiv(
+                    btmSheet_div = bottomSheetManager?.createAndAddBottomSheet(
                         context, activity, it, mehdiViewModel, lo
-                    )
+                    ) ?: BottomSheetDiv(context, activity, it, mehdiViewModel, lo)
+                    
                     btmSheet_div?.show(
                         (context as FragmentActivity).supportFragmentManager,
                         "bottomSheetList"
@@ -1710,6 +1759,18 @@ class UIDiv2ActionHandler(
                 "Failed to process nested variables: ${e.message}"
             )
             return inputString
+        }
+    }
+    
+    /**
+     * Handle action from URI string (for push notifications)
+     */
+    fun handleActionFromString(actionUrl: String) {
+        try {
+            val uri = Uri.parse(actionUrl)
+            handleActivityActionUrl(uri, view ?: return)
+        } catch (e: Exception) {
+            Log.e("UIDiv2ActionHandler", "Error handling action from string: $actionUrl", e)
         }
     }
 }

@@ -8,40 +8,11 @@
           "type": "container",
           "items": [
             {
-              "type": "image",
-              "image_url": "divkit-asset://login.png",
-              "height": {
-                "type": "match_parent"
-              },
-              "width": {
-                "type": "match_parent"
-              },
-              "alignment_horizontal": "center",
-              "alignment_vertical": "top",
-              "margins": {
-                "left": 0,
-                "right": 0,
-                "top": 0
-              }
-            },
-            {
               "type": "container",
               "width": {
                 "type": "match_parent"
               },
               "items": [
-                {
-                  "type": "container",
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "height": {
-                    "type": "match_parent",
-                    "weight": 0.5
-                  },
-                  "alignment_horizontal": "center",
-                  "alignment_vertical": "center"
-                },
                 {
                   "type": "container",
                   "items": [
@@ -53,19 +24,23 @@
                           "image_url": "@{naja}",
                           "height": {
                             "type": "fixed",
-                            "value": 64
+                            "value": 88
                           },
                           "width": {
                             "type": "fixed",
-                            "value": 44
-                          }
+                            "value": 48
+                          },
+                          "margins": {
+                            "top": 8
+                          },
+                          "scale": "fit"
                         },
                         {
                           "type": "text",
                           "text": "@{text___1}",
-                          "font_size": 14,
+                          "font_size": 12,
                           "font_weight": "regular",
-                          "line_height": 24,
+                          "line_height": 14,
                           "letter_spacing": 0,
                           "text_color": "#252424",
                           "text_alignment_horizontal": "center",
@@ -92,7 +67,7 @@
                                     {
                                       "type": "input",
                                       "text_variable": "username",
-                                      "keyboard_type":"single_line_text",
+                                      "keyboard_type": "single_line_text",
                                       "hint_text": "شماره پرسنلی",
                                       "font_size": 14,
                                       "font_weight": "regular",
@@ -174,8 +149,7 @@
                                 }
                               ],
                               "border": {
-                                "corner_radius": 4
-                              ,
+                                "corner_radius": 4,
                                 "stroke": {
                                   "color": "#dedede",
                                   "width": 1
@@ -195,6 +169,9 @@
                                 "bottom": 12,
                                 "left": 8,
                                 "right": 12
+                              },
+                              "margins": {
+                                "top": 48
                               }
                             }
                           ],
@@ -208,7 +185,7 @@
                           "content_alignment_vertical": "top",
                           "content_alignment_horizontal": "right",
                           "margins": {
-                            "top": 16
+                            "top": 8
                           }
                         },
                         {
@@ -217,7 +194,10 @@
                           "text": "نام کاربری کوتاه است",
                           "text_color": "#ff0000",
                           "font_size": 10,
-                          "visibility": "@{text_not_are_too_short_username ? 'invisible' : 'visible'}"
+                          "visibility": "@{text_not_are_too_short_username ? 'invisible' : 'visible'}",
+                          "height": {
+                            "type": "wrap_content"
+                          }
                         },
                         {
                           "id": "contains_only_valid_characters_username_title_username",
@@ -225,7 +205,10 @@
                           "text": "استفاده از کاراکتر نا معتبر",
                           "text_color": "#ff0000",
                           "font_size": 10,
-                          "visibility": "@{text_contains_only_valid_characters_username ? 'invisible' : 'visible'}"
+                          "visibility": "@{text_contains_only_valid_characters_username ? 'invisible' : 'visible'}",
+                          "height": {
+                            "type": "wrap_content"
+                          }
                         },
                         {
                           "type": "container",
@@ -356,8 +339,7 @@
                                 }
                               ],
                               "border": {
-                                "corner_radius": 4
-                              ,
+                                "corner_radius": 4,
                                 "stroke": {
                                   "color": "#dedede",
                                   "width": 1
@@ -390,7 +372,7 @@
                           "content_alignment_vertical": "top",
                           "content_alignment_horizontal": "right",
                           "margins": {
-                            "top": 16
+                            "top": 8
                           }
                         },
                         {
@@ -399,7 +381,10 @@
                           "text": "رمز عبور کوتاه است",
                           "text_color": "#ff0000",
                           "font_size": 10,
-                          "visibility": "@{text_not_are_too_short_password ? 'invisible' : 'visible'}"
+                          "visibility": "@{text_not_are_too_short_password ? 'invisible' : 'visible'}",
+                          "height": {
+                            "type": "wrap_content"
+                          }
                         },
                         {
                           "id": "contains_only_valid_characters_password_title",
@@ -407,7 +392,10 @@
                           "text": "استفاده از کاراکتر نا معتبر",
                           "text_color": "#ff0000",
                           "font_size": 10,
-                          "visibility": "@{text_contains_only_valid_characters_password ? 'invisible' : 'visible'}"
+                          "visibility": "@{text_contains_only_valid_characters_password ? 'invisible' : 'visible'}",
+                          "height": {
+                            "type": "wrap_content"
+                          }
                         },
                         {
                           "type": "container",
@@ -427,7 +415,8 @@
                                       },
                                       "width": {
                                         "type": "match_parent"
-                                      }
+                                      },
+                                      "scale": "stretch"
                                     }
                                   ],
                                   "height": {
@@ -491,8 +480,7 @@
                                 }
                               ],
                               "border": {
-                                "corner_radius": 4
-                              ,
+                                "corner_radius": 4,
                                 "stroke": {
                                   "color": "#dedede",
                                   "width": 1
@@ -523,7 +511,7 @@
                                           "type": "input",
                                           "text_variable": "inputResultCaptcha",
                                           "hint_text": "کد امنیتی",
-                                          "keyboard_type": "phone",
+                                          "keyboard_type": "single_line_text",
                                           "font_size": 14,
                                           "font_weight": "regular",
                                           "line_height": 32,
@@ -557,8 +545,7 @@
                                     }
                                   ],
                                   "border": {
-                                    "corner_radius": 4
-                                  ,
+                                    "corner_radius": 4,
                                     "stroke": {
                                       "color": "#dedede",
                                       "width": 1
@@ -606,35 +593,54 @@
                           "content_alignment_horizontal": "center",
                           "content_alignment_vertical": "center",
                           "margins": {
-                            "top": 16
+                            "top": 8
                           }
                         },
                         {
                           "type": "container",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "match_parent"
+                          },
                           "items": [
-                            {
-                              "type": "text",
-                              "text": "@{text___8}",
-                              "font_size": 14,
-                              "font_weight": "regular",
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#ffffff",
-                              "text_alignment_horizontal": "left",
-                              "text_alignment_vertical": "top",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              }
-                            },
                             {
                               "type": "container",
                               "items": [
                                 {
-                                  "type": "image",
-                                  "image_url": "@{loginbtn}",
+                                  "type": "text",
+                                  "text": "@{text___8}",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 24,
+                                  "letter_spacing": 0,
+                                  "text_color": "#ffffff",
+                                  "text_alignment_horizontal": "left",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "wrap_content"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                },
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "image",
+                                      "image_url": "@{loginbtn}",
+                                      "height": {
+                                        "type": "fixed",
+                                        "value": 24
+                                      },
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 24
+                                      }
+                                    }
+                                  ],
                                   "height": {
                                     "type": "fixed",
                                     "value": 24
@@ -642,88 +648,85 @@
                                   "width": {
                                     "type": "fixed",
                                     "value": 24
+                                  },
+                                  "orientation": "overlap",
+                                  "content_alignment_vertical": "center",
+                                  "content_alignment_horizontal": "center",
+                                  "margins": {
+                                    "left": 8
                                   }
                                 }
                               ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#193d8d"
+                                }
+                              ],
+                              "actions": [
+                                {
+                                  "log_id": "call_service",
+                                  "is_enabled": "@{is_valid}",
+                                  "url": "div-action://call_service?path=getLoginData&username=@{username}&password=@{password}&resultCaptcha=@{inputResultCaptcha}&resultCaptchaId=@{variable_captcha_id}"
+                                }
+                              ],
+                              "action_animation": {
+                                "name": "scale",
+                                "start_value": 1,
+                                "end_value": 0.95,
+                                "duration": 300,
+                                "interpolator": "ease_in_out"
+                              },
+                              "border": {
+                                "corner_radius": 4
+                              },
                               "height": {
-                                "type": "fixed",
-                                "value": 24
+                                "type": "wrap_content"
                               },
                               "width": {
-                                "type": "fixed",
-                                "value": 24
+                                "type": "match_parent"
                               },
-                              "orientation": "overlap",
-                              "content_alignment_vertical": "center",
+                              "orientation": "horizontal",
                               "content_alignment_horizontal": "center",
+                              "content_alignment_vertical": "center",
+                              "paddings": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 8,
+                                "end": 8
+                              },
                               "margins": {
-                                "left": 8
+                                "top": 8
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{text___9}",
+                              "font_size": 12,
+                              "font_weight": "regular",
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#ffffff",
+                              "text_alignment_horizontal": "right",
+                              "text_alignment_vertical": "center",
+                              "width": {
+                                "type": "fixed",
+                                "value": 82
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "margins": {
+                                "top": 8
+                              },
+                              "alignment_horizontal": "center",
+                              "transform": {
+                                "rotation": 0
                               }
                             }
                           ],
-                          "background": [
-                            {
-                              "type": "solid",
-                              "color": "#193d8d"
-                            }
-                          ],
-                          "actions": [
-                            {
-                              "log_id": "call_service",
-                              "is_enabled": "@{is_valid}",
-                              "url": "div-action://call_service?path=getLoginData&username=@{username}&password=@{password}"
-                            }
-                          ],
-                          "action_animation": {
-                            "name": "scale",
-                            "start_value": 1,
-                            "end_value": 0.95,
-                            "duration": 300,
-                            "interpolator": "ease_in_out"
-                          },
-                          "border": {
-                            "corner_radius": 4
-
-                          },
-                          "height": {
-                            "type": "fixed",
-                            "value": 48
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "horizontal",
                           "content_alignment_horizontal": "center",
-                          "content_alignment_vertical": "center",
-                          "paddings": {
-                            "top": 12,
-                            "bottom": 12,
-                            "left": 12,
-                            "right": 12
-                          },
-                          "margins": {
-                            "top": 16
-                          }
-                        },
-                        {
-                          "type": "text",
-                          "text": "@{text___9}",
-                          "font_size": 12,
-                          "font_weight": "regular",
-                          "line_height": 24,
-                          "letter_spacing": 0,
-                          "text_color": "#5d5c5c",
-                          "text_alignment_horizontal": "right",
-                          "text_alignment_vertical": "center",
-                          "width": {
-                            "type": "wrap_content"
-                          },
-                          "height": {
-                            "type": "wrap_content"
-                          },
-                          "margins": {
-                            "top": 16
-                          }
+                          "content_alignment_vertical": "bottom"
                         }
                       ],
                       "height": {
@@ -734,27 +737,26 @@
                         "type": "match_parent"
                       },
                       "orientation": "vertical",
-                      "content_alignment_vertical": "center",
+                      "content_alignment_vertical": "top",
                       "content_alignment_horizontal": "center",
                       "alignment_horizontal": "center",
                       "alignment_vertical": "center",
                       "margins": {
-                        "left": 12,
-                        "right": 12,
-                        "top": 8,
-                        "bottom": 8
+                        "top": 24,
+                        "bottom": 8,
+                        "start": 12,
+                        "end": 12
                       }
                     }
                   ],
                   "background": [
                     {
                       "type": "solid",
-                      "color": "#fafafa"
+                      "color": "#FAFAFA"
                     }
                   ],
                   "border": {
-                    "corner_radius": 4
-                  ,
+                    "corner_radius": 4,
                     "has_shadow": 1,
                     "shadow": {
                       "offset": {
@@ -772,7 +774,7 @@
                   },
                   "height": {
                     "type": "match_parent",
-                    "weight": 1.5
+                    "weight": 8
                   },
                   "width": {
                     "type": "match_parent"
@@ -810,19 +812,7 @@
           },
           "orientation": "overlap",
           "content_alignment_vertical": "center",
-          "content_alignment_horizontal": "center",
-          "visibility_actions": [
-            {
-              "log_id": "set_variable_from_db",
-              "url": "div-action://set_variable_from_db?name=variable_resultCaptcha",
-              "visibility_duration": 0
-            },
-            {
-              "log_id": "set_variable_from",
-              "url": "div-action://set_variable_from_db?name=variable_captcha",
-              "visibility_duration": 0
-            }
-          ]
+          "content_alignment_horizontal": "center"
         }
       }
     ],
@@ -880,6 +870,11 @@
       {
         "type": "string",
         "name": "variable_resultCaptcha",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_captcha_id",
         "value": ""
       },
       {
@@ -965,7 +960,7 @@
     ],
     "variable_triggers": [
       {
-        "condition": "@{text_contains_only_valid_characters_password && text_contains_only_valid_characters_username && text_not_are_too_short_username && text_not_are_too_short_password && inputResultCaptcha==variable_resultCaptcha }",
+        "condition": "@{text_contains_only_valid_characters_password && text_contains_only_valid_characters_username && text_not_are_too_short_username && text_not_are_too_short_password }",
         "mode": "on_condition",
         "actions": [
           {
@@ -975,7 +970,7 @@
         ]
       },
       {
-        "condition": "@{!text_contains_only_valid_characters_password || !text_contains_only_valid_characters_username || !text_not_are_too_short_username || !text_not_are_too_short_password || inputResultCaptcha!=variable_resultCaptcha}",
+        "condition": "@{!text_contains_only_valid_characters_password || !text_contains_only_valid_characters_username || !text_not_are_too_short_username || !text_not_are_too_short_password}",
         "mode": "on_condition",
         "actions": [
           {
@@ -996,7 +991,6 @@
       "line_height": 28,
       "border": {
         "corner_radius": 4
-
       },
       "action_animation": {
         "name": "scale",
@@ -1012,7 +1006,8 @@
         "type": "match_parent"
       },
       "height": {
-        "type": "wrap_content"
+        "type": "match_parent",
+        "weight": 0.5
       },
       "paddings": {
         "left": 32,
@@ -1020,7 +1015,7 @@
         "right": 16,
         "bottom": 4
       },
-      "alpha": 1.0,
+      "alpha": 1,
       "alignment_horizontal": "center",
       "alignment_vertical": "center",
       "font_size": 16,

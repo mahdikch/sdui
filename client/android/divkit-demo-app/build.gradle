@@ -162,6 +162,8 @@ dependencies {
     implementation(libs.appmetrica.lib) {
         exclude group: 'io.appmetrica.analytics', module: 'analytics-identifiers'
     }
+    implementation project(path: ':pushSdk')
+
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation libs.androidx.lifecycle.runtime

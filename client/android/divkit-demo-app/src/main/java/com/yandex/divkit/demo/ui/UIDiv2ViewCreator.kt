@@ -16,6 +16,7 @@ import com.yandex.divkit.demo.screenshot.Div2ViewFactory
 import com.yandex.divkit.demo.screenshot.DivAssetReader
 import com.yandex.divkit.demo.ui.activity.MehdiViewModel
 import com.yandex.divkit.demo.ui.bottomSheetDiv.BottomSheetDiv
+import com.yandex.divkit.demo.ui.bottomSheetDiv.BottomSheetManager
 import com.yandex.divkit.demo.utils.DivkitDemoUriHandler
 import com.yandex.divkit.regression.Div2ViewCreator
 import com.yandex.divkit.regression.ScenarioLogDelegate
@@ -24,10 +25,25 @@ import java.util.concurrent.Executors
 
 class UIDiv2ViewCreator(private val context: Context, private val lo:LifecycleOwner,
                         private val mehdiViewModel: MehdiViewModel?, private val activity: Activity,
-                        private  var btmSheet_div: BottomSheetDiv?=null) : Div2ViewCreator {
+                        private  var btmSheet_div: BottomSheetDiv?=null,
+                        private var bottomSheetManager: BottomSheetManager?=null) : Div2ViewCreator {
 
     private val assetReader = DivAssetReader(context)
     private val uriHandler = DivkitDemoUriHandler(context)
+    
+    // Expose action handler for external use
+    val actionHandler = UIDiv2ActionHandler(uriHandler, context, activity, lo, context as LoadScreenListener, mehdiViewModel, btmSheet_div, bottomSheetManager)
+    
+    // Method to update BottomSheetManager in action handler
+    fun updateBottomSheetManager(bottomSheetManager: BottomSheetManager?) {
+        try {
+            actionHandler.setBottomSheetManager(bottomSheetManager)
+            println("UIDiv2ViewCreator: Successfully updated BottomSheetManager in action handler")
+        } catch (e: Exception) {
+            println("UIDiv2ViewCreator: Failed to update BottomSheetManager in action handler: ${e.message}")
+            e.printStackTrace()
+        }
+    }
     private val divStateStorage = DivStateDatabase(
         context,
         "regression-div-states",
@@ -52,8 +68,7 @@ class UIDiv2ViewCreator(private val context: Context, private val lo:LifecycleOw
                 .divStateChangeListener(transitionScheduler)
                 .divDataChangeListener(transitionScheduler)
                 .typefaceProvider(YandexSansDivTypefaceProvider(activity))
-                .actionHandler(UIDiv2ActionHandler(uriHandler, context,activity,lo,context as LoadScreenListener,mehdiViewModel,
-                    btmSheet_div))
+                .actionHandler(actionHandler)
                 .enableAccessibility(true)
                 .build()
         val divContext = divContext(
@@ -87,7 +102,7 @@ class UIDiv2ViewCreator(private val context: Context, private val lo:LifecycleOw
                 .divStateChangeListener(transitionScheduler)
                 .divDataChangeListener(transitionScheduler)
                 .typefaceProvider(YandexSansDivTypefaceProvider(activity))
-                .actionHandler(UIDiv2ActionHandler(uriHandler, context,activity,lo,context as LoadScreenListener,mehdiViewModel,btmSheet_div))
+                .actionHandler(actionHandler)
                 .enableAccessibility(true)
                 .build()
         val divContext = divContext(

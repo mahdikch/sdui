@@ -47,6 +47,7 @@ import com.yandex.divkit.demo.div.audioPlayerView.AudioPlayerView
 import com.yandex.divkit.demo.div.audioRecorderView.AudioRecorderView
 import com.yandex.divkit.demo.div.multiSelection.MultiSelectionView
 import com.yandex.divkit.demo.div.customInput.CustomInputView
+import com.yandex.divkit.demo.div.notificationList.NotificationListView
 import com.yandex.divkit.demo.ui.LoadScreenListener
 import com.yandex.divkit.demo.ui.activity.MehdiViewModel
 import android.util.Log
@@ -133,6 +134,7 @@ class DemoCustomContainerAdapter(
             // This will be handled specially in createView method
             context.createMultiSelection("", "", "", 0)
         },
+        "notification_list" to { context: Context -> context.createNotificationList() },
 //        "offline_vt_reports_container" to { context: Context -> context.createOfflineVtReportsContainer() },
         "offline_list_container" to { context: Context -> context.createOfflineListContainer() }
     )
@@ -772,6 +774,37 @@ class DemoCustomContainerAdapter(
     private fun Context.audioRecorderView(): View = AudioRecorderView(this).apply {
         android.util.Log.d("DemoCustomContainerAdapter", "Creating AudioRecorderView with loadScreenListener: ${loadScreenListener != null}")
         setLoadScreenListener(loadScreenListener)
+    }
+
+    private fun Context.createNotificationList(): View = NotificationListView(this).apply {
+        // Set click listeners
+        setOnNotificationClickListener { notification ->
+            android.util.Log.d("DemoCustomContainerAdapter", "Notification clicked: ${notification.title}")
+            
+            // Show notification body in dialog
+            showNotificationDialog(notification)
+            
+            // Handle notification click - you can load specific screens based on notification data
+            notification.data?.get("screen")?.let { screenName ->
+                loadScreenListener?.onLoad(screenName)
+            }
+        }
+        
+        setOnMarkAsReadListener { notification ->
+            android.util.Log.d("DemoCustomContainerAdapter", "Notification marked as read: ${notification.id}")
+            
+            // Mark as read in NotificationManager (this will update all views)
+            com.yandex.divkit.demo.div.notificationList.NotificationManager.markAsRead(notification.id)
+            
+            // Save read status to database
+            mehdiViewModel?.insertItemToDb(
+                com.yandex.divkit.demo.data.entities.PhPlusDB(
+                    null, 
+                    "notification_read_${notification.id}", 
+                    "true"
+                )
+            )
+        }
     }
 
     private fun Context.doubleCircularProgressView(): View =
