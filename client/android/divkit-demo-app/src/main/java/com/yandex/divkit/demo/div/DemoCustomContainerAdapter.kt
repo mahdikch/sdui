@@ -46,6 +46,7 @@ import com.yandex.divkit.demo.div.labelledSliderView.LabelledSliderView
 import com.yandex.divkit.demo.div.audioPlayerView.AudioPlayerView
 import com.yandex.divkit.demo.div.audioRecorderView.AudioRecorderView
 import com.yandex.divkit.demo.div.multiSelection.MultiSelectionView
+import com.yandex.divkit.demo.div.singleSelection.SingleSelectionView
 import com.yandex.divkit.demo.div.customInput.CustomInputView
 import com.yandex.divkit.demo.div.notificationList.NotificationListView
 import com.yandex.divkit.demo.ui.LoadScreenListener
@@ -78,6 +79,8 @@ class DemoCustomContainerAdapter(
     private var counter: Int = 0
     private var timerButtonNext: String = ""
     private var timerButtonPath: String = ""
+    private var timerButtonUploadRecordingId: String = ""
+    private var timerButtonUploadPath: String = ""
 //    private var timerButtonParam1: String = ""
 //    private var timerButtonParam2: String = ""
 //    private var timerButtonParam3: String = ""
@@ -124,6 +127,7 @@ class DemoCustomContainerAdapter(
         "double_circular_progressView" to { context: Context -> context.doubleCircularProgressView() },
         "timer_button" to { context: Context -> context.timerButton() },
         "timer_button_call_service" to { context: Context -> context.timerButtonCallService() },
+        "timer_button_upload_and_call_service" to { context: Context -> context.timerButtonUploadAndCallService() },
         "audioPlayerView" to { context: Context -> context.audioPlayerView() },
         "audioRecorderView" to { context: Context -> context.audioRecorderView() },
         "labelledSliderView" to { context: Context ->
@@ -132,7 +136,11 @@ class DemoCustomContainerAdapter(
         },
         "multi_selection" to { context: Context ->
             // This will be handled specially in createView method
-            context.createMultiSelection("", "", "", 0)
+            context.createMultiSelection("", "", "", 0, "false")
+        },
+        "single_selection" to { context: Context ->
+            // This will be handled specially in createView method
+            context.createSingleSelection("", "", "", "false")
         },
         "notification_list" to { context: Context -> context.createNotificationList() },
 //        "offline_vt_reports_container" to { context: Context -> context.createOfflineVtReportsContainer() },
@@ -199,42 +207,28 @@ class DemoCustomContainerAdapter(
             timerButtonPath = evaluateCustomPropString(div, "path", expressionResolver, "")
             for (i in 1..200)
                 paramList.add( evaluateCustomPropString(div, "param$i", expressionResolver, ""))
-
-//            timerButtonParam1 = evaluateCustomPropString(div, "param1", expressionResolver, "")
-//            timerButtonParam2 = evaluateCustomPropString(div, "param2", expressionResolver, "")
-//            timerButtonParam3 = evaluateCustomPropString(div, "param3", expressionResolver, "")
-//            timerButtonParam4 = evaluateCustomPropString(div, "param4", expressionResolver, "")
-//            timerButtonParam5 = evaluateCustomPropString(div, "param5", expressionResolver, "")
-//            timerButtonParam6 = evaluateCustomPropString(div, "param6", expressionResolver, "")
-//            timerButtonParam7 = evaluateCustomPropString(div, "param7", expressionResolver, "")
-//            timerButtonParam8 = evaluateCustomPropString(div, "param8", expressionResolver, "")
-//            timerButtonParam9 = evaluateCustomPropString(div, "param9", expressionResolver, "")
-//            timerButtonParam10 = evaluateCustomPropString(div, "param10", expressionResolver, "")
-//            timerButtonParam11 = evaluateCustomPropString(div, "param11", expressionResolver, "")
-//            timerButtonParam12 = evaluateCustomPropString(div, "param12", expressionResolver, "")
-//            timerButtonParam13 = evaluateCustomPropString(div, "param13", expressionResolver, "")
-//            timerButtonParam14 = evaluateCustomPropString(div, "param14", expressionResolver, "")
-//            timerButtonParam15 = evaluateCustomPropString(div, "param15", expressionResolver, "")
-//            timerButtonParam16 = evaluateCustomPropString(div, "param16", expressionResolver, "")
-//            timerButtonParam17 = evaluateCustomPropString(div, "param17", expressionResolver, "")
-//            timerButtonParam18 = evaluateCustomPropString(div, "param18", expressionResolver, "")
-//            timerButtonParam19 = evaluateCustomPropString(div, "param19", expressionResolver, "")
-//            timerButtonParam20 = evaluateCustomPropString(div, "param20", expressionResolver, "")
-//            timerButtonParam21 = evaluateCustomPropString(div, "param21", expressionResolver, "")
-//            timerButtonParam22 = evaluateCustomPropString(div, "param22", expressionResolver, "")
-//            timerButtonParam23 = evaluateCustomPropString(div, "param23", expressionResolver, "")
-//            timerButtonParam24 = evaluateCustomPropString(div, "param24", expressionResolver, "")
-//            timerButtonParam25 = evaluateCustomPropString(div, "param25", expressionResolver, "")
-//            timerButtonParam26 = evaluateCustomPropString(div, "param26", expressionResolver, "")
-//            timerButtonParam27 = evaluateCustomPropString(div, "param27", expressionResolver, "")
-//            timerButtonParam28 = evaluateCustomPropString(div, "param28", expressionResolver, "")
-//            timerButtonParam29 = evaluateCustomPropString(div, "param29", expressionResolver, "")
-//            timerButtonParam30 = evaluateCustomPropString(div, "param30", expressionResolver, "")
             Log.d(
                 "DemoCustomContainer",
                 "evaluateCustomPropString result for 'next_page': $timerButtonNext"
             )
             Log.d("DemoCustomContainer", "=== END TIMER BUTTON DEBUG ===")
+        }
+        if (div.customType == "timer_button_upload_and_call_service") {
+            Log.d("DemoCustomContainer", "=== TIMER BUTTON UPLOAD AND CALL SERVICE DEBUG ===")
+            Log.d("DemoCustomContainer", "div.customProps: ${div.customProps}")
+            Log.d("DemoCustomContainer", "div.customType: ${div.customType}")
+
+            seconds = evaluateCustomProp(div, "seconds", expressionResolver, 0)
+            Log.d("DemoCustomContainer", "evaluateCustomProp result for 'seconds': $seconds")
+
+            timerButtonUploadRecordingId = evaluateCustomPropString(div, "recording_id", expressionResolver, "")
+            timerButtonUploadPath = evaluateCustomPropString(div, "path", expressionResolver, "")
+            for (i in 1..200)
+                paramList.add(evaluateCustomPropString(div, "param$i", expressionResolver, ""))
+            
+            Log.d("DemoCustomContainer", "Recording ID: $timerButtonUploadRecordingId")
+            Log.d("DemoCustomContainer", "Path: $timerButtonUploadPath")
+            Log.d("DemoCustomContainer", "=== END TIMER BUTTON UPLOAD AND CALL SERVICE DEBUG ===")
         }
         if (div.customType == "offline_list_container") {
             systemForOffline = evaluateCustomPropString(div, "screen", expressionResolver, "")
@@ -250,10 +244,13 @@ class DemoCustomContainerAdapter(
             val currentInputHint = evaluateCustomPropString(div, "hint", expressionResolver, "")
             val currentInputType =
                 evaluateCustomPropString(div, "input_type", expressionResolver, "text")
+            val currentInputValidation =
+                evaluateCustomPropString(div, "validation", expressionResolver, "false")
             divView.context.createCustomInput(
                 currentInputVariableName,
                 currentInputHint,
-                currentInputType
+                currentInputType,
+                currentInputValidation
             )
         } else if (div.customType == "labelledSliderView") {
             // Handle labelledSliderView specially to pass parameters directly
@@ -277,11 +274,29 @@ class DemoCustomContainerAdapter(
                 evaluateCustomPropString(div, "variable_name", expressionResolver, "")
             val currentMultiSelectionLimit =
                 evaluateCustomProp(div, "selection_limit", expressionResolver, 0)
+            val currentMultiValidation =
+                evaluateCustomPropString(div, "validation", expressionResolver, "false")
             divView.context.createMultiSelection(
                 currentMultiOptions,
                 currentMultiIds,
                 currentMultiVariableName,
-                currentMultiSelectionLimit
+                currentMultiSelectionLimit,
+                currentMultiValidation
+            )
+        } else if (div.customType == "single_selection") {
+            // Handle single_selection specially to pass parameters directly
+            val currentSingleOptions =
+                evaluateCustomPropString(div, "options", expressionResolver, "")
+            val currentSingleIds = evaluateCustomPropString(div, "ids", expressionResolver, "")
+            val currentSingleVariableName =
+                evaluateCustomPropString(div, "variable_name", expressionResolver, "")
+            val currentSingleValidation =
+                evaluateCustomPropString(div, "validation", expressionResolver, "false")
+            divView.context.createSingleSelection(
+                currentSingleOptions,
+                currentSingleIds,
+                currentSingleVariableName,
+                currentSingleValidation
             )
         } else {
             factories[div.customType]?.invoke(divView.context)
@@ -680,6 +695,46 @@ class DemoCustomContainerAdapter(
             }
         }
 
+    private fun Context.timerButtonUploadAndCallService(): View =
+        TimerButton(this, seconds = seconds).apply {
+            setOnClickListener {
+                android.util.Log.d("DemoCustomContainer", "=== Timer Button Upload and Call Service Clicked ===")
+                android.util.Log.d("DemoCustomContainer", "Recording ID: $timerButtonUploadRecordingId")
+                android.util.Log.d("DemoCustomContainer", "Path: $timerButtonUploadPath")
+                // Note: stopRecording() will be called inside uploadAndCallService with proper delay
+                
+                if (timerButtonUploadRecordingId.isNotEmpty()) {
+                    // Call uploadAndCallService with the recording ID and service parameters
+                    val serviceParams: HashMap<String, String> = HashMap()
+                    serviceParams["path"] = timerButtonUploadPath
+                    serviceParams["ph/token"] = "empty"
+                    
+                    // Add all param values from paramList
+                    for (param in paramList) {
+                        if (param.isNotEmpty()) {
+                            serviceParams[param] = "empty"
+                        }
+                    }
+                    
+                    android.util.Log.d("DemoCustomContainer", "Calling uploadAndCallService with params: $serviceParams")
+                    // Get the actual recording ID from database using the key from custom_props
+                    val actualRecordingId = mehdiViewModel?.getValueByKey(timerButtonUploadRecordingId)?.value
+                    android.util.Log.d("DemoCustomContainer", "Recording ID key: $timerButtonUploadRecordingId")
+                    android.util.Log.d("DemoCustomContainer", "Actual recording ID from DB: $actualRecordingId")
+                    
+                    if (actualRecordingId != null && actualRecordingId.isNotEmpty()) {
+                        loadScreenListener?.uploadAndCallService(actualRecordingId, serviceParams)
+                    } else {
+                        android.util.Log.e("DemoCustomContainer", "Recording ID not found in database for key: $timerButtonUploadRecordingId")
+                        Toast.makeText(context, "شناسه ضبط صدا در پایگاه داده یافت نشد", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    android.util.Log.e("DemoCustomContainer", "Recording ID key is empty, cannot upload")
+                    Toast.makeText(context, "کلید شناسه ضبط صدا مشخص نیست", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
     private fun Context.labelledSliderView(
         labelList: String,
         labelId: String,
@@ -687,6 +742,8 @@ class DemoCustomContainerAdapter(
     ): View = LabelledSliderView(this).apply {
         val list = labelList.split(",").map { it.trim() }
         val idList = labelId.split(",").map { it.trim() }
+        mehdiViewModel?.insertItemToDb(PhPlusDB(null, labelVariable, idList[0]))
+
         val value = mehdiViewModel?.getValueByKey(labelVariable)?.value
 
         setItems(list)
@@ -713,7 +770,8 @@ class DemoCustomContainerAdapter(
         multiOptions: String,
         multiIds: String,
         multiVariableName: String,
-        multiSelectionLimit: Int
+        multiSelectionLimit: Int,
+        validation: String
     ): View = MultiSelectionView(this).apply {
         val optionsList = multiOptions.split(",").map { it.trim() }
         val idsList = multiIds.split(",").map { it.trim() }
@@ -729,6 +787,10 @@ class DemoCustomContainerAdapter(
                 loadScreenListener?.setVariableToBase(multiVariableName, value)
             }
 
+            // Set validation based on the custom property
+            val isValidationEnabled = validation.equals("true", ignoreCase = true)
+            setValidation(isValidationEnabled)
+
             setOnSelectionChangedListener { selectedIds ->
                 if (multiVariableName.isNotEmpty()) {
                     loadScreenListener?.setVariableToBase(multiVariableName, selectedIds)
@@ -738,10 +800,43 @@ class DemoCustomContainerAdapter(
         }
     }
 
+    private fun Context.createSingleSelection(
+        singleOptions: String,
+        singleIds: String,
+        singleVariableName: String,
+        validation: String
+    ): View = SingleSelectionView(this).apply {
+        val optionsList = singleOptions.split(",").map { it.trim() }
+        val idsList = singleIds.split(",").map { it.trim() }
+        var value = mehdiViewModel?.getValueByKey(singleVariableName)?.value
+
+        if (optionsList.isNotEmpty() && idsList.isNotEmpty()) {
+            setItems(optionsList, idsList)
+
+            // Set default selection from database if value exists
+            if (value != null && value.isNotEmpty()) {
+                setSelectedItem(value)
+                loadScreenListener?.setVariableToBase(singleVariableName, value)
+            }
+
+            // Set validation based on the custom property
+            val isValidationEnabled = validation.equals("true", ignoreCase = true)
+            setValidation(isValidationEnabled)
+
+            setOnSelectionChangedListener { selectedId ->
+                if (singleVariableName.isNotEmpty()) {
+                    loadScreenListener?.setVariableToBase(singleVariableName, selectedId)
+                    mehdiViewModel?.insertItemToDb(PhPlusDB(null, singleVariableName, selectedId))
+                }
+            }
+        }
+    }
+
     private fun Context.createCustomInput(
         variableName: String,
         hint: String,
-        inputType: String
+        inputType: String,
+        validation: String
     ): View = CustomInputView(this).apply {
         val value = mehdiViewModel?.getValueByKey(variableName)?.value
         if (value != null) {
@@ -756,6 +851,10 @@ class DemoCustomContainerAdapter(
         if (inputType.isNotEmpty()) {
             setInputType(inputType)
         }
+
+        // Set validation based on the custom property
+        val isValidationEnabled = validation.equals("true", ignoreCase = true)
+        setValidation(isValidationEnabled)
 
         setOnTextChangedListener { text ->
             if (variableName.isNotEmpty()) {

@@ -110,9 +110,9 @@ class AudioRecordingService : Service() {
         
         // Create filename with ID if provided
         val fileName = if (recordingId != null) {
-            "recorded_audio_${recordingId}_${System.currentTimeMillis()}.3gp"
+            "recorded_audio_${recordingId}_${System.currentTimeMillis()}.mp4"
         } else {
-            "recorded_audio_${System.currentTimeMillis()}.3gp"
+            "recorded_audio_${System.currentTimeMillis()}.mp4"
         }
         
         outputFile = File(outputDir, fileName).absolutePath
@@ -122,9 +122,9 @@ class AudioRecordingService : Service() {
         recorder = MediaRecorder().apply {
             android.util.Log.d("AudioRecordingService", "Setting up MediaRecorder")
             setAudioSource(MediaRecorder.AudioSource.MIC)
-            setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
+            setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
             setOutputFile(outputFile)
-            setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
+            setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
             try {
                 android.util.Log.d("AudioRecordingService", "Preparing MediaRecorder")
                 prepare()

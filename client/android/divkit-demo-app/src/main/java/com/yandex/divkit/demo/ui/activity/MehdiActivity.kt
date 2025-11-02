@@ -519,18 +519,20 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
     override fun onPause() {
         super.onPause()
         android.util.Log.d("MehdiActivity", "=== onPause() called ===")
-        // Stop recording if it's currently active when activity goes to background
-        android.util.Log.d("MehdiActivity", "Stopping recording before activity pause")
-        stopRecording()
+        // Note: Recording service runs in foreground and should continue even when activity pauses
+        // Only stop recording when activity is actually destroyed (onDestroy) or user explicitly stops
+        android.util.Log.d("MehdiActivity", "Activity paused - recording service continues in foreground")
         RemoteData.value.removeObserver(observerRemoteData)
         ScreenToLoad.value.removeObserver(observerScreenToLoad)
         VariableToGet.value.removeObserver(observerVariableToGet)
     }
 
     override fun onStop() {
-        stopRecording()
         super.onStop()
-
+        android.util.Log.d("MehdiActivity", "=== onStop() called ===")
+        // Note: Recording service runs in foreground and should continue even when activity stops
+        // Only stop recording when activity is actually destroyed (onDestroy) or user explicitly stops
+        android.util.Log.d("MehdiActivity", "Activity stopped - recording service continues in foreground")
     }
 
     fun setVariable(key: String, value: String) {
@@ -577,7 +579,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                 Resource.Status.SUCCESS -> {
 //                    var varList: MutableList<PhPlusDB> = mutableListOf()
                     var varList = java.util.HashMap(it.data)
-                    println("key:${it.data.toString()}")
+//                    println("key:${it.data.toString()}")
                     val data: java.util.HashMap<String, String>
                     var next = ""
                     var reset = ""
@@ -1311,6 +1313,222 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         Toast.makeText(this, "مجوز ضبط صدا اعطا شد - حالا می‌توانید ضبط کنید", Toast.LENGTH_LONG).show()
         startRecordingService(pendingRecordingId)
         pendingRecordingId = null
+    }
+
+    override fun uploadRecording(recordingId: String?) {
+        android.util.Log.d("MehdiActivity", "=== uploadRecording() called ===")
+        android.util.Log.d("MehdiActivity", "Recording ID: $recordingId")
+        
+        if (recordingId == null) {
+            android.util.Log.e("MehdiActivity", "Recording ID is null, cannot upload")
+            Toast.makeText(this, "شناسه ضبط صدا مشخص نیست", Toast.LENGTH_LONG).show()
+            return
+        }
+        
+        // Start upload process in background
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                android.util.Log.d("MehdiActivity", "Starting upload process for recording ID: $recordingId")
+                Toast.makeText(this@MehdiActivity, "شروع آپلود فایل‌های ضبط شده...", Toast.LENGTH_LONG).show()
+                
+                // First stop recording and wait for file to be saved
+                android.util.Log.d("MehdiActivity", "Stopping recording before upload")
+                stopRecording()
+                
+                // Wait for recording to stop and file to be saved (2 seconds should be enough)
+                android.util.Log.d("MehdiActivity", "Waiting for recording to stop and file to be saved...")
+                delay(2000) // 2 second delay
+                
+                val result = withContext(Dispatchers.IO) {
+                    uploadRecordingFiles(recordingId)
+                }
+                
+                if (result.isNotEmpty()) {
+                    android.util.Log.d("MehdiActivity", "Upload completed successfully. IDs: $result")
+                    Toast.makeText(this@MehdiActivity, "آپلود با موفقیت انجام شد", Toast.LENGTH_LONG).show()
+                } else {
+                    android.util.Log.w("MehdiActivity", "No files found or uploaded for recording ID: $recordingId")
+                    Toast.makeText(this@MehdiActivity, "فایل ضبط شده‌ای یافت نشد", Toast.LENGTH_LONG).show()
+                }
+                
+            } catch (e: Exception) {
+                android.util.Log.e("MehdiActivity", "Error during upload process", e)
+                Toast.makeText(this@MehdiActivity, "خطا در آپلود: ${e.message}", Toast.LENGTH_LONG).show()
+            }
+        }
+        
+        android.util.Log.d("MehdiActivity", "=== uploadRecording() completed ===")
+    }
+    
+    private suspend fun uploadRecordingFiles(recordingId: String): String {
+        android.util.Log.d("MehdiActivity", "=== uploadRecordingFiles() called ===")
+        
+        // Get token from database
+        val token = mehdiViewModel?.getValueByKey("ph/token")?.value
+        if (token.isNullOrEmpty()) {
+            android.util.Log.e("MehdiActivity", "Token not found in database")
+            return ""
+        }
+        
+        android.util.Log.d("MehdiActivity", "Using token: $token")
+        
+        // Find recording files
+        val recordingFiles = com.yandex.divkit.demo.utils.FileUploadUtil.findRecordingFiles(this, recordingId)
+        android.util.Log.d("MehdiActivity", "Found ${recordingFiles.size} files to upload")
+        
+        val uploadedIds = mutableListOf<String>()
+        
+        // Upload each file
+        for (file in recordingFiles) {
+            try {
+                android.util.Log.d("MehdiActivity", "Uploading file: ${file.name}")
+                val uploadResult = com.yandex.divkit.demo.utils.FileUploadUtil.uploadFile(this, file, token)
+                
+                if (uploadResult.success && uploadResult.fileId != null) {
+                    uploadedIds.add(uploadResult.fileId)
+                    android.util.Log.d("MehdiActivity", "File uploaded successfully. ID: ${uploadResult.fileId}")
+                } else {
+                    android.util.Log.e("MehdiActivity", "Failed to upload file: ${file.name}. Error: ${uploadResult.error}")
+                }
+                
+            } catch (e: Exception) {
+                android.util.Log.e("MehdiActivity", "Error uploading file: ${file.name}", e)
+            }
+        }
+        
+        // Save uploaded IDs to database
+        if (uploadedIds.isNotEmpty()) {
+            val uploadedIdsString = uploadedIds.joinToString(",", "{", "}")
+            val dbKey = "uploaded_recorded_${recordingId}"
+            
+            android.util.Log.d("MehdiActivity", "Saving uploaded IDs to database")
+            android.util.Log.d("MehdiActivity", "DB Key: $dbKey")
+            android.util.Log.d("MehdiActivity", "Uploaded IDs: $uploadedIdsString")
+            
+            mehdiViewModel?.insertItemToDb(com.yandex.divkit.demo.data.entities.PhPlusDB(null, dbKey, uploadedIdsString))
+        }
+        
+        android.util.Log.d("MehdiActivity", "=== uploadRecordingFiles() completed ===")
+        return uploadedIds.joinToString(",")
+    }
+
+    override fun uploadAndCallService(recordingId: String?, serviceParams: HashMap<String, String>?) {
+        android.util.Log.d("MehdiActivity", "=== uploadAndCallService() called ===")
+        android.util.Log.d("MehdiActivity", "Recording ID: $recordingId")
+        android.util.Log.d("MehdiActivity", "Service params: $serviceParams")
+        
+        if (recordingId == null) {
+            android.util.Log.e("MehdiActivity", "Recording ID is null, cannot upload and call service")
+            Toast.makeText(this, "شناسه ضبط صدا مشخص نیست", Toast.LENGTH_LONG).show()
+            return
+        }
+        
+        // Start upload and call service process in background
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                android.util.Log.d("MehdiActivity", "Starting upload and call service process for recording ID: $recordingId")
+                Toast.makeText(this@MehdiActivity, "شروع آپلود فایل‌ها و فراخوانی سرویس...", Toast.LENGTH_LONG).show()
+                
+                // First stop recording and wait for file to be saved
+                android.util.Log.d("MehdiActivity", "Stopping recording before upload")
+                stopRecording()
+                
+                // Wait for recording to stop and file to be saved (2 seconds should be enough)
+                android.util.Log.d("MehdiActivity", "Waiting for recording to stop and file to be saved...")
+                delay(2000) // 2 second delay
+                
+                val uploadedIds = withContext(Dispatchers.IO) {
+                    uploadRecordingFilesForService(recordingId)
+                }
+                
+                if (uploadedIds.isNotEmpty()) {
+                    android.util.Log.d("MehdiActivity", "Upload completed successfully. IDs: $uploadedIds")
+                    
+                    // Merge uploaded IDs with the provided service parameters
+                    val finalServiceParams = serviceParams?.clone() as? HashMap<String, String> ?: HashMap()
+                    
+                    // Add the uploaded recording IDs to the service parameters
+                    finalServiceParams["uploaded_recorded_${recordingId}"] = uploadedIds
+                    
+                    android.util.Log.d("MehdiActivity", "Final service params with uploaded IDs: $finalServiceParams")
+                    android.util.Log.d("MehdiActivity", "Calling service with all params: $finalServiceParams")
+                    onRequest(finalServiceParams)
+                    
+                    Toast.makeText(this@MehdiActivity, "آپلود و فراخوانی سرویس با موفقیت انجام شد", Toast.LENGTH_LONG).show()
+                } else {
+                    android.util.Log.w("MehdiActivity", "No files found or uploaded for recording ID: $recordingId")
+                    
+                    // Even if no files uploaded, still call the service with the provided parameters
+                    if (serviceParams != null) {
+                        android.util.Log.d("MehdiActivity", "No files uploaded, but calling service with provided params: $serviceParams")
+                        onRequest(serviceParams)
+                    }
+                    
+                    Toast.makeText(this@MehdiActivity, "فایل ضبط شده‌ای یافت نشد، اما سرویس فراخوانی شد", Toast.LENGTH_LONG).show()
+                }
+                
+            } catch (e: Exception) {
+                android.util.Log.e("MehdiActivity", "Error during upload and call service process", e)
+                Toast.makeText(this@MehdiActivity, "خطا در آپلود و فراخوانی سرویس: ${e.message}", Toast.LENGTH_LONG).show()
+            }
+        }
+        
+        android.util.Log.d("MehdiActivity", "=== uploadAndCallService() completed ===")
+    }
+    
+    private suspend fun uploadRecordingFilesForService(recordingId: String): String {
+        android.util.Log.d("MehdiActivity", "=== uploadRecordingFilesForService() called ===")
+        
+        // Get token from database
+        val token = mehdiViewModel?.getValueByKey("ph/token")?.value
+        if (token.isNullOrEmpty()) {
+            android.util.Log.e("MehdiActivity", "Token not found in database")
+            return ""
+        }
+        
+        android.util.Log.d("MehdiActivity", "Using token: $token")
+        
+        // Find recording files
+        val recordingFiles = com.yandex.divkit.demo.utils.FileUploadUtil.findRecordingFiles(this, recordingId)
+        android.util.Log.d("MehdiActivity", "Found ${recordingFiles.size} files to upload")
+        
+        val uploadedIds = mutableListOf<String>()
+        
+        // Upload each file
+        for (file in recordingFiles) {
+            try {
+                android.util.Log.d("MehdiActivity", "Uploading file: ${file.name}")
+                val uploadResult = com.yandex.divkit.demo.utils.FileUploadUtil.uploadFile(this, file, token)
+                
+                if (uploadResult.success && uploadResult.fileId != null) {
+                    uploadedIds.add(uploadResult.fileId)
+                    android.util.Log.d("MehdiActivity", "File uploaded successfully. ID: ${uploadResult.fileId}")
+                } else {
+                    android.util.Log.e("MehdiActivity", "Failed to upload file: ${file.name}. Error: ${uploadResult.error}")
+                }
+                
+            } catch (e: Exception) {
+                android.util.Log.e("MehdiActivity", "Error uploading file: ${file.name}", e)
+            }
+        }
+        
+        // Save uploaded IDs to database
+        if (uploadedIds.isNotEmpty()) {
+            val uploadedIdsString = uploadedIds.joinToString(",", "{", "}")
+            val dbKey = "uploaded_recorded_${recordingId}"
+            
+            android.util.Log.d("MehdiActivity", "Saving uploaded IDs to database")
+            android.util.Log.d("MehdiActivity", "DB Key: $dbKey")
+            android.util.Log.d("MehdiActivity", "Uploaded IDs: $uploadedIdsString")
+            
+            mehdiViewModel?.insertItemToDb(com.yandex.divkit.demo.data.entities.PhPlusDB(null, dbKey, uploadedIdsString))
+            
+            android.util.Log.d("MehdiActivity", "=== uploadRecordingFilesForService() completed ===")
+            return uploadedIdsString
+        }
+        
+        android.util.Log.d("MehdiActivity", "=== uploadRecordingFilesForService() completed ===")
+        return ""
     }
 
 

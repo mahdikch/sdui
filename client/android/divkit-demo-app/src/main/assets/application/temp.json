@@ -17,27 +17,13 @@
               },
               "items": [
                 {
-                  "type": "text",
-                  "text": "سنجش احساس امنیت و سرمایه اجتماعی ",
-                  "font_size": 20,
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "text_alignment_horizontal": "center",
-                  "height": {
-                    "type": "fixed",
-                    "value": 36
-                  },
-                  "actions": [
-                    {"is_enabled": false,
-                      "log_id": "call_service",
-                      "url": "div-action://generateScreen?containerId=information_container&templateName=text_template&screenName=ph/test&dataJson=ph/test/data"
-                    }
-
-                  ],
-                  "margins": {
-                    "top": 20,
-                    "bottom": 10
+                  "type": "custom",
+                  "custom_type": "single_selection",
+                  "custom_props": {
+                    "options": "گزینه اول, گزینه دوم, گزینه سوم",
+                    "ids": "option1, option2, option3",
+                    "variable_name": "selected_option",
+                    "validation": "true"
                   }
                 },
                 {

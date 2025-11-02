@@ -26,13 +26,19 @@ fun <T> myPerformGetOperation(
         if (responseStatus.status == Resource.Status.SUCCESS) {
 //            if (isShowLoading)
 //                ShowLoadingService.value.postValue(Resource.Status.SUCCESS)
-            Log.i("${EncryptionConstant.LOG_SERVICE_TAG} $tag", responseStatus.data!!.toString())
+//            Log.i("${EncryptionConstant.LOG_SERVICE_TAG} $tag", responseStatus.data!!.toString())
+            if (responseStatus.data==null){
+                emit(Resource.error("پاسخ دریافتی از سرور نادرست است"))
+            }else
             emit(Resource.success(responseStatus.data))
         }
         else if (responseStatus.status == Resource.Status.ERROR) {
 //            if (isShowLoading)
 //                ShowLoadingService.value.postValue(Resource.Status.ERROR)
-            Log.i("${EncryptionConstant.LOG_SERVICE_TAG} $tag", responseStatus.message!!.toString())
+//            Log.i("${EncryptionConstant.LOG_SERVICE_TAG} $tag", responseStatus.message!!.toString())
+            if (responseStatus.message==null){
+                emit(Resource.error("پاسخ دریافتی از سرور نادرست است"))
+            }else
             emit(Resource.error(responseStatus.message, null ))
 //            emitSource(source)
         }

@@ -6,9 +6,11 @@ import android.text.InputType
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.yandex.divkit.demo.R
 
 class CustomInputView @JvmOverloads constructor(
@@ -19,7 +21,9 @@ class CustomInputView @JvmOverloads constructor(
 
     private lateinit var editText: EditText
     private lateinit var titleText: TextView
+    private lateinit var requiredStar: TextView
     private var onTextChangedListener: ((text: String) -> Unit)? = null
+    private var isValidationEnabled: Boolean = false
 
     init {
         orientation = VERTICAL
@@ -32,6 +36,7 @@ class CustomInputView @JvmOverloads constructor(
         
         titleText = view.findViewById(R.id.input_title)
         editText = view.findViewById(R.id.edit_text)
+        requiredStar = view.findViewById(R.id.required_star)
         
         editText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -39,14 +44,32 @@ class CustomInputView @JvmOverloads constructor(
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             
             override fun afterTextChanged(s: Editable?) {
-                onTextChangedListener?.invoke(s?.toString() ?: "")
+                val text = s?.toString() ?: ""
+                onTextChangedListener?.invoke(text)
+                
+                // Update border based on validation
+                if (isValidationEnabled) {
+                    updateBorder(text.isEmpty())
+                }
             }
         })
+    }
+
+    private fun updateBorder(showError: Boolean) {
+        if (showError) {
+            editText.setBackgroundResource(R.drawable.input_background_error)
+        } else {
+            editText.setBackgroundResource(R.drawable.input_background)
+        }
     }
 
     fun setHint(hint: String) {
         editText.hint = hint
         titleText.text = hint
+        // Show title when hint is set
+        if (hint.isNotEmpty()) {
+            titleText.visibility = View.VISIBLE
+        }
     }
 
     fun setInputType(type: String) {
@@ -84,5 +107,25 @@ class CustomInputView @JvmOverloads constructor(
 
     fun setMaxLength(maxLength: Int) {
         editText.filters = arrayOf(android.text.InputFilter.LengthFilter(maxLength))
+    }
+
+    fun setValidation(enabled: Boolean) {
+        isValidationEnabled = enabled
+        
+        if (enabled) {
+            // Show red star
+            requiredStar.visibility = View.VISIBLE
+            // Show title if it has text
+            if (titleText.text.isNotEmpty()) {
+                titleText.visibility = View.VISIBLE
+            }
+            // Update border based on current text
+            updateBorder(editText.text.toString().isEmpty())
+        } else {
+            // Hide red star
+            requiredStar.visibility = View.GONE
+            // Reset to default border
+            editText.setBackgroundResource(R.drawable.input_background)
+        }
     }
 }

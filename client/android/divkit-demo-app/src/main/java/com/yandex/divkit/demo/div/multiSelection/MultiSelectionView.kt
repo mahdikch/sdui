@@ -1,7 +1,9 @@
 package com.yandex.divkit.demo.div.multiSelection
 
 import android.content.Context
+import android.graphics.Typeface
 import android.util.AttributeSet
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.CheckBox
@@ -20,6 +22,9 @@ class MultiSelectionView @JvmOverloads constructor(
     private val selectedItems = mutableSetOf<SelectionItem>()
     private var selectionLimit: Int = 0
     private var onSelectionChangedListener: ((selectedIds: String) -> Unit)? = null
+    private var isValidationEnabled: Boolean = false
+    private var titleView: TextView? = null
+    private var requiredStar: TextView? = null
 
     data class SelectionItem(
         val title: String,
@@ -30,6 +35,7 @@ class MultiSelectionView @JvmOverloads constructor(
     init {
         orientation = VERTICAL
         setPadding(16, 16, 16, 16)
+        setBackgroundResource(R.drawable.multi_selection_background)
     }
 
     fun setItems(
@@ -46,13 +52,31 @@ class MultiSelectionView @JvmOverloads constructor(
         selectionItems.clear()
         selectedItems.clear()
 
-        // Add title if needed
-        val titleView = TextView(context).apply {
-            text = "انتخاب گزینه‌ها"
-            textSize = 16f
+        // Add title with red star container
+        val titleContainer = LinearLayout(context).apply {
+            orientation = HORIZONTAL
+            layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
             setPadding(0, 0, 0, 16)
         }
-        addView(titleView)
+
+        titleView = TextView(context).apply {
+            text = "انتخاب گزینه‌ها"
+            textSize = 16f
+            layoutParams = LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f)
+        }
+        
+        requiredStar = TextView(context).apply {
+            text = "*"
+            textSize = 18f
+            setTextColor(android.graphics.Color.RED)
+            setTypeface(null, Typeface.BOLD)
+            visibility = View.GONE
+            layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        }
+
+        titleContainer.addView(titleView)
+        titleContainer.addView(requiredStar)
+        addView(titleContainer)
 
         // Create selection items
         options.forEachIndexed { index, option ->
@@ -109,9 +133,22 @@ class MultiSelectionView @JvmOverloads constructor(
             selectedItems.remove(item)
         }
         
+        // Update border based on validation
+        if (isValidationEnabled) {
+            updateBorder(selectedItems.isEmpty())
+        }
+        
         // Notify listener with comma-separated IDs
         val selectedIds = selectedItems.joinToString(",") { it.id }
         onSelectionChangedListener?.invoke(selectedIds)
+    }
+
+    private fun updateBorder(showError: Boolean) {
+        if (showError) {
+            setBackgroundResource(R.drawable.multi_selection_background_error)
+        } else {
+            setBackgroundResource(R.drawable.multi_selection_background)
+        }
     }
 
     fun setOnSelectionChangedListener(listener: (selectedIds: String) -> Unit) {
@@ -142,5 +179,21 @@ class MultiSelectionView @JvmOverloads constructor(
         }
         val selectedIdsString = selectedItems.joinToString(",") { it.id }
         onSelectionChangedListener?.invoke(selectedIdsString)
+    }
+
+    fun setValidation(enabled: Boolean) {
+        isValidationEnabled = enabled
+        
+        if (enabled) {
+            // Show red star
+            requiredStar?.visibility = View.VISIBLE
+            // Update border based on current selection
+            updateBorder(selectedItems.isEmpty())
+        } else {
+            // Hide red star
+            requiredStar?.visibility = View.GONE
+            // Reset to default border
+            setBackgroundResource(R.drawable.multi_selection_background)
+        }
     }
 }

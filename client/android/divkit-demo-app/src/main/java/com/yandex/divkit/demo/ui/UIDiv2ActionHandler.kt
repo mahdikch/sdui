@@ -120,8 +120,10 @@ private const val AUTHORITY_GET_WRITE_PERMISSION = "get_write_permission"
 private const val AUTHORITY_GET_ALL_PERMISSION = "get_all_permission"
 private const val AUTHORITY_UPDATE = "update"
 private const val AUTHORITY_RESET_PHID = "reset_phid"
-private const val AUTHORITY_START_RECORDIN = "start_recording"
+private const val AUTHORITY_START_RECORDING = "start_recording"
 private const val AUTHORITY_STOP_RECORDING = "stop_recording"
+private const val AUTHORITY_UPLOAD_RECORDING = "upload_recording"
+private const val AUTHORITY_UPLOAD_AND_CALL_SERVICE = "upload_and_call_service"
 const val SCHEME_DIV_ACTION = "div-action"
 
 private const val ACTIVITY_DEMO = "demo"
@@ -327,7 +329,7 @@ class UIDiv2ActionHandler(
         )
         
         // Check if this is a recording action
-        if (uri.authority == AUTHORITY_START_RECORDIN || uri.authority == AUTHORITY_STOP_RECORDING) {
+        if (uri.authority == AUTHORITY_START_RECORDING || uri.authority == AUTHORITY_STOP_RECORDING) {
             com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "*** RECORDING ACTION DETECTED ***")
             com.yandex.div.internal.Log.d("UIDiv2ActionHandler", "Action type: ${uri.authority}")
         }
@@ -647,12 +649,30 @@ class UIDiv2ActionHandler(
                 loadScreenListener.update(url)
             }
 
-        } else if (uri.authority == AUTHORITY_START_RECORDIN) {
+        } else if (uri.authority == AUTHORITY_START_RECORDING) {
             android.util.Log.d("UIDiv2ActionHandler", "=== START RECORDING ACTION ===")
             val recordingId = uri.getQueryParameter("id")
             android.util.Log.d("UIDiv2ActionHandler", "Recording ID: $recordingId")
-            android.util.Log.d("UIDiv2ActionHandler", "Calling loadScreenListener.startRecording() with ID: $recordingId")
-            loadScreenListener.startRecording(recordingId)
+            
+            // If no recording ID provided, try to get it from database using a default key
+            val finalRecordingId = if (recordingId.isNullOrEmpty()) {
+                android.util.Log.d("UIDiv2ActionHandler", "No recording ID provided, trying to get from database")
+                // Try to get recording ID from database using common keys
+                val questionerId = mehdiViewModel?.getValueByKey("questioner_id")?.value
+                if (!questionerId.isNullOrEmpty()) {
+                    android.util.Log.d("UIDiv2ActionHandler", "Found questioner_id in database: $questionerId")
+                    questionerId
+                } else {
+                    android.util.Log.w("UIDiv2ActionHandler", "No recording ID found in database")
+                    null
+                }
+            } else {
+                recordingId
+            }
+            
+            android.util.Log.d("UIDiv2ActionHandler", "Final recording ID: $finalRecordingId")
+            android.util.Log.d("UIDiv2ActionHandler", "Calling loadScreenListener.startRecording() with ID: $finalRecordingId")
+            loadScreenListener.startRecording(finalRecordingId)
             android.util.Log.d("UIDiv2ActionHandler", "=== END START RECORDING ACTION ===")
 
         } else if (uri.authority == AUTHORITY_STOP_RECORDING) {
@@ -660,6 +680,53 @@ class UIDiv2ActionHandler(
             android.util.Log.d("UIDiv2ActionHandler", "Calling loadScreenListener.stopRecording()")
             loadScreenListener.stopRecording()
             android.util.Log.d("UIDiv2ActionHandler", "=== END STOP RECORDING ACTION ===")
+
+        } else if (uri.authority == AUTHORITY_UPLOAD_RECORDING) {
+            android.util.Log.d("UIDiv2ActionHandler", "=== UPLOAD RECORDING ACTION ===")
+            val recordingId = uri.getQueryParameter("id")
+            android.util.Log.d("UIDiv2ActionHandler", "Recording ID: $recordingId")
+            android.util.Log.d("UIDiv2ActionHandler", "Calling loadScreenListener.uploadRecording() with ID: $recordingId")
+            loadScreenListener.uploadRecording(recordingId)
+            android.util.Log.d("UIDiv2ActionHandler", "=== END UPLOAD RECORDING ACTION ===")
+
+        } else if (uri.authority == AUTHORITY_UPLOAD_AND_CALL_SERVICE) {
+            android.util.Log.d("UIDiv2ActionHandler", "=== UPLOAD AND CALL SERVICE ACTION ===")
+            android.util.Log.d("UIDiv2ActionHandler", "URI: $uri")
+            // Note: stopRecording() will be called inside uploadAndCallService with proper delay
+
+            val recordingId = uri.getQueryParameter("id")
+            android.util.Log.d("UIDiv2ActionHandler", "Recording ID: $recordingId")
+            
+            // Process all parameters like call_service does
+            val parameterNames = uri.queryParameterNames
+            android.util.Log.d("UIDiv2ActionHandler", "Parameter names: $parameterNames")
+            android.util.Log.d("UIDiv2ActionHandler", "Parameter count: ${parameterNames.size}")
+            
+            val serviceParams: java.util.HashMap<String, String> = HashMap()
+            val div2View = if (view is Div2View) view as Div2View? else null
+            val expressionResolver = div2View?.expressionResolver
+            
+            android.util.Log.d("UIDiv2ActionHandler", "Div2View available: ${div2View != null}")
+            android.util.Log.d("UIDiv2ActionHandler", "ExpressionResolver available: ${expressionResolver != null}")
+            
+            for (parameterName in parameterNames) {
+                var parameterValue = uri.getQueryParameter(parameterName).toString()
+                android.util.Log.d("UIDiv2ActionHandler", "Processing parameter: $parameterName = $parameterValue")
+                
+                // Process nested variable expressions if expressionResolver is available
+                if (expressionResolver != null && parameterValue.contains("@{")) {
+                    android.util.Log.d("UIDiv2ActionHandler", "Processing nested variables for: $parameterValue")
+                    parameterValue = processNestedVariableExpressions(parameterValue, expressionResolver)
+                    android.util.Log.d("UIDiv2ActionHandler", "After processing: $parameterValue")
+                }
+                
+                serviceParams[parameterName] = parameterValue
+            }
+            
+            android.util.Log.d("UIDiv2ActionHandler", "Final service params: $serviceParams")
+            android.util.Log.d("UIDiv2ActionHandler", "Calling loadScreenListener.uploadAndCallService() with ID: $recordingId and params: $serviceParams")
+            loadScreenListener.uploadAndCallService(recordingId, serviceParams)
+            android.util.Log.d("UIDiv2ActionHandler", "=== END UPLOAD AND CALL SERVICE ACTION ===")
 
         } else if (uri.authority == AUTHORITY_GET_PERSIAN_DATE) {
             val varName = uri.getQueryParameter(PARAM_DATE_PICKER)

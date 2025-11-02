@@ -2,7 +2,7 @@ package com.yandex.divkit.demo.data.remote
 
 import android.annotation.SuppressLint
 
-data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
+data class Resource<out T>(val status: Status, val data: T? , val message: String?) {
 
     enum class Status {
         SUCCESS,

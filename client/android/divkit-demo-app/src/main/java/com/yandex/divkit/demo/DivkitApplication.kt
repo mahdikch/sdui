@@ -96,7 +96,7 @@ class DivkitApplication : Application(), HasRegressionTesting, NajiPushCallBack 
         )
 
         // Initialize Push Notifications
-        initializePushNotifications()
+//        initializePushNotifications()
 
         AppCompatDelegate.setDefaultNightMode(Container.preferences.nightMode)
     }

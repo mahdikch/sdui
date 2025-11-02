@@ -21,5 +21,7 @@ interface LoadScreenListener {
     fun startRecording(recordingId: String? = null)
     fun stopRecording()
     fun onAudioPermissionGranted()
+    fun uploadRecording(recordingId: String? = null)
+    fun uploadAndCallService(recordingId: String? = null, serviceParams: HashMap<String, String>? = null)
 //    fun showImage(decodedBitmap: Bitmap)
 }
