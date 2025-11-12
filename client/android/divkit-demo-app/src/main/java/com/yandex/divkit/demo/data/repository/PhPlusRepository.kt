@@ -6,6 +6,10 @@ import com.yandex.divkit.demo.data.entities.req.RequestPhPlus
 import com.yandex.divkit.demo.data.local.PhPlusDBDao
 import com.yandex.divkit.demo.data.remote.PhPlusRemoteDataSource
 import ir.nrdc.arbaeeintraficcontrol.util.myPerformGetOperation
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 
 import javax.inject.Inject
 
@@ -15,18 +19,34 @@ class PhPlusRepository @Inject constructor(
     private val phPlusDBDao: PhPlusDBDao
 
 ) {
+
+    private val repoScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+
     fun phPlus(phId:String,request: HashMap<String,String>) = myPerformGetOperation("phPlus", true) {
         remoteDataSource.phPlus(phId,request)
     }
 //
-    fun insertItem(phPlusDB:PhPlusDB) {
-        this.phPlusDBDao.insert(phPlusDB)
+suspend fun insertItem(phPlusDB: PhPlusDB) {
+        phPlusDBDao.insert(phPlusDB)
+    }
+    fun insertItemAsync(phPlusDB: PhPlusDB) {
+        repoScope.launch {
+            phPlusDBDao.insert(phPlusDB)
+        }
     }
     fun deleteItemFromDb(key: String) {
-        this.phPlusDBDao.deleteItemFromDb(key)
+        repoScope.launch {
+            phPlusDBDao.deleteItemFromDb(key)
+        }
     }
     suspend fun insertList(phPlusDBs:List<PhPlusDB>) {
-        this.phPlusDBDao.insertList(phPlusDBs)
+        phPlusDBDao.insertList(phPlusDBs)
+    }
+    fun insertListAsync(phPlusDBs: List<PhPlusDB>) {
+        if (phPlusDBs.isEmpty()) return
+        repoScope.launch {
+            phPlusDBDao.insertList(phPlusDBs)
+        }
     }
 //
     fun getList(listId: String) = myPerformGetOperation("List", false) {

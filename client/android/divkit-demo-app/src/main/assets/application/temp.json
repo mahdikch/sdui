@@ -16,16 +16,42 @@
                 "type": "wrap_content"
               },
               "items": [
+
+                {
+                  "type": "custom",
+                  "custom_type": "custom_input",
+                  "custom_props": {
+                    "variable_name": "user_name",
+                    "hint": "نام کاربری",
+                    "input_type": "text",
+                    "validation": "true",
+                    "enabled": "false"
+                  }
+                },
                 {
                   "type": "custom",
                   "custom_type": "single_selection",
                   "custom_props": {
-                    "options": "گزینه اول, گزینه دوم, گزینه سوم",
-                    "ids": "option1, option2, option3",
+                    "options": "گزینه ۱, گزینه ۲, گزینه ۳",
+                    "ids": "1, 2, 3",
                     "variable_name": "selected_option",
-                    "validation": "true"
+                    "validation": "true",
+                    "enabled": "false"
                   }
                 },
+                {
+                  "type": "custom",
+                  "custom_type": "multi_selection",
+                  "custom_props": {
+                    "options": "گزینه ۱, گزینه ۲, گزینه ۳",
+                    "ids": "1, 2, 3",
+                    "variable_name": "selected_options",
+                    "selection_limit": 2,
+                    "validation": "true",
+                    "enabled": "false"
+                  }
+                },
+
                 {
                   "type": "separator",
                   "width": {

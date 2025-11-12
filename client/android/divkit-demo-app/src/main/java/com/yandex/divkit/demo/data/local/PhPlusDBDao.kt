@@ -23,7 +23,7 @@ interface PhPlusDBDao {
     fun getValueByKey(key: String):PhPlusDB
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-     fun insert(phPlus: PhPlusDB)
+    suspend fun insert(phPlus: PhPlusDB)
 
      @Query("DELETE FROM PhPlus WHERE `key` = :key")
      fun deleteItemFromDb(key: String)

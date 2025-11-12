@@ -48,11 +48,13 @@ class MehdiViewModel @Inject constructor(
     fun getpatch(key: String) = repository.getByKey(key).asLiveData()
     fun getall() = repository.getall().asLiveData()
 
-    fun deleteItemFromDb(key: String) = viewModelScope.launch(Dispatchers.IO) {
+    fun deleteItemFromDb(key: String)  {
         repository.deleteItemFromDb(key)
     }
-    fun insertItemToDb(phPlusDB: PhPlusDB) = viewModelScope.launch(Dispatchers.IO) {
-        repository.insertItem(phPlusDB)
+    fun insertItemToDb(phPlusDB: PhPlusDB) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.insertItem(phPlusDB)
+        }
     }
 
     suspend fun insertBasicInfo(basicInfoList: List<PhPlusDB>) {

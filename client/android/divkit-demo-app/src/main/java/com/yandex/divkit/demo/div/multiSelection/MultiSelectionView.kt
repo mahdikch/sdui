@@ -25,6 +25,7 @@ class MultiSelectionView @JvmOverloads constructor(
     private var isValidationEnabled: Boolean = false
     private var titleView: TextView? = null
     private var requiredStar: TextView? = null
+    private val itemViews = mutableListOf<View>()
 
     data class SelectionItem(
         val title: String,
@@ -51,6 +52,7 @@ class MultiSelectionView @JvmOverloads constructor(
         removeAllViews()
         selectionItems.clear()
         selectedItems.clear()
+        itemViews.clear()
 
         // Add title with red star container
         val titleContainer = LinearLayout(context).apply {
@@ -91,15 +93,25 @@ class MultiSelectionView @JvmOverloads constructor(
             val selectionItem = SelectionItem(option, ids[index], checkBox)
             selectionItems.add(selectionItem)
             
-            checkBox.setOnCheckedChangeListener { _, isChecked ->
-                handleSelectionChange(selectionItem, isChecked)
+            checkBox.setOnClickListener {
+                // Prevent click when disabled
+                if (!isEnabled) {
+                    checkBox.isChecked = !checkBox.isChecked
+                    return@setOnClickListener
+                }
+                handleSelectionChange(selectionItem, checkBox.isChecked)
             }
             
             // Make the whole item clickable
             itemView.setOnClickListener {
+                // Prevent click when disabled
+                if (!isEnabled) {
+                    return@setOnClickListener
+                }
                 checkBox.isChecked = !checkBox.isChecked
             }
             
+            itemViews.add(itemView)
             addView(itemView)
         }
 
@@ -195,5 +207,27 @@ class MultiSelectionView @JvmOverloads constructor(
             // Reset to default border
             setBackgroundResource(R.drawable.multi_selection_background)
         }
+    }
+
+    override fun setEnabled(enabled: Boolean) {
+        super.setEnabled(enabled)
+        
+        // Enable/disable all checkboxes
+        selectionItems.forEach { item ->
+            item.checkBox.isEnabled = enabled
+        }
+        
+        // Enable/disable all item views (to prevent clicking)
+        itemViews.forEach { itemView ->
+            itemView.isEnabled = enabled
+            itemView.isClickable = enabled
+        }
+        
+        // Enable/disable title and star
+        titleView?.isEnabled = enabled
+        requiredStar?.isEnabled = enabled
+        
+        // Update visual appearance
+        alpha = if (enabled) 1.0f else 0.5f
     }
 }

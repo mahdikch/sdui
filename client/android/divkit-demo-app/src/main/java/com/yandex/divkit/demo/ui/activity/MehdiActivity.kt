@@ -28,10 +28,12 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.dcastalia.localappupdate.DownloadApk
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.yandex.div.core.view2.Div2View
+import com.yandex.div.internal.Log
 import com.yandex.divkit.demo.BuildConfig
 import com.yandex.divkit.demo.data.Constants
 import com.yandex.divkit.demo.data.RemoteData
@@ -577,30 +579,31 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         mehdiViewModel.phPlus.observe(this) {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
-//                    var varList: MutableList<PhPlusDB> = mutableListOf()
-                    var varList = java.util.HashMap(it.data)
-//                    println("key:${it.data.toString()}")
-                    val data: java.util.HashMap<String, String>
-                    var next = ""
-                    var reset = ""
-                    var toast = ""
-                    var dialog = ""
-                    var bottomSheet = ""
-                    var bottomSheetPatch = ""
-                    var patch = ""
-                    var update = ""
-                    var permissions = ""
-                    var reset_phid = ""
-//                    var res: MutableMap<String, String>?= sortedMapOf()
-                    if (varList?.contains("next") == true) {
-                        val nv = varList["next"]
-                        varList.remove("next")
-                        varList["next"] = nv!!
-                    }
-//                    it.data?.let { data-> res?.putAll(data) }
+                    lifecycleScope.launch {
+                        Log.e("SUCCESS", "start")
+                        val varList = java.util.HashMap(it.data ?: emptyMap())
+                        var next = ""
+                        var reset = ""
+                        var refresh = ""
+                        var toast = ""
+                        var dialog = ""
+                        var bottomSheet = ""
+                        var bottomSheetPatch = ""
+                        var patch = ""
+                        var update = ""
+                        var permissions = ""
+                        var reset_phid = ""
 
-                    if (varList != null) {
-//                        var i: Long = 1
+                        if (varList.containsKey("next")) {
+                            val nv = varList["next"]
+                            if (nv != null) {
+                                varList.remove("next")
+                                varList["next"] = nv
+                            }
+                        }
+
+                        val pendingInserts = mutableListOf<PhPlusDB>()
+
                         for ((key, value) in varList) {
                             if (key != null && value != null) {
                                 when (key) {
@@ -612,37 +615,28 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                                     "bottom_sheet_set_patch" -> bottomSheetPatch = value
                                     "reset" -> reset = value
                                     "update" -> update = value
+                                    "refresh" -> refresh = value
                                     "permissions" -> permissions = value
                                     "reset_phid" -> reset_phid = value
-                                    else -> {
-                                        repository.insertItem(
-                                            PhPlusDB(
-                                                null,
-                                                key,
-                                                value
-                                            )
-                                        )
-                                    }
+                                    else -> pendingInserts.add(PhPlusDB(null, key, value))
                                 }
 
-                                if (key.contains("variable"))
+                                if (key.contains("variable")) {
                                     div.setVariable(key, value)
+                                }
                                 if (key.contains("bottom_sheet_variable")) {
-                                    // Parse targeting information from key
-                                    // Format: bottom_sheet_variable_[target]_[variableName]
                                     val parts = key.split("_")
                                     println("MehdiActivity: Processing bottom_sheet_variable key=$key, parts=${parts.toList()}")
                                     println("MehdiActivity: bottomSheetManager is null? ${bottomSheetManager == null}")
                                     val manager = bottomSheetManager
                                     if (manager != null) {
                                         if (parts.size >= 4) {
-                                            val target = parts[2] // target (current, first, id, position)
-                                            val variableName = parts.drop(3).joinToString("_") // variable name
+                                            val target = parts[2]
+                                            val variableName = parts.drop(3).joinToString("_")
                                             println("MehdiActivity: Setting variable - target=$target, variableName=$variableName, value=$value")
                                             val success = manager.setVariableOnTarget(target, variableName, value)
                                             println("MehdiActivity: Variable setting success=$success")
                                         } else {
-                                            // Fallback to current bottom sheet
                                             println("MehdiActivity: Fallback to current bottom sheet")
                                             manager.getCurrentBottomSheet()?.setVariableOnBottomSheet(key, value)
                                         }
@@ -650,30 +644,72 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                                         println("MehdiActivity: bottomSheetManager is null, skipping variable setting")
                                     }
                                 }
-
                             }
                         }
-                        // اجرای اقدامات بر اساس keywordها
-                        if (next != "") {
-                            nextJsonDto = repository.getValueByKey(next)
-                            if (nextJsonDto == null)
-                                repository.insertItem(
-                                    PhPlusDB(
-                                        null,
-                                        next,
-                                        varList[next]
-                                    )
-                                )
+
+                        suspend fun ensureInserted(targetKey: String) {
+                            if (targetKey.isBlank()) return
+                            var targetItem: PhPlusDB? = null
+                            val iterator = pendingInserts.listIterator()
+                            while (iterator.hasNext()) {
+                                val item = iterator.next()
+                                if (item.key == targetKey) {
+                                    targetItem = item
+                                    iterator.remove()
+                                    break
+                                }
+                            }
+                            if (targetItem == null) {
+                                val rawValue = varList[targetKey]
+                                if (rawValue != null) {
+                                    targetItem = PhPlusDB(null, targetKey, rawValue)
+                                }
+                            }
+                            if (targetItem != null) {
+                                withContext(Dispatchers.IO) {
+                                    repository.insertItem(targetItem!!)
+                                }
+                            }
+                        }
+
+                        val keysNeedingImmediateInsert = listOf(
+                            next,
+                            toast,
+                            dialog,
+                            bottomSheet,
+                            bottomSheetPatch,
+                            patch,
+                            update,
+                            refresh
+                        )
+                        for (key in keysNeedingImmediateInsert) {
+                            ensureInserted(key)
+                        }
+
+                        if (next.isNotBlank()) {
+                            nextJsonDto = withContext(Dispatchers.IO) {
+                                repository.getValueByKey(next)
+                            }
+                            if (nextJsonDto == null) {
+                                val nextValue = varList[next]
+                                if (nextValue != null) {
+                                    withContext(Dispatchers.IO) {
+                                        repository.insertItem(PhPlusDB(null, next, nextValue))
+                                    }
+                                }
+                            }
                             Constants.CURRENT_SCREEN = next
                             startActivityForLoad(
                                 MehdiActivity::class.java,
                                 next
                             )
                         }
-                        if (toast != "") {
+                        if (toast.isNotBlank()) {
                             val customToast =
-                                mehdiViewModel?.let { CustomToast(this, this, it, this) }
-                            val jsonDto = mehdiViewModel?.getValueByKey(toast)
+                                mehdiViewModel?.let { CustomToast(this@MehdiActivity, this@MehdiActivity, it, this@MehdiActivity) }
+                            val jsonDto = withContext(Dispatchers.IO) {
+                                mehdiViewModel?.getValueByKey(toast)
+                            }
                             val json = jsonDto?.value
                             if (json != null) {
                                 customToast?.show(
@@ -682,72 +718,78 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                                 )
                             }
                         }
-                        if (bottomSheet != "") {
+                        if (refresh.isNotBlank()) {
+                            refreshPage(refresh)
+                        }
+                        if (bottomSheet.isNotBlank()) {
                             println("bottomSheet1:${bottomSheet}")
                             println("MehdiActivity: Creating bottom sheet with manager - bottomSheetManager is null? ${bottomSheetManager == null}")
                             val manager = bottomSheetManager
                             if (manager != null) {
                                 val newBottomSheet = manager.createAndAddBottomSheet(
-                                    this, this, bottomSheet, mehdiViewModel, this
+                                    this@MehdiActivity, this@MehdiActivity, bottomSheet, mehdiViewModel, this@MehdiActivity
                                 )
-                            println("MehdiActivity: Bottom sheet created with ID: ${newBottomSheet.assignedId}")
-                            println("MehdiActivity: Total bottom sheets: ${manager.getBottomSheetCount()}")
-                            println("MehdiActivity: All bottom sheet IDs: ${manager.getAllBottomSheetIds()}")
+                                println("MehdiActivity: Bottom sheet created with ID: ${newBottomSheet.assignedId}")
+                                println("MehdiActivity: Total bottom sheets: ${manager.getBottomSheetCount()}")
+                                println("MehdiActivity: All bottom sheet IDs: ${manager.getAllBottomSheetIds()}")
 
                                 newBottomSheet.show(
-                                    (this as FragmentActivity).supportFragmentManager,
+                                    (this@MehdiActivity as FragmentActivity).supportFragmentManager,
                                     "bottomSheetList"
                                 )
                             } else {
                                 println("MehdiActivity: bottomSheetManager is null, creating bottom sheet without manager")
-                                val newBottomSheet = BottomSheetDiv(this, this, bottomSheet, mehdiViewModel, this, null)
+                                val newBottomSheet = BottomSheetDiv(this@MehdiActivity, this@MehdiActivity, bottomSheet, mehdiViewModel, this@MehdiActivity, null)
                                 newBottomSheet.show(
-                                    (this as FragmentActivity).supportFragmentManager,
+                                    (this@MehdiActivity as FragmentActivity).supportFragmentManager,
                                     "bottomSheetList"
                                 )
                             }
                         }
-                        if (dialog != "") {
+                        if (dialog.isNotBlank()) {
                             DialogDiv(
-                                this, this, bottomSheet, mehdiViewModel, this
+                                this@MehdiActivity, this@MehdiActivity, bottomSheet, mehdiViewModel, this@MehdiActivity
                             ).show()
                         }
-                        if (reset_phid != "") {
-                            var phId = UUID.randomUUID().toString()
-                            mehdiViewModel.insertItemToDb(PhPlusDB(null, "phid", phId))
+                        if (reset_phid.isNotBlank()) {
+                            val phId = UUID.randomUUID().toString()
+                            withContext(Dispatchers.IO) {
+                                repository.insertItem(PhPlusDB(null, "phid", phId))
+                            }
                         }
-                        if (patch != "") {
-                            var json = ""
-                            val dbPatch = mehdiViewModel.getValueByKey(patch)
+                        if (patch.isNotBlank()) {
+                            val dbPatch = withContext(Dispatchers.IO) {
+                                mehdiViewModel.getValueByKey(patch)
+                            }
                             println("dppatch: " + dbPatch.toString())
-                            if (dbPatch != null)
-                                json = dbPatch.value.toString()
-                            if (json != null && json != "") {
-                                var patchTitle = "تست"
-                                var vehicleType = "تست"
+                            val json = dbPatch?.value.orEmpty()
+                            if (json.isNotEmpty()) {
+                                val patchTitle = "تست"
+                                val vehicleType = "تست"
                                 onApplyOnbase(json, patch, patchTitle, vehicleType)
                             }
 
                         }
-                        if (bottomSheetPatch != "") {
+                        if (bottomSheetPatch.isNotBlank()) {
                             bottomSheetManager?.getCurrentBottomSheet()?.onApply(bottomSheetPatch, "")
                         }
-                        if (reset != "") {
+                        if (reset.isNotBlank()) {
                             resetActivityForLoad(
                                 MehdiActivity::class.java,
                                 reset
                             )
 
                         }
-                        if (update != "") {
+                        if (update.isNotBlank()) {
                             updateApp(update)
                         }
 
+                        if (pendingInserts.isNotEmpty()) {
+                            repository.insertListAsync(pendingInserts)
+                        }
+                        loading.dismissDialog()
+                        Log.e("SUCCESS", "end")
                     }
-                    loading.dismissDialog()
-
-
-
                 }
 
                 Resource.Status.ERROR -> {
@@ -774,6 +816,61 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
 
             }
+        }
+    }
+
+    private fun refreshPage(refresh: String) {
+   if (refresh.isBlank()) {
+            android.util.Log.w("MehdiActivity", "refreshPage called with empty key")
+            return
+        }
+         try {
+            val refreshEntry = repository.getValueByKey(refresh)
+            val refreshJson = refreshEntry?.value
+            if (refreshJson.isNullOrEmpty()) {
+                android.util.Log.w("MehdiActivity", "No JSON found in DB for refresh key=" + refresh)
+                return
+            }
+
+            val divJson = JSONObject(refreshJson)
+
+            runOnUiThread {
+                try {
+                    if (::div.isInitialized) {
+                        binding.root.removeView(div)
+                    }
+
+                    if (!::divViewCreator.isInitialized) {
+                        divViewCreator = UIDiv2ViewCreator(this, this, mehdiViewModel, this, null, bottomSheetManager)
+                    }
+
+                    try {
+                        divViewCreator.updateBottomSheetManager(bottomSheetManager)
+                    } catch (updateError: Exception) {
+                        android.util.Log.e("MehdiActivity", "Failed to update BottomSheetManager during refresh", updateError)
+                    }
+
+                    div = divViewCreator.createDiv2ViewMehdi(
+                        this,
+                        divJson,
+                        binding.root,
+                        ScenarioLogDelegate.Stub
+                    )
+                    NotificationManager.setActionHandler(divViewCreator.actionHandler)
+                    div.layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT
+                    ).apply {
+                        weight = 1F
+                    }
+                    binding.root.addView(div)
+                    Constants.CURRENT_SCREEN = refresh
+                } catch (viewError: Exception) {
+                    android.util.Log.e("MehdiActivity", "Failed to refresh page for key=" + refresh, viewError)
+                }
+            }
+        } catch (error: Exception) {
+            android.util.Log.e("MehdiActivity", "refreshPage unexpected error for key=" + refresh, error)
         }
     }
 

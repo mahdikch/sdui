@@ -24,6 +24,7 @@ class SingleSelectionView @JvmOverloads constructor(
     private var titleView: TextView? = null
     private var requiredStar: TextView? = null
     private var radioGroup: RadioGroup? = null
+    private val itemViews = mutableListOf<View>()
 
     data class SelectionItem(
         val title: String,
@@ -48,6 +49,7 @@ class SingleSelectionView @JvmOverloads constructor(
         removeAllViews()
         selectionItems.clear()
         selectedItem = null
+        itemViews.clear()
 
         // Add title with red star container
         val titleContainer = LinearLayout(context).apply {
@@ -98,15 +100,25 @@ class SingleSelectionView @JvmOverloads constructor(
             radioButton.id = View.generateViewId()
             
             radioButton.setOnClickListener {
+                // Prevent click when disabled
+                if (!isEnabled) {
+                    radioButton.isChecked = selectedItem == selectionItem
+                    return@setOnClickListener
+                }
                 handleSelectionChange(selectionItem)
             }
             
             // Make the whole item clickable
             itemView.setOnClickListener {
+                // Prevent click when disabled
+                if (!isEnabled) {
+                    return@setOnClickListener
+                }
                 radioButton.isChecked = true
                 handleSelectionChange(selectionItem)
             }
             
+            itemViews.add(itemView)
             radioGroup?.addView(itemView)
         }
 
@@ -193,6 +205,28 @@ class SingleSelectionView @JvmOverloads constructor(
             // Reset to default border
             setBackgroundResource(R.drawable.multi_selection_background)
         }
+    }
+
+    override fun setEnabled(enabled: Boolean) {
+        super.setEnabled(enabled)
+        
+        // Enable/disable all radio buttons
+        selectionItems.forEach { item ->
+            item.radioButton.isEnabled = enabled
+        }
+        
+        // Enable/disable all item views (to prevent clicking)
+        itemViews.forEach { itemView ->
+            itemView.isEnabled = enabled
+            itemView.isClickable = enabled
+        }
+        
+        // Enable/disable title and star
+        titleView?.isEnabled = enabled
+        requiredStar?.isEnabled = enabled
+        
+        // Update visual appearance
+        alpha = if (enabled) 1.0f else 0.5f
     }
 }
 

@@ -103,6 +103,11 @@ class CustomInputView @JvmOverloads constructor(
     override fun setEnabled(enabled: Boolean) {
         super.setEnabled(enabled)
         editText.isEnabled = enabled
+        titleText.isEnabled = enabled
+        requiredStar.isEnabled = enabled
+        
+        // Update visual appearance
+        alpha = if (enabled) 1.0f else 0.5f
     }
 
     fun setMaxLength(maxLength: Int) {
