@@ -3,6 +3,7 @@ package com.yandex.divkit.demo.ui.bottomSheetDiv
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -91,6 +92,14 @@ class BottomSheetDiv(
         return dialog
     }
 
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        println("BottomSheetDiv: Bottom sheet dismissed - ID: $assignedId")
+        // Remove this bottom sheet from the manager
+        bottomSheetManager?.removeBottomSheet(this)
+        println("BottomSheetDiv: Removed from BottomSheetManager")
+    }
+    
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

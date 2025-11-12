@@ -6,7 +6,7 @@ import com.yandex.divkit.demo.ui.bottomSheetDiv.BottomSheetDiv
 import java.util.HashMap
 
 interface LoadScreenListener {
-    fun     onLoad(screenName: String)
+    fun onLoad(screenName: String)
     fun onRequest(request: HashMap<String, String>)
     fun onApplyOnbase(json: String, patchName: String, patchTitle:String,vehicleType:String)
     fun getBtmSheetInstance(btmSheet: BottomSheetDiv)

@@ -217,6 +217,14 @@ class BottomSheetSpinner(
                     }
 
                 }
+                if (constraint.variableName == "category.res") {
+                    if (map.contains("category")) {
+                        if (constraint.disallowedList.contains(map.get("category"))) {
+                            arrayList.remove(item)
+                        }
+                    }
+
+                }
 
             }
         }

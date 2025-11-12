@@ -147,6 +147,9 @@
             android:name=".utils.QRCaptureActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.QrScan" />
+        <activity
+            android:name=".ui.activity.PdfViewerActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- FileProvider for Android 7.0+ -->
         <provider

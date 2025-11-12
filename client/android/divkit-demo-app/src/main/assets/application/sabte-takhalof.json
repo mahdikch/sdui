@@ -1077,10 +1077,17 @@
                             {
                               "type": "container",
                               "actions": [
-                                {
-                                  "log_id": "open_camera",
-                                  "url": "div-action://open_camera?type=ocr"
-                                }
+
+
+
+
+
+
+
+
+
+
+
                               ],
                               "items": [
                                 {

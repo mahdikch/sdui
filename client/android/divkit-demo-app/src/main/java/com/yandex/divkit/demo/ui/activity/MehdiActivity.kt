@@ -198,7 +198,7 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
             // تولید phid جدید برای دستگاه
             var phId = UUID.randomUUID().toString()
             mehdiViewModel.insertItemToDb(PhPlusDB(null, "phid", phId))
-            var divMotorJson = assetReader.read("application/patchMotorPlate.json")
+            var testForPatchGeneratorTemplate = assetReader.read("application/testForPatchGeneratorTemplate.json")
 
             var divpatchTestJson = assetReader.read("application/patchTest.json")
             var divpatchReportsJson = assetReader.read("application/patchReports.json")
@@ -219,13 +219,13 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
             var divrpatchInqueryPlatesJson = assetReader.read("application/patchInqueryPlates.json")
             var divVtBottomSheet = assetReader.read("application/vt_bottom_sheet.json")
 //            var divVehicleJson = assetReader.read("application/vt-register-ticket.json")
-//            mehdiViewModel.insertItemToDb(
-//                PhPlusDB(
-//                    null,
-//                    "ph/vt/bottomsheet",
-//                    divVtBottomSheet.toString()
-//                )
-//            )
+            mehdiViewModel.insertItemToDb(
+                PhPlusDB(
+                    null,
+                    "testForPatchGeneratorTemplate",
+                    testForPatchGeneratorTemplate.toString()
+                )
+            )
 //            mehdiViewModel.insertItemToDb(
 //                PhPlusDB(
 //                    null,
@@ -389,6 +389,9 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
             }
             binding.root.addView(div)
 
+            // Cache container definitions for dynamic patching
+            cacheContainerDefinitionsFromAsset(path)
+
         } else {
             nextJsonDto = repository.getValueByKey(json)
             if (nextJsonDto != null) {
@@ -435,6 +438,9 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
 
                 }
                 binding.root.addView(div)
+
+                // Cache container definitions for dynamic patching
+                cacheContainerDefinitionsFromJson(divJson)
 
             }
         }
@@ -593,6 +599,8 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                         var update = ""
                         var permissions = ""
                         var reset_phid = ""
+                        var show_pdf = ""
+                        var show_image = ""
 
                         if (varList.containsKey("next")) {
                             val nv = varList["next"]
@@ -618,6 +626,9 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                                     "refresh" -> refresh = value
                                     "permissions" -> permissions = value
                                     "reset_phid" -> reset_phid = value
+                                    "show_pdf" -> show_pdf = value
+                                    "show_image" -> show_image = value
+
                                     else -> pendingInserts.add(PhPlusDB(null, key, value))
                                 }
 
@@ -782,6 +793,14 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
                         }
                         if (update.isNotBlank()) {
                             updateApp(update)
+                        }
+
+                        if (show_pdf != "") {
+                            showPdfFromBase64(show_pdf)
+                        }
+
+                        if (show_image != "") {
+                            showImageFromBase64(show_image)
                         }
 
                         if (pendingInserts.isNotEmpty()) {
@@ -1626,6 +1645,188 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener {
         
         android.util.Log.d("MehdiActivity", "=== uploadRecordingFilesForService() completed ===")
         return ""
+    }
+
+    /**
+     * Show PDF from base64 string
+     */
+    private fun showPdfFromBase64(base64String: String) {
+        try {
+            println("MehdiActivity: showPdfFromBase64 - Starting PDF display")
+            println("MehdiActivity: Base64 length: ${base64String.length}")
+
+            // Clean the base64 string (remove whitespace, newlines, etc.)
+            var cleanedBase64 = base64String.trim()
+                .replace("\n", "")
+                .replace("\r", "")
+                .replace(" ", "")
+
+            // Remove data URI prefix if present (e.g., "data:application/pdf;base64,")
+            if (cleanedBase64.contains(",")) {
+                cleanedBase64 = cleanedBase64.substringAfter(",")
+                println("MehdiActivity: Removed data URI prefix")
+            }
+
+            println("MehdiActivity: Cleaned Base64 length: ${cleanedBase64.length}")
+            println("MehdiActivity: First 100 chars: ${cleanedBase64.take(100)}")
+
+            // Decode base64 string to bytes - try different flags
+            val decodedBytes = try {
+                android.util.Base64.decode(cleanedBase64, android.util.Base64.DEFAULT)
+            } catch (e: Exception) {
+                println("MehdiActivity: DEFAULT flag failed, trying NO_WRAP")
+                try {
+                    android.util.Base64.decode(cleanedBase64, android.util.Base64.NO_WRAP)
+                } catch (e2: Exception) {
+                    println("MehdiActivity: NO_WRAP failed, trying NO_PADDING")
+                    android.util.Base64.decode(cleanedBase64, android.util.Base64.NO_PADDING)
+                }
+            }
+
+            println("MehdiActivity: Decoded bytes length: ${decodedBytes.size}")
+
+            // Check if it's a valid PDF by checking the header
+            if (decodedBytes.size < 4) {
+                throw Exception("فایل خیلی کوچک است")
+            }
+
+            val pdfHeader = String(decodedBytes.take(4).toByteArray())
+            println("MehdiActivity: File header: $pdfHeader (should be %PDF)")
+
+            if (!pdfHeader.startsWith("%PDF")) {
+                println("MehdiActivity: WARNING - File does not start with PDF header!")
+                println("MehdiActivity: First 20 bytes: ${decodedBytes.take(20).joinToString(",")}")
+            }
+
+            // Create a temporary file in cache directory
+            val tempFile = File(cacheDir, "temp_pdf_${System.currentTimeMillis()}.pdf")
+            tempFile.writeBytes(decodedBytes)
+            println("MehdiActivity: File created at: ${tempFile.absolutePath}")
+            println("MehdiActivity: File exists: ${tempFile.exists()}, Size: ${tempFile.length()} bytes")
+
+            // Open with custom PDF viewer activity
+            val intent = Intent(this, PdfViewerActivity::class.java)
+            intent.putExtra("PDF_FILE_PATH", tempFile.absolutePath)
+            println("MehdiActivity: Opening PDF with custom viewer")
+            startActivity(intent)
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+            println("MehdiActivity: Error showing PDF: ${e.message}")
+            Toast.makeText(this, "خطا در نمایش فایل PDF: ${e.message}", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    /**
+     * Cache container definitions from asset file for dynamic patching
+     */
+    private fun cacheContainerDefinitionsFromAsset(assetPath: String) {
+        try {
+            println("MehdiActivity: Caching container definitions from asset: $assetPath")
+            val jsonString = assetReader.read(assetPath)
+            val jsonObject = JSONObject(jsonString.toString())
+            cacheContainerDefinitionsFromJson(jsonObject)
+        } catch (e: Exception) {
+            println("MehdiActivity: Error caching container definitions: ${e.message}")
+            e.printStackTrace()
+        }
+    }
+
+    /**
+     * Cache container definitions from JSON object for dynamic patching
+     */
+    private fun cacheContainerDefinitionsFromJson(jsonObject: JSONObject) {
+        try {
+            println("MehdiActivity: Searching for containers with IDs to cache...")
+            findAndCacheContainers(jsonObject)
+        } catch (e: Exception) {
+            println("MehdiActivity: Error caching container definitions: ${e.message}")
+            e.printStackTrace()
+        }
+    }
+
+    /**
+     * Recursively find and cache container definitions
+     */
+    private fun findAndCacheContainers(json: Any) {
+        when (json) {
+            is JSONObject -> {
+                // Check if this object has an "id" and "type"
+                if (json.has("id") && json.has("type")) {
+                    val containerId = json.getString("id")
+                    val containerType = json.getString("type")
+
+                    // Cache gallery and container types
+                    if (containerType == "gallery" || containerType == "container") {
+                        println("MehdiActivity: Found container to cache - id=$containerId, type=$containerType")
+                        com.yandex.divkit.demo.div.DynamicPatchGeneratorSingleton.instance.setContainerDefinition(
+                            containerId,
+                            json
+                        )
+                    }
+                }
+
+                // Recursively search all keys
+                json.keys().forEach { key ->
+                    findAndCacheContainers(json.get(key))
+                }
+            }
+            is org.json.JSONArray -> {
+                for (i in 0 until json.length()) {
+                    findAndCacheContainers(json.get(i))
+                }
+            }
+        }
+    }
+
+    /**
+     * Show Image from base64 string
+     */
+    private fun showImageFromBase64(base64String: String) {
+        try {
+            println("MehdiActivity: showImageFromBase64 - Starting image display")
+            println("MehdiActivity: Base64 length: ${base64String.length}")
+
+            // Decode base64 string to bytes
+            val decodedBytes = android.util.Base64.decode(base64String, android.util.Base64.DEFAULT)
+            println("MehdiActivity: Decoded bytes length: ${decodedBytes.size}")
+
+            // Create a temporary file in cache directory
+            val tempFile = File(cacheDir, "temp_image_${System.currentTimeMillis()}.jpg")
+            tempFile.writeBytes(decodedBytes)
+            println("MehdiActivity: File created at: ${tempFile.absolutePath}")
+            println("MehdiActivity: File exists: ${tempFile.exists()}, Size: ${tempFile.length()} bytes")
+
+            // Get URI using FileProvider
+            val uri = FileProvider.getUriForFile(
+                this,
+                "com.yandex.divkit.demo.fileprovider",
+                tempFile
+            )
+            println("MehdiActivity: FileProvider URI: $uri")
+
+            // Create intent with proper flags
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                setDataAndType(uri, "image/*")
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
+            }
+
+            // Check if there's an app that can handle images
+            val resolveInfo = packageManager.queryIntentActivities(intent, 0)
+            println("MehdiActivity: Available image viewers: ${resolveInfo.size}")
+
+            if (resolveInfo.isNotEmpty()) {
+                println("MehdiActivity: Opening image with viewer")
+                startActivity(intent)
+            } else {
+                println("MehdiActivity: No image viewer found")
+                Toast.makeText(this, "نمی‌توان تصویر را باز کرد", Toast.LENGTH_LONG).show()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            println("MehdiActivity: Error showing image: ${e.message}")
+            Toast.makeText(this, "خطا در نمایش تصویر: ${e.message}", Toast.LENGTH_LONG).show()
+        }
     }
 
 

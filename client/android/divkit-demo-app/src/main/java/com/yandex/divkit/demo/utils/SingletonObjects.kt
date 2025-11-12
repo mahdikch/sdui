@@ -183,7 +183,7 @@ abstract class SingletonObjects {
                     )
 
                     SHARED_PREF_INSTANCE = sharedPreferencesInstance
-                }
+                  }
                 return sharedPreferencesInstance
             }
         }

@@ -1,0 +1,796 @@
+ {
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "gallery",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "gallery",
+                  "items": [
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "items": [
+                                        {
+                                          "type": "input",
+                                          "text_variable": "name",
+                                          "hint_text": "نام",
+                                          "font_size": 14,
+                                          "font_weight": "regular",
+                                          "line_height": 32,
+                                          "letter_spacing": 0,
+                                          "text_color": "#3b3b3b",
+                                          "text_alignment_horizontal": "right",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        }
+                                      ],
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "right",
+                                      "content_alignment_vertical": "center"
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corners_radius": {
+                                      "top-left": 6,
+                                      "top-right": 6,
+                                      "bottom-left": 6,
+                                      "bottom-right": 6
+                                    },
+                                    "stroke": {
+                                      "color": "#dedede",
+                                      "width": 1
+                                    }
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "vertical",
+                              "content_alignment_vertical": "top",
+                              "content_alignment_horizontal": "right",
+                              "margins": {
+                                "left": 16
+                              }
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "items": [
+                                        {
+                                          "type": "input",
+                                          "text_variable": "lastname",
+                                          "hint_text": "نام خانوادگی",
+                                          "font_size": 14,
+                                          "font_weight": "regular",
+                                          "line_height": 32,
+                                          "letter_spacing": 0,
+                                          "text_color": "#3b3b3b",
+                                          "text_alignment_horizontal": "right",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        }
+                                      ],
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "right",
+                                      "content_alignment_vertical": "center"
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corners_radius": {
+                                      "top-left": 6,
+                                      "top-right": 6,
+                                      "bottom-left": 6,
+                                      "bottom-right": 6
+                                    },
+                                    "stroke": {
+                                      "color": "#dedede",
+                                      "width": 1
+                                    }
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "vertical",
+                              "content_alignment_vertical": "top",
+                              "content_alignment_horizontal": "right",
+                              "margins": {
+                                "left": 16
+                              }
+                            },
+                            {
+                              "type": "container",
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "vertical",
+                              "content_alignment_vertical": "top",
+                              "content_alignment_horizontal": "right",
+                              "margins": {
+                                "left": 16
+                              },
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corners_radius": {
+                                      "top-left": 6,
+                                      "top-right": 6,
+                                      "bottom-left": 6,
+                                      "bottom-right": 6
+                                    },
+                                    "stroke": {
+                                      "color": "#dedede",
+                                      "width": 1
+                                    }
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  },
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "right",
+                                      "content_alignment_vertical": "center",
+                                      "items": [
+                                        {
+                                          "type": "input",
+                                          "text_variable": "age",
+                                          "hint_text": "سن",
+                                          "font_size": 14,
+                                          "font_weight": "regular",
+                                          "line_height": 32,
+                                          "letter_spacing": 0,
+                                          "text_color": "#3b3b3b",
+                                          "text_alignment_horizontal": "right",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "container",
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "vertical",
+                              "content_alignment_vertical": "top",
+                              "content_alignment_horizontal": "right",
+                              "margins": {
+                                "left": 16
+                              },
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corners_radius": {
+                                      "top-left": 6,
+                                      "top-right": 6,
+                                      "bottom-left": 6,
+                                      "bottom-right": 6
+                                    },
+                                    "stroke": {
+                                      "color": "#dedede",
+                                      "width": 1
+                                    }
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  },
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "right",
+                                      "content_alignment_vertical": "center",
+                                      "items": [
+                                        {
+                                          "type": "input",
+                                          "text_variable": "fatherName",
+                                          "hint_text": "نام پدر",
+                                          "font_size": 14,
+                                          "font_weight": "regular",
+                                          "line_height": 32,
+                                          "letter_spacing": 0,
+                                          "text_color": "#3b3b3b",
+                                          "text_alignment_horizontal": "right",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ,
+                            {
+                              "type": "container",
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "vertical",
+                              "content_alignment_vertical": "top",
+                              "content_alignment_horizontal": "right",
+                              "margins": {
+                                "left": 16
+                              },
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corners_radius": {
+                                      "top-left": 6,
+                                      "top-right": 6,
+                                      "bottom-left": 6,
+                                      "bottom-right": 6
+                                    },
+                                    "stroke": {
+                                      "color": "#dedede",
+                                      "width": 1
+                                    }
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  },
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "right",
+                                      "content_alignment_vertical": "center",
+                                      "items": [
+                                        {
+                                          "type": "input",
+                                          "text_variable": "phone",
+                                          "hint_text": "تلفن ",
+                                          "font_size": 14,
+                                          "font_weight": "regular",
+                                          "line_height": 32,
+                                          "letter_spacing": 0,
+                                          "text_color": "#3b3b3b",
+                                          "text_alignment_horizontal": "right",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ],
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "vertical",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center"
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "top",
+                      "content_alignment_horizontal": "right"
+                    }
+                  ],
+                  "border": {
+                    "corners_radius": {
+                      "top-left": 6,
+                      "top-right": 6,
+                      "bottom-left": 6,
+                      "bottom-right": 6
+                    },
+                    "stroke": {
+                      "color": "#ececec",
+                      "width": 1
+                    }
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "vertical",
+                  "content_alignment_vertical": "top",
+                  "content_alignment_horizontal": "left",
+                  "paddings": {
+                    "top": 16,
+                    "bottom": 16,
+                    "left": 16,
+                    "right": 16
+                  },
+                  "margins": {
+                    "top": 16
+                  }
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "vertical",
+              "content_alignment_vertical": "top",
+              "content_alignment_horizontal": "right"
+            },
+            {
+              "type": "container",
+              "actions": [
+                {
+                  "log_id": "plate change",
+                  "url": "div-action://add_item_from_template?template=testForPatchGeneratorTemplate&container_id=list&item_name=@{name}&item_lastname=@{lastname}&item_age=@{age}&item_phone=@{phone}&item_fatherName=@{fatherName}"
+                },
+                {
+                  "log_id": "show_toast",
+                  "url": "div-action://show_toast?massage=@{toast? 'یک':'دو'}"
+                }
+              ],
+              "items": [
+                {
+                  "type": "text",
+                  "text": "@{text___19}",
+                  "font_size": 14,
+                  "font_weight": "regular",
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#ffffff",
+                  "text_alignment_horizontal": "left",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#193d8d"
+                }
+              ],
+              "border": {
+                "corners_radius": {
+                  "top-left": 6,
+                  "top-right": 6,
+                  "bottom-left": 6,
+                  "bottom-right": 6
+                }
+              },
+              "height": {
+                "type": "fixed",
+                "value": 56
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "horizontal",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "paddings": {
+                "top": 12,
+                "bottom": 12,
+                "left": 12,
+                "right": 12
+              },
+              "margins": {
+                "top": 8
+              }
+            },
+            {
+              "type": "gallery",
+              "id": "list",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "items": [],
+              "orientation": "vertical",
+              "item_spacing": 100,
+              "cross_content_alignment": "start",
+              "scroll_mode": "default"
+            }
+          ],
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "border": {
+            "corners_radius": {
+              "top-left": 10,
+              "top-right": 10,
+              "bottom-right": 2,
+              "bottom-left": 2
+            },
+            "stroke": {
+              "color": "#c8d0e4",
+              "width": 1
+            }
+          },
+          "height": {
+            "type": "match_parent"
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "vertical",
+          "content_alignment_vertical": "top",
+          "content_alignment_horizontal": "left",
+          "paddings": {
+            "top": 24,
+            "bottom": 24,
+            "left": 24,
+            "right": 24
+          }
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "string",
+        "name": "variable_aeenNameBasicInfo_title",
+        "value": "انتخاب کنید"
+      },
+      {
+        "type": "string",
+        "name": "variable_aeenNameBasicInfo_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_noeTanbihBasicInfo_title",
+        "value": "انتخاب کنید"
+      },
+      {
+        "type": "string",
+        "name": "variable_noeTanbihBasicInfo_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_maghameTanbihBasicInfo_title",
+        "value": "انتخاب کنید"
+      },
+      {
+        "type": "string",
+        "name": "variable_maghameTanbihBasicInfo_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "text___1",
+        "value": "تنبیهات"
+      },
+      {
+        "type": "string",
+        "name": "text___2",
+        "value": "جستجو"
+      },
+      {
+        "type": "string",
+        "name": "personal_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "name",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "age",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "lastname",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "daraje",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "yegan",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___13",
+        "value": "تنبیه کتبی"
+      },
+      {
+        "type": "string",
+        "name": "text___14",
+        "value": "مقام تنبیه"
+      },
+      {
+        "type": "string",
+        "name": "text___15",
+        "value": "فرمانده"
+      },
+      {
+        "type": "string",
+        "name": "text___16",
+        "value": "ماده آیین نامه"
+      },
+      {
+        "type": "string",
+        "name": "text___17",
+        "value": "ماده ۱۱۳ تنبیه"
+      },
+      {
+        "type": "string",
+        "name": "punishment_reason",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "text___19",
+        "value": "submit"
+      },
+      {
+        "type": "string",
+        "name": "executionId",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "rankId",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "fatherName",
+        "value": ""
+      }, {
+        "type": "string",
+        "name": "phone",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "organizationId",
+        "value": ""}
+      ,
+      {
+        "type": "boolean",
+        "name": "toast",
+        "value": true
+      }
+    ]
+  },
+  "templates": {
+
+  }
+}

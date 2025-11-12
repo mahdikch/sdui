@@ -52,7 +52,7 @@ import ir.nrdc.camera.CompressionProvider;
 import ir.nrdc.camera.R;
 import ir.nrdc.camera.Utility;
 
-public class CameraActivity extends AppCompatActivity  {
+public class CameraActivity extends AppCompatActivity {
     private PreviewView previewView;
 
     private RelativeLayout cameraView;
@@ -60,7 +60,7 @@ public class CameraActivity extends AppCompatActivity  {
     private ImageCapture imageCapture;
     private File outputDirectory;
     private String type;
-    private String iranian="true";
+    private String iranian = "true";
     private String checkOcr;
     private AppCompatImageView imgTakePhoto;
     private ExecutorService cameraExecutor;
@@ -85,10 +85,10 @@ public class CameraActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_naji_camera);
 //        OnCallBackListener testInterface = (OnCallBackListener) getIntent().getSerializableExtra("testInterface");
 //        setListener(testInterface);
-Intent intent=getIntent();
- type=intent.getExtras().getString("type");
- iranian=intent.getExtras().getString("iranian");
- checkOcr=intent.getExtras().getString("checkOcr");
+        Intent intent = getIntent();
+        type = intent.getExtras().getString("type");
+        iranian = intent.getExtras().getString("iranian");
+        checkOcr = intent.getExtras().getString("checkOcr");
 //        LayoutInflater layoutInflater=LayoutInflater.from(this);
 //        View root=layoutInflater.inflate(R.layout.activity_naji_camera,null);
         cameraView = findViewById(R.id.cameraView);
@@ -106,7 +106,7 @@ Intent intent=getIntent();
 */
 
 //        if (allPermissionGranted()) {
-            startCamera();
+        startCamera();
 //        } else {
 //            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
 //                ActivityCompat.requestPermissions(
@@ -127,7 +127,7 @@ Intent intent=getIntent();
             public void onClick(View view) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     takePhoto();
-                }else {
+                } else {
                     takePhoto();
                 }
             }
@@ -162,12 +162,12 @@ Intent intent=getIntent();
         // Calculate percentages
         float backgroundPercentageX = 0.90f; // 95% of screen width
         float backgroundPercentageY = 0.30f; // 30% of screen height
-if (Objects.equals(type, "person")){
-     backgroundPercentageX = 0.70f; // 95% of screen width
-         backgroundPercentageY = 0.50f; // 30% of screen height
-    }
-if (Objects.equals(type, ""))
-    imageView.setVisibility(View.GONE);
+        if (Objects.equals(type, "person")) {
+            backgroundPercentageX = 0.70f; // 95% of screen width
+            backgroundPercentageY = 0.50f; // 30% of screen height
+        }
+        if (Objects.equals(type, ""))
+            imageView.setVisibility(View.GONE);
 
 
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
@@ -278,12 +278,12 @@ if (Objects.equals(type, ""))
             resultIntent.putExtra("bitmap", bitmapCropUri.toString());
             resultIntent.putExtra("imageUri", bitmapUri.toString());
             String bitmapCropUriBase64 = Utility.getBase64FromUri(this, bitmapCropUri);
-            CompressionProvider compressionProvider = new CompressionProvider(CameraActivity.this, onCallBackListener, 450, 500, 500 * 1024l, null,type,iranian);
+            CompressionProvider compressionProvider = new CompressionProvider(CameraActivity.this, onCallBackListener, 450, 500, 500 * 1024l, null, type, iranian);
             compressionProvider.compress(bitmapUri, 1);
             String imageMain = Utility.getBase64FromUri(this, bitmapUri);
-            compressionProvider = new CompressionProvider(CameraActivity.this, onCallBackListener, 450, 500, 500 * 1024l, null,type,iranian);
+            compressionProvider = new CompressionProvider(CameraActivity.this, onCallBackListener, 450, 500, 500 * 1024l, null, type, iranian);
             compressionProvider.compress(bitmapCropUri, 2);
-            onCallBackListener.getImageMainAndCropped(imageMain, bitmapCropUriBase64,type,checkOcr,iranian);
+            onCallBackListener.getImageMainAndCropped(imageMain, bitmapCropUriBase64, type, checkOcr, iranian);
 //            listener.getImageMainAndCropped(imageMain, bitmapCropUriBase64);
 //            setResult(RESULT_OK, resultIntent);
             finish(); // Close CameraActivity

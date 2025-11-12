@@ -46,6 +46,9 @@ import com.yandex.divkit.demo.data.entities.ListItemDto
 import com.yandex.divkit.demo.data.entities.PhPlusDB
 import com.yandex.divkit.demo.div.Div2Activity
 import com.yandex.divkit.demo.div.DivActivity
+import com.yandex.divkit.demo.div.DynamicPatchGenerator
+import com.yandex.divkit.demo.div.DynamicPatchGeneratorSingleton
+import com.yandex.divkit.demo.div.asDivPatchWithTemplates
 import com.yandex.divkit.demo.persiandatepicker.PersianDatePickerDialog
 import com.yandex.divkit.demo.persiandatepicker.api.PersianPickerDate
 import com.yandex.divkit.demo.persiandatepicker.api.PersianPickerListener
@@ -110,6 +113,7 @@ private const val AUTHORITY_GET_PERSIAN_DATE = "get_persian_date"
 private const val AUTHORITY_BOTTOM_SHEET_DISMISS = "bottom_sheet_dismiss"
 private const val AUTHORITY_SET_VARIABLE_TO_BASE = "set_variable_to_base"
 private const val AUTHORITY_SET_VARIABLE_TO_BOTTOM_SHEET = "set_variable_to_bottomsheet"
+private const val AUTHORITY_ADD_ITEM_FROM_TEMPLATE = "add_item_from_template"
 private const val AUTHORITY_CHECK_VERSION = "check_version"
 private const val AUTHORITY_SET_OBJECT_TO_DB = "set_object_to_db"
 private const val AUTHORITY_SET_PAGE_TO_DB = "set_page_to_db"
@@ -146,6 +150,10 @@ private const val PARAM_DIALOG_MASSAGE = "massage"
 private const val PARAM_VARIABLE_NAME = "name"
 private const val PARAM_VARIABLE_VALUE = "value"
 private const val PARAM_TARGET_BOTTOM_SHEET = "target"
+private const val PARAM_TEMPLATE_KEY = "template"
+private const val PARAM_TEMPLATE_TYPE = "template_type"
+private const val PARAM_CONTAINER_ID = "container_id"
+private const val PARAM_POSITION = "position"
 private const val PARAM_CAPTCHA_NAME = "name"
 private const val PARAM_CAPTCHA_IMAGE = "image"
 private const val PARAM_BOTTOM_SHEET_LIST_ID = "id"
@@ -207,6 +215,8 @@ class UIDiv2ActionHandler(
     private var flag = 0;
     private var btmSheet_list = BottomSheetDialogFragment();
     private var naji = Naji();
+    // Use singleton to maintain state across action handler instances
+    private val patchGenerator = DynamicPatchGeneratorSingleton.instance
 
 //    interface LoadScreenListener {
 //        fun onLoad(screenName: String)
@@ -335,7 +345,7 @@ class UIDiv2ActionHandler(
         }
 
         if (uri.scheme != SCHEME_DIV_ACTION) return false
-        if (uri.authority == AUTHORITY_OPEN_SCREEN) {
+            if (uri.authority == AUTHORITY_OPEN_SCREEN) {
             when (uri.getQueryParameter(PARAM_ACTIVITY)) {
                 ACTIVITY_DEMO -> startActivityAction(Div2Activity::class.java)
                 ACTIVITY_REGRESSION -> startActivityAction(RegressionActivity::class.java)
@@ -1404,6 +1414,105 @@ class UIDiv2ActionHandler(
                 println("UIDiv2ActionHandler: Missing parameters - name=$name, value=$value, target=$target")
             }
             println("UIDiv2ActionHandler: ========== END VARIABLE SETTING ==========")
+        } else if (uri.authority == AUTHORITY_ADD_ITEM_FROM_TEMPLATE) {
+            println("UIDiv2ActionHandler: ========== ADD ITEM FROM TEMPLATE ==========")
+            
+            val templateKey = uri.getQueryParameter(PARAM_TEMPLATE_KEY)
+            val templateType = uri.getQueryParameter(PARAM_TEMPLATE_TYPE)
+            val containerId = uri.getQueryParameter(PARAM_CONTAINER_ID)
+            val position = uri.getQueryParameter(PARAM_POSITION)?.toIntOrNull()
+            
+            println("UIDiv2ActionHandler: templateKey=$templateKey")
+            println("UIDiv2ActionHandler: templateType=$templateType")
+            println("UIDiv2ActionHandler: containerId=$containerId")
+            println("UIDiv2ActionHandler: position=$position")
+            
+            if (containerId != null) {
+                try {
+                    // Extract variables from query parameters
+                    val variables = mutableMapOf<String, String>()
+                    val parameterNames = uri.queryParameterNames
+                    
+                    for (paramName in parameterNames) {
+                        // Skip system parameters
+                        if (paramName !in listOf(PARAM_TEMPLATE_KEY, PARAM_TEMPLATE_TYPE, PARAM_CONTAINER_ID, PARAM_POSITION)) {
+                            val paramValue = uri.getQueryParameter(paramName)
+                            if (paramValue != null) {
+                                variables[paramName] = paramValue
+                            }
+                        }
+                    }
+                    
+                    println("UIDiv2ActionHandler: Variables extracted: $variables")
+                    
+                    // Get current view
+                    val div2View = if (view is Div2View) view as Div2View? else null
+                    
+                    // Generate patch
+                    val patch = if (templateType != null) {
+                        // Using DivKit template reference (type-based)
+                        println("UIDiv2ActionHandler: Generating patch with template type reference")
+                        patchGenerator.generateAddItemPatch(
+                            "", // Not needed for template type
+                            containerId,
+                            variables,
+                            position,
+                            templateType,
+                            div2View
+                        )
+                    } else if (templateKey != null && mehdiViewModel != null) {
+                        // Using full template from database
+                        println("UIDiv2ActionHandler: Loading template from database")
+                        val templateDto = mehdiViewModel.getValueByKey(templateKey)
+                        
+                        if (templateDto != null && templateDto.value != null) {
+                            val templateJson = templateDto.value!!
+                            println("UIDiv2ActionHandler: Template loaded successfully")
+                            patchGenerator.generateAddItemPatch(
+                                templateJson,
+                                containerId,
+                                variables,
+                                position,
+                                null,
+                                div2View
+                            )
+                        } else {
+                            println("UIDiv2ActionHandler: ERROR - Template not found in database: $templateKey")
+                            null
+                        }
+                    } else {
+                        println("UIDiv2ActionHandler: ERROR - Neither template_type nor template provided")
+                        null
+                    }
+                    
+                    if (patch != null) {
+                        println("UIDiv2ActionHandler: Patch generated, applying to view...")
+                        
+                        // Apply patch to the current view
+                        if (div2View != null) {
+                            div2View.applyPatch(patch.asDivPatchWithTemplates())
+                            println("UIDiv2ActionHandler: Patch applied successfully!")
+                            
+                            // Force view to refresh/invalidate to show the new items
+                            div2View.post {
+                                div2View.requestLayout()
+                                div2View.invalidate()
+                                println("UIDiv2ActionHandler: View invalidated and layout requested")
+                            }
+                        } else {
+                            println("UIDiv2ActionHandler: ERROR - view is not Div2View")
+                        }
+                    }
+                    
+                } catch (e: Exception) {
+                    println("UIDiv2ActionHandler: ERROR - Failed to add item from template: ${e.message}")
+                    e.printStackTrace()
+                }
+            } else {
+                println("UIDiv2ActionHandler: ERROR - Missing required parameter: container_id")
+            }
+            
+            println("UIDiv2ActionHandler: ========== END ADD ITEM FROM TEMPLATE ==========")
         } else if (uri.authority == AUTHORITY_SHOW_DIV_TOAST) {
 
             val JsonDto = uri.getQueryParameter(PARAM_TOAST_DIV)
@@ -1643,6 +1752,20 @@ class UIDiv2ActionHandler(
                 else map.put("type", "2")
                 map.put("status", "searchImage")
                 map.put("sysName", "agh")
+
+            }
+            loadScreenListener.onRequest(map)
+        }
+        if (type == "atba") {
+            val map: java.util.HashMap<String, String> = HashMap()
+            if (cleanedBase64String != null) {
+                map.put("path", "registerPictureAtba")
+                map.put("personalImage", cleanedBase64String)
+                map.put("ph/token", "empty")
+                map.put("selected_border_code_atba", "empty")
+                map.put("selected_border_title_atba", "empty")
+                map.put("sysName", "atba")
+
 
             }
             loadScreenListener.onRequest(map)

@@ -1,0 +1,171 @@
+{
+  "type": "container",
+  "width": {
+    "type": "match_parent"
+  },
+  "height": {
+    "type": "wrap_content"
+  },
+  "items": [
+    {
+      "type": "container",
+      "items": [
+        {
+          "type": "text",
+          "text": "@{item_name}",
+          "font_size": 14,
+          "font_weight": "bold",
+          "text_color": "#2c2c2c",
+          "text_alignment_horizontal": "right"
+        },
+        {
+          "type": "text",
+          "text": "نام",
+          "font_size": 12,
+          "text_color": "#7f7f7f",
+          "text_alignment_horizontal": "left"
+        }
+      ],
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "space-between",
+      "width": {
+        "type": "match_parent"
+      }
+    },
+    {
+      "type": "container",
+      "items": [
+        {
+          "type": "text",
+          "text": "@{item_lastname}",
+          "font_size": 14,
+          "font_weight": "bold",
+          "text_color": "#2c2c2c",
+          "text_alignment_horizontal": "right"
+        },
+        {
+          "type": "text",
+          "text": "نام خانوادگی",
+          "font_size": 12,
+          "text_color": "#7f7f7f",
+          "text_alignment_horizontal": "left"
+        }
+      ],
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "space-between",
+      "width": {
+        "type": "match_parent"
+      },
+      "margins": {
+        "top": 8
+      }
+    },
+    {
+      "type": "container",
+      "items": [
+        {
+          "type": "text",
+          "text": "@{item_age}",
+          "font_size": 14,
+          "font_weight": "bold",
+          "text_color": "#2c2c2c",
+          "text_alignment_horizontal": "right"
+        },
+        {
+          "type": "text",
+          "text": "سن",
+          "font_size": 12,
+          "text_color": "#7f7f7f",
+          "text_alignment_horizontal": "left"
+        }
+      ],
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "space-between",
+      "width": {
+        "type": "match_parent"
+      },
+      "margins": {
+        "top": 8
+      }
+    },
+    {
+      "type": "container",
+      "items": [
+        {
+          "type": "text",
+          "text": "@{item_fatherName}",
+          "font_size": 14,
+          "font_weight": "bold",
+          "text_color": "#2c2c2c",
+          "text_alignment_horizontal": "right"
+        },
+        {
+          "type": "text",
+          "text": "نام پدر",
+          "font_size": 12,
+          "text_color": "#7f7f7f",
+          "text_alignment_horizontal": "left"
+        }
+      ],
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "space-between",
+      "width": {
+        "type": "match_parent"
+      },
+      "margins": {
+        "top": 8
+      }
+    },
+    {
+      "type": "container",
+      "items": [
+        {
+          "type": "text",
+          "text": "@{item_phone}",
+          "font_size": 14,
+          "font_weight": "bold",
+          "text_color": "#2c2c2c",
+          "text_alignment_horizontal": "right"
+        },
+        {
+          "type": "text",
+          "text": "تلفن",
+          "font_size": 12,
+          "text_color": "#7f7f7f",
+          "text_alignment_horizontal": "left"
+        }
+      ],
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "space-between",
+      "width": {
+        "type": "match_parent"
+      },
+      "margins": {
+        "top": 8
+      }
+    }
+  ],
+  "border": {
+    "corners_radius": 6,
+    "stroke": {
+      "color": "#ff0000",
+      "width": 2
+    }
+  },
+  "paddings": {
+    "top": 12,
+    "bottom": 12,
+    "left": 16,
+    "right": 16
+  },
+  "margins": {
+    "top": 8,
+    "bottom": 12
+  },
+  "background": [
+    {
+      "type": "solid",
+      "color": "#f9f9f9"
+    }
+  ]
+}

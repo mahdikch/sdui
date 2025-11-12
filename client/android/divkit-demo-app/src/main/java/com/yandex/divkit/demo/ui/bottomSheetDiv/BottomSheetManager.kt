@@ -37,10 +37,20 @@ class BottomSheetManager {
      * @param bottomSheet The bottom sheet instance to remove
      */
     fun removeBottomSheet(bottomSheet: BottomSheetDiv) {
-        bottomSheetStack.remove(bottomSheet)
+        println("BottomSheetManager: Removing bottom sheet - ID: ${bottomSheet.assignedId}")
+        println("BottomSheetManager: Before removal - Total: ${getBottomSheetCount()}, IDs: ${getAllBottomSheetIds()}")
+        
+        val wasInStack = bottomSheetStack.remove(bottomSheet)
+        
         // Remove from map by finding the key
         val keyToRemove = bottomSheetMap.entries.find { it.value == bottomSheet }?.key
-        keyToRemove?.let { bottomSheetMap.remove(it) }
+        val wasInMap = keyToRemove?.let { 
+            bottomSheetMap.remove(it)
+            true
+        } ?: false
+        
+        println("BottomSheetManager: Removed from stack: $wasInStack, from map: $wasInMap")
+        println("BottomSheetManager: After removal - Total: ${getBottomSheetCount()}, IDs: ${getAllBottomSheetIds()}")
     }
     
     /**
