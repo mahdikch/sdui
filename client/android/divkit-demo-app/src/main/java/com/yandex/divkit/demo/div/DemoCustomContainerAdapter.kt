@@ -136,11 +136,11 @@ class DemoCustomContainerAdapter(
         },
         "multi_selection" to { context: Context ->
             // This will be handled specially in createView method
-            context.createMultiSelection("", "", "", 0, "false", "true")
+            context.createMultiSelection("", "", "", 0, "false", "true", "false")
         },
         "single_selection" to { context: Context ->
             // This will be handled specially in createView method
-            context.createSingleSelection("", "", "", "false", "true")
+            context.createSingleSelection("", "", "", "false", "true", "false")
         },
         "notification_list" to { context: Context -> context.createNotificationList() },
 //        "offline_vt_reports_container" to { context: Context -> context.createOfflineVtReportsContainer() },
@@ -248,12 +248,18 @@ class DemoCustomContainerAdapter(
                 evaluateCustomPropString(div, "validation", expressionResolver, "false")
             val currentInputEnabled =
                 evaluateCustomPropString(div, "enabled", expressionResolver, "true")
+            val currentInputMin =
+                evaluateCustomPropString(div, "min", expressionResolver, "")
+            val currentInputMax =
+                evaluateCustomPropString(div, "max", expressionResolver, "")
             divView.context.createCustomInput(
                 currentInputVariableName,
                 currentInputHint,
                 currentInputType,
                 currentInputValidation,
-                currentInputEnabled
+                currentInputEnabled,
+                currentInputMin,
+                currentInputMax
             )
         } else if (div.customType == "labelledSliderView") {
             // Handle labelledSliderView specially to pass parameters directly
@@ -281,13 +287,16 @@ class DemoCustomContainerAdapter(
                 evaluateCustomPropString(div, "validation", expressionResolver, "false")
             val currentMultiEnabled =
                 evaluateCustomPropString(div, "enabled", expressionResolver, "true")
+            val currentMultiSearchable =
+                evaluateCustomPropString(div, "searchable", expressionResolver, "false")
             divView.context.createMultiSelection(
                 currentMultiOptions,
                 currentMultiIds,
                 currentMultiVariableName,
                 currentMultiSelectionLimit,
                 currentMultiValidation,
-                currentMultiEnabled
+                currentMultiEnabled,
+                currentMultiSearchable
             )
         } else if (div.customType == "single_selection") {
             // Handle single_selection specially to pass parameters directly
@@ -300,12 +309,15 @@ class DemoCustomContainerAdapter(
                 evaluateCustomPropString(div, "validation", expressionResolver, "false")
             val currentSingleEnabled =
                 evaluateCustomPropString(div, "enabled", expressionResolver, "true")
+            val currentSingleSearchable =
+                evaluateCustomPropString(div, "searchable", expressionResolver, "false")
             divView.context.createSingleSelection(
                 currentSingleOptions,
                 currentSingleIds,
                 currentSingleVariableName,
                 currentSingleValidation,
-                currentSingleEnabled
+                currentSingleEnabled,
+                currentSingleSearchable
             )
         } else {
             factories[div.customType]?.invoke(divView.context)
@@ -781,11 +793,16 @@ class DemoCustomContainerAdapter(
         multiVariableName: String,
         multiSelectionLimit: Int,
         validation: String,
-        enabled: String
+        enabled: String,
+        searchable: String
     ): View = MultiSelectionView(this).apply {
         val optionsList = multiOptions.split(",").map { it.trim() }
         val idsList = multiIds.split(",").map { it.trim() }
         var value = mehdiViewModel?.getValueByKey(multiVariableName)?.value
+
+        // Set searchable before setItems (it needs to be set before creating the UI)
+        val isSearchable = searchable.equals("true", ignoreCase = true)
+        setSearchable(isSearchable)
 
         if (optionsList.isNotEmpty() && idsList.isNotEmpty()) {
             setItems(optionsList, idsList, multiSelectionLimit)
@@ -819,11 +836,16 @@ class DemoCustomContainerAdapter(
         singleIds: String,
         singleVariableName: String,
         validation: String,
-        enabled: String
+        enabled: String,
+        searchable: String
     ): View = SingleSelectionView(this).apply {
         val optionsList = singleOptions.split(",").map { it.trim() }
         val idsList = singleIds.split(",").map { it.trim() }
         var value = mehdiViewModel?.getValueByKey(singleVariableName)?.value
+
+        // Set searchable before setItems (it needs to be set before creating the UI)
+        val isSearchable = searchable.equals("true", ignoreCase = true)
+        setSearchable(isSearchable)
 
         if (optionsList.isNotEmpty() && idsList.isNotEmpty()) {
             setItems(optionsList, idsList)
@@ -856,7 +878,9 @@ class DemoCustomContainerAdapter(
         hint: String,
         inputType: String,
         validation: String,
-        enabled: String
+        enabled: String,
+        min: String,
+        max: String
     ): View = CustomInputView(this).apply {
         val value = mehdiViewModel?.getValueByKey(variableName)?.value
         if (value != null) {
@@ -870,6 +894,14 @@ class DemoCustomContainerAdapter(
 
         if (inputType.isNotEmpty()) {
             setInputType(inputType)
+        }
+
+        // Set min/max values for numeric inputs
+        if (min.isNotEmpty()) {
+            min.toDoubleOrNull()?.let { setMinValue(it) }
+        }
+        if (max.isNotEmpty()) {
+            max.toDoubleOrNull()?.let { setMaxValue(it) }
         }
 
         // Set validation based on the custom property

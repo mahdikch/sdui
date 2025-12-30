@@ -2,11 +2,14 @@ package com.yandex.divkit.demo.div.multiSelection
 
 import android.content.Context
 import android.graphics.Typeface
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -26,11 +29,15 @@ class MultiSelectionView @JvmOverloads constructor(
     private var titleView: TextView? = null
     private var requiredStar: TextView? = null
     private val itemViews = mutableListOf<View>()
+    private var searchEditText: EditText? = null
+    private var isSearchable: Boolean = false
+    private var itemsContainer: LinearLayout? = null
 
     data class SelectionItem(
         val title: String,
         val id: String,
-        val checkBox: CheckBox
+        val checkBox: CheckBox,
+        var itemView: View? = null
     )
 
     init {
@@ -80,6 +87,34 @@ class MultiSelectionView @JvmOverloads constructor(
         titleContainer.addView(requiredStar)
         addView(titleContainer)
 
+        // Add search field if searchable
+        if (isSearchable) {
+            searchEditText = EditText(context).apply {
+                hint = "جستجو..."
+                textSize = 14f
+                layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT).apply {
+                    setMargins(0, 0, 0, 16)
+                }
+                setBackgroundResource(R.drawable.input_background)
+                setPadding(24, 16, 24, 16)
+                
+                addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+                    override fun afterTextChanged(s: Editable?) {
+                        filterItems(s?.toString() ?: "")
+                    }
+                })
+            }
+            addView(searchEditText)
+        }
+
+        // Create items container
+        itemsContainer = LinearLayout(context).apply {
+            orientation = VERTICAL
+            layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+        }
+
         // Create selection items
         options.forEachIndexed { index, option ->
             val itemView = LayoutInflater.from(context)
@@ -90,7 +125,7 @@ class MultiSelectionView @JvmOverloads constructor(
             
             titleText.text = option
             
-            val selectionItem = SelectionItem(option, ids[index], checkBox)
+            val selectionItem = SelectionItem(option, ids[index], checkBox, itemView)
             selectionItems.add(selectionItem)
             
             checkBox.setOnClickListener {
@@ -109,11 +144,14 @@ class MultiSelectionView @JvmOverloads constructor(
                     return@setOnClickListener
                 }
                 checkBox.isChecked = !checkBox.isChecked
+                handleSelectionChange(selectionItem, checkBox.isChecked)
             }
             
             itemViews.add(itemView)
-            addView(itemView)
+            itemsContainer?.addView(itemView)
         }
+
+        addView(itemsContainer)
 
         // Add selection info at the bottom
         if (limit > 0) {
@@ -125,6 +163,18 @@ class MultiSelectionView @JvmOverloads constructor(
             }
             addView(infoView)
         }
+    }
+
+    private fun filterItems(query: String) {
+        val lowerQuery = query.lowercase().trim()
+        selectionItems.forEach { item ->
+            val matchesQuery = lowerQuery.isEmpty() || item.title.lowercase().contains(lowerQuery)
+            item.itemView?.visibility = if (matchesQuery) View.VISIBLE else View.GONE
+        }
+    }
+
+    fun setSearchable(searchable: Boolean) {
+        this.isSearchable = searchable
     }
 
     private fun handleSelectionChange(item: SelectionItem, isChecked: Boolean) {

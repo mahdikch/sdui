@@ -2,9 +2,12 @@ package com.yandex.divkit.demo.div.singleSelection
 
 import android.content.Context
 import android.graphics.Typeface
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
@@ -25,11 +28,14 @@ class SingleSelectionView @JvmOverloads constructor(
     private var requiredStar: TextView? = null
     private var radioGroup: RadioGroup? = null
     private val itemViews = mutableListOf<View>()
+    private var searchEditText: EditText? = null
+    private var isSearchable: Boolean = false
 
     data class SelectionItem(
         val title: String,
         val id: String,
-        val radioButton: RadioButton
+        val radioButton: RadioButton,
+        var itemView: View? = null
     )
 
     init {
@@ -77,6 +83,28 @@ class SingleSelectionView @JvmOverloads constructor(
         titleContainer.addView(requiredStar)
         addView(titleContainer)
 
+        // Add search field if searchable
+        if (isSearchable) {
+            searchEditText = EditText(context).apply {
+                hint = "جستجو..."
+                textSize = 14f
+                layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT).apply {
+                    setMargins(0, 0, 0, 16)
+                }
+                setBackgroundResource(R.drawable.input_background)
+                setPadding(24, 16, 24, 16)
+                
+                addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+                    override fun afterTextChanged(s: Editable?) {
+                        filterItems(s?.toString() ?: "")
+                    }
+                })
+            }
+            addView(searchEditText)
+        }
+
         // Create RadioGroup for single selection
         radioGroup = RadioGroup(context).apply {
             orientation = RadioGroup.VERTICAL
@@ -93,7 +121,7 @@ class SingleSelectionView @JvmOverloads constructor(
             
             titleText.text = option
             
-            val selectionItem = SelectionItem(option, ids[index], radioButton)
+            val selectionItem = SelectionItem(option, ids[index], radioButton, itemView)
             selectionItems.add(selectionItem)
             
             // Set unique ID for radio button
@@ -123,6 +151,18 @@ class SingleSelectionView @JvmOverloads constructor(
         }
 
         addView(radioGroup)
+    }
+
+    private fun filterItems(query: String) {
+        val lowerQuery = query.lowercase().trim()
+        selectionItems.forEach { item ->
+            val matchesQuery = lowerQuery.isEmpty() || item.title.lowercase().contains(lowerQuery)
+            item.itemView?.visibility = if (matchesQuery) View.VISIBLE else View.GONE
+        }
+    }
+
+    fun setSearchable(searchable: Boolean) {
+        this.isSearchable = searchable
     }
 
     private fun handleSelectionChange(item: SelectionItem) {

@@ -128,6 +128,11 @@ private const val AUTHORITY_START_RECORDING = "start_recording"
 private const val AUTHORITY_STOP_RECORDING = "stop_recording"
 private const val AUTHORITY_UPLOAD_RECORDING = "upload_recording"
 private const val AUTHORITY_UPLOAD_AND_CALL_SERVICE = "upload_and_call_service"
+private const val AUTHORITY_PUSH_TO_STACK = "push_to_stack"
+private const val AUTHORITY_POP_FROM_STACK = "pop_from_stack"
+private const val AUTHORITY_SET_PATCH_FROM_STACK = "set_patch_from_stack"
+private const val AUTHORITY_PUSH_AND_SET_PATCH = "push_and_set_patch"
+private const val AUTHORITY_POP_AND_SET_PATCH = "pop_and_set_patch"
 const val SCHEME_DIV_ACTION = "div-action"
 
 private const val ACTIVITY_DEMO = "demo"
@@ -183,6 +188,8 @@ private const val PARAM_OPEN_CAMERA_OCR = "check_ocr"
 private const val PARAM_CHECK_VERSION_NAME = "name"
 private const val PARAM_SHOW_IMAGE = "image"
 private const val PARAM_SET_PAGE_TO_DB = "key"
+private const val PARAM_STACK_KEY = "key"
+private const val PARAM_STACK_VALUE = "value"
 
 
 class UIDiv2ActionHandler(
@@ -1575,6 +1582,331 @@ class UIDiv2ActionHandler(
                 }
                 btmSheet_div?.let { loadScreenListener.getBtmSheetInstance(it) }
             }
+
+        } else if (uri.authority == AUTHORITY_PUSH_TO_STACK) {
+            android.util.Log.d("UIDiv2ActionHandler", "=== PUSH TO STACK ACTION ===")
+            
+            val stackKey = uri.getQueryParameter(PARAM_STACK_KEY)
+            val stackValue = uri.getQueryParameter(PARAM_STACK_VALUE)
+            
+            android.util.Log.d("UIDiv2ActionHandler", "Stack Key: $stackKey")
+            android.util.Log.d("UIDiv2ActionHandler", "Stack Value: $stackValue")
+            
+            if (stackKey != null && stackValue != null) {
+                try {
+                    // Get current stack from database
+                    val currentStackJson = mehdiViewModel?.getValueByKey(stackKey)?.value
+                    android.util.Log.d("UIDiv2ActionHandler", "Current stack JSON: $currentStackJson")
+                    
+                    // Parse existing stack or create new one
+                    val stackList = if (currentStackJson != null && currentStackJson.isNotEmpty()) {
+                        try {
+                            val gson = Gson()
+                            gson.fromJson(currentStackJson, Array<String>::class.java).toMutableList()
+                        } catch (e: Exception) {
+                            android.util.Log.w("UIDiv2ActionHandler", "Failed to parse stack, creating new: ${e.message}")
+                            mutableListOf<String>()
+                        }
+                    } else {
+                        mutableListOf<String>()
+                    }
+                    
+                    android.util.Log.d("UIDiv2ActionHandler", "Current stack size: ${stackList.size}")
+                    
+                    // Push new value to stack
+                    stackList.add(stackValue)
+                    android.util.Log.d("UIDiv2ActionHandler", "New stack size: ${stackList.size}")
+                    
+                    // Convert back to JSON and save to database
+                    val gson = Gson()
+                    val newStackJson = gson.toJson(stackList)
+                    android.util.Log.d("UIDiv2ActionHandler", "New stack JSON: $newStackJson")
+                    
+                    mehdiViewModel?.insertItemToDb(PhPlusDB(null, stackKey, newStackJson))
+                    android.util.Log.d("UIDiv2ActionHandler", "Stack saved to database successfully")
+                    
+                    Toast.makeText(context, "Added to stack: $stackValue", Toast.LENGTH_SHORT).show()
+                } catch (e: Exception) {
+                    android.util.Log.e("UIDiv2ActionHandler", "Error pushing to stack", e)
+                    Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                android.util.Log.w("UIDiv2ActionHandler", "Missing parameters - key: $stackKey, value: $stackValue")
+                Toast.makeText(context, "Missing stack key or value", Toast.LENGTH_SHORT).show()
+            }
+            
+            android.util.Log.d("UIDiv2ActionHandler", "=== END PUSH TO STACK ACTION ===")
+            
+        } else if (uri.authority == AUTHORITY_POP_FROM_STACK) {
+            android.util.Log.d("UIDiv2ActionHandler", "=== POP FROM STACK ACTION ===")
+            
+            val stackKey = uri.getQueryParameter(PARAM_STACK_KEY)
+            android.util.Log.d("UIDiv2ActionHandler", "Stack Key: $stackKey")
+            
+            if (stackKey != null) {
+                try {
+                    // Get current stack from database
+                    val currentStackJson = mehdiViewModel?.getValueByKey(stackKey)?.value
+                    android.util.Log.d("UIDiv2ActionHandler", "Current stack JSON: $currentStackJson")
+                    
+                    if (currentStackJson != null && currentStackJson.isNotEmpty()) {
+                        // Parse stack
+                        val gson = Gson()
+                        val stackList = try {
+                            gson.fromJson(currentStackJson, Array<String>::class.java).toMutableList()
+                        } catch (e: Exception) {
+                            android.util.Log.e("UIDiv2ActionHandler", "Failed to parse stack", e)
+                            Toast.makeText(context, "Invalid stack format", Toast.LENGTH_SHORT).show()
+                            return true
+                        }
+                        
+                        android.util.Log.d("UIDiv2ActionHandler", "Current stack size: ${stackList.size}")
+                        
+                        if (stackList.isNotEmpty()) {
+                            // Pop last value from stack
+                            val poppedValue = stackList.removeAt(stackList.size - 1)
+                            android.util.Log.d("UIDiv2ActionHandler", "Popped value: $poppedValue")
+                            android.util.Log.d("UIDiv2ActionHandler", "New stack size: ${stackList.size}")
+                            
+                            // Convert back to JSON and save to database
+                            val newStackJson = gson.toJson(stackList)
+                            android.util.Log.d("UIDiv2ActionHandler", "New stack JSON: $newStackJson")
+                            
+                            mehdiViewModel?.insertItemToDb(PhPlusDB(null, stackKey, newStackJson))
+                            android.util.Log.d("UIDiv2ActionHandler", "Stack saved to database successfully")
+                            
+                            Toast.makeText(context, "Removed from stack: $poppedValue", Toast.LENGTH_SHORT).show()
+                        } else {
+                            android.util.Log.w("UIDiv2ActionHandler", "Stack is empty, nothing to pop")
+                            Toast.makeText(context, "Stack is empty", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        android.util.Log.w("UIDiv2ActionHandler", "Stack not found in database")
+                        Toast.makeText(context, "Stack not found", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: Exception) {
+                    android.util.Log.e("UIDiv2ActionHandler", "Error popping from stack", e)
+                    Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                android.util.Log.w("UIDiv2ActionHandler", "Missing parameter - key: $stackKey")
+                Toast.makeText(context, "Missing stack key", Toast.LENGTH_SHORT).show()
+            }
+            
+            android.util.Log.d("UIDiv2ActionHandler", "=== END POP FROM STACK ACTION ===")
+            
+        } else if (uri.authority == AUTHORITY_SET_PATCH_FROM_STACK) {
+            android.util.Log.d("UIDiv2ActionHandler", "=== SET PATCH FROM STACK ACTION ===")
+            
+            val stackKey = uri.getQueryParameter(PARAM_STACK_KEY)
+            android.util.Log.d("UIDiv2ActionHandler", "Stack Key: $stackKey")
+            
+            if (stackKey != null) {
+                try {
+                    // Get current stack from database
+                    val currentStackJson = mehdiViewModel?.getValueByKey(stackKey)?.value
+                    android.util.Log.d("UIDiv2ActionHandler", "Current stack JSON: $currentStackJson")
+                    
+                    if (currentStackJson != null && currentStackJson.isNotEmpty()) {
+                        // Parse stack
+                        val gson = Gson()
+                        val stackList = try {
+                            gson.fromJson(currentStackJson, Array<String>::class.java)
+                        } catch (e: Exception) {
+                            android.util.Log.e("UIDiv2ActionHandler", "Failed to parse stack", e)
+                            Toast.makeText(context, "Invalid stack format", Toast.LENGTH_SHORT).show()
+                            return true
+                        }
+                        
+                        android.util.Log.d("UIDiv2ActionHandler", "Stack size: ${stackList.size}")
+                        
+                        if (stackList.isNotEmpty()) {
+                            // Get last value from stack
+                            val lastValue = stackList[stackList.size - 1]
+                            android.util.Log.d("UIDiv2ActionHandler", "Last value in stack: $lastValue")
+                            
+                            // Get patch JSON from database using the last value
+                            val patchJson = mehdiViewModel?.getValueByKey(lastValue)?.value
+                            android.util.Log.d("UIDiv2ActionHandler", "Patch JSON: $patchJson")
+                            
+                            if (patchJson != null && patchJson.isNotEmpty()) {
+                                // Apply patch using loadScreenListener
+                                if(!lastValue.contains("patch_1_")){
+                                android.util.Log.d("UIDiv2ActionHandler", "Applying patch: $lastValue")
+                                loadScreenListener.onApplyOnbase(patchJson, lastValue, "", "")
+                                android.util.Log.d("UIDiv2ActionHandler", "Patch applied successfully")
+                                Toast.makeText(context, "Applied patch: $lastValue", Toast.LENGTH_SHORT).show()}
+                            } else {
+                                android.util.Log.w("UIDiv2ActionHandler", "Patch not found for key: $lastValue")
+                                Toast.makeText(context, "Patch not found: $lastValue", Toast.LENGTH_SHORT).show()
+                            }
+                        } else {
+                            android.util.Log.w("UIDiv2ActionHandler", "Stack is empty")
+                            Toast.makeText(context, "Stack is empty", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        android.util.Log.w("UIDiv2ActionHandler", "Stack not found in database")
+                        Toast.makeText(context, "Stack not found", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: Exception) {
+                    android.util.Log.e("UIDiv2ActionHandler", "Error setting patch from stack", e)
+                    Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                android.util.Log.w("UIDiv2ActionHandler", "Missing parameter - key: $stackKey")
+                Toast.makeText(context, "Missing stack key", Toast.LENGTH_SHORT).show()
+            }
+            
+            android.util.Log.d("UIDiv2ActionHandler", "=== END SET PATCH FROM STACK ACTION ===")
+
+        } else if (uri.authority == AUTHORITY_PUSH_AND_SET_PATCH) {
+            android.util.Log.d("UIDiv2ActionHandler", "=== PUSH AND SET PATCH ACTION (ATOMIC) ===")
+            
+            val stackKey = uri.getQueryParameter(PARAM_STACK_KEY)
+            val stackValue = uri.getQueryParameter(PARAM_STACK_VALUE)
+            
+            android.util.Log.d("UIDiv2ActionHandler", "Stack Key: $stackKey")
+            android.util.Log.d("UIDiv2ActionHandler", "Stack Value (page to push): $stackValue")
+            
+            if (stackKey != null && stackValue != null) {
+                try {
+                    // STEP 1: Push to stack
+                    android.util.Log.d("UIDiv2ActionHandler", "STEP 1: Pushing to stack...")
+                    
+                    val currentStackJson = mehdiViewModel?.getValueByKey(stackKey)?.value
+                    android.util.Log.d("UIDiv2ActionHandler", "Current stack JSON: $currentStackJson")
+                    
+                    val stackList = if (currentStackJson != null && currentStackJson.isNotEmpty()) {
+                        try {
+                            val gson = Gson()
+                            gson.fromJson(currentStackJson, Array<String>::class.java).toMutableList()
+                        } catch (e: Exception) {
+                            android.util.Log.w("UIDiv2ActionHandler", "Failed to parse stack, creating new: ${e.message}")
+                            mutableListOf<String>()
+                        }
+                    } else {
+                        mutableListOf<String>()
+                    }
+                    
+                    android.util.Log.d("UIDiv2ActionHandler", "Stack size before push: ${stackList.size}")
+                    stackList.add(stackValue)
+                    android.util.Log.d("UIDiv2ActionHandler", "Stack size after push: ${stackList.size}")
+                    
+                    val gson = Gson()
+                    val newStackJson = gson.toJson(stackList)
+                    android.util.Log.d("UIDiv2ActionHandler", "New stack JSON: $newStackJson")
+                    
+                    mehdiViewModel?.insertItemToDb(PhPlusDB(null, stackKey, newStackJson))
+                    android.util.Log.d("UIDiv2ActionHandler", "Stack saved to database")
+                    
+                    // STEP 2: Set patch (using the value we just pushed)
+                    android.util.Log.d("UIDiv2ActionHandler", "STEP 2: Setting patch for: $stackValue")
+                    
+                    val patchJson = mehdiViewModel?.getValueByKey(stackValue)?.value
+                    android.util.Log.d("UIDiv2ActionHandler", "Patch JSON retrieved: ${patchJson != null}")
+                    
+                    if (patchJson != null && patchJson.isNotEmpty()) {
+                        android.util.Log.d("UIDiv2ActionHandler", "Applying patch: $stackValue")
+                        loadScreenListener.onApplyOnbase(patchJson, stackValue, "", "")
+                        android.util.Log.d("UIDiv2ActionHandler", "Patch applied successfully")
+                        
+                        Toast.makeText(context, "Navigated to: $stackValue", Toast.LENGTH_SHORT).show()
+                    } else {
+                        android.util.Log.w("UIDiv2ActionHandler", "Patch not found for: $stackValue")
+                        Toast.makeText(context, "Patch not found: $stackValue", Toast.LENGTH_SHORT).show()
+                    }
+                    
+                    android.util.Log.d("UIDiv2ActionHandler", "ATOMIC operation completed successfully")
+                    
+                } catch (e: Exception) {
+                    android.util.Log.e("UIDiv2ActionHandler", "Error in push_and_set_patch", e)
+                    Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                android.util.Log.w("UIDiv2ActionHandler", "Missing parameters - key: $stackKey, value: $stackValue")
+                Toast.makeText(context, "Missing stack key or value", Toast.LENGTH_SHORT).show()
+            }
+            
+            android.util.Log.d("UIDiv2ActionHandler", "=== END PUSH AND SET PATCH ACTION ===")
+            
+        } else if (uri.authority == AUTHORITY_POP_AND_SET_PATCH) {
+            android.util.Log.d("UIDiv2ActionHandler", "=== POP AND SET PATCH ACTION (ATOMIC) ===")
+            
+            val stackKey = uri.getQueryParameter(PARAM_STACK_KEY)
+            android.util.Log.d("UIDiv2ActionHandler", "Stack Key: $stackKey")
+            
+            if (stackKey != null) {
+                try {
+                    // Get current stack from database
+                    val currentStackJson = mehdiViewModel?.getValueByKey(stackKey)?.value
+                    android.util.Log.d("UIDiv2ActionHandler", "Current stack JSON: $currentStackJson")
+                    
+                    if (currentStackJson != null && currentStackJson.isNotEmpty()) {
+                        val gson = Gson()
+                        val stackList = try {
+                            gson.fromJson(currentStackJson, Array<String>::class.java).toMutableList()
+                        } catch (e: Exception) {
+                            android.util.Log.e("UIDiv2ActionHandler", "Failed to parse stack", e)
+                            Toast.makeText(context, "Invalid stack format", Toast.LENGTH_SHORT).show()
+                            return true
+                        }
+                        
+                        android.util.Log.d("UIDiv2ActionHandler", "Stack size before pop: ${stackList.size}")
+                        
+                        if (stackList.size >= 2) {
+                            // STEP 1: Pop current page from stack
+                            android.util.Log.d("UIDiv2ActionHandler", "STEP 1: Popping from stack...")
+                            val poppedValue = stackList.removeAt(stackList.size - 1)
+                            android.util.Log.d("UIDiv2ActionHandler", "Popped value: $poppedValue")
+                            android.util.Log.d("UIDiv2ActionHandler", "Stack size after pop: ${stackList.size}")
+                            
+                            // Save updated stack
+                            val newStackJson = gson.toJson(stackList)
+                            android.util.Log.d("UIDiv2ActionHandler", "New stack JSON: $newStackJson")
+                            mehdiViewModel?.insertItemToDb(PhPlusDB(null, stackKey, newStackJson))
+                            android.util.Log.d("UIDiv2ActionHandler", "Stack saved to database")
+                            
+                            // STEP 2: Set patch for the new last item
+                            val newLastValue = stackList[stackList.size - 1]
+                            android.util.Log.d("UIDiv2ActionHandler", "STEP 2: Setting patch for previous page: $newLastValue")
+                            
+                            val patchJson = mehdiViewModel?.getValueByKey(newLastValue)?.value
+                            android.util.Log.d("UIDiv2ActionHandler", "Patch JSON retrieved: ${patchJson != null}")
+                            
+                            if (patchJson != null && patchJson.isNotEmpty()) {
+                                android.util.Log.d("UIDiv2ActionHandler", "Applying patch: $newLastValue")
+                                loadScreenListener.onApplyOnbase(patchJson, newLastValue, "", "")
+                                android.util.Log.d("UIDiv2ActionHandler", "Patch applied successfully")
+                                
+                                Toast.makeText(context, "Back to: $newLastValue", Toast.LENGTH_SHORT).show()
+                            } else {
+                                android.util.Log.w("UIDiv2ActionHandler", "Patch not found for: $newLastValue")
+                                Toast.makeText(context, "Patch not found: $newLastValue", Toast.LENGTH_SHORT).show()
+                            }
+                            
+                            android.util.Log.d("UIDiv2ActionHandler", "ATOMIC operation completed successfully")
+                            
+                        } else if (stackList.size == 1) {
+                            android.util.Log.w("UIDiv2ActionHandler", "Stack has only one item, cannot go back further")
+                            Toast.makeText(context, "Already at first page", Toast.LENGTH_SHORT).show()
+                        } else {
+                            android.util.Log.w("UIDiv2ActionHandler", "Stack is empty")
+                            Toast.makeText(context, "Stack is empty", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        android.util.Log.w("UIDiv2ActionHandler", "Stack not found in database")
+                        Toast.makeText(context, "Stack not found", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: Exception) {
+                    android.util.Log.e("UIDiv2ActionHandler", "Error in pop_and_set_patch", e)
+                    Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                android.util.Log.w("UIDiv2ActionHandler", "Missing parameter - key: $stackKey")
+                Toast.makeText(context, "Missing stack key", Toast.LENGTH_SHORT).show()
+            }
+            
+            android.util.Log.d("UIDiv2ActionHandler", "=== END POP AND SET PATCH ACTION ===")
 
         }
 //

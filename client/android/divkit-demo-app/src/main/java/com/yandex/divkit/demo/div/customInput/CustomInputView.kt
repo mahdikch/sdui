@@ -24,6 +24,9 @@ class CustomInputView @JvmOverloads constructor(
     private lateinit var requiredStar: TextView
     private var onTextChangedListener: ((text: String) -> Unit)? = null
     private var isValidationEnabled: Boolean = false
+    private var minValue: Double? = null
+    private var maxValue: Double? = null
+    private var isNumericInput: Boolean = false
 
     init {
         orientation = VERTICAL
@@ -45,6 +48,39 @@ class CustomInputView @JvmOverloads constructor(
             
             override fun afterTextChanged(s: Editable?) {
                 val text = s?.toString() ?: ""
+                
+                // Handle numeric min/max validation
+                if (isNumericInput && text.isNotEmpty()) {
+                    val numericValue = text.toDoubleOrNull()
+                    if (numericValue != null) {
+                        val minVal = minValue
+                        val maxVal = maxValue
+                        
+                        val clampedValue: Double = when {
+                            minVal != null && numericValue < minVal -> minVal
+                            maxVal != null && numericValue > maxVal -> maxVal
+                            else -> numericValue
+                        }
+                        
+                        val needsUpdate = clampedValue != numericValue
+                        
+                        if (needsUpdate) {
+                            // Format the clamped value (remove decimal if it's a whole number)
+                            val formattedValue = if (clampedValue == clampedValue.toLong().toDouble()) {
+                                clampedValue.toLong().toString()
+                            } else {
+                                clampedValue.toString()
+                            }
+                            editText.removeTextChangedListener(this)
+                            editText.setText(formattedValue)
+                            editText.setSelection(formattedValue.length)
+                            editText.addTextChangedListener(this)
+                            onTextChangedListener?.invoke(formattedValue)
+                            return
+                        }
+                    }
+                }
+                
                 onTextChangedListener?.invoke(text)
                 
                 // Update border based on validation
@@ -74,14 +110,48 @@ class CustomInputView @JvmOverloads constructor(
 
     fun setInputType(type: String) {
         when (type.lowercase()) {
-            "text" -> editText.inputType = InputType.TYPE_CLASS_TEXT
-            "number" -> editText.inputType = InputType.TYPE_CLASS_NUMBER
-            "phone" -> editText.inputType = InputType.TYPE_CLASS_PHONE
-            "email" -> editText.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-            "password" -> editText.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
-            "multiline" -> editText.inputType = InputType.TYPE_TEXT_FLAG_MULTI_LINE
-            else -> editText.inputType = InputType.TYPE_CLASS_TEXT
+            "text" -> {
+                editText.inputType = InputType.TYPE_CLASS_TEXT
+                isNumericInput = false
+            }
+            "number" -> {
+                editText.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED or InputType.TYPE_NUMBER_FLAG_DECIMAL
+                isNumericInput = true
+            }
+            "phone" -> {
+                editText.inputType = InputType.TYPE_CLASS_PHONE
+                isNumericInput = false
+            }
+            "email" -> {
+                editText.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                isNumericInput = false
+            }
+            "password" -> {
+                editText.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+                isNumericInput = false
+            }
+            "multiline" -> {
+                editText.inputType = InputType.TYPE_TEXT_FLAG_MULTI_LINE
+                isNumericInput = false
+            }
+            else -> {
+                editText.inputType = InputType.TYPE_CLASS_TEXT
+                isNumericInput = false
+            }
         }
+    }
+
+    fun setMinValue(min: Double?) {
+        this.minValue = min
+    }
+
+    fun setMaxValue(max: Double?) {
+        this.maxValue = max
+    }
+
+    fun setMinMaxValues(min: Double?, max: Double?) {
+        this.minValue = min
+        this.maxValue = max
     }
 
     fun setText(text: String) {
