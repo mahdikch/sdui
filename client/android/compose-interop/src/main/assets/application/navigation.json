@@ -728,6 +728,9 @@
         "type": "string",
         "name": "setting_selected_icon",
         "value": "divkit-asset://setting-unselected.png"
+
+
+
       }
     ],
     "variable_triggers": [

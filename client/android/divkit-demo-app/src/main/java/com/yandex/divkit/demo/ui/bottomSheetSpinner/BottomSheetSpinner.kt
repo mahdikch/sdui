@@ -4,16 +4,18 @@ package com.yandex.divkit.demo.ui.bottomSheetSpinner
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
@@ -61,13 +63,35 @@ class BottomSheetSpinner(
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
-
-        val metrics = requireContext().resources.displayMetrics
-        val height = (metrics.heightPixels) * 60 / 100
-        val width = metrics.heightPixels
-//        dialog.behavior.peekHeight = height * 60 / 100
-        dialog.window?.setLayout(width, height)
-
+        dialog.setOnShowListener {
+            val sheetHeight = (requireContext().resources.displayMetrics.heightPixels * 70) / 100
+            dialog.window?.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+            val bottomSheet = dialog.findViewById<View>(
+                com.google.android.material.R.id.design_bottom_sheet
+            )
+            bottomSheet?.setBackgroundColor(Color.TRANSPARENT)
+            bottomSheet?.layoutParams?.height = ViewGroup.LayoutParams.WRAP_CONTENT
+            if (_binding != null) {
+                binding.root.minimumHeight = sheetHeight
+                binding.root.layoutParams = (binding.root.layoutParams
+                    ?: ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        sheetHeight
+                    )).apply {
+                    width = ViewGroup.LayoutParams.MATCH_PARENT
+                    height = sheetHeight
+                }
+            }
+            bottomSheet?.requestLayout()
+            dialog.behavior.apply {
+                skipCollapsed = true
+                isFitToContents = true
+                state = BottomSheetBehavior.STATE_EXPANDED
+            }
+        }
         return dialog
     }
 
@@ -95,19 +119,12 @@ class BottomSheetSpinner(
 //        assetReader = container?.let { DivAssetReader(it.context) }!!
 
         setUp()
-//        var json: PhPlusDB = viewModelBottomSheetSpinner.getValueByKey("ph/testbottomsheet")
-//        val div = UIDiv2ViewCreator(context, this, viewModelBottomSheetSpinner).createDiv2ViewMehdi(
-//            context,
-//            JSONObject(json),
-//            binding.root,
-//            ScenarioLogDelegate.Stub
-//        )
-//        div.layoutParams = LinearLayout.LayoutParams(
-//            LinearLayout.LayoutParams.MATCH_PARENT,
-//            LinearLayout.LayoutParams.MATCH_PARENT
-//        ).apply {
-//            weight = 1F
-//        }
+        val sheetHeight = (resources.displayMetrics.heightPixels * 70) / 100
+        binding.root.minimumHeight = sheetHeight
+        binding.root.layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            sheetHeight
+        )
 
         return binding.root
     }
@@ -232,14 +249,38 @@ class BottomSheetSpinner(
         if (varName != null) {
             Log.d(
                 "BottomSheetSpinner",
-                "Adapter addItem with varName=$varName, titleVar=$titleVar, codeVar=$codeVar"
+                "Adapter addItem with varName=$varName, titleVar=$titleVar, codeVar=$codeVar, allParams=$map"
             )
-            adapter.addItem(ArrayList(arrayList), varName, titleVar, codeVar, sysName, path)
+            adapter.addItem(ArrayList(arrayList), varName, titleVar, codeVar, sysName, path, map)
         }
 
         if (isMulti) {
-            // Preselect using selected_codes query param (comma-separated)
-            val selectedCodesCsv = map["selected_codes"]
+            // Preselect using selected_codes query param, or fallback to current value of code_var
+            var selectedCodesCsv = map["selected_codes"]
+
+            // If selected_codes is empty or null, try to read from the database
+            if (selectedCodesCsv.isNullOrEmpty()) {
+                try {
+                    // Try to get the current value of code_var from database
+                    val currentValue = viewModelBottomSheetSpinner.getValueByKey(codeVar)?.value
+
+                    if (currentValue != null && currentValue.isNotEmpty() && currentValue != "null") {
+                        selectedCodesCsv = currentValue
+                        Log.d(
+                            "BottomSheetSpinner",
+                            "selected_codes is empty, using current value from DB for $codeVar: $selectedCodesCsv"
+                        )
+                    } else {
+                        Log.d(
+                            "BottomSheetSpinner",
+                            "selected_codes is empty and $codeVar in DB is also empty or null"
+                        )
+                    }
+                } catch (e: Exception) {
+                    Log.e("BottomSheetSpinner", "Error reading current value of $codeVar from DB", e)
+                }
+            }
+
             val preselected =
                 selectedCodesCsv?.split(',')?.map { it.trim() }?.filter { it.isNotEmpty() }
                     ?: emptyList()
@@ -264,6 +305,7 @@ class BottomSheetSpinner(
                 val div2View = view as? com.yandex.div.core.view2.Div2View
                 div2View?.setVariable(codeVar, codes)
                 div2View?.setVariable(titleVar, titles)
+//                div2View?.setVariable(titleVar, "تخلفسرعت,تخلفسبقت")
                 Log.d("BottomSheetSpinner", "Set variables: $codeVar='$codes' $titleVar='$titles'")
                 dismiss()
             }
@@ -281,40 +323,28 @@ class BottomSheetSpinner(
         binding.recyclerView.adapter = adapter
         binding.recyclerView.hasFixedSize()
 
-        binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                var fiterList = arrayList!!.filter {
-                    it.titleFa.contains(query.toString()) || it.id.contains(query.toString())
+        binding.search.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                val query = s?.toString().orEmpty()
+                val filtered = arrayList.filter {
+                    query.isEmpty() ||
+                        it.titleFa.contains(query) ||
+                        it.id.contains(query)
                 }
-                if (fiterList.isNotEmpty()) {
-                    if (varName != null) {
-                        adapter.addItem(ArrayList(fiterList), varName, titleVar, codeVar)
-                    }
-                } else {
-                    Toast.makeText(context, "No Match Found", Toast.LENGTH_SHORT).show()
+                if (varName != null) {
+                    adapter.addItem(
+                        ArrayList(filtered),
+                        varName,
+                        titleVar,
+                        codeVar,
+                        sysName,
+                        path,
+                        map
+                    )
                 }
-//                if (arrayList.contains(query)) {
-//                    arrayAdapter.filter.filter(query)
-//                } else {
-//                    Toast.makeText(this@MainActivity, "No Match Found", Toast.LENGTH_SHORT).show()
-//                }
-                return false
             }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                var fiterList = arrayList!!.filter {
-                    it.titleFa.contains(newText.toString()) || it.id.contains(newText.toString())
-                }
-                if (fiterList.isNotEmpty()) {
-                    if (varName != null) {
-                        adapter.addItem(ArrayList(fiterList), varName, titleVar, codeVar)
-                    }
-                } else {
-                    Toast.makeText(context, "No Match Found", Toast.LENGTH_SHORT).show()
-                }
-                return false
-            }
-
         })
     }
 

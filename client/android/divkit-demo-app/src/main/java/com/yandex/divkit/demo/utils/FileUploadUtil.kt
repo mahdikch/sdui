@@ -10,10 +10,7 @@ import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.IOException
-import java.security.cert.X509Certificate
-import javax.net.ssl.SSLContext
-import javax.net.ssl.TrustManager
-import javax.net.ssl.X509TrustManager
+import java.util.concurrent.TimeUnit
 
 /**
  * Utility class for uploading recording files to the police service.
@@ -63,28 +60,17 @@ class FileUploadUtil {
     companion object {
         private const val TAG = "FileUploadUtil"
         private const val UPLOAD_URL = "https://aminafkar.police.ir/service/restclientadmin/rest-service?serviceId=1108011523"
-        
-        // Create OkHttpClient that bypasses SSL certificate validation
-        private fun createUnsafeOkHttpClient(): OkHttpClient {
-            val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
-                override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?) {}
-                override fun checkServerTrusted(chain: Array<out X509Certificate>?, authType: String?) {}
-                override fun getAcceptedIssuers(): Array<X509Certificate> = arrayOf()
-            })
 
-            val sslContext = SSLContext.getInstance("SSL")
-            sslContext.init(null, trustAllCerts, java.security.SecureRandom())
-            val sslSocketFactory = sslContext.socketFactory
-
+        /** Uses system / network-security-config trust anchors (no trust-all bypass). */
+        private fun createOkHttpClient(): OkHttpClient {
             return OkHttpClient.Builder()
-                .sslSocketFactory(sslSocketFactory, trustAllCerts[0] as X509TrustManager)
-                .hostnameVerifier { _, _ -> true }
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(120, TimeUnit.SECONDS)
+                .writeTimeout(120, TimeUnit.SECONDS)
                 .build()
         }
-        
-        suspend fun
 
-                uploadFile(
+        suspend fun uploadFile(
             context: Context,
             file: File,
             token: String
@@ -92,19 +78,13 @@ class FileUploadUtil {
             try {
                 Log.d(TAG, "Starting file upload: ${file.absolutePath}")
                 Log.d(TAG, "File size: ${file.length()} bytes")
-                Log.d(TAG, "Token: $token")
-                
-                val client = createUnsafeOkHttpClient()
+
+                val client = createOkHttpClient()
                 
                 // Create multipart body
                 val ksunServiceParam = " {\"body\":{},\"header\":{},\"form\":{},\"queryParam\":{}}"
-                val quotedKsunServiceParam = "\"$ksunServiceParam\""
                 val quotedTicket = "\"$token\""
-                Log.d(TAG, "ksunServiceParam: $ksunServiceParam")
-                Log.d(TAG, "quoted ksunServiceParam: $quotedKsunServiceParam")
-                Log.d(TAG, "ticket: $token")
-                Log.d(TAG, "quoted ticket: $quotedTicket")
-                
+
                 val requestBody = MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
                     .addFormDataPart(

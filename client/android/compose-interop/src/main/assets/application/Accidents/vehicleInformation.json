@@ -1,0 +1,4627 @@
+{
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "visibility_actions": [
+            {
+              "log_id": "load_accident_id",
+              "url": "div-action://set_variable_from_db?name=current_vehicle_id",
+              "visibility_duration": 0
+            }
+          ],
+          "items": [
+            {
+              "id": "vehicle_information",
+              "items": [
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "image",
+                              "image_url": "empty://",
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              }
+                            }
+                          ],
+                          "height": {
+                            "type": "fixed",
+                            "value": 24
+                          },
+                          "width": {
+                            "type": "fixed",
+                            "value": 24
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_vertical": "center",
+                          "content_alignment_horizontal": "center"
+                        },
+                        {
+                          "type": "text",
+                          "text": "مشاهده مراحل",
+                          "font_size": 12,
+                          "font_weight": "regular",
+                          "line_height": 16,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "center",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "left": 4
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "left",
+                      "content_alignment_vertical": "center",
+                      "alignment_horizontal": "start",
+                      "alignment_vertical": "center"
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "ثبت اطلاعات وسیله نقلیه",
+                              "font_size": 14,
+                              "font_weight": "semibold",
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#2c2c2c",
+                              "text_alignment_horizontal": "right",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "بعدی : دریافت تاییدیه",
+                              "font_size": 14,
+                              "font_weight": "semibold",
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#7f7f7f",
+                              "text_alignment_horizontal": "left",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "margins": {
+                                "top": 8
+                              }
+                            }
+                          ],
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "orientation": "vertical",
+                          "content_alignment_vertical": "top",
+                          "content_alignment_horizontal": "right"
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "1",
+                              "font_size": 16,
+                              "font_weight": "semibold",
+                              "line_height": 16,
+                              "letter_spacing": 0,
+                              "text_color": "#2c2c2c",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "top",
+                              "margins": {
+                                "left": 39,
+                                "top": 20
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "3",
+                              "font_size": 16,
+                              "font_weight": "semibold",
+                              "line_height": 16,
+                              "letter_spacing": 0,
+                              "text_color": "#2c2c2c",
+                              "text_alignment_horizontal": "left",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "bottom",
+                              "margins": {
+                                "left": 38,
+                                "bottom": 20
+                              }
+                            }
+                          ],
+                          "height": {
+                            "type": "fixed",
+                            "value": 88
+                          },
+                          "width": {
+                            "type": "fixed",
+                            "value": 88
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_vertical": "center",
+                          "content_alignment_horizontal": "center",
+                          "margins": {
+                            "left": 16
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "right",
+                      "content_alignment_vertical": "center",
+                      "alignment_horizontal": "end",
+                      "alignment_vertical": "center"
+                    }
+                  ],
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "overlap",
+                  "content_alignment_horizontal": "center",
+                  "content_alignment_vertical": "center",
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ],
+                  "margins": {
+                    "top": 8,
+                    "bottom": 8,
+                    "start": 8,
+                    "end": 8
+                  }
+                },
+                {
+                  "type": "gallery",
+                  "orientation": "vertical",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "match_parent"
+                  },
+                  "items": [
+                    {
+                      "type": "container",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "غیرمقصر",
+                                  "font_size": 14,
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "@{variable_non_fault_text_color}",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "wrap_content"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "@{variable_vehicle_non_fault_background_name}"
+                                }
+                              ],
+                              "border": {
+                                "corner_radius": 4
+                              },
+                              "actions": [
+                                {
+                                  "log_id": "change_shomare_tab_background",
+                                  "url": "div-action://change_color?name=variable_vehicle_non_fault_background_name&value=@{variable_tab_selected_color}"
+                                },
+                                {
+                                  "log_id": "change_pelak_tab_background",
+                                  "url": "div-action://change_color?name=variable_vehicle_fault_background_name&value=@{variable_tab_deselected_color}"
+                                },
+                                {
+                                  "log_id": "change_text_color",
+                                  "url": "div-action://change_color?name=variable_fault_text_color&value=@{color_gray}"
+                                },
+                                {
+                                  "log_id": "change_color_text",
+                                  "url": "div-action://change_color?name=variable_non_fault_text_color&value=@{color_blue}"
+                                },
+                                {
+                                  "log_id": "change_color_text",
+                                  "url": "div-action://set_variable?name=validation_vehicle_select_fault_state & value=false"
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "center",
+                              "content_alignment_vertical": "center",
+                              "paddings": {
+                                "top": 8,
+                                "bottom": 8,
+                                "left": 12,
+                                "right": 12
+                              }
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "مقصر",
+                                  "font_size": 14,
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "@{variable_fault_text_color}",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "wrap_content"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "@{variable_vehicle_fault_background_name}"
+                                }
+                              ],
+                              "actions": [
+                                {
+                                  "log_id": "change_shomarer_tab_background",
+                                  "url": "div-action://change_color?name=variable_vehicle_non_fault_background_name&value=@{variable_tab_deselected_color}"
+                                },
+                                {
+                                  "log_id": "change_pelak_tab_background",
+                                  "url": "div-action://change_color?name=variable_vehicle_fault_background_name&value=@{variable_tab_selected_color}"
+                                },
+                                {
+                                  "log_id": "change_text_color",
+                                  "url": "div-action://change_color?name=variable_fault_text_color&value=@{color_blue}"
+                                },
+                                {
+                                  "log_id": "change_color_text",
+                                  "url": "div-action://change_color?name=variable_non_fault_text_color&value=@{color_gray}"
+                                },
+                                {
+                                  "log_id": "set_variable",
+                                  "url": "div-action://set_variable?name=validation_vehicle_select_fault_state & value=true"
+                                }
+                              ],
+                              "border": {
+                                "corner_radius": 4
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "center",
+                              "content_alignment_vertical": "center",
+                              "paddings": {
+                                "top": 8,
+                                "bottom": 8,
+                                "left": 12,
+                                "right": 12
+                              },
+                              "margins": {
+                                "left": 8
+                              }
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#e8ecf4"
+                            }
+                          ],
+                          "border": {
+                            "corner_radius": 4,
+                            "stroke": {
+                              "color": "#c8d0e4",
+                              "width": 1
+                            }
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "center",
+                          "content_alignment_vertical": "center",
+                          "alignment_horizontal": "center",
+                          "alignment_vertical": "top",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://bottom_sheet_div?jsonName=vt/plates/bottomsheet"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text_variable": "@{variable_personal_area}",
+                                  "hint_text": "منطقه ای شخصی",
+                                  "keyboard_type": "single_text_line",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "visibility": "@{pelak_visibility}",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "items": [
+                            {
+                              "id": "vehiclePlate",
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "image",
+                                      "image_url": "@{iran_flag.png}",
+                                      "height": {
+                                        "type": "match_parent"
+                                      },
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 37
+                                      },
+                                      "alignment_horizontal": "right",
+                                      "alignment_vertical": "top",
+                                      "margins": {
+                                        "right": 3,
+                                        "top": 4
+                                      }
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#003299"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corner_radius": 4
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 56
+                                  },
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 44
+                                  },
+                                  "orientation": "overlap",
+                                  "content_alignment_vertical": "center",
+                                  "content_alignment_horizontal": "center"
+                                },
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "id": "plateA",
+                                      "type": "input",
+                                      "text_variable": "compromising_vehicle_plate_one",
+                                      "hint_text": "@{variable_plateA_hint}",
+                                      "keyboard_type": "number",
+                                      "max_length": 2,
+                                      "font_size": 32,
+                                      "letter_spacing": 0,
+                                      "border": {
+                                        "corner_radius": 4
+                                      },
+                                      "text_color": "@{plate_text_color}",
+                                      "text_alignment_vertical": "top",
+                                      "background": [
+                                        {
+                                          "type": "solid",
+                                          "color": "@{plate1_color}"
+                                        }
+                                      ],
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "alignment_horizontal": "left",
+                                      "alignment_vertical": "center",
+                                      "text_alignment_horizontal": "center",
+                                      "margins": {
+                                        "right": 2,
+                                        "left": 2
+                                      },
+                                      "focus": {
+                                        "next_focus_ids": {
+                                          "forward": "plateB"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "id": "plateB",
+                                      "type": "text",
+                                      "text": "@{variable_plateB}",
+                                      "font_size": 32,
+                                      "letter_spacing": 0,
+                                      "border": {
+                                        "corner_radius": 4
+                                      },
+                                      "text_color": "@{plate_text_color}",
+                                      "text_alignment_horizontal": "center",
+                                      "text_alignment_vertical": "center",
+                                      "width": {
+                                        "type": "match_parent",
+                                        "weight": 1.2
+                                      },
+                                      "height": {
+                                        "type": "match_parent"
+                                      },
+                                      "background": [
+                                        {
+                                          "type": "solid",
+                                          "color": "@{plate2_color}"
+                                        }
+                                      ],
+                                      "actions": [
+                                        {
+                                          "log_id": "show_bottom_sheet_list",
+                                          "url": "div-action://bottom_sheet_div?jsonName=vt/plate/letters/bottomsheet"
+                                        }
+                                      ],
+                                      "margins": {
+                                        "right": 2,
+                                        "left": 2
+                                      },
+                                      "next_focus_ids": {
+                                        "forward": "plateC"
+                                      }
+                                    },
+                                    {
+                                      "next_focus_ids": {
+                                        "forward": "plateD"
+                                      },
+                                      "id": "plateC",
+                                      "type": "input",
+                                      "text_variable": "compromising_vehicle_plate_three",
+                                      "max_length": 3,
+                                      "hint_text": "@{variable_plateC_hint}",
+                                      "keyboard_type": "number",
+                                      "font_size": 32,
+                                      "letter_spacing": 0,
+                                      "border": {
+                                        "corner_radius": 4
+                                      },
+                                      "text_color": "@{plate_text_color}",
+                                      "text_alignment_horizontal": "center",
+                                      "text_alignment_vertical": "center",
+                                      "width": {
+                                        "type": "match_parent",
+                                        "weight": 1.6
+                                      },
+                                      "background": [
+                                        {
+                                          "type": "solid",
+                                          "color": "@{plate3_color}"
+                                        }
+                                      ],
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "margins": {
+                                        "right": 2,
+                                        "left": 2
+                                      }
+                                    },
+                                    {
+                                      "id": "plateD",
+                                      "type": "input",
+                                      "text_variable": "compromising_vehicle_plate_four",
+                                      "hint_text": "@{variable_plateD_hint}",
+                                      "keyboard_type": "number",
+                                      "max_length": 2,
+                                      "font_size": 32,
+                                      "letter_spacing": 0,
+                                      "border": {
+                                        "corner_radius": 4
+                                      },
+                                      "text_color": "@{plate_text_color}",
+                                      "text_alignment_horizontal": "center",
+                                      "background": [
+                                        {
+                                          "type": "solid",
+                                          "color": "@{plate4_color}"
+                                        }
+                                      ],
+                                      "text_alignment_vertical": "top",
+                                      "width": {
+                                        "type": "match_parent",
+                                        "weight": 1
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "margins": {
+                                        "right": 2,
+                                        "left": 2
+                                      }
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corner_radius": 4,
+                                    "has_shadow": 1,
+                                    "shadow": {
+                                      "offset": {
+                                        "x": {
+                                          "value": 0
+                                        },
+                                        "y": {
+                                          "value": 4
+                                        }
+                                      },
+                                      "blur": 10,
+                                      "color": "#000000",
+                                      "alpha": 0.05000000074505806
+                                    }
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 56
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_vertical": "center",
+                                  "content_alignment_horizontal": "center",
+                                  "margins": {
+                                    "left": 8
+                                  }
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#e8ecf4"
+                                }
+                              ],
+                              "border": {
+                                "corner_radius": 4
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 72
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "center",
+                              "content_alignment_vertical": "center",
+                              "paddings": {
+                                "top": 8,
+                                "right": 10,
+                                "bottom": 8,
+                                "left": 10
+                              },
+                              "alignment_horizontal": "center",
+                              "alignment_vertical": "top",
+                              "margins": {
+                                "top": 8,
+                                "right": 12,
+                                "left": 12
+                              }
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "image",
+                                      "image_url": "@{microphone.png}",
+                                      "height": {
+                                        "type": "fixed",
+                                        "value": 48
+                                      },
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 48
+                                      }
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#f3f5f9"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corner_radius": 4
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 48
+                                  },
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 48
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "center",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  }
+                                },
+                                {
+                                  "type": "container",
+                                  "actions": [
+                                    {
+                                      "log_id": "open_camera",
+                                      "url": "div-action://open_camera?type=ocr"
+                                    }
+                                  ],
+                                  "items": [
+                                    {
+                                      "type": "image",
+                                      "image_url": "@{scan.png}",
+                                      "height": {
+                                        "type": "fixed",
+                                        "value": 48
+                                      },
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 48
+                                      }
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#f3f5f9"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corner_radius": 4
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 48
+                                  },
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 48
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "center",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  },
+                                  "margins": {
+                                    "left": 8
+                                  }
+                                },
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "text",
+                                      "text": "استعلام",
+                                      "font_size": 14,
+                                      "line_height": 24,
+                                      "letter_spacing": 0,
+                                      "text_color": "#ffffff",
+                                      "text_alignment_horizontal": "left",
+                                      "text_alignment_vertical": "top",
+                                      "width": {
+                                        "type": "wrap_content"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      }
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "@{on_status ? '#e8ecf4':'#193d8d'}"
+                                    },
+                                    {
+                                      "type": "solid",
+                                      "color": "#003299"
+                                    }
+                                  ],
+                                  "actions": [
+                                    {
+                                      "log_id": "call_service",
+                                      "url": "div-action://call_service?path=cargo/barname&ph/token=empty&sysName=cargo&plateA=@{compromising_vehicle_plate_one}&&plateB=@{variable_plateB}&&plateC=@{variable_plateC}&plateD=@{variable_plateD}"
+                                    }
+                                  ],
+                                  "action_animation": {
+                                    "name": "scale",
+                                    "start_value": 1,
+                                    "end_value": 0.95,
+                                    "duration": 300,
+                                    "interpolator": "ease_in_out"
+                                  },
+                                  "border": {
+                                    "corner_radius": 4
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 48
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "center",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  },
+                                  "margins": {
+                                    "left": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "left",
+                              "content_alignment_vertical": "top",
+                              "alignment_horizontal": "center",
+                              "alignment_vertical": "top",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 12,
+                                "end": 12
+                              }
+                            }
+                          ]
+                        }
+                      ],
+                      "background": [
+                        {
+                          "type": "solid",
+                          "color": "#ffffff"
+                        }
+                      ],
+                      "margins": {
+                        "top": 8,
+                        "bottom": 8,
+                        "start": 8,
+                        "end": 8
+                      },
+                      "border": {
+                        "stroke": {
+                          "color": "#c8d0e4",
+                          "width": 1
+                        },
+                        "corner_radius": 2,
+                        "corners_radius": {
+                          "top-left": 2,
+                          "top-right": 2,
+                          "bottom-left": 2,
+                          "bottom-right": 2
+                        }
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "نوع کاربری",
+                          "font_size": 14,
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "text_alignment_horizontal": "start",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "is_enabled": "true",
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://bottom_sheet_list?id=VEHICLE_TYPE&varName=VEHICLE_TYPE&title= کاربری &title_var=compromising_vehicle_usage&code_var=compromising_vehicle_usage_code"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{compromising_vehicle_usage}",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 8,
+                                "end": 8
+                              }
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "text": "سیستم",
+                          "font_size": 14,
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "text_alignment_horizontal": "start",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 18
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://show_date_picker?variableName=date"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{variable_system}",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 8,
+                                "end": 8
+                              }
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "text": "تیپ",
+                          "font_size": 14,
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "text_alignment_horizontal": "start",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 18
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://show_date_picker?variableName=date"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{variable_tip}",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "text": "شماره شاسی",
+                          "font_size": 14,
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "text_alignment_horizontal": "start",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 18
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "input",
+                                  "text_variable": "@{variable_chassis_number}",
+                                  "hint_text": "پلیس راهور مراغه",
+                                  "keyboard_type": "single_text_line",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "text": "سال ساخت",
+                          "font_size": 14,
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "text_alignment_horizontal": "start",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 18
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "input",
+                                  "text_variable": "compromising_vehicle_year_manufacture",
+                                  "hint_text": "سال ساخت را وارد نمائید",
+                                  "keyboard_type": "single_text_line",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "text": "رنگ بدنه وسیله نقلیه",
+                          "font_size": 14,
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "text_alignment_horizontal": "start",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 18
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://show_date_picker?variableName=date"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{variable_vehicle_body_color}",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "text": "تجهیزات ایمنی",
+                          "font_size": 14,
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "text_alignment_horizontal": "start",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 18
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://bottom_sheet_list?id=SAFETY_EQUIPMENT&selection=multi&varName=SAFETY_EQUIPMENT&title=تجهیزات ایمنی&title_var=compromising_vehicle_safety_equipment_title&code_var=compromising_vehicle_safety_equipment_code"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{compromising_vehicle_safety_equipment_title}",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "visibility": "@{ validation_vehicle_air_bag_status ? 'gone' : 'visible'}",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "تعداد کیسه هوا",
+                              "font_size": 14,
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "text_alignment_horizontal": "start",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 8,
+                                "end": 8
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 18
+                              }
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "input",
+                                      "text_variable": "compromising_vehicle_air_bag_count",
+                                      "keyboard_type": "single_text_line",
+                                      "font_size": 14,
+                                      "font_weight": "regular",
+                                      "line_height": 32,
+                                      "letter_spacing": 0,
+                                      "text_color": "#a3a3a3",
+                                      "text_alignment_horizontal": "right",
+                                      "text_alignment_vertical": "top",
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "margins": {
+                                        "top": 5,
+                                        "bottom": 5,
+                                        "start": 5,
+                                        "end": 5
+                                      }
+                                    }
+                                  ],
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "right",
+                                  "content_alignment_vertical": "center"
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#ffffff"
+                                }
+                              ],
+                              "border": {
+                                "corners_radius": {
+                                  "top-left": 4,
+                                  "top-right": 4,
+                                  "bottom-left": 4,
+                                  "bottom-right": 4
+                                },
+                                "stroke": {
+                                  "color": "#cccccc",
+                                  "style": {
+                                    "type": "solid"
+                                  },
+                                  "unit": "px",
+                                  "width": 2
+                                },
+                                "corner_radius": 4
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "left",
+                              "content_alignment_vertical": "center",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 8,
+                                "end": 8
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "وضعیت عملکرد کیسه هوا",
+                              "font_size": 14,
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "text_alignment_horizontal": "start",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 8,
+                                "end": 8
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 18
+                              }
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "image",
+                                      "image_url": "empty://",
+                                      "actions": [
+                                        {
+                                          "log_id": "show_bottom_sheet_list",
+                                          "url": "div-action://bottom_sheet_list?id=AIRBAG_PERFORMANCE_STATUS&varName=AIRBAG_PERFORMANCE_STATUS&title= عملکرد کیسه هوا &title_var=compromising_vehicle_air_bag_activity_title&code_var=compromising_vehicle_air_bag_activity_code"
+                                        }
+                                      ],
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 38
+                                      },
+                                      "height": {
+                                        "type": "fixed",
+                                        "value": 32
+                                      },
+                                      "preload_required": true,
+                                      "margins": {
+                                        "top": 8,
+                                        "bottom": 8,
+                                        "start": 8,
+                                        "end": 8
+                                      }
+                                    },
+                                    {
+                                      "type": "text",
+                                      "text": "@{compromising_vehicle_air_bag_activity_title}",
+                                      "font_size": 14,
+                                      "font_weight": "regular",
+                                      "line_height": 32,
+                                      "letter_spacing": 0,
+                                      "text_color": "#a3a3a3",
+                                      "text_alignment_horizontal": "right",
+                                      "text_alignment_vertical": "top",
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "margins": {
+                                        "top": 5,
+                                        "bottom": 5,
+                                        "start": 5,
+                                        "end": 5
+                                      }
+                                    }
+                                  ],
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "right",
+                                  "content_alignment_vertical": "center"
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#ffffff"
+                                }
+                              ],
+                              "border": {
+                                "corners_radius": {
+                                  "top-left": 4,
+                                  "top-right": 4,
+                                  "bottom-left": 4,
+                                  "bottom-right": 4
+                                },
+                                "stroke": {
+                                  "color": "#cccccc",
+                                  "style": {
+                                    "type": "solid"
+                                  },
+                                  "unit": "px",
+                                  "width": 2
+                                },
+                                "corner_radius": 4
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "left",
+                              "content_alignment_vertical": "center",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 8,
+                                "end": 8
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "ارزیابی عملکرد کیسه هوا",
+                              "font_size": 14,
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "text_alignment_horizontal": "start",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 8,
+                                "end": 8
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 18
+                              }
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "image",
+                                      "image_url": "empty://",
+                                      "actions": [
+                                        {
+                                          "log_id": "show_bottom_sheet_list",
+                                          "url": "div-action://bottom_sheet_list?id=AIRBAG_PERFORMANCE_EVALUATION&varName=AIRBAG_PERFORMANCE_EVALUATION&title= ارزیابی عملکرد کیسه هوا &title_var=compromising_vehicle_air_bag_performance_title&code_var=compromising_vehicle_air_bag_performance_code"
+                                        }
+                                      ],
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 38
+                                      },
+                                      "height": {
+                                        "type": "fixed",
+                                        "value": 32
+                                      },
+                                      "preload_required": true,
+                                      "margins": {
+                                        "top": 8,
+                                        "bottom": 8,
+                                        "start": 8,
+                                        "end": 8
+                                      }
+                                    },
+                                    {
+                                      "type": "text",
+                                      "text": "@{compromising_vehicle_air_bag_performance_title}",
+                                      "font_size": 14,
+                                      "font_weight": "regular",
+                                      "line_height": 32,
+                                      "letter_spacing": 0,
+                                      "text_color": "#a3a3a3",
+                                      "text_alignment_horizontal": "right",
+                                      "text_alignment_vertical": "top",
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "margins": {
+                                        "top": 5,
+                                        "bottom": 5,
+                                        "start": 5,
+                                        "end": 5
+                                      }
+                                    }
+                                  ],
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "right",
+                                  "content_alignment_vertical": "center"
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#ffffff"
+                                }
+                              ],
+                              "border": {
+                                "corners_radius": {
+                                  "top-left": 4,
+                                  "top-right": 4,
+                                  "bottom-left": 4,
+                                  "bottom-right": 4
+                                },
+                                "stroke": {
+                                  "color": "#cccccc",
+                                  "style": {
+                                    "type": "solid"
+                                  },
+                                  "unit": "px",
+                                  "width": 2
+                                },
+                                "corner_radius": 4
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "left",
+                              "content_alignment_vertical": "center",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 8,
+                                "end": 8
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "محل نصب کیسه هوا",
+                              "font_size": 14,
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "text_alignment_horizontal": "start",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 8,
+                                "end": 8
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 18
+                              }
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "image",
+                                      "image_url": "empty://",
+                                      "actions": [
+                                        {
+                                          "log_id": "show_bottom_sheet_list",
+                                          "url": "div-action://bottom_sheet_list?id=AIRBAG_INSTALLATION_LOCATION&varName=AIRBAG_INSTALLATION_LOCATION&title= محل نصب کیسه هوا &title_var=compromising_vehicle_air_bag_place_title&code_var=compromising_vehicle_air_bag_place_code"
+                                        }
+                                      ],
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 38
+                                      },
+                                      "height": {
+                                        "type": "fixed",
+                                        "value": 32
+                                      },
+                                      "preload_required": true,
+                                      "margins": {
+                                        "top": 8,
+                                        "bottom": 8,
+                                        "start": 8,
+                                        "end": 8
+                                      }
+                                    },
+                                    {
+                                      "type": "text",
+                                      "text": "@{compromising_vehicle_air_bag_place_title}",
+                                      "font_size": 14,
+                                      "font_weight": "regular",
+                                      "line_height": 32,
+                                      "letter_spacing": 0,
+                                      "text_color": "#a3a3a3",
+                                      "text_alignment_horizontal": "right",
+                                      "text_alignment_vertical": "top",
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "margins": {
+                                        "top": 5,
+                                        "bottom": 5,
+                                        "start": 5,
+                                        "end": 5
+                                      }
+                                    }
+                                  ],
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "right",
+                                  "content_alignment_vertical": "center"
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#ffffff"
+                                }
+                              ],
+                              "border": {
+                                "corners_radius": {
+                                  "top-left": 4,
+                                  "top-right": 4,
+                                  "bottom-left": 4,
+                                  "bottom-right": 4
+                                },
+                                "stroke": {
+                                  "color": "#cccccc",
+                                  "style": {
+                                    "type": "solid"
+                                  },
+                                  "unit": "px",
+                                  "width": 2
+                                },
+                                "corner_radius": 4
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "left",
+                              "content_alignment_vertical": "center",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 8,
+                                "end": 8
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "زاویه برخورد از جلو",
+                              "font_size": 14,
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "text_alignment_horizontal": "start",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 8,
+                                "end": 8
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 18
+                              }
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "image",
+                                      "image_url": "empty://",
+                                      "actions": [
+                                        {
+                                          "log_id": "show_bottom_sheet_list",
+                                          "url": "div-action://bottom_sheet_list?id=FRONT_IMPACT_ANGLE&varName=FRONT_IMPACT_ANGLE&title= زاویه برخورد &title_var=compromising_vehicle_collision_angle_title&code_var=compromising_vehicle_collision_angle_code"
+                                        }
+                                      ],
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 38
+                                      },
+                                      "height": {
+                                        "type": "fixed",
+                                        "value": 32
+                                      },
+                                      "preload_required": true,
+                                      "margins": {
+                                        "top": 8,
+                                        "bottom": 8,
+                                        "start": 8,
+                                        "end": 8
+                                      }
+                                    },
+                                    {
+                                      "type": "text",
+                                      "text": "@{compromising_vehicle_collision_angle_title}",
+                                      "font_size": 14,
+                                      "font_weight": "regular",
+                                      "line_height": 32,
+                                      "letter_spacing": 0,
+                                      "text_color": "#a3a3a3",
+                                      "text_alignment_horizontal": "right",
+                                      "text_alignment_vertical": "top",
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "margins": {
+                                        "top": 5,
+                                        "bottom": 5,
+                                        "start": 5,
+                                        "end": 5
+                                      }
+                                    }
+                                  ],
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "right",
+                                  "content_alignment_vertical": "center"
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#ffffff"
+                                }
+                              ],
+                              "border": {
+                                "corners_radius": {
+                                  "top-left": 4,
+                                  "top-right": 4,
+                                  "bottom-left": 4,
+                                  "bottom-right": 4
+                                },
+                                "stroke": {
+                                  "color": "#cccccc",
+                                  "style": {
+                                    "type": "solid"
+                                  },
+                                  "unit": "px",
+                                  "width": 2
+                                },
+                                "corner_radius": 4
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "left",
+                              "content_alignment_vertical": "center",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 8,
+                                "end": 8
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "سرعت تقریبی در زمان تصادف",
+                              "font_size": 14,
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "text_alignment_horizontal": "start",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 8,
+                                "end": 8
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 18
+                              }
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "image",
+                                      "image_url": "empty://",
+                                      "actions": [
+                                        {
+                                          "log_id": "show_bottom_sheet_list",
+                                          "url": "div-action://bottom_sheet_list?id=ESTIMATED_SPEED_AT_ACCIDENT&varName=ESTIMATED_SPEED_AT_ACCIDENT&title= سرعت تقریبی  &title_var=compromising_vehicle_collision_speed_title&code_var=compromising_vehicle_collision_speed_code"
+                                        }
+                                      ],
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 38
+                                      },
+                                      "height": {
+                                        "type": "fixed",
+                                        "value": 32
+                                      },
+                                      "preload_required": true,
+                                      "margins": {
+                                        "top": 8,
+                                        "bottom": 8,
+                                        "start": 8,
+                                        "end": 8
+                                      }
+                                    },
+                                    {
+                                      "type": "text",
+                                      "text": "@{compromising_vehicle_collision_speed_title}",
+                                      "font_size": 14,
+                                      "font_weight": "regular",
+                                      "line_height": 32,
+                                      "letter_spacing": 0,
+                                      "text_color": "#a3a3a3",
+                                      "text_alignment_horizontal": "right",
+                                      "text_alignment_vertical": "top",
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "margins": {
+                                        "top": 5,
+                                        "bottom": 5,
+                                        "start": 5,
+                                        "end": 5
+                                      }
+                                    }
+                                  ],
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "right",
+                                  "content_alignment_vertical": "center"
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#ffffff"
+                                }
+                              ],
+                              "border": {
+                                "corners_radius": {
+                                  "top-left": 4,
+                                  "top-right": 4,
+                                  "bottom-left": 4,
+                                  "bottom-right": 4
+                                },
+                                "stroke": {
+                                  "color": "#cccccc",
+                                  "style": {
+                                    "type": "solid"
+                                  },
+                                  "unit": "px",
+                                  "width": 2
+                                },
+                                "corner_radius": 4
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "left",
+                              "content_alignment_vertical": "center",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 8,
+                                "end": 8
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "text": "کپسول آتش نشانی",
+                          "font_size": 14,
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "text_alignment_horizontal": "start",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 18
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://bottom_sheet_list?id=fireExtinguisher&varName=fireExtinguisher&title=کپسول آتش نشانی&title_var=compromising_vehicle_fire_extinguisher_capsule_title&code_var=compromising_vehicle_fire_extinguisher_capsule_code"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{compromising_vehicle_fire_extinguisher_capsule_title}",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "text": "حریق گرفتگی",
+                          "font_size": 14,
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "text_alignment_horizontal": "start",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 18
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://bottom_sheet_list?id=gettingOnFire&varName=gettingOnFire&title=حریق     گرفتگی&title_var=compromising_vehicle_getting_on_fire&code_var=compromising_vehicle_getting_on_fire_code"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{compromising_vehicle_getting_on_fire}",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "text": "قسمت های آسیب دیده",
+                          "font_size": 14,
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "text_alignment_horizontal": "start",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 18
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://bottom_sheet_list?id=VEHICLE_PARTS&varName=VEHICLE_PARTS&selection=multi&title=قسمت های آسیب دیده&title_var=compromising_vehicle_damage_parts&code_var=compromising_vehicle_damage_parts_code"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{compromising_vehicle_damage_parts}",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "visibility": "@{validation_vehicle_go_page_driver ? 'gone' : 'visible'}",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "items": [
+                            {
+                              "type": "container",
+                              "visibility": "@{validation_vehicle_air_bag_status ? 'gone' : 'visible'}",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "items": [
+                                {
+                                  "type": "validation_text",
+                                  "text": "تعداد کیسه هوا به درستی انتخاب نشده است.",
+                                  "visibility": "@{validation_vehicle_air_bag_count ? 'gone' : 'visible'}",
+                                  "width": {
+                                    "type": "wrap_content"
+                                  },
+                                  "alignment_horizontal": "end",
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 17
+                                  }
+                                },
+                                {
+                                  "type": "validation_text",
+                                  "text": "وضعیت عملکرد کیسه هوا به درستی انتخاب نشده است.",
+                                  "visibility": "@{validation_vehicle_air_bag_activity ? 'gone' : 'visible'}",
+                                  "width": {
+                                    "type": "wrap_content"
+                                  },
+                                  "alignment_horizontal": "end",
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                },
+                                {
+                                  "type": "validation_text",
+                                  "text": "ارزیابی عملکرد کیسه هوا به درستی انتخاب نشده است.",
+                                  "visibility": "@{validation_vehicle_air_bag_performance ? 'gone' : 'visible'}",
+                                  "width": {
+                                    "type": "wrap_content"
+                                  },
+                                  "alignment_horizontal": "end",
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                },
+                                {
+                                  "type": "validation_text",
+                                  "text": "محل نصب کیسه هوا به درستی انتخاب نشده است.",
+                                  "visibility": "@{validation_vehicle_air_bag_place ? 'gone' : 'visible'}",
+                                  "width": {
+                                    "type": "wrap_content"
+                                  },
+                                  "alignment_horizontal": "end",
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                },
+                                {
+                                  "type": "validation_text",
+                                  "text": "زاویه برخورد از جلو به درستی انتخاب نشده است.",
+                                  "visibility": "@{validation_vehicle_collision_angle ? 'gone' : 'visible'}",
+                                  "width": {
+                                    "type": "wrap_content"
+                                  },
+                                  "alignment_horizontal": "end",
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                },
+                                {
+                                  "type": "validation_text",
+                                  "text": "سرعت تقریبی در زمان تصادف به درستی انتخاب نشده است.",
+                                  "visibility": "@{validation_vehicle_collision_speed ? 'gone' : 'visible'}",
+                                  "width": {
+                                    "type": "wrap_content"
+                                  },
+                                  "alignment_horizontal": "end",
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "type": "validation_text",
+                              "text": "وضعیت تقصیر را انتخاب نمائید.",
+                              "visibility": "@{validation_vehicle_select_fault_state ? 'gone' : 'visible'}",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "margins": {
+                                "top": 4,
+                                "bottom": 4,
+                                "start": 20,
+                                "end": 20
+                              },
+                              "text_alignment_horizontal": "center",
+                              "alignment_horizontal": "end",
+                              "height": {
+                                "type": "fixed",
+                                "value": 17
+                              }
+                            },
+                            {
+                              "type": "validation_text",
+                              "text": "نوع پلاک را انتخاب نمائید.",
+                              "visibility": "@{validation_vehicle_plate_type ? 'gone' : 'visible'}",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "end",
+                              "height": {
+                                "type": "fixed",
+                                "value": 17
+                              }
+                            },
+                            {
+                              "type": "validation_text",
+                              "text": "پلاک ناقص می باشد.",
+                              "visibility": "@{validation_vehicle_plate_all ? 'gone' : 'visible'}",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "end",
+                              "height": {
+                                "type": "fixed",
+                                "value": 17
+                              }
+                            },
+                            {
+                              "type": "validation_text",
+                              "visibility": "@{validation_vehicle_usage ? 'gone' : 'visible'}",
+                              "text": "کاربری وسیله نقلیه نمی تواند خالی باشد.",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "end"
+                            },
+                            {
+                              "type": "validation_text",
+                              "text": "سال ساخت وسیله نقلیه به درستی وارد نشده است.",
+                              "visibility": "@{validation_vehicle_year_manufacture ? 'gone' : 'visible'}",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "end"
+                            },
+                            {
+                              "type": "validation_text",
+                              "text": "تجهیزات ایمنی انتخاب نشده است.",
+                              "visibility": "@{ validation_vehicle_safety_equipment? 'gone' : 'visible'}",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 17
+                              },
+                              "alignment_horizontal": "end"
+                            },
+                            {
+                              "type": "validation_text",
+                              "text": "قسمت های آسیب دیده انتخاب نشده است.",
+                              "visibility": "@{ validation_vehicle_safety_equipment? 'gone' : 'visible'}",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 17
+                              },
+                              "alignment_horizontal": "end"
+                            },
+                            {
+                              "type": "validation_text",
+                              "text": "عکس قسمت های آسیب دیده اتتخاب نشده است.",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "end"
+                            }
+                          ]
+                        }
+                      ],
+                      "background": [
+                        {
+                          "type": "solid",
+                          "color": "#ffffff"
+                        }
+                      ],
+                      "margins": {
+                        "top": 8,
+                        "bottom": 8,
+                        "start": 8,
+                        "end": 8
+                      },
+                      "border": {
+                        "shadow": {
+                          "color": "#c8d0e4"
+                        },
+                        "stroke": {
+                          "color": "#c8d0e4",
+                          "style": {
+                            "type": "solid"
+                          },
+                          "width": 1
+                        },
+                        "corner_radius": 2,
+                        "corners_radius": {
+                          "top-left": 2,
+                          "bottom-left": 2,
+                          "top-right": 2,
+                          "bottom-right": 2
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "container",
+                      "actions": [
+                        {
+                          "log_id": "save_draft_page1",
+                          "url": "div-action://set_page_with_changes_to_db?key=draft/@{current_vehicle_id}/page1"
+                        },
+                        {
+                          "log_id": "set_step",
+                          "url": "div-action://set_variable_to_db?key=vehicle_current_step&value=2"
+                        },
+                        {
+                          "log_id": "load_screen",
+                          "url": "div-action://load_screen?screen=Accidents/driverprofile"
+                        }
+                      ],
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "@{text___31}",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#ffffff",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        }
+                      ],
+                      "background": [
+                        {
+                          "type": "solid",
+                          "color": "#193d8d"
+                        }
+                      ],
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 4,
+                          "top-right": 4,
+                          "bottom-left": 4,
+                          "bottom-right": 4
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 48
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "end": 15
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "actions": [
+                        {
+                          "log_id": "load_screen",
+                          "url": "div-action://pop_and_load_screen"
+                        }
+                      ],
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "@{text___33}",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#4260a2",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        }
+                      ],
+                      "background": [
+                        {
+                          "type": "solid",
+                          "color": "#f3f5f9"
+                        }
+                      ],
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 4,
+                          "top-right": 4,
+                          "bottom-left": 4,
+                          "bottom-right": 4
+                        },
+                        "stroke": {
+                          "style": {
+                            "type": "solid"
+                          },
+                          "width": 2,
+                          "color": "#193d8d",
+                          "unit": "px"
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 48
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "start": 15
+                      }
+                    }
+                  ],
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "left",
+                  "content_alignment_vertical": "top",
+                  "margins": {
+                    "top": 8,
+                    "bottom": 8,
+                    "start": 8,
+                    "end": 8
+                  }
+                }
+              ],
+              "height": {
+                "type": "match_parent"
+              },
+              "type": "container",
+              "orientation": "vertical",
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ]
+            }
+          ],
+          "visibility_action": {
+            "log_id": "visible"
+          },
+          "background": [
+            {
+              "color": "@{getDictOptColor('#00ffffff', local_palette, 'bg_primary', theme)}",
+              "type": "solid"
+            }
+          ],
+          "height": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "type": "container"
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "string",
+        "name": "variable_text_color_deselected",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "scan.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "microphone.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "iran_flag.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateB_hint",
+        "value": "ب"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateC_hint",
+        "value": "۱۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateD_hint",
+        "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateE_hint",
+        "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateA_hint",
+        "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateF_hint",
+        "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateB",
+        "value": "ب"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateC",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_plateD",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "plate_text_color",
+        "value": "#4F4F4F"
+      },
+      {
+        "type": "string",
+        "name": "{variable_manufacturing_factory",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_shomare_shasi",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_vehicle_body_color",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_production_type",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_vin",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_motor_number",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_following_organization",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_fire_extinguisher_capsule",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_damaged_parts",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "text___33",
+        "value": " بازگشت"
+      },
+      {
+        "type": "string",
+        "name": "text___31",
+        "value": "مرحله بعد"
+      },
+      {
+        "type": "string",
+        "name": "variable_personal_area",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_system",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_year_manufactur",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_chassis_number",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_chassis_number",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_user_type",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "selected_tab_text",
+        "value": "193d8d"
+      },
+      {
+        "type": "string",
+        "name": "unselected_tab_text",
+        "value": "757575"
+      },
+      {
+        "type": "string",
+        "name": "plate_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate_color2",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate_text_color",
+        "value": "#193d8d"
+      },
+      {
+        "type": "string",
+        "name": "plate_text_color2",
+        "value": "#193d8d"
+      },
+      {
+        "type": "string",
+        "name": "plate1_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate2_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate3_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate4_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate_text_color",
+        "value": "#4F4F4F"
+      },
+      {
+        "type": "string",
+        "name": "empty",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_plate_type",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_plate_type",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_plate_three",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_plate_three",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_plate_four",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_factory",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_year_limit_equipment",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_year_limit_equipment",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_foreigners",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_certificate_no",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_certificate_no",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_name",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_name",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_family",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_family",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_age",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_age",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_sex",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_sex",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_belt",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_belt",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_certificate_type",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_certificate_type",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_fault_reason ",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_fault_reason ",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_go_page_insurance ",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_select_fault_state",
+        "value": true
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_plate_type",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_plate_type_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_plate_type",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_plate_one",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_plate_one",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_plate_four",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_plate_four",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_plate_all",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_usage",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_usage_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_usage",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_factory",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_factory",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_engin_no",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_engin_no",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_year_manufacture",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_year_manufacture",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_safety_equipment_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_safety_equipment_title",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_safety_equipment",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_year_limit_equipment",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_year_limit_equipment",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_fire_extinguisher_capsule_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_fire_extinguisher_capsule_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_fire_extinguisher_capsule",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_air_bag_status",
+        "value": true
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_air_bag_count",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_air_bag_count",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_air_bag_activity_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_air_bag_activity_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_air_bag_activity",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_air_bag_performance_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_air_bag_performance_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_air_bag_performance",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_air_bag_place_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_air_bag_place_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_air_bag_place",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_collision_angle_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_collision_angle_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_collision_angle",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_collision_speed_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_collision_speed_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_collision_speed",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_getting_on_fire",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_getting_on_fire_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_getting_on_fire",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_damage_parts",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_damage_parts_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_damage_parts",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_vehicle_go_page_driver",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "variable_vehicle_non_fault_background_name",
+        "value": "#e8ecf4"
+      },
+      {
+        "type": "string",
+        "name": "variable_vehicle_fault_background_name",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "variable_tab_selected_color",
+        "value": "ffffff"
+      },
+      {
+        "type": "string",
+        "name": "variable_tab_deselected_color",
+        "value": "e8ecf4"
+      },
+      {
+        "type": "string",
+        "name": "color_blue",
+        "value": "193d8d"
+      },
+      {
+        "type": "string",
+        "name": "color_gray",
+        "value": "757575"
+      },
+      {
+        "type": "string",
+        "name": "variable_fault_text_color",
+        "value": "#193d8d"
+      },
+      {
+        "type": "string",
+        "name": "variable_non_fault_text_color",
+        "value": "757575"
+      },
+      {
+        "type": "string",
+        "name": "current_vehicle_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "current_step",
+        "value": "1"
+      }
+    ],
+    "variable_triggers": [
+      {
+        "condition": "@{validation_vehicle_plate_one && validation_vehicle_plate_three && validation_vehicle_plate_four}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_plate_all&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ len(compromising_vehicle_plate_one) > 1}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_plate_one&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ len(compromising_vehicle_plate_one) < 2}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_plate_one&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ len(compromising_vehicle_plate_three) > 2}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_plate_three&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ len(compromising_vehicle_plate_three) < 3}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_plate_three&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ len(compromising_vehicle_plate_four) > 1 }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_plate_four&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ len(compromising_vehicle_plate_four) < 2}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_plate_four&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ !validation_vehicle_plate_one || !validation_vehicle_plate_three || !validation_vehicle_plate_four }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_plate_all&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_usage==empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_usage&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_usage!=empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_usage&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_factory==empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_factory&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_factory!=empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_factory&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ len(compromising_vehicle_year_manufacture) < 4}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_year_manufacture&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ len(compromising_vehicle_year_manufacture) > 3}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_year_manufacture&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_safety_equipment_code==empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_safety_equipment&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_safety_equipment_code!=empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_safety_equipment&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_year_limit_equipment==empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_year_limit_equipment&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_year_limit_equipment!=empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_year_limit_equipment&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_fire_extinguisher_capsule_code==empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_fire_extinguisher_capsule&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_fire_extinguisher_capsule_code!=empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_fire_extinguisher_capsule&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_getting_on_fire_code==empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_getting_on_fire&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_getting_on_fire_code!=empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_getting_on_fire&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_damage_parts_code==empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_damage_parts&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_damage_parts_code!=empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_damage_parts&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_fire_extinguisher_capsule_code==empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_fire_extinguisher_capsule&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_fire_extinguisher_capsule_code!=empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_fire_extinguisher_capsule&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ validation_fault_state && validation_plate_type && validation_vehicle_plate_all && validation_usage && validation_factory && validation_year_manufacture && validation_safety_equipment && validation_year_limit_equipment && validation_fire_extinguisher_capsule && validation_fire}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_go_page_driver & value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_plate_type_code == '0'}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_go_page_driver&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_plate_type_code != '0'}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_go_page_driver&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_safety_equipment_code == '2356'}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_status&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_safety_equipment_code != '2356'}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_status&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_safety_equipment_code == '2356'}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_status&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_safety_equipment_code != '2356'}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_status&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_safety_equipment_code == '2356'}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_status&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_safety_equipment_code != '2356'}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_status&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_safety_equipment_code == '2356'}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_status&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_safety_equipment_code != '2356'}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_status&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_safety_equipment_code == '2356'}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_status&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_safety_equipment_code != '2356'}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_status&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_safety_equipment_code == '2356'}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_status&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_safety_equipment_code != '2356'}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_status&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_safety_equipment_code == '2356'}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_status&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_safety_equipment_code != '2356'}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_status&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_air_bag_count == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_count&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_air_bag_count != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_count&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_air_bag_activity_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_activity&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_air_bag_activity_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_activity&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_air_bag_performance_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_performance&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_air_bag_performance_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_performance&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_air_bag_place_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_place&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_air_bag_place_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_air_bag_place&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_collision_angle_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_collision_angle&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_collision_angle_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_collision_angle&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_collision_speed_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_collision_speed&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_vehicle_collision_speed_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_vehicle_collision_speed&value=true"
+          }
+        ]
+      }
+    ]
+  },
+  "templates": {
+    "validation_text": {
+      "type": "text",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "left": 20,
+        "top": 4,
+        "right": 20,
+        "bottom": 4
+      },
+      "alpha": 1,
+      "alignment_horizontal": "center",
+      "alignment_vertical": "center",
+      "font_size": 13,
+      "font_weight": "medium",
+      "text_alignment_horizontal": "right",
+      "text_alignment_vertical": "center",
+      "text_color": "#ff0000"
+    }
+  }
+}

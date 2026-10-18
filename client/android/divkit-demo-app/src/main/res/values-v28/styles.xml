@@ -9,7 +9,7 @@
 
     <style name="ActivityExpandedTitleStyle">
         <item name="android:textColor">#000000</item>
-        <item name="android:fontFamily">@font/ys_display_bold</item>
+        <item name="android:fontFamily">@font/irsans</item>
         <item name="android:textSize">28sp</item>
         <item name="android:lineHeight">32sp</item>
     </style>

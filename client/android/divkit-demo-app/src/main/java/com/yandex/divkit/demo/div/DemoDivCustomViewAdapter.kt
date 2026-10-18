@@ -9,14 +9,11 @@ import com.yandex.div.core.DivPreloader
 import com.yandex.div.core.state.DivStatePath
 import com.yandex.div.core.view2.Div2View
 import com.yandex.div.json.expressions.ExpressionResolver
-import com.yandex.div.rive.OkHttpDivRiveNetworkDelegate
-import com.yandex.div.rive.RiveCustomViewAdapter
 import com.yandex.div.video.custom.VideoCustomAdapter
 import com.yandex.div.video.custom.VideoCustomViewController
 import com.yandex.div2.DivCustom
 import com.yandex.divkit.demo.ui.LoadScreenListener
 import com.yandex.divkit.demo.ui.activity.MehdiViewModel
-import okhttp3.OkHttpClient
 
 private const val TAG = "DivCustomViewAdapter"
 
@@ -32,9 +29,8 @@ class DemoDivCustomViewAdapter(
         android.util.Log.d("DemoDivCustomViewAdapter", "Created DemoCustomContainerAdapter with loadScreenListener: ${loadScreenListener != null}")
     }
     private val videoCustomAdapter = VideoCustomAdapter(videoCustomViewController)
-    private val divRiveAdapter =
-        RiveCustomViewAdapter.Builder(baseContext, OkHttpDivRiveNetworkDelegate(OkHttpClient.Builder().build())).build()
-    private val adapters = listOf(videoCustomAdapter, divRiveAdapter, demoCustomContainerAdapter,demoCustomContainerAdapter,demoCustomContainerAdapter,demoCustomContainerAdapter)
+    private val adapters = listOf(videoCustomAdapter, demoCustomContainerAdapter)
+
     override fun preload(
         div: DivCustom,
         callBack: DivPreloader.Callback

@@ -1,0 +1,276 @@
+﻿{
+  "patch": {
+    "mode": "partial",
+    "changes": [
+      {
+        "id": "wizard_content",
+        "items": [
+          {
+            "type": "text",
+            "text": "اطلاعات وسیله نقلیه",
+            "font_size": 16,
+            "font_weight": "bold",
+            "text_color": "#193d8d",
+            "width": {
+              "type": "match_parent"
+            },
+            "text_alignment_horizontal": "start",
+            "margins": {
+              "top": 8,
+              "bottom": 12,
+              "start": 8,
+              "end": 8
+            }
+          },
+          {
+            "type": "text",
+            "text": "مدل خودرو",
+            "font_size": 14,
+            "width": {
+              "type": "match_parent"
+            },
+            "margins": {
+              "start": 8,
+              "end": 8
+            }
+          },
+          {
+            "type": "input",
+            "text_variable": "car_model",
+            "hint_text": "مدل خودرو",
+            "font_size": 14,
+            "width": {
+              "type": "match_parent"
+            },
+            "height": {
+              "type": "fixed",
+              "value": 48
+            },
+            "keyboard_type": "single_line_text",
+            "margins": {
+              "top": 4,
+              "bottom": 8,
+              "start": 8,
+              "end": 8
+            }
+          },
+          {
+            "type": "text",
+            "text": "کاربری",
+            "font_size": 14,
+            "width": {
+              "type": "match_parent"
+            },
+            "margins": {
+              "start": 8,
+              "end": 8
+            }
+          },
+          {
+            "type": "input",
+            "text_variable": "usage",
+            "hint_text": "سواری",
+            "font_size": 14,
+            "width": {
+              "type": "match_parent"
+            },
+            "height": {
+              "type": "fixed",
+              "value": 48
+            },
+            "keyboard_type": "single_line_text",
+            "margins": {
+              "top": 4,
+              "bottom": 8,
+              "start": 8,
+              "end": 8
+            }
+          },
+          {
+            "type": "text",
+            "text": "مقصر / غیرمقصر",
+            "font_size": 14,
+            "width": {
+              "type": "match_parent"
+            },
+            "margins": {
+              "start": 8,
+              "end": 8
+            }
+          },
+          {
+            "type": "input",
+            "text_variable": "blame_or_not",
+            "hint_text": "مقصر",
+            "font_size": 14,
+            "width": {
+              "type": "match_parent"
+            },
+            "height": {
+              "type": "fixed",
+              "value": 48
+            },
+            "keyboard_type": "single_line_text",
+            "margins": {
+              "top": 4,
+              "bottom": 8,
+              "start": 8,
+              "end": 8
+            }
+          },
+          {
+            "type": "text",
+            "text": "پلاک (A-B-C-D)",
+            "font_size": 14,
+            "width": {
+              "type": "match_parent"
+            },
+            "margins": {
+              "start": 8,
+              "end": 8
+            }
+          },
+          {
+            "type": "container",
+            "orientation": "horizontal",
+            "width": {
+              "type": "match_parent"
+            },
+            "height": {
+              "type": "wrap_content"
+            },
+            "items": [
+              {
+                "type": "input",
+                "text_variable": "variable_plateA",
+                "hint_text": "11",
+                "font_size": 14,
+                "width": {
+                  "type": "match_parent",
+                  "weight": 1
+                },
+                "height": {
+                  "type": "fixed",
+                  "value": 48
+                },
+                "keyboard_type": "single_line_text",
+                "margins": {
+                  "start": 8,
+                  "end": 4
+                }
+              },
+              {
+                "type": "input",
+                "text_variable": "variable_plateB",
+                "hint_text": "ب",
+                "font_size": 14,
+                "width": {
+                  "type": "match_parent",
+                  "weight": 1
+                },
+                "height": {
+                  "type": "fixed",
+                  "value": 48
+                },
+                "keyboard_type": "single_line_text",
+                "margins": {
+                  "start": 4,
+                  "end": 4
+                }
+              },
+              {
+                "type": "input",
+                "text_variable": "variable_plateC",
+                "hint_text": "111",
+                "font_size": 14,
+                "width": {
+                  "type": "match_parent",
+                  "weight": 1
+                },
+                "height": {
+                  "type": "fixed",
+                  "value": 48
+                },
+                "keyboard_type": "single_line_text",
+                "margins": {
+                  "start": 4,
+                  "end": 4
+                }
+              },
+              {
+                "type": "input",
+                "text_variable": "variable_plateD",
+                "hint_text": "11",
+                "font_size": 14,
+                "width": {
+                  "type": "match_parent",
+                  "weight": 1
+                },
+                "height": {
+                  "type": "fixed",
+                  "value": 48
+                },
+                "keyboard_type": "single_line_text",
+                "margins": {
+                  "start": 4,
+                  "end": 8
+                }
+              }
+            ],
+            "margins": {
+              "top": 4,
+              "bottom": 16
+            }
+          },
+          {
+            "type": "container",
+            "actions": [
+              {
+                "log_id": "wizard_next_driver",
+                "url": "div-action://bottom_sheet_set_patch?patch=Accidents/driver"
+              }
+            ],
+            "items": [
+              {
+                "type": "text",
+                "text": "@{text___31}",
+                "font_size": 14,
+                "text_color": "#ffffff",
+                "text_alignment_horizontal": "center",
+                "width": {
+                  "type": "wrap_content"
+                }
+              }
+            ],
+            "background": [
+              {
+                "type": "solid",
+                "color": "#193d8d"
+              }
+            ],
+            "border": {
+              "corner_radius": 4
+            },
+            "height": {
+              "type": "fixed",
+              "value": 48
+            },
+            "width": {
+              "type": "match_parent"
+            },
+            "orientation": "horizontal",
+            "content_alignment_horizontal": "center",
+            "content_alignment_vertical": "center",
+            "margins": {
+              "top": 8,
+              "bottom": 16,
+              "start": 8,
+              "end": 8
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "templates": {}
+}

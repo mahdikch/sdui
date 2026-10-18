@@ -1,0 +1,510 @@
+
+============================================================
+PhPlus — هسته اصلی (0 screen, 5 patch)
+============================================================
+Patchها:
+  - ph/main/grid/patch
+  - ph/main/home
+  - ph/main/profile
+  - ph/main/reports
+  - ph/main/setting
+
+============================================================
+Vehicle Ticket (VT) (8 screen, 2 patch)
+============================================================
+صفحات:
+  [فعال] vt/address (idSystem=1)
+  [فعال] vt/map/bottomsheet (idSystem=1)
+  [فعال] vt/persons/image (idSystem=1)
+  [فعال] vt/plate (idSystem=1)
+  [فعال] vt/plate/letters/bottomsheet (idSystem=1)
+  [فعال] vt/plates/bottomsheet (idSystem=1)
+  [فعال] vt/reports (idSystem=2)
+  [فعال] vt/tickets (idSystem=1)
+Patchها:
+  - vt/reports/delivered
+  - vt/reports/notdelivered
+
+============================================================
+تصادفات (36 screen, 4 patch)
+============================================================
+صفحات:
+  [غیرفعال] Accidents//uncompromisingvehiclespecifications (idSystem=7)
+  [غیرفعال] Accidents//vehiclespecifications (idSystem=7)
+  [فعال] Accidents/archive (idSystem=7)
+  [فعال] accidents/compromisefirst (idSystem=7)
+  [فعال] Accidents/compromisefirst/newscode (idSystem=7)
+  [فعال] Accidents/compromisefirst/newsinquiry (idSystem=7)
+  [فعال] Accidents/compromisefirstWithPatch (idSystem=7)
+  [فعال] Accidents/driverprofile (idSystem=7)
+  [غیرفعال] Accidents/exportreasoninginference (idSystem=7)
+  [غیرفعال] Accidents/finalregistration (idSystem=7)
+  [فعال] Accidents/insuranceinformation (idSystem=7)
+  [فعال] Accidents/main (idSystem=7)
+  [فعال] accidents/policeCenter (idSystem=7)
+  [فعال] Accidents/receiveconfirmation (idSystem=7)
+  [فعال] Accidents/uncompromising/additionaklinformation (idSystem=7)
+  [فعال] Accidents/uncompromising/addpassenger (idSystem=7)
+  [فعال] Accidents/uncompromising/compromisefirst (idSystem=7)
+  [فعال] Accidents/uncompromising/driverprofile (idSystem=7)
+  [فعال] Accidents/uncompromising/expertreasoning (idSystem=7)
+  [فعال] Accidents/uncompromising/informationperson (idSystem=7)
+  [فعال] Accidents/uncompromising/organizationblame (idSystem=7)
+  [فعال] Accidents/uncompromising/organizationblame (idSystem=7)
+  [فعال] Accidents/uncompromising/organizationlegalentities (idSystem=7)
+  [غیرفعال] Accidents/uncompromising/passenger (idSystem=7)
+  [فعال] Accidents/uncompromising/passenger (idSystem=7)
+  [فعال] Accidents/uncompromising/passengerdetails (idSystem=7)
+  [فعال] Accidents/uncompromising/pedestrianinformation (idSystem=7)
+  [فعال] Accidents/uncompromising/pedestrianspecification (idSystem=7)
+  [فعال] Accidents/uncompromising/status (idSystem=7)
+  [غیرفعال] Accidents/uncompromising/submit (idSystem=7)
+  [فعال] Accidents/uncompromising/submitimage (idSystem=7)
+  [فعال] Accidents/uncompromising/vehiclespecifications (idSystem=7)
+  [فعال] accidents/vehicleInformation (idSystem=7)
+  [فعال] accidents/vehicleInformationEntry (idSystem=7)
+  [غیرفعال] Accidents/vehiclespecifications (idSystem=7)
+  [فعال] Accidents/ways (idSystem=7)
+Patchها:
+  - Accidents/vehicleInformationEntry/patch
+  - accident/page2/driver
+  - accident/page2/insurance
+  - accident/page2/vehicle
+
+============================================================
+استعلام (Patch نتیجه) (0 screen, 25 patch)
+============================================================
+Patchها:
+  - patchEstelam
+  - patchEstelamGhatee
+  - patchInqueryEntezami
+  - patchInqueryGovahiname
+  - patchInqueryHoviat
+  - patchInqueryHoviatAtba
+  - patchInqueryLastTravel
+  - patchInqueryNezamVazife
+  - patchInqueryPassport
+  - patchInqueryPlates
+  - patchInqueryResidenceAtba
+  - patchInqueryTravelAtba
+
+============================================================
+پلاک (Patch انواع پلاک) (0 screen, 31 patch)
+============================================================
+Patchها:
+  - patchArteshPlate
+  - patchDiplomatPlate
+  - patchDolatiPlate
+  - patchGozarMovaghatMeliPlate
+  - patchGozarMovaghatPlate
+  - patchKeshavarziPlate
+  - patchMaloolinPlate
+  - patchMantaghAzadPlate
+  - patchMotorDolatiPlate
+  - patchMotorPlate
+  - patchMotorPolicePlate
+  - patchNezamiPlate
+  - patchOmomePlate
+  - patchPelakBarname
+  - patchPlate
+  - patchPoliticPlate
+  - patchSepahPlate
+  - patchServicePlate
+  - patchSetadKolPlate
+  - patchSiasiMeliPlate
+  - patchTarikhiPlate
+  - patchTaxiPlate
+  - patchTransitPlate
+  - patchVedajaPlate
+  - patchVehiclePlate
+  - patchpolicePlate
+  - pateByPlatePatch
+
+============================================================
+اماکن (27 screen, 0 patch)
+============================================================
+صفحات:
+  [فعال] amake/licensingauthority (idSystem=14)
+  [فعال] amaken/addnewcolleague (idSystem=14)
+  [فعال] amaken/completion (idSystem=14)
+  [فعال] amaken/crimes (idSystem=14)
+  [فعال] amaken/criminalinformation (idSystem=14)
+  [فعال] amaken/discoveries (idSystem=14)
+  [فعال] amaken/eligibilitycheck (idSystem=14)
+  [فعال] amaken/executiveplan (idSystem=14)
+  [فعال] amaken/first (idSystem=14)
+  [غیرفعال] amaken/guide (idSystem=14)
+  [فعال] amaken/information (idSystem=14)
+  [فعال] amaken/listactions (idSystem=14)
+  [فعال] amaken/listcolleagues (idSystem=14)
+  [فعال] amaken/meetingminutes (idSystem=14)
+  [غیرفعال] amaken/passengerdetails (idSystem=7)
+  [فعال] amaken/referencetype (idSystem=14)
+  [غیرفعال] amaken/registe (idSystem=14)
+  [فعال] amaken/registrationemployees (idSystem=14)
+  [فعال] amaken/registrationvisitseal (idSystem=14)
+  [فعال] amaken/report (idSystem=14)
+  [فعال] amaken/start (idSystem=14)
+  [غیرفعال] Amaken/uncompromising/informationperson (idSystem=7)
+  [غیرفعال] Amaken/uncompromising/informationperson (idSystem=7)
+  [غیرفعال] amaken/vehiclespecifications (idSystem=7)
+  [فعال] amaken/visitingactions (idSystem=14)
+  [فعال] amaken/visitlist (idSystem=14)
+  [فعال] amaken/visitlistseal (idSystem=14)
+
+============================================================
+بازرسی (18 screen, 6 patch)
+============================================================
+صفحات:
+  [فعال] bazrasi (idSystem=11)
+  [فعال] bazrasi (idSystem=11)
+  [فعال] bazrasi/bazbineList (idSystem=11)
+  [فعال] bazrasi/bazbineSubList (idSystem=11)
+  [فعال] bazrasi/bazbineSubmitForm (idSystem=11)
+  [فعال] bazrasi/emkanat (idSystem=11)
+  [فعال] bazrasi/ensani (idSystem=11)
+  [فعال] bazrasi/instruction (idSystem=11)
+  [فعال] Bazrasi/instructionDetails (idSystem=11)
+  [فعال] Bazrasi/instructionSearch (idSystem=11)
+  [فعال] bazrasi/jostoju (idSystem=11)
+  [فعال] bazrasi/main (idSystem=11)
+  [فعال] bazrasi/pishbini (idSystem=11)
+  [فعال] bazrasi/report (idSystem=11)
+  [فعال] bazrasi/submitTavafogh (idSystem=11)
+  [فعال] bazrasi/tashvighat (idSystem=11)
+  [فعال] bazrasi/tavafogh (idSystem=11)
+  [فعال] bazrasi/yeganlist (idSystem=11)
+Patchها:
+  - bazrasi/instruction
+  - bazrasi/last_report
+  - bazrasi/programsPatch
+  - bazrasi/yegan
+  - bazrasi/yeganPatch
+
+============================================================
+باربری / گمرک (19 screen, 11 patch)
+============================================================
+صفحات:
+  [فعال] cargo/barname (idSystem=18)
+  [فعال] cargo/barname_bottom_sheet (idSystem=18)
+  [فعال] Cargo/bottomsheetcustomsinquiry (idSystem=18)
+  [فعال] Cargo/bottomsheethighwayinquiry (idSystem=18)
+  [فعال] Cargo/bottomsheethoilinquiry (idSystem=18)
+  [فعال] Cargo/bottomsheetTripinquiry (idSystem=18)
+  [فعال] cargo/containerDetail (idSystem=18)
+  [فعال] cargo/cutomDuty (idSystem=18)
+  [فعال] Cargo/GetCmrInfo (idSystem=18)
+  [فعال] cargo/inquiryByParvane (idSystem=18)
+  [فعال] cargo/inquiryByPate (idSystem=18)
+  [فعال] cargo/inquiryByPlate (idSystem=18)
+  [فعال] cargo/inquiryEzharnameh (idSystem=18)
+  [فعال] cargo/main (idSystem=18)
+  [فعال] cargo/manitoring (idSystem=18)
+  [فعال] cargo/moteghazi (idSystem=18)
+  [فعال] cargo/shenavar (idSystem=18)
+  [فعال] cargo/shenavar_bottom_sheet (idSystem=18)
+  [فعال] cargo/travelogue (idSystem=18)
+Patchها:
+  - cmrInfo
+  - ezharnameArzeshPatch
+  - ezharnamePatch
+  - patchBaseInfo
+  - patchChattels
+  - patchManitoring
+  - patchMotaghazi
+  - patchShenavar
+  - patchShomareBarname
+  - pateByNumberPatch
+  - tripInfo
+
+============================================================
+CSI / صحنه جرم (11 screen, 0 patch)
+============================================================
+صفحات:
+  [فعال] cis/crimesceneevidence (idSystem=9)
+  [فعال] cis/informationcorpses (idSystem=9)
+  [غیرفعال] cis/informationjasads (idSystem=9)
+  [فعال] cis/jasad (idSystem=9)
+  [فعال] cis/main (idSystem=9)
+  [فعال] cis/main2 (idSystem=9)
+  [فعال] cis/mamouriat (idSystem=9)
+  [غیرفعال] cis/papersketch (idSystem=9)
+  [فعال] Cis/papersketch (idSystem=9)
+  [فعال] cis/resultsobtained (idSystem=9)
+  [فعال] cis/test (idSystem=9)
+
+============================================================
+اعلان (9 screen, 0 patch)
+============================================================
+صفحات:
+  [فعال] notif/custom (idSystem=4)
+  [فعال] notif/gasht (idSystem=4)
+  [فعال] notif/gasht/bottomsheet (idSystem=4)
+  [فعال] notif/image (idSystem=4)
+  [فعال] notif/image&text (idSystem=4)
+  [فعال] Notif/navigation (idSystem=4)
+  [فعال] Notif/person (idSystem=4)
+  [فعال] notif/text (idSystem=4)
+  [فعال] notif/video (idSystem=4)
+
+============================================================
+گشت انتظامی (2 screen, 0 patch)
+============================================================
+صفحات:
+  [فعال] gasht/1 (idSystem=4)
+  [فعال] gasht/main (idSystem=4)
+
+============================================================
+توقیف (9 screen, 0 patch)
+============================================================
+صفحات:
+  [فعال] toghif/bottomsheet/lockstatus (idSystem=12)
+  [فعال] toghif/car (idSystem=12)
+  [فعال] toghif/cranecanceled (idSystem=12)
+  [فعال] toghif/craneInfo (idSystem=12)
+  [فعال] toghif/main (idSystem=12)
+  [فعال] toghif/parkings (idSystem=12)
+  [فعال] toghif/rejectCrane (idSystem=12)
+  [فعال] toghif/selectType (idSystem=12)
+  [فعال] toghif/submitCrane (idSystem=12)
+
+============================================================
+اتباع (5 screen, 0 patch)
+============================================================
+صفحات:
+  [فعال] atba (idSystem=15)
+  [فعال] atba/inquiry (idSystem=15)
+  [فعال] atba/main (idSystem=15)
+  [فعال] atba/select/border (idSystem=15)
+  [فعال] atba/submit/person (idSystem=15)
+
+============================================================
+کارنامه (TimeSheet) (6 screen, 0 patch)
+============================================================
+صفحات:
+  [فعال] timeSheet/driverHistory (idSystem=19)
+  [فعال] timeSheet/inquiry (idSystem=19)
+  [فعال] timeSheet/main (idSystem=19)
+  [فعال] TimeSheet/notebookHistory (idSystem=19)
+  [فعال] TimeSheet/violationHistory (idSystem=19)
+  [فعال] TimeSheet/warningsHistory (idSystem=19)
+
+============================================================
+ناظر (4 screen, 1 patch)
+============================================================
+صفحات:
+  [فعال] nazer/main (idSystem=3)
+  [فعال] nazer/PunishmentHistory (idSystem=3)
+  [غیرفعال] nazer/register (idSystem=3)
+  [غیرفعال] nazer/register (idSystem=3)
+Patchها:
+  - nazer/ItemHistory
+
+============================================================
+اسپلش / ورود (1 screen, 0 patch)
+============================================================
+صفحات:
+  [فعال] splash (idSystem=2)
+
+============================================================
+مسیریابی (2 screen, 0 patch)
+============================================================
+صفحات:
+  [فعال] main (idSystem=2)
+  [فعال] main (idSystem=1)
+
+============================================================
+افکار (2 screen, 0 patch)
+============================================================
+صفحات:
+  [غیرفعال] afkar/conditions (idSystem=51)
+  [فعال] afkar/verifycode (idSystem=51)
+
+============================================================
+VT / آدرس (0 screen, 1 patch)
+============================================================
+Patchها:
+  - patchAddress
+
+============================================================
+سایر / عمومی (0 screen, 2 patch)
+============================================================
+Patchها:
+  - emptyPatch
+  - vehicle
+
+============================================================
+تست / آزمایشی (36 screen, 18 patch)
+============================================================
+صفحات:
+  [فعال] /new/screen/test (idSystem=2)
+  [فعال] /test (idSystem=51)
+  [فعال] /test/name (idSystem=2)
+  [غیرفعال] /test/name (idSystem=2)
+  [غیرفعال] /test/name (idSystem=2)
+  [غیرفعال] /test/name (idSystem=2)
+  [غیرفعال] /test/name (idSystem=2)
+  [غیرفعال] /test/name (idSystem=2)
+  [غیرفعال] /test/name (idSystem=2)
+  [غیرفعال] /test/name (idSystem=2)
+  [غیرفعال] /test/name (idSystem=2)
+  [غیرفعال] /test/name (idSystem=2)
+  [غیرفعال] /test/name (idSystem=2)
+  [غیرفعال] /test/name (idSystem=2)
+  [غیرفعال] /test/name (idSystem=2)
+  [فعال] 12345677777 (idSystem=3)
+  [فعال] 12345677777 (idSystem=2)
+  [فعال] 12345677777 (idSystem=3)
+  [فعال] 1234567777755555555555555 (idSystem=3)
+  [فعال] 1234567777755555555555555 (idSystem=3)
+  [فعال] getScreen (idSystem=2)
+  [فعال] getScreen (idSystem=None)
+  [فعال] getScreen (idSystem=2)
+  [فعال] pach1 (idSystem=7)
+  [غیرفعال] pacht1 (idSystem=7)
+  [فعال] phtemp (idSystem=12)
+  [فعال] sdfghjjjjjjjjjj (idSystem=3)
+  [فعال] singleSelect/multiSelect (idSystem=2)
+  [فعال] test (idSystem=51)
+  [فعال] test (idSystem=12)
+  [فعال] test (idSystem=11)
+  [فعال] test (idSystem=18)
+  [غیرفعال] test/patch/name (idSystem=2)
+  [فعال] test/screen/name (idSystem=2)
+  [فعال] test2 (idSystem=11)
+  [فعال] test3 (idSystem=11)
+Patchها:
+  - Test Patch Name
+  - Test Patch Name 2
+  - Test Patch Name 3
+  - patchInqueryEntezamiTemp
+  - patchInqueryGovahinameTemp
+  - patchInqueryHoviatTemp
+  - patchInqueryNezamVazifeTemp
+  - patchInqueryPassportTemp
+  - patchInqueryPlatesTemp
+  - patchTest
+  - patchTest2
+  - test
+  - test4
+  - test5
+
+============================================================
+تست / متفرقه (0 screen, 15 patch)
+============================================================
+Patchها:
+  - (بدون نام)
+  - 1123
+  - 444
+  - 54354
+  - 58
+  - ddddddd
+  - history
+  - lknk
+  - sss
+  - ssss
+  - tdt
+  - werwerwer
+
+============================================================
+OP (22 screen, 0 patch)
+============================================================
+صفحات:
+  [غیرفعال] op/conditions (idSystem=51)
+  [فعال] op/conditions (idSystem=51)
+  [فعال] op/Exit (idSystem=51)
+  [غیرفعال] op/exit (idSystem=51)
+  [فعال] op/forceupdate (idSystem=51)
+  [فعال] op/guide (idSystem=51)
+  [فعال] op/guide (idSystem=51)
+  [فعال] op/login (idSystem=51)
+  [غیرفعال] op/login (idSystem=51)
+  [فعال] op/measurement (idSystem=51)
+  [غیرفعال] op/measurement (idSystem=51)
+  [فعال] op/opinion (idSystem=51)
+  [فعال] op/options (idSystem=51)
+  [غیرفعال] op/options (idSystem=51)
+  [فعال] op/questionnaire (idSystem=51)
+  [غیرفعال] op/questionnaire (idSystem=51)
+  [فعال] op/questionnaire/null (idSystem=51)
+  [غیرفعال] op/questionnaire/null (idSystem=51)
+  [فعال] op/rules (idSystem=51)
+  [فعال] op/splash (idSystem=51)
+  [فعال] op/update (idSystem=51)
+  [غیرفعال] op/verifycode (idSystem=51)
+
+============================================================
+PhPlus (20 screen, 0 patch)
+============================================================
+صفحات:
+  [فعال] ph/chattels (idSystem=2)
+  [فعال] ph/forceupdate (idSystem=2)
+  [فعال] ph/hajghasem (idSystem=2)
+  [فعال] ph/InqueryHuman (idSystem=2)
+  [فعال] ph/InqueryHumanTemp (idSystem=2)
+  [فعال] ph/InqueryHumanTest (idSystem=2)
+  [فعال] ph/InqueryReports (idSystem=2)
+  [فعال] ph/InquiryVehicle (idSystem=2)
+  [فعال] ph/login (idSystem=2)
+  [فعال] ph/login (idSystem=51)
+  [فعال] ph/mamad (idSystem=2)
+  [فعال] ph/nomremanfi/bottomsheet (idSystem=2)
+  [فعال] ph/notification (idSystem=2)
+  [فعال] ph/support (idSystem=2)
+  [فعال] ph/test (idSystem=2)
+  [فعال] ph/test1 (idSystem=2)
+  [فعال] ph/test2 (idSystem=1)
+  [فعال] ph/toast (idSystem=2)
+  [فعال] ph/update (idSystem=2)
+  [فعال] ph/vt/bottomsheet (idSystem=1)
+
+============================================================
+Toast / UI کمکی (1 screen, 0 patch)
+============================================================
+صفحات:
+  [فعال] toast (idSystem=51)
+
+============================================================
+اجساد (1 screen, 0 patch)
+============================================================
+صفحات:
+  [فعال] ajsad (idSystem=9)
+
+============================================================
+بدون مسیر (1 screen, 0 patch)
+============================================================
+صفحات:
+  [فعال] (بدون path) (idSystem=0)
+
+============================================================
+تصادفات (مسیر accident) (4 screen, 0 patch)
+============================================================
+صفحات:
+  [غیرفعال] accident/map (idSystem=7)
+  [فعال] accident/uncompromising/finalregistration (idSystem=7)
+  [فعال] accident/uncompromising/insuranceInformation (idSystem=7)
+  [فعال] accident/uncompromising/vehicleInformation (idSystem=7)
+
+============================================================
+سایر (registrationvisitseal) (1 screen, 0 patch)
+============================================================
+صفحات:
+  [غیرفعال] registrationvisitseal (idSystem=14)
+
+============================================================
+سایر (splash_2) (1 screen, 0 patch)
+============================================================
+صفحات:
+  [فعال] splash_2 (idSystem=2)
+
+============================================================
+شماره بارنامه (1 screen, 0 patch)
+============================================================
+صفحات:
+  [فعال] shomare barname (idSystem=18)
+
+============================================================
+مأموریت (1 screen, 0 patch)
+============================================================
+صفحات:
+  [فعال] mamouriat (idSystem=9)

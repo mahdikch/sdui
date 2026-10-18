@@ -135,6 +135,16 @@ internal class DivBinder @Inject constructor(
             is Div.Switch -> bindSwitch(context, view, div.value, path)
         }.also {
             // extensionController bound new CustomView in DivCustomBinder after replacing in parent
+
+
+
+
+
+
+
+
+
+
             if (div !is Div.Custom) {
                 extensionController.bindView(divView, resolver, view, div.value())
             }

@@ -457,10 +457,10 @@ class Div2View private constructor(
         bindOnAttachRunnable?.cancel()
         val oldRootDiv = oldData.state()?.div
         val rootChanges = patch.changes.find { it.id == oldRootDiv?.value()?.id } ?: run {
-            rebind(oldData, false, reporter)
-            divData = newDivData
-            div2Component.divBinder.setDataWithoutBinding(bindingContext, getChildAt(0), state.div)
-            return true
+            // Non-root patches (e.g. replacing base_element inside a grid/gallery) must
+            // rebuild from the already-patched DivData. The old rebind(oldData) +
+            // setDataWithoutBinding path left grid children without a proper column layout.
+            return updateNow(newDivData, dataTag, reporter)
         }
 
         val items = rootChanges.items

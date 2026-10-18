@@ -23,10 +23,13 @@
     <!-- مقدار -->
     <TextView
         android:id="@+id/valueText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="2"
         android:text="مقدار"
+        android:gravity="end"
         android:textColor="#222"
         android:textSize="14sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:maxLines="2" />
 </LinearLayout>

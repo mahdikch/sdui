@@ -32,7 +32,7 @@ class UIDiv2ViewCreator(private val context: Context, private val lo:LifecycleOw
     private val uriHandler = DivkitDemoUriHandler(context)
     
     // Expose action handler for external use
-    val actionHandler = UIDiv2ActionHandler(uriHandler, context, activity, lo, context as LoadScreenListener, mehdiViewModel, btmSheet_div, bottomSheetManager)
+    val actionHandler = UIDiv2ActionHandler(uriHandler, context, activity, lo, activity as LoadScreenListener, mehdiViewModel, btmSheet_div, bottomSheetManager)
     
     // Method to update BottomSheetManager in action handler
     fun updateBottomSheetManager(bottomSheetManager: BottomSheetManager?) {
@@ -59,7 +59,7 @@ class UIDiv2ViewCreator(private val context: Context, private val lo:LifecycleOw
         val divJson = assetReader.read(scenarioPath)
         val transitionScheduler = Div2Activity.DivParentTransitionScheduler(parent)
         val divConfiguration =
-            divConfiguration(activity, logDelegate, mehdiViewModel, lo, context as LoadScreenListener)
+            divConfiguration(activity, logDelegate, mehdiViewModel, lo, activity as LoadScreenListener)
                 .extension(
                     DivPinchToZoomExtensionHandler(
                         DivPinchToZoomConfiguration.Builder(activity).build()
@@ -93,7 +93,7 @@ class UIDiv2ViewCreator(private val context: Context, private val lo:LifecycleOw
 
         val transitionScheduler = Div2Activity.DivParentTransitionScheduler(parent)
         val divConfiguration =
-            divConfiguration(activity, logDelegate,mehdiViewModel,lo,context as LoadScreenListener)
+            divConfiguration(activity, logDelegate,mehdiViewModel,lo,activity as LoadScreenListener)
                 .extension(
                     DivPinchToZoomExtensionHandler(
                         DivPinchToZoomConfiguration.Builder(activity).build()
@@ -111,8 +111,16 @@ class UIDiv2ViewCreator(private val context: Context, private val lo:LifecycleOw
             lifecycleOwner = activity as? LifecycleOwner
         )
         divStateStorage.preloadState("div2")
-        val templateJson = divView.optJSONObject("templates")
-        val cardJson = divView.getJSONObject("card")
+        val normalizedDivView = if (!divView.has("card") && divView.has("states")) {
+            org.json.JSONObject().apply {
+                put("card", divView)
+                put("templates", org.json.JSONObject())
+            }
+        } else {
+            divView
+        }
+        val templateJson = normalizedDivView.optJSONObject("templates")
+        val cardJson = normalizedDivView.getJSONObject("card")
         println("assetReader2 = "+cardJson.get("variables").toString())
 
         return Div2ViewFactory(divContext, templateJson).createView(cardJson)

@@ -1,0 +1,4326 @@
+{
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 8
+              },
+              "items": [
+                {
+                  "type": "page_title",
+                  "text": "ثبت تصادف غیرسازشی",
+                  "alignment_horizontal": "right"
+                },
+                {
+                  "type": "text",
+                  "text": "بازگشت",
+                  "font_size": 12,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "actions": [
+                    {
+                      "log_id": "update_visibility",
+                      "url": "div-action://set_variable?name=variable_hoviat_visibility&value=gone"
+                    },
+                    {
+                      "log_id": "back",
+                      "url": "div-action://pop_and_load_screen"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "horizontal",
+              "content_alignment_vertical": "center",
+              "content_alignment_horizontal": "right",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ],
+              "border": {
+                "corner_radius": 8
+              },
+              "paddings": {
+                "top": 6,
+                "bottom": 6,
+                "start": 8,
+                "end": 8
+              },
+              "margins": {
+                "bottom": 8
+              },
+              "items": [
+                {
+                  "type": "custom",
+                  "custom_type": "circular_progress",
+                  "custom_props": {
+                    "current": "@{current}",
+                    "total": "@{total}"
+                  },
+                  "width": {
+                    "type": "fixed",
+                    "value": 36
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 36
+                  },
+                  "margins": {
+                    "end": 8
+                  }
+                },
+                {
+                  "type": "container",
+                  "orientation": "vertical",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "اطلاعات تکمیلی",
+                      "font_size": 12,
+                      "font_weight": "medium",
+                      "text_color": "#1f2937",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": "بعدی :استدلال و استنتاج کارشناسی",
+                      "font_size": 10,
+                      "text_color": "#6b7280",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "top": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "gallery",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "match_parent",
+                "weight": 1
+              },
+              "items": [
+                {
+                  "type": "separator",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 10
+                  },
+                  "margins": {
+                    "start": 8,
+                    "end": 8
+                  }
+                },
+                {
+                  "type": "container",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "مشخصات تصادف ",
+                      "font_size": 14,
+                      "width": {
+                        "type": "wrap_content",
+                        "constrained": true
+                      },
+                      "font_weight": "bold",
+                      "alignment_horizontal": "end",
+                      "margins": {
+                        "top": 10,
+                        "bottom": 10,
+                        "start": 10,
+                        "end": 10
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "کد کارشناس کمکی ",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://show_date_picker?variableName=date"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "input",
+                                  "text_variable": "uncompromising_additional_expert_code",
+                                  "hint_text": "انتخاب نمایید",
+                                  "keyboard_type": "single_text_line",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "شماره خبر",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://show_date_picker?variableName=date"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "input",
+                                  "text_variable": "uncompromising_additional_news_code",
+                                  "hint_text": "انتخاب نمایید",
+                                  "keyboard_type": "single_text_line",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    }
+                  ],
+                  "border": {
+                    "stroke": {
+                      "style": {
+                        "type": "solid"
+                      },
+                      "width": 2,
+                      "color": "#E0E0E0"
+                    },
+                    "corner_radius": 4,
+                    "corners_radius": {
+                      "top-left": 4,
+                      "top-right": 4,
+                      "bottom-left": 4,
+                      "bottom-right": 4
+                    }
+                  },
+                  "margins": {
+                    "top": 8,
+                    "bottom": 8,
+                    "start": 8,
+                    "end": 8
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ]
+                },
+                {
+                  "type": "container",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "زمان و مکان تصادف ",
+                      "font_size": 14,
+                      "width": {
+                        "type": "wrap_content",
+                        "constrained": true
+                      },
+                      "font_weight": "bold",
+                      "alignment_horizontal": "end",
+                      "margins": {
+                        "top": 10,
+                        "bottom": 10,
+                        "start": 10,
+                        "end": 10
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "تاریخ حضور پلیس در صحنه تصادف",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://show_date_picker?variableName=date"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{uncompromising_additional_police_informed_date}",
+                                  "hint_text": "انتخاب نمایید",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "زمان مطلع شدن پلیس",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://show_date_picker?variableName=date"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{uncompromising_additional_police_informed_time}",
+                                  "hint_text": "انتخاب نمایید",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "تاریخ رسیدن اورژانس",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://show_date_picker?variableName=date"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text_variable": "uncompromising_additional_emergency_informed_date",
+                                  "hint_text": "انتخاب نمایید",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "زمان رسیدن اورژانس",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://show_date_picker?variableName=date"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{uncompromising_additional_emergency_informed_time}",
+                                  "hint_text": "انتخاب نمایید",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "تاریخ رسیدن امداد و نجات",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://show_date_picker?variableName=date"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{uncompromising_additional_auxiliary_informed_date}",
+                                  "hint_text": "انتخاب نمایید",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    },
+                    {
+                      "type": "container",
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "زمان رسیدن امداد و نجات",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          },
+                          "items": [
+                            {
+                              "type": "container",
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://show_date_picker?variableName=date"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{uncompromising_additional_auxiliary_informed_time}",
+                                  "hint_text": "انتخاب نمایید",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "container",
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "نحوه مطلع شدن پلیس ",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          },
+                          "items": [
+                            {
+                              "type": "container",
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://show_date_picker?variableName=date"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{uncompromising_additional_how_police_informed_time}",
+                                  "hint_text": "انتخاب نمایید",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "container",
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "نام مبدا راه",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          },
+                          "items": [
+                            {
+                              "type": "container",
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://show_date_picker?variableName=date"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{uncompromising_additional_beginning_road_name}",
+                                  "hint_text": "انتخاب نمایید",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "border": {
+                    "stroke": {
+                      "style": {
+                        "type": "solid"
+                      },
+                      "width": 2,
+                      "color": "#E0E0E0"
+                    },
+                    "corner_radius": 4,
+                    "corners_radius": {
+                      "top-left": 4,
+                      "top-right": 4,
+                      "bottom-left": 4,
+                      "bottom-right": 4
+                    }
+                  },
+                  "margins": {
+                    "top": 8,
+                    "bottom": 8,
+                    "start": 8,
+                    "end": 8
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ]
+                },
+                {
+                  "type": "container",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "جزئیات مشخصات تصادف  ",
+                      "font_size": 14,
+                      "width": {
+                        "type": "wrap_content",
+                        "constrained": true
+                      },
+                      "font_weight": "bold",
+                      "alignment_horizontal": "end",
+                      "margins": {
+                        "top": 10,
+                        "bottom": 10,
+                        "start": 10,
+                        "end": 10
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "وضعیت عامل تصادف",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://bottom_sheet_list?id=ACCIDENT_AGENT_STATUS&varName=ACCIDENT_AGENT_STATUS&title= وضعیت عامل تصادف &title_var=uncompromising_additional_operant_status&code_var=uncompromising_additional_operant_status_code"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{uncompromising_additional_operant_status}",
+                                  "hint_text": "انتخاب نمایید",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "علل اولیه",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://bottom_sheet_list?id=PRIMARY_ACCIDENT_CAUSES&varName=PRIMARY_ACCIDENT_CAUSES&title= علل اولیه &selection=multi&title_var=uncompromising_additional_primitive_reasons&code_var=uncompromising_additional_primitive_reasons_code"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{uncompromising_additional_primitive_reasons}",
+                                  "hint_text": "انتخاب نمایید",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "علل واسط",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://bottom_sheet_list?id=PREVIOUS_ACCIDENT_CAUSES&varName=PREVIOUS_ACCIDENT_CAUSES&title= علل واسط &selection=multi&title_var=uncompromising_additional_interface_reasons&code_var=uncompromising_additional_interface_reasons_code"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{uncompromising_additional_interface_reasons}",
+                                  "hint_text": "انتخاب نمایید",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "علل مستقیم",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://bottom_sheet_list?id=DIRECT_ACCIDENT_CAUSES&varName=DIRECT_ACCIDENT_CAUSES&title= علل مستقیم &selection=multi&title_var=uncompromising_additional_direct_reasons&code_var=uncompromising_additional_direct_reasons_code"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{uncompromising_additional_direct_reasons}",
+                                  "hint_text": "انتخاب نمایید",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    }
+                  ],
+                  "border": {
+                    "stroke": {
+                      "style": {
+                        "type": "solid"
+                      },
+                      "width": 2,
+                      "color": "#E0E0E0"
+                    },
+                    "corner_radius": 4,
+                    "corners_radius": {
+                      "top-left": 4,
+                      "top-right": 4,
+                      "bottom-left": 4,
+                      "bottom-right": 4
+                    },
+                    "shadow": {
+                      "color": "#E0E0E0"
+                    }
+                  },
+                  "margins": {
+                    "top": 8,
+                    "bottom": 8,
+                    "start": 8,
+                    "end": 8
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ]
+                },
+                {
+                  "type": "container",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "مشخصات راه",
+                      "font_size": 14,
+                      "width": {
+                        "type": "wrap_content",
+                        "constrained": true
+                      },
+                      "font_weight": "bold",
+                      "alignment_horizontal": "end",
+                      "margins": {
+                        "top": 10,
+                        "bottom": 10,
+                        "start": 10,
+                        "end": 10
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "نوع رویه راه",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://bottom_sheet_list?id=ROAD_SURFACE&varName=ROAD_SURFACE&title= نوع رویه راه &title_var=uncompromising_additional_road_cover&code_var=uncompromising_additional_road_cover_code"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{uncompromising_additional_road_cover}",
+                                  "hint_text": "انتخاب نمایید",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "نوع منطقه",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://bottom_sheet_list?id=AREA_TYPE&varName=AREA_TYPE&title= نوع منطقه &title_var=uncompromising_additional_region_type&code_var=uncompromising_additional_region_type_code"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{uncompromising_additional_region_type}",
+                                  "hint_text": "انتخاب نمایید",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "نوع کنترل تقاطع",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://bottom_sheet_list?id=INTERSECTION_CONTROL_TYPE&varName=INTERSECTION_CONTROL_TYPE&title= نوع کنترل تقاطع &title_var=uncompromising_additional_intersection_control&code_var=uncompromising_additional_intersection_control_code"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{uncompromising_additional_intersection_control}",
+                                  "hint_text": "انتخاب نمایید",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "هندسه محل",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://bottom_sheet_list?id=ACCIDENT_SITE_GEOMETRY&varName=ACCIDENT_SITE_GEOMETRY&title= هندسه محل &title_var=uncompromising_additional_geometry_location&code_var=uncompromising_additional_geometry_location_code"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{uncompromising_additional_geometry_location}",
+                                  "hint_text": "انتخاب نمایید",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "خط کشی",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://bottom_sheet_list?id=LINE_MARKING_TYPE&varName=LINE_MARKING_TYPE&title= خط کشی &title_var=uncompromising_additional_line&code_var=uncompromising_additional_line_code"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{uncompromising_additional_line}",
+                                  "hint_text": "انتخاب نمایید",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "تعمیرات راه",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://bottom_sheet_list?id=ROAD_REPAIRS&varName=ROAD_REPAIRS&title= تعمیرات راه &title_var=uncompromising_additional_road_repair&code_var=uncompromising_additional_road_repair_code"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{uncompromising_additional_road_repair}",
+                                  "hint_text": "انتخاب نمایید",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "صدمات وارده به تجهیزات",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "empty://",
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://bottom_sheet_list?id=EQUIPMENT_DAMAGE&varName=EQUIPMENT_DAMAGE&title= صدمات وارده به تجهیزات &selection=multi&title_var=uncompromising_additional_equipment_injuries&code_var=uncompromising_additional_equipment_injuries_code"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 38
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 32
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "top": 5,
+                                    "bottom": 5,
+                                    "start": 5,
+                                    "end": 5
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "@{uncompromising_additional_equipment_injuries}",
+                                  "hint_text": "انتخاب نمایید",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    },
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "کلانتری / پاسگاه انتظامی",
+                          "font_size": 12,
+                          "font_weight": "normal",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#3b3b3b",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 15,
+                            "end": 15
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "input",
+                                  "text_variable": "uncompromising_additional_police_station",
+                                  "hint_text": "انتخاب نمایید",
+                                  "keyboard_type": "single_text_line",
+                                  "font_size": 14,
+                                  "font_weight": "regular",
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#cccccc",
+                              "style": {
+                                "type": "solid"
+                              },
+                              "unit": "px",
+                              "width": 2
+                            },
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center"
+                    },
+                    {
+                      "type": "container",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "validation_text",
+                          "text": "وضعیت عامل تصادف اجباری می باشد.",
+                          "visibility": "@{ validation_additional_operant_status ? 'gone' : 'visible'}",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "alignment_horizontal": "end",
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        },
+                        {
+                          "type": "validation_text",
+                          "text": "علل اولیه اجباری می باشد.",
+                          "visibility": "@{ validation_additional_primitive_reasons ? 'gone' : 'visible'}",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "alignment_horizontal": "end",
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        },
+                        {
+                          "type": "validation_text",
+                          "text": "علل واسط اجباری می باشد.",
+                          "visibility": "@{ validation_additional_interface_reasons ? 'gone' : 'visible'}",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "alignment_horizontal": "end",
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        },
+                        {
+                          "type": "validation_text",
+                          "text": "علل مستقیم اجباری می باشد.",
+                          "visibility": "@{ validation_additional_direct_reasons ? 'gone' : 'visible'}",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "alignment_horizontal": "end",
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        },
+                        {
+                          "type": "validation_text",
+                          "text": "نوع رویه راه اجباری می باشد.",
+                          "visibility": "@{ validation_additional_road_cover ? 'gone' : 'visible'}",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "alignment_horizontal": "end",
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        },
+                        {
+                          "type": "validation_text",
+                          "text": "نوع منطقه اجباری می باشد.",
+                          "visibility": "@{ validation_additional_region_type ? 'gone' : 'visible'}",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "alignment_horizontal": "end",
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        },
+                        {
+                          "type": "validation_text",
+                          "text": "هندسه محل اجباری می باشد.",
+                          "visibility": "@{ validation_additional_geometry_location ? 'gone' : 'visible'}",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "alignment_horizontal": "end",
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        },
+                        {
+                          "type": "validation_text",
+                          "text": "تعمیرات راه اجباری می باشد.",
+                          "visibility": "@{ validation_additional_road_repair ? 'gone' : 'visible'}",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "alignment_horizontal": "end",
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        },
+                        {
+                          "type": "validation_text",
+                          "text": "صدمات وارده به تجهیزات اجباری می باشد.",
+                          "visibility": "@{ validation_additional_equipment_injuries ? 'gone' : 'visible'}",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "alignment_horizontal": "end",
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "border": {
+                    "stroke": {
+                      "style": {
+                        "type": "solid"
+                      },
+                      "width": 2,
+                      "color": "#E0E0E0"
+                    },
+                    "corner_radius": 4,
+                    "corners_radius": {
+                      "top-left": 4,
+                      "top-right": 4,
+                      "bottom-left": 4,
+                      "bottom-right": 4
+                    },
+                    "shadow": {
+                      "color": "#E0E0E0"
+                    }
+                  },
+                  "margins": {
+                    "top": 8,
+                    "bottom": 8,
+                    "start": 8,
+                    "end": 8
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ]
+                }
+              ],
+              "orientation": "vertical",
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "horizontal",
+              "content_alignment_vertical": "center",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "top": 10
+              },
+              "items": [
+                {
+                  "type": "primary_btn",
+                  "text": "@{text___31}",
+                  "width": {
+                    "type": "match_parent",
+                    "weight": 1
+                  },
+                  "margins": {
+                    "start": 4
+                  },
+                  "actions": [
+                    {
+                      "log_id": "save_draft_page2",
+                      "url": "div-action://set_page_with_changes_to_db?key=draft/@{current_accident_id}/page7"
+                    },
+                    {
+                      "log_id": "save_archive_index",
+                      "url": "div-action://set_object_to_db?archive_path=Accidents&next=draft/@{current_accident_id}/page2&title=ثبت تصادف غیر سازشی&accident_id=@{current_accident_id}&current_step=3&process_type=sazeshi&step_dbshow=صفحه ۲ از ۴&step_persian_lan=مرحله&accident_id_dbshow=@{current_accident_id}&accident_id_persian_lan=شناسه"
+                    },
+                    {
+                      "log_id": "set_step",
+                      "url": "div-action://set_variable_to_db?key=current_step&value=8"
+                    },
+                    {
+                      "log_id": "load_screen",
+                      "url": "div-action://load_screen?screen=Accidents/uncompromising/expertreasoning"
+                    }
+                  ]
+                },
+                {
+                  "type": "secondary_btn",
+                  "text": "@{text___33}",
+                  "width": {
+                    "type": "match_parent",
+                    "weight": 1
+                  },
+                  "margins": {
+                    "end": 4
+                  },
+                  "actions": [
+                    {
+                      "log_id": "load_screen",
+                      "url": "div-action://load_screen?screen=amaken/completion"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "height": {
+            "type": "match_parent"
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "vertical",
+          "paddings": {
+            "top": 8,
+            "bottom": 12,
+            "start": 16,
+            "end": 16
+          }
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "string",
+        "name": "refresh",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "arrow_right",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "text___33",
+        "value": "مرحله قبل"
+      },
+      {
+        "type": "string",
+        "name": "text___31",
+        "value": "مرحله بعد"
+      },
+      {
+        "type": "string",
+        "name": "date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_expert_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_news_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_police_informed_date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_police_informed_time",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_emergency_informed_date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_auxiliary_informed_date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_auxiliary_informed_time",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_how_police_informed_time",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_beginning_road_name",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_operant_status",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_operant_status_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_additional_operant_status",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_primitive_reasons",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_primitive_reasons_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_additional_primitive_reasons",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_interface_reasons",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_interface_reasons_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_additional_interface_reasons",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_direct_reasons",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_direct_reasons_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_additional_direct_reasons",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_road_cover",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_road_cover_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_additional_road_cover",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_region_type",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_region_type_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_additional_region_type",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_intersection_control",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_intersection_control_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_geometry_location",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_geometry_location_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_additional_geometry_location",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_line",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_line_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_road_repair",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_road_repair_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_additional_road_repair",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_equipment_injuries",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_equipment_injuries_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_additional_equipment_injuries",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_additional_police_station",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "empty",
+        "value": ""
+      }
+    ],
+    "variable_triggers": [
+      {
+        "condition": "@{ uncompromising_additional_operant_status == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_additional_operant_status&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ uncompromising_additional_primitive_reasons_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_additional_primitive_reasons&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ uncompromising_additional_primitive_reasons_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_additional_primitive_reasons&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ uncompromising_additional_interface_reasons_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_additional_interface_reasons&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ uncompromising_additional_interface_reasons_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_additional_interface_reasons&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ uncompromising_additional_direct_reasons_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_additional_direct_reasons&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ uncompromising_additional_direct_reasons_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_additional_direct_reasons&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ uncompromising_additional_road_cover_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_additional_road_cover&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ uncompromising_additional_road_cover_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_additional_road_cover&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ uncompromising_additional_region_type_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_additional_region_type&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ uncompromising_additional_region_type_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_additional_region_type&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ uncompromising_additional_geometry_location_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_additional_geometry_location&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ uncompromising_additional_geometry_location_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_additional_geometry_location&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ uncompromising_additional_road_repair_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_additional_road_repair&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ uncompromising_additional_road_repair_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_additional_road_repair&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ uncompromising_additional_equipment_injuries_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_additional_equipment_injuries&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ uncompromising_additional_equipment_injuries_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_additional_equipment_injuries&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{ uncompromising_additional_equipment_injuries_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_additional_equipment_injuries&value=false"
+          }
+        ]
+      }
+    ]
+  },
+  "templates": {
+    "page_title": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "wrap_content"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "section_label": {
+      "type": "text",
+      "font_size": 12,
+      "font_weight": "medium",
+      "text_color": "#6b7280",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 6
+      }
+    },
+    "field_box": {
+      "type": "container",
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "right",
+      "content_alignment_vertical": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#c8d0e4",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "start": 12,
+        "end": 12
+      },
+      "margins": {
+        "bottom": 10
+      }
+    },
+    "field_value": {
+      "type": "text",
+      "font_size": 13,
+      "text_color": "#1f2937",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "field_input": {
+      "type": "input",
+      "font_size": 13,
+      "text_color": "#1f2937",
+      "hint_color": "#9ca3af",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "validation_text": {
+      "type": "text",
+      "font_size": 12,
+      "font_weight": "medium",
+      "text_color": "#dc2626",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 6
+      }
+    },
+    "primary_btn": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#ffffff",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#193d8d"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14
+      }
+    },
+    "secondary_btn": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#f3f5f9"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14
+      }
+    }
+  }
+}

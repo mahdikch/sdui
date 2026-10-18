@@ -2,10 +2,11 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorAccent</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorSecondary">@color/colorAccent</item>
         <item name="colorControlNormal">@color/colorControlNormal</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="android:buttonStyle">@style/Widget.AppTheme.Button</item>
@@ -20,10 +21,14 @@
         <item name="buttonBarNegativeButtonStyle">@style/Widget.AppTheme.Button.Bar</item>
         <item name="buttonBarNeutralButtonStyle">@style/Widget.AppTheme.Button.Bar</item>
         <item name="actionBarStyle">@style/Widget.AppTheme.ActionBar</item>
-        <item name="android:windowLightStatusBar" tools:ignore="NewApi">?android:isLightTheme</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -79,7 +84,7 @@
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
         <item name="android:navigationBarColor">@color/white</item>
         <item name="android:statusBarColor">?colorPrimary</item>
-        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:fontFamily">@font/irsans</item>
     </style>
 
     <style name="AppTheme.NoActionBar.Demo">
@@ -93,7 +98,7 @@
         <item name="android:navigationBarColor">@color/white</item>
         <item name="android:statusBarColor">?colorPrimary</item>
         <item name="android:actionMenuTextColor">#000000</item>
-        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:fontFamily">@font/irsans</item>
     </style>
 
     <style name="ActivitySubtitleStyle">
@@ -104,13 +109,13 @@
 
     <style name="ActivityExpandedTitleStyle.Light">
         <item name="android:textColor">#ffffff</item>
-        <item name="android:fontFamily">@font/ys_display_bold</item>
+        <item name="android:fontFamily">@font/irsans</item>
         <item name="android:textSize">28sp</item>
     </style>
 
     <style name="SettingItem" parent="Preference.SwitchPreferenceCompat">
         <item name="android:textColor">#ffffffff</item>
-        <item name="android:fontFamily">@font/ys_display_bold</item>
+        <item name="android:fontFamily">@font/irsans</item>
         <item name="android:textSize">28sp</item>
     </style>
 
@@ -130,6 +135,17 @@
 
     <style name="AppTheme.NoActionBar.QrScan">
         <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="LoadingDialogTheme" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.45</item>
+        <item name="android:windowMinWidthMajor">0dp</item>
+        <item name="android:windowMinWidthMinor">0dp</item>
     </style>
 
 </resources>

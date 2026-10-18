@@ -47,13 +47,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false" />
-        <Button
-            android:id="@+id/sendButton"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ارسال"
             android:layout_marginTop="12dp"
-            android:backgroundTint="#1976D2"
-            android:textColor="#FFF" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/sendButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ارسال"
+                android:backgroundTint="#1976D2"
+                android:textColor="#FFF" />
+
+            <Button
+                android:id="@+id/deleteButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="حذف"
+                android:backgroundTint="#C62828"
+                android:textColor="#FFF"
+                android:visibility="gone" />
+        </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

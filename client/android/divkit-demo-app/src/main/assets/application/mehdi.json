@@ -5,7 +5,7 @@
       {
         "state_id": 0,
         "div": {
-          "type": "container",
+          "type": "gallery",
           "orientation": "vertical",
           "width": {
             "type": "match_parent"
@@ -22,238 +22,17 @@
             "end": 20
           },
           "items": [
-            {
-              "type": "text",
-              "text": "صفحه اول",
-              "alignment_horizontal": "center",
-              "font_size": 18,
-              "line_height": 24,
-              "font_weight": "regular",
-              "text_alignment_vertical": "center",
-              "text_alignment_horizontal": "center",
-              "text_color": "#000000",
-              "margins": {
-                "top": 24,
-                "bottom": 40
-              }
-            },
-            {
-              "type": "container",
-              "width": {
-                "type": "match_parent"
-              },
-              "height": {
-                "type": "fixed",
-                "value": 100
-              },
-              "items": [
-                {
-                  "type": "bubble_text",
-                  "text": "فرم تست",
-                  "background": [
-                    {
-                      "color": "#000000",
-                      "type": "solid"
-                    }
-                  ],
-                  "height": {
-                    "type": "fixed",
-                    "value": 80
-                  },
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "margins": {
-                    "top": 10
-                  },
-                  "border": {
-                    "corner_radius": 85
-                  },
-                  "actions": [
-                    {
-                      "log_id": "open_test",
-                      "url": "div-action://load_screen?screen=login"
-                    }
-                  ]
-                },
-                {
-                  "type": "bubble_text",
-                  "text": "صفحه دوم",
-                  "background": [
-                    {
-                      "color": "#000000",
-                      "type": "solid"
-                    }
-                  ],
-                  "height": {
-                    "type": "fixed",
-                    "value": 80
-                  },
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "margins": {
-                    "top": 10
-                  },
-                  "border": {
-                    "corner_radius": 85
-                  },
-                  "actions": [
-                    {
-                      "log_id": "open_settings",
-                      "url": "div-action://load_screen?screen=second"
-                    }
-                  ]
-                }
-              ],
-              "orientation": "horizontal"
-            },
-            {
-              "type": "container",
-              "width": {
-                "type": "match_parent"
-              },
-              "height": {
-                "type": "fixed",
-                "value": 100
-              },
-              "items": [
-                {
-                  "type": "bubble_text",
-                  "text": "تنظیمات",
-                  "background": [
-                    {
-                      "color": "#000000",
-                      "type": "solid"
-                    }
-                  ],
-                  "height": {
-                    "type": "fixed",
-                    "value": 80
-                  },
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "margins": {
-                    "top": 10
-                  },
-                  "border": {
-                    "corner_radius": 85
-                  },
-                  "actions": [
-                    {
-                      "log_id": "open_settings",
-                      "url": "div-action://load_screen?screen=settings"
-                    }
-                  ]
-                },
-                {
-                  "type": "bubble_text",
-                  "text": "منو",
-                  "background": [
-                    {
-                      "color": "#000000",
-                      "type": "solid"
-                    }
-                  ],
-                  "height": {
-                    "type": "fixed",
-                    "value": 80
-                  },
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "margins": {
-                    "top": 10
-                  },
-                  "border": {
-                    "corner_radius": 85
-                  },
-                  "actions": [
-                    {
-                      "log_id": "open_settings",
-                      "url": "div-action://load_screen?screen=menu"
-                    }
-                  ]
-                }
-              ],
-              "orientation": "horizontal"
-            },
-            {
-              "type": "container",
-              "width": {
-                "type": "match_parent"
-              },
-              "height": {
-                "type": "fixed",
-                "value": 100
-              },
-              "items": [
-                {
-                  "type": "bubble_text",
-                  "text": "توست",
-                  "background": [
-                    {
-                      "color": "#000000",
-                      "type": "solid"
-                    }
-                  ],
-                  "height": {
-                    "type": "fixed",
-                    "value": 80
-                  },
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "margins": {
-                    "top": 10
-                  },
-                  "border": {
-                    "corner_radius": 85
-                  },
-                  "actions": [
-                    {
-                      "log_id": "show_toast",
-                      "url": "div-action://show_toast?massage=@{toast}"
-                    }
-                  ]
-                },
-                {
-                  "type": "bubble_text",
-                  "text": "دیالوگ",
-                  "background": [
-                    {
-                      "color": "#000000",
-                      "type": "solid"
-                    }
-                  ],
-                  "height": {
-                    "type": "fixed",
-                    "value": 80
-                  },
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "margins": {
-                    "top": 10
-                  },
-                  "border": {
-                    "corner_radius": 85
-                  },
-                  "actions": [
-                    {
-                      "log_id": "show_dialog",
-                      "url": "div-action://show_dialog?title=@{toast}"
-                    }
-                  ]
-                }
-              ],
-              "orientation": "horizontal"
-            },
+
             {
               "type": "custom",
-              "id": "new_custom_card_2",
-              "custom_type": "new_custom_card_2"
+              "custom_type": "accident_sketch",
+              "custom_props": {
+                "variable_name": "accident_sketch_json",
+                "image_variable": "accident_sketch_image",
+                "sound_variable": "accident_sketch_sound"
+              },
+              "width": { "type": "match_parent" },
+              "height": { "type": "fixed", "value": 200 }
             }
           ]
         }
@@ -262,13 +41,18 @@
     "variables": [
       {
         "type": "string",
-        "name": "night_mode",
-        "value": "DAY"
+        "name": "accident_sketch_json",
+        "value": ""
       },
       {
         "type": "string",
-        "name": "app_version",
-        "value": "DivKit"
+        "name": "accident_sketch_image",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "accident_sketch_sound",
+        "value": ""
       },
       {
         "type": "integer",

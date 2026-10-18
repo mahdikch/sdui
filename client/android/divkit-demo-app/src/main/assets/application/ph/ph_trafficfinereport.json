@@ -1,0 +1,2338 @@
+{
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "match_parent"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#fafafa"
+            }
+          ],
+          "items": [
+            {
+              "type": "gallery",
+              "orientation": "vertical",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "match_parent"
+              },
+              "items": [
+                {
+                  "type": "container",
+                  "orientation": "vertical",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 8,
+                    "stroke": {
+                      "color": "#c8d0e4",
+                      "width": 1
+                    }
+                  },
+                  "paddings": {
+                    "top": 12,
+                    "bottom": 12,
+                    "start": 12,
+                    "end": 12
+                  },
+                  "margins": {
+                    "top": 8,
+                    "start": 8,
+                    "end": 8
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "گزارش جریمه",
+                      "font_size": 16,
+                      "font_weight": "medium",
+                      "text_color": "#193d8d",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "bottom": 12
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "orientation": "horizontal",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "background": [
+                        {
+                          "type": "solid",
+                          "color": "#e8ecf4"
+                        }
+                      ],
+                      "border": {
+                        "corner_radius": 8
+                      },
+                      "paddings": {
+                        "top": 4,
+                        "bottom": 4,
+                        "start": 4,
+                        "end": 4
+                      },
+                      "items": [
+                        {
+                          "type": "container",
+                          "actions": [
+                            {
+                              "log_id": "reset_result_status",
+                              "url": "div-action://set_variable?name=result_status&value=success"
+                            },
+                            {
+                              "log_id": "change_ticket_type",
+                              "url": "div-action://set_variable?name=isInternal&value=0"
+                            },
+                            {
+                              "log_id": "change_elsaghi_background",
+                              "url": "div-action://change_color?name=elsaghi_color&value=@{gray}"
+                            },
+                            {
+                              "log_id": "change_dobargi_background",
+                              "url": "div-action://change_color?name=dobargi_color&value=@{white}"
+                            },
+                            {
+                              "log_id": "change_taslimi_background",
+                              "url": "div-action://change_color?name=past_fines_color&value=@{gray}"
+                            },
+                            {
+                              "log_id": "change_taslimi_background",
+                              "url": "div-action://change_color?name=total_number_of_fines_text_color&value=757575"
+                            },
+                            {
+                              "log_id": "change_taslimi_background",
+                              "url": "div-action://change_color?name=type_of_fines_text_color&value=1A4499"
+                            },
+                            {
+                              "log_id": "change_taslimi_background",
+                              "url": "div-action://change_color?name=past_fines_text_color&value=757575"
+                            },
+                            {
+                              "log_id": "change_ticket_type",
+                              "url": "div-action://set_variable?name=isInternal&value=2"
+                            },
+                            {
+                              "log_id": "hide_past_success",
+                              "url": "div-action://set_variable?name=past_success_visibility&value=gone"
+                            },
+                            {
+                              "log_id": "hide_past_failed",
+                              "url": "div-action://set_variable?name=past_failed_visibility&value=gone"
+                            },
+                            {
+                              "log_id": "hide_total_number_success",
+                              "url": "div-action://set_variable?name=total_number_success_visibility&value=gone"
+                            },
+                            {
+                              "log_id": "hide_total_number_failed",
+                              "url": "div-action://set_variable?name=total_number_faild_visibility&value=gone"
+                            },
+                            {
+                              "log_id": "show_total_type_success",
+                              "url": "div-action://set_variable?name=total_type_success_visibility&value=visible"
+                            },
+                            {
+                              "log_id": "hide_total_type_failed",
+                              "url": "div-action://set_variable?name=total_type_failed_visibility&value=gone"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "@{dobargi_color}"
+                            }
+                          ],
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{text___2}",
+                              "font_size": 12,
+                              "font_weight": "medium",
+                              "text_color": "@{type_of_fines_text_color}",
+                              "text_alignment_horizontal": "center",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              }
+                            }
+                          ],
+                          "border": {
+                            "corner_radius": 6
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "center",
+                          "content_alignment_vertical": "center",
+                          "paddings": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 6,
+                            "end": 6
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "actions": [
+                            {
+                              "log_id": "reset_result_status",
+                              "url": "div-action://set_variable?name=result_status&value=success"
+                            },
+                            {
+                              "log_id": "change_ticket_type",
+                              "url": "div-action://set_variable?name=isInternal&value=0"
+                            },
+                            {
+                              "log_id": "change_elsaghi_background",
+                              "url": "div-action://change_color?name=elsaghi_color&value=@{white}"
+                            },
+                            {
+                              "log_id": "change_dobargi_background",
+                              "url": "div-action://change_color?name=dobargi_color&value=@{gray}"
+                            },
+                            {
+                              "log_id": "change_taslimi_background",
+                              "url": "div-action://change_color?name=past_fines_color&value=@{gray}"
+                            },
+                            {
+                              "log_id": "change_taslimi_background",
+                              "url": "div-action://change_color?name=total_number_of_fines_text_color&value=1A4499"
+                            },
+                            {
+                              "log_id": "change_taslimi_background",
+                              "url": "div-action://change_color?name=type_of_fines_text_color&value=757575"
+                            },
+                            {
+                              "log_id": "change_taslimi_background",
+                              "url": "div-action://change_color?name=past_fines_text_color&value=757575"
+                            },
+                            {
+                              "log_id": "change_ticket_type",
+                              "url": "div-action://set_variable?name=isInternal&value=1"
+                            },
+                            {
+                              "log_id": "hide_past_success",
+                              "url": "div-action://set_variable?name=past_success_visibility&value=gone"
+                            },
+                            {
+                              "log_id": "hide_past_failed",
+                              "url": "div-action://set_variable?name=past_failed_visibility&value=gone"
+                            },
+                            {
+                              "log_id": "show_total_number_success",
+                              "url": "div-action://set_variable?name=total_number_success_visibility&value=visible"
+                            },
+                            {
+                              "log_id": "hide_total_number_failed",
+                              "url": "div-action://set_variable?name=total_number_faild_visibility&value=gone"
+                            },
+                            {
+                              "log_id": "hide_total_type_success",
+                              "url": "div-action://set_variable?name=total_type_success_visibility&value=gone"
+                            },
+                            {
+                              "log_id": "hide_total_type_failed",
+                              "url": "div-action://set_variable?name=total_type_failed_visibility&value=gone"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "@{elsaghi_color}"
+                            }
+                          ],
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{text___3}",
+                              "font_size": 12,
+                              "font_weight": "medium",
+                              "text_color": "@{total_number_of_fines_text_color}",
+                              "text_alignment_horizontal": "center",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              }
+                            }
+                          ],
+                          "border": {
+                            "corner_radius": 6
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "center",
+                          "content_alignment_vertical": "center",
+                          "paddings": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 6,
+                            "end": 6
+                          },
+                          "margins": {
+                            "start": 4,
+                            "end": 4
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "actions": [
+                            {
+                              "log_id": "reset_result_status",
+                              "url": "div-action://set_variable?name=result_status&value=success"
+                            },
+                            {
+                              "log_id": "change_ticket_type",
+                              "url": "div-action://set_variable?name=isInternal&value=0"
+                            },
+                            {
+                              "log_id": "change_elsaghi_background",
+                              "url": "div-action://change_color?name=elsaghi_color&value=@{gray}"
+                            },
+                            {
+                              "log_id": "change_dobargi_background",
+                              "url": "div-action://change_color?name=dobargi_color&value=@{gray}"
+                            },
+                            {
+                              "log_id": "change_taslimi_background",
+                              "url": "div-action://change_color?name=past_fines_color&value=@{white}"
+                            },
+                            {
+                              "log_id": "change_taslimi_background",
+                              "url": "div-action://change_color?name=total_number_of_fines_text_color&value=757575"
+                            },
+                            {
+                              "log_id": "change_taslimi_background",
+                              "url": "div-action://change_color?name=type_of_fines_text_color&value=757575"
+                            },
+                            {
+                              "log_id": "change_taslimi_background",
+                              "url": "div-action://change_color?name=past_fines_text_color&value=1A4499"
+                            },
+                            {
+                              "log_id": "change_ticket_type",
+                              "url": "div-action://set_variable?name=isInternal&value=0"
+                            },
+                            {
+                              "log_id": "show_past_success",
+                              "url": "div-action://set_variable?name=past_success_visibility&value=visible"
+                            },
+                            {
+                              "log_id": "hide_past_failed",
+                              "url": "div-action://set_variable?name=past_failed_visibility&value=gone"
+                            },
+                            {
+                              "log_id": "hide_total_number_success",
+                              "url": "div-action://set_variable?name=total_number_success_visibility&value=gone"
+                            },
+                            {
+                              "log_id": "hide_total_number_failed",
+                              "url": "div-action://set_variable?name=total_number_faild_visibility&value=gone"
+                            },
+                            {
+                              "log_id": "hide_total_type_failed",
+                              "url": "div-action://set_variable?name=total_type_success_visibility&value=gone"
+                            },
+                            {
+                              "log_id": "hide_total_type_failed",
+                              "url": "div-action://set_variable?name=total_type_failed_visibility&value=gone"
+                            }
+                          ],
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{text___4}",
+                              "font_size": 12,
+                              "font_weight": "medium",
+                              "text_color": "@{past_fines_text_color}",
+                              "text_alignment_horizontal": "center",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              }
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "@{past_fines_color}"
+                            }
+                          ],
+                          "border": {
+                            "corner_radius": 6
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "center",
+                          "content_alignment_vertical": "center",
+                          "paddings": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 6,
+                            "end": 6
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "container",
+                      "orientation": "horizontal",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "background": [
+                        {
+                          "type": "solid",
+                          "color": "#e8ecf4"
+                        }
+                      ],
+                      "border": {
+                        "corner_radius": 8
+                      },
+                      "paddings": {
+                        "top": 4,
+                        "bottom": 4,
+                        "start": 4,
+                        "end": 4
+                      },
+                      "margins": {
+                        "top": 10
+                      },
+                      "items": [
+                        {
+                          "type": "container",
+                          "visibility": "@{un_sucssesfuly}",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "ناموفق",
+                              "font_size": 13,
+                              "font_weight": "medium",
+                              "text_color": "@{un_sucsses_text_color}",
+                              "text_alignment_horizontal": "center",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              }
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "@{shomare_selected}"
+                            }
+                          ],
+                          "border": {
+                            "corner_radius": 6
+                          },
+                          "actions": [
+                            {
+                              "log_id": "change_text_color",
+                              "url": "div-action://change_color?name=un_sucsses_text_color&value=dc2626"
+                            },
+                            {
+                              "log_id": "set_failed_status",
+                              "url": "div-action://set_variable?name=result_status&value=failed"
+                            },
+                            {
+                              "log_id": "change_taslimi_background",
+                              "url": "div-action://change_color?name=sucsses_text_color&value=757575"
+                            },
+                            {
+                              "log_id": "update_visibility",
+                              "url": "div-action://set_variable?name=pelak_visibility&value=gone"
+                            },
+                            {
+                              "log_id": "update_visibility",
+                              "url": "div-action://set_variable?name=shomare_visibility&value=visible"
+                            },
+                            {
+                              "log_id": "change_shomare_tab_background",
+                              "url": "div-action://change_color?name=shomare_selected&value=@{selected_tab}"
+                            },
+                            {
+                              "log_id": "change_pelak_tab_background",
+                              "url": "div-action://change_color?name=pelak_selected&value=@{unselected_tab}"
+                            },
+                            {
+                              "log_id": "set_failed_status",
+                              "url": "div-action://set_variable?name=result_status&value=failed"
+                            }
+                          ],
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "center",
+                          "content_alignment_vertical": "center",
+                          "paddings": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 8,
+                            "end": 8
+                          },
+                          "margins": {
+                            "end": 4
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "موفق",
+                              "font_size": 13,
+                              "font_weight": "medium",
+                              "text_color": "@{sucsses_text_color}",
+                              "text_alignment_horizontal": "center",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              }
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "@{pelak_selected}"
+                            }
+                          ],
+                          "actions": [
+                            {
+                              "log_id": "change_text_color",
+                              "url": "div-action://change_color?name=sucsses_text_color&value=193d8d"
+                            },
+                            {
+                              "log_id": "set_success_status",
+                              "url": "div-action://set_variable?name=result_status&value=success"
+                            },
+                            {
+                              "log_id": "change_text_color",
+                              "url": "div-action://change_color?name=un_sucsses_text_color&value=757575"
+                            },
+                            {
+                              "log_id": "update_visibility",
+                              "url": "div-action://set_variable?name=pelak_visibility&value=visible"
+                            },
+                            {
+                              "log_id": "update_enabled",
+                              "url": "div-action://set_variable?name=inquery_enabled&value=false"
+                            },
+                            {
+                              "log_id": "update_visibility",
+                              "url": "div-action://set_variable?name=shomare_visibility&value=gone"
+                            },
+                            {
+                              "log_id": "change_shomarer_tab_background",
+                              "url": "div-action://change_color?name=shomare_selected&value=@{unselected_tab}"
+                            },
+                            {
+                              "log_id": "change_pelak_tab_background",
+                              "url": "div-action://change_color?name=pelak_selected&value=@{selected_tab}"
+                            },
+                            {
+                              "log_id": "set_success_status",
+                              "url": "div-action://set_variable?name=result_status&value=success"
+                            }
+                          ],
+                          "border": {
+                            "corner_radius": 6
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "center",
+                          "content_alignment_vertical": "center",
+                          "paddings": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 8,
+                            "end": 8
+                          },
+                          "margins": {
+                            "start": 4
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "container",
+                  "visibility": "@{past_success_visibility}",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "past_fines_successfully_submitted_template",
+                      "successful_plate_number": "81ج271-ایران63",
+                      "successful_date_fine": "1405/5/23-19:33",
+                      "successful_type_of_fine": "دوبرگی",
+                      "successful_serial": "-"
+                    }
+                  ]
+                },
+                {
+                  "type": "container",
+                  "visibility": "@{past_failed_visibility}",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "past_fines_unsuccessfully_submitted_template",
+                      "unsuccessful_plate_number": "81ج271-ایران63",
+                      "unsuccessful_date_fine": "1405/5/23-19:33",
+                      "unsuccessful_type_of_fine": "دوبرگی"
+                    }
+                  ]
+                },
+                {
+                  "type": "container",
+                  "visibility": "@{total_number_success_visibility}",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "total_number_of_succesful_traffic_fines_template",
+                      "type_successful": "2002",
+                      "number_successful": "15"
+                    }
+                  ]
+                },
+                {
+                  "type": "container",
+                  "visibility": "@{total_number_failed_visibility}",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "total_number_of_unsuccesful_traffic_fines_template",
+                      "type_unsuccessful": "2002",
+                      "number_unsuccessful": "30"
+                    }
+                  ]
+                },
+                {
+                  "type": "container",
+                  "visibility": "@{total_type_success_visibility}",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "total_types_of_succesful_traffic_fine_template",
+                      "type_succesful": "2004",
+                      "number_succesful": "20"
+                    }
+                  ]
+                },
+                {
+                  "type": "container",
+                  "visibility": "@{total_type_failed_visibility}",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "total_types_of_unsuccesful_traffic_fine_template",
+                      "all_type_succesful": "2006",
+                      "all_number_succesful": "60"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "string",
+        "name": "user.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "close_circle.png",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "plateA",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "plateB",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "plateC",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "plateD",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "ticket_number",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "adress",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "location.png",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "text___1",
+        "value": "اطلاعات پایه"
+      },
+      {
+        "type": "string",
+        "name": "text___2",
+        "value": "تعداد کل نوع جریمه"
+      },
+      {
+        "type": "string",
+        "name": "text___3",
+        "value": "تعداد کل جریمه"
+      },
+      {
+        "type": "string",
+        "name": "text___4",
+        "value": "جریمه های گذشته"
+      },
+      {
+        "type": "string",
+        "name": "text___5",
+        "value": "شهر"
+      },
+      {
+        "type": "string",
+        "name": "text___6",
+        "value": "تهران"
+      },
+      {
+        "type": "string",
+        "name": "text___7",
+        "value": "تایید اطلاعات"
+      },
+      {
+        "type": "string",
+        "name": "text___8",
+        "value": "کد پاسگاه   (اختیاری)"
+      },
+      {
+        "type": "string",
+        "name": "text___9",
+        "value": "۴۵۳۵۳۴۵"
+      },
+      {
+        "type": "string",
+        "name": "text___10",
+        "value": "منطقه   (اختیاری)"
+      },
+      {
+        "type": "string",
+        "name": "text___11",
+        "value": "۱۲"
+      },
+      {
+        "type": "string",
+        "name": "cityPolice_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "zone",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "white",
+        "value": "ffffff"
+      },
+      {
+        "type": "string",
+        "name": "gray",
+        "value": "E8ECF4"
+      },
+      {
+        "type": "string",
+        "name": "elsaghi_color",
+        "value": "#E8ECF4"
+      },
+      {
+        "type": "string",
+        "name": "dobargi_color",
+        "value": "#E8ECF4"
+      },
+      {
+        "type": "string",
+        "name": "past_fines_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "total_number_of_fines_text_color",
+        "value": "#757575"
+      },
+      {
+        "type": "string",
+        "name": "plateType",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "type_of_fines_text_color",
+        "value": "#757575"
+      },
+      {
+        "type": "string",
+        "name": "past_fines_text_color",
+        "value": "#193d8d"
+      },
+      {
+        "type": "string",
+        "name": "sucsses_text_color",
+        "value": "#193d8d"
+      },
+      {
+        "type": "string",
+        "name": "un_sucsses_text_color",
+        "value": "#757575"
+      },
+      {
+        "type": "string",
+        "name": "isInternal",
+        "value": "0"
+      },
+      {
+        "type": "boolean",
+        "name": "validation",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "police_code_validation",
+        "value": true
+      },
+      {
+        "type": "string",
+        "name": "empty",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "pelak_selected",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "shomare_selected",
+        "value": "#e8ecf4"
+      },
+      {
+        "type": "string",
+        "name": "unselected_tab",
+        "value": "e8ecf4"
+      },
+      {
+        "type": "string",
+        "name": "unselected_tab_text",
+        "value": "757575"
+      },
+      {
+        "type": "string",
+        "name": "selected_tab",
+        "value": "ffffff"
+      },
+      {
+        "type": "string",
+        "name": "selected_tab_text",
+        "value": "193d8d"
+      },
+      {
+        "type": "string",
+        "name": "un_sucssesfuly",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "past_success_visibility",
+        "value": "gone"
+      },
+      {
+        "type": "string",
+        "name": "past_failed_visibility",
+        "value": "gone"
+      },
+      {
+        "type": "string",
+        "name": "total_number_success_visibility",
+        "value": "gone"
+      },
+      {
+        "type": "string",
+        "name": "total_number_failed_visibility",
+        "value": "gone"
+      },
+      {
+        "type": "string",
+        "name": "total_type_success_visibility",
+        "value": "gone"
+      },
+      {
+        "type": "string",
+        "name": "total_type_failed_visibility",
+        "value": "gone"
+      },
+      {
+        "type": "string",
+        "name": "result_status",
+        "value": "success"
+      },
+      {
+        "type": "array",
+        "name": "reports",
+        "value": []
+      }
+    ],
+    "variable_triggers": [
+      {
+        "condition": "@{isInternal=='0' && result_status=='success'}",
+        "mode": "on_variable",
+        "actions": [
+          {
+            "log_id": "past_success",
+            "url": "div-action://set_variable?name=past_success_visibility&value=visible"
+          },
+          {
+            "log_id": "hide_past_failed",
+            "url": "div-action://set_variable?name=past_failed_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_total_number_success",
+            "url": "div-action://set_variable?name=total_number_success_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_total_number_failed",
+            "url": "div-action://set_variable?name=total_number_failed_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_total_type_success",
+            "url": "div-action://set_variable?name=total_type_success_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_total_type_failed",
+            "url": "div-action://set_variable?name=total_type_failed_visibility&value=gone"
+          }
+        ]
+      },
+      {
+        "condition": "@{isInternal=='0' && result_status=='failed'}",
+        "mode": "on_variable",
+        "actions": [
+          {
+            "log_id": "hide_past_success",
+            "url": "div-action://set_variable?name=past_success_visibility&value=gone"
+          },
+          {
+            "log_id": "show_past_failed",
+            "url": "div-action://set_variable?name=past_failed_visibility&value=visible"
+          },
+          {
+            "log_id": "hide_total_number_success",
+            "url": "div-action://set_variable?name=total_number_success_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_total_number_failed",
+            "url": "div-action://set_variable?name=total_number_failed_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_total_type_success",
+            "url": "div-action://set_variable?name=total_type_success_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_total_type_failed",
+            "url": "div-action://set_variable?name=total_type_failed_visibility&value=gone"
+          }
+        ]
+      },
+      {
+        "condition": "@{isInternal=='1' && result_status=='success'}",
+        "mode": "on_variable",
+        "actions": [
+          {
+            "log_id": "hide_past_success",
+            "url": "div-action://set_variable?name=past_success_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_past_failed",
+            "url": "div-action://set_variable?name=past_failed_visibility&value=gone"
+          },
+          {
+            "log_id": "show_total_number_success",
+            "url": "div-action://set_variable?name=total_number_success_visibility&value=visible"
+          },
+          {
+            "log_id": "hide_total_number_failed",
+            "url": "div-action://set_variable?name=total_number_failed_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_total_type_success",
+            "url": "div-action://set_variable?name=total_type_success_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_total_type_failed",
+            "url": "div-action://set_variable?name=total_type_failed_visibility&value=gone"
+          }
+        ]
+      },
+      {
+        "condition": "@{isInternal=='1' && result_status=='failed'}",
+        "mode": "on_variable",
+        "actions": [
+          {
+            "log_id": "hide_past_success",
+            "url": "div-action://set_variable?name=past_success_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_past_failed",
+            "url": "div-action://set_variable?name=past_failed_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_total_number_success",
+            "url": "div-action://set_variable?name=total_number_success_visibility&value=gone"
+          },
+          {
+            "log_id": "show_total_number_failed",
+            "url": "div-action://set_variable?name=total_number_failed_visibility&value=visible"
+          },
+          {
+            "log_id": "hide_total_type_success",
+            "url": "div-action://set_variable?name=total_type_success_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_total_type_failed",
+            "url": "div-action://set_variable?name=total_type_failed_visibility&value=gone"
+          }
+        ]
+      },
+      {
+        "condition": "@{isInternal=='2' && result_status=='success'}",
+        "mode": "on_variable",
+        "actions": [
+          {
+            "log_id": "hide_past_success",
+            "url": "div-action://set_variable?name=past_success_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_past_failed",
+            "url": "div-action://set_variable?name=past_failed_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_total_number_success",
+            "url": "div-action://set_variable?name=total_number_success_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_total_number_failed",
+            "url": "div-action://set_variable?name=total_number_failed_visibility&value=gone"
+          },
+          {
+            "log_id": "show_total_type_success",
+            "url": "div-action://set_variable?name=total_type_success_visibility&value=visible"
+          },
+          {
+            "log_id": "hide_total_type_failed",
+            "url": "div-action://set_variable?name=total_type_failed_visibility&value=gone"
+          }
+        ]
+      },
+      {
+        "condition": "@{isInternal=='2' && result_status=='failed'}",
+        "mode": "on_variable",
+        "actions": [
+          {
+            "log_id": "hide_past_success",
+            "url": "div-action://set_variable?name=past_success_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_past_failed",
+            "url": "div-action://set_variable?name=past_failed_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_total_number_success",
+            "url": "div-action://set_variable?name=total_number_success_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_total_number_failed",
+            "url": "div-action://set_variable?name=total_number_failed_visibility&value=gone"
+          },
+          {
+            "log_id": "hide_total_type_success",
+            "url": "div-action://set_variable?name=total_type_success_visibility&value=gone"
+          },
+          {
+            "log_id": "show_total_type_failed",
+            "url": "div-action://set_variable?name=total_type_failed_visibility&value=visible"
+          }
+        ]
+      }
+    ]
+  },
+  "templates": {
+    "past_fines_successfully_submitted_template": {
+      "type": "container",
+      "orientation": "vertical",
+      "actions": [
+        {
+          "$log_id": "successful_serial",
+          "url": "div-action://bottom_sheet_div?jsonName=ph/trafficticket&array=reports&match_key=rangeId&prefix=fine_"
+        }
+      ],
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#193d8d",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "start": 10,
+        "end": 10
+      },
+      "margins": {
+        "bottom": 8,
+        "start": 8,
+        "end": 8
+      },
+      "items": [
+        {
+          "type": "container",
+          "orientation": "overlap",
+          "content_alignment_horizontal": "center",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "fixed",
+            "value": 36
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#193d8d"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "margins": {
+            "bottom": 10
+          },
+          "items": [
+            {
+              "type": "text",
+              "text": "ارسال موفق",
+              "font_size": 13,
+              "font_weight": "medium",
+              "text_color": "#ffffff",
+              "text_alignment_horizontal": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "orientation": "overlap",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "paddings": {
+            "top": 10,
+            "bottom": 10,
+            "start": 12,
+            "end": 12
+          },
+          "margins": {
+            "bottom": 8
+          },
+          "items": [
+            {
+              "type": "text",
+              "text": "شماره پلاک",
+              "font_size": 12,
+              "font_weight": "medium",
+              "text_color": "#193d8d",
+              "text_alignment_horizontal": "right",
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            },
+            {
+              "type": "text",
+              "$text": "successful_plate_number",
+              "font_size": 13,
+              "text_color": "#1f2937",
+              "text_alignment_horizontal": "left",
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "orientation": "overlap",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "paddings": {
+            "top": 10,
+            "bottom": 10,
+            "start": 12,
+            "end": 12
+          },
+          "margins": {
+            "bottom": 8
+          },
+          "items": [
+            {
+              "type": "text",
+              "text": "تاریخ جریمه",
+              "font_size": 12,
+              "font_weight": "medium",
+              "text_color": "#193d8d",
+              "text_alignment_horizontal": "right",
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            },
+            {
+              "type": "text",
+              "$text": "successful_date_fine",
+              "font_size": 13,
+              "text_color": "#1f2937",
+              "text_alignment_horizontal": "left",
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "orientation": "overlap",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "paddings": {
+            "top": 10,
+            "bottom": 10,
+            "start": 12,
+            "end": 12
+          },
+          "margins": {
+            "bottom": 8
+          },
+          "items": [
+            {
+              "type": "text",
+              "text": "نوع جریمه",
+              "font_size": 12,
+              "font_weight": "medium",
+              "text_color": "#193d8d",
+              "text_alignment_horizontal": "right",
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            },
+            {
+              "type": "text",
+              "$text": "successful_type_of_fine",
+              "font_size": 13,
+              "text_color": "#1f2937",
+              "text_alignment_horizontal": "left",
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "orientation": "overlap",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "paddings": {
+            "top": 10,
+            "bottom": 10,
+            "start": 12,
+            "end": 12
+          },
+          "items": [
+            {
+              "type": "text",
+              "text": "سریال",
+              "font_size": 12,
+              "font_weight": "medium",
+              "text_color": "#193d8d",
+              "text_alignment_horizontal": "right",
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            },
+            {
+              "type": "text",
+              "$text": "successful_serial",
+              "font_size": 13,
+              "text_color": "#1f2937",
+              "text_alignment_horizontal": "left",
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "past_fines_unsuccessfully_submitted_template": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#dc2626",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "start": 10,
+        "end": 10
+      },
+      "margins": {
+        "bottom": 8,
+        "start": 8,
+        "end": 8
+      },
+      "items": [
+        {
+          "type": "container",
+          "orientation": "overlap",
+          "content_alignment_horizontal": "center",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "fixed",
+            "value": 36
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#dc2626"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "margins": {
+            "bottom": 10
+          },
+          "items": [
+            {
+              "type": "text",
+              "text": "ارسال ناموفق",
+              "font_size": 13,
+              "font_weight": "medium",
+              "text_color": "#ffffff",
+              "text_alignment_horizontal": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "orientation": "overlap",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "paddings": {
+            "top": 10,
+            "bottom": 10,
+            "start": 12,
+            "end": 12
+          },
+          "margins": {
+            "bottom": 8
+          },
+          "items": [
+            {
+              "type": "text",
+              "text": "شماره پلاک",
+              "font_size": 12,
+              "font_weight": "medium",
+              "text_color": "#193d8d",
+              "text_alignment_horizontal": "right",
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            },
+            {
+              "type": "text",
+              "$text": "unsuccessful_plate_number",
+              "font_size": 13,
+              "text_color": "#1f2937",
+              "text_alignment_horizontal": "left",
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "orientation": "overlap",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "paddings": {
+            "top": 10,
+            "bottom": 10,
+            "start": 12,
+            "end": 12
+          },
+          "margins": {
+            "bottom": 8
+          },
+          "items": [
+            {
+              "type": "text",
+              "text": "تاریخ جریمه",
+              "font_size": 12,
+              "font_weight": "medium",
+              "text_color": "#193d8d",
+              "text_alignment_horizontal": "right",
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            },
+            {
+              "type": "text",
+              "$text": "unsuccessful_date_fine",
+              "font_size": 13,
+              "text_color": "#1f2937",
+              "text_alignment_horizontal": "left",
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "orientation": "overlap",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "paddings": {
+            "top": 10,
+            "bottom": 10,
+            "start": 12,
+            "end": 12
+          },
+          "items": [
+            {
+              "type": "text",
+              "text": "نوع جریمه",
+              "font_size": 12,
+              "font_weight": "medium",
+              "text_color": "#193d8d",
+              "text_alignment_horizontal": "right",
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            },
+            {
+              "type": "text",
+              "$text": "unsuccessful_type_of_fine",
+              "font_size": 13,
+              "text_color": "#1f2937",
+              "text_alignment_horizontal": "left",
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "total_number_of_succesful_traffic_fines_template": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#193d8d",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "start": 10,
+        "end": 10
+      },
+      "margins": {
+        "bottom": 8,
+        "start": 8,
+        "end": 8
+      },
+      "items": [
+        {
+          "type": "container",
+          "orientation": "overlap",
+          "content_alignment_horizontal": "center",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "fixed",
+            "value": 36
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#193d8d"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "margins": {
+            "bottom": 10
+          },
+          "items": [
+            {
+              "type": "text",
+              "text": "ارسال موفق",
+              "font_size": 13,
+              "font_weight": "medium",
+              "text_color": "#ffffff",
+              "text_alignment_horizontal": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "orientation": "overlap",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "paddings": {
+            "top": 10,
+            "bottom": 10,
+            "start": 12,
+            "end": 12
+          },
+          "items": [
+            {
+              "type": "text",
+              "$text": "type_successful",
+              "font_size": 12,
+              "font_weight": "medium",
+              "text_color": "#193d8d",
+              "text_alignment_horizontal": "right",
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            },
+            {
+              "type": "text",
+              "$text": "number_successful",
+              "font_size": 13,
+              "text_color": "#1f2937",
+              "text_alignment_horizontal": "left",
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "total_number_of_unsuccesful_traffic_fines_template": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#dc2626",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "start": 10,
+        "end": 10
+      },
+      "margins": {
+        "bottom": 8,
+        "start": 8,
+        "end": 8
+      },
+      "items": [
+        {
+          "type": "container",
+          "orientation": "overlap",
+          "content_alignment_horizontal": "center",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "fixed",
+            "value": 36
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#dc2626"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "margins": {
+            "bottom": 10
+          },
+          "items": [
+            {
+              "type": "text",
+              "text": "ارسال ناموفق",
+              "font_size": 13,
+              "font_weight": "medium",
+              "text_color": "#ffffff",
+              "text_alignment_horizontal": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "orientation": "overlap",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "paddings": {
+            "top": 10,
+            "bottom": 10,
+            "start": 12,
+            "end": 12
+          },
+          "items": [
+            {
+              "type": "text",
+              "$text": "type_unsuccessful",
+              "font_size": 12,
+              "font_weight": "medium",
+              "text_color": "#193d8d",
+              "text_alignment_horizontal": "right",
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            },
+            {
+              "type": "text",
+              "$text": "number_unsuccessful",
+              "font_size": 13,
+              "text_color": "#1f2937",
+              "text_alignment_horizontal": "left",
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "total_types_of_succesful_traffic_fine_template": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#193d8d",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "start": 10,
+        "end": 10
+      },
+      "margins": {
+        "bottom": 8,
+        "start": 8,
+        "end": 8
+      },
+      "items": [
+        {
+          "type": "container",
+          "orientation": "overlap",
+          "content_alignment_horizontal": "center",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "fixed",
+            "value": 36
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#193d8d"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "margins": {
+            "bottom": 10
+          },
+          "items": [
+            {
+              "type": "text",
+              "text": "ارسال موفق",
+              "font_size": 13,
+              "font_weight": "medium",
+              "text_color": "#ffffff",
+              "text_alignment_horizontal": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "orientation": "overlap",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "paddings": {
+            "top": 10,
+            "bottom": 10,
+            "start": 12,
+            "end": 12
+          },
+          "items": [
+            {
+              "type": "text",
+              "$text": "type_succesful",
+              "font_size": 12,
+              "font_weight": "medium",
+              "text_color": "#193d8d",
+              "text_alignment_horizontal": "right",
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            },
+            {
+              "type": "text",
+              "$text": "number_succesful",
+              "font_size": 13,
+              "text_color": "#1f2937",
+              "text_alignment_horizontal": "left",
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "total_types_of_unsuccesful_traffic_fine_template": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#dc2626",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "start": 10,
+        "end": 10
+      },
+      "margins": {
+        "bottom": 8,
+        "start": 8,
+        "end": 8
+      },
+      "items": [
+        {
+          "type": "container",
+          "orientation": "overlap",
+          "content_alignment_horizontal": "center",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "fixed",
+            "value": 36
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#dc2626"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "margins": {
+            "bottom": 10
+          },
+          "items": [
+            {
+              "type": "text",
+              "text": "ارسال ناموفق",
+              "font_size": 13,
+              "font_weight": "medium",
+              "text_color": "#ffffff",
+              "text_alignment_horizontal": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "orientation": "overlap",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "paddings": {
+            "top": 10,
+            "bottom": 10,
+            "start": 12,
+            "end": 12
+          },
+          "items": [
+            {
+              "type": "text",
+              "$text": "all_type_succesful",
+              "font_size": 12,
+              "font_weight": "medium",
+              "text_color": "#193d8d",
+              "text_alignment_horizontal": "right",
+              "alignment_horizontal": "right",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            },
+            {
+              "type": "text",
+              "$text": "all_number_succesful",
+              "font_size": 13,
+              "text_color": "#1f2937",
+              "text_alignment_horizontal": "left",
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

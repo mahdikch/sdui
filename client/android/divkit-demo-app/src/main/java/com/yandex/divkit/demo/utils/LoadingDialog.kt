@@ -1,60 +1,64 @@
 package com.yandex.divkit.demo.utils
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
-import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.TextView
 import com.yandex.divkit.demo.R
-import java.util.Objects
 
 class LoadingDialog(private val context: Context) {
-    var dialog = Dialog(context)
 
-    fun showLoadingDialog(
+    private val dialog = Dialog(context, R.style.LoadingDialogTheme)
+    private var titleView: TextView? = null
 
-        title: String
-    ): LoadingDialog {
+    init {
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
-//        dialog.setContentView(R.layout.loading)
-        val width =
-            ((context.resources.displayMetrics.widthPixels/3) * 2 )
-        val height =
-            ((context.resources.displayMetrics.heightPixels/3) * 1 )
+        val view = LayoutInflater.from(context).inflate(R.layout.loading, null)
+        titleView = view.findViewById(R.id.txtTitle)
+        dialog.setContentView(view)
+        dialog.window?.apply {
+            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            setDimAmount(0.45f)
+            setLayout(
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT
+            )
+        }
+    }
 
+    fun showLoadingDialog(title: String): LoadingDialog {
+        if (!canShow()) return this
         try {
-            if (!dialog.isShowing) {
-
-//                if (dialog.window != null) {
-//                    dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//                }
-                val inflater = LayoutInflater.from(context)
-                val promptsView: View = inflater.inflate(R.layout.loading, null)
-                val textView = promptsView.findViewById<TextView>(R.id.txtTitle)
-//            val lottie = promptsView.findViewById<LottieAnimationView>(R.id.littie)
-//            lottie.
-                dialog.setContentView(promptsView)
-
-//                dialog.isIndeterminate = true
-                if (title != "") {
-                    textView.text = title
-                }
-                dialog.show()
-
-//                Objects.requireNonNull(dialog.window)?.setLayout(width, height)
+            if (title.isNotBlank()) {
+                titleView?.text = title
             }
-        } catch (r: Exception) {
-            r.printStackTrace()
+            if (!dialog.isShowing) {
+                dialog.show()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
         return this
     }
 
     fun dismissDialog() {
-
-        if (dialog.isShowing)
-            dialog.dismiss()
+        try {
+            if (dialog.isShowing) {
+                dialog.dismiss()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
+    private fun canShow(): Boolean {
+        val activity = context as? Activity ?: return true
+        return !activity.isFinishing && !activity.isDestroyed
+    }
 }

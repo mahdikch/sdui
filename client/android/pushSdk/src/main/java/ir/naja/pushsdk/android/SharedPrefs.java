@@ -56,6 +56,14 @@ public class SharedPrefs {
         return getPrefs(context).getString(key, defaultValue);
     }
 
+    public static void remove(Context context, String key) {
+        getPrefs(context).edit().remove(key).commit();
+    }
+
+    public static void clear(Context context) {
+        getPrefs(context).edit().clear().commit();
+    }
+
     //Integers
     public static void save(Context context, String key, int value) {
         getPrefs(context).edit().putInt(key, value).commit();

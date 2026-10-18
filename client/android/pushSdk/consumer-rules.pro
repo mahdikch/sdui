@@ -1,0 +1,5 @@
+-keep class ir.naja.pushsdk.android.** { *; }
+-keep class org.eclipse.paho.** { *; }
+-keepclassmembers class * implements org.eclipse.paho.client.mqttv3.IMqttActionListener { *; }
+-keepclassmembers class * implements org.eclipse.paho.client.mqttv3.MqttCallbackExtended { *; }
+-keepclassmembers class * implements org.eclipse.paho.client.mqttv3.MqttCallback { *; }

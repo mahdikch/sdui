@@ -12,6 +12,7 @@ import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
+import androidx.core.view.marginEnd
 import com.yandex.divkit.demo.R
 
 class SingleSelectionView @JvmOverloads constructor(
@@ -41,6 +42,7 @@ class SingleSelectionView @JvmOverloads constructor(
     init {
         orientation = VERTICAL
         setPadding(16, 16, 16, 16)
+
         setBackgroundResource(R.drawable.multi_selection_background)
     }
 

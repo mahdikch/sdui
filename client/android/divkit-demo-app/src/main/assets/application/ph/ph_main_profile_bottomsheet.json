@@ -1,0 +1,553 @@
+{
+  "card": {
+    "log_id": "profile_details_bottomsheet",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "border": {
+            "corners_radius": {
+              "top-left": 16,
+              "top-right": 16
+            }
+          },
+          "paddings": {
+            "top": 8,
+            "bottom": 16,
+            "start": 16,
+            "end": 16
+          },
+          "items": [
+            {
+              "type": "separator",
+              "delimiter_style": {
+                "color": "#d1d5db"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 40
+              },
+              "height": {
+                "type": "fixed",
+                "value": 4
+              },
+              "alignment_horizontal": "center",
+              "border": {
+                "corner_radius": 2
+              },
+              "margins": {
+                "bottom": 12
+              }
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 12
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "اطلاعات کاربر",
+                  "font_size": 16,
+                  "font_weight": "medium",
+                  "text_color": "#193d8d",
+                  "text_alignment_horizontal": "right",
+                  "alignment_horizontal": "right",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "بستن",
+                  "font_size": 13,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "actions": [
+                    {
+                      "log_id": "close_profile_details",
+                      "url": "div-action://close_bottom_sheet"
+                    }
+                  ],
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 44
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ],
+              "items": [
+                {
+                  "type": "text",
+                  "text": "آخرین ورود",
+                  "font_size": 12,
+                  "text_color": "#6b7280",
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "end": 12
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{profile_last_login}",
+                  "font_size": 13,
+                  "text_color": "#1f2937",
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "start": 12
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 44
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "نام پدر",
+                  "font_size": 12,
+                  "text_color": "#6b7280",
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "end": 12
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{profile_father_name}",
+                  "font_size": 13,
+                  "text_color": "#1f2937",
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "start": 12
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 44
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ],
+              "items": [
+                {
+                  "type": "text",
+                  "text": "وضعیت خدمت",
+                  "font_size": 12,
+                  "text_color": "#6b7280",
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "end": 12
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{profile_status}",
+                  "font_size": 13,
+                  "text_color": "#1f2937",
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "start": 12
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 44
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "کد ملی",
+                  "font_size": 12,
+                  "text_color": "#6b7280",
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "end": 12
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{profile_national_code}",
+                  "font_size": 13,
+                  "text_color": "#1f2937",
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "start": 12
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 44
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ],
+              "items": [
+                {
+                  "type": "text",
+                  "text": "تاریخ تولد",
+                  "font_size": 12,
+                  "text_color": "#6b7280",
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "end": 12
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{profile_birthdate}",
+                  "font_size": 13,
+                  "text_color": "#1f2937",
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "start": 12
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 44
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "شماره PMO/APN",
+                  "font_size": 12,
+                  "text_color": "#6b7280",
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "end": 12
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{profile_pmo_number}",
+                  "font_size": 13,
+                  "text_color": "#1f2937",
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "start": 12
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 44
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ],
+              "items": [
+                {
+                  "type": "text",
+                  "text": "شماره تلفن شخصی",
+                  "font_size": 12,
+                  "text_color": "#6b7280",
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "end": 12
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{profile_personal_number}",
+                  "font_size": 13,
+                  "text_color": "#1f2937",
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "start": 12
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 44
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "کد پلیس",
+                  "font_size": 12,
+                  "text_color": "#6b7280",
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "end": 12
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{profile_police_code}",
+                  "font_size": 13,
+                  "text_color": "#1f2937",
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "start": 12
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "string",
+        "name": "profile_last_login",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "profile_father_name",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "profile_status",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "profile_national_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "profile_birthdate",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "profile_pmo_number",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "profile_personal_number",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "profile_police_code",
+        "value": ""
+      }
+    ]
+  },
+  "templates": {}
+}

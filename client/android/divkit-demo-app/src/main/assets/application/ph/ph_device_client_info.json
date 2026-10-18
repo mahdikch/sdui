@@ -1,0 +1,478 @@
+{
+  "card": {
+    "log_id": "ph_device_client_info",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "gallery",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "match_parent"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "paddings": {
+            "top": 8,
+            "bottom": 24,
+            "start": 12,
+            "end": 12
+          },
+          "items": [
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 12,
+                "top": 4
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "اطلاعات کلاینت",
+                  "font_size": 17,
+                  "font_weight": "medium",
+                  "text_color": "#193d8d",
+                  "text_alignment_horizontal": "right",
+                  "alignment_horizontal": "right",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "بستن",
+                  "font_size": 13,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "actions": [
+                    {
+                      "log_id": "close_device_info",
+                      "url": "div-action://close_bottom_sheet"
+                    }
+                  ],
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "info_section",
+              "section_title": "حساب کاربری",
+              "section_items": [
+                {
+                  "type": "info_row",
+                  "row_label": "نام کاربری",
+                  "row_value": "@{username}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "رمز عبور",
+                  "row_value": "@{password}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "شناسه PH",
+                  "row_value": "@{phId}"
+                }
+              ]
+            },
+            {
+              "type": "info_section",
+              "section_title": "کپچا",
+              "section_items": [
+                {
+                  "type": "info_row",
+                  "row_label": "شناسه کپچا",
+                  "row_value": "@{resultCaptchaId}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "مقدار کپچا",
+                  "row_value": "@{resultCaptcha}"
+                }
+              ]
+            },
+            {
+              "type": "info_section",
+              "section_title": "دستگاه",
+              "section_items": [
+                {
+                  "type": "info_row",
+                  "row_label": "کلید دستگاه",
+                  "row_value": "@{deviceKey}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "برچسب دستگاه",
+                  "row_value": "@{deviceLabel}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "IMEI",
+                  "row_value": "@{imei}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "سریال",
+                  "row_value": "@{serial}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "Android ID",
+                  "row_value": "@{androidId}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "مدل",
+                  "row_value": "@{model}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "سازنده",
+                  "row_value": "@{manufacturer}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "برند",
+                  "row_value": "@{brand}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "Device",
+                  "row_value": "@{device}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "Product",
+                  "row_value": "@{product}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "Hardware",
+                  "row_value": "@{hardware}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "CPU",
+                  "row_value": "@{cpu}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "رم (MB)",
+                  "row_value": "@{ramMb}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "نسخه اندروید",
+                  "row_value": "@{androidVersion}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "SDK",
+                  "row_value": "@{sdk}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "نسخه اپ",
+                  "row_value": "@{appVersion}"
+                }
+              ]
+            },
+            {
+              "type": "info_section",
+              "section_title": "موقعیت و زمان",
+              "section_items": [
+                {
+                  "type": "info_row",
+                  "row_label": "عرض جغرافیایی",
+                  "row_value": "@{latitude}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "طول جغرافیایی",
+                  "row_value": "@{longitude}"
+                },
+                {
+                  "type": "info_row",
+                  "row_label": "زمان کلاینت",
+                  "row_value": "@{clientTimestamp}"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "string",
+        "name": "username",
+        "value": "0912..."
+      },
+      {
+        "type": "string",
+        "name": "password",
+        "value": "••••••••"
+      },
+      {
+        "type": "string",
+        "name": "phId",
+        "value": "—"
+      },
+      {
+        "type": "string",
+        "name": "resultCaptchaId",
+        "value": "—"
+      },
+      {
+        "type": "string",
+        "name": "resultCaptcha",
+        "value": "—"
+      },
+      {
+        "type": "string",
+        "name": "deviceKey",
+        "value": "a1b2c3d4"
+      },
+      {
+        "type": "string",
+        "name": "deviceLabel",
+        "value": "Samsung SM-A525F"
+      },
+      {
+        "type": "string",
+        "name": "imei",
+        "value": "—"
+      },
+      {
+        "type": "string",
+        "name": "serial",
+        "value": "—"
+      },
+      {
+        "type": "string",
+        "name": "androidId",
+        "value": "a1b2c3d4"
+      },
+      {
+        "type": "string",
+        "name": "model",
+        "value": "SM-A525F"
+      },
+      {
+        "type": "string",
+        "name": "manufacturer",
+        "value": "samsung"
+      },
+      {
+        "type": "string",
+        "name": "brand",
+        "value": "samsung"
+      },
+      {
+        "type": "string",
+        "name": "device",
+        "value": "a52q"
+      },
+      {
+        "type": "string",
+        "name": "product",
+        "value": "a52qnsxx"
+      },
+      {
+        "type": "string",
+        "name": "hardware",
+        "value": "qcom"
+      },
+      {
+        "type": "string",
+        "name": "cpu",
+        "value": "arm64-v8a"
+      },
+      {
+        "type": "string",
+        "name": "ramMb",
+        "value": "6144"
+      },
+      {
+        "type": "string",
+        "name": "androidVersion",
+        "value": "13"
+      },
+      {
+        "type": "string",
+        "name": "sdk",
+        "value": "33"
+      },
+      {
+        "type": "string",
+        "name": "appVersion",
+        "value": "2.1.0"
+      },
+      {
+        "type": "string",
+        "name": "latitude",
+        "value": "35.6892"
+      },
+      {
+        "type": "string",
+        "name": "longitude",
+        "value": "51.3890"
+      },
+      {
+        "type": "string",
+        "name": "clientTimestamp",
+        "value": "1727172300000"
+      }
+    ]
+  },
+  "templates": {
+    "info_section": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 12,
+        "stroke": {
+          "color": "#c8d0e4",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 12,
+        "bottom": 8,
+        "start": 12,
+        "end": 12
+      },
+      "margins": {
+        "bottom": 10
+      },
+      "items": [
+        {
+          "type": "text",
+          "$text": "section_title",
+          "font_size": 14,
+          "font_weight": "medium",
+          "text_color": "#193d8d",
+          "text_alignment_horizontal": "right",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "margins": {
+            "bottom": 8
+          }
+        },
+        {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "$items": "section_items"
+        }
+      ]
+    },
+    "info_row": {
+      "type": "container",
+      "orientation": "overlap",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#f8fafc"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "start": 12,
+        "end": 12
+      },
+      "margins": {
+        "bottom": 6
+      },
+      "items": [
+        {
+          "type": "text",
+          "$text": "row_label",
+          "font_size": 11,
+          "text_color": "#6b7280",
+          "alignment_horizontal": "right",
+          "alignment_vertical": "center",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          }
+        },
+        {
+          "type": "text",
+          "$text": "row_value",
+          "font_size": 12,
+          "font_weight": "medium",
+          "text_color": "#1f2937",
+          "text_alignment_horizontal": "left",
+          "alignment_horizontal": "left",
+          "alignment_vertical": "center",
+          "max_lines": 3,
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "margins": {
+            "end": 96
+          }
+        }
+      ]
+    }
+  }
+}

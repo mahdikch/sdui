@@ -1,0 +1,1686 @@
+{
+  "templates": {
+    "page_title": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "wrap_content"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "section_label": {
+      "type": "text",
+      "font_size": 12,
+      "font_weight": "medium",
+      "text_color": "#6b7280",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 6
+      }
+    },
+    "field_box": {
+      "type": "container",
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "right",
+      "content_alignment_vertical": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#c8d0e4",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "start": 12,
+        "end": 12
+      },
+      "margins": {
+        "bottom": 10
+      }
+    },
+    "field_value": {
+      "type": "text",
+      "font_size": 13,
+      "text_color": "#1f2937",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "field_input": {
+      "type": "input",
+      "font_size": 13,
+      "text_color": "#1f2937",
+      "hint_color": "#9ca3af",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "validation_text": {
+      "type": "text",
+      "font_size": 12,
+      "font_weight": "medium",
+      "text_color": "#dc2626",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 6
+      }
+    },
+    "primary_btn": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#ffffff",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#193d8d"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14
+      }
+    },
+    "secondary_btn": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#f3f5f9"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14
+      },
+      "margins": {
+        "top": 8
+      }
+    }
+  },
+  "card": {
+    "log_id": "accidents_compromise_first",
+    "variables": [
+      {
+        "type": "string",
+        "name": "empty",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "current_accident_id",
+        "value": ""
+      },
+      {
+        "type": "integer",
+        "name": "current_step",
+        "value": 1
+      },
+      {
+        "type": "integer",
+        "name": "total",
+        "value": 4
+      },
+      {
+        "type": "string",
+        "name": "variable_road",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_road_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_policeCenterId",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_accident_date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_accident_time",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_accident_date_and_time",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_police_date_and_time",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_news_number",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_vehicle_count",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_distance_from_origin",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_police_date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_police_time",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_register_accident_date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_register_accident_time",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_collection_type",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_collection_type_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_geographic_coordinates_lat",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_geographic_coordinates_long",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "ACCIDENT_SCENE_STATUS_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "ACCIDENT_SCENE_STATUS_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "index1",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "checked",
+        "value": "divkit-asset://checkbox-checked.png"
+      },
+      {
+        "type": "string",
+        "name": "unchecked",
+        "value": "divkit-asset://checkbox-unchecked.png"
+      },
+      {
+        "type": "string",
+        "name": "current_livestock_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_livestock_type",
+        "value": "انتخاب کنید"
+      },
+      {
+        "type": "string",
+        "name": "compromising_livestock_type_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_livestock_count",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "attempted_next",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "val_validation_road",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "val_validation_news_number",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "val_validation_vehicle_count",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "val_validation_distance_from_origin",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "val_validation_lat_long",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "val_validation_accident_type",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "val_validation_accident_datetime_filled",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "val_validation_police_datetime_filled",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "val_validation_register_datetime_filled",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "val_validation_is_police_date_and_time_less_today_now",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "val_validation_is_accident_date_and_time_less_today_now",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "val_validation_is_accident_date_and_time_bigger_police_date_and_time",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "val_validation_next_page",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "acc_arrow_down.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "acc_calendar.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "acc_clock.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "acc_gps.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "add_square.png",
+        "value": "empty://"
+      }
+    ],
+    "variable_triggers": [
+      {
+        "condition": "@{variable_road != empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_road_ok",
+            "url": "div-action://set_variable?name=val_validation_road&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_road == empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_road_bad",
+            "url": "div-action://set_variable?name=val_validation_road&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_news_number != empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_news_ok",
+            "url": "div-action://set_variable?name=val_validation_news_number&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_news_number == empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_news_bad",
+            "url": "div-action://set_variable?name=val_validation_news_number&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_vehicle_count != empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_vehicle_ok",
+            "url": "div-action://set_variable?name=val_validation_vehicle_count&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_vehicle_count == empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_vehicle_bad",
+            "url": "div-action://set_variable?name=val_validation_vehicle_count&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_distance_from_origin != empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_distance_ok",
+            "url": "div-action://set_variable?name=val_validation_distance_from_origin&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_distance_from_origin == empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_distance_bad",
+            "url": "div-action://set_variable?name=val_validation_distance_from_origin&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_collection_type != empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_type_ok",
+            "url": "div-action://set_variable?name=val_validation_accident_type&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_collection_type == empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_type_bad",
+            "url": "div-action://set_variable?name=val_validation_accident_type&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_geographic_coordinates_lat != empty && variable_geographic_coordinates_long != empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_latlong_ok",
+            "url": "div-action://set_variable?name=val_validation_lat_long&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_geographic_coordinates_lat == empty || variable_geographic_coordinates_long == empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_latlong_bad",
+            "url": "div-action://set_variable?name=val_validation_lat_long&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_accident_date != empty && variable_accident_time != empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_accident_filled_ok",
+            "url": "div-action://set_variable?name=val_validation_accident_datetime_filled&value=true"
+          },
+          {
+            "log_id": "set_accident_dt",
+            "url": "div-action://set_variable?name=variable_accident_date_and_time&value=@{variable_accident_date}_@{variable_accident_time}"
+          },
+          {
+            "log_id": "check_accident_dt",
+            "url": "div-action://is_date_and_time_less_equal_today_now?current_time=variable_accident_date_and_time&result_var=val_validation_is_accident_date_and_time_less_today_now"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_accident_date == empty || variable_accident_time == empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_accident_filled_bad",
+            "url": "div-action://set_variable?name=val_validation_accident_datetime_filled&value=false"
+          },
+          {
+            "log_id": "val_accident_future_bad",
+            "url": "div-action://set_variable?name=val_validation_is_accident_date_and_time_less_today_now&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_police_date != empty && variable_police_time != empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_police_filled_ok",
+            "url": "div-action://set_variable?name=val_validation_police_datetime_filled&value=true"
+          },
+          {
+            "log_id": "set_police_dt",
+            "url": "div-action://set_variable?name=variable_police_date_and_time&value=@{variable_police_date}_@{variable_police_time}"
+          },
+          {
+            "log_id": "check_police_dt",
+            "url": "div-action://is_date_and_time_less_equal_today_now?current_time=variable_police_date_and_time&result_var=val_validation_is_police_date_and_time_less_today_now"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_police_date == empty || variable_police_time == empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_police_filled_bad",
+            "url": "div-action://set_variable?name=val_validation_police_datetime_filled&value=false"
+          },
+          {
+            "log_id": "val_police_future_bad",
+            "url": "div-action://set_variable?name=val_validation_is_police_date_and_time_less_today_now&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_register_accident_date != empty && variable_register_accident_time != empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_register_ok",
+            "url": "div-action://set_variable?name=val_validation_register_datetime_filled&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_register_accident_date == empty || variable_register_accident_time == empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_register_bad",
+            "url": "div-action://set_variable?name=val_validation_register_datetime_filled&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_accident_date != empty && variable_accident_time != empty && variable_police_date != empty && variable_police_time != empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "set_accident_dt_for_order",
+            "url": "div-action://set_variable?name=variable_accident_date_and_time&value=@{variable_accident_date}_@{variable_accident_time}"
+          },
+          {
+            "log_id": "set_police_dt_for_order",
+            "url": "div-action://set_variable?name=variable_police_date_and_time&value=@{variable_police_date}_@{variable_police_time}"
+          },
+          {
+            "log_id": "check_order_dt",
+            "url": "div-action://is_bigger_date_and_time?val1=variable_police_date_and_time&val2=variable_accident_date_and_time&result_var=val_validation_is_accident_date_and_time_bigger_police_date_and_time"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_accident_date == empty || variable_accident_time == empty || variable_police_date == empty || variable_police_time == empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_order_bad",
+            "url": "div-action://set_variable?name=val_validation_is_accident_date_and_time_bigger_police_date_and_time&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{val_validation_road && val_validation_news_number && val_validation_vehicle_count && val_validation_distance_from_origin && val_validation_lat_long && val_validation_accident_type && val_validation_accident_datetime_filled && val_validation_police_datetime_filled && val_validation_register_datetime_filled && val_validation_is_police_date_and_time_less_today_now && val_validation_is_accident_date_and_time_less_today_now && val_validation_is_accident_date_and_time_bigger_police_date_and_time}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_next_ok",
+            "url": "div-action://set_variable?name=val_validation_next_page&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{!val_validation_road || !val_validation_news_number || !val_validation_vehicle_count || !val_validation_distance_from_origin || !val_validation_lat_long || !val_validation_accident_type || !val_validation_accident_datetime_filled || !val_validation_police_datetime_filled || !val_validation_register_datetime_filled || !val_validation_is_police_date_and_time_less_today_now || !val_validation_is_accident_date_and_time_less_today_now || !val_validation_is_accident_date_and_time_bigger_police_date_and_time}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_next_bad",
+            "url": "div-action://set_variable?name=val_validation_next_page&value=false"
+          }
+        ]
+      }
+    ],
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "match_parent"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "paddings": {
+            "top": 8,
+            "bottom": 12,
+            "start": 16,
+            "end": 16
+          },
+          "visibility_actions": [
+            {
+              "log_id": "load_accident_id",
+              "url": "div-action://set_variable_from_db?name=current_accident_id",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "set_register_accident_date",
+              "url": "div-action://get_persian_date?variableName=variable_register_accident_date",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "set_register_accident_time",
+              "url": "div-action://get_persian_time?variableName=variable_register_accident_time",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "set_geographic_coordinates",
+              "url": "div-action://get_current_location?lat_var=variable_geographic_coordinates_lat&long_var=variable_geographic_coordinates_long",
+              "is_enabled": "@{variable_geographic_coordinates_lat == empty || variable_geographic_coordinates_long == empty}",
+              "visibility_duration": 0
+            }
+          ],
+          "items": [
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 8
+              },
+              "items": [
+                {
+                  "type": "page_title",
+                  "text": "ثبت تصادف سازشی",
+                  "alignment_horizontal": "right"
+                },
+                {
+                  "type": "text",
+                  "text": "بازگشت",
+                  "font_size": 12,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "actions": [
+                    {
+                      "log_id": "back",
+                      "url": "div-action://pop_and_load_screen"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "horizontal",
+              "content_alignment_vertical": "center",
+              "content_alignment_horizontal": "right",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ],
+              "border": {
+                "corner_radius": 8
+              },
+              "paddings": {
+                "top": 6,
+                "bottom": 6,
+                "start": 8,
+                "end": 8
+              },
+              "margins": {
+                "bottom": 8
+              },
+              "items": [
+                {
+                  "type": "custom",
+                  "custom_type": "circular_progress",
+                  "custom_props": {
+                    "current": "@{current_step}",
+                    "total": "@{total}"
+                  },
+                  "width": {
+                    "type": "fixed",
+                    "value": 36
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 36
+                  },
+                  "margins": {
+                    "end": 8
+                  }
+                },
+                {
+                  "type": "container",
+                  "orientation": "vertical",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "ثبت اطلاعات اولیه",
+                      "font_size": 12,
+                      "font_weight": "medium",
+                      "text_color": "#1f2937",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": "بعدی: ثبت اطلاعات وسیله نقلیه",
+                      "font_size": 10,
+                      "text_color": "#6b7280",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "top": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "gallery",
+              "orientation": "vertical",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "match_parent",
+                "weight": 1
+              },
+              "items": [
+                {
+                  "type": "container",
+                  "orientation": "vertical",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#fef2f2"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 8
+                  },
+                  "paddings": {
+                    "top": 10,
+                    "bottom": 6,
+                    "start": 12,
+                    "end": 12
+                  },
+                  "margins": {
+                    "bottom": 10
+                  },
+                  "visibility": "@{attempted_next && !val_validation_next_page ? 'visible' : 'gone'}",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "لطفاً موارد الزامی را تکمیل کنید",
+                      "font_size": 13,
+                      "font_weight": "medium",
+                      "text_color": "#b91c1c",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "bottom": 6
+                      }
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "راه انتخاب نشده است",
+                      "visibility": "@{val_validation_road ? 'gone' : 'visible'}"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "تاریخ و زمان تصادف الزامی است",
+                      "visibility": "@{val_validation_accident_datetime_filled ? 'gone' : 'visible'}"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "تاریخ و زمان تصادف نمی‌تواند از الان بعد باشد",
+                      "visibility": "@{val_validation_accident_datetime_filled && !val_validation_is_accident_date_and_time_less_today_now ? 'visible' : 'gone'}"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "شماره خبر الزامی است",
+                      "visibility": "@{val_validation_news_number ? 'gone' : 'visible'}"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "تعداد وسیله نقلیه الزامی است",
+                      "visibility": "@{val_validation_vehicle_count ? 'gone' : 'visible'}"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "فاصله از مبدا الزامی است",
+                      "visibility": "@{val_validation_distance_from_origin ? 'gone' : 'visible'}"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "تاریخ و زمان رسیدن پلیس الزامی است",
+                      "visibility": "@{val_validation_police_datetime_filled ? 'gone' : 'visible'}"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "تاریخ و زمان رسیدن پلیس نمی‌تواند از الان بعد باشد",
+                      "visibility": "@{val_validation_police_datetime_filled && !val_validation_is_police_date_and_time_less_today_now ? 'visible' : 'gone'}"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "زمان رسیدن پلیس نمی‌تواند قبل از زمان تصادف باشد",
+                      "visibility": "@{val_validation_accident_datetime_filled && val_validation_police_datetime_filled && !val_validation_is_accident_date_and_time_bigger_police_date_and_time ? 'visible' : 'gone'}"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "تاریخ و زمان تنظیم تصادف هنوز ثبت نشده است",
+                      "visibility": "@{val_validation_register_datetime_filled ? 'gone' : 'visible'}"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "نوع برخورد الزامی است",
+                      "visibility": "@{val_validation_accident_type ? 'gone' : 'visible'}"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "مختصات جغرافیایی هنوز دریافت نشده است",
+                      "visibility": "@{val_validation_lat_long ? 'gone' : 'visible'}"
+                    }
+                  ]
+                },
+                {
+                  "type": "container",
+                  "orientation": "vertical",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#f3f5f9"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 10
+                  },
+                  "paddings": {
+                    "top": 12,
+                    "bottom": 4,
+                    "start": 12,
+                    "end": 12
+                  },
+                  "items": [
+                    {
+                      "type": "section_label",
+                      "text": "راه *"
+                    },
+                        {
+                          "type": "field_box",
+                          "actions": [
+                            {
+                              "log_id": "pick_road",
+                              "url": "div-action://bottom_sheet_div?jsonName=Accidents/ways"
+                            }
+                          ],
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "▼",
+                              "font_size": 12,
+                              "text_color": "#193d8d",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "margins": {
+                                "end": 8
+                              }
+                            },
+                            {
+                              "type": "field_value",
+                              "text": "@{len(variable_road) > 0 ? variable_road : 'انتخاب راه'}",
+                              "text_color": "@{len(variable_road) > 0 ? '#1f2937' : '#9ca3af'}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "تاریخ تصادف *"
+                        },
+                        {
+                          "type": "field_box",
+                          "actions": [
+                            {
+                              "log_id": "pick_accident_date",
+                              "url": "div-action://show_date_picker?variableName=variable_accident_date"
+                            }
+                          ],
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{len(variable_accident_date) > 0 ? variable_accident_date : 'انتخاب تاریخ'}",
+                              "text_color": "@{len(variable_accident_date) > 0 ? '#1f2937' : '#9ca3af'}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "زمان تصادف *"
+                        },
+                        {
+                          "type": "field_box",
+                          "actions": [
+                            {
+                              "log_id": "pick_accident_time",
+                              "url": "div-action://show_time_picker?variableName=variable_accident_time"
+                            }
+                          ],
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{len(variable_accident_time) > 0 ? variable_accident_time : 'انتخاب زمان'}",
+                              "text_color": "@{len(variable_accident_time) > 0 ? '#1f2937' : '#9ca3af'}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "شماره خبر *"
+                        },
+                        {
+                          "type": "container",
+                          "orientation": "horizontal",
+                          "content_alignment_vertical": "center",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "bottom": 10
+                          },
+                          "items": [
+                            {
+                              "type": "field_box",
+                              "width": {
+                                "type": "match_parent",
+                                "weight": 1
+                              },
+                              "margins": {
+                                "bottom": 0,
+                                "end": 8
+                              },
+                              "items": [
+                                {
+                                  "type": "field_input",
+                                  "text_variable": "variable_news_number",
+                                  "hint_text": "شماره خبر را وارد کنید",
+                                  "keyboard_type": "number"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "text": "استعلام",
+                              "font_size": 13,
+                              "font_weight": "medium",
+                              "text_color": "#ffffff",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "center",
+                              "width": {
+                                "type": "fixed",
+                                "value": 88
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 42
+                              },
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#193d8d"
+                                }
+                              ],
+                              "border": {
+                                "corner_radius": 8
+                              },
+                              "actions": [
+                                {
+                                  "log_id": "inquiry_news_empty",
+                                  "is_enabled": "@{len(variable_news_number) == 0}",
+                                  "url": "div-action://show_toast?massage=ابتدا شماره خبر را وارد کنید"
+                                },
+                                {
+                                  "log_id": "inquiry_news",
+                                  "is_enabled": "@{len(variable_news_number) > 0}",
+                                  "url": "div-action://call_service?path=inquiryNews&sysName=accidents&ph/token=empty&newsNumber=@{variable_news_number}"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "تعداد وسیله نقلیه *"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_input",
+                              "text_variable": "variable_vehicle_count",
+                              "hint_text": "تعداد را وارد کنید",
+                              "keyboard_type": "number"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "فاصله از مبدا (متر) *"
+                        },
+                        {
+                          "type": "container",
+                          "orientation": "horizontal",
+                          "content_alignment_vertical": "center",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "bottom": 10
+                          },
+                          "items": [
+                            {
+                              "type": "field_box",
+                              "width": {
+                                "type": "match_parent",
+                                "weight": 1
+                              },
+                              "margins": {
+                                "bottom": 0,
+                                "end": 8
+                              },
+                              "items": [
+                                {
+                                  "type": "field_input",
+                                  "text_variable": "variable_distance_from_origin",
+                                  "hint_text": "فاصله به متر",
+                                  "keyboard_type": "number"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "text": "متر",
+                              "font_size": 12,
+                              "font_weight": "medium",
+                              "text_color": "#6b7280",
+                              "text_alignment_horizontal": "center",
+                              "width": {
+                                "type": "fixed",
+                                "value": 40
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "تاریخ رسیدن پلیس *"
+                        },
+                        {
+                          "type": "field_box",
+                          "actions": [
+                            {
+                              "log_id": "pick_police_date",
+                              "url": "div-action://show_date_picker?variableName=variable_police_date"
+                            }
+                          ],
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{len(variable_police_date) > 0 ? variable_police_date : 'انتخاب تاریخ'}",
+                              "text_color": "@{len(variable_police_date) > 0 ? '#1f2937' : '#9ca3af'}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "زمان رسیدن پلیس *"
+                        },
+                        {
+                          "type": "field_box",
+                          "actions": [
+                            {
+                              "log_id": "pick_police_time",
+                              "url": "div-action://show_time_picker?variableName=variable_police_time"
+                            }
+                          ],
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{len(variable_police_time) > 0 ? variable_police_time : 'انتخاب زمان'}",
+                              "text_color": "@{len(variable_police_time) > 0 ? '#1f2937' : '#9ca3af'}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "تاریخ تنظیم تصادف (سیستم)"
+                        },
+                        {
+                          "type": "field_box",
+                          "alpha": 0.85,
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{len(variable_register_accident_date) > 0 ? variable_register_accident_date : 'در حال دریافت…'}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "زمان تنظیم تصادف (سیستم)"
+                        },
+                        {
+                          "type": "field_box",
+                          "alpha": 0.85,
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{len(variable_register_accident_time) > 0 ? variable_register_accident_time : 'در حال دریافت…'}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "نوع برخورد *"
+                        },
+                        {
+                          "type": "field_box",
+                          "actions": [
+                            {
+                              "log_id": "pick_impact_type",
+                              "url": "div-action://bottom_sheet_list?id=IMPACT_TYPE&varName=IMPACT_TYPE&title=نوع برخورد&code_var=variable_collection_type_code&title_var=variable_collection_type"
+                            }
+                          ],
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "▼",
+                              "font_size": 12,
+                              "text_color": "#193d8d",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "margins": {
+                                "end": 8
+                              }
+                            },
+                            {
+                              "type": "field_value",
+                              "text": "@{len(variable_collection_type) > 0 ? variable_collection_type : 'انتخاب نوع برخورد'}",
+                              "text_color": "@{len(variable_collection_type) > 0 ? '#1f2937' : '#9ca3af'}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "text": "برخورد با حیوان",
+                          "font_size": 13,
+                          "font_weight": "medium",
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "center",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#e8edf7"
+                            }
+                          ],
+                          "border": {
+                            "corner_radius": 8,
+                            "stroke": {
+                              "color": "#7b8fb7",
+                              "width": 1
+                            }
+                          },
+                          "paddings": {
+                            "top": 12,
+                            "bottom": 12
+                          },
+                          "margins": {
+                            "bottom": 10
+                          },
+                          "actions": [
+                            {
+                              "log_id": "reset_livestock_fields",
+                              "url": "div-action://set_variable_to_db?key=compromising_livestock_type&value=انتخاب کنید"
+                            },
+                            {
+                              "log_id": "reset_livestock_code",
+                              "url": "div-action://set_variable_to_db?key=compromising_livestock_type_code&value="
+                            },
+                            {
+                              "log_id": "reset_livestock_count",
+                              "url": "div-action://set_variable_to_db?key=variable_livestock_count&value="
+                            },
+                            {
+                              "log_id": "set_livestock_id",
+                              "url": "div-action://set_random_id_to_db?key=current_livestock_id"
+                            },
+                            {
+                              "log_id": "open_livestock_sheet",
+                              "url": "div-action://bottom_sheet_div?jsonName=Accidents/livestock/bottomsheet"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "custom",
+                          "custom_type": "offline_list_container",
+                          "custom_props": {
+                            "screen": "livestock",
+                            "accident_id": "@{current_accident_id}"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "bottom": 10
+                          }
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "مختصات جغرافیایی (سیستم)"
+                        },
+                        {
+                          "type": "container",
+                          "orientation": "horizontal",
+                          "content_alignment_vertical": "center",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "bottom": 10
+                          },
+                          "items": [
+                            {
+                              "type": "field_box",
+                              "width": {
+                                "type": "match_parent",
+                                "weight": 1
+                              },
+                              "margins": {
+                                "bottom": 0,
+                                "end": 4
+                              },
+                              "alpha": 0.85,
+                              "items": [
+                                {
+                                  "type": "field_input",
+                                  "text_variable": "variable_geographic_coordinates_lat",
+                                  "hint_text": "عرض"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "field_box",
+                              "width": {
+                                "type": "match_parent",
+                                "weight": 1
+                              },
+                              "margins": {
+                                "bottom": 0,
+                                "start": 4
+                              },
+                              "alpha": 0.85,
+                              "items": [
+                                {
+                                  "type": "field_input",
+                                  "text_variable": "variable_geographic_coordinates_long",
+                                  "hint_text": "طول"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "container",
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "right",
+                          "content_alignment_vertical": "center",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corner_radius": 8
+                          },
+                          "paddings": {
+                            "top": 10,
+                            "bottom": 10,
+                            "start": 12,
+                            "end": 12
+                          },
+                          "margins": {
+                            "bottom": 8
+                          },
+                          "actions": [
+                            {
+                              "log_id": "toggle_important",
+                              "url": "div-action://set_variable?name=index1&value=@{index1 ? false : true}"
+                            }
+                          ],
+                          "items": [
+                            {
+                              "type": "image",
+                              "image_url": "@{index1 ? checked : unchecked}",
+                              "width": {
+                                "type": "fixed",
+                                "value": 22
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 22
+                              },
+                              "margins": {
+                                "end": 8
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "تصادف مهم",
+                              "font_size": 13,
+                              "text_color": "#1f2937",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+            {
+              "type": "container",
+              "orientation": "horizontal",
+              "content_alignment_vertical": "center",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "top": 10
+              },
+              "items": [
+                {
+                  "type": "primary_btn",
+                  "text": "مرحله بعد",
+                  "width": {
+                    "type": "match_parent",
+                    "weight": 1
+                  },
+                  "margins": {
+                    "start": 4
+                  },
+                  "actions": [
+                    {
+                      "log_id": "attempt_show_errors",
+                      "is_enabled": "@{!val_validation_next_page}",
+                      "url": "div-action://set_variable?name=attempted_next&value=true"
+                    },
+                    {
+                      "log_id": "toast_validation",
+                      "is_enabled": "@{!val_validation_next_page}",
+                      "url": "div-action://show_toast?massage=لطفاً فیلدهای الزامی را تکمیل کنید"
+                    },
+                    {
+                      "log_id": "save_draft_page1",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_page_with_changes_to_db?key=draft/@{current_accident_id}/page1"
+                    },
+                    {
+                      "log_id": "save_archive_index",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_object_to_db?archive_path=Accidents&next=draft/@{current_accident_id}/page1&title=ثبت تصادف سازشی&accident_id=@{current_accident_id}&current_step=2&process_type=sazeshi&step_dbshow=صفحه ۱ از ۴&step_persian_lan=مرحله&accident_id_dbshow=@{current_accident_id}&accident_id_persian_lan=شناسه"
+                    },
+                    {
+                      "log_id": "set_step",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=current_step&value=2"
+                    },
+                    {
+                      "log_id": "save_vehicle_count",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=variable_vehicle_count/@{current_accident_id}&value=@{variable_vehicle_count}"
+                    },
+                    {
+                      "log_id": "save_road",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=variable_road/@{current_accident_id}&value=@{variable_road}"
+                    },
+                    {
+                      "log_id": "save_police_center_id",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=variable_policeCenterId/@{current_accident_id}&value=@{variable_policeCenterId}"
+                    },
+                    {
+                      "log_id": "save_scene_status",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=ACCIDENT_SCENE_STATUS_code/@{current_accident_id}&value=@{ACCIDENT_SCENE_STATUS_code}"
+                    },
+                    {
+                      "log_id": "save_accident_date",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=variable_accident_date/@{current_accident_id}&value=@{variable_accident_date}"
+                    },
+                    {
+                      "log_id": "save_accident_time",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=variable_accident_time/@{current_accident_id}&value=@{variable_accident_time}"
+                    },
+                    {
+                      "log_id": "save_news_number",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=variable_news_number/@{current_accident_id}&value=@{variable_news_number}"
+                    },
+                    {
+                      "log_id": "save_distance",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=variable_distance_from_origin/@{current_accident_id}&value=@{variable_distance_from_origin}"
+                    },
+                    {
+                      "log_id": "save_police_date",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=variable_police_date/@{current_accident_id}&value=@{variable_police_date}"
+                    },
+                    {
+                      "log_id": "save_police_time",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=variable_police_time/@{current_accident_id}&value=@{variable_police_time}"
+                    },
+                    {
+                      "log_id": "save_register_date",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=variable_register_accident_date/@{current_accident_id}&value=@{variable_register_accident_date}"
+                    },
+                    {
+                      "log_id": "save_register_time",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=variable_register_accident_time/@{current_accident_id}&value=@{variable_register_accident_time}"
+                    },
+                    {
+                      "log_id": "save_collection_type",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=variable_collection_type_code/@{current_accident_id}&value=@{variable_collection_type_code}"
+                    },
+                    {
+                      "log_id": "save_long",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=variable_geographic_coordinates_long/@{current_accident_id}&value=@{variable_geographic_coordinates_long}"
+                    },
+                    {
+                      "log_id": "save_lat",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=variable_geographic_coordinates_lat/@{current_accident_id}&value=@{variable_geographic_coordinates_lat}"
+                    },
+                    {
+                      "log_id": "load_screen",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://load_screen?screen=Accidents/vehicleInformationEntry"
+                    }
+                  ]
+                },
+                {
+                  "type": "secondary_btn",
+                  "text": "ذخیره و خروج",
+                  "width": {
+                    "type": "match_parent",
+                    "weight": 1
+                  },
+                  "margins": {
+                    "top": 0,
+                    "end": 4
+                  },
+                  "actions": [
+                    {
+                      "log_id": "save_draft_exit",
+                      "url": "div-action://set_page_with_changes_to_db?key=draft/@{current_accident_id}/page1"
+                    },
+                    {
+                      "log_id": "save_archive_exit",
+                      "url": "div-action://set_object_to_db?archive_path=Accidents&next=draft/@{current_accident_id}/page1&title=ثبت تصادف سازشی&accident_id=@{current_accident_id}&current_step=1&process_type=sazeshi&step_dbshow=صفحه ۱ از ۴ (ناقص)&step_persian_lan=مرحله&accident_id_dbshow=@{current_accident_id}&accident_id_persian_lan=شناسه"
+                    },
+                    {
+                      "log_id": "exit_screen",
+                      "url": "div-action://pop_and_load_screen"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+
+}

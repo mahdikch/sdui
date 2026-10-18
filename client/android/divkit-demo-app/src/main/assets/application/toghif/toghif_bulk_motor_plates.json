@@ -1,0 +1,887 @@
+{
+  "templates": {
+    "page_title": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "wrap_content"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "section_label": {
+      "type": "text",
+      "font_size": 12,
+      "font_weight": "medium",
+      "text_color": "#6b7280",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 6
+      }
+    },
+    "primary_btn": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#ffffff",
+      "text_alignment_horizontal": "center",
+      "text_alignment_vertical": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#193d8d"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 12,
+        "bottom": 12
+      }
+    },
+    "secondary_btn": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "center",
+      "text_alignment_vertical": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#193d8d",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 12,
+        "bottom": 12
+      }
+    },
+    "plate_card": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#c8d0e4",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "left": 12,
+        "right": 12
+      },
+      "margins": {
+        "bottom": 8
+      }
+    }
+  },
+  "card": {
+    "log_id": "toghif_bulk_motor_plates",
+    "variables": [
+      {
+        "type": "string",
+        "name": "sysName",
+        "value": "parking"
+      },
+      {
+        "type": "string",
+        "name": "plateType",
+        "value": "patchMotorPlate"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateC_motor",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_plateD_motor",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_inquiry_validation",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "inquiry_result_visibility",
+        "value": "gone"
+      },
+      {
+        "type": "string",
+        "name": "variable_car_model_information_vt",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_car_color_information_vt",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_system_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_system_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_color_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_color_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_usage_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_usage_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "motor_plates_count",
+        "value": "0"
+      },
+      {
+        "type": "array",
+        "name": "motor_plates_list",
+        "value": []
+      }
+    ],
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "match_parent"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "items": [
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 56
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#ffffff"
+                }
+              ],
+              "items": [
+                {
+                  "type": "image",
+                  "image_url": "@{arrow_right.png}",
+                  "actions": [
+                    {
+                      "log_id": "back",
+                      "url": "div-action://pop_and_load_screen"
+                    }
+                  ],
+                  "width": {
+                    "type": "fixed",
+                    "value": 24
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 24
+                  },
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "right": 12
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "ثبت دسته جمعی پلاک موتور",
+                  "font_size": 16,
+                  "font_weight": "medium",
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "gallery",
+              "orientation": "vertical",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "match_parent",
+                "weight": 1
+              },
+              "paddings": {
+                "top": 12,
+                "bottom": 12,
+                "left": 12,
+                "right": 12
+              },
+              "items": [
+                {
+                  "type": "container",
+                  "orientation": "vertical",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 8,
+                    "stroke": {
+                      "color": "#c8d0e4",
+                      "width": 1
+                    }
+                  },
+                  "paddings": {
+                    "top": 12,
+                    "bottom": 12,
+                    "left": 12,
+                    "right": 12
+                  },
+                  "items": [
+                    {
+                      "type": "page_title",
+                      "text": "پلاک موتورسیکلت",
+                      "margins": {
+                        "bottom": 10
+                      }
+                    },
+                    {
+                      "id": "vehiclePlate",
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "input",
+                              "id": "plateC_motor",
+                              "text_variable": "variable_plateC_motor",
+                              "hint_text": "۱۲۳۴۵",
+                              "keyboard_type": "number",
+                              "max_length": 5,
+                              "font_size": 32,
+                              "font_weight": "semibold",
+                              "letter_spacing": 0,
+                              "text_color": "#4f4f4f",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "center",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "match_parent"
+                              },
+                              "alignment_horizontal": "center",
+                              "alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 6,
+                              "top-right": 6,
+                              "bottom-left": 6,
+                              "bottom-right": 6
+                            }
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 50
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_vertical": "center",
+                          "content_alignment_horizontal": "center",
+                          "alignment_horizontal": "right",
+                          "alignment_vertical": "top",
+                          "margins": {
+                            "top": 8,
+                            "right": 12,
+                            "left": 70
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "input",
+                              "id": "plateD_motor",
+                              "text_variable": "variable_plateD_motor",
+                              "hint_text": "۱۲۳",
+                              "keyboard_type": "number",
+                              "max_length": 3,
+                              "font_size": 32,
+                              "font_weight": "semibold",
+                              "letter_spacing": 0,
+                              "text_color": "#4f4f4f",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "center",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "match_parent"
+                              },
+                              "alignment_horizontal": "center",
+                              "alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 6,
+                              "top-right": 6,
+                              "bottom-left": 6,
+                              "bottom-right": 6
+                            }
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 50
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_vertical": "center",
+                          "content_alignment_horizontal": "center",
+                          "alignment_horizontal": "right",
+                          "alignment_vertical": "bottom",
+                          "margins": {
+                            "top": 8,
+                            "right": 12,
+                            "bottom": 8,
+                            "left": 70
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "image",
+                              "image_url": "divkit-asset://ir.png",
+                              "height": {
+                                "type": "match_parent"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "alignment_horizontal": "right",
+                              "alignment_vertical": "top",
+                              "paddings": {
+                                "top": 2,
+                                "bottom": 2
+                              }
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#003299"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 5,
+                              "top-right": 5,
+                              "bottom-left": 5,
+                              "bottom-right": 5
+                            }
+                          },
+                          "height": {
+                            "type": "match_parent"
+                          },
+                          "width": {
+                            "type": "fixed",
+                            "value": 50
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_vertical": "center",
+                          "content_alignment_horizontal": "center",
+                          "alignment_horizontal": "left",
+                          "alignment_vertical": "top",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "left": 12
+                          }
+                        }
+                      ],
+                      "background": [
+                        {
+                          "type": "solid",
+                          "color": "#f3f5f9"
+                        }
+                      ],
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 6,
+                          "top-right": 6,
+                          "bottom-left": 6,
+                          "bottom-right": 6
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 120
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "overlap",
+                      "content_alignment_vertical": "center",
+                      "content_alignment_horizontal": "center",
+                      "margins": {
+                        "top": 8,
+                        "right": 0,
+                        "bottom": 8,
+                        "left": 0
+                      }
+                    },
+                    {
+                      "type": "primary_btn",
+                      "text": "استعلام",
+                      "margins": {
+                        "top": 12
+                      },
+                      "actions": [
+                        {
+                          "log_id": "reset_inquiry_flag",
+                          "url": "div-action://set_variable?name=variable_inquiry_validation&value=false"
+                        },
+                        {
+                          "log_id": "hide_result",
+                          "url": "div-action://set_variable?name=inquiry_result_visibility&value=gone"
+                        },
+                        {
+                          "log_id": "inquiry_motor_plate",
+                          "is_enabled": "@{len(variable_plateC_motor) > 2 && len(variable_plateD_motor) > 1}",
+                          "url": "div-action://call_service?path=inquiryPlate/PK&ph/token=empty&sysName=@{sysName}&plateC=@{variable_plateC_motor}&plateD=@{variable_plateD_motor}&typeVehicle=plate&plateType=@{plateType}"
+                        },
+                        {
+                          "log_id": "toast_plate_incomplete",
+                          "is_enabled": "@{len(variable_plateC_motor) < 3 || len(variable_plateD_motor) < 2}",
+                          "url": "div-action://show_toast?massage=پلاک موتور را کامل وارد کنید"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "container",
+                  "orientation": "vertical",
+                  "visibility": "@{inquiry_result_visibility}",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 8,
+                    "stroke": {
+                      "color": "#c8d0e4",
+                      "width": 1
+                    }
+                  },
+                  "paddings": {
+                    "top": 12,
+                    "bottom": 12,
+                    "left": 12,
+                    "right": 12
+                  },
+                  "margins": {
+                    "top": 10
+                  },
+                  "items": [
+                    {
+                      "type": "page_title",
+                      "text": "نتیجه استعلام",
+                      "margins": {
+                        "bottom": 8
+                      }
+                    },
+                    {
+                      "type": "section_label",
+                      "text": "پلاک: @{variable_plateC_motor}-@{variable_plateD_motor}"
+                    },
+                    {
+                      "type": "section_label",
+                      "text": "مدل: @{variable_car_model_information_vt}"
+                    },
+                    {
+                      "type": "section_label",
+                      "text": "رنگ: @{variable_car_color_information_vt}"
+                    },
+                    {
+                      "type": "section_label",
+                      "text": "سیستم: @{variable_system_title}"
+                    },
+                    {
+                      "type": "section_label",
+                      "text": "کاربری: @{variable_usage_title}"
+                    },
+                    {
+                      "type": "secondary_btn",
+                      "text": "افزودن به لیست",
+                      "margins": {
+                        "top": 8
+                      },
+                      "actions": [
+                        {
+                          "log_id": "add_to_list",
+                          "is_enabled": "@{variable_inquiry_validation == 'true'}",
+                          "url": "div-action://append_to_array?array=motor_plates_list&count_var=motor_plates_count&unique_key=id&id=@{variable_plateC_motor}-@{variable_plateD_motor}&plateC=@{variable_plateC_motor}&plateD=@{variable_plateD_motor}&plateType=@{plateType}&model=@{variable_car_model_information_vt}&color=@{variable_car_color_information_vt}&colorCode=@{variable_color_code}&system=@{variable_system_title}&systemCode=@{variable_system_code}&usage=@{variable_usage_title}&usageCode=@{variable_usage_code}"
+                        },
+                        {
+                          "log_id": "clear_plate_c",
+                          "is_enabled": "@{variable_inquiry_validation == 'true'}",
+                          "url": "div-action://set_variable?name=variable_plateC_motor&value="
+                        },
+                        {
+                          "log_id": "clear_plate_d",
+                          "is_enabled": "@{variable_inquiry_validation == 'true'}",
+                          "url": "div-action://set_variable?name=variable_plateD_motor&value="
+                        },
+                        {
+                          "log_id": "hide_result_after_add",
+                          "is_enabled": "@{variable_inquiry_validation == 'true'}",
+                          "url": "div-action://set_variable?name=inquiry_result_visibility&value=gone"
+                        },
+                        {
+                          "log_id": "reset_inquiry_after_add",
+                          "is_enabled": "@{variable_inquiry_validation == 'true'}",
+                          "url": "div-action://set_variable?name=variable_inquiry_validation&value=false"
+                        },
+                        {
+                          "log_id": "toast_need_inquiry",
+                          "is_enabled": "@{variable_inquiry_validation != 'true'}",
+                          "url": "div-action://show_toast?massage=ابتدا استعلام پلاک را بگیرید"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "container",
+                  "orientation": "vertical",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "margins": {
+                    "top": 12
+                  },
+                  "items": [
+                    {
+                      "type": "page_title",
+                      "text": "لیست پلاک‌های اضافه شده (@{motor_plates_count})",
+                      "margins": {
+                        "bottom": 8
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": "هنوز پلاکی اضافه نشده است",
+                      "font_size": 12,
+                      "text_color": "#9ca3af",
+                      "text_alignment_horizontal": "right",
+                      "visibility": "@{motor_plates_count == '0' ? 'visible' : 'gone'}",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "orientation": "vertical",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "visibility": "@{motor_plates_count != '0' ? 'visible' : 'gone'}",
+                      "item_builder": {
+                        "data": "@{motor_plates_list}",
+                        "data_element_name": "item",
+                        "prototypes": [
+                          {
+                            "selector": "@{true}",
+                            "div": {
+                              "type": "plate_card",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "orientation": "horizontal",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "content_alignment_vertical": "center",
+                                  "items": [
+                                    {
+                                      "type": "text",
+                                      "text": "حذف",
+                                      "font_size": 12,
+                                      "font_weight": "medium",
+                                      "text_color": "#dc2626",
+                                      "width": {
+                                        "type": "wrap_content"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "actions": [
+                                        {
+                                          "log_id": "remove_plate",
+                                          "url": "div-action://remove_from_array?array=motor_plates_list&count_var=motor_plates_count&match_key=id&match_value=@{getStringFromDict(item, 'id')}"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "container",
+                                      "orientation": "vertical",
+                                      "width": {
+                                        "type": "match_parent",
+                                        "weight": 1
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "content_alignment_horizontal": "right",
+                                      "items": [
+                                        {
+                                          "type": "text",
+                                          "text": "@{getStringFromDict(item, 'plateC')}-@{getStringFromDict(item, 'plateD')}",
+                                          "font_size": 15,
+                                          "font_weight": "medium",
+                                          "text_color": "#193d8d",
+                                          "text_alignment_horizontal": "right",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        },
+                                        {
+                                          "type": "text",
+                                          "text": "@{getStringFromDict(item, 'model')} | @{getStringFromDict(item, 'color')}",
+                                          "font_size": 12,
+                                          "text_color": "#6b7280",
+                                          "text_alignment_horizontal": "right",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          },
+                                          "margins": {
+                                            "top": 4
+                                          }
+                                        },
+                                        {
+                                          "type": "text",
+                                          "text": "@{getStringFromDict(item, 'system')} | @{getStringFromDict(item, 'usage')}",
+                                          "font_size": 11,
+                                          "text_color": "#9ca3af",
+                                          "text_alignment_horizontal": "right",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          },
+                                          "margins": {
+                                            "top": 2
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "vertical",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#ffffff"
+                }
+              ],
+              "paddings": {
+                "top": 10,
+                "bottom": 12,
+                "left": 12,
+                "right": 12
+              },
+              "items": [
+                {
+                  "type": "primary_btn",
+                  "text": "ثبت لیست (@{motor_plates_count})",
+                  "actions": [
+                    {
+                      "log_id": "submit_bulk_placeholder",
+                      "is_enabled": "@{motor_plates_count != '0'}",
+                      "url": "div-action://show_toast?massage=سرویس ثبت لیست به‌زودی اضافه می‌شود"
+                    },
+                    {
+                      "log_id": "toast_empty_list",
+                      "is_enabled": "@{motor_plates_count == '0'}",
+                      "url": "div-action://show_toast?massage=حداقل یک پلاک به لیست اضافه کنید"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "variable_triggers": [
+      {
+        "condition": "@{variable_inquiry_validation == 'true' || variable_car_model_information_vt != empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "show_inquiry_result",
+            "url": "div-action://set_variable?name=inquiry_result_visibility&value=visible"
+          },
+          {
+            "log_id": "mark_inquiry_ok",
+            "url": "div-action://set_variable?name=variable_inquiry_validation&value=true"
+          }
+        ]
+      }
+    ]
+  }
+}

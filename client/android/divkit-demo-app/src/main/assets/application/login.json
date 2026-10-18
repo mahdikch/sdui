@@ -6,817 +6,782 @@
         "state_id": 0,
         "div": {
           "type": "container",
+          "orientation": "overlap",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "match_parent"
+          },
+          "background": [
+            {
+              "type": "gradient",
+              "angle": 160,
+              "colors": [
+                "#0b1f52",
+                "#193d8d",
+                "#2f62c4"
+              ]
+            }
+          ],
+          "content_alignment_horizontal": "center",
+          "content_alignment_vertical": "center",
           "items": [
             {
               "type": "container",
               "width": {
+                "type": "fixed",
+                "value": 240
+              },
+              "height": {
+                "type": "fixed",
+                "value": 240
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#1affffff"
+                }
+              ],
+              "border": {
+                "corner_radius": 120
+              },
+              "alignment_horizontal": "right",
+              "alignment_vertical": "top",
+              "margins": {
+                "top": -80,
+                "end": -60
+              }
+            },
+            {
+              "type": "container",
+              "width": {
+                "type": "fixed",
+                "value": 180
+              },
+              "height": {
+                "type": "fixed",
+                "value": 180
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#14ffffff"
+                }
+              ],
+              "border": {
+                "corner_radius": 90
+              },
+              "alignment_horizontal": "left",
+              "alignment_vertical": "bottom",
+              "margins": {
+                "bottom": -40,
+                "start": -50
+              }
+            },
+            {
+              "type": "container",
+              "orientation": "vertical",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "alignment_horizontal": "center",
+              "alignment_vertical": "center",
+              "width": {
                 "type": "match_parent"
               },
+              "height": {
+                "type": "wrap_content"
+              },
+              "paddings": {
+                "top": 20,
+                "bottom": 20,
+                "start": 20,
+                "end": 20
+              },
+              "visibility_actions": [
+                {
+                  "log_id": "load_captcha_result",
+                  "url": "div-action://set_variable_from_db?name=variable_resultCaptcha",
+                  "visibility_duration": 0
+                },
+                {
+                  "log_id": "load_captcha_image",
+                  "url": "div-action://set_variable_from_db?name=variable_captcha",
+                  "visibility_duration": 0
+                },
+                {
+                  "log_id": "fetch_captcha",
+                  "url": "div-action://call_service?path=getCaptcha&token=empty",
+                  "visibility_duration": 0
+                }
+              ],
               "items": [
                 {
                   "type": "container",
-                  "items": [
-                    {
-                      "type": "container",
-                      "items": [
-                        {
-                          "type": "image",
-                          "image_url": "@{naja}",
-                          "height": {
-                            "type": "fixed",
-                            "value": 88
-                          },
-                          "width": {
-                            "type": "fixed",
-                            "value": 48
-                          },
-                          "margins": {
-                            "top": 8
-                          },
-                          "scale": "fit"
-                        },
-                        {
-                          "type": "text",
-                          "text": "@{text___1}",
-                          "font_size": 12,
-                          "font_weight": "regular",
-                          "line_height": 14,
-                          "letter_spacing": 0,
-                          "text_color": "#252424",
-                          "text_alignment_horizontal": "center",
-                          "text_alignment_vertical": "center",
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "height": {
-                            "type": "wrap_content"
-                          },
-                          "margins": {
-                            "top": 16
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "container",
-                              "items": [
-                                {
-                                  "type": "container",
-                                  "items": [
-                                    {
-                                      "type": "input",
-                                      "text_variable": "username",
-                                      "keyboard_type": "single_line_text",
-                                      "hint_text": "شماره پرسنلی",
-                                      "font_size": 14,
-                                      "font_weight": "regular",
-                                      "line_height": 32,
-                                      "letter_spacing": 0,
-                                      "text_color": "#a3a3a3",
-                                      "text_alignment_horizontal": "right",
-                                      "text_alignment_vertical": "top",
-                                      "validators": [
-                                        {
-                                          "type": "regex",
-                                          "pattern": ".{3,}",
-                                          "allow_empty": "@{allow_empty_username}",
-                                          "label_id": "too_short_title_username",
-                                          "variable": "text_not_are_too_short_username"
-                                        },
-                                        {
-                                          "type": "regex",
-                                          "pattern": "@{regex}",
-                                          "allow_empty": "@{allow_empty_username}",
-                                          "label_id": "contains_only_valid_characters_username_title_username",
-                                          "variable": "text_contains_only_valid_characters_username"
-                                        }
-                                      ],
-                                      "width": {
-                                        "type": "wrap_content"
-                                      },
-                                      "height": {
-                                        "type": "wrap_content"
-                                      }
-                                    },
-                                    {
-                                      "type": "container",
-                                      "items": [
-                                        {
-                                          "type": "image",
-                                          "image_url": "@{profile_circle}",
-                                          "height": {
-                                            "type": "fixed",
-                                            "value": 20
-                                          },
-                                          "width": {
-                                            "type": "fixed",
-                                            "value": 20
-                                          }
-                                        }
-                                      ],
-                                      "height": {
-                                        "type": "fixed",
-                                        "value": 24
-                                      },
-                                      "width": {
-                                        "type": "fixed",
-                                        "value": 24
-                                      },
-                                      "orientation": "overlap",
-                                      "content_alignment_vertical": "center",
-                                      "content_alignment_horizontal": "center",
-                                      "margins": {
-                                        "left": 4
-                                      }
-                                    }
-                                  ],
-                                  "height": {
-                                    "type": "wrap_content"
-                                  },
-                                  "width": {
-                                    "type": "match_parent"
-                                  },
-                                  "orientation": "horizontal",
-                                  "content_alignment_horizontal": "right",
-                                  "content_alignment_vertical": "center"
-                                }
-                              ],
-                              "background": [
-                                {
-                                  "type": "solid",
-                                  "color": "#ffffff"
-                                }
-                              ],
-                              "border": {
-                                "corner_radius": 4,
-                                "stroke": {
-                                  "color": "#dedede",
-                                  "width": 1
-                                }
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "width": {
-                                "type": "match_parent"
-                              },
-                              "orientation": "horizontal",
-                              "content_alignment_horizontal": "left",
-                              "content_alignment_vertical": "center",
-                              "paddings": {
-                                "top": 12,
-                                "bottom": 12,
-                                "left": 8,
-                                "right": 12
-                              },
-                              "margins": {
-                                "top": 48
-                              }
-                            }
-                          ],
-                          "height": {
-                            "type": "wrap_content"
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "vertical",
-                          "content_alignment_vertical": "top",
-                          "content_alignment_horizontal": "right",
-                          "margins": {
-                            "top": 8
-                          }
-                        },
-                        {
-                          "id": "too_short_title_username",
-                          "type": "pretty_text",
-                          "text": "نام کاربری کوتاه است",
-                          "text_color": "#ff0000",
-                          "font_size": 10,
-                          "visibility": "@{text_not_are_too_short_username ? 'invisible' : 'visible'}",
-                          "height": {
-                            "type": "wrap_content"
-                          }
-                        },
-                        {
-                          "id": "contains_only_valid_characters_username_title_username",
-                          "type": "pretty_text",
-                          "text": "استفاده از کاراکتر نا معتبر",
-                          "text_color": "#ff0000",
-                          "font_size": 10,
-                          "visibility": "@{text_contains_only_valid_characters_username ? 'invisible' : 'visible'}",
-                          "height": {
-                            "type": "wrap_content"
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "container",
-                              "items": [
-                                {
-                                  "type": "container",
-                                  "items": [
-                                    {
-                                      "type": "image",
-                                      "image_url": "@{eye_slash}",
-                                      "height": {
-                                        "type": "fixed",
-                                        "value": 20
-                                      },
-                                      "width": {
-                                        "type": "fixed",
-                                        "value": 20
-                                      },
-                                      "action": {
-                                        "log_id": "toggle",
-                                        "url": "div-action://set_variable?name=is_masked&value=@{is_masked ? 'false' : 'true'}"
-                                      }
-                                    }
-                                  ],
-                                  "height": {
-                                    "type": "fixed",
-                                    "value": 24
-                                  },
-                                  "width": {
-                                    "type": "fixed",
-                                    "value": 24
-                                  },
-                                  "orientation": "overlap",
-                                  "content_alignment_vertical": "center",
-                                  "content_alignment_horizontal": "center"
-                                },
-                                {
-                                  "type": "container",
-                                  "items": [
-                                    {
-                                      "type": "input",
-                                      "text_variable": "password",
-                                      "hint_text": "رمز عبور",
-                                      "keyboard_type": "@{is_masked ? 'password' : 'single_line_text'}",
-                                      "font_size": 14,
-                                      "font_weight": "regular",
-                                      "line_height": 32,
-                                      "letter_spacing": 0,
-                                      "text_color": "#a3a3a3",
-                                      "text_alignment_horizontal": "right",
-                                      "text_alignment_vertical": "top",
-                                      "validators": [
-                                        {
-                                          "type": "regex",
-                                          "pattern": ".{3,}",
-                                          "allow_empty": "@{allow_empty_username}",
-                                          "label_id": "too_short_title_password",
-                                          "variable": "text_not_are_too_short_password"
-                                        },
-                                        {
-                                          "type": "regex",
-                                          "pattern": "@{regex}",
-                                          "allow_empty": "@{allow_empty_username}",
-                                          "label_id": "contains_only_valid_characters_password_title",
-                                          "variable": "text_contains_only_valid_characters_password"
-                                        }
-                                      ],
-                                      "width": {
-                                        "type": "wrap_content"
-                                      },
-                                      "height": {
-                                        "type": "wrap_content"
-                                      }
-                                    },
-                                    {
-                                      "type": "container",
-                                      "items": [
-                                        {
-                                          "type": "image",
-                                          "image_url": "@{lock}",
-                                          "height": {
-                                            "type": "fixed",
-                                            "value": 20
-                                          },
-                                          "width": {
-                                            "type": "fixed",
-                                            "value": 20
-                                          }
-                                        }
-                                      ],
-                                      "height": {
-                                        "type": "fixed",
-                                        "value": 24
-                                      },
-                                      "width": {
-                                        "type": "fixed",
-                                        "value": 24
-                                      },
-                                      "orientation": "overlap",
-                                      "content_alignment_vertical": "center",
-                                      "content_alignment_horizontal": "center",
-                                      "margins": {
-                                        "left": 4
-                                      }
-                                    }
-                                  ],
-                                  "height": {
-                                    "type": "wrap_content"
-                                  },
-                                  "width": {
-                                    "type": "match_parent"
-                                  },
-                                  "orientation": "horizontal",
-                                  "content_alignment_horizontal": "right",
-                                  "content_alignment_vertical": "center",
-                                  "margins": {
-                                    "left": 120
-                                  }
-                                }
-                              ],
-                              "background": [
-                                {
-                                  "type": "solid",
-                                  "color": "#ffffff"
-                                }
-                              ],
-                              "border": {
-                                "corner_radius": 4,
-                                "stroke": {
-                                  "color": "#dedede",
-                                  "width": 1
-                                }
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "width": {
-                                "type": "match_parent"
-                              },
-                              "orientation": "horizontal",
-                              "content_alignment_horizontal": "left",
-                              "content_alignment_vertical": "center",
-                              "paddings": {
-                                "top": 12,
-                                "bottom": 12,
-                                "left": 8,
-                                "right": 12
-                              }
-                            }
-                          ],
-                          "height": {
-                            "type": "wrap_content"
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "vertical",
-                          "content_alignment_vertical": "top",
-                          "content_alignment_horizontal": "right",
-                          "margins": {
-                            "top": 8
-                          }
-                        },
-                        {
-                          "id": "too_short_title_password",
-                          "type": "pretty_text",
-                          "text": "رمز عبور کوتاه است",
-                          "text_color": "#ff0000",
-                          "font_size": 10,
-                          "visibility": "@{text_not_are_too_short_password ? 'invisible' : 'visible'}",
-                          "height": {
-                            "type": "wrap_content"
-                          }
-                        },
-                        {
-                          "id": "contains_only_valid_characters_password_title",
-                          "type": "pretty_text",
-                          "text": "استفاده از کاراکتر نا معتبر",
-                          "text_color": "#ff0000",
-                          "font_size": 10,
-                          "visibility": "@{text_contains_only_valid_characters_password ? 'invisible' : 'visible'}",
-                          "height": {
-                            "type": "wrap_content"
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "items": [
-                            {
-                              "type": "container",
-                              "items": [
-                                {
-                                  "type": "container",
-                                  "items": [
-                                    {
-                                      "type": "image",
-                                      "image_url": "empty://",
-                                      "preview": "@{variable_captcha}",
-                                      "height": {
-                                        "type": "match_parent"
-                                      },
-                                      "width": {
-                                        "type": "match_parent"
-                                      },
-                                      "scale": "stretch"
-                                    }
-                                  ],
-                                  "height": {
-                                    "type": "match_parent"
-                                  },
-                                  "width": {
-                                    "type": "match_parent"
-                                  },
-                                  "orientation": "horizontal",
-                                  "content_alignment_horizontal": "left",
-                                  "content_alignment_vertical": "top",
-                                  "alignment_horizontal": "right",
-                                  "alignment_vertical": "center"
-                                },
-                                {
-                                  "type": "container",
-                                  "items": [
-                                    {
-                                      "type": "image",
-                                      "image_url": "@{refresh}",
-                                      "height": {
-                                        "type": "fixed",
-                                        "value": 20
-                                      },
-                                      "width": {
-                                        "type": "fixed",
-                                        "value": 20
-                                      },
-                                      "actions": [
-                                        {
-                                          "log_id": "call_service",
-                                          "url": "div-action://call_service?path=getCaptcha&token=empty"
-                                        }
-                                      ]
-                                    }
-                                  ],
-                                  "height": {
-                                    "type": "fixed",
-                                    "value": 24
-                                  },
-                                  "width": {
-                                    "type": "fixed",
-                                    "value": 24
-                                  },
-                                  "orientation": "overlap",
-                                  "content_alignment_vertical": "center",
-                                  "content_alignment_horizontal": "center",
-                                  "alignment_horizontal": "right",
-                                  "alignment_vertical": "center",
-                                  "margins": {
-                                    "right": 8,
-                                    "top": 16,
-                                    "bottom": 16
-                                  }
-                                }
-                              ],
-                              "background": [
-                                {
-                                  "type": "solid",
-                                  "color": "#c8d0e4"
-                                }
-                              ],
-                              "border": {
-                                "corner_radius": 4,
-                                "stroke": {
-                                  "color": "#dedede",
-                                  "width": 1
-                                }
-                              },
-                              "height": {
-                                "type": "fixed",
-                                "value": 56
-                              },
-                              "width": {
-                                "type": "match_parent",
-                                "weight": 2
-                              },
-                              "orientation": "overlap",
-                              "content_alignment_vertical": "center",
-                              "content_alignment_horizontal": "center"
-                            },
-                            {
-                              "type": "container",
-                              "items": [
-                                {
-                                  "type": "container",
-                                  "items": [
-                                    {
-                                      "type": "container",
-                                      "items": [
-                                        {
-                                          "type": "input",
-                                          "text_variable": "inputResultCaptcha",
-                                          "hint_text": "کد امنیتی",
-                                          "keyboard_type": "single_line_text",
-                                          "font_size": 14,
-                                          "font_weight": "regular",
-                                          "line_height": 32,
-                                          "letter_spacing": 0,
-                                          "text_color": "#a3a3a3",
-                                          "text_alignment_horizontal": "right",
-                                          "text_alignment_vertical": "top",
-                                          "width": {
-                                            "type": "wrap_content"
-                                          },
-                                          "height": {
-                                            "type": "wrap_content"
-                                          }
-                                        }
-                                      ],
-                                      "height": {
-                                        "type": "wrap_content"
-                                      },
-                                      "width": {
-                                        "type": "match_parent"
-                                      },
-                                      "orientation": "horizontal",
-                                      "content_alignment_horizontal": "right",
-                                      "content_alignment_vertical": "center"
-                                    }
-                                  ],
-                                  "background": [
-                                    {
-                                      "type": "solid",
-                                      "color": "#ffffff"
-                                    }
-                                  ],
-                                  "border": {
-                                    "corner_radius": 4,
-                                    "stroke": {
-                                      "color": "#dedede",
-                                      "width": 1
-                                    }
-                                  },
-                                  "height": {
-                                    "type": "wrap_content"
-                                  },
-                                  "width": {
-                                    "type": "match_parent"
-                                  },
-                                  "orientation": "horizontal",
-                                  "content_alignment_horizontal": "left",
-                                  "content_alignment_vertical": "center",
-                                  "paddings": {
-                                    "top": 12,
-                                    "bottom": 12,
-                                    "left": 8,
-                                    "right": 12
-                                  }
-                                }
-                              ],
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "width": {
-                                "type": "match_parent",
-                                "weight": 1
-                              },
-                              "orientation": "vertical",
-                              "content_alignment_vertical": "top",
-                              "content_alignment_horizontal": "right",
-                              "margins": {
-                                "left": 16
-                              }
-                            }
-                          ],
-                          "height": {
-                            "type": "wrap_content"
-                          },
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "orientation": "horizontal",
-                          "content_alignment_horizontal": "center",
-                          "content_alignment_vertical": "center",
-                          "margins": {
-                            "top": 8
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "height": {
-                            "type": "match_parent"
-                          },
-                          "items": [
-                            {
-                              "type": "container",
-                              "items": [
-                                {
-                                  "type": "text",
-                                  "text": "@{text___8}",
-                                  "font_size": 14,
-                                  "font_weight": "regular",
-                                  "line_height": 24,
-                                  "letter_spacing": 0,
-                                  "text_color": "#ffffff",
-                                  "text_alignment_horizontal": "left",
-                                  "text_alignment_vertical": "top",
-                                  "width": {
-                                    "type": "wrap_content"
-                                  },
-                                  "height": {
-                                    "type": "wrap_content"
-                                  }
-                                },
-                                {
-                                  "type": "container",
-                                  "items": [
-                                    {
-                                      "type": "image",
-                                      "image_url": "@{loginbtn}",
-                                      "height": {
-                                        "type": "fixed",
-                                        "value": 24
-                                      },
-                                      "width": {
-                                        "type": "fixed",
-                                        "value": 24
-                                      }
-                                    }
-                                  ],
-                                  "height": {
-                                    "type": "fixed",
-                                    "value": 24
-                                  },
-                                  "width": {
-                                    "type": "fixed",
-                                    "value": 24
-                                  },
-                                  "orientation": "overlap",
-                                  "content_alignment_vertical": "center",
-                                  "content_alignment_horizontal": "center",
-                                  "margins": {
-                                    "left": 8
-                                  }
-                                }
-                              ],
-                              "background": [
-                                {
-                                  "type": "solid",
-                                  "color": "#193d8d"
-                                }
-                              ],
-                              "actions": [
-                                {
-                                  "log_id": "call_service",
-                                  "is_enabled": "@{is_valid}",
-                                  "url": "div-action://call_service?path=getLoginData&username=@{username}&password=@{password}&resultCaptcha=@{inputResultCaptcha}&resultCaptchaId=@{variable_captcha_id}"
-                                }
-                              ],
-                              "action_animation": {
-                                "name": "scale",
-                                "start_value": 1,
-                                "end_value": 0.95,
-                                "duration": 300,
-                                "interpolator": "ease_in_out"
-                              },
-                              "border": {
-                                "corner_radius": 4
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "width": {
-                                "type": "match_parent"
-                              },
-                              "orientation": "horizontal",
-                              "content_alignment_horizontal": "center",
-                              "content_alignment_vertical": "center",
-                              "paddings": {
-                                "top": 8,
-                                "bottom": 8,
-                                "start": 8,
-                                "end": 8
-                              },
-                              "margins": {
-                                "top": 8
-                              }
-                            },
-                            {
-                              "type": "text",
-                              "text": "@{text___9}",
-                              "font_size": 12,
-                              "font_weight": "regular",
-                              "line_height": 24,
-                              "letter_spacing": 0,
-                              "text_color": "#ffffff",
-                              "text_alignment_horizontal": "right",
-                              "text_alignment_vertical": "center",
-                              "width": {
-                                "type": "fixed",
-                                "value": 82
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "margins": {
-                                "top": 8
-                              },
-                              "alignment_horizontal": "center",
-                              "transform": {
-                                "rotation": 0
-                              }
-                            }
-                          ],
-                          "content_alignment_horizontal": "center",
-                          "content_alignment_vertical": "bottom"
-                        }
-                      ],
-                      "height": {
-                        "type": "match_parent",
-                        "weight": 1
-                      },
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "orientation": "vertical",
-                      "content_alignment_vertical": "top",
-                      "content_alignment_horizontal": "center",
-                      "alignment_horizontal": "center",
-                      "alignment_vertical": "center",
-                      "margins": {
-                        "top": 24,
-                        "bottom": 8,
-                        "start": 12,
-                        "end": 12
-                      }
-                    }
-                  ],
+                  "orientation": "overlap",
+                  "content_alignment_horizontal": "center",
+                  "content_alignment_vertical": "center",
+                  "width": {
+                    "type": "fixed",
+                    "value": 52
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 52
+                  },
                   "background": [
                     {
                       "type": "solid",
-                      "color": "#FAFAFA"
+                      "color": "#ffffff"
                     }
                   ],
                   "border": {
-                    "corner_radius": 4,
-                    "has_shadow": 1,
+                    "corner_radius": 26
+                  },
+                  "items": [
+                    {
+                      "type": "image",
+                      "image_url": "@{naja.png}",
+                      "width": {
+                        "type": "fixed",
+                        "value": 22
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 38
+                      },
+                      "scale": "fit"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "پلیس همراه پلاس",
+                  "font_size": 14,
+                  "font_weight": "medium",
+                  "text_color": "#ffffff",
+                  "text_alignment_horizontal": "center",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "margins": {
+                    "top": 6
+                  }
+                },
+                {
+                  "type": "container",
+                  "orientation": "vertical",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 12,
+                    "has_shadow": true,
                     "shadow": {
                       "offset": {
                         "x": {
                           "value": 0
                         },
                         "y": {
-                          "value": -4
+                          "value": 6
                         }
                       },
-                      "blur": 16,
+                      "blur": 14,
                       "color": "#000000",
-                      "alpha": 0.05000000074505806
+                      "alpha": 0.16
                     }
                   },
-                  "height": {
-                    "type": "match_parent",
-                    "weight": 8
+                  "paddings": {
+                    "top": 12,
+                    "bottom": 12,
+                    "start": 12,
+                    "end": 12
                   },
+                  "margins": {
+                    "top": 10
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "@{text___1}",
+                      "font_size": 10,
+                      "line_height": 15,
+                      "text_color": "#4b5563",
+                      "text_alignment_horizontal": "center",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": "@{text___2}",
+                      "font_size": 10,
+                      "font_weight": "medium",
+                      "text_color": "#193d8d",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "top": 8
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "right",
+                      "content_alignment_vertical": "center",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "background": [
+                        {
+                          "type": "solid",
+                          "color": "#f3f5f9"
+                        }
+                      ],
+                      "border": {
+                        "corner_radius": 10,
+                        "stroke": {
+                          "color": "#c8d0e4",
+                          "width": 1
+                        }
+                      },
+                      "paddings": {
+                        "top": 4,
+                        "bottom": 4,
+                        "start": 10,
+                        "end": 10
+                      },
+                      "margins": {
+                        "top": 6
+                      },
+                      "items": [
+                        {
+                          "type": "input",
+                          "text_variable": "username",
+                          "keyboard_type": "single_line_text",
+                          "hint_text": "شماره پرسنلی",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 28,
+                          "text_color": "#1f2937",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "center",
+                          "validators": [
+                            {
+                              "type": "regex",
+                              "pattern": ".{3,}",
+                              "allow_empty": false,
+                              "label_id": "too_short_title_username",
+                              "variable": "text_not_are_too_short_username"
+                            },
+                            {
+                              "type": "regex",
+                              "pattern": "@{regex}",
+                              "allow_empty": false,
+                              "label_id": "contains_only_valid_characters_username_title_username",
+                              "variable": "text_contains_only_valid_characters_username"
+                            }
+                          ],
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        },
+                        {
+                          "type": "image",
+                          "image_url": "@{profile_circle.png}",
+                          "width": {
+                            "type": "fixed",
+                            "value": 20
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 20
+                          },
+                          "margins": {
+                            "start": 8
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "id": "too_short_title_username",
+                      "type": "pretty_text",
+                      "text": "نام کاربری کوتاه است",
+                      "text_color": "#dc2626",
+                      "font_size": 10,
+                      "visibility": "@{(len(username) == 0 || text_not_are_too_short_username) ? 'gone' : 'visible'}",
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "id": "contains_only_valid_characters_username_title_username",
+                      "type": "pretty_text",
+                      "text": "استفاده از کاراکتر نا معتبر",
+                      "text_color": "#dc2626",
+                      "font_size": 10,
+                      "visibility": "@{(len(username) == 0 || text_contains_only_valid_characters_username) ? 'gone' : 'visible'}",
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": "@{text___3}",
+                      "font_size": 12,
+                      "font_weight": "medium",
+                      "text_color": "#193d8d",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "top": 4
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "right",
+                      "content_alignment_vertical": "center",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "background": [
+                        {
+                          "type": "solid",
+                          "color": "#f3f5f9"
+                        }
+                      ],
+                      "border": {
+                        "corner_radius": 10,
+                        "stroke": {
+                          "color": "#c8d0e4",
+                          "width": 1
+                        }
+                      },
+                      "paddings": {
+                        "top": 4,
+                        "bottom": 4,
+                        "start": 10,
+                        "end": 10
+                      },
+                      "margins": {
+                        "top": 6
+                      },
+                      "items": [
+                        {
+                          "type": "image",
+                          "image_url": "@{eye_slash.png}",
+                          "width": {
+                            "type": "fixed",
+                            "value": 20
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 20
+                          },
+                          "action": {
+                            "log_id": "toggle",
+                            "url": "div-action://set_variable?name=is_masked&value=@{is_masked ? 'false' : 'true'}"
+                          },
+                          "margins": {
+                            "end": 8
+                          }
+                        },
+                        {
+                          "type": "input",
+                          "text_variable": "password",
+                          "hint_text": "رمز عبور",
+                          "keyboard_type": "@{is_masked ? 'password' : 'single_line_text'}",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 28,
+                          "text_color": "#1f2937",
+                          "text_alignment_horizontal": "right",
+                          "text_alignment_vertical": "center",
+                          "validators": [
+                            {
+                              "type": "regex",
+                              "pattern": ".{3,}",
+                              "allow_empty": false,
+                              "label_id": "too_short_title_password",
+                              "variable": "text_not_are_too_short_password"
+                            },
+                            {
+                              "type": "regex",
+                              "pattern": "@{regex}",
+                              "allow_empty": false,
+                              "label_id": "contains_only_valid_characters_password_title",
+                              "variable": "text_contains_only_valid_characters_password"
+                            }
+                          ],
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        },
+                        {
+                          "type": "image",
+                          "image_url": "@{lock.png}",
+                          "width": {
+                            "type": "fixed",
+                            "value": 20
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 20
+                          },
+                          "margins": {
+                            "start": 8
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "id": "too_short_title_password",
+                      "type": "pretty_text",
+                      "text": "رمز عبور کوتاه است",
+                      "text_color": "#dc2626",
+                      "font_size": 10,
+                      "visibility": "@{(len(password) == 0 || text_not_are_too_short_password) ? 'gone' : 'visible'}",
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "id": "contains_only_valid_characters_password_title",
+                      "type": "pretty_text",
+                      "text": "استفاده از کاراکتر نا معتبر",
+                      "text_color": "#dc2626",
+                      "font_size": 10,
+                      "visibility": "@{(len(password) == 0 || text_contains_only_valid_characters_password) ? 'gone' : 'visible'}",
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": "@{text___7}",
+                      "font_size": 12,
+                      "font_weight": "medium",
+                      "text_color": "#193d8d",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "top": 4
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "top": 6
+                      },
+                      "items": [
+                        {
+                          "type": "container",
+                          "orientation": "overlap",
+                          "content_alignment_horizontal": "center",
+                          "content_alignment_vertical": "center",
+                          "width": {
+                            "type": "match_parent",
+                            "weight": 1.2
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 52
+                          },
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#eef2f8"
+                            }
+                          ],
+                          "border": {
+                            "corner_radius": 10,
+                            "stroke": {
+                              "color": "#c8d0e4",
+                              "width": 1
+                            }
+                          },
+                          "margins": {
+                            "end": 8
+                          },
+                          "items": [
+                            {
+                              "type": "image",
+                              "image_url": "empty://",
+                              "preview": "@{variable_captcha}",
+                              "scale": "fit",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "match_parent"
+                              },
+                              "paddings": {
+                                "start": 8,
+                                "end": 8
+                              }
+                            },
+                            {
+                              "type": "image",
+                              "image_url": "@{refresh.png}",
+                              "width": {
+                                "type": "fixed",
+                                "value": 18
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 18
+                              },
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "top",
+                              "margins": {
+                                "top": 6,
+                                "start": 6
+                              },
+                              "actions": [
+                                {
+                                  "log_id": "call_service",
+                                  "url": "div-action://call_service?path=getCaptcha&token=empty"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "container",
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "right",
+                          "content_alignment_vertical": "center",
+                          "width": {
+                            "type": "match_parent",
+                            "weight": 1
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 52
+                          },
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#f3f5f9"
+                            }
+                          ],
+                          "border": {
+                            "corner_radius": 10,
+                            "stroke": {
+                              "color": "#c8d0e4",
+                              "width": 1
+                            }
+                          },
+                          "paddings": {
+                            "start": 10,
+                            "end": 10
+                          },
+                          "items": [
+                            {
+                              "type": "input",
+                              "text_variable": "inputResultCaptcha",
+                              "hint_text": "کد امنیتی",
+                              "keyboard_type": "single_line_text",
+                              "font_size": 14,
+                              "line_height": 28,
+                              "text_color": "#1f2937",
+                              "text_alignment_horizontal": "right",
+                              "text_alignment_vertical": "center",
+                              "validators": [
+                                {
+                                  "type": "regex",
+                                  "pattern": ".{1,}",
+                                  "allow_empty": false,
+                                  "label_id": "captcha_error_title",
+                                  "variable": "text_captcha_valid"
+                                }
+                              ],
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "captcha_error_title",
+                      "type": "pretty_text",
+                      "text": "کد امنیتی را وارد کنید",
+                      "text_color": "#dc2626",
+                      "font_size": 10,
+                      "visibility": "gone",
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 48
+                      },
+                      "alpha": "@{(text_not_are_too_short_username && text_contains_only_valid_characters_username && text_not_are_too_short_password && text_contains_only_valid_characters_password && text_captcha_valid) ? 1.0 : 0.45}",
+                      "background": [
+                        {
+                          "type": "solid",
+                          "color": "#193d8d"
+                        }
+                      ],
+                      "border": {
+                        "corner_radius": 10
+                      },
+                      "margins": {
+                        "top": 16
+                      },
+                      "actions": [
+                        {
+                          "log_id": "call_service",
+                          "is_enabled": "@{text_not_are_too_short_username && text_contains_only_valid_characters_username && text_not_are_too_short_password && text_contains_only_valid_characters_password && text_captcha_valid}",
+                          "url": "div-action://call_service?path=getLoginData&username=@{username}&password=@{password}&resultCaptcha=@{inputResultCaptcha}&resultCaptchaId=@{variable_captcha_id}"
+                        }
+                      ],
+                      "action_animation": {
+                        "name": "scale",
+                        "start_value": 1,
+                        "end_value": 0.96,
+                        "duration": 300,
+                        "interpolator": "ease_in_out"
+                      },
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "@{text___8}",
+                          "font_size": 15,
+                          "font_weight": "medium",
+                          "text_color": "#ffffff",
+                          "text_alignment_horizontal": "center",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        },
+                        {
+                          "type": "image",
+                          "image_url": "@{loginbtn}",
+                          "width": {
+                            "type": "fixed",
+                            "value": 20
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 20
+                          },
+                          "margins": {
+                            "start": 8
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "@{text___9}",
+                  "font_size": 11,
+                  "text_color": "#c5d4f5",
+                  "text_alignment_horizontal": "center",
                   "width": {
                     "type": "match_parent"
                   },
-                  "orientation": "vertical",
-                  "content_alignment_vertical": "center",
-                  "content_alignment_horizontal": "center",
-                  "alignment_horizontal": "center",
-                  "alignment_vertical": "bottom",
+                  "height": {
+                    "type": "wrap_content"
+                  },
                   "margins": {
-                    "left": 0,
-                    "right": 0,
-                    "bottom": 0
+                    "top": 14
                   }
                 }
-              ],
-              "height": {
-                "type": "match_parent"
-              },
-              "alignment_horizontal": "center",
-              "alignment_vertical": "center"
+              ]
             }
-          ],
-          "background": [
-            {
-              "type": "solid",
-              "color": "#fafafa"
-            }
-          ],
-          "height": {
-            "type": "match_parent"
-          },
-          "width": {
-            "type": "match_parent"
-          },
-          "orientation": "overlap",
-          "content_alignment_vertical": "center",
-          "content_alignment_horizontal": "center"
+          ]
         }
       }
     ],
     "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
       {
         "type": "string",
         "name": "text___1",
@@ -824,12 +789,27 @@
       },
       {
         "type": "string",
-        "name": "naja",
+        "name": "naja.png",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "refresh.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "variable_captcha_id",
         "value": ""
       },
       {
         "type": "string",
         "name": "username",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "empty",
         "value": ""
       },
       {
@@ -874,17 +854,12 @@
       },
       {
         "type": "string",
-        "name": "variable_captcha_id",
-        "value": ""
-      },
-      {
-        "type": "string",
         "name": "inputResultCaptcha",
         "value": ""
       },
       {
         "type": "string",
-        "name": "eye_slash",
+        "name": "eye_slash.png",
         "value": ""
       },
       {
@@ -894,53 +869,53 @@
       },
       {
         "type": "string",
-        "name": "refresh",
+        "name": "profile_circle.png",
         "value": ""
       },
       {
         "type": "string",
-        "name": "profile_circle",
+        "name": "lock.png",
         "value": ""
       },
       {
         "type": "string",
-        "name": "lock",
-        "value": ""
-      },
-      {
         "name": "regex",
-        "type": "string",
-        "value": "[a-zA-Z0-9-@#!$_*+&]+"
+        "value": "[a-zA-Z0-9@#!$_*+&.-]+"
       },
       {
+        "type": "boolean",
         "name": "allow_empty_username",
-        "type": "boolean",
-        "value": 0
+        "value": false
       },
       {
+        "type": "boolean",
         "name": "allow_empty_password",
-        "type": "boolean",
-        "value": 0
+        "value": false
       },
       {
-        "name": "text_not_are_too_short_password",
         "type": "boolean",
-        "value": 0
-      },
-      {
         "name": "text_not_are_too_short_username",
-        "type": "boolean",
-        "value": 0
+        "value": false
       },
       {
+        "type": "boolean",
+        "name": "text_not_are_too_short_password",
+        "value": false
+      },
+      {
+        "type": "boolean",
         "name": "text_contains_only_valid_characters_username",
-        "type": "boolean",
-        "value": 0
+        "value": false
       },
       {
-        "name": "text_contains_only_valid_characters_password",
         "type": "boolean",
-        "value": 0
+        "name": "text_contains_only_valid_characters_password",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "text_captcha_valid",
+        "value": false
       },
       {
         "type": "boolean",
@@ -952,29 +927,24 @@
         "name": "is_valid",
         "value": false
       }
-    ,{
-        "type": "boolean",
-        "name": "is_valid",
-        "value": false
-      }
     ],
     "variable_triggers": [
       {
-        "condition": "@{text_contains_only_valid_characters_password && text_contains_only_valid_characters_username && text_not_are_too_short_username && text_not_are_too_short_password }",
+        "condition": "@{text_contains_only_valid_characters_password && text_contains_only_valid_characters_username && text_not_are_too_short_username && text_not_are_too_short_password && text_captcha_valid}",
         "mode": "on_condition",
         "actions": [
           {
-            "log_id": "slider A change",
+            "log_id": "login_valid",
             "url": "div-action://set_variable?name=is_valid&value=true"
           }
         ]
       },
       {
-        "condition": "@{!text_contains_only_valid_characters_password || !text_contains_only_valid_characters_username || !text_not_are_too_short_username || !text_not_are_too_short_password}",
+        "condition": "@{!text_contains_only_valid_characters_password || !text_contains_only_valid_characters_username || !text_not_are_too_short_username || !text_not_are_too_short_password || !text_captcha_valid}",
         "mode": "on_condition",
         "actions": [
           {
-            "log_id": "slider A change",
+            "log_id": "login_invalid",
             "url": "div-action://set_variable?name=is_valid&value=false"
           }
         ]
@@ -1006,23 +976,18 @@
         "type": "match_parent"
       },
       "height": {
-        "type": "match_parent",
-        "weight": 0.5
+        "type": "wrap_content"
       },
       "paddings": {
-        "left": 32,
-        "top": 4,
-        "right": 16,
-        "bottom": 4
+        "top": 2,
+        "bottom": 2
       },
       "alpha": 1,
-      "alignment_horizontal": "center",
-      "alignment_vertical": "center",
-      "font_size": 16,
-      "font_weight": "medium",
+      "font_size": 10,
+      "font_weight": "regular",
       "text_alignment_horizontal": "right",
       "text_alignment_vertical": "center",
-      "text_color": "#000000"
+      "text_color": "#dc2626"
     }
   }
 }

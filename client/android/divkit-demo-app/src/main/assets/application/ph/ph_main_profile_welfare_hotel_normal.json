@@ -1,0 +1,1483 @@
+{
+  "templates": {
+    "select_toggle": {
+      "type": "container",
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "right",
+      "content_alignment_vertical": "center",
+      "width": {
+        "type": "wrap_content"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "$color": "bg_color"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 6,
+        "bottom": 6,
+        "start": 8,
+        "end": 8
+      },
+      "margins": {
+        "start": 6
+      },
+      "actions": [
+        {
+          "log_id": "toggle_select",
+          "$url": "action_url"
+        }
+      ],
+      "items": [
+        {
+          "type": "text",
+          "$text": "check_text",
+          "font_size": 13,
+          "text_color": "#193d8d",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "margins": {
+            "end": 4
+          }
+        },
+        {
+          "type": "text",
+          "$text": "title",
+          "font_size": 11,
+          "font_weight": "medium",
+          "text_color": "#1f2937",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          }
+        }
+      ]
+    },
+    "priority_chip": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 8,
+        "bottom": 8,
+        "start": 10,
+        "end": 10
+      },
+      "margins": {
+        "bottom": 6
+      }
+    },
+    "hotel_card": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#c8d0e4",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "start": 10,
+        "end": 10
+      },
+      "margins": {
+        "bottom": 8
+      }
+    }
+  },
+  "card": {
+    "log_id": "hotel_normal_selection",
+    "variables": [
+      {
+        "type": "string",
+        "name": "profile_score",
+        "value": "۱۴۰۵۷"
+      },
+      {
+        "type": "string",
+        "name": "hotel_request_marriage",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "hotel_request_child",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_1_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_1_hotel_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_1_hotel",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_1_dates",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_1_start_date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_1_end_date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_1_last_minute",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_1_start_date_miladi",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_1_end_date_miladi",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_1_sub_state_type",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_2_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_2_hotel_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_2_hotel",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_2_dates",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_2_start_date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_2_end_date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_2_last_minute",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_2_start_date_miladi",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_2_end_date_miladi",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_2_sub_state_type",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_3_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_3_hotel_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_3_hotel",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_3_dates",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_3_start_date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_3_end_date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_3_last_minute",
+        "value": "false"
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_3_start_date_miladi",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_3_end_date_miladi",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "hotel_priority_3_sub_state_type",
+        "value": ""
+      },
+      {
+        "name": "hotels",
+        "type": "array",
+        "value": [
+          {
+            "id": "1",
+            "name": "هتل معین",
+            "stars": "۰",
+            "updated_at": "۱۴۰۵/۰۹/۰۸",
+            "periods": [
+              {
+                "turnNo": "11",
+                "hotel_id": "1",
+                "hotel_name": "هتل معین",
+                "start_date": "۱۴۰۵/۰۸/۲۲",
+                "end_date": "۱۴۰۵/۰۸/۲۸",
+                "start_date_miladi": "2026-11-14T00:00:00.000",
+                "end_date_miladi": "2026-11-18T00:00:00.000",
+                "subStateType": "2",
+                "capacity": "۱",
+                "applicants": "*",
+                "score": "*"
+              },
+              {
+                "turnNo": "12",
+                "hotel_id": "1",
+                "hotel_name": "هتل معین",
+                "start_date": "۱۴۰۵/۱۱/۰۵",
+                "end_date": "۱۴۰۵/۱۱/۱۱",
+                "start_date_miladi": "2026-11-14T00:00:00.000",
+                "end_date_miladi": "2026-11-18T00:00:00.000",
+                "subStateType": "2",
+                "capacity": "۱",
+                "applicants": "*",
+                "score": "*"
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "name": "هتل تمدن الحجه ع",
+            "stars": "۰",
+            "updated_at": "۱۴۰۵/۰۹/۰۸",
+            "periods": [
+              {
+                "turnNo": "21",
+                "hotel_id": "2",
+                "hotel_name": "هتل تمدن الحجه ع",
+                "start_date": "۱۴۰۵/۰۸/۱۲",
+                "end_date": "۱۴۰۵/۰۸/۱۸",
+                "start_date_miladi": "2026-11-14T00:00:00.000",
+                "end_date_miladi": "2026-11-18T00:00:00.000",
+                "subStateType": "2",
+                "capacity": "۱",
+                "applicants": "*",
+                "score": "*"
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "name": "هتل نرگس زیباکنار",
+            "stars": "۰",
+            "updated_at": "۱۴۰۵/۰۹/۰۸",
+            "periods": [
+              {
+                "turnNo": "31",
+                "hotel_id": "3",
+                "hotel_name": "هتل نرگس زیباکنار",
+                "start_date": "۱۴۰۵/۰۸/۲۳",
+                "end_date": "۱۴۰۵/۰۸/۲۹",
+                "start_date_miladi": "2026-11-14T00:00:00.000",
+                "end_date_miladi": "2026-11-18T00:00:00.000",
+                "subStateType": "2",
+                "capacity": "۱",
+                "applicants": "*",
+                "score": "*"
+              }
+            ]
+          },
+          {
+            "id": "4",
+            "name": "هتل صدر",
+            "stars": "۰",
+            "updated_at": "۱۴۰۵/۰۹/۰۸",
+            "periods": [
+              {
+                "turnNo": "41",
+                "hotel_id": "4",
+                "hotel_name": "هتل صدر",
+                "start_date": "۱۴۰۵/۰۷/۰۹",
+                "end_date": "۱۴۰۵/۰۷/۱۳",
+                "start_date_miladi": "2026-11-14T00:00:00.000",
+                "end_date_miladi": "2026-11-18T00:00:00.000",
+                "subStateType": "2",
+                "capacity": "۱",
+                "applicants": "*",
+                "score": "*"
+              },
+              {
+                "turnNo": "42",
+                "hotel_id": "4",
+                "hotel_name": "هتل صدر",
+                "start_date": "۱۴۰۵/۰۷/۱۳",
+                "end_date": "۱۴۰۵/۰۷/۱۹",
+                "start_date_miladi": "2026-11-14T00:00:00.000",
+                "end_date_miladi": "2026-11-18T00:00:00.000",
+                "subStateType": "2",
+                "capacity": "۱",
+                "applicants": "*",
+                "score": "*"
+              }
+            ]
+          },
+          {
+            "id": "5",
+            "name": "هتل مدرس",
+            "stars": "۰",
+            "updated_at": "۱۴۰۵/۰۹/۰۸",
+            "periods": [
+              {
+                "turnNo": "51",
+                "hotel_id": "5",
+                "hotel_name": "هتل مدرس",
+                "start_date": "۱۴۰۵/۰۷/۰۵",
+                "end_date": "۱۴۰۵/۰۷/۱۱",
+                "start_date_miladi": "2026-11-14T00:00:00.000",
+                "end_date_miladi": "2026-11-18T00:00:00.000",
+                "subStateType": "2",
+                "capacity": "۱",
+                "applicants": "*",
+                "score": "*"
+              }
+            ]
+          },
+          {
+            "id": "6",
+            "name": "هتل پارس مشهد",
+            "stars": "۰",
+            "updated_at": "۱۴۰۵/۰۹/۰۸",
+            "periods": [
+              {
+                "turnNo": "61",
+                "hotel_id": "6",
+                "hotel_name": "هتل پارس مشهد",
+                "start_date": "۱۴۰۵/۰۸/۲۳",
+                "end_date": "۱۴۰۵/۰۸/۲۹",
+                "start_date_miladi": "2026-11-14T00:00:00.000",
+                "end_date_miladi": "2026-11-18T00:00:00.000",
+                "subStateType": "2",
+                "capacity": "۱",
+                "applicants": "*",
+                "score": "*"
+              }
+            ]
+          },
+          {
+            "id": "7",
+            "name": "هتل مینو",
+            "stars": "۰",
+            "updated_at": "۱۴۰۵/۰۹/۰۸",
+            "periods": [
+              {
+                "turnNo": "71",
+                "hotel_id": "7",
+                "hotel_name": "هتل مینو",
+                "start_date": "۱۴۰۵/۰۸/۰۱",
+                "end_date": "۱۴۰۵/۰۸/۰۷",
+                "start_date_miladi": "2026-11-14T00:00:00.000",
+                "end_date_miladi": "2026-11-18T00:00:00.000",
+                "subStateType": "2",
+                "capacity": "۱",
+                "applicants": "*",
+                "score": "*"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "match_parent"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "border": {
+            "corners_radius": {
+              "top-left": 16,
+              "top-right": 16
+            }
+          },
+          "paddings": {
+            "top": 8,
+            "bottom": 16,
+            "start": 16,
+            "end": 16
+          },
+          "items": [
+            {
+              "type": "separator",
+              "delimiter_style": {
+                "color": "#d1d5db"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 40
+              },
+              "height": {
+                "type": "fixed",
+                "value": 4
+              },
+              "alignment_horizontal": "center",
+              "border": {
+                "corner_radius": 2
+              },
+              "margins": {
+                "bottom": 12
+              }
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 12
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "انتخاب هتل عادی",
+                  "font_size": 16,
+                  "font_weight": "medium",
+                  "text_color": "#193d8d",
+                  "text_alignment_horizontal": "right",
+                  "alignment_horizontal": "right",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "بستن",
+                  "font_size": 13,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "actions": [
+                    {
+                      "log_id": "close_hotel_normal",
+                      "url": "div-action://close_bottom_sheet"
+                    }
+                  ],
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "horizontal",
+              "content_alignment_horizontal": "space-between",
+              "content_alignment_vertical": "center",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 8
+              },
+              "items": [
+                {
+                  "type": "container",
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "left",
+                  "content_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "select_toggle",
+                      "title": "تولد فرزند",
+                      "check_text": "@{hotel_request_child == 'true' ? '☑' : '☐'}",
+                      "bg_color": "@{hotel_request_child == 'true' ? '#eef2f8' : '#f3f5f9'}",
+                      "action_url": "div-action://set_variable?name=hotel_request_child&value=@{hotel_request_child == 'true' ? 'false' : 'true'}"
+                    },
+                    {
+                      "type": "select_toggle",
+                      "title": "ازدواج",
+                      "check_text": "@{hotel_request_marriage == 'true' ? '☑' : '☐'}",
+                      "bg_color": "@{hotel_request_marriage == 'true' ? '#eef2f8' : '#f3f5f9'}",
+                      "action_url": "div-action://set_variable?name=hotel_request_marriage&value=@{hotel_request_marriage == 'true' ? 'false' : 'true'}"
+                    }
+                  ]
+                },
+                {
+                  "type": "container",
+                  "orientation": "horizontal",
+                  "content_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#f3f5f9"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 8
+                  },
+                  "paddings": {
+                    "top": 6,
+                    "bottom": 6,
+                    "start": 8,
+                    "end": 8
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "@{profile_score}",
+                      "font_size": 12,
+                      "font_weight": "medium",
+                      "text_color": "#193d8d",
+                      "width": {
+                        "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": "امتیاز",
+                      "font_size": 11,
+                      "text_color": "#6b7280",
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "start": 4
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "gallery",
+              "orientation": "vertical",
+              "restrict_parent_scroll": true,
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "match_parent",
+                "weight": 1
+              },
+              "items": [
+                {
+                  "type": "container",
+                  "orientation": "vertical",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+            {
+              "type": "container",
+              "orientation": "vertical",
+              "visibility": "@{len(hotel_priority_1_id) == 0 && len(hotel_priority_2_id) == 0 && len(hotel_priority_3_id) == 0 ? 'gone' : 'visible'}",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#eef2f8"
+                }
+              ],
+              "border": {
+                "corner_radius": 10,
+                "stroke": {
+                  "color": "#193d8d",
+                  "width": 2
+                }
+              },
+              "paddings": {
+                "top": 10,
+                "bottom": 4,
+                "start": 10,
+                "end": 10
+              },
+              "margins": {
+                "bottom": 12
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "اولویت‌های انتخاب‌شده",
+                  "font_size": 13,
+                  "font_weight": "medium",
+                  "text_color": "#193d8d",
+                  "text_alignment_horizontal": "right",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "margins": {
+                    "bottom": 8
+                  }
+                },
+            {
+              "type": "priority_chip",
+              "visibility": "@{len(hotel_priority_1_id) == 0 ? 'gone' : 'visible'}",
+              "items": [
+                {
+                  "type": "container",
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "right",
+                  "content_alignment_vertical": "center",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "حذف",
+                      "font_size": 13,
+                      "text_color": "#193d8d",
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "end": 8
+                      },
+                      "actions": [
+                        {
+                          "log_id": "clear_p1",
+                          "url": "div-action://clear_hotel_priority?slot=1"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": "اولویت یک",
+                      "font_size": 12,
+                      "font_weight": "medium",
+                      "text_color": "#193d8d",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "@{hotel_priority_1_hotel}",
+                  "font_size": 13,
+                  "font_weight": "medium",
+                  "text_color": "#1f2937",
+                  "text_alignment_horizontal": "right",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "margins": {
+                    "top": 6
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{hotel_priority_1_dates}",
+                  "font_size": 11,
+                  "text_color": "#6b7280",
+                  "text_alignment_horizontal": "right",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "margins": {
+                    "top": 2
+                  }
+                },
+                {
+                  "type": "container",
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "right",
+                  "content_alignment_vertical": "center",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#f3f5f9"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 8
+                  },
+                  "paddings": {
+                    "top": 10,
+                    "bottom": 10,
+                    "start": 12,
+                    "end": 12
+                  },
+                  "margins": {
+                    "top": 8
+                  },
+                  "actions": [
+                    {
+                      "log_id": "toggle_p1_last",
+                      "url": "div-action://set_variable?name=hotel_priority_1_last_minute&value=@{hotel_priority_1_last_minute == 'true' ? 'false' : 'true'}"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "@{hotel_priority_1_last_minute == 'true' ? '☑' : '☐'}",
+                      "font_size": 12,
+                      "font_weight": "medium",
+                      "text_color": "#193d8d",
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "end": 8
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": "پذیرش لحظه آخری",
+                      "font_size": 13,
+                      "text_color": "#1f2937",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "priority_chip",
+              "visibility": "@{len(hotel_priority_2_id) == 0 ? 'gone' : 'visible'}",
+              "items": [
+                {
+                  "type": "container",
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "right",
+                  "content_alignment_vertical": "center",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "حذف",
+                      "font_size": 13,
+                      "text_color": "#193d8d",
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "end": 8
+                      },
+                      "actions": [
+                        {
+                          "log_id": "clear_p2",
+                          "url": "div-action://clear_hotel_priority?slot=2"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": "اولویت دو",
+                      "font_size": 12,
+                      "font_weight": "medium",
+                      "text_color": "#193d8d",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "@{hotel_priority_2_hotel}",
+                  "font_size": 13,
+                  "font_weight": "medium",
+                  "text_color": "#1f2937",
+                  "text_alignment_horizontal": "right",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "margins": {
+                    "top": 6
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{hotel_priority_2_dates}",
+                  "font_size": 11,
+                  "text_color": "#6b7280",
+                  "text_alignment_horizontal": "right",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "margins": {
+                    "top": 2
+                  }
+                },
+                {
+                  "type": "container",
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "right",
+                  "content_alignment_vertical": "center",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#f3f5f9"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 8
+                  },
+                  "paddings": {
+                    "top": 10,
+                    "bottom": 10,
+                    "start": 12,
+                    "end": 12
+                  },
+                  "margins": {
+                    "top": 8
+                  },
+                  "actions": [
+                    {
+                      "log_id": "toggle_p2_last",
+                      "url": "div-action://set_variable?name=hotel_priority_2_last_minute&value=@{hotel_priority_2_last_minute == 'true' ? 'false' : 'true'}"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "@{hotel_priority_2_last_minute == 'true' ? '☑' : '☐'}",
+                      "font_size": 12,
+                      "font_weight": "medium",
+                      "text_color": "#193d8d",
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "end": 8
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": "پذیرش لحظه آخری",
+                      "font_size": 13,
+                      "text_color": "#1f2937",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "priority_chip",
+              "visibility": "@{len(hotel_priority_3_id) == 0 ? 'gone' : 'visible'}",
+              "items": [
+                {
+                  "type": "container",
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "right",
+                  "content_alignment_vertical": "center",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "حذف",
+                      "font_size": 13,
+                      "text_color": "#193d8d",
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "end": 8
+                      },
+                      "actions": [
+                        {
+                          "log_id": "clear_p3",
+                          "url": "div-action://clear_hotel_priority?slot=3"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": "اولویت سه",
+                      "font_size": 12,
+                      "font_weight": "medium",
+                      "text_color": "#193d8d",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "@{hotel_priority_3_hotel}",
+                  "font_size": 13,
+                  "font_weight": "medium",
+                  "text_color": "#1f2937",
+                  "text_alignment_horizontal": "right",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "margins": {
+                    "top": 6
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{hotel_priority_3_dates}",
+                  "font_size": 11,
+                  "text_color": "#6b7280",
+                  "text_alignment_horizontal": "right",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "margins": {
+                    "top": 2
+                  }
+                },
+                {
+                  "type": "container",
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "right",
+                  "content_alignment_vertical": "center",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#f3f5f9"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 8
+                  },
+                  "paddings": {
+                    "top": 10,
+                    "bottom": 10,
+                    "start": 12,
+                    "end": 12
+                  },
+                  "margins": {
+                    "top": 8
+                  },
+                  "actions": [
+                    {
+                      "log_id": "toggle_p3_last",
+                      "url": "div-action://set_variable?name=hotel_priority_3_last_minute&value=@{hotel_priority_3_last_minute == 'true' ? 'false' : 'true'}"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "@{hotel_priority_3_last_minute == 'true' ? '☑' : '☐'}",
+                      "font_size": 12,
+                      "font_weight": "medium",
+                      "text_color": "#193d8d",
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "end": 8
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": "پذیرش لحظه آخری",
+                      "font_size": 13,
+                      "text_color": "#1f2937",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "لیست هتل‌ها",
+              "font_size": 12,
+              "font_weight": "medium",
+              "text_color": "#193d8d",
+              "text_alignment_horizontal": "right",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "top": 4,
+                "bottom": 8
+              }
+            },
+            {
+              "type": "container",
+              "orientation": "vertical",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "item_builder": {
+                "data": "@{hotels}",
+                "data_element_name": "hotel",
+                "prototypes": [
+                  {
+                    "selector": "@{true}",
+                    "div": {
+                      "type": "hotel_card",
+                      "items": [
+                        {
+                          "type": "container",
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "right",
+                          "content_alignment_vertical": "center",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "bottom": 8
+                          },
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "نظرات",
+                              "font_size": 13,
+                              "text_color": "#193d8d",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "margins": {
+                                "end": 8
+                              },
+                              "actions": [
+                                {
+                                  "log_id": "hotel_supervision",
+                                  "url": "div-action://show_toast?massage=نظارت @{getStringFromDict(hotel, 'name')}"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "container",
+                              "orientation": "vertical",
+                              "content_alignment_horizontal": "right",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "@{getStringFromDict(hotel, 'name')}",
+                                  "font_size": 13,
+                                  "font_weight": "medium",
+                                  "text_color": "#193d8d",
+                                  "text_alignment_horizontal": "right",
+                                  "width": {
+                                    "type": "match_parent"
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "ستاره @{getStringFromDict(hotel, 'stars')}",
+                                  "font_size": 11,
+                                  "text_color": "#6b7280",
+                                  "text_alignment_horizontal": "right",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "margins": {
+                                    "top": 2
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "container",
+                          "orientation": "vertical",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "item_builder": {
+                            "data": "@{getArrayFromDict(hotel, 'periods')}",
+                            "data_element_name": "period",
+                            "prototypes": [
+                              {
+                                "selector": "@{true}",
+                                "div": {
+                                  "type": "container",
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "right",
+                                  "content_alignment_vertical": "center",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "@{(getStringFromDict(period, 'turnNo') == hotel_priority_1_id && getStringFromDict(period, 'hotel_id') == hotel_priority_1_hotel_id) || (getStringFromDict(period, 'turnNo') == hotel_priority_2_id && getStringFromDict(period, 'hotel_id') == hotel_priority_2_hotel_id) || (getStringFromDict(period, 'turnNo') == hotel_priority_3_id && getStringFromDict(period, 'hotel_id') == hotel_priority_3_hotel_id) ? '#eef2f8' : '#f3f5f9'}"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corner_radius": 8
+                                  },
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "start": 12,
+                                    "end": 12
+                                  },
+                                  "margins": {
+                                    "bottom": 8
+                                  },
+                                  "actions": [
+                                    {
+                                      "log_id": "select_hotel_period",
+                                      "url": "div-action://set_hotel_priority?turnNo=@{getStringFromDict(period, 'turnNo')}&hotel_id=@{getStringFromDict(period, 'hotel_id')}&hotel=@{encodeUri(getStringFromDict(period, 'hotel_name'))}&start_date=@{encodeUri(getStringFromDict(period, 'start_date'))}&end_date=@{encodeUri(getStringFromDict(period, 'end_date'))}&start_date_miladi=@{encodeUri(getStringFromDict(period, 'start_date_miladi'))}&end_date_miladi=@{encodeUri(getStringFromDict(period, 'end_date_miladi'))}&subStateType=@{getStringFromDict(period, 'subStateType')}"
+                                    }
+                                  ],
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "orientation": "overlap",
+                                      "content_alignment_horizontal": "center",
+                                      "content_alignment_vertical": "center",
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 24
+                                      },
+                                      "height": {
+                                        "type": "fixed",
+                                        "value": 24
+                                      },
+                                      "background": [
+                                        {
+                                          "type": "solid",
+                                          "color": "#193d8d"
+                                        }
+                                      ],
+                                      "border": {
+                                        "corner_radius": 12
+                                      },
+                                      "visibility": "@{(getStringFromDict(period, 'turnNo') == hotel_priority_1_id && getStringFromDict(period, 'hotel_id') == hotel_priority_1_hotel_id) || (getStringFromDict(period, 'turnNo') == hotel_priority_2_id && getStringFromDict(period, 'hotel_id') == hotel_priority_2_hotel_id) || (getStringFromDict(period, 'turnNo') == hotel_priority_3_id && getStringFromDict(period, 'hotel_id') == hotel_priority_3_hotel_id) ? 'visible' : 'gone'}",
+                                      "margins": {
+                                        "end": 8
+                                      },
+                                      "items": [
+                                        {
+                                          "type": "text",
+                                          "text": "@{(getStringFromDict(period, 'turnNo') == hotel_priority_1_id && getStringFromDict(period, 'hotel_id') == hotel_priority_1_hotel_id) ? '۱' : ((getStringFromDict(period, 'turnNo') == hotel_priority_2_id && getStringFromDict(period, 'hotel_id') == hotel_priority_2_hotel_id) ? '۲' : '۳')}",
+                                          "font_size": 11,
+                                          "font_weight": "medium",
+                                          "text_color": "#ffffff",
+                                          "text_alignment_horizontal": "center"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "container",
+                                      "orientation": "vertical",
+                                      "content_alignment_horizontal": "right",
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "items": [
+                                        {
+                                          "type": "text",
+                                          "text": "@{getStringFromDict(period, 'start_date')} تا @{getStringFromDict(period, 'end_date')}",
+                                          "font_size": 13,
+                                          "font_weight": "medium",
+                                          "text_color": "#1f2937",
+                                          "text_alignment_horizontal": "right",
+                                          "width": {
+                                            "type": "match_parent"
+                                          }
+                                        },
+                                        {
+                                          "type": "text",
+                                          "text": "ظرفیت @{getStringFromDict(period, 'capacity')}  ·  متقاضیان @{getStringFromDict(period, 'applicants')}  ·  امتیاز @{getStringFromDict(period, 'score')}",
+                                          "font_size": 10,
+                                          "text_color": "#6b7280",
+                                          "text_alignment_horizontal": "right",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "margins": {
+                                            "top": 2
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "text": "آخرین به‌روزرسانی @{getStringFromDict(hotel, 'updated_at')}",
+                          "font_size": 10,
+                          "text_color": "#6b7280",
+                          "text_alignment_horizontal": "right",
+                          "width": {
+                            "type": "match_parent"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 44
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#193d8d"
+                }
+              ],
+              "border": {
+                "corner_radius": 8
+              },
+              "margins": {
+                "top": 8
+              },
+              "actions": [
+                {
+                  "log_id": "save_hotel_priorities",
+                  "url": "div-action://call_service?path=hotel/saveListHotels&sysName=hotel&ph/token=empty&wife=@{hotel_request_marriage}&child=@{hotel_request_child}&hotel_id1=@{hotel_priority_1_hotel_id}&turnNo1=@{hotel_priority_1_id}&start_date_miladi1=@{encodeUri(hotel_priority_1_start_date_miladi)}&end_date_miladi1=@{encodeUri(hotel_priority_1_end_date_miladi)}&subStateType1=@{hotel_priority_1_sub_state_type}&lastMinuteReception1=@{hotel_priority_1_last_minute}&hotel_id2=@{hotel_priority_2_hotel_id}&turnNo2=@{hotel_priority_2_id}&start_date_miladi2=@{encodeUri(hotel_priority_2_start_date_miladi)}&end_date_miladi2=@{encodeUri(hotel_priority_2_end_date_miladi)}&subStateType2=@{hotel_priority_2_sub_state_type}&lastMinuteReception2=@{hotel_priority_2_last_minute}&hotel_id3=@{hotel_priority_3_hotel_id}&turnNo3=@{hotel_priority_3_id}&start_date_miladi3=@{encodeUri(hotel_priority_3_start_date_miladi)}&end_date_miladi3=@{encodeUri(hotel_priority_3_end_date_miladi)}&subStateType3=@{hotel_priority_3_sub_state_type}&lastMinuteReception3=@{hotel_priority_3_last_minute}",
+                  "is_enabled": "@{len(hotel_priority_1_id) > 0}"
+                }
+              ],
+              "items": [
+                {
+                  "type": "text",
+                  "text": "ذخیره",
+                  "font_size": 14,
+                  "font_weight": "medium",
+                  "text_color": "#ffffff",
+                  "text_alignment_horizontal": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

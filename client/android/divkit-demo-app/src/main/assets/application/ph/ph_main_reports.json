@@ -1,0 +1,780 @@
+{
+  "patch": {
+    "mode": "partial",
+    "changes": [
+      {
+        "id": "page",
+        "items": [
+          {
+            "id": "page",
+            "type": "container",
+            "orientation": "vertical",
+            "width": {
+              "type": "match_parent"
+            },
+            "height": {
+              "type": "match_parent"
+            },
+            "items": [
+              {
+                "type": "container",
+                "orientation": "vertical",
+                "width": {
+                  "type": "match_parent"
+                },
+                "height": {
+                  "type": "wrap_content"
+                },
+                "background": [
+                  {
+                    "type": "solid",
+                    "color": "#ffffff"
+                  }
+                ],
+                "border": {
+                  "corner_radius": 8,
+                  "stroke": {
+                    "color": "#c8d0e4",
+                    "width": 1
+                  }
+                },
+                "paddings": {
+                  "top": 12,
+                  "bottom": 12,
+                  "start": 12,
+                  "end": 12
+                },
+                "margins": {
+                  "top": 8,
+                  "bottom": 8,
+                  "start": 8,
+                  "end": 8
+                },
+                "items": [
+                  {
+                    "type": "text",
+                    "text": "گزارشات",
+                    "font_size": 16,
+                    "font_weight": "medium",
+                    "text_color": "#193d8d",
+                    "text_alignment_horizontal": "right",
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "margins": {
+                      "bottom": 12
+                    }
+                  },
+                  {
+                    "type": "container",
+                    "orientation": "horizontal",
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "items": [
+                      {
+                        "type": "picker_row",
+                        "label": "تاریخ پایان",
+                        "value_text": "@{variable_end_date}",
+                        "action_url": "div-action://show_date_picker?variableName=variable_end_date",
+                        "width": {
+                          "type": "match_parent",
+                          "weight": 1
+                        },
+                        "margins": {
+                          "end": 4,
+                          "bottom": 8
+                        }
+                      },
+                      {
+                        "type": "picker_row",
+                        "label": "تاریخ شروع",
+                        "value_text": "@{variable_start_date}",
+                        "action_url": "div-action://show_date_picker?variableName=variable_start_date",
+                        "width": {
+                          "type": "match_parent",
+                          "weight": 1
+                        },
+                        "margins": {
+                          "start": 4,
+                          "bottom": 8
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "container",
+                    "orientation": "horizontal",
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "items": [
+                      {
+                        "type": "picker_row",
+                        "label": "ساعت پایان",
+                        "value_text": "@{variable_end_time}",
+                        "action_url": "div-action://show_time_picker?variableName=variable_end_time",
+                        "width": {
+                          "type": "match_parent",
+                          "weight": 1
+                        },
+                        "margins": {
+                          "end": 4,
+                          "bottom": 8
+                        }
+                      },
+                      {
+                        "type": "picker_row",
+                        "label": "ساعت شروع",
+                        "value_text": "@{variable_start_time}",
+                        "action_url": "div-action://show_time_picker?variableName=variable_start_time",
+                        "width": {
+                          "type": "match_parent",
+                          "weight": 1
+                        },
+                        "margins": {
+                          "start": 4,
+                          "bottom": 8
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "select_row",
+                    "label": "لیست سرویس‌ها",
+                    "value_text": "@{variable_reports_title}",
+                    "action_url": "div-action://bottom_sheet_list?id=urlreports&varName=urlreports&selection=multi&title=گزارش سرویس ها&title_var=variable_reports_title&code_var=variable_reports_code"
+                  },
+                  {
+                    "type": "container",
+                    "orientation": "overlap",
+                    "content_alignment_horizontal": "center",
+                    "content_alignment_vertical": "center",
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "height": {
+                      "type": "fixed",
+                      "value": 44
+                    },
+                    "background": [
+                      {
+                        "type": "solid",
+                        "color": "#193d8d"
+                      }
+                    ],
+                    "alpha": "@{(variable_start_date != 'تاریخ شروع' && variable_end_date != 'تاریخ پایان' && variable_start_time != 'ساعت شروع' && variable_end_time != 'ساعت پایان' && len(variable_reports_code) > 0) ? 1 : 0.45}",
+                    "border": {
+                      "corner_radius": 8
+                    },
+                    "margins": {
+                      "top": 4
+                    },
+                    "actions": [
+                      {
+                        "log_id": "search_reports",
+                        "url": "div-action://call_service?path=reports&sysName=reports&urlreports=@{variable_reports_code}&ph/token=empty&startDate=@{variable_start_date}&endDate=@{variable_end_date}&startTime=@{variable_start_time}&endTime=@{variable_end_time}",
+                        "is_enabled": "@{variable_start_date != 'تاریخ شروع' && variable_end_date != 'تاریخ پایان' && variable_start_time != 'ساعت شروع' && variable_end_time != 'ساعت پایان' && len(variable_reports_code) > 0}"
+                      }
+                    ],
+                    "items": [
+                      {
+                        "type": "text",
+                        "text": "جستجو",
+                        "font_size": 14,
+                        "font_weight": "medium",
+                        "text_color": "#ffffff",
+                        "text_alignment_horizontal": "center",
+                        "width": {
+                          "type": "wrap_content"
+                        },
+                        "height": {
+                          "type": "wrap_content"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "gallery",
+                "orientation": "vertical",
+                "restrict_parent_scroll": true,
+                "width": {
+                  "type": "match_parent"
+                },
+                "height": {
+                  "type": "match_parent",
+                  "weight": 1
+                },
+                "paddings": {
+                  "start": 8,
+                  "end": 8,
+                  "bottom": 8
+                },
+                "items": [
+                  {
+                    "type": "report_template",
+                    "visibility": "gone",
+                    "title": "تست",
+                    "image": "test",
+                    "sub1": "موفق:14",
+                    "sub1_visibility": "gone",
+                    "sub2": "نماوفق:20",
+                    "sub2_visibility": "gone",
+                    "sub3": "الکی:25",
+                    "sub3_visibility": "gone",
+                    "sub4": "درست:82",
+                    "sub4_visibility": "gone",
+                    "sub5": "test",
+                    "sub5_visibility": "gone",
+                    "sub6": "test",
+                    "sub6_visibility": "gone",
+                    "sub7": "test",
+                    "sub7_visibility": "gone",
+                    "sub8": "test",
+                    "sub8_visibility": "gone",
+                    "sub9": "test",
+                    "sub9_visibility": "gone",
+                    "offline_visibility": "gone",
+                    "offline_actions": [
+                      {
+                        "log_id": "show_main",
+                        "url": "div-action://load_screen?screen=ph/reports"
+                      }
+                    ],
+                    "actions": [
+                      {
+                        "log_id": "show_main",
+                        "url": "div-action://load_screen?screen=ph/reports"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "templates": {
+    "picker_row": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "items": [
+        {
+          "type": "text",
+          "$text": "label",
+          "font_size": 12,
+          "font_weight": "medium",
+          "text_color": "#193d8d",
+          "text_alignment_horizontal": "right",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "margins": {
+            "bottom": 4
+          }
+        },
+        {
+          "type": "container",
+          "orientation": "horizontal",
+          "content_alignment_horizontal": "right",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "paddings": {
+            "top": 12,
+            "bottom": 12,
+            "start": 10,
+            "end": 10
+          },
+          "actions": [
+            {
+              "log_id": "open_picker",
+              "$url": "action_url"
+            }
+          ],
+          "items": [
+            {
+              "type": "text",
+              "text": "‹",
+              "font_size": 16,
+              "text_color": "#193d8d",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "end": 6
+              }
+            },
+            {
+              "type": "text",
+              "$text": "value_text",
+              "font_size": 13,
+              "text_color": "#1f2937",
+              "text_alignment_horizontal": "right",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "select_row": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 8
+      },
+      "items": [
+        {
+          "type": "text",
+          "$text": "label",
+          "font_size": 12,
+          "font_weight": "medium",
+          "text_color": "#193d8d",
+          "text_alignment_horizontal": "right",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "margins": {
+            "bottom": 4
+          }
+        },
+        {
+          "type": "container",
+          "orientation": "horizontal",
+          "content_alignment_horizontal": "right",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "paddings": {
+            "top": 12,
+            "bottom": 12,
+            "start": 12,
+            "end": 12
+          },
+          "actions": [
+            {
+              "log_id": "open_select",
+              "$url": "action_url"
+            }
+          ],
+          "items": [
+            {
+              "type": "text",
+              "text": "‹",
+              "font_size": 18,
+              "text_color": "#193d8d",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "end": 8
+              }
+            },
+            {
+              "type": "text",
+              "$text": "value_text",
+              "font_size": 13,
+              "text_color": "#1f2937",
+              "text_alignment_horizontal": "right",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "report_template": {
+      "$visibility": "visibility",
+      "type": "container",
+      "$actions": "actions",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#c8d0e4",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "start": 10,
+        "end": 10
+      },
+      "margins": {
+        "bottom": 8
+      },
+      "items": [
+        {
+          "type": "container",
+          "orientation": "overlap",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "items": [
+            {
+              "type": "container",
+              "orientation": "horizontal",
+              "content_alignment_horizontal": "right",
+              "content_alignment_vertical": "center",
+              "alignment_horizontal": "right",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "paddings": {
+                "left": 24
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "$text": "title",
+                  "font_size": 14,
+                  "font_weight": "medium",
+                  "text_color": "#193d8d",
+                  "text_alignment_horizontal": "right",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "margins": {
+                    "end": 10
+                  }
+                },
+                {
+                  "type": "container",
+                  "orientation": "overlap",
+                  "content_alignment_horizontal": "center",
+                  "content_alignment_vertical": "center",
+                  "width": {
+                    "type": "fixed",
+                    "value": 44
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 44
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#eef2f8"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 8
+                  },
+                  "items": [
+                    {
+                      "type": "image",
+                      "$image_url": "image",
+                      "width": {
+                        "type": "fixed",
+                        "value": 28
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 28
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "‹",
+              "font_size": 18,
+              "text_color": "#193d8d",
+              "alignment_horizontal": "left",
+              "alignment_vertical": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "orientation": "horizontal",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "margins": {
+            "top": 8
+          },
+          "items": [
+            {
+              "type": "text",
+              "$visibility": "sub1_visibility",
+              "$text": "sub1",
+              "font_size": 12,
+              "text_color": "#4b5563",
+              "text_alignment_horizontal": "center",
+              "width": {
+                "type": "match_parent"
+              }
+            },
+            {
+              "type": "text",
+              "$visibility": "sub2_visibility",
+              "$text": "sub2",
+              "font_size": 12,
+              "text_color": "#4b5563",
+              "text_alignment_horizontal": "center",
+              "width": {
+                "type": "match_parent"
+              }
+            },
+            {
+              "type": "text",
+              "$visibility": "sub3_visibility",
+              "$text": "sub3",
+              "font_size": 12,
+              "text_color": "#4b5563",
+              "text_alignment_horizontal": "center",
+              "width": {
+                "type": "match_parent"
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "orientation": "horizontal",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "margins": {
+            "top": 4
+          },
+          "items": [
+            {
+              "type": "text",
+              "$visibility": "sub4_visibility",
+              "$text": "sub4",
+              "font_size": 12,
+              "text_color": "#4b5563",
+              "text_alignment_horizontal": "center",
+              "width": {
+                "type": "match_parent"
+              }
+            },
+            {
+              "type": "text",
+              "$visibility": "sub5_visibility",
+              "$text": "sub5",
+              "font_size": 12,
+              "text_color": "#4b5563",
+              "text_alignment_horizontal": "center",
+              "width": {
+                "type": "match_parent"
+              }
+            },
+            {
+              "type": "text",
+              "$visibility": "sub6_visibility",
+              "$text": "sub6",
+              "font_size": 12,
+              "text_color": "#4b5563",
+              "text_alignment_horizontal": "center",
+              "width": {
+                "type": "match_parent"
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "orientation": "horizontal",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "margins": {
+            "top": 4
+          },
+          "items": [
+            {
+              "type": "text",
+              "$visibility": "sub7_visibility",
+              "$text": "sub7",
+              "font_size": 12,
+              "text_color": "#4b5563",
+              "text_alignment_horizontal": "center",
+              "width": {
+                "type": "match_parent"
+              }
+            },
+            {
+              "type": "text",
+              "$visibility": "sub8_visibility",
+              "$text": "sub8",
+              "font_size": 12,
+              "text_color": "#4b5563",
+              "text_alignment_horizontal": "center",
+              "width": {
+                "type": "match_parent"
+              }
+            },
+            {
+              "type": "text",
+              "$visibility": "sub9_visibility",
+              "$text": "sub9",
+              "font_size": 12,
+              "text_color": "#4b5563",
+              "text_alignment_horizontal": "center",
+              "width": {
+                "type": "match_parent"
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "$visibility": "offline_visibility",
+          "$actions": "offline_actions",
+          "orientation": "overlap",
+          "content_alignment_horizontal": "center",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "fixed",
+            "value": 40
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#193d8d"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "margins": {
+            "top": 10
+          },
+          "items": [
+            {
+              "type": "text",
+              "text": "بایگانی آفلاین",
+              "font_size": 13,
+              "font_weight": "medium",
+              "text_color": "#ffffff",
+              "text_alignment_horizontal": "center",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

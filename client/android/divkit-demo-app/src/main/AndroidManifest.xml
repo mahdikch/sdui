@@ -2,13 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-sdk tools:overrideLibrary="ir.nrdc.kashfface,ir.nrdc.facecapture,ir.nrdc.platecapture,com.ml.shubham0204.sentence_embeddings" />
+
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="false" />
+        android:required="false"
+        tools:replace="android:required" />
 
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -21,6 +25,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
     <uses-permission
         android:name="android.permission.READ_SMS"
         tools:node="remove" />
@@ -40,7 +45,7 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
+        android:usesCleartextTraffic="false"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon,android:theme,android:supportsRtl">
         <provider
@@ -55,8 +60,8 @@
 
         <activity
             android:name=".LauncherActivity"
-            android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.activity.MehdiActivity"
             android:exported="true"
@@ -68,6 +73,21 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".applock.AppLockActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".div.accidentSketch.AccidentSketchEditorActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".div.accidentSketch.AccidentSketchMapPickerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".div.DivActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/samples"
@@ -75,80 +95,64 @@
         <activity
             android:name=".div.Div2Activity"
             android:configChanges="orientation|screenSize"
-            android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar.Demo">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data
-                    android:host="divkit.tech"
-                    android:pathPrefix="/playground/api" />
-                <data
-                    android:host="divview.yandex-team.ru"
-                    android:pathPrefix="/api" />
-                <data
-                    android:host="divview-test.in.yandex.net"
-                    android:pathPrefix="/api" />
-                <data
-                    android:host="divview.in.yandex.net"
-                    android:pathPrefix="/api" />
-            </intent-filter>
-        </activity>
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar.Demo" />
         <activity
             android:name=".div.Div2ScenarioActivity"
             android:configChanges="orientation|screenSize"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/demo"
-            android:theme="@style/AppTheme.NoActionBar.Demo"></activity>
+            android:theme="@style/AppTheme.NoActionBar.Demo" />
         <activity
             android:name=".settings.SettingsActivity"
             android:configChanges="orientation|screenSize"
+            android:exported="false"
             android:theme="@style/AppTheme.NoActionBar.Settings" />
         <activity
             android:name=".screenshot.DivScreenshotActivity"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/DivScreenshotTheme" />
         <activity
             android:name=".benchmark.Div2BenchmarkActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".benchmark.Div2StateBenchmarkActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".benchmark.Div2FeedBenchmarkActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".benchmark.DivStorageBenchmarkActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".DummyActivity"
+            android:exported="false"
             android:configChanges="orientation|screenSize" />
         <activity
             android:name=".div.GalleryFeedTestActivity"
+            android:exported="false"
             android:configChanges="orientation|screenSize" />
         <activity
             android:name="com.yandex.divkit.regression.SliderActivity"
+            android:exported="false"
             android:configChanges="orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".utils.QRCaptureActivity"
+            android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.QrScan" />
         <activity
             android:name=".ui.activity.PdfViewerActivity"
+            android:exported="false"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- FileProvider for Android 7.0+ -->
@@ -165,6 +169,11 @@
             android:name=".service.AudioRecordingService"
             android:exported="false"
             android:foregroundServiceType="microphone" />
+
+        <service
+            android:name=".service.LocationService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
 
         <service android:name="ir.naja.pushsdk.android.service.MqttService"
             android:exported="false"

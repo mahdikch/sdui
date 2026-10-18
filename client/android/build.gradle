@@ -19,9 +19,13 @@ buildscript {
 
     repositories {
         gradlePluginPortal()
+        // Offline-friendly stubs / mirrors when dl.google.com is unreachable
+        maven { url uri("${rootProject.projectDir}/local-maven-repo") }
+        maven { url "https://maven.aliyun.com/repository/google" }
+        maven { url "https://maven.aliyun.com/repository/public" }
         google()
         mavenCentral()
-        jcenter()
+//        jcenter()
         maven { url "https://jitpack.io" }
     }
 
@@ -42,9 +46,13 @@ apply plugin: "org.jetbrains.kotlinx.binary-compatibility-validator"
 
 allprojects {
     repositories {
+        // Offline-friendly stubs / mirrors when dl.google.com is unreachable
+        maven { url uri("${rootProject.projectDir}/local-maven-repo") }
+        maven { url "https://maven.aliyun.com/repository/google" }
+        maven { url "https://maven.aliyun.com/repository/public" }
         google()
         mavenCentral()
-        jcenter()
+//        jcenter()
         maven { url "https://jitpack.io" }
     }
 

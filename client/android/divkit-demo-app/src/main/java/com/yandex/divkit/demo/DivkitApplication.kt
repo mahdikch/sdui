@@ -16,6 +16,7 @@ import com.yandex.div.internal.Assert
 import com.yandex.divkit.demo.beacon.SendBeaconRequestExecutorImpl
 import com.yandex.divkit.demo.beacon.SendBeaconWorkerSchedulerImpl
 import com.yandex.divkit.demo.div.notificationList.NotificationManager
+import com.yandex.divkit.demo.push.MqttClientHandleCrashGuard
 import com.yandex.divkit.demo.utils.VisualAssertionErrorHandler
 import com.yandex.divkit.regression.di.HasRegressionTesting
 import com.yandex.divkit.regression.di.RegressionComponent
@@ -25,10 +26,8 @@ import ir.naja.pushsdk.android.Constant
 import ir.naja.pushsdk.android.NajiPush
 import ir.naja.pushsdk.android.NajiPushCallBack
 import ir.naja.pushsdk.android.model.Message
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
+import java.lang.ref.WeakReference
 import java.util.concurrent.Executors
 
 
@@ -36,6 +35,8 @@ class DivkitApplication : Application(), HasRegressionTesting, NajiPushCallBack 
 
     companion object {
         private const val TAG = "DivkitApplication"
+        private const val MQTT_RECONNECT_DELAY_MS = 1500L
+        private const val MQTT_HANDLE_CRASH_MAX_RETRIES = 3
 
         @Volatile
         private var INSTANCE: DivkitApplication? = null
@@ -45,7 +46,24 @@ class DivkitApplication : Application(), HasRegressionTesting, NajiPushCallBack 
 
     private lateinit var najiPush: NajiPush
     private var isPushSetupCompleted = false
+    @Volatile
+    private var connectedPushUsername: String = ""
+    @Volatile
+    private var connectingUsername: String = ""
+    @Volatile
+    private var pushReceivingEnabled = true
+    @Volatile
+    private var pushState = PushConnectionState.IDLE
+    private val pushLock = Any()
     private val mainHandler = Handler(Looper.getMainLooper())
+    private val pushExecutor = Executors.newSingleThreadExecutor()
+    private var pendingActivityRef: WeakReference<android.app.Activity>? = null
+    private var lastDisconnectAtMs = 0L
+    private var mqttHandleCrashRetries = 0
+
+    private enum class PushConnectionState {
+        IDLE, CONNECTING, CONNECTED, DISCONNECTING
+    }
 
     override val regressionComponent: RegressionComponent
         get() = Container.regressionComponent
@@ -55,6 +73,7 @@ class DivkitApplication : Application(), HasRegressionTesting, NajiPushCallBack 
 
         INSTANCE = this
         Container.initialize(applicationContext)
+        ir.naja.pushsdk.android.PushSsl.init(this)
         // Create an InitializerBuilder
         val initializerBuilder = Stetho.newInitializerBuilder(this)
 
@@ -95,71 +114,297 @@ class DivkitApplication : Application(), HasRegressionTesting, NajiPushCallBack 
                 .build()
         )
 
-        // Initialize Push Notifications
-//        initializePushNotifications()
+        MqttClientHandleCrashGuard.install()
+        initializePushNotifications()
 
         AppCompatDelegate.setDefaultNightMode(Container.preferences.nightMode)
     }
 
-    private fun initializePushNotifications() {
+    fun initializePushNotifications() {
         try {
-            najiPush = NajiPush()
+            pushReceivingEnabled = true
+            if (!::najiPush.isInitialized) {
+                najiPush = NajiPush()
+            }
             najiPush.setListener(this)
-
             Log.d(TAG, "Push notifications initialized successfully")
         } catch (e: Exception) {
             Log.e(TAG, "Failed to initialize push notifications", e)
         }
     }
 
-    // Method to be called from MehdiActivity to complete push setup (ONLY ONCE)
+    fun getNajiPush(): NajiPush? {
+        return if (::najiPush.isInitialized) najiPush else null
+    }
+
+    fun stopPushNotifications() {
+        try {
+            pushReceivingEnabled = false
+            mainHandler.removeCallbacks(connectPushRunnable)
+            disconnectNajiPush("stop")
+            Log.d(TAG, "Push notifications stopped")
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to stop push notifications", e)
+        }
+    }
+
+    /**
+     * Server reserved key clearNotificationPrefs=true:
+     * clear push SharedPreferences and stop receiving notifications.
+     */
+    fun clearNotificationPrefsAndStopReceiving() {
+        try {
+            Log.d(TAG, "clearNotificationPrefsAndStopReceiving: clearing prefs and disconnecting")
+            // Disconnect first: clearing session keys while MQTT is still connected lets
+            // messages arrive that can no longer be decrypted.
+            stopPushNotifications()
+            ir.naja.pushsdk.android.SharedPrefs.clear(this)
+            ir.naja.pushsdk.android.AES.clearKey()
+            Constant.sessionId = ""
+            Log.d(TAG, "Notification prefs cleared and push receiving stopped")
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to clear notification prefs and stop receiving", e)
+        }
+    }
+
+    fun restartPushNotifications() {
+        try {
+            Log.d(TAG, "Restarting push notifications...")
+            stopPushNotifications()
+            // Rebuild OkHttp/TLS stack so Conscrypt + TLS1.3 settings apply after code updates.
+            ir.naja.pushsdk.android.PushSsl.reset()
+            ir.naja.pushsdk.android.PushSsl.init(this)
+            initializePushNotifications()
+            Log.d(TAG, "Push notifications restart initiated")
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to restart push notifications", e)
+        }
+    }
+
+    fun startLocationService() {
+        try {
+            val intent = Intent(this, com.yandex.divkit.demo.service.LocationService::class.java)
+            androidx.core.content.ContextCompat.startForegroundService(this, intent)
+            Log.d(TAG, "Location service started")
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to start location service", e)
+        }
+    }
+
+    fun stopLocationService() {
+        try {
+            val intent = Intent(this, com.yandex.divkit.demo.service.LocationService::class.java).apply {
+                action = com.yandex.divkit.demo.service.LocationService.ACTION_STOP
+            }
+            startService(intent)
+            Log.d(TAG, "Location service stop command sent")
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to stop location service", e)
+        }
+    }
+
+    // Method to be called from MehdiActivity to complete push setup (ONLY ONCE per username)
     fun completePushSetup(activity: android.app.Activity) {
         try {
-            // Check if push setup is already completed
-            if (isPushSetupCompleted) {
-                Log.d(TAG, "Push setup already completed, skipping...")
+            if (!pushReceivingEnabled) {
+                Log.d(TAG, "Push receiving disabled, skipping completePushSetup")
                 return
             }
 
-            // Create intent to open MehdiActivity when notification is tapped
-            val mainIntent =
-                Intent(this, com.yandex.divkit.demo.ui.activity.MehdiActivity::class.java)
+            val username = resolvePushUsername()
+            if (username.isBlank()) {
+                Log.w(TAG, "Push setup skipped: username is empty")
+                isPushSetupCompleted = false
+                return
+            }
+            Constant.USERNAME = username
+            pendingActivityRef = WeakReference(activity)
 
-            runBlocking {
-                launch(Dispatchers.IO) {
-                    if (!najiPush.isConnected) {
-                        najiPush.ActiveNajiFicationTwoApp(
-                            activity, // Use the activity parameter
-                            mainIntent,
-                            Constant.API_KEY,
-                            Constant.API_KEY2,
-                            Constant.USERNAME,
-                            "",
-                            "", Constant.USERNAME_PORTAL, Constant.PASSWORD_PORTAL
-                        )
-                        /*       najiPush.ActiveNajiFication(
-                                   activity, // Use the activity parameter
-                                   mainIntent,
-                                   "e573552c-b409-4f25-99b5-27da8f2a29e6",
-                                   "PH_NOTIF/"+Constant.USERNAME,
-                                   "",
-                                   "","policehamrah","123456"
-                               )*/
+            if (!::najiPush.isInitialized) {
+                initializePushNotifications()
+            }
 
-
-                        // Mark setup as completed
-                        isPushSetupCompleted = true
-                        Log.d(TAG, "Push setup completed with activity context - FIRST TIME ONLY")
-                    } else {
-                        Log.d(TAG, "Push already connected, marking setup as completed")
-                        isPushSetupCompleted = true
-                    }
+            synchronized(pushLock) {
+                if (pushState == PushConnectionState.CONNECTED &&
+                    isNajiConnected() &&
+                    connectedPushUsername == username
+                ) {
+                    Log.d(TAG, "Push setup already completed for username=$username, skipping...")
+                    return
+                }
+                if (pushState == PushConnectionState.CONNECTING && connectingUsername == username) {
+                    Log.d(TAG, "Push connect already in progress for username=$username, skipping...")
+                    return
                 }
             }
 
+            val needsDisconnect = synchronized(pushLock) {
+                val activeUser = connectedPushUsername.ifBlank { connectingUsername }
+                (pushState == PushConnectionState.CONNECTING ||
+                    pushState == PushConnectionState.CONNECTED ||
+                    isNajiConnected()) &&
+                    activeUser.isNotBlank() &&
+                    activeUser != username
+            }
+            if (needsDisconnect) {
+                Log.d(
+                    TAG,
+                    "Push username changed ($connectedPushUsername -> $username), reconnecting"
+                )
+                disconnectNajiPush("username_changed")
+            }
+
+            scheduleConnect(username)
         } catch (e: Exception) {
             Log.e(TAG, "Failed to complete push setup", e)
         }
+    }
+
+    private val connectPushRunnable = Runnable {
+        val username = resolvePushUsername()
+        activateNajiPush(username)
+    }
+
+    private fun scheduleConnect(username: String) {
+        mainHandler.removeCallbacks(connectPushRunnable)
+        connectingUsername = username
+        val elapsed = android.os.SystemClock.elapsedRealtime() - lastDisconnectAtMs
+        val delay = if (lastDisconnectAtMs > 0L && elapsed < MQTT_RECONNECT_DELAY_MS) {
+            MQTT_RECONNECT_DELAY_MS - elapsed
+        } else {
+            0L
+        }
+        if (delay > 0L) {
+            Log.d(TAG, "Delaying MQTT connect by ${delay}ms to avoid Invalid ClientHandle")
+            mainHandler.postDelayed(connectPushRunnable, delay)
+        } else if (Looper.myLooper() == Looper.getMainLooper()) {
+            activateNajiPush(username)
+        } else {
+            mainHandler.post(connectPushRunnable)
+        }
+    }
+
+    private fun activateNajiPush(username: String) {
+        if (!pushReceivingEnabled) {
+            Log.d(TAG, "Push receiving disabled, skipping MQTT connect")
+            return
+        }
+        if (username.isBlank()) {
+            Log.w(TAG, "MQTT connect skipped: username is empty")
+            return
+        }
+
+        synchronized(pushLock) {
+            if (pushState == PushConnectionState.CONNECTED &&
+                isNajiConnected() &&
+                connectedPushUsername == username
+            ) {
+                Log.d(TAG, "MQTT already connected for username=$username")
+                return
+            }
+            if (pushState == PushConnectionState.CONNECTING && connectingUsername == username) {
+                Log.d(TAG, "MQTT connect already in progress for username=$username")
+                return
+            }
+            if (isNajiConnected() && connectedPushUsername == username) {
+                pushState = PushConnectionState.CONNECTED
+                isPushSetupCompleted = true
+                return
+            }
+            pushState = PushConnectionState.CONNECTING
+            connectingUsername = username
+            isPushSetupCompleted = false
+        }
+
+        val activity = pendingActivityRef?.get()
+        if (activity == null || activity.isFinishing || activity.isDestroyed) {
+            Log.w("NajiPush", "No valid activity for ActiveNajiFication")
+            synchronized(pushLock) {
+                if (pushState == PushConnectionState.CONNECTING) {
+                    pushState = PushConnectionState.IDLE
+                    connectingUsername = ""
+                }
+            }
+            return
+        }
+
+        if (!::najiPush.isInitialized) {
+            initializePushNotifications()
+        }
+
+        try {
+            Log.i("NajiPush", "Activating NajiPush username=$username apiKey=${Constant.API_KEY.take(8)}…")
+            val mainIntent = Intent(this, com.yandex.divkit.demo.ui.activity.MehdiActivity::class.java)
+            pushExecutor.execute {
+                try {
+                    Log.i("NajiPush", "ActiveNajiFication starting background thread=${Thread.currentThread().name}")
+                    najiPush.ActiveNajiFication(
+                        activity,
+                        mainIntent,
+                        Constant.API_KEY,
+                        username,
+                        "",
+                        "",
+                        Constant.USERNAME_PORTAL,
+                        Constant.PASSWORD_PORTAL
+                    )
+                    Log.i("NajiPush", "ActiveNajiFication returned")
+                } catch (e: Exception) {
+                    Log.e("NajiPush", "ActiveNajiFication failed", e)
+                    synchronized(pushLock) {
+                        pushState = PushConnectionState.IDLE
+                        connectingUsername = ""
+                        isPushSetupCompleted = false
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to schedule ActiveNajiFication", e)
+            synchronized(pushLock) {
+                pushState = PushConnectionState.IDLE
+                connectingUsername = ""
+                isPushSetupCompleted = false
+            }
+        }
+    }
+
+    private fun disconnectNajiPush(reason: String) {
+        mainHandler.removeCallbacks(connectPushRunnable)
+        synchronized(pushLock) {
+            pushState = PushConnectionState.DISCONNECTING
+            isPushSetupCompleted = false
+            connectedPushUsername = ""
+            connectingUsername = ""
+        }
+        lastDisconnectAtMs = android.os.SystemClock.elapsedRealtime()
+        try {
+            if (::najiPush.isInitialized && isNajiConnected()) {
+                najiPush.disconnect()
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to disconnect NajiPush ($reason)", e)
+        }
+        synchronized(pushLock) {
+            if (pushState == PushConnectionState.DISCONNECTING) {
+                pushState = PushConnectionState.IDLE
+            }
+        }
+        Log.d(TAG, "NajiPush disconnected ($reason)")
+    }
+
+    private fun isNajiConnected(): Boolean {
+        return try {
+            ::najiPush.isInitialized && najiPush.isConnected
+        } catch (e: Exception) {
+            Log.e(TAG, "isConnected check failed", e)
+            false
+        }
+    }
+
+    private fun resolvePushUsername(): String {
+        Constant.USERNAME.trim().takeIf { it.isNotEmpty() }?.let { return it }
+        NotificationManager.getCurrentOwner()?.trim()?.takeIf { it.isNotEmpty() }?.let { return it }
+        return ""
     }
 
     private fun configureSendBeacon(): SendBeaconConfiguration {
@@ -175,22 +420,73 @@ class DivkitApplication : Application(), HasRegressionTesting, NajiPushCallBack 
     // NajiPushCallBack implementations
     override fun reconnected(s: String?) {
         Log.d(TAG, "Push reconnected: $s")
+        markPushConnected()
     }
 
     override fun connected(s: String?) {
-        Log.d(TAG, "Push connected: $s")
+        Log.i("NajiPush", "Push connected: $s")
+        markPushConnected()
     }
 
     override fun connectFailed(s: String?) {
-        Log.e(TAG, "Push connection failed: $s")
+        Log.e("NajiPush", "Push connection failed: $s")
+        synchronized(pushLock) {
+            pushState = PushConnectionState.IDLE
+            isPushSetupCompleted = false
+            connectingUsername = ""
+        }
     }
 
     override fun connectionLost(s: String?) {
-        Log.w(TAG, "Push connection lost: $s")
+        Log.w("NajiPush", "Push connection lost: $s")
+        synchronized(pushLock) {
+            if (pushState != PushConnectionState.DISCONNECTING) {
+                pushState = PushConnectionState.IDLE
+                isPushSetupCompleted = false
+                connectedPushUsername = ""
+                connectingUsername = ""
+            }
+        }
+    }
+
+    private fun markPushConnected() {
+        synchronized(pushLock) {
+            pushState = PushConnectionState.CONNECTED
+            isPushSetupCompleted = true
+            connectedPushUsername = connectingUsername.ifBlank { resolvePushUsername() }
+            connectingUsername = connectedPushUsername
+            mqttHandleCrashRetries = 0
+        }
+    }
+
+    fun onMqttClientHandleCrash() {
+        Log.e(TAG, "Resetting MQTT state after Invalid ClientHandle")
+        synchronized(pushLock) {
+            pushState = PushConnectionState.IDLE
+            isPushSetupCompleted = false
+            connectingUsername = ""
+            connectedPushUsername = ""
+        }
+        lastDisconnectAtMs = android.os.SystemClock.elapsedRealtime()
+        if (!pushReceivingEnabled) return
+        if (mqttHandleCrashRetries >= MQTT_HANDLE_CRASH_MAX_RETRIES) {
+            Log.e(TAG, "MQTT Invalid ClientHandle retry limit reached")
+            return
+        }
+        mqttHandleCrashRetries += 1
+        val username = resolvePushUsername()
+        if (username.isNotBlank()) {
+            scheduleConnect(username)
+        }
     }
 
     override fun messageArrived(topic: String?, message: Message?) {
-        Log.d(TAG, "Push message arrived - topic: $topic")
+        Log.i("NajiPush", "Push message arrived topic=$topic")
+
+        if (!pushReceivingEnabled) {
+            Log.d(TAG, "Push receiving disabled, ignoring message")
+            return
+        }
 
         message?.let { msg ->
             try {

@@ -7,6 +7,9 @@ import java.util.HashMap
 
 interface LoadScreenListener {
     fun onLoad(screenName: String)
+    fun onLoadFinishingCurrent(screenName: String) {
+        onLoad(screenName)
+    }
     fun onRequest(request: HashMap<String, String>)
     fun onApplyOnbase(json: String, patchName: String, patchTitle:String,vehicleType:String)
     fun getBtmSheetInstance(btmSheet: BottomSheetDiv)
@@ -23,5 +26,6 @@ interface LoadScreenListener {
     fun onAudioPermissionGranted()
     fun uploadRecording(recordingId: String? = null)
     fun uploadAndCallService(recordingId: String? = null, serviceParams: HashMap<String, String>? = null)
-//    fun showImage(decodedBitmap: Bitmap)
+    fun uploadFilesAndCallService(params: HashMap<String, String>)
+    fun openBottomSheet(screenName: String) {}
 }

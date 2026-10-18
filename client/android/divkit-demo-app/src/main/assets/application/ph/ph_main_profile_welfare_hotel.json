@@ -1,0 +1,631 @@
+{
+  "card": {
+    "log_id": "profile_welfare_hotel_bottomsheet",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "match_parent"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "border": {
+            "corners_radius": {
+              "top-left": 16,
+              "top-right": 16
+            }
+          },
+          "paddings": {
+            "top": 8,
+            "bottom": 16,
+            "start": 16,
+            "end": 16
+          },
+          "items": [
+            {
+              "type": "separator",
+              "delimiter_style": {
+                "color": "#d1d5db"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 40
+              },
+              "height": {
+                "type": "fixed",
+                "value": 4
+              },
+              "alignment_horizontal": "center",
+              "border": {
+                "corner_radius": 2
+              },
+              "margins": {
+                "bottom": 12
+              }
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 12
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "هتل",
+                  "font_size": 16,
+                  "font_weight": "medium",
+                  "text_color": "#193d8d",
+                  "text_alignment_horizontal": "right",
+                  "alignment_horizontal": "right",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "بستن",
+                  "font_size": 13,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "actions": [
+                    {
+                      "log_id": "close_welfare_hotel",
+                      "url": "div-action://close_bottom_sheet"
+                    }
+                  ],
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "option_row",
+              "title": "عادی",
+              "action_url": "div-action://call_service?path=hotel/listHotels&ph/token=empty&sysName=hotel&policeCode=empty"
+            },
+            {
+              "type": "option_row",
+              "title": "تربیت تعالی",
+              "action_url": "div-action://close_bottom_sheet"
+            },
+            {
+              "type": "text",
+              "text": "لیست درخواست‌ها",
+              "font_size": 13,
+              "font_weight": "medium",
+              "text_color": "#193d8d",
+              "text_alignment_horizontal": "right",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "top": 8,
+                "bottom": 8
+              }
+            },
+            {
+              "type": "text",
+              "text": "درخواستی ثبت نشده است",
+              "font_size": 13,
+              "text_color": "#6b7280",
+              "text_alignment_horizontal": "center",
+              "width": {
+                "type": "match_parent"
+              },
+              "visibility": "@{len(requests) == 0 ? 'visible' : 'gone'}",
+              "paddings": {
+                "top": 16,
+                "bottom": 16
+              }
+            },
+            {
+              "type": "gallery",
+              "orientation": "vertical",
+              "restrict_parent_scroll": true,
+              "visibility": "@{len(requests) == 0 ? 'gone' : 'visible'}",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "match_parent",
+                "weight": 1
+              },
+              "item_builder": {
+                "data": "@{requests}",
+                "data_element_name": "request",
+                "prototypes": [
+                  {
+                    "selector": "@{true}",
+                    "div": {
+                      "type": "request_card",
+                      "items": [
+                        {
+                          "type": "container",
+                          "orientation": "overlap",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "bottom": 8
+                          },
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{getStringFromDict(request, 'hotel')}",
+                              "font_size": 14,
+                              "font_weight": "medium",
+                              "text_color": "#193d8d",
+                              "text_alignment_horizontal": "right",
+                              "alignment_horizontal": "right",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "paddings": {
+                                "left": 56
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "@{getStringFromDict(request, 'isCancel') == '1' ? 'انصراف' : 'حذف'}",
+                              "font_size": 12,
+                              "text_color": "#193d8d",
+                              "alignment_horizontal": "left",
+                              "visibility": "@{(getStringFromDict(request, 'isCancel') == '1' || getStringFromDict(request, 'isCancel') == '2') ? 'visible' : 'gone'}",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "actions": [
+                                {
+                                  "log_id": "delete_or_cancel_hotel_request",
+                                  "url": "div-action://call_service?path=hotel/deleteListReservHotels&sysName=hotel&ph/token=empty&confirmed_code=@{getStringFromDict(request, 'confirmed_code')}&stmntType=@{getStringFromDict(request, 'stmntType')}&id=@{getStringFromDict(request, 'id')}&isCancel=@{getStringFromDict(request, 'isCancel')}"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "نوع برنامه",
+                          "value_text": "@{getStringFromDict(request, 'program_type')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "موارد خاص",
+                          "value_text": "@{getStringFromDict(request, 'planTypeSpecialTitle')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "وابستگی",
+                          "value_text": "@{getStringFromDict(request, 'familyRelationTitel')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "شماره مدرک",
+                          "value_text": "@{getStringFromDict(request, 'doc_num')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "تاریخ مدرک",
+                          "value_text": "@{getStringFromDict(request, 'doc_date')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "تاریخ اجرا",
+                          "value_text": "@{getStringFromDict(request, 'exe_date')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "امتیاز",
+                          "value_text": "@{getStringFromDict(request, 'score')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "درخواست هتل",
+                          "value_text": "@{getStringFromDict(request, 'hotel_request')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "وضعیت درخواست",
+                          "value_text": "@{getStringFromDict(request, 'request_status')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "علت عدم تخصیص",
+                          "value_text": "@{getStringFromDict(request, 'reject_reason')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "نوع صدور حکم",
+                          "value_text": "@{getStringFromDict(request, 'decree_type')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "وضعیت تصویب",
+                          "value_text": "@{getStringFromDict(request, 'approval_status')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "شماره حکم",
+                          "value_text": "@{getStringFromDict(request, 'decree_number')}"
+                        },
+                        {
+                          "type": "text",
+                          "text": "اولویت‌های هتل",
+                          "font_size": 12,
+                          "font_weight": "medium",
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "right",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "margins": {
+                            "top": 6,
+                            "bottom": 6
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "orientation": "vertical",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "item_builder": {
+                            "data": "@{getArrayFromDict(request, 'choices')}",
+                            "data_element_name": "choice",
+                            "prototypes": [
+                              {
+                                "selector": "@{true}",
+                                "div": {
+                                  "type": "choice_row"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "array",
+        "name": "requests",
+        "value": [
+          {
+            "id": "4582717",
+            "hotel": "هتل آرمان",
+            "program_type": "مسئولين",
+            "doc_num": "1402",
+            "doc_date": "۱۴۰۲/۰۷/۰۵",
+            "exe_date": "۱۴۰۲/۰۷/۰۹",
+            "score": "-",
+            "hotel_request": "دارد",
+            "request_status": "-",
+            "reject_reason": "-",
+            "decree_type": "جدید",
+            "approval_status": "تایید شده",
+            "confirmed_code": "1",
+            "stmntType": "1",
+            "isCancel": "0",
+            "planTypeSpecialTitle": "تولد فرزند",
+            "familyRelationTitel": "دختر",
+            "decree_number": "10009740/14027949112338166",
+            "choices": [
+              {
+                "priority": "۱",
+                "hotel": "هتل آرمان",
+                "dates": "۱۴۰۵/۰۱/۰۵ تا ۱۴۰۵/۰۱/۰۹",
+                "last_minute": "false"
+              }
+            ]
+          },
+          {
+            "id": "4277717",
+            "hotel": "هتل آرمان",
+            "program_type": "عادي",
+            "doc_num": "از کاربري اميد",
+            "doc_date": "۱۴۰۵/۰۷/۰۲",
+            "exe_date": "۱۴۰۵/۰۷/۰۲",
+            "score": "160.575",
+            "hotel_request": "دارد",
+            "request_status": "انصراف",
+            "reject_reason": "-",
+            "decree_type": "جدید",
+            "approval_status": "ابطال",
+            "confirmed_code": "7",
+            "stmntType": "1",
+            "isCancel": "1",
+            "planTypeSpecialTitle": "-",
+            "familyRelationTitel": "-",
+            "decree_number": "1/4277717/404133585",
+            "choices": [
+              {
+                "priority": "۱",
+                "hotel": "هتل آرمان",
+                "dates": "۱۴۰۵/۰۹/۱۹ تا ۱۴۰۵/۰۹/۲۳",
+                "last_minute": "false"
+              },
+              {
+                "priority": "۲",
+                "hotel": "هتل پارس مشهد",
+                "dates": "۱۴۰۵/۰۹/۰۹ تا ۱۴۰۵/۰۹/۱۳",
+                "last_minute": "false"
+              }
+            ]
+          },
+          {
+            "id": "4277719",
+            "hotel": "هتل آرمان",
+            "program_type": "عادي",
+            "doc_num": "از کاربري اميد",
+            "doc_date": "۱۴۰۵/۰۷/۰۲",
+            "exe_date": "۱۴۰۵/۰۷/۰۲",
+            "score": "160.575",
+            "hotel_request": "دارد",
+            "request_status": "انصراف",
+            "reject_reason": "-",
+            "decree_type": "جدید",
+            "approval_status": "ابطال",
+            "confirmed_code": "7",
+            "stmntType": "1",
+            "isCancel": "2",
+            "planTypeSpecialTitle": "-",
+            "familyRelationTitel": "-",
+            "decree_number": "1/4277719/404133585",
+            "choices": [
+              {
+                "priority": "۱",
+                "hotel": "هتل آرمان",
+                "dates": "۱۴۰۵/۰۹/۱۹ تا ۱۴۰۵/۰۹/۲۳",
+                "last_minute": "false"
+              },
+              {
+                "priority": "۲",
+                "hotel": "هتل پارس مشهد",
+                "dates": "۱۴۰۵/۰۹/۰۹ تا ۱۴۰۵/۰۹/۱۳",
+                "last_minute": "false"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "templates": {
+    "option_row": {
+      "type": "container",
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "right",
+      "content_alignment_vertical": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#f3f5f9"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14,
+        "start": 12,
+        "end": 12
+      },
+      "margins": {
+        "bottom": 8
+      },
+      "actions": [
+        {
+          "log_id": "open_option",
+          "$url": "action_url"
+        }
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "‹",
+          "font_size": 18,
+          "text_color": "#193d8d",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "margins": {
+            "end": 8
+          }
+        },
+        {
+          "type": "text",
+          "$text": "title",
+          "font_size": 14,
+          "font_weight": "medium",
+          "text_color": "#1f2937",
+          "text_alignment_horizontal": "right",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          }
+        }
+      ]
+    },
+    "request_card": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#c8d0e4",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "start": 10,
+        "end": 10
+      },
+      "margins": {
+        "bottom": 10
+      }
+    },
+    "field_row": {
+      "type": "container",
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "right",
+      "content_alignment_vertical": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "paddings": {
+        "top": 4,
+        "bottom": 4
+      },
+      "items": [
+        {
+          "type": "text",
+          "$text": "value_text",
+          "font_size": 12,
+          "font_weight": "medium",
+          "text_color": "#1f2937",
+          "text_alignment_horizontal": "left",
+          "width": {
+            "type": "match_parent",
+            "weight": 1
+          }
+        },
+        {
+          "type": "text",
+          "$text": "label",
+          "font_size": 12,
+          "text_color": "#6b7280",
+          "text_alignment_horizontal": "right",
+          "width": {
+            "type": "wrap_content"
+          },
+          "margins": {
+            "start": 8
+          }
+        }
+      ]
+    },
+    "choice_row": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#f3f5f9"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 8,
+        "bottom": 8,
+        "start": 10,
+        "end": 10
+      },
+      "margins": {
+        "bottom": 6
+      },
+      "items": [
+        {
+          "type": "text",
+          "text": "اولویت @{getStringFromDict(choice, 'priority')} · @{getStringFromDict(choice, 'hotel')}",
+          "font_size": 12,
+          "font_weight": "medium",
+          "text_color": "#193d8d",
+          "text_alignment_horizontal": "right",
+          "width": {
+            "type": "match_parent"
+          }
+        },
+        {
+          "type": "text",
+          "text": "@{getStringFromDict(choice, 'dates')}@{getStringFromDict(choice, 'last_minute') == 'true' ? ' · لحظه آخری' : ''}",
+          "font_size": 11,
+          "text_color": "#6b7280",
+          "text_alignment_horizontal": "right",
+          "width": {
+            "type": "match_parent"
+          },
+          "margins": {
+            "top": 2
+          }
+        }
+      ]
+    }
+  }
+}

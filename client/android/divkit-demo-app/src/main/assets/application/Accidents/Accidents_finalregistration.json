@@ -1,0 +1,2083 @@
+{
+  "templates": {
+    "page_title": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "wrap_content"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "section_label": {
+      "type": "text",
+      "font_size": 12,
+      "font_weight": "medium",
+      "text_color": "#6b7280",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 6
+      }
+    },
+    "field_box": {
+      "type": "container",
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "right",
+      "content_alignment_vertical": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#c8d0e4",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "start": 12,
+        "end": 12
+      },
+      "margins": {
+        "bottom": 10
+      }
+    },
+    "field_value": {
+      "type": "text",
+      "font_size": 13,
+      "text_color": "#1f2937",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "field_input": {
+      "type": "input",
+      "font_size": 13,
+      "text_color": "#1f2937",
+      "hint_color": "#9ca3af",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "validation_text": {
+      "type": "text",
+      "font_size": 12,
+      "font_weight": "medium",
+      "text_color": "#dc2626",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 6
+      }
+    },
+    "primary_btn": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#ffffff",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#193d8d"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14
+      }
+    },
+    "secondary_btn": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#f3f5f9"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14
+      },
+      "margins": {
+        "top": 8
+      }
+    }
+  },
+  "card": {
+    "log_id": "div2_sample_card",
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "string",
+        "name": "text___1",
+        "value": "اطلاعات تصادفات"
+      },
+      {
+        "type": "string",
+        "name": "text___2",
+        "value": "تعداد کل :"
+      },
+      {
+        "type": "string",
+        "name": "text___3",
+        "value": "۲۶"
+      },
+      {
+        "type": "string",
+        "name": "text___4",
+        "value": "تصادفات سازشی :"
+      },
+      {
+        "type": "string",
+        "name": "text___5",
+        "value": "۱۷ عدد"
+      },
+      {
+        "type": "string",
+        "name": "text___6",
+        "value": "تصادفات غیر سازشی :"
+      },
+      {
+        "type": "string",
+        "name": "text___7",
+        "value": "۹ عدد"
+      },
+      {
+        "type": "string",
+        "name": "text___8",
+        "value": "نوع تصادف را انتخاب کنید :"
+      },
+      {
+        "type": "string",
+        "name": "text___9",
+        "value": "غیر سازشی"
+      },
+      {
+        "type": "string",
+        "name": "text___10",
+        "value": "شروع فرآیند"
+      },
+      {
+        "type": "string",
+        "name": "text___11",
+        "value": "سازشی"
+      },
+      {
+        "type": "string",
+        "name": "text___12",
+        "value": "شروع فرآیند"
+      },
+      {
+        "type": "string",
+        "name": "refresh",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "arrow_right",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "text___32",
+        "value": "برخورد با حیوان"
+      },
+      {
+        "type": "string",
+        "name": "text___33",
+        "value": "مرحله قبل"
+      },
+      {
+        "type": "string",
+        "name": "text___31",
+        "value": "ثبت نهایی"
+      },
+      {
+        "type": "boolean",
+        "name": "index1",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "checked",
+        "value": "divkit-asset://checkbox-checked.png"
+      },
+      {
+        "type": "string",
+        "name": "unchecked",
+        "value": "divkit-asset://checkbox-unchecked.png"
+      },
+      {
+        "type": "string",
+        "name": "police_station",
+        "value": "پلیس راهور فراجا"
+      },
+      {
+        "type": "string",
+        "name": "police_command_center",
+        "value": "پلیس ترافیک شهری"
+      },
+      {
+        "type": "string",
+        "name": "provincial_police_center",
+        "value": "آذربایجان شرقی_پلیس راهور استان"
+      },
+      {
+        "type": "string",
+        "name": "provincial_traffic_police",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "the_way",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "news_number",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "number_vehicles",
+        "value": "2"
+      },
+      {
+        "type": "string",
+        "name": "type_accident",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "geographic_coordinates",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "date_accident",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "time_accident",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "distance_from_origin",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "text___36",
+        "value": "مشخصات شخص"
+      },
+      {
+        "type": "string",
+        "name": "text___36",
+        "value": "مشخصات راننده"
+      },
+      {
+        "type": "string",
+        "name": "text___49",
+        "value": "غیر ایرانی"
+      },
+      {
+        "type": "string",
+        "name": "text___50",
+        "value": "ایرانی"
+      },
+      {
+        "type": "string",
+        "name": "national_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "text___37",
+        "value": "اسکن چهره"
+      },
+      {
+        "type": "string",
+        "name": "text___39",
+        "value": "استعلام"
+      },
+      {
+        "type": "string",
+        "name": "certificate_number",
+        "value": "شماره گواهینامه"
+      },
+      {
+        "type": "string",
+        "name": "variable_name",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_family_name",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_third_insurance_policy_number",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_insurance_financial_commitment_limit",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_place_issue",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_place_birth",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_location",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_body_insurace_policy_number",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_body_insurance_validity_date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_approximate_amount_damage",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_reasons_arrest",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_type_accusation",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_position",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_citizenship",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_collision_place",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_collision_place_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_final_registration_collision_place",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "variable_name_of_third_insurance_company",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_approximate_amount_of_damage",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_name_bodyinsurance_company",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_vehicle_factors",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_human_factor",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_human_factor_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_road_effective",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_road_effective_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_traffic_allowed",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_traffic_allowed_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_lighting_status",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_lighting_status_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_road_surface",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_road_surface_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_sight_obstructions",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_sight_obstructions_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_geometrical_of_road",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_geometrical_of_road_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_road_position",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_road_position_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_weather_status",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_weather_status_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_date_of_police_presence",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_time_of_police_presence",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_road_type",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_road_type_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_main_road_width",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_sub_road_width",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_shoulder_type",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_shoulder_type_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_shoulder_width",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_line_count",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_state_accident_scene",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_location_speed",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_region_usage",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_region_usage_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_vehicle_factor_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_final_registration_vehicle_factor",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_final_registration_vehicle_factor",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_final_registration_human_factor",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_final_registration_road_effective",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_final_registration_traffic_allowed",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_final_registration_lighting_status",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_final_registration_road_surface",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_final_registration_sight_obstructions",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_final_registration_geometrical_of_road",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_final_registration_road_position",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_final_registration_weather_status",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_final_registration_region_usage",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_final_registration_road_type",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_final_registration_shoulder_of_sub_road_width",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "validation_final_registration_shoulder_type",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_final_registration_shoulder_width",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "validation_final_registration_location_speed",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "current_accident_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "current_step",
+        "value": "4"
+      },
+      {
+        "type": "string",
+        "name": "total_step",
+        "value": "4"
+      },
+      {
+        "type": "string",
+        "name": "empty",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "attempted_next",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_next_page",
+        "value": false
+      }
+    ],
+    "variable_triggers": [
+      {
+        "condition": "@{compromising_final_registration_collision_place_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_ok",
+            "url": "div-action://set_variable?name=validation_final_registration_collision_place&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_collision_place_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_bad",
+            "url": "div-action://set_variable?name=validation_final_registration_collision_place&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_vehicle_factor_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_ok",
+            "url": "div-action://set_variable?name=validation_final_registration_vehicle_factor&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_vehicle_factor_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_bad",
+            "url": "div-action://set_variable?name=validation_final_registration_vehicle_factor&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_human_factor_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_ok",
+            "url": "div-action://set_variable?name=validation_final_registration_human_factor&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_human_factor_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_bad",
+            "url": "div-action://set_variable?name=validation_final_registration_human_factor&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_road_effective_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_ok",
+            "url": "div-action://set_variable?name=validation_final_registration_road_effective&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_road_effective_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_bad",
+            "url": "div-action://set_variable?name=validation_final_registration_road_effective&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_traffic_allowed_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_ok",
+            "url": "div-action://set_variable?name=validation_final_registration_traffic_allowed&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_traffic_allowed_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_bad",
+            "url": "div-action://set_variable?name=validation_final_registration_traffic_allowed&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_lighting_status_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_ok",
+            "url": "div-action://set_variable?name=validation_final_registration_lighting_status&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_lighting_status_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_bad",
+            "url": "div-action://set_variable?name=validation_final_registration_lighting_status&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_road_surface_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_ok",
+            "url": "div-action://set_variable?name=validation_final_registration_road_surface&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_road_surface_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_bad",
+            "url": "div-action://set_variable?name=validation_final_registration_road_surface&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_sight_obstructions_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_ok",
+            "url": "div-action://set_variable?name=validation_final_registration_sight_obstructions&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_sight_obstructions_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_bad",
+            "url": "div-action://set_variable?name=validation_final_registration_sight_obstructions&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_geometrical_of_road_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_ok",
+            "url": "div-action://set_variable?name=validation_final_registration_geometrical_of_road&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_geometrical_of_road_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_bad",
+            "url": "div-action://set_variable?name=validation_final_registration_geometrical_of_road&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_road_position_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_ok",
+            "url": "div-action://set_variable?name=validation_final_registration_road_position&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_road_position_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_bad",
+            "url": "div-action://set_variable?name=validation_final_registration_road_position&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_weather_status_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_ok",
+            "url": "div-action://set_variable?name=validation_final_registration_weather_status&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_weather_status_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_bad",
+            "url": "div-action://set_variable?name=validation_final_registration_weather_status&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_region_usage_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_ok",
+            "url": "div-action://set_variable?name=validation_final_registration_region_usage&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_region_usage_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_bad",
+            "url": "div-action://set_variable?name=validation_final_registration_region_usage&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_road_type_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_ok",
+            "url": "div-action://set_variable?name=validation_final_registration_road_type&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_road_type_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_bad",
+            "url": "div-action://set_variable?name=validation_final_registration_road_type&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_shoulder_type_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_ok",
+            "url": "div-action://set_variable?name=validation_final_registration_shoulder_type&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_shoulder_type_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_bad",
+            "url": "div-action://set_variable?name=validation_final_registration_shoulder_type&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_location_speed != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_ok",
+            "url": "div-action://set_variable?name=validation_final_registration_location_speed&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_location_speed == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "validation_bad",
+            "url": "div-action://set_variable?name=validation_final_registration_location_speed&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{(compromising_final_registration_road_type_code == '2125' || compromising_final_registration_road_type_code == '5680') && compromising_final_registration_sub_road_width == empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "sub_road_bad",
+            "url": "div-action://set_variable?name=validation_final_registration_shoulder_of_sub_road_width&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{(compromising_final_registration_road_type_code != '2125' && compromising_final_registration_road_type_code != '5680') || compromising_final_registration_sub_road_width != empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "sub_road_ok",
+            "url": "div-action://set_variable?name=validation_final_registration_shoulder_of_sub_road_width&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_shoulder_type_code != empty && compromising_final_registration_shoulder_type_code != '2006' && compromising_final_registration_shoulder_width == empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "shoulder_width_bad",
+            "url": "div-action://set_variable?name=validation_final_registration_shoulder_width&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_final_registration_shoulder_type_code == empty || compromising_final_registration_shoulder_type_code == '2006' || compromising_final_registration_shoulder_width != empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "shoulder_width_ok",
+            "url": "div-action://set_variable?name=validation_final_registration_shoulder_width&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{validation_final_registration_collision_place && validation_final_registration_vehicle_factor && validation_final_registration_human_factor && validation_final_registration_road_effective && validation_final_registration_traffic_allowed && validation_final_registration_lighting_status && validation_final_registration_road_surface && validation_final_registration_sight_obstructions && validation_final_registration_geometrical_of_road && validation_final_registration_road_position && validation_final_registration_weather_status && validation_final_registration_region_usage && validation_final_registration_road_type && validation_final_registration_shoulder_type && validation_final_registration_location_speed && validation_final_registration_shoulder_of_sub_road_width && validation_final_registration_shoulder_width}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "next_ok",
+            "url": "div-action://set_variable?name=validation_next_page&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{!validation_final_registration_collision_place || !validation_final_registration_vehicle_factor || !validation_final_registration_human_factor || !validation_final_registration_road_effective || !validation_final_registration_traffic_allowed || !validation_final_registration_lighting_status || !validation_final_registration_road_surface || !validation_final_registration_sight_obstructions || !validation_final_registration_geometrical_of_road || !validation_final_registration_road_position || !validation_final_registration_weather_status || !validation_final_registration_region_usage || !validation_final_registration_road_type || !validation_final_registration_shoulder_type || !validation_final_registration_location_speed || !validation_final_registration_shoulder_of_sub_road_width || !validation_final_registration_shoulder_width}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "next_bad",
+            "url": "div-action://set_variable?name=validation_next_page&value=false"
+          }
+        ]
+      }
+    ],
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "match_parent"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "paddings": {
+            "top": 12,
+            "bottom": 12,
+            "start": 16,
+            "end": 16
+          },
+          "visibility_actions": [
+            {
+              "log_id": "load_accident_id",
+              "url": "div-action://set_variable_from_db?name=current_accident_id",
+              "visibility_duration": 0
+            }
+          ],
+          "items": [
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 8
+              },
+              "items": [
+                {
+                  "type": "page_title",
+                  "text": "ثبت تصادف سازشی",
+                  "alignment_horizontal": "right"
+                },
+                {
+                  "type": "text",
+                  "text": "بازگشت",
+                  "font_size": 12,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "actions": [
+                    {
+                      "log_id": "back",
+                      "url": "div-action://pop_and_load_screen"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "horizontal",
+              "content_alignment_vertical": "center",
+              "content_alignment_horizontal": "right",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ],
+              "border": {
+                "corner_radius": 8
+              },
+              "paddings": {
+                "top": 6,
+                "bottom": 6,
+                "start": 8,
+                "end": 8
+              },
+              "margins": {
+                "bottom": 8
+              },
+              "items": [
+                {
+                  "type": "custom",
+                  "custom_type": "circular_progress",
+                  "custom_props": {
+                    "current": "@{current_step}",
+                    "total": "@{total_step}"
+                  },
+                  "width": {
+                    "type": "fixed",
+                    "value": 36
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 36
+                  },
+                  "margins": {
+                    "end": 8
+                  }
+                },
+                {
+                  "type": "container",
+                  "orientation": "vertical",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "ثبت نهایی و ارسال",
+                      "font_size": 12,
+                      "font_weight": "medium",
+                      "text_color": "#1f2937",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": "آخرین مرحله: ثبت نهایی و ارسال به سرور",
+                      "font_size": 10,
+                      "text_color": "#6b7280",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "top": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "gallery",
+              "orientation": "vertical",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "match_parent",
+                "weight": 1
+              },
+              "items": [
+                {
+                  "type": "container",
+                  "orientation": "vertical",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#fef2f2"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 8
+                  },
+                  "paddings": {
+                    "top": 10,
+                    "bottom": 6,
+                    "start": 12,
+                    "end": 12
+                  },
+                  "margins": {
+                    "bottom": 10
+                  },
+                  "visibility": "@{attempted_next && !validation_next_page ? 'visible' : 'gone'}",
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "لطفاً موارد الزامی را تکمیل کنید",
+                      "font_size": 13,
+                      "font_weight": "medium",
+                      "text_color": "#b91c1c",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "bottom": 6
+                      }
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "محل برخورد اجباری می باشد.",
+                      "visibility": "@{ validation_final_registration_collision_place ? 'gone' : 'visible' }"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "عوامل وسیله نقلیه -محموله موثر در تصادف اجباری می باشد.",
+                      "visibility": "@{ validation_final_registration_vehicle_factor ? 'gone' : 'visible' }"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "عوامل انسانی موثر در تصادف اجباری می باشد.",
+                      "visibility": "@{ validation_final_registration_human_factor ? 'gone' : 'visible' }"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "نقایص موثر راه اجباری می باشد.",
+                      "visibility": "@{ validation_final_registration_road_effective ? 'gone' : 'visible' }"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "جریان مجاز ترافیک اجباری می باشد.",
+                      "visibility": "@{ validation_final_registration_traffic_allowed ? 'gone' : 'visible' }"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "وضع روشنایی محل تصادف اجباری می باشد.",
+                      "visibility": "@{ validation_final_registration_lighting_status ? 'gone' : 'visible' }"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "شرایط سطح راه اجباری می باشد.",
+                      "visibility": "@{ validation_final_registration_road_surface ? 'gone' : 'visible' }"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "موانع دید اجباری می باشد.",
+                      "visibility": "@{ validation_final_registration_sight_obstructions ? 'gone' : 'visible' }"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "وضعیت هندسی راه اجباری می باشد.",
+                      "visibility": "@{ validation_final_registration_geometrical_of_road ? 'gone' : 'visible' }"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "موقعیت تصادف در راه اجباری می باشد.",
+                      "visibility": "@{ validation_final_registration_road_position ? 'gone' : 'visible' }"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "وضع هوا اجباری می باشد.",
+                      "visibility": "@{ validation_final_registration_weather_status ? 'gone' : 'visible' }"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "کاربری محل اجباری می باشد.",
+                      "visibility": "@{ validation_final_registration_region_usage ? 'gone' : 'visible' }"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "نوع راه اجباری می باشد.",
+                      "visibility": "@{ validation_final_registration_road_type ? 'gone' : 'visible' }"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "نوع شانه اجباری می باشد.",
+                      "visibility": "@{ validation_final_registration_shoulder_type ? 'gone' : 'visible' }"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "میزان سرعت محل تصادف اجباری می باشد.",
+                      "visibility": "@{ validation_final_registration_location_speed ? 'gone' : 'visible' }"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "عرض راه فرعی اجباری می باشد.",
+                      "visibility": "@{ validation_final_registration_shoulder_of_sub_road_width ? 'gone' : 'visible' }"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "عرض شانه اجباری می باشد.",
+                      "visibility": "@{ validation_final_registration_shoulder_width ? 'gone' : 'visible' }"
+                    }
+                  ]
+                },
+                {
+                  "type": "page_title",
+                  "text": "مشخصات تصادف",
+                  "margins": {
+                    "top": 8,
+                    "bottom": 10
+                  }
+                },
+                {
+                  "type": "section_label",
+                  "text": "محل برخورد *"
+                },
+                {
+                  "type": "field_box",
+                  "actions": [
+                    {
+                      "log_id": "show_bottom_sheet_list",
+                      "url": "div-action://bottom_sheet_list?id=COLLISION_TYPE&varName=COLLISION_TYPE&selection=multi&title= محل برخورد &title_var=compromising_final_registration_collision_place&code_var=compromising_final_registration_collision_place_code"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "field_value",
+                      "text": "@{compromising_final_registration_collision_place == empty ? 'انتخاب نمایید' : compromising_final_registration_collision_place}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section_label",
+                  "text": "عوامل وسیله نقلیه -محموله موثر در تصادف *"
+                },
+                {
+                  "type": "field_box",
+                  "actions": [
+                    {
+                      "log_id": "show_bottom_sheet_list",
+                      "url": "div-action://bottom_sheet_list?id=VEHICLE_FACTOR&varName=VEHICLE_FACTOR&selection=multi&title=عوامل وسیله نقلیه - محموله موثر در تصادف &code_var=compromising_final_registration_vehicle_factor_code&title_var=compromising_final_registration_vehicle_factor"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "field_value",
+                      "text": "@{compromising_final_registration_vehicle_factor == empty ? 'انتخاب نمایید' : compromising_final_registration_vehicle_factor}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section_label",
+                  "text": "عوامل انسانی موثر در تصادف *"
+                },
+                {
+                  "type": "field_box",
+                  "actions": [
+                    {
+                      "log_id": "show_bottom_sheet_list",
+                      "url": "div-action://bottom_sheet_list?id=HUMAN_FACTOR&varName=HUMAN_FACTOR&selection=multi&title= عوامل انسانی موثر در تصادف &code_var=compromising_final_registration_human_factor_code&title_var=compromising_final_registration_human_factor"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "field_value",
+                      "text": "@{compromising_final_registration_human_factor == empty ? 'انتخاب نمایید' : compromising_final_registration_human_factor}"
+                    }
+                  ]
+                },
+                {
+                  "type": "page_title",
+                  "text": "مشخصات راه و وضعیت جوی محل تصادف",
+                  "margins": {
+                    "top": 8,
+                    "bottom": 10
+                  }
+                },
+                {
+                  "type": "section_label",
+                  "text": "نقایص موثر راه *"
+                },
+                {
+                  "type": "field_box",
+                  "actions": [
+                    {
+                      "log_id": "show_bottom_sheet_list",
+                      "url": "div-action://bottom_sheet_list?id=ROAD_DEFECTS_AT_ACCIDENT_SITE&varName=ROAD_DEFECTS_AT_ACCIDENT_SITE&selection=multi&title= نقایص موثر راه &code_var=compromising_final_registration_road_effective_code&title_var=compromising_final_registration_road_effective"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "field_value",
+                      "text": "@{compromising_final_registration_road_effective == empty ? 'انتخاب نمایید' : compromising_final_registration_road_effective}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section_label",
+                  "text": "جریان مجاز ترافیک *"
+                },
+                {
+                  "type": "field_box",
+                  "actions": [
+                    {
+                      "log_id": "show_bottom_sheet_list",
+                      "url": "div-action://bottom_sheet_list?id=ROAD_DIRECTION&varName=ROAD_DIRECTION&title= جریان مجاز ترافیک &code_var=compromising_final_registration_traffic_allowed_code&title_var=compromising_final_registration_traffic_allowed"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "field_value",
+                      "text": "@{compromising_final_registration_traffic_allowed == empty ? 'انتخاب نمایید' : compromising_final_registration_traffic_allowed}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section_label",
+                  "text": "وضع روشنایی محل تصادف *"
+                },
+                {
+                  "type": "field_box",
+                  "actions": [
+                    {
+                      "log_id": "show_bottom_sheet_list",
+                      "url": "div-action://bottom_sheet_list?id=LIGHTING_CONDITION&varName=LIGHTING_CONDITION&title= وضع روشنایی محل تصادف &code_var=compromising_final_registration_lighting_status_code&title_var=compromising_final_registration_lighting_status"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "field_value",
+                      "text": "@{compromising_final_registration_lighting_status == empty ? 'انتخاب نمایید' : compromising_final_registration_lighting_status}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section_label",
+                  "text": "شرایط سطح راه *"
+                },
+                {
+                  "type": "field_box",
+                  "actions": [
+                    {
+                      "log_id": "show_bottom_sheet_list",
+                      "url": "div-action://bottom_sheet_list?id=ROAD_SURFACE_CONDITION&varName=ROAD_SURFACE_CONDITION&selection=multi&title= شرایط سطح راه &code_var=compromising_final_registration_road_surface_code&title_var=compromising_final_registration_road_surface"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "field_value",
+                      "text": "@{compromising_final_registration_road_surface == empty ? 'انتخاب نمایید' : compromising_final_registration_road_surface}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section_label",
+                  "text": "موانع دید *"
+                },
+                {
+                  "type": "field_box",
+                  "actions": [
+                    {
+                      "log_id": "show_bottom_sheet_list",
+                      "url": "div-action://bottom_sheet_list?id=VISIBILITY_OBSTACLES&varName=VISIBILITY_OBSTACLES&selection=multi&title= موانع دید &code_var=compromising_final_registration_sight_obstructions_code&title_var=compromising_final_registration_sight_obstructions"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "field_value",
+                      "text": "@{compromising_final_registration_sight_obstructions == empty ? 'انتخاب نمایید' : compromising_final_registration_sight_obstructions}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section_label",
+                  "text": "وضعیت هندسی راه *"
+                },
+                {
+                  "type": "field_box",
+                  "actions": [
+                    {
+                      "log_id": "show_bottom_sheet_list",
+                      "url": "div-action://bottom_sheet_list?id=ROAD_POSITION&varName=ROAD_POSITION&title= وضع هندسی راه &code_var=compromising_final_registration_geometrical_of_road_code&title_var=compromising_final_registration_geometrical_of_road"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "field_value",
+                      "text": "@{compromising_final_registration_geometrical_of_road == empty ? 'انتخاب نمایید' : compromising_final_registration_geometrical_of_road}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section_label",
+                  "text": "موقعیت تصادف در راه *"
+                },
+                {
+                  "type": "field_box",
+                  "actions": [
+                    {
+                      "log_id": "show_bottom_sheet_list",
+                      "url": "div-action://bottom_sheet_list?id=ACCIDENT_POSITION&varName=ACCIDENT_POSITION&title= موقعیت تصادف در راه &code_var=compromising_final_registration_road_position_code&title_var=compromising_final_registration_road_position"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "field_value",
+                      "text": "@{compromising_final_registration_road_position == empty ? 'انتخاب نمایید' : compromising_final_registration_road_position}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section_label",
+                  "text": "وضع هوا *"
+                },
+                {
+                  "type": "field_box",
+                  "actions": [
+                    {
+                      "log_id": "show_bottom_sheet_list",
+                      "url": "div-action://bottom_sheet_list?id=WEATHER_CONDITION&varName=WEATHER_CONDITION&selection=multi&title= وضع هوا &code_var=compromising_final_registration_weather_status_code&title_var=compromising_final_registration_weather_status"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "field_value",
+                      "text": "@{compromising_final_registration_weather_status == empty ? 'انتخاب نمایید' : compromising_final_registration_weather_status}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section_label",
+                  "text": "کاربری محل *"
+                },
+                {
+                  "type": "field_box",
+                  "actions": [
+                    {
+                      "log_id": "show_bottom_sheet_list",
+                      "url": "div-action://bottom_sheet_list?id=AREA_USAGE_TYPE&varName=AREA_USAGE_TYPE&selection=multi&title= کاربری محل &code_var=compromising_final_registration_region_usage_code&title_var=compromising_final_registration_region_usage"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "field_value",
+                      "text": "@{compromising_final_registration_region_usage == empty ? 'انتخاب نمایید' : compromising_final_registration_region_usage}"
+                    }
+                  ]
+                },
+                {
+                  "type": "page_title",
+                  "text": "مشخصات راه",
+                  "margins": {
+                    "top": 8,
+                    "bottom": 10
+                  }
+                },
+                {
+                  "type": "section_label",
+                  "text": "نوع راه *"
+                },
+                {
+                  "type": "field_box",
+                  "actions": [
+                    {
+                      "log_id": "show_bottom_sheet_list",
+                      "url": "div-action://bottom_sheet_list?id=ROAD_TYPE&varName=ROAD_TYPE&title= نوع راه &code_var=compromising_final_registration_road_type_code&title_var=compromising_final_registration_road_type"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "field_value",
+                      "text": "@{compromising_final_registration_road_type == empty ? 'انتخاب نمایید' : compromising_final_registration_road_type}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section_label",
+                  "text": "عرض راه اصلی (متر)"
+                },
+                {
+                  "type": "field_box",
+                  "items": [
+                    {
+                      "type": "field_input",
+                      "text_variable": "compromising_final_registration_main_road_width",
+                      "hint_text": "وارد کنید",
+                      "keyboard_type": "number"
+                    }
+                  ]
+                },
+                {
+                  "type": "container",
+                  "orientation": "vertical",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "visibility": "@{compromising_final_registration_road_type_code == '2125' || compromising_final_registration_road_type_code == '5680' ? 'visible' : 'gone'}",
+                  "items": [
+                    {
+                      "type": "section_label",
+                      "text": "عرض راه فرعی (متر) *"
+                    },
+                    {
+                      "type": "field_box",
+                      "items": [
+                        {
+                          "type": "field_input",
+                          "text_variable": "compromising_final_registration_sub_road_width",
+                          "hint_text": "وارد کنید",
+                          "keyboard_type": "number"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "section_label",
+                  "text": "نوع شانه *"
+                },
+                {
+                  "type": "field_box",
+                  "actions": [
+                    {
+                      "log_id": "show_bottom_sheet_list",
+                      "url": "div-action://bottom_sheet_list?id=ROAD_SHOULDER_STATUS&varName=ROAD_SHOULDER_STATUS&title= نوع شانه &code_var=compromising_final_registration_shoulder_type_code&title_var=compromising_final_registration_shoulder_type"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "field_value",
+                      "text": "@{compromising_final_registration_shoulder_type == empty ? 'انتخاب نمایید' : compromising_final_registration_shoulder_type}"
+                    }
+                  ]
+                },
+                {
+                  "type": "container",
+                  "orientation": "vertical",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "visibility": "@{compromising_final_registration_shoulder_type_code != empty && compromising_final_registration_shoulder_type_code != '2006' ? 'visible' : 'gone'}",
+                  "items": [
+                    {
+                      "type": "section_label",
+                      "text": "عرض شانه (متر) *"
+                    },
+                    {
+                      "type": "field_box",
+                      "items": [
+                        {
+                          "type": "field_input",
+                          "text_variable": "compromising_final_registration_shoulder_width",
+                          "hint_text": "وارد کنید",
+                          "keyboard_type": "number"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "section_label",
+                  "text": "تعداد خطوط"
+                },
+                {
+                  "type": "field_box",
+                  "items": [
+                    {
+                      "type": "field_input",
+                      "text_variable": "compromising_final_registration_line_count",
+                      "hint_text": "وارد کنید",
+                      "keyboard_type": "number"
+                    }
+                  ]
+                },
+                {
+                  "type": "section_label",
+                  "text": "میزان سرعت محل تصادف *"
+                },
+                {
+                  "type": "field_box",
+                  "items": [
+                    {
+                      "type": "field_input",
+                      "text_variable": "compromising_final_registration_location_speed",
+                      "hint_text": "وارد کنید",
+                      "keyboard_type": "number"
+                    }
+                  ]
+                },
+                {
+                  "type": "section_label",
+                  "text": "مقصرین"
+                },
+                {
+                  "type": "container",
+                  "orientation": "vertical",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#f8fafc"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 8,
+                    "stroke": {
+                      "color": "#c8d0e4",
+                      "width": 1
+                    }
+                  },
+                  "paddings": {
+                    "top": 10,
+                    "bottom": 10,
+                    "start": 10,
+                    "end": 10
+                  },
+                  "margins": {
+                    "bottom": 8
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "لیست رانندگان مقصر بر اساس اطلاعات ثبت‌شده وسایل نقلیه",
+                      "font_size": 11,
+                      "text_color": "#6b7280",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "bottom": 8
+                      }
+                    },
+                    {
+                      "type": "custom",
+                      "custom_type": "fault_drivers_list",
+                      "custom_props": {
+                        "accident_id": "@{current_accident_id}"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "horizontal",
+              "content_alignment_vertical": "center",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "top": 10
+              },
+              "items": [
+                {
+                  "type": "primary_btn",
+                  "text": "@{text___31}",
+                  "width": {
+                    "type": "match_parent",
+                    "weight": 1
+                  },
+                  "margins": {
+                    "start": 4
+                  },
+                  "actions": [
+                    {
+                      "log_id": "attempt_show_errors",
+                      "is_enabled": "@{!validation_next_page}",
+                      "url": "div-action://set_variable?name=attempted_next&value=true"
+                    },
+                    {
+                      "log_id": "toast_validation",
+                      "is_enabled": "@{!validation_next_page}",
+                      "url": "div-action://show_toast?massage=لطفاً فیلدهای الزامی را تکمیل کنید"
+                    },
+                    {
+                      "log_id": "save_draft_page4",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_page_with_changes_to_db?key=draft/@{current_accident_id}/page4"
+                    },
+                    {
+                      "log_id": "save_archive_index",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_object_to_db?archive_path=Accidents&next=draft/@{current_accident_id}/page4&title=ثبت تصادف سازشی&accident_id=@{current_accident_id}&current_step=4&process_type=sazeshi&step_dbshow=صفحه ۴ از ۴&step_persian_lan=مرحله&accident_id_dbshow=@{current_accident_id}&accident_id_persian_lan=شناسه"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=compromising_final_registration_collision_place_code/@{current_accident_id}&value=@{compromising_final_registration_collision_place_code}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=compromising_final_registration_vehicle_factor_code/@{current_accident_id}&value=@{compromising_final_registration_vehicle_factor_code}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=compromising_final_registration_human_factor_code/@{current_accident_id}&value=@{compromising_final_registration_human_factor_code}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=compromising_final_registration_road_effective_code/@{current_accident_id}&value=@{compromising_final_registration_road_effective_code}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=compromising_final_registration_traffic_allowed_code/@{current_accident_id}&value=@{compromising_final_registration_traffic_allowed_code}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=compromising_final_registration_lighting_status_code/@{current_accident_id}&value=@{compromising_final_registration_lighting_status_code}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=compromising_final_registration_road_surface_code/@{current_accident_id}&value=@{compromising_final_registration_road_surface_code}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=compromising_final_registration_sight_obstructions_code/@{current_accident_id}&value=@{compromising_final_registration_sight_obstructions_code}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=compromising_final_registration_geometrical_of_road_code/@{current_accident_id}&value=@{compromising_final_registration_geometrical_of_road_code}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=compromising_final_registration_road_position_code/@{current_accident_id}&value=@{compromising_final_registration_road_position_code}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=compromising_final_registration_weather_status_code/@{current_accident_id}&value=@{compromising_final_registration_weather_status_code}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=compromising_final_registration_region_usage_code/@{current_accident_id}&value=@{compromising_final_registration_region_usage_code}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=compromising_final_registration_road_type_code/@{current_accident_id}&value=@{compromising_final_registration_road_type_code}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=compromising_final_registration_main_road_width/@{current_accident_id}&value=@{compromising_final_registration_main_road_width}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=compromising_final_registration_shoulder_type_code/@{current_accident_id}&value=@{compromising_final_registration_shoulder_type_code}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=compromising_final_registration_line_count/@{current_accident_id}&value=@{compromising_final_registration_line_count}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=compromising_final_registration_location_speed/@{current_accident_id}&value=@{compromising_final_registration_location_speed}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=compromising_final_registration_sub_road_width/@{current_accident_id}&value=@{compromising_final_registration_sub_road_width}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=compromising_final_registration_shoulder_width/@{current_accident_id}&value=@{compromising_final_registration_shoulder_width}"
+                    },
+                    {
+                      "log_id": "submit_compromising_accident",
+                      "is_enabled": "@{validation_next_page}",
+                      "url": "div-action://submit_compromising_accident"
+                    }
+                  ]
+                },
+                {
+                  "type": "secondary_btn",
+                  "text": "@{text___33}",
+                  "width": {
+                    "type": "match_parent",
+                    "weight": 1
+                  },
+                  "margins": {
+                    "top": 0,
+                    "end": 4
+                  },
+                  "actions": [
+                    {
+                      "log_id": "save_draft_page4",
+                      "url": "div-action://set_page_with_changes_to_db?key=draft/@{current_accident_id}/page4"
+                    },
+                    {
+                      "log_id": "set_step",
+                      "url": "div-action://set_variable_to_db?key=current_step&value=3"
+                    },
+                    {
+                      "log_id": "load_screen",
+                      "url": "div-action://pop_and_load_screen"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

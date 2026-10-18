@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layoutDirection="rtl"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/txtDialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text="عدد را وارد کنید"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edtSketchDigit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@android:drawable/edit_text"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="3"
+        android:minHeight="44dp"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/txtDigitPreview"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/sketch_digit_circle_black"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtDigitError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="right"
+        android:text="فقط عدد وارد کنید"
+        android:textColor="#C62828"
+        android:visibility="gone" />
+
+    <RadioGroup
+        android:id="@+id/radioDigitColors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rdbDigitBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="مشکی" />
+
+        <RadioButton
+            android:id="@+id/rdbDigitRed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="قرمز" />
+
+        <RadioButton
+            android:id="@+id/rdbDigitBlue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="آبی" />
+
+        <RadioButton
+            android:id="@+id/rdbDigitGreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="سبز" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnCancel"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="انصراف" />
+
+        <Button
+            android:id="@+id/btnConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="تأیید" />
+    </LinearLayout>
+</LinearLayout>

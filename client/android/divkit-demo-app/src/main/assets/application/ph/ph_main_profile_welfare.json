@@ -1,0 +1,199 @@
+{
+  "card": {
+    "log_id": "profile_welfare_bottomsheet",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "border": {
+            "corners_radius": {
+              "top-left": 16,
+              "top-right": 16
+            }
+          },
+          "paddings": {
+            "top": 8,
+            "bottom": 16,
+            "start": 16,
+            "end": 16
+          },
+          "items": [
+            {
+              "type": "separator",
+              "delimiter_style": {
+                "color": "#d1d5db"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 40
+              },
+              "height": {
+                "type": "fixed",
+                "value": 4
+              },
+              "alignment_horizontal": "center",
+              "border": {
+                "corner_radius": 2
+              },
+              "margins": {
+                "bottom": 12
+              }
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 12
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "اماکن رفاهی",
+                  "font_size": 16,
+                  "font_weight": "medium",
+                  "text_color": "#193d8d",
+                  "text_alignment_horizontal": "right",
+                  "alignment_horizontal": "right",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "بستن",
+                  "font_size": 13,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "actions": [
+                    {
+                      "log_id": "close_welfare",
+                      "url": "div-action://close_bottom_sheet"
+                    }
+                  ],
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "option_row",
+              "title": "هتل",
+              "action_url": "div-action://bottom_sheet_div?jsonName=ph/main/profile/welfare/hotel"
+            },
+            {
+              "type": "option_row",
+              "title": "مهمانسرا",
+              "action_url": "div-action://bottom_sheet_div?jsonName=ph/main/profile/guesthouse/select"
+            },
+            {
+              "type": "option_row",
+              "title": "تراکنش هتل",
+              "action_url": "div-action://close_bottom_sheet"
+            },
+            {
+              "type": "option_row",
+              "title": "تراکنش مهمانسرا",
+              "action_url": "div-action://close_bottom_sheet"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "templates": {
+    "option_row": {
+      "type": "container",
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "right",
+      "content_alignment_vertical": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#f3f5f9"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14,
+        "start": 12,
+        "end": 12
+      },
+      "margins": {
+        "bottom": 8
+      },
+      "actions": [
+        {
+          "log_id": "open_option",
+          "$url": "action_url"
+        }
+      ],
+      "items": [
+        {
+          "type": "text",
+          "text": "‹",
+          "font_size": 18,
+          "text_color": "#193d8d",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "margins": {
+            "end": 8
+          }
+        },
+        {
+          "type": "text",
+          "$text": "title",
+          "font_size": 14,
+          "font_weight": "medium",
+          "text_color": "#1f2937",
+          "text_alignment_horizontal": "right",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          }
+        }
+      ]
+    }
+  }
+}

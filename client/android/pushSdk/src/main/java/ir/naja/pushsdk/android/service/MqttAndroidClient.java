@@ -110,10 +110,9 @@ public class MqttAndroidClient extends BroadcastReceiver implements
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder binder) {
+            ir.naja.pushsdk.android.PushLog.i("MqttService onServiceConnected name=" + name);
             mqttService = ((MqttServiceBinder) binder).getService();
             bindedService = true;
-            // now that we have the service available, we can actually
-            // connect...
             doConnect();
         }
 
@@ -229,7 +228,8 @@ public class MqttAndroidClient extends BroadcastReceiver implements
      */
     public MqttAndroidClient(Context context, String serverURI,
                              String clientId, MqttClientPersistence persistence, Ack ackType) {
-        myContext = context;
+        Context app = context != null ? context.getApplicationContext() : null;
+        myContext = app != null ? app : context;
         this.serverURI = serverURI;
         this.clientId = clientId;
         this.persistence = persistence;
@@ -393,10 +393,27 @@ public class MqttAndroidClient extends BroadcastReceiver implements
          * connection itself takes place in the onServiceConnected() method
          */
         if (mqttService == null) { // First time - must bind to the service
-            Intent serviceStartIntent = new Intent();
-            serviceStartIntent.setClassName(myContext, SERVICE_NAME);
-            Object service = myContext.startService(serviceStartIntent);
+            final Context bindContext = serviceContext();
+            Intent serviceStartIntent = mqttServiceIntent(bindContext);
+            Object service;
+            try {
+                service = bindContext.startService(serviceStartIntent);
+                ir.naja.pushsdk.android.PushLog.i("MqttService startService result="
+                        + (service != null)
+                        + " ctx=" + bindContext.getClass().getSimpleName()
+                        + " pkg=" + bindContext.getPackageName()
+                        + " cmp=" + serviceStartIntent.getComponent());
+            } catch (Exception e) {
+                ir.naja.pushsdk.android.PushLog.e("MqttService startService failed: "
+                        + e.getClass().getSimpleName() + " " + e.getMessage(), e);
+                IMqttActionListener listener = token.getActionCallback();
+                if (listener != null) {
+                    listener.onFailure(token, e);
+                }
+                return token;
+            }
             if (service == null) {
+                ir.naja.pushsdk.android.PushLog.e("cannot start service " + SERVICE_NAME);
                 IMqttActionListener listener = token.getActionCallback();
                 if (listener != null) {
                     listener.onFailure(token, new RuntimeException(
@@ -404,10 +421,17 @@ public class MqttAndroidClient extends BroadcastReceiver implements
                 }
             }
 
-            // We bind with BIND_SERVICE_FLAG (0), leaving us the manage the lifecycle
-            // until the last time it is stopped by a call to stopService()
-            myContext.bindService(serviceStartIntent, serviceConnection,
-                    Context.BIND_AUTO_CREATE);
+            boolean bound = bindMqttService(bindContext, serviceStartIntent);
+            ir.naja.pushsdk.android.PushLog.i("MqttService bindService bound=" + bound
+                    + " ctx=" + bindContext.getClass().getSimpleName());
+            if (!bound) {
+                IMqttActionListener listener = token.getActionCallback();
+                if (listener != null) {
+                    listener.onFailure(token, new RuntimeException(
+                            "bindService returned false for " + SERVICE_NAME));
+                }
+                return token;
+            }
 
             if (!receiverRegistered) registerReceiver(this);
         } else {
@@ -425,6 +449,31 @@ public class MqttAndroidClient extends BroadcastReceiver implements
         }
 
         return token;
+    }
+
+    private Context serviceContext() {
+        if (myContext == null) {
+            return null;
+        }
+        Context app = myContext.getApplicationContext();
+        return app != null ? app : myContext;
+    }
+
+    private Intent mqttServiceIntent(Context context) {
+        Intent intent = new Intent(context, MqttService.class);
+        intent.setPackage(context.getPackageName());
+        return intent;
+    }
+
+    private boolean bindMqttService(Context context, Intent serviceIntent) {
+        try {
+            return context.bindService(serviceIntent, serviceConnection,
+                    Context.BIND_AUTO_CREATE);
+        } catch (Exception e) {
+            ir.naja.pushsdk.android.PushLog.e("MqttService bindService exception: "
+                    + e.getClass().getSimpleName() + " " + e.getMessage(), e);
+            return false;
+        }
     }
 
     private void registerReceiver(BroadcastReceiver receiver) {
@@ -1635,7 +1684,8 @@ public class MqttAndroidClient extends BroadcastReceiver implements
      */
     public void registerResources(Context context) {
         if (context != null) {
-            this.myContext = context;
+            Context app = context.getApplicationContext();
+            this.myContext = app != null ? app : context;
             if (!receiverRegistered) {
                 registerReceiver(this);
             }

@@ -12,19 +12,19 @@ class YandexSansDivTypefaceProvider @Inject constructor(
 ) : DivTypefaceProvider {
 
     override fun getRegular(): Typeface {
-        return ResourcesCompat.getFont(context, R.font.ys_text_regular) ?: Typeface.DEFAULT
+        return ResourcesCompat.getFont(context, R.font.irsans) ?: Typeface.DEFAULT
     }
 
     override fun getMedium(): Typeface {
-        return ResourcesCompat.getFont(context, R.font.ys_text_medium) ?: Typeface.DEFAULT
+        return ResourcesCompat.getFont(context, R.font.irsans) ?: Typeface.DEFAULT
     }
 
     override fun getLight(): Typeface {
-        return ResourcesCompat.getFont(context, R.font.ys_text_light) ?: Typeface.DEFAULT
+        return ResourcesCompat.getFont(context, R.font.irsans) ?: Typeface.DEFAULT
     }
 
     override fun getBold(): Typeface {
-        return ResourcesCompat.getFont(context, R.font.ys_text_bold) ?: Typeface.DEFAULT
+        return ResourcesCompat.getFont(context, R.font.irsans) ?: Typeface.DEFAULT
     }
 
     override fun getRegularLegacy(): Typeface {
@@ -32,6 +32,6 @@ class YandexSansDivTypefaceProvider @Inject constructor(
          *  |ya_regular| includes both regular and italic variant.
          *  It is used in rich text in legacy divs.
          */
-        return ResourcesCompat.getFont(context, R.font.ya_regular) ?: Typeface.DEFAULT
+        return ResourcesCompat.getFont(context, R.font.irsans) ?: Typeface.DEFAULT
     }
 }

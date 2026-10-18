@@ -12,18 +12,18 @@ class YandexSansDisplayDivTypefaceProvider @Inject constructor(
 ) : DivTypefaceProvider {
 
     override fun getRegular(): Typeface {
-        return ResourcesCompat.getFont(context, R.font.ys_display_regular) ?: Typeface.DEFAULT
+        return ResourcesCompat.getFont(context, R.font.irsans) ?: Typeface.DEFAULT
     }
 
     override fun getMedium(): Typeface {
-        return ResourcesCompat.getFont(context, R.font.ys_display_medium) ?: Typeface.DEFAULT
+        return ResourcesCompat.getFont(context, R.font.irsans) ?: Typeface.DEFAULT
     }
 
     override fun getLight(): Typeface {
-        return ResourcesCompat.getFont(context, R.font.ys_display_light) ?: Typeface.DEFAULT
+        return ResourcesCompat.getFont(context, R.font.irsans) ?: Typeface.DEFAULT
     }
 
     override fun getBold(): Typeface {
-        return ResourcesCompat.getFont(context, R.font.ys_display_bold) ?: Typeface.DEFAULT
+        return ResourcesCompat.getFont(context, R.font.irsans) ?: Typeface.DEFAULT
     }
 }

@@ -1,0 +1,308 @@
+{
+  "patch": {
+    "mode": "partial",
+    "changes": [
+      {
+        "id": "vehicleFormContent",
+        "items": [
+          {
+            "type": "container",
+            "orientation": "horizontal",
+            "width": {"type": "match_parent"},
+            "height": {"type": "wrap_content"},
+            "content_alignment_vertical": "center",
+            "content_alignment_horizontal": "end",
+            "margins": {"bottom": 16},
+            "items": [
+              {
+                "type": "text",
+                "text": "اطلاعات وسیله نقلیه",
+                "font_size": 16,
+                "font_weight": "bold",
+                "text_color": "#193d8d",
+                "width": {"type": "match_parent"},
+                "text_alignment_horizontal": "start"
+              },
+              {
+                "type": "text",
+                "text": "۱ / ۳",
+                "font_size": 13,
+                "text_color": "#757575",
+                "width": {"type": "wrap_content"},
+                "text_alignment_horizontal": "end"
+              }
+            ]
+          },
+          {
+            "type": "container",
+            "orientation": "vertical",
+            "width": {"type": "match_parent"},
+            "height": {"type": "wrap_content"},
+            "margins": {"bottom": 10},
+            "items": [
+              {
+                "type": "text",
+                "text": "مدل خودرو",
+                "font_size": 13,
+                "text_color": "#5b5b5b",
+                "width": {"type": "match_parent"},
+                "text_alignment_horizontal": "start",
+                "margins": {"bottom": 4}
+              },
+              {
+                "type": "container",
+                "border": {"stroke": {"color": "#c8d0e4", "width": 1}, "corner_radius": 6},
+                "background": [{"type": "solid", "color": "#ffffff"}],
+                "width": {"type": "match_parent"},
+                "height": {"type": "fixed", "value": 44},
+                "content_alignment_vertical": "center",
+                "items": [
+                  {
+                    "type": "input",
+                    "text_variable": "vi_car_model",
+                    "hint_text": "مدل خودرو",
+                    "font_size": 14,
+                    "width": {"type": "match_parent"},
+                    "height": {"type": "match_parent"},
+                    "keyboard_type": "single_line_text",
+                    "text_alignment_horizontal": "start",
+                    "text_alignment_vertical": "center",
+                    "margins": {"start": 10, "end": 10}
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "container",
+            "orientation": "vertical",
+            "width": {"type": "match_parent"},
+            "height": {"type": "wrap_content"},
+            "margins": {"bottom": 10},
+            "items": [
+              {
+                "type": "text",
+                "text": "کاربری خودرو",
+                "font_size": 13,
+                "text_color": "#5b5b5b",
+                "width": {"type": "match_parent"},
+                "text_alignment_horizontal": "start",
+                "margins": {"bottom": 4}
+              },
+              {
+                "type": "container",
+                "border": {"stroke": {"color": "#c8d0e4", "width": 1}, "corner_radius": 6},
+                "background": [{"type": "solid", "color": "#ffffff"}],
+                "width": {"type": "match_parent"},
+                "height": {"type": "fixed", "value": 44},
+                "content_alignment_vertical": "center",
+                "items": [
+                  {
+                    "type": "input",
+                    "text_variable": "vi_usage",
+                    "hint_text": "کاربری خودرو (سواری، باری، ...)",
+                    "font_size": 14,
+                    "width": {"type": "match_parent"},
+                    "height": {"type": "match_parent"},
+                    "keyboard_type": "single_line_text",
+                    "text_alignment_horizontal": "start",
+                    "text_alignment_vertical": "center",
+                    "margins": {"start": 10, "end": 10}
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "container",
+            "orientation": "vertical",
+            "width": {"type": "match_parent"},
+            "height": {"type": "wrap_content"},
+            "margins": {"bottom": 10},
+            "items": [
+              {
+                "type": "text",
+                "text": "مقصر / غیر مقصر",
+                "font_size": 13,
+                "text_color": "#5b5b5b",
+                "width": {"type": "match_parent"},
+                "text_alignment_horizontal": "start",
+                "margins": {"bottom": 4}
+              },
+              {
+                "type": "container",
+                "border": {"stroke": {"color": "#c8d0e4", "width": 1}, "corner_radius": 6},
+                "background": [{"type": "solid", "color": "#ffffff"}],
+                "width": {"type": "match_parent"},
+                "height": {"type": "fixed", "value": 44},
+                "content_alignment_vertical": "center",
+                "items": [
+                  {
+                    "type": "input",
+                    "text_variable": "vi_blame_or_not",
+                    "hint_text": "مقصر یا غیر مقصر",
+                    "font_size": 14,
+                    "width": {"type": "match_parent"},
+                    "height": {"type": "match_parent"},
+                    "keyboard_type": "single_line_text",
+                    "text_alignment_horizontal": "start",
+                    "text_alignment_vertical": "center",
+                    "margins": {"start": 10, "end": 10}
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "پلاک خودرو",
+            "font_size": 13,
+            "font_weight": "bold",
+            "text_color": "#193d8d",
+            "width": {"type": "match_parent"},
+            "text_alignment_horizontal": "start",
+            "margins": {"bottom": 8, "top": 4}
+          },
+          {
+            "type": "container",
+            "orientation": "horizontal",
+            "width": {"type": "match_parent"},
+            "height": {"type": "wrap_content"},
+            "content_alignment_vertical": "center",
+            "margins": {"bottom": 10},
+            "items": [
+              {
+                "type": "container",
+                "border": {"stroke": {"color": "#c8d0e4", "width": 1}, "corner_radius": 6},
+                "background": [{"type": "solid", "color": "#ffffff"}],
+                "width": {"type": "match_parent", "weight": 1},
+                "height": {"type": "fixed", "value": 44},
+                "content_alignment_vertical": "center",
+                "content_alignment_horizontal": "center",
+                "margins": {"end": 4},
+                "items": [
+                  {
+                    "type": "input",
+                    "text_variable": "vi_plateA",
+                    "hint_text": "۱۱",
+                    "font_size": 18,
+                    "width": {"type": "match_parent"},
+                    "height": {"type": "match_parent"},
+                    "keyboard_type": "number",
+                    "text_alignment_horizontal": "center",
+                    "text_alignment_vertical": "center"
+                  }
+                ]
+              },
+              {
+                "type": "container",
+                "border": {"stroke": {"color": "#c8d0e4", "width": 1}, "corner_radius": 6},
+                "background": [{"type": "solid", "color": "#ffffff"}],
+                "width": {"type": "match_parent", "weight": 1},
+                "height": {"type": "fixed", "value": 44},
+                "content_alignment_vertical": "center",
+                "content_alignment_horizontal": "center",
+                "margins": {"start": 4, "end": 4},
+                "items": [
+                  {
+                    "type": "input",
+                    "text_variable": "vi_plateB",
+                    "hint_text": "ب",
+                    "font_size": 18,
+                    "width": {"type": "match_parent"},
+                    "height": {"type": "match_parent"},
+                    "keyboard_type": "single_line_text",
+                    "text_alignment_horizontal": "center",
+                    "text_alignment_vertical": "center"
+                  }
+                ]
+              },
+              {
+                "type": "container",
+                "border": {"stroke": {"color": "#c8d0e4", "width": 1}, "corner_radius": 6},
+                "background": [{"type": "solid", "color": "#ffffff"}],
+                "width": {"type": "match_parent", "weight": 1.5},
+                "height": {"type": "fixed", "value": 44},
+                "content_alignment_vertical": "center",
+                "content_alignment_horizontal": "center",
+                "margins": {"start": 4, "end": 4},
+                "items": [
+                  {
+                    "type": "input",
+                    "text_variable": "vi_plateC",
+                    "hint_text": "۱۱۱",
+                    "font_size": 18,
+                    "width": {"type": "match_parent"},
+                    "height": {"type": "match_parent"},
+                    "keyboard_type": "number",
+                    "text_alignment_horizontal": "center",
+                    "text_alignment_vertical": "center"
+                  }
+                ]
+              },
+              {
+                "type": "container",
+                "border": {"stroke": {"color": "#003299", "width": 2}, "corner_radius": 6},
+                "background": [{"type": "solid", "color": "#e8ecf4"}],
+                "width": {"type": "match_parent", "weight": 0.8},
+                "height": {"type": "fixed", "value": 44},
+                "content_alignment_vertical": "center",
+                "content_alignment_horizontal": "center",
+                "margins": {"start": 4},
+                "items": [
+                  {
+                    "type": "input",
+                    "text_variable": "vi_plateD",
+                    "hint_text": "۱۱",
+                    "font_size": 14,
+                    "width": {"type": "match_parent"},
+                    "height": {"type": "match_parent"},
+                    "keyboard_type": "number",
+                    "text_alignment_horizontal": "center",
+                    "text_alignment_vertical": "center"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "container",
+            "orientation": "horizontal",
+            "width": {"type": "match_parent"},
+            "height": {"type": "wrap_content"},
+            "content_alignment_vertical": "center",
+            "margins": {"top": 16},
+            "items": [
+              {
+                "type": "container",
+                "actions": [
+                  {
+                    "log_id": "next_to_driver",
+                    "url": "div-action://bottom_sheet_set_patch?patch=Accidents/driver"
+                  }
+                ],
+                "background": [{"type": "solid", "color": "#193d8d"}],
+                "border": {"corner_radius": 6},
+                "width": {"type": "match_parent"},
+                "height": {"type": "fixed", "value": 48},
+                "content_alignment_horizontal": "center",
+                "content_alignment_vertical": "center",
+                "items": [
+                  {
+                    "type": "text",
+                    "text": "بعدی",
+                    "text_color": "#ffffff",
+                    "font_size": 15,
+                    "font_weight": "bold",
+                    "width": {"type": "wrap_content"}
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "templates": {}
+}

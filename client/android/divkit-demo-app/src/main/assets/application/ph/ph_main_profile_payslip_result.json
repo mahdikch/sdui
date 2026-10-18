@@ -1,0 +1,236 @@
+{
+  "card": {
+    "log_id": "profile_payslip_result_bottomsheet",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "border": {
+            "corners_radius": {
+              "top-left": 16,
+              "top-right": 16
+            }
+          },
+          "paddings": {
+            "top": 8,
+            "bottom": 16,
+            "start": 16,
+            "end": 16
+          },
+          "items": [
+            {
+              "type": "separator",
+              "delimiter_style": {
+                "color": "#d1d5db"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 40
+              },
+              "height": {
+                "type": "fixed",
+                "value": 4
+              },
+              "alignment_horizontal": "center",
+              "border": {
+                "corner_radius": 2
+              },
+              "margins": {
+                "bottom": 12
+              }
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 12
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "نتیجه فیش حقوقی",
+                  "font_size": 16,
+                  "font_weight": "medium",
+                  "text_color": "#193d8d",
+                  "text_alignment_horizontal": "right",
+                  "alignment_horizontal": "right",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "بستن",
+                  "font_size": 13,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "actions": [
+                    {
+                      "log_id": "close_payslip_result",
+                      "url": "div-action://close_bottom_sheet"
+                    }
+                  ],
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "info_row",
+              "label": "کد پرسنلی",
+              "value_text": "@{payslip_personnel_code}",
+              "bg_color": "#f3f5f9"
+            },
+            {
+              "type": "info_row",
+              "label": "سال / ماه",
+              "value_text": "@{payslip_year} / @{payslip_month}",
+              "bg_color": "#ffffff"
+            },
+            {
+              "type": "info_row",
+              "label": "ناخالص حقوق",
+              "value_text": "@{payslip_gross}",
+              "bg_color": "#f3f5f9"
+            },
+            {
+              "type": "info_row",
+              "label": "کسورات",
+              "value_text": "@{payslip_deductions}",
+              "bg_color": "#ffffff"
+            },
+            {
+              "type": "info_row",
+              "label": "خالص حقوق",
+              "value_text": "@{payslip_net}",
+              "bg_color": "#f3f5f9"
+            }
+          ]
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "string",
+        "name": "payslip_personnel_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "payslip_year",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "payslip_month",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "payslip_gross",
+        "value": "۵۳,۵۰۰,۰۰۰"
+      },
+      {
+        "type": "string",
+        "name": "payslip_deductions",
+        "value": "۸,۳۰۰,۰۰۰"
+      },
+      {
+        "type": "string",
+        "name": "payslip_net",
+        "value": "۴۵,۲۰۰,۰۰۰"
+      }
+    ]
+  },
+  "templates": {
+    "info_row": {
+      "type": "container",
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "right",
+      "content_alignment_vertical": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "fixed",
+        "value": 48
+      },
+      "background": [
+        {
+          "type": "solid",
+          "$color": "bg_color"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "start": 12,
+        "end": 12
+      },
+      "margins": {
+        "bottom": 8
+      },
+      "items": [
+        {
+          "type": "text",
+          "$text": "value_text",
+          "font_size": 13,
+          "font_weight": "medium",
+          "text_color": "#193d8d",
+          "text_alignment_horizontal": "left",
+          "width": {
+            "type": "match_parent",
+            "weight": 1
+          },
+          "height": {
+            "type": "wrap_content"
+          }
+        },
+        {
+          "type": "text",
+          "$text": "label",
+          "font_size": 12,
+          "text_color": "#6b7280",
+          "text_alignment_horizontal": "right",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "margins": {
+            "start": 8
+          }
+        }
+      ]
+    }
+  }
+}

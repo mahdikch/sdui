@@ -1,9 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
-    <base-config cleartextTrafficPermitted="true">
+    <!-- Release: trust only system CAs + embedded push CA. Never trust user-installed CAs. -->
+    <base-config cleartextTrafficPermitted="false">
         <trust-anchors>
-            <certificates src="system"/>
-            <certificates src="user"/>
+            <certificates src="@raw/push_ca" />
+            <certificates src="system" />
         </trust-anchors>
     </base-config>
+
+    <!-- Internal NAJA / field services that still speak HTTP. Deny-by-default elsewhere. -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">naja.net</domain>
+        <domain includeSubdomains="true">police.ir</domain>
+        <domain>172.19.83.5</domain>
+        <domain>172.19.83.6</domain>
+        <domain>172.19.83.11</domain>
+        <domain>172.19.83.16</domain>
+        <domain>172.19.83.20</domain>
+        <domain>172.19.83.21</domain>
+        <domain>172.19.83.23</domain>
+        <domain>172.19.25.90</domain>
+        <domain>10.33.202.163</domain>
+        <domain>10.33.202.246</domain>
+        <domain>192.168.157.20</domain>
+    </domain-config>
+
+    <domain-config>
+        <domain includeSubdomains="true">pishgiri.naja.net</domain>
+        <trust-anchors>
+            <certificates src="@raw/push_ca" />
+            <certificates src="system" />
+        </trust-anchors>
+    </domain-config>
+
+    <!-- Charles/mitmproxy user CAs only in debuggable builds -->
+    <debug-overrides>
+        <trust-anchors>
+            <certificates src="user" />
+            <certificates src="system" />
+            <certificates src="@raw/push_ca" />
+        </trust-anchors>
+    </debug-overrides>
 </network-security-config>

@@ -1,0 +1,412 @@
+{
+  "templates": {
+    "fine_detail_row": {
+      "type": "container",
+      "orientation": "overlap",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "$color": "bg"
+        }
+      ],
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "start": 12,
+        "end": 12
+      },
+      "items": [
+        {
+          "type": "text",
+          "$text": "label",
+          "font_size": 12,
+          "font_weight": "medium",
+          "text_color": "#193d8d",
+          "text_alignment_horizontal": "right",
+          "alignment_horizontal": "right",
+          "alignment_vertical": "center",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "margins": {
+            "end": 8
+          }
+        },
+        {
+          "type": "text",
+          "$text": "value",
+          "font_size": 13,
+          "text_color": "#1f2937",
+          "text_alignment_horizontal": "left",
+          "alignment_horizontal": "left",
+          "alignment_vertical": "center",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "margins": {
+            "start": 8
+          }
+        }
+      ]
+    }
+  },
+  "card": {
+    "log_id": "traffic_fine_detail_bottomsheet",
+    "variables": [
+      { "type": "string", "name": "fine_id", "value": "-" },
+      { "type": "string", "name": "fine_rangeId", "value": "-" },
+      { "type": "string", "name": "fine_plate", "value": "-" },
+      { "type": "string", "name": "fine_enfDate", "value": "-" },
+      { "type": "string", "name": "fine_isBig", "value": "-" },
+      { "type": "string", "name": "fine_isInternal", "value": "-" },
+      { "type": "string", "name": "fine_registerCityId", "value": "-" },
+      { "type": "string", "name": "fine_licenseCityId", "value": "-" },
+      { "type": "string", "name": "fine_licenseTypeId", "value": "-" },
+      { "type": "string", "name": "fine_licenseIssueCity", "value": "-" },
+      { "type": "string", "name": "fine_carColorId", "value": "-" },
+      { "type": "string", "name": "fine_policeCode", "value": "-" },
+      { "type": "string", "name": "fine_ticketTypeId", "value": "-" },
+      { "type": "string", "name": "fine_carSystemId", "value": "-" },
+      { "type": "string", "name": "fine_carUsageId", "value": "-" },
+      { "type": "string", "name": "fine_address", "value": "-" },
+      { "type": "string", "name": "fine_organization", "value": "-" },
+      { "type": "string", "name": "fine_licenseDate", "value": "-" },
+      { "type": "string", "name": "fine_finePrice", "value": "-" },
+      { "type": "string", "name": "fine_price1", "value": "-" },
+      { "type": "string", "name": "fine_price2", "value": "-" },
+      { "type": "string", "name": "fine_price3", "value": "-" },
+      { "type": "string", "name": "fine_paperId", "value": "-" },
+      { "type": "string", "name": "fine_paymentId", "value": "-" },
+      { "type": "string", "name": "fine_isPrevent", "value": "-" },
+      { "type": "string", "name": "fine_violationId1", "value": "-" },
+      { "type": "string", "name": "fine_violationId2", "value": "-" },
+      { "type": "string", "name": "fine_violationId3", "value": "-" },
+      { "type": "string", "name": "fine_sessionId", "value": "-" },
+      { "type": "string", "name": "fine_status", "value": "-" },
+      { "type": "string", "name": "fine_latitude", "value": "-" },
+      { "type": "string", "name": "fine_longitude", "value": "-" }
+    ],
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "border": {
+            "corners_radius": {
+              "top-left": 16,
+              "top-right": 16
+            }
+          },
+          "paddings": {
+            "top": 8,
+            "bottom": 16,
+            "start": 16,
+            "end": 16
+          },
+          "items": [
+            {
+              "type": "separator",
+              "delimiter_style": {
+                "color": "#d1d5db"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 40
+              },
+              "height": {
+                "type": "fixed",
+                "value": 4
+              },
+              "alignment_horizontal": "center",
+              "border": {
+                "corner_radius": 2
+              },
+              "margins": {
+                "bottom": 12
+              }
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 12
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "جزئیات جریمه",
+                  "font_size": 16,
+                  "font_weight": "medium",
+                  "text_color": "#193d8d",
+                  "text_alignment_horizontal": "right",
+                  "alignment_horizontal": "right",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "بستن",
+                  "font_size": 13,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "actions": [
+                    {
+                      "log_id": "close_fine_detail",
+                      "url": "div-action://close_bottom_sheet"
+                    }
+                  ],
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "gallery",
+              "orientation": "vertical",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 460
+              },
+              "items": [
+                {
+                  "type": "fine_detail_row",
+                  "label": "سریال",
+                  "value": "@{fine_rangeId}",
+                  "bg": "#f3f5f9"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "شناسه",
+                  "value": "@{fine_id}",
+                  "bg": "#ffffff"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "پلاک",
+                  "value": "@{fine_plate}",
+                  "bg": "#f3f5f9"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "تاریخ جریمه",
+                  "value": "@{fine_enfDate}",
+                  "bg": "#ffffff"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "آدرس",
+                  "value": "@{fine_address}",
+                  "bg": "#f3f5f9"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "مبلغ جریمه",
+                  "value": "@{fine_finePrice}",
+                  "bg": "#ffffff"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "مبلغ ۱",
+                  "value": "@{fine_price1}",
+                  "bg": "#f3f5f9"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "مبلغ ۲",
+                  "value": "@{fine_price2}",
+                  "bg": "#ffffff"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "مبلغ ۳",
+                  "value": "@{fine_price3}",
+                  "bg": "#f3f5f9"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "کد تخلف ۱",
+                  "value": "@{fine_violationId1}",
+                  "bg": "#ffffff"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "کد تخلف ۲",
+                  "value": "@{fine_violationId2}",
+                  "bg": "#f3f5f9"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "کد تخلف ۳",
+                  "value": "@{fine_violationId3}",
+                  "bg": "#ffffff"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "شناسه کاغذ",
+                  "value": "@{fine_paperId}",
+                  "bg": "#f3f5f9"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "شناسه پرداخت",
+                  "value": "@{fine_paymentId}",
+                  "bg": "#ffffff"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "کد پلیس",
+                  "value": "@{fine_policeCode}",
+                  "bg": "#f3f5f9"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "نوع قبض",
+                  "value": "@{fine_ticketTypeId}",
+                  "bg": "#ffffff"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "سیستم خودرو",
+                  "value": "@{fine_carSystemId}",
+                  "bg": "#f3f5f9"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "کاربری خودرو",
+                  "value": "@{fine_carUsageId}",
+                  "bg": "#ffffff"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "رنگ خودرو",
+                  "value": "@{fine_carColorId}",
+                  "bg": "#f3f5f9"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "شهر ثبت",
+                  "value": "@{fine_registerCityId}",
+                  "bg": "#ffffff"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "شهر گواهینامه",
+                  "value": "@{fine_licenseCityId}",
+                  "bg": "#f3f5f9"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "نوع گواهینامه",
+                  "value": "@{fine_licenseTypeId}",
+                  "bg": "#ffffff"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "شهر صدور گواهینامه",
+                  "value": "@{fine_licenseIssueCity}",
+                  "bg": "#f3f5f9"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "تاریخ گواهینامه",
+                  "value": "@{fine_licenseDate}",
+                  "bg": "#ffffff"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "سازمان",
+                  "value": "@{fine_organization}",
+                  "bg": "#f3f5f9"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "وضعیت",
+                  "value": "@{fine_status}",
+                  "bg": "#ffffff"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "بازدارنده",
+                  "value": "@{fine_isPrevent}",
+                  "bg": "#f3f5f9"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "بزرگ",
+                  "value": "@{fine_isBig}",
+                  "bg": "#ffffff"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "داخلی",
+                  "value": "@{fine_isInternal}",
+                  "bg": "#f3f5f9"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "نشست",
+                  "value": "@{fine_sessionId}",
+                  "bg": "#ffffff"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "عرض جغرافیایی",
+                  "value": "@{fine_latitude}",
+                  "bg": "#f3f5f9"
+                },
+                {
+                  "type": "fine_detail_row",
+                  "label": "طول جغرافیایی",
+                  "value": "@{fine_longitude}",
+                  "bg": "#ffffff"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

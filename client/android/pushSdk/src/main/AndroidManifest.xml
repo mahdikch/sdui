@@ -17,6 +17,11 @@
         android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"
         android:minSdkVersion="34" />
     <application  android:networkSecurityConfig="@xml/network_security_config">
+        <service
+            android:name="ir.naja.pushsdk.android.service.MqttService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
 
 <!--        <receiver android:name=".android.LocationReceiver"-->
 <!--            android:exported="false">-->

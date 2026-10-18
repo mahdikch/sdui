@@ -70,7 +70,16 @@ internal class DivGridBinder @Inject constructor(
 
         val items = div.nonNullItems
 
-        view.tryRebindPlainContainerChildren(divView, items.toDivItemBuilderResult(resolver), divViewCreator)
+        if (!view.tryRebindPlainContainerChildren(
+                divView,
+                items.toDivItemBuilderResult(resolver),
+                divViewCreator
+            )
+        ) {
+            // When patch already expanded grid items in data (e.g. via gallery nested patch),
+            // create/remove child views so item count matches before binding.
+            view.syncChildren(items, resolver)
+        }
 
         val dispatchedItems = view.dispatchBinding(context, items, path)
         view.trackVisibilityActions(
@@ -78,6 +87,16 @@ internal class DivGridBinder @Inject constructor(
             dispatchedItems.toDivItemBuilderResult(resolver),
             oldDiv?.items?.toDivItemBuilderResult(resolver),
         )
+    }
+
+    private fun DivGridLayout.syncChildren(items: List<Div>, resolver: ExpressionResolver) {
+        while (childCount > items.size) {
+            removeViewAt(childCount - 1)
+        }
+        for (index in childCount until items.size) {
+            val childView = divViewCreator.get().create(items[index], resolver)
+            addView(childView, DivLayoutParams(WRAP_CONTENT, WRAP_CONTENT))
+        }
     }
 
     private fun DivGridLayout.observeContentAlignment(
@@ -111,8 +130,11 @@ internal class DivGridBinder @Inject constructor(
             ).also { shift += it.size - 1 }
         }
 
+        // Patch injection or prior sync may leave childCount behind patched item count.
+        syncChildren(patchedItems, resolver)
+
         patchedItems.forEachIndexed { index, item ->
-            val childView = getChildAt(index)
+            val childView = getChildAt(index) ?: return@forEachIndexed
             val childDiv = item.value()
             val childPath = childDiv.resolvePath(index, path)
 
@@ -183,9 +205,13 @@ internal class DivGridBinder @Inject constructor(
 
     fun setDataWithoutBinding(bindingContext: BindingContext, view: DivGridLayout, div: DivGrid) {
         view.div = div
+        val resolver = bindingContext.expressionResolver
         val items = div.nonNullItems
+        view.syncChildren(items, resolver)
+        // Keep column count in sync when patch updates grid data without a full bind.
+        view.columnCount = div.columnCount.evaluate(resolver).toIntSafely()
         for (gridIndex in items.indices) {
-            val childView = view.getChildAt(gridIndex)
+            val childView = view.getChildAt(gridIndex) ?: continue
             val context = childView.bindingContext ?: bindingContext
             divBinder.get().setDataWithoutBinding(context, childView, items[gridIndex])
         }

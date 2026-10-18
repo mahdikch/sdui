@@ -1,6 +1,10 @@
 pluginManagement {
     repositories {
         gradlePluginPortal()
+        // Offline-friendly stubs / mirrors when dl.google.com is unreachable
+        maven { url uri("${settingsDir}/local-maven-repo") }
+        maven { url "https://maven.aliyun.com/repository/google" }
+        maven { url "https://maven.aliyun.com/repository/public" }
         google()
         mavenCentral()
         jcenter()
@@ -61,6 +65,12 @@ include ':utils'
 include ':video-custom'
 include ':najicamera'
 include ':pushSdk'
+include ':kashfface'
+project(':kashfface').projectDir = new File(settingsDir, '../../../../kashfface/app')
+include ':facecapture'
+project(':facecapture').projectDir = new File(settingsDir, '../../../../kashfface/facecapture')
+include ':platecapture'
+project(':platecapture').projectDir = new File(settingsDir, '../../../../kashfface/platecapture')
 
 def internalSettings = file("settings.internal.gradle")
 if (internalSettings.exists()) {

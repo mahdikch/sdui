@@ -1,0 +1,371 @@
+{
+  "templates": {
+    "page_title": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "wrap_content"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "section_label": {
+      "type": "text",
+      "font_size": 12,
+      "font_weight": "medium",
+      "text_color": "#6b7280",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 6
+      }
+    },
+    "field_box": {
+      "type": "container",
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "right",
+      "content_alignment_vertical": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#c8d0e4",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "start": 12,
+        "end": 12
+      },
+      "margins": {
+        "bottom": 10
+      }
+    },
+    "field_value": {
+      "type": "text",
+      "font_size": 13,
+      "text_color": "#1f2937",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "field_input": {
+      "type": "input",
+      "font_size": 13,
+      "text_color": "#1f2937",
+      "hint_color": "#9ca3af",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "validation_text": {
+      "type": "text",
+      "font_size": 12,
+      "font_weight": "medium",
+      "text_color": "#dc2626",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 6
+      }
+    },
+    "primary_btn": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#ffffff",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#193d8d"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14
+      }
+    },
+    "secondary_btn": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#f3f5f9"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14
+      },
+      "margins": {
+        "top": 8
+      }
+    }
+  },
+  "card": {
+    "log_id": "livestock_bottomsheet",
+    "variables": [
+      {
+        "type": "string",
+        "name": "compromising_livestock_type",
+        "value": "انتخاب کنید"
+      },
+      {
+        "type": "string",
+        "name": "compromising_livestock_type_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_livestock_count",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "current_livestock_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "current_accident_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "acc_arrow_down.png",
+        "value": "empty://"
+      }
+    ],
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "paddings": {
+            "top": 12,
+            "bottom": 12,
+            "start": 16,
+            "end": 16
+          },
+          "visibility_actions": [
+            {
+              "log_id": "load_livestock_id",
+              "url": "div-action://set_variable_from_db?name=current_livestock_id",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "load_accident_id",
+              "url": "div-action://set_variable_from_db?name=current_accident_id",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "load_livestock_type",
+              "url": "div-action://set_variable_from_db?name=compromising_livestock_type",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "load_livestock_type_code",
+              "url": "div-action://set_variable_from_db?name=compromising_livestock_type_code",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "load_livestock_count",
+              "url": "div-action://set_variable_from_db?name=variable_livestock_count",
+              "visibility_duration": 0
+            }
+          ],
+          "items": [
+            {
+              "type": "page_title",
+              "text": "افزودن حیوان",
+              "width": {
+                "type": "match_parent"
+              },
+              "margins": {
+                "bottom": 12
+              }
+            },
+            {
+              "type": "container",
+              "orientation": "vertical",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ],
+              "border": {
+                "corner_radius": 10
+              },
+              "paddings": {
+                "top": 12,
+                "bottom": 4,
+                "start": 12,
+                "end": 12
+              },
+              "items": [
+                {
+                  "type": "section_label",
+                  "text": "نوع حیوان"
+                },
+                {
+                  "type": "field_box",
+                  "actions": [
+                    {
+                      "log_id": "pick_livestock",
+                      "url": "div-action://bottom_sheet_list?id=LIVESTOCK&varName=LIVESTOCK&title=نوع حیوان&code_var=compromising_livestock_type_code&title_var=compromising_livestock_type"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "▼",
+                      "font_size": 12,
+                      "text_color": "#193d8d",
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "end": 8
+                      }
+                    },
+                    {
+                      "type": "field_value",
+                      "text": "@{compromising_livestock_type}",
+                      "text_color": "@{compromising_livestock_type == 'انتخاب کنید' ? '#9ca3af' : '#1f2937'}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section_label",
+                  "text": "تعداد"
+                },
+                {
+                  "type": "field_box",
+                  "items": [
+                    {
+                      "type": "field_input",
+                      "hint_text": "تعداد را وارد کنید",
+                      "text_variable": "variable_livestock_count",
+                      "keyboard_type": "number"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "horizontal",
+              "content_alignment_vertical": "center",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "top": 10
+              },
+              "items": [
+                {
+                  "type": "primary_btn",
+                  "text": "افزودن به لیست",
+                  "width": {
+                    "type": "match_parent",
+                    "weight": 1
+                  },
+                  "actions": [
+                    {
+                      "log_id": "save_livestock",
+                      "url": "div-action://save_livestock_to_list?accident_id=@{current_accident_id}&livestock_id=@{current_livestock_id}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

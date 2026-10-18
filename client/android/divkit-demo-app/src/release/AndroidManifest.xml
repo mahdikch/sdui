@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Strip androidx.test harness activities that leak into release via test deps. -->
+    <application>
+        <activity
+            android:name="androidx.test.core.app.InstrumentationActivityInvoker$BootstrapActivity"
+            tools:node="remove" />
+        <activity
+            android:name="androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity"
+            tools:node="remove" />
+        <activity
+            android:name="androidx.test.core.app.InstrumentationActivityInvoker$EmptyFloatingActivity"
+            tools:node="remove" />
+
+        <!-- Demo / benchmark / screenshot entry points must not be externally callable. -->
+        <activity
+            android:name="com.yandex.divkit.demo.LauncherActivity"
+            android:exported="false"
+            tools:replace="android:exported" />
+        <activity
+            android:name="com.yandex.divkit.demo.div.Div2Activity"
+            android:exported="false"
+            tools:replace="android:exported" />
+        <activity
+            android:name="com.yandex.divkit.demo.div.Div2ScenarioActivity"
+            android:exported="false"
+            tools:replace="android:exported" />
+        <activity
+            android:name="com.yandex.divkit.demo.screenshot.DivScreenshotActivity"
+            android:exported="false"
+            tools:replace="android:exported" />
+        <activity
+            android:name="com.yandex.divkit.demo.benchmark.Div2BenchmarkActivity"
+            android:exported="false"
+            tools:replace="android:exported" />
+        <activity
+            android:name="com.yandex.divkit.demo.benchmark.Div2StateBenchmarkActivity"
+            android:exported="false"
+            tools:replace="android:exported" />
+        <activity
+            android:name="com.yandex.divkit.demo.benchmark.Div2FeedBenchmarkActivity"
+            android:exported="false"
+            tools:replace="android:exported" />
+        <activity
+            android:name="com.yandex.divkit.demo.benchmark.DivStorageBenchmarkActivity"
+            android:exported="false"
+            tools:replace="android:exported" />
+        <activity
+            android:name="com.yandex.divkit.regression.RegressionActivity"
+            android:exported="false"
+            tools:replace="android:exported" />
+        <activity
+            android:name="com.yandex.divkit.regression.ScenarioActivity"
+            android:exported="false"
+            tools:replace="android:exported" />
+    </application>
+</manifest>

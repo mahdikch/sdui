@@ -1,0 +1,440 @@
+{
+  "card": {
+    "log_id": "ph_update_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "border": {
+            "corners_radius": {
+              "top-left": 20,
+              "top-right": 20
+            }
+          },
+          "paddings": {
+            "top": 10,
+            "bottom": 24,
+            "start": 20,
+            "end": 20
+          },
+          "items": [
+            {
+              "type": "separator",
+              "delimiter_style": {
+                "color": "#d1d5db"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 40
+              },
+              "height": {
+                "type": "fixed",
+                "value": 4
+              },
+              "alignment_horizontal": "center",
+              "border": {
+                "corner_radius": 2
+              },
+              "margins": {
+                "bottom": 8
+              }
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 20
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "به‌روزرسانی برنامه",
+                  "font_size": 16,
+                  "font_weight": "medium",
+                  "text_color": "#193d8d",
+                  "text_alignment_horizontal": "right",
+                  "alignment_horizontal": "right",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "بستن",
+                  "font_size": 13,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "actions": [
+                    {
+                      "log_id": "close_update_sheet",
+                      "url": "div-action://close_bottom_sheet"
+                    }
+                  ],
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "vertical",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "content_alignment_horizontal": "center",
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ],
+              "border": {
+                "corner_radius": 16
+              },
+              "paddings": {
+                "top": 28,
+                "bottom": 28,
+                "left": 20,
+                "right": 20
+              },
+              "margins": {
+                "bottom": 20
+              },
+              "items": [
+                {
+                  "type": "container",
+                  "orientation": "overlap",
+                  "width": {
+                    "type": "fixed",
+                    "value": 72
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 72
+                  },
+                  "alignment_horizontal": "center",
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#193d8d"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 36
+                  },
+                  "content_alignment_horizontal": "center",
+                  "content_alignment_vertical": "center",
+                  "margins": {
+                    "bottom": 16
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "↓",
+                      "font_size": 32,
+                      "font_weight": "bold",
+                      "text_color": "#ffffff",
+                      "text_alignment_horizontal": "center",
+                      "text_alignment_vertical": "center",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "match_parent"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "نسخه جدید آماده است",
+                  "font_size": 18,
+                  "font_weight": "medium",
+                  "text_color": "#1f2937",
+                  "text_alignment_horizontal": "center",
+                  "alignment_horizontal": "center",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "margins": {
+                    "bottom": 8
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "برای استفاده از امکانات جدید و رفع مشکلات، لطفاً آخرین نسخه برنامه را دانلود و نصب کنید.",
+                  "font_size": 13,
+                  "line_height": 22,
+                  "text_color": "#6b7280",
+                  "text_alignment_horizontal": "center",
+                  "alignment_horizontal": "center",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 48
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f8fafc"
+                }
+              ],
+              "border": {
+                "corner_radius": 12,
+                "stroke": {
+                  "color": "#e5e7eb",
+                  "width": 1
+                }
+              },
+              "margins": {
+                "bottom": 10
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "نسخه فعلی",
+                  "font_size": 12,
+                  "text_color": "#6b7280",
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "end": 14
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{versionNamePhPlus}",
+                  "font_size": 13,
+                  "font_weight": "medium",
+                  "text_color": "#1f2937",
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "start": 14
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 48
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#eef2ff"
+                }
+              ],
+              "border": {
+                "corner_radius": 12,
+                "stroke": {
+                  "color": "#c7d2fe",
+                  "width": 1
+                }
+              },
+              "margins": {
+                "bottom": 16
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "نسخه جدید",
+                  "font_size": 12,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "right",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "end": 14
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{new_version}",
+                  "font_size": 13,
+                  "font_weight": "medium",
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "start": 14
+                  },
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "پس از دانلود، نصب‌کننده سیستم باز می‌شود. در صورت نیاز، اجازه نصب از منابع ناشناس را فعال کنید.",
+              "font_size": 11,
+              "line_height": 18,
+              "text_color": "#9ca3af",
+              "text_alignment_horizontal": "right",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 20
+              }
+            },
+            {
+              "type": "container",
+              "orientation": "horizontal",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 52
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#193d8d"
+                }
+              ],
+              "border": {
+                "corner_radius": 12
+              },
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "items": [
+                {
+                  "type": "download_template",
+                  "download_actions": [
+                    {
+                      "log_id": "start_update_download",
+                      "url": "div-action://update?url=@{update_url}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "string",
+        "name": "versionNamePhPlus",
+        "value": "—"
+      },
+      {
+        "type": "string",
+        "name": "new_version",
+        "value": "جدید"
+      },
+      {
+        "type": "string",
+        "name": "update_url",
+        "value": ""
+      }
+    ]
+  },
+  "templates": {
+    "download_template": {
+      "type": "text",
+      "$actions": "download_actions",
+      "visibility_actions": [
+        {
+          "log_id": "get_write_permission",
+          "url": "div-action://get_write_permission",
+          "visibility_duration": 0
+        }
+      ],
+      "text": "دانلود و نصب",
+      "font_size": 15,
+      "font_weight": "medium",
+      "line_height": 24,
+      "letter_spacing": 0,
+      "text_color": "#ffffff",
+      "text_alignment_horizontal": "center",
+      "text_alignment_vertical": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "match_parent"
+      }
+    }
+  }
+}

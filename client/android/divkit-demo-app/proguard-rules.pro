@@ -73,6 +73,9 @@
 -dontwarn androidx.window.extensions.WindowExtensionsProvider
 -dontwarn androidx.window.extensions.layout.WindowLayoutComponent
 -dontwarn androidx.window.sidecar.SidecarDisplayFeature
+-keep class ir.naja.pushsdk.android.** { *; }
+-keep class ir.naja.pushsdk.android.service.** { *; }
+-keep class org.eclipse.paho.** { *; }
 -keep class * { *; }
 -dontwarn **
 -keepattributes Signature

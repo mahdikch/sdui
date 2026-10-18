@@ -1,0 +1,481 @@
+{
+  "templates": {
+    "page_title": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "wrap_content"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "section_label": {
+      "type": "text",
+      "font_size": 12,
+      "font_weight": "medium",
+      "text_color": "#6b7280",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 6
+      }
+    },
+    "stat_value": {
+      "type": "text",
+      "font_size": 16,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "stat_label": {
+      "type": "text",
+      "font_size": 11,
+      "text_color": "#6b7280",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "top": 4
+      }
+    },
+    "choice_card": {
+      "type": "container",
+      "orientation": "vertical",
+      "content_alignment_horizontal": "center",
+      "content_alignment_vertical": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#f3f5f9"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#c8d0e4",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 16,
+        "bottom": 16,
+        "start": 8,
+        "end": 8
+      }
+    },
+    "primary_btn": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#ffffff",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#193d8d"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14
+      }
+    }
+  },
+  "card": {
+    "log_id": "accidents_main",
+    "variables": [
+      {
+        "type": "string",
+        "name": "compromise_accidents",
+        "value": "17 عدد"
+      },
+      {
+        "type": "string",
+        "name": "non_compromising_accidents",
+        "value": "9 عدد"
+      },
+      {
+        "type": "string",
+        "name": "sazeshi.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "Uncompromising.png",
+        "value": "empty://"
+      }
+    ],
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "match_parent"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "paddings": {
+            "top": 12,
+            "bottom": 12,
+            "start": 16,
+            "end": 16
+          },
+          "items": [
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 12
+              },
+              "items": [
+                {
+                  "type": "page_title",
+                  "text": "ثبت تصادفات",
+                  "alignment_horizontal": "right"
+                },
+                {
+                  "type": "text",
+                  "text": "بازگشت",
+                  "font_size": 12,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "actions": [
+                    {
+                      "log_id": "back",
+                      "url": "div-action://pop_and_load_screen"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "gallery",
+              "orientation": "vertical",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "match_parent",
+                "weight": 1
+              },
+              "items": [
+                {
+                  "type": "section_label",
+                  "text": "اطلاعات تصادفات"
+                },
+                {
+                  "type": "container",
+                  "orientation": "horizontal",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#f3f5f9"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 8
+                  },
+                  "paddings": {
+                    "top": 14,
+                    "bottom": 14,
+                    "start": 8,
+                    "end": 8
+                  },
+                  "margins": {
+                    "bottom": 16
+                  },
+                  "items": [
+                    {
+                      "type": "container",
+                      "orientation": "vertical",
+                      "width": {
+                        "type": "match_parent",
+                        "weight": 1
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "stat_value",
+                          "text": "@{non_compromising_accidents}"
+                        },
+                        {
+                          "type": "stat_label",
+                          "text": "غیرسازشی"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "container",
+                      "orientation": "vertical",
+                      "width": {
+                        "type": "match_parent",
+                        "weight": 1
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "stat_value",
+                          "text": "@{compromise_accidents}"
+                        },
+                        {
+                          "type": "stat_label",
+                          "text": "سازشی"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "section_label",
+                  "text": "نوع تصادف را انتخاب کنید"
+                },
+                {
+                  "type": "container",
+                  "orientation": "horizontal",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "margins": {
+                    "bottom": 12
+                  },
+                  "items": [
+                    {
+                      "type": "choice_card",
+                      "width": {
+                        "type": "match_parent",
+                        "weight": 1
+                      },
+                      "margins": {
+                        "end": 6
+                      },
+                      "actions": [
+                        {
+                          "log_id": "set_random_id_to_db",
+                          "url": "div-action://set_random_id_to_db?key=current_accident_id"
+                        },
+                        {
+                          "log_id": "set_process_type",
+                          "url": "div-action://set_variable_to_db?key=process_type&value=sazeshi"
+                        },
+                        {
+                          "log_id": "set_step",
+                          "url": "div-action://set_variable_to_db?key=current_step&value=1"
+                        },
+                        {
+                          "log_id": "start_process",
+                          "url": "div-action://load_screen?screen=Accidents/unCompromisefirst"
+                        }
+                      ],
+                      "items": [
+                        {
+                          "type": "image",
+                          "image_url": "@{Uncompromising.png}",
+                          "width": {
+                            "type": "fixed",
+                            "value": 72
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 64
+                          },
+                          "preload_required": true,
+                          "margins": {
+                            "bottom": 8
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "text": "غیرسازشی",
+                          "font_size": 13,
+                          "font_weight": "medium",
+                          "text_color": "#1f2937",
+                          "text_alignment_horizontal": "center",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "bottom": 4
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "text": "شروع فرایند",
+                          "font_size": 12,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "center",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "choice_card",
+                      "width": {
+                        "type": "match_parent",
+                        "weight": 1
+                      },
+                      "margins": {
+                        "start": 6
+                      },
+                      "actions": [
+                        {
+                          "log_id": "set_random_id_to_db",
+                          "url": "div-action://set_random_id_to_db?key=current_accident_id"
+                        },
+                        {
+                          "log_id": "set_process_type",
+                          "url": "div-action://set_variable_to_db?key=process_type&value=sazeshi"
+                        },
+                        {
+                          "log_id": "set_step",
+                          "url": "div-action://set_variable_to_db?key=current_step&value=1"
+                        },
+                        {
+                          "log_id": "start_process",
+                          "url": "div-action://load_screen?screen=Accidents/compromisefirst"
+                        }
+                      ],
+                      "items": [
+                        {
+                          "type": "image",
+                          "image_url": "@{sazeshi.png}",
+                          "width": {
+                            "type": "fixed",
+                            "value": 72
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 64
+                          },
+                          "preload_required": true,
+                          "margins": {
+                            "bottom": 8
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "text": "سازشی",
+                          "font_size": 13,
+                          "font_weight": "medium",
+                          "text_color": "#1f2937",
+                          "text_alignment_horizontal": "center",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "bottom": 4
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "text": "شروع فرآیند",
+                          "font_size": 12,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "center",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "primary_btn",
+                  "text": "بایگانی",
+                  "actions": [
+                    {
+                      "log_id": "open_archive",
+                      "url": "div-action://load_screen?screen=Accidents/archive"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

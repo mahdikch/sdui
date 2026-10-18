@@ -3,11 +3,13 @@
     <application>
         <activity
             android:name=".RegressionActivity"
+            android:exported="false"
             android:label="@string/regression_label"
-            android:theme="@style/RegressionTheme"/>
+            android:theme="@style/RegressionTheme" />
 
         <activity
             android:name=".ScenarioActivity"
+            android:exported="false"
             android:theme="@style/RegressionTheme" />
     </application>
 </manifest>

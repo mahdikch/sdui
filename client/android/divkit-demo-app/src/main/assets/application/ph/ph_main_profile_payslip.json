@@ -1,0 +1,356 @@
+{
+  "card": {
+    "log_id": "profile_payslip_bottomsheet",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "border": {
+            "corners_radius": {
+              "top-left": 16,
+              "top-right": 16
+            }
+          },
+          "paddings": {
+            "top": 8,
+            "bottom": 16,
+            "start": 16,
+            "end": 16
+          },
+          "visibility_actions": [
+            {
+              "log_id": "prefill_personnel_code",
+              "url": "div-action://set_variable_from_db?name=payslip_personnel_code&key=userName",
+              "visibility_duration": 0
+            }
+          ],
+          "items": [
+            {
+              "type": "separator",
+              "delimiter_style": {
+                "color": "#d1d5db"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 40
+              },
+              "height": {
+                "type": "fixed",
+                "value": 4
+              },
+              "alignment_horizontal": "center",
+              "border": {
+                "corner_radius": 2
+              },
+              "margins": {
+                "bottom": 12
+              }
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 12
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "فیش حقوقی",
+                  "font_size": 16,
+                  "font_weight": "medium",
+                  "text_color": "#193d8d",
+                  "text_alignment_horizontal": "right",
+                  "alignment_horizontal": "right",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "بستن",
+                  "font_size": 13,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "actions": [
+                    {
+                      "log_id": "close_payslip",
+                      "url": "div-action://close_bottom_sheet"
+                    }
+                  ],
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "readonly_row",
+              "label": "کد پرسنلی",
+              "value_text": "@{payslip_personnel_code}"
+            },
+            {
+              "type": "input_row",
+              "label": "سال",
+              "hint": "سال",
+              "keyboard": "number",
+              "variable_name": "payslip_year"
+            },
+            {
+              "type": "input_row",
+              "label": "ماه",
+              "hint": "ماه",
+              "keyboard": "number",
+              "variable_name": "payslip_month"
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 44
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#193d8d"
+                }
+              ],
+              "alpha": "@{len(payslip_personnel_code) > 0 && len(payslip_year) > 0 && len(payslip_month) > 0 ? 1 : 0.45}",
+              "border": {
+                "corner_radius": 8
+              },
+              "margins": {
+                "top": 8
+              },
+              "actions": [
+                {
+                  "log_id": "search_payslip",
+                  "url": "div-action://call_service?path=hotel/payslip&sysName=hotel&year=@{payslip_year}&month=@{payslip_month}",
+                  "is_enabled": "@{len(payslip_personnel_code) > 0 && len(payslip_year) > 0 && len(payslip_month) > 0}"
+                }
+              ],
+              "items": [
+                {
+                  "type": "text",
+                  "text": "جستجو",
+                  "font_size": 14,
+                  "font_weight": "medium",
+                  "text_color": "#ffffff",
+                  "text_alignment_horizontal": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "string",
+        "name": "payslip_personnel_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "payslip_year",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "payslip_month",
+        "value": ""
+      }
+    ]
+  },
+  "templates": {
+    "readonly_row": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 8
+      },
+      "items": [
+        {
+          "type": "text",
+          "$text": "label",
+          "font_size": 12,
+          "font_weight": "medium",
+          "text_color": "#193d8d",
+          "text_alignment_horizontal": "right",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "margins": {
+            "bottom": 4
+          }
+        },
+        {
+          "type": "container",
+          "orientation": "horizontal",
+          "content_alignment_horizontal": "right",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#eef2f8"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "paddings": {
+            "top": 12,
+            "bottom": 12,
+            "start": 12,
+            "end": 12
+          },
+          "items": [
+            {
+              "type": "text",
+              "$text": "value_text",
+              "font_size": 13,
+              "font_weight": "medium",
+              "text_color": "#1f2937",
+              "text_alignment_horizontal": "right",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "input_row": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 8
+      },
+      "items": [
+        {
+          "type": "text",
+          "$text": "label",
+          "font_size": 12,
+          "font_weight": "medium",
+          "text_color": "#193d8d",
+          "text_alignment_horizontal": "right",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "margins": {
+            "bottom": 4
+          }
+        },
+        {
+          "type": "container",
+          "orientation": "horizontal",
+          "content_alignment_horizontal": "right",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "paddings": {
+            "top": 12,
+            "bottom": 12,
+            "start": 12,
+            "end": 12
+          },
+          "items": [
+            {
+              "type": "input",
+              "$text_variable": "variable_name",
+              "$keyboard_type": "keyboard",
+              "$hint_text": "hint",
+              "font_size": 13,
+              "text_color": "#1f2937",
+              "text_alignment_horizontal": "right",
+              "text_alignment_vertical": "center",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

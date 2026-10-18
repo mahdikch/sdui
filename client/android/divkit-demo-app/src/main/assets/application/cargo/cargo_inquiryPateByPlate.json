@@ -1,0 +1,1918 @@
+{
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "items": [
+            {
+              "type": "container",
+              "orientation": "vertical",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "items": [
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "image",
+                      "image_url": "@{arrow_right.png}",
+                      "actions": [
+                        {
+                          "log_id": "load_screen",
+                          "url": "div-action://pop_and_load_screen"
+                        }
+                      ],
+                      "width": {
+                        "type": "fixed",
+                        "value": 24
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 24
+                      },
+                      "preload_required": true,
+                      "alignment_horizontal": "right",
+                      "alignment_vertical": "center",
+                      "margins": {
+                        "right": 12
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image_url": "@{refresh.png}",
+                      "actions": [
+                        {
+                          "log_id": "update_visibility",
+                          "url": "div-action://set_variable?name=variable_plateA&value="
+                        },
+                        {
+                          "log_id": "update_visibility",
+                          "url": "div-action://set_variable?name=variable_plateB&value="
+                        },
+                        {
+                          "log_id": "update_visibility",
+                          "url": "div-action://set_variable?name=variable_plateC&value="
+                        }
+                      ],
+                      "width": {
+                        "type": "fixed",
+                        "value": 24
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 24
+                      },
+                      "preload_required": true,
+                      "alignment_horizontal": "start",
+                      "alignment_vertical": "center",
+                      "content_alignment_horizontal": "end",
+                      "content_alignment_vertical": "center",
+                      "margins": {
+                        "start": 12
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": "استعلام پته با پلاک",
+                      "font_size": 16,
+                      "line_height": 24,
+                      "letter_spacing": 0,
+                      "text_color": "#193d8d",
+                      "text_alignment_horizontal": "center",
+                      "text_alignment_vertical": "top",
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 24
+                      },
+                      "alignment_horizontal": "center",
+                      "alignment_vertical": "center",
+                      "margins": {
+                        "left": 162,
+                        "right": 162,
+                        "top": 16,
+                        "bottom": 16
+                      }
+                    }
+                  ],
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ],
+                  "height": {
+                    "type": "fixed",
+                    "value": 56
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "overlap",
+                  "content_alignment_vertical": "center",
+                  "content_alignment_horizontal": "center",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "top"
+                },
+                {
+                  "type": "container",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "container",
+                      "visibility": "@{pelak_visibility}",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "id": "vehiclePlate",
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "@{iran_flag.png}",
+                                  "height": {
+                                    "type": "match_parent"
+                                  },
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 37
+                                  },
+                                  "alignment_horizontal": "right",
+                                  "alignment_vertical": "top",
+                                  "margins": {
+                                    "right": 3,
+                                    "top": 4
+                                  }
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#003299"
+                                }
+                              ],
+                              "border": {
+                                "corner_radius": 4
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 56
+                              },
+                              "width": {
+                                "type": "fixed",
+                                "value": 44
+                              },
+                              "orientation": "overlap",
+                              "content_alignment_vertical": "center",
+                              "content_alignment_horizontal": "center"
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "id": "plateA",
+                                  "type": "input",
+                                  "text_variable": "variable_plateA",
+                                  "hint_text": "@{variable_plateA_hint}",
+                                  "keyboard_type": "number",
+                                  "max_length": 2,
+                                  "font_size": 32,
+                                  "letter_spacing": 0,
+                                  "border": {
+                                    "corner_radius": 4
+                                  },
+                                  "text_color": "@{plate_text_color}",
+                                  "text_alignment_vertical": "top",
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "@{plate1_color}"
+                                    }
+                                  ],
+                                  "width": {
+                                    "type": "match_parent",
+                                    "weight": 1
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "alignment_horizontal": "left",
+                                  "alignment_vertical": "center",
+                                  "text_alignment_horizontal": "center",
+                                  "margins": {
+                                    "right": 2,
+                                    "left": 2
+                                  },
+                                  "focus": {
+                                    "next_focus_ids": {
+                                      "forward": "plateB"
+                                    }
+                                  }
+                                },
+                                {
+                                  "id": "plateB",
+                                  "type": "text",
+                                  "text": "@{variable_plateB}",
+                                  "font_size": 32,
+                                  "letter_spacing": 0,
+                                  "border": {
+                                    "corner_radius": 4
+                                  },
+                                  "text_color": "@{plate_text_color}",
+                                  "text_alignment_horizontal": "center",
+                                  "text_alignment_vertical": "center",
+                                  "width": {
+                                    "type": "match_parent",
+                                    "weight": 1.2
+                                  },
+                                  "height": {
+                                    "type": "match_parent"
+                                  },
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "@{plate2_color}"
+                                    }
+                                  ],
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://bottom_sheet_div?jsonName=vt/plate/letters/bottomsheet"
+                                    }
+                                  ],
+                                  "margins": {
+                                    "right": 2,
+                                    "left": 2
+                                  },
+                                  "next_focus_ids": {
+                                    "forward": "plateC"
+                                  }
+                                },
+                                {
+                                  "next_focus_ids": {
+                                    "forward": "plateD"
+                                  },
+                                  "id": "plateC",
+                                  "type": "input",
+                                  "text_variable": "variable_plateC",
+                                  "max_length": 3,
+                                  "hint_text": "@{variable_plateC_hint}",
+                                  "keyboard_type": "number",
+                                  "font_size": 32,
+                                  "letter_spacing": 0,
+                                  "border": {
+                                    "corner_radius": 4
+                                  },
+                                  "text_color": "@{plate_text_color}",
+                                  "text_alignment_horizontal": "center",
+                                  "text_alignment_vertical": "center",
+                                  "width": {
+                                    "type": "match_parent",
+                                    "weight": 1.6
+                                  },
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "@{plate3_color}"
+                                    }
+                                  ],
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "right": 2,
+                                    "left": 2
+                                  }
+                                },
+                                {
+                                  "id": "plateD",
+                                  "type": "input",
+                                  "text_variable": "variable_plateD",
+                                  "hint_text": "@{variable_plateD_hint}",
+                                  "keyboard_type": "number",
+                                  "max_length": 2,
+                                  "font_size": 32,
+                                  "letter_spacing": 0,
+                                  "border": {
+                                    "corner_radius": 4
+                                  },
+                                  "text_color": "@{plate_text_color}",
+                                  "text_alignment_horizontal": "center",
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "@{plate4_color}"
+                                    }
+                                  ],
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent",
+                                    "weight": 1
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "right": 2,
+                                    "left": 2
+                                  }
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#ffffff"
+                                }
+                              ],
+                              "border": {
+                                "corner_radius": 4,
+                                "has_shadow": 1,
+                                "shadow": {
+                                  "offset": {
+                                    "x": {
+                                      "value": 0
+                                    },
+                                    "y": {
+                                      "value": 4
+                                    }
+                                  },
+                                  "blur": 10,
+                                  "color": "#000000",
+                                  "alpha": 0.05000000074505806
+                                }
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 56
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_vertical": "center",
+                              "content_alignment_horizontal": "center",
+                              "margins": {
+                                "left": 8
+                              }
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#e8ecf4"
+                            }
+                          ],
+                          "border": {
+                            "corner_radius": 4
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 72
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "center",
+                          "content_alignment_vertical": "center",
+                          "paddings": {
+                            "top": 8,
+                            "right": 10,
+                            "bottom": 8,
+                            "left": 10
+                          },
+                          "alignment_horizontal": "center",
+                          "alignment_vertical": "top",
+                          "margins": {
+                            "top": 8,
+                            "right": 12,
+                            "left": 12
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "@{microphone.png}",
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 48
+                                  },
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 48
+                                  }
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#f3f5f9"
+                                }
+                              ],
+                              "border": {
+                                "corner_radius": 4
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 48
+                              },
+                              "width": {
+                                "type": "fixed",
+                                "value": 48
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "center",
+                              "content_alignment_vertical": "center",
+                              "paddings": {
+                                "top": 12,
+                                "bottom": 12,
+                                "left": 12,
+                                "right": 12
+                              }
+                            },
+                            {
+                              "type": "container",
+                              "actions": [
+                                {
+                                  "log_id": "open_camera",
+                                  "url": "div-action://open_camera?type=ocr"
+                                }
+                              ],
+                              "items": [
+                                {
+                                  "type": "image",
+                                  "image_url": "@{scan.png}",
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 48
+                                  },
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 48
+                                  }
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "#f3f5f9"
+                                }
+                              ],
+                              "border": {
+                                "corner_radius": 4
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 48
+                              },
+                              "width": {
+                                "type": "fixed",
+                                "value": 48
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "center",
+                              "content_alignment_vertical": "center",
+                              "paddings": {
+                                "top": 12,
+                                "bottom": 12,
+                                "left": 12,
+                                "right": 12
+                              },
+                              "margins": {
+                                "left": 8
+                              }
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "@{text___11}",
+                                  "font_size": 14,
+                                  "line_height": 24,
+                                  "letter_spacing": 0,
+                                  "text_color": "#ffffff",
+                                  "text_alignment_horizontal": "left",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "wrap_content"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "@{on_status ? '#e8ecf4':'#193d8d'}"
+                                }
+                              ],
+                              "actions": [
+                                {
+                                  "log_id": "call_service",
+                                  "url": "div-action://call_service?path=cargo/pateByPlate&ph/token=empty&sysName=cargo&plateType=@{plateType}&plateA=@{variable_plateA}&&plateB=@{variable_plateB}&&plateC=@{variable_plateC}&plateD=@{variable_plateD}"
+                                }
+                              ],
+                              "action_animation": {
+                                "name": "scale",
+                                "start_value": 1,
+                                "end_value": 0.95,
+                                "duration": 300,
+                                "interpolator": "ease_in_out"
+                              },
+                              "border": {
+                                "corner_radius": 4
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 48
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "center",
+                              "content_alignment_vertical": "center",
+                              "paddings": {
+                                "top": 12,
+                                "bottom": 12,
+                                "left": 12,
+                                "right": 12
+                              },
+                              "margins": {
+                                "left": 8
+                              }
+                            }
+                          ],
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "top",
+                          "alignment_horizontal": "center",
+                          "alignment_vertical": "top",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 12,
+                            "end": 12
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "container",
+                      "visibility": "@{shomare_visibility}",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "input",
+                                  "text_variable": "shomare_barname",
+                                  "hint_text": "شماره بارنامه",
+                                  "font_size": 14,
+                                  "line_height": 32,
+                                  "letter_spacing": 0,
+                                  "text_color": "#a3a3a3",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "right",
+                              "content_alignment_vertical": "center"
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            },
+                            "stroke": {
+                              "color": "#dedede",
+                              "width": 1
+                            }
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "center",
+                          "paddings": {
+                            "top": 12,
+                            "bottom": 12,
+                            "left": 12,
+                            "right": 12
+                          },
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 16,
+                            "end": 16
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "@{text___11}",
+                                  "font_size": 14,
+                                  "line_height": 24,
+                                  "letter_spacing": 0,
+                                  "text_color": "#ffffff",
+                                  "text_alignment_horizontal": "left",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "wrap_content"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                }
+                              ],
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "@{on_status ? '#e8ecf4':'#193d8d'}"
+                                }
+                              ],
+                              "actions": [
+                                {
+                                  "log_id": "call_service",
+                                  "url": "div-action://call_service?path=cargo/barname&ph/token=empty&sysName=cargo&shomare_barname=@{shomare_barname}"
+                                }
+                              ],
+                              "action_animation": {
+                                "name": "scale",
+                                "start_value": 1,
+                                "end_value": 0.95,
+                                "duration": 300,
+                                "interpolator": "ease_in_out"
+                              },
+                              "border": {
+                                "corner_radius": 4
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 48
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "center",
+                              "content_alignment_vertical": "center",
+                              "paddings": {
+                                "top": 12,
+                                "bottom": 12,
+                                "left": 12,
+                                "right": 12
+                              }
+                            }
+                          ],
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "left",
+                          "content_alignment_vertical": "top",
+                          "alignment_horizontal": "center",
+                          "alignment_vertical": "top",
+                          "margins": {
+                            "top": 8,
+                            "right": 12,
+                            "left": 12
+                          }
+                        }
+                      ],
+                      "margins": {
+                        "bottom": 8
+                      }
+                    }
+                  ],
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ],
+                  "margins": {
+                    "top": 8,
+                    "start": 12,
+                    "end": 12
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "id": "product_lay"
+            }
+          ],
+          "height": {
+            "type": "match_parent"
+          },
+          "orientation": "vertical",
+          "type": "gallery",
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ]
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "string",
+        "name": "variable_weightInKg",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_trafic",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_issuanceDate",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_waybillIsEstablished",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_safarId",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_vehicleTrailer",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_iranUniqueConsignmentReference",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_orderCode",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_consigneeNationalID",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_nameOfPerson",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_personCode",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_firstName_lastName",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_nationalID",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_cellPhoneNumber",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_plaque",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_plaqueSerial",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_urbanWarehouseCustomsPermit",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_destinationStockIDs",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_noe_moteghazi",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_noe_moteghazi",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_noe_moteghazi",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_noe_moteghazi",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_noe_moteghazi",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_noe_moteghazi",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_noe_moteghazi",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_noe_moteghazi",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_noe_moteghazi",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_noe_moteghazi",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_noe_moteghazi",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_noe_moteghazi",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_noe_moteghazi",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_noe_moteghazi",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_noe_moteghazi",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_noe_moteghazi",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_noe_moteghazi",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_shomare_darkhast",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_code_meli",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_karbord",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_shomare_darkhast",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_shomare_barname",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_noe_barname",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_code_rahgiri",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_tarikh_sodour",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_tarikh_sabt",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_name_ranande_aval",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_code_meli_ranande_aval",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_shomare_tamas_ranande_aval",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "variable_foreign_plaque",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_name_ranande_dovom",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_code_meli_ranande_dovom",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_shomare_tamas_ranande_dovom",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_ferestande",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_girande",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_sherkat",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_mahal_bargiri",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_zaman_bargiri",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_mahale_takhlie",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_ravie_gomroki",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_pelak_navgan",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text_serial_navgan",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "shomare_barname",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_plateB_hint",
+        "value": "ب"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateC_hint",
+        "value": "۱۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateD_hint",
+        "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateE_hint",
+        "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateA_hint",
+        "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateF_hint",
+        "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "text___11",
+        "value": "استعلام"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateA",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_plateB",
+        "value": "ب"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateC",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_plateD",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "on_status",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "iran_flag.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "scan.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "microphone.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "arrow_right.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "refresh.png",
+        "value": "divkit-asset://refresh-appbar.png"
+      },
+      {
+        "type": "string",
+        "name": "pelak_visibility",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "shomare_visibility",
+        "value": "gone"
+      },
+      {
+        "type": "string",
+        "name": "pelak_selected",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "shomare_selected",
+        "value": "#e8ecf4"
+      },
+      {
+        "type": "string",
+        "name": "plate1_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate2_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate3_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate4_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate_text_color",
+        "value": "#4F4F4F"
+      },
+      {
+        "type": "string",
+        "name": "unselected_tab",
+        "value": "e8ecf4"
+      },
+      {
+        "type": "string",
+        "name": "unselected_tab_text",
+        "value": "757575"
+      },
+      {
+        "type": "string",
+        "name": "selected_tab",
+        "value": "ffffff"
+      },
+      {
+        "type": "string",
+        "name": "selected_tab_text",
+        "value": "193d8d"
+      },
+      {
+        "type": "string",
+        "name": "plateType",
+        "value": "patchVehiclePlate"
+      }
+    ],
+    "variable_triggers": [
+      {
+        "condition": "@{len(variable_plateA) > 1}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "open_plate_letter_sheet",
+            "url": "div-action://bottom_sheet_div?jsonName=vt/plate/letters/bottomsheet"
+          }
+        ]
+      },
+      {
+        "condition": "@{len(variable_plateC) > 2}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "focus_one",
+            "typed": {
+              "type": "focus_element",
+              "element_id": "plateD"
+            }
+          }
+        ]
+      },
+      {
+        "condition": "@{len(variable_plateD) == 0}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "focus_six",
+            "typed": {
+              "type": "focus_element",
+              "element_id": "plateC"
+            }
+          }
+        ]
+      },
+      {
+        "condition": "@{len(variable_plateC) == 0}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "focus_six",
+            "typed": {
+              "type": "focus_element",
+              "element_id": "plateA"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "templates": {
+    "hoviat_template": {
+      "type": "container",
+      "items": [
+        {
+          "type": "text",
+          "text": "اطلاعات هویتی بارنامه",
+          "font_size": 14,
+          "line_height": 24,
+          "letter_spacing": 0,
+          "text_color": "#343333",
+          "text_alignment_horizontal": "right",
+          "text_alignment_vertical": "top",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          }
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "text",
+              "$text": "text_shomare_barname",
+              "font_size": 14,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#2c2c2c",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "fixed",
+                "value": 6
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "start",
+              "alignment_vertical": "center"
+            },
+            {
+              "type": "text",
+              "text": "شماره بارنامه",
+              "font_size": 14,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#7f7f7f",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 24
+              },
+              "alignment_horizontal": "end",
+              "alignment_vertical": "center"
+            }
+          ],
+          "height": {
+            "type": "fixed",
+            "value": 24
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "content_alignment_horizontal": "end",
+          "content_alignment_vertical": "center",
+          "margins": {
+            "top": 16
+          }
+        },
+        {
+          "type": "separator",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "fixed",
+            "value": 10
+          }
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "text",
+              "$text": "text_noe_barname",
+              "font_size": 14,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#2c2c2c",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "start",
+              "alignment_vertical": "center"
+            },
+            {
+              "type": "text",
+              "text": "نوع بارنامه",
+              "font_size": 14,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#7f7f7f",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 24
+              },
+              "alignment_horizontal": "end",
+              "alignment_vertical": "center"
+            }
+          ],
+          "height": {
+            "type": "fixed",
+            "value": 24
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "content_alignment_horizontal": "left",
+          "content_alignment_vertical": "center",
+          "margins": {
+            "top": 16
+          }
+        },
+        {
+          "type": "separator",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "fixed",
+            "value": 10
+          }
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "text",
+              "$text": "text_code_rahgiri",
+              "font_size": 14,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#2c2c2c",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "fixed",
+                "value": 6
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "start",
+              "alignment_vertical": "center"
+            },
+            {
+              "type": "text",
+              "text": "کد رهگیری بارنامه",
+              "font_size": 14,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#7f7f7f",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "end",
+              "alignment_vertical": "center"
+            }
+          ],
+          "height": {
+            "type": "fixed",
+            "value": 24
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "content_alignment_horizontal": "left",
+          "content_alignment_vertical": "center",
+          "margins": {
+            "top": 16
+          }
+        },
+        {
+          "type": "separator",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "fixed",
+            "value": 10
+          }
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "text",
+              "$text": "text_tarikh_sodour",
+              "font_size": 14,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#2c2c2c",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "fixed",
+                "value": 6
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "start",
+              "alignment_vertical": "center"
+            },
+            {
+              "type": "text",
+              "text": "تاریخ صدور",
+              "font_size": 14,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#7f7f7f",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "end",
+              "alignment_vertical": "center"
+            }
+          ],
+          "height": {
+            "type": "fixed",
+            "value": 24
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "content_alignment_horizontal": "left",
+          "content_alignment_vertical": "center",
+          "margins": {
+            "top": 16
+          }
+        },
+        {
+          "type": "separator",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "fixed",
+            "value": 10
+          }
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "text",
+              "$text": "variable_tarikh_sabt",
+              "font_size": 14,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#2c2c2c",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "fixed",
+                "value": 6
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "start",
+              "alignment_vertical": "center"
+            },
+            {
+              "type": "text",
+              "text": "تاریخ ثبت",
+              "font_size": 14,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#7f7f7f",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "end",
+              "alignment_vertical": "center"
+            }
+          ],
+          "height": {
+            "type": "fixed",
+            "value": 24
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "content_alignment_horizontal": "left",
+          "content_alignment_vertical": "center",
+          "margins": {
+            "top": 16
+          }
+        }
+      ],
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corners_radius": {
+          "top-left": 4,
+          "top-right": 4,
+          "bottom-left": 4,
+          "bottom-right": 4
+        },
+        "stroke": {
+          "color": "#ececec",
+          "width": 1
+        },
+        "has_shadow": 1,
+        "shadow": {
+          "offset": {
+            "x": {
+              "value": 0
+            },
+            "y": {
+              "value": 4
+            }
+          },
+          "blur": 17,
+          "color": "#000000",
+          "alpha": 0.03999999910593033
+        }
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "width": {
+        "type": "match_parent"
+      },
+      "orientation": "vertical",
+      "content_alignment_vertical": "top",
+      "content_alignment_horizontal": "left",
+      "paddings": {
+        "top": 16,
+        "bottom": 16,
+        "left": 16,
+        "right": 16
+      },
+      "margins": {
+        "top": 16
+      }
+    },
+    "product_template": {
+      "type": "container",
+      "items": [
+        {
+          "type": "container",
+          "height": {
+            "type": "fixed",
+            "value": 24
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "content_alignment_horizontal": "left",
+          "content_alignment_vertical": "center",
+          "margins": {
+            "top": 8
+          },
+          "items": [
+            {
+              "type": "text",
+              "$text": "containerNumber",
+              "font_size": 14,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#2c2c2c",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "start",
+              "alignment_vertical": "center"
+            },
+            {
+              "type": "text",
+              "text": "شماره کانتینر",
+              "font_size": 14,
+              "font_weight": "regular",
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#7f7f7f",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "end",
+              "alignment_vertical": "center",
+              "transform": {
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "separator",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "fixed",
+            "value": 10
+          }
+        },
+        {
+          "type": "container",
+          "height": {
+            "type": "fixed",
+            "value": 24
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "overlap",
+          "content_alignment_horizontal": "left",
+          "content_alignment_vertical": "center",
+          "margins": {
+            "top": 8
+          },
+          "items": [
+            {
+              "type": "text",
+              "$text": "containerType",
+              "font_size": 14,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#2c2c2c",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "start",
+              "alignment_vertical": "center"
+            },
+            {
+              "type": "text",
+              "text": "نوع کانتینر (۴۰ فوت یخچال‌دار)",
+              "font_size": 14,
+              "font_weight": "regular",
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#7f7f7f",
+              "text_alignment_horizontal": "center",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "alignment_horizontal": "end",
+              "alignment_vertical": "center",
+              "transform": {
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "type": "text",
+              "text": "اطلاعات کالا داخل کانتینر",
+              "font_size": 14,
+              "line_height": 24,
+              "letter_spacing": 0,
+              "text_color": "#ffffff",
+              "text_alignment_horizontal": "left",
+              "text_alignment_vertical": "top",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ],
+          "background": [
+            {
+              "type": "solid",
+              "color": "@{on_status ? '#e8ecf4':'#193d8d'}"
+            }
+          ],
+          "actions": [
+            {
+              "log_id": "reset_phid",
+              "url": "div-action://call_service?path=cargo/inquiryMotaghaziyan&ph/token=empty&sysName=cargo&workShopId=@{text_shomare_darkhast}"
+            }
+          ],
+          "action_animation": {
+            "name": "scale",
+            "start_value": 1,
+            "end_value": 0.95,
+            "duration": 300,
+            "interpolator": "ease_in_out"
+          },
+          "border": {
+            "corner_radius": 4
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "horizontal",
+          "content_alignment_horizontal": "center",
+          "content_alignment_vertical": "center",
+          "paddings": {
+            "top": 12,
+            "bottom": 12,
+            "left": 12,
+            "right": 12
+          },
+          "margins": {
+            "bottom": 8,
+            "top": 16,
+            "start": 16,
+            "end": 16
+          }
+        }
+      ]
+    }
+  }
+}

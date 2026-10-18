@@ -1,508 +1,581 @@
 {
-  "card": {
-    "log_id": "div2_sample_card",
-    "states": [
-      {
-        "state_id": 0,
-        "div": {
-          "type": "gallery",
-          "items": [
+  "ksunServiceParam": {
+    "body": {
+      "questioner_id": "11080111528",
+      "plan_province_id": "1108011239",
+      "respondent_mobile": "",
+      "question_info": [
+        {
+          "answers": [
             {
-              "type": "container",
-              "width": {
-                "type": "match_parent"
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "items": [
-
-                {
-                  "type": "custom",
-                  "custom_type": "custom_input",
-                  "custom_props": {
-                    "variable_name": "user_name",
-                    "hint": "نام کاربری",
-                    "input_type": "text",
-                    "validation": "true",
-                    "enabled": "false"
-                  }
-                },
-                {
-                  "type": "custom",
-                  "custom_type": "single_selection",
-                  "custom_props": {
-                    "options": "گزینه ۱, گزینه ۲, گزینه ۳",
-                    "ids": "1, 2, 3",
-                    "variable_name": "selected_option",
-                    "validation": "true",
-                    "enabled": "false"
-                  }
-                },
-                {
-                  "type": "custom",
-                  "custom_type": "multi_selection",
-                  "custom_props": {
-                    "options": "گزینه ۱, گزینه ۲, گزینه ۳",
-                    "ids": "1, 2, 3",
-                    "variable_name": "selected_options",
-                    "selection_limit": 2,
-                    "validation": "true",
-                    "enabled": "false"
-                  }
-                },
-
-                {
-                  "type": "separator",
-                  "width": {
-                    "type": "fixed",
-                    "value": 483
-                  },
-                  "height": {
-                    "type": "fixed",
-                    "value": 17
-                  },
-                  "delimiter_style": {
-                    "color": "#ececec"
-                  },
-                  "alignment_horizontal": "center",
-                  "margins": {
-                    "bottom": 30
-                  }
-                },
-                {
-                  "type": "text",
-                  "text": "@{text___1}",
-                  "font_size": 16,
-                  "letter_spacing": 0,
-                  "text_color": "#121212",
-                  "text_alignment_horizontal": "right",
-                  "text_alignment_vertical": "top",
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "height": {
-                    "type": "fixed",
-                    "value": 39
-                  },
-                  "background": [
-                    {
-                      "type": "solid",
-                      "color": "#ffffff"
-                    }
-                  ],
-                  "alignment_horizontal": "right",
-                  "margins": {
-                    "right": 35,
-                    "left": 35
-                  }
-                },
-                {
-                  "type": "text",
-                  "text": "@{text___2}",
-                  "ranges": [
-                    {
-                      "start": 9,
-                      "end": 185
-                    },
-                    {
-                      "start": 212,
-                      "end": 547
-                    },
-                    {
-                      "start": 564,
-                      "end": 823
-                    },
-                    {
-                      "start": 841,
-                      "end": 1116
-                    },
-                    {
-                      "start": 1131,
-                      "end": 1351
-                    },
-                    {
-                      "start": 1368,
-                      "end": 1526
-                    },
-                    {
-                      "start": 1545,
-                      "end": 1714
-                    }
-                  ],
-                  "text_alignment_horizontal": "right",
-                  "text_alignment_vertical": "top",
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "height": {
-                    "type": "match_parent"
-                  },
-                  "margins": {
-                    "top": 8,
-                    "right": 30,
-                    "left": 30
-                  },
-                  "font_size": 13,
-                  "line_height": 24,
-                  "letter_spacing": 0,
-                  "text_color": "#353535",
-                  "background": [
-                    {
-                      "type": "solid",
-                      "color": "#ffffff"
-                    }
-                  ]
-                }
-              ],
-              "background": [
-                {
-                  "type": "solid",
-                  "color": "#ffffff"
-                }
-              ]
-            },
-            {
-              "type": "container",
-              "width": {
-                "type": "match_parent"
-              },
-              "height": {
-                "type": "fixed",
-                "value": 100
-              },
-              "items": [
-                {
-                  "type": "text",
-                  "text": "\n",
-                  "width": {
-                    "type": "fixed",
-                    "value": 100
-                  },
-                  "alignment_horizontal": "center"
-                }
-              ],
-              "margins": {
-                "top": 8,
-                "bottom": 8,
-                "start": 30,
-                "end": 30
-              }
-            },
-            {
-              "type": "container",
-              "width": {
-                "type": "match_parent"
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "items": [
-                {
-                  "type": "text",
-                  "text": "\n\nپذیرش شرایط  \n\nبا امضای این سند یا تائید کتبی /الکترونیکی ، شما متعهد می شوید که تمامی شرایط و ضوابط فوق را رعایت کنید . ",
-                  "width": {
-                    "type": "match_parent"
-                  },
-                  "ranges": [
-                    {
-                      "start": 16,
-                      "end": 123
-                    }
-                  ],
-                  "alignment_horizontal": "center",
-                  "height": {
-                    "type": "wrap_content"
-                  },
-                  "text_alignment_horizontal": "right",
-                  "font_size": 15,
-                  "margins": {
-                    "right": 30,
-                    "left": 30
-                  }
-                }
-              ]
-            },
-            {
-              "type": "container",
-              "id": "information_container",
-              "width": {
-                "type": "match_parent"
-              },
-              "height": {
-                "type": "wrap_content"
-              },
-              "items": [
-                {
-                  "type": "text_template",
-                  "name": "Alice",
-                  "family": "Johnson",
-                  "city": "New York"
-                },
-                {
-                  "type": "text_template",
-                  "name": "Mohammed",
-                  "family": "Khan",
-                  "city": "London"
-                },
-                {
-                  "type": "text_template",
-                  "name": "Sophie",
-                  "family": "Lemoine",
-                  "city": "Paris"
-                },
-                {
-                  "type": "text_template",
-                  "name": "Kenji",
-                  "family": "Takahashi",
-                  "city": "Tokyo"
-                },
-                {
-                  "type": "text_template",
-                  "name": "Carlos",
-                  "family": "Martínez",
-                  "city": "Madrid"
-                },
-                {
-                  "type": "text_template",
-                  "name": "Fatima",
-                  "family": "Ali",
-                  "city": "Cairo"
-                },
-                {
-                  "type": "text_template",
-                  "name": "Liam",
-                  "family": "O'Reilly",
-                  "city": "Dublin"
-                },
-                {
-                  "type": "text_template",
-                  "name": "Chen",
-                  "family": "Wang",
-                  "city": "Beijing"
-                },
-                {
-                  "type": "text_template",
-                  "name": "Isabella",
-                  "family": "Rossi",
-                  "city": "Rome"
-                },
-                {
-                  "type": "text_template",
-                  "name": "Ava",
-                  "family": "Smith",
-                  "city": "Toronto"
-                }
-              ],
-              "margins": {
-                "top": 12
-              }
-            },
-            {
-              "type": "custom_template",
-              "seconds": "10"
+              "answer_code": "5",
+              "answer_id": "110801120145",
+              "description": "",
+              "file": ""
             }
           ],
-          "height": {
-            "type": "match_parent"
-          },
-          "orientation": "vertical"
-        }
-      }
-    ],
-    "variables": [
-      {
-        "type": "dict",
-        "name": "local_palette",
-        "value": {
-          "bg_primary": {
-            "name": "Primary background",
-            "light": "#fff",
-            "dark": "#000"
-          },
-          "color0": {
-            "name": "Secondary background",
-            "light": "#eeeeee",
-            "dark": "#000"
-          }
-        }
-      },
-      {
-        "type": "string",
-        "name": "text___1",
-        "value": "شرایط و ضوابط"
-      },
-      {
-        "type": "string",
-        "name": "text___2",
-        "value": "هدف پروژه  این پروژه با هدف سنجش احساس امنیت و سرمایه اجتماعی در جامعه اجرا می‌شود. داده‌های جمع‌آوری‌شده برای اهداف"
-      },
-      {
-        "type": "boolean",
-        "name": "index1",
-        "value": false
-      },
-      {
-        "type": "string",
-        "name": "checked",
-        "value": "divkit-asset://checkbox-checked.png"
-      },
-      {
-        "type": "string",
-        "name": "unchecked",
-        "value": "divkit-asset://checkbox-unchecked.png"
-      },
-      {
-        "type": "string",
-        "name": "index1_text_color",
-        "value": "#757575"
-      },
-      {
-        "type": "string",
-        "name": "index1_color",
-        "value": "#e8ecf4"
-      },
-      {
-        "type": "string",
-        "name": "seconds",
-        "value": "10"
-      }
-    ]
-  },
-  "templates": {
-    "custom_template": {
-      "type": "custom",
-      "custom_type": "timer_button",
-      "custom_props": {
-        "$seconds": "seconds",
-        "next_page": "op/guide"
-      },
-      "background": [
+          "dQuestion_id": "11080112114"
+        },
         {
-          "type": "solid",
-          "color": "#ffffff"
+          "answers": [
+            {
+              "answer_code": "5",
+              "answer_id": "110801120148",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112115"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120158",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112116"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120163",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112117"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120168",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112118"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120173",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112119"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120178",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112120"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120183",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112121"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120188",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112122"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120193",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112123"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120198",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112124"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120203",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112125"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120208",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112126"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120213",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112127"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "2",
+              "answer_id": "110801120225",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112130"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "3",
+              "answer_id": "110801120228",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112131"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120235",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112132"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "3",
+              "answer_id": "110801120242",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112133"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "5",
+              "answer_id": "110801120249",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112134"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "2",
+              "answer_id": "110801120402",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112175"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "3",
+              "answer_id": "110801120257",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112136"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "2",
+              "answer_id": "110801120263",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112137"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "3",
+              "answer_id": "110801120266",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112138"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "4",
+              "answer_id": "110801120271",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112139"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "2",
+              "answer_id": "110801120279",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112140"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "3",
+              "answer_id": "110801120282",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112141"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "2",
+              "answer_id": "110801120288",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112142"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120292",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112143"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120295",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112144"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120298",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112145"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120301",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112146"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120304",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112147"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120307",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112148"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120310",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112149"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120313",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112150"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "3",
+              "answer_id": "110801120314",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112151"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "3",
+              "answer_id": "110801120319",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112152"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "3",
+              "answer_id": "110801120324",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112153"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "3",
+              "answer_id": "110801120329",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112154"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "3",
+              "answer_id": "110801120334",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112155"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "3",
+              "answer_id": "110801120339",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112156"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "3",
+              "answer_id": "110801120344",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112157"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "3",
+              "answer_id": "110801120349",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112158"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "3",
+              "answer_id": "110801120354",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112159"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "3",
+              "answer_id": "110801120359",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112160"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "3",
+              "answer_id": "110801120364",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112161"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "1",
+              "answer_id": "110801120399",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112174"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "",
+              "answer_id": "110801120371",
+              "description": "18",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112163"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "3",
+              "answer_id": "110801120373",
+              "description": "",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112164"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "",
+              "answer_id": "110801120376",
+              "description": "0",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112165"
+        },
+        {
+          "answers": [
+            {
+              "answer_code": "",
+              "answer_id": "110801120377",
+              "description": "hh",
+              "file": ""
+            }
+          ],
+          "dQuestion_id": "11080112166"
         }
       ],
-      "border": {
-        "corner_radius": 4,
-        "stroke": {
-          "color": "#d9e0e9",
-          "width": 1
-        }
-      },
-      "height": {
-        "type": "wrap_content"
-      },
-      "width": {
-        "type": "match_parent"
-      },
-      "orientation": "overlap",
-      "content_alignment_vertical": "center",
-      "content_alignment_horizontal": "center",
-      "alignment_horizontal": "center",
-      "alignment_vertical": "bottom",
-      "margins": {
-        "top": 4,
-        "right": 16,
-        "bottom": 4,
-        "left": 16
-      }
+      "answered_ques_count": "51",
+      "interview_start_date_time": "1779705449648",
+      "interview_end_date_time": "1779705672136",
+      "interview_latitude": "35.7067712",
+      "interview_longitude": "51.417343",
+      "interview_file": ""
     },
-    "text_template": {
-      "type": "container",
-      "items": [
-
-        {
-          "type": "text",
-          "$text": "name",
-          "font_size": 14,
-          "line_height": 32,
-          "letter_spacing": 0,
-          "text_color": "#000000",
-          "text_alignment_horizontal": "right",
-          "text_alignment_vertical": "top",
-          "width": {
-            "type": "wrap_content"
-          },
-          "height": {
-            "type": "wrap_content"
-          },
-          "alignment_horizontal": "center",
-          "alignment_vertical": "center"
-        },
-        {
-          "type": "text",
-          "$text": "family",
-          "font_size": 14,
-          "line_height": 32,
-          "letter_spacing": 0,
-          "text_color": "#000000",
-          "text_alignment_horizontal": "right",
-          "text_alignment_vertical": "top",
-          "width": {
-            "type": "wrap_content"
-          },
-          "height": {
-            "type": "wrap_content"
-          },
-          "alignment_horizontal": "center",
-          "alignment_vertical": "center"
-        },
-        {
-          "type": "text",
-          "$text": "city",
-          "font_size": 14,
-          "line_height": 32,
-          "letter_spacing": 0,
-          "text_color": "#000000",
-          "text_alignment_horizontal": "right",
-          "text_alignment_vertical": "top",
-          "width": {
-            "type": "wrap_content"
-          },
-          "height": {
-            "type": "wrap_content"
-          },
-          "alignment_horizontal": "center",
-          "alignment_vertical": "center"
-        }
-      ],
-
-      "background": [
-        {
-          "type": "solid",
-          "color": "#ffffff"
-        }
-      ],
-      "border": {
-        "corners_radius": {
-          "top-left": 20,
-          "top-right": 20,
-          "bottom-left": 20,
-          "bottom-right": 20
-        }
-      },
-      "height": {
-        "type": "wrap_content"
-      },
-      "width": {
-        "type": "match_parent"
-      },
-      "orientation": "vertical",
-      "content_alignment_horizontal": "center",
-      "content_alignment_vertical": "center",
-      "paddings": {
-        "top": 8,
-        "bottom": 8,
-        "left": 12,
-        "right": 12
-      },
-      "alignment_horizontal": "right",
-      "alignment_vertical": "center",
-      "margins": {
-        "top": 8,
-        "bottom": 8
-      }
-    }
+    "form": {},
+    "header": {},
+    "queryParam": {}
   }
 }

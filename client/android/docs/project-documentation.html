@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>مستندات کامل پروژه PhPlus — مستندات پروژه</title>
+<style>
+  @page { size: A4; margin: 18mm 15mm; }
+  * { box-sizing: border-box; }
+  body { font-family: Tahoma, 'Segoe UI', Arial, sans-serif; line-height: 1.85; color: #1a1a2e; background: #fff; font-size: 11.5pt; margin: 0; padding: 24px 32px; }
+  h1 { color: #193d8d; font-size: 22pt; border-bottom: 3px solid #193d8d; padding-bottom: 10px; margin-top: 0; }
+  h2 { color: #193d8d; font-size: 16pt; margin-top: 28px; border-right: 5px solid #ff7816; padding-right: 12px; page-break-after: avoid; }
+  h3 { color: #2d4a7a; font-size: 13pt; margin-top: 18px; page-break-after: avoid; }
+  h4 { color: #444; font-size: 11.5pt; margin-top: 14px; }
+  p { text-align: justify; margin: 8px 0; }
+  .cover { text-align: center; padding: 60px 20px 40px; page-break-after: always; }
+  .cover h1 { border: none; font-size: 26pt; }
+  .cover .subtitle { font-size: 14pt; color: #555; margin: 20px 0; }
+  .cover .meta { color: #777; font-size: 11pt; margin-top: 40px; }
+  .toc { page-break-after: always; }
+  .toc ul { list-style: none; padding: 0; }
+  .toc li { padding: 6px 0; border-bottom: 1px dotted #ccc; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 10pt; page-break-inside: avoid; }
+  th { background: #193d8d; color: #fff; padding: 8px 10px; text-align: right; }
+  td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f7f9fc; }
+  code { font-family: Consolas, monospace; direction: ltr; unicode-bidi: embed; background: #f0f4f8; padding: 1px 5px; border-radius: 3px; font-size: 9.5pt; }
+  pre { background: #1e293b; color: #e2e8f0; padding: 14px 16px; border-radius: 8px; direction: ltr; text-align: left; font-size: 9pt; line-height: 1.5; page-break-inside: avoid; }
+  .box { background: #eef3fb; border-right: 4px solid #193d8d; padding: 14px 18px; margin: 14px 0; border-radius: 0 8px 8px 0; }
+  .box-green { background: #edfbf3; border-right-color: #16a34a; }
+  .warn { background: #fff8e6; border-right-color: #ff7816; }
+  .flow { background: #f8fafc; border: 1px solid #e2e8f0; padding: 16px; border-radius: 8px; font-family: Consolas, monospace; font-size: 9.5pt; direction: ltr; text-align: left; white-space: pre-wrap; page-break-inside: avoid; }
+  .badge { display: inline-block; background: #193d8d; color: #fff; padding: 2px 8px; border-radius: 12px; font-size: 9pt; margin: 2px; }
+  .badge-orange { background: #ff7816; }
+  .badge-green { background: #16a34a; }
+  ul { padding-right: 22px; }
+  li { margin: 4px 0; }
+  .page-break { page-break-before: always; }
+  .footer-note { font-size: 9pt; color: #888; margin-top: 40px; border-top: 1px solid #ddd; padding-top: 12px; text-align: center; }
+  .advantage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .advantage-card { background: #f7f9fc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; }
+  .advantage-card strong { color: #193d8d; display: block; margin-bottom: 6px; }
+  .year-tag { background: #193d8d; color: #fff; padding: 3px 10px; border-radius: 4px; font-size: 10pt; }
+  .year-tag.recent { background: #ff7816; }
+  .module-block { margin: 24px 0 32px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
+  .module-block h3 { margin-top: 0; }
+  .task-table td:first-child { width: 28%; font-weight: bold; color: #193d8d; }
+  .task-table td:nth-child(2) { width: 10%; text-align: center; }
+  .simple { font-size: 12pt; line-height: 2; background: #fffbeb; border: 2px solid #f59e0b; padding: 20px 24px; border-radius: 10px; margin: 20px 0; }
+  .simple li { margin: 10px 0; }
+  .task-why { color: #334155; font-weight: normal; }
+
+  .detail-table { font-size: 10pt; }
+  .detail-table td:first-child { width: 18%; font-weight: bold; color: #193d8d; white-space: nowrap; }
+  .detail-table .simple-col { color: #334155; }
+  .detail-table .tech-col { color: #64748b; font-size: 9.5pt; }
+  .cat-header { background: #e8eef8 !important; font-weight: bold; color: #193d8d; }
+
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>مستندات کامل پروژه<br>پلیس همراه پلاس (PhPlus)</h1>
+  <div class="subtitle">اپلیکیشن موبایل اندروید + سرویس uiManager — معماری Server-Driven UI</div>
+  <div class="meta">
+    <p>دوره توسعه: <strong>فروردین ۱۴۰۴ — تیر ۱۴۰۵</strong></p>
+    <p>تاریخ تهیه مستند: ۲۰ تیر ۱۴۰۵</p>
+    <p>پلتفرم: Android (Kotlin) + Backend (Java / Spring)</p>
+  </div>
+</div>
+
+<div class="toc">
+  <h2>فهرست مطالب</h2>
+  <ul>
+    <li>۰. خلاصه</li>
+    <li>۱. معرفی پروژه</li>
+    <li>۲. مزایا و دستاوردهای کلیدی</li>
+    <li>۳. زمان‌بندی توسعه (۱۴۰۴ و ۱۴۰۵)</li>
+    <li>۴. معماری کل پروژه (تمام لایه‌ها)</li>
+    <li>۵. ناوبری و کنترل سرور روی کلاینت</li>
+    <li>۶. تحقیقات و مطالعات (R&amp;D)</li>
+    <li>۷. کامپوننت‌های سفارشی</li>
+    <li>۸. اکشن‌های سفارشی</li>
+    <li>۹. لایه داده و سرور</li>
+    <li>۱۰. ذخیره‌سازی آفلاین و Draft</li>
+    <li>۱۱. ماژول تصادفات</li>
+    <li>۱۲. سرویس‌های پس‌زمینه</li>
+    <li>۱۳. Patch Generator</li>
+    <li>۱۴. راهنمای توسعه و اجرا</li>
+    <li>۱۵. سرور — نوتیفیکیشن و گشت انتظامی (۱۴۰۵)</li>
+    <li>۱۶. محتوای دیتابیس سرور — صفحات و Patchها</li>
+    <li>۱۷. لیست کامل ماژول‌ها و تسک‌ها</li>
+    <li>۱۸. فهرست صفحات و Patchها (production)</li>
+  </ul>
+</div>
+
+<h2 id="manager">۰. خلاصه</h2>
+
+<div class="simple">
+<p><strong>این پروژه چیست؟</strong><br>
+ما برای «پلیس همراه پلاس» یک سیستم ساختیم که <strong>صفحات اپ مثل وب‌سایت از سرور می‌آید</strong> — نه اینکه برای هر فرم جدا برنامه‌نویسی کنیم. مأمور اپ را باز می‌کند؛ صفحه‌ها از سرور لود می‌شود.</p>
+
+<p><strong>چه کارهایی انجام شد؟ (به زبان ساده)</strong></p>
+<ul>
+  <li><strong>بیش از ۲۰۰ صفحه</strong> طراحی و ساخت شد (ورود، استعلام، ثبت تخلف، تصادفات، گزارش، ...)</li>
+  <li><strong>پلاگین Figma</strong> ساختیم — طراحی در Figma را خودکار به JSON تبدیل می‌کند (سرعت طراحی چند برابر)</li>
+  <li><strong>اپ اندروید</strong> + <strong>موتور رندر UI</strong> + <strong>SDK اعلان</strong> + <strong>SDK دوربین</strong> + <strong>سرور uiManager</strong></li>
+  <li><strong>کار آفلاین:</strong> مأمور وسط فرم اینترنت قطع شود، بعداً ادامه می‌دهد</li>
+  <li><strong>اعلان گشت:</strong> push می‌آید → مأمور فرم را پر می‌کند → ثبت می‌شود (۱۴۰۵)</li>
+  <li><strong>امضا، نقشه، عکس، صدا، کروکی تصادف</strong> — همه داخل اپ</li>
+  <li><strong>سرور کنترل می‌کند</strong> اپ کجا برود، چه چیزی نشان دهد، چه patchی بزند — بدون نسخه جدید APK</li>
+</ul>
+
+<p><strong>چرا R&amp;D (تحقیق و توسعه) لازم بود؟</strong><br>
+هیچ‌کدام از این‌ها «آماده و plug-and-play» نبود. برای هر بخش اول تحقیق کردیم، بعد پیاده کردیم: انتخاب معماری SDUI، قرارداد سرور-کلاینت، patch، Figma→JSON، push، نقشه، آفلاین، فرم داینامیک گشت، ...</p>
+
+<p><strong>زمان:</strong> فروردین ۱۴۰۴ تا تیر ۱۴۰۵ — اکثر کارها ۱۴۰۴، تکمیل‌ها ۱۴۰۵.</p>
+</div>
+
+<h2 id="intro">۱. معرفی پروژه</h2>
+
+<p>این پروژه <strong>اکوسیستم پلیس همراه پلاس (PhPlus)</strong> است: اپ اندروید میدانی، موتور SDUI (37 ماژول Gradle)، SDKهای Push و دوربین، schema/JSON builder، و سرور <strong>uiManager</strong> که UI را از راه دور کنترل می‌کند. معماری <strong>Server-Driven UI</strong> به این معناست که رابط کاربری از JSON ساخته می‌شود و به‌جای Layout جدا برای هر صفحه، UI از سرور یا DB محلی بارگذاری و رندر می‌گردد.</p>
+
+<div class="box">
+  <strong>جریان اصلی رندر UI:</strong><br>
+  JSON → ساختار داده UI → View اندروید
+</div>
+
+<p>توسعه این پروژه از <strong>فروردین ۱۴۰۴</strong> آغاز شده و تا <strong>تیر ۱۴۰۵</strong> (زمان تهیه این مستند) ادامه دارد. <strong>اکثر کارهای کلاینت در سال ۱۴۰۴</strong> انجام شده و در <strong>سه ماه اخیر (فروردین تا تیر ۱۴۰۵)</strong> تمرکز بر تکمیل ماژول تصادفات، بهینه‌سازی عملکرد، و <strong>پیاده‌سازی سرور نوتیفیکیشن و گشت انتظامی</strong> بوده است.</p>
+
+<p>برای این پروژه <strong>بیش از ۲۰۰ صفحه</strong> طراحی و پیاده‌سازی شده که طراحی UI آن‌ها توسط توسعه‌دهنده پروژه انجام شده و محتوای صفحات از <strong>سرور</strong> دریافت و در اپلیکیشن رندر می‌شوند.</p>
+
+<h2 id="advantages">۲. مزایا و دستاوردهای کلیدی</h2>
+
+<div class="advantage-grid">
+  <div class="advantage-card">
+    <strong>🔄 به‌روزرسانی UI بدون انتشار APK</strong>
+    صفحات و فرم‌ها از JSON بارگذاری می‌شوند. تغییر UI از سمت سرور یا DB بدون نیاز به نسخه جدید اپلیکیشن امکان‌پذیر است.
+  </div>
+  <div class="advantage-card">
+    <strong>📱 کار میدانی و آفلاین</strong>
+    سیستم Draft و بایگانی آفلاین امکان ثبت فرم‌های ناقص در مناطق بدون اینترنت و ادامه بعداً را فراهم می‌کند.
+  </div>
+  <div class="advantage-card">
+    <strong>⚡ به‌روزرسانی جزئی UI (Patch)</strong>
+    به‌جای بارگذاری مجدد کل صفحه، فقط بخش تغییر‌یافته UI به‌روز می‌شود — سریع‌تر و با مصرف کمتر.
+  </div>
+  <div class="advantage-card">
+    <strong>🧩 کامپوننت‌های تخصصی میدانی</strong>
+    امضا، کروکی تصادف، ضبط صدا، نقشه، انتخاب پلاک، و... — همه به‌صورت plug-in در JSON قابل استفاده‌اند.
+  </div>
+  <div class="advantage-card">
+    <strong>🇮🇷 بومی‌سازی کامل</strong>
+    تقویم شمسی، DatePicker فارسی، RTL، و UI مناسب کاربران فارسی‌زبان.
+  </div>
+  <div class="advantage-card">
+    <strong>🔔 سیستم اعلان یکپارچه</strong>
+    Push Notification با شمارنده real-time، لیست اعلان‌ها، و هدایت مستقیم به صفحه مربوطه — در ۱۴۰۵ با فرم داینامیک گشت انتظامی تکمیل شد.
+  </div>
+  <div class="advantage-card">
+    <strong>🚔 فرم داینامیک گشت انتظامی</strong>
+    سرور JSON فرم را به UI تبدیل می‌کند؛ بدون ساخت صفحه جدا برای هر فرم عملیاتی، مأمور مستقیم از نوتیفیکیشن وارد جریان کار می‌شود.
+  </div>
+  <div class="advantage-card">
+    <strong>🗺️ یکپارچگی نقشه و مسیریابی</strong>
+    Mapbox برای نمایش موقعیت، مسیریابی، و انتخاب نقطه روی نقشه در فرآیندهای میدانی.
+  </div>
+  <div class="advantage-card">
+    <strong>📋 فرم‌های پیچیده چندمرحله‌ای</strong>
+    ویزارد تصادفات ۴ مرحله‌ای با Draft، بایگانی، و Resume — مناسب فرآیندهای اداری طولانی.
+  </div>
+  <div class="advantage-card">
+    <strong>🔧 توسعه سریع Feature جدید</strong>
+    افزودن صفحه یا فرم جدید با نوشتن JSON + (در صورت نیاز) یک Action — بدون بازنویسی کل اپ.
+  </div>
+  <div class="advantage-card">
+    <strong>🏗️ معماری تمیز و قابل نگهداری</strong>
+    جداسازی UI (JSON)، Logic (Action Handler)، Data (Repository/DB) — هر لایه مستقل قابل توسعه.
+  </div>
+</div>
+
+<div class="box box-green">
+  <strong>مزیت رقابتی برای سازمان:</strong>
+  این پروژه یک پلتفرم SDUI اختصاصی برای پلیس همراه پلاس ساخته که وابستگی به فریم‌ورک‌های خارجی ندارد، قابلیت‌های میدانی بومی دارد، و امکان توسعه مستمر توسط تیم داخلی را فراهم می‌کند.
+</div>
+
+<h2 id="timeline">۳. زمان‌بندی توسعه</h2>
+
+<h3><span class="year-tag">سال ۱۴۰۴</span> — توسعه اصلی (فروردین تا اسفند)</h3>
+<p>بیشتر زیرساخت، ماژول‌ها، و قابلیت‌های پایه در این سال پیاده‌سازی شدند:</p>
+
+<h4>زیرساخت و صفحات پایه</h4>
+<ul>
+  <li>راه‌اندازی موتور SDUI و Activity اصلی (<code>MehdiActivity</code>)</li>
+  <li>صفحات login، splash، داشبورد، منو، تنظیمات</li>
+  <li>اتصال به API سرور (<code>CallService/coordinator</code>)</li>
+  <li>Room Database برای ذخیره JSON صفحات و متغیرها</li>
+  <li>پلاگین Figma → JSON — تبدیل خودکار طراحی به صفحه اپ (R&amp;D در ۱۴۰۴)</li>
+</ul>
+
+<h4>ماژول‌های عملیاتی</h4>
+<ul>
+  <li>استعلام خودرو و اشخاص (<code>inqueryVehicle</code>, <code>inqueryHuman</code> + patchها)</li>
+  <li>ثبت تخلف (<code>sabte-takhalof</code> — فرم جامع)</li>
+  <li>ماژول VT (Vehicle Ticket) — ثبت تیکت، پلاک، گزارش</li>
+  <li>گزارش‌ها (<code>reports</code>, <code>ph-vt-reports</code>)</li>
+  <li>اعتبارسنجی فرم‌ها و ثبت آفلاین</li>
+</ul>
+
+<h4>مدیریت ناوبری <span class="badge badge-green">۱۴۰۴</span></h4>
+<ul>
+  <li><code>ScreenNavigationStack</code> — stack تاریخچه صفحات</li>
+  <li>اکشن‌های <code>load_screen</code>, <code>pop_and_load_screen</code></li>
+  <li><code>push_to_stack</code>, <code>pop_from_stack</code>, <code>push_and_set_patch</code>, <code>pop_and_set_patch</code></li>
+  <li>مدیریت Back: بستن Bottom Sheet → pop از stack → finish</li>
+  <li><code>forward_to</code>, <code>generateScreen</code></li>
+</ul>
+
+<h4>سیستم Patch <span class="badge badge-green">۱۴۰۴</span></h4>
+<ul>
+  <li>اکشن‌های <code>set_patch</code>, <code>bottom_sheet_set_patch</code>, <code>set_patch_for_list</code></li>
+  <li><code>generatePatch</code>, <code>set_patch_from_stack</code></li>
+  <li>فایل‌های patch برای Home، Grid، Profiles، Settings، Reports، استعلام‌ها</li>
+  <li>پایه <code>DynamicPatchGenerator</code></li>
+</ul>
+
+<h4>سیستم اعلان (Notification) <span class="badge badge-green">۱۴۰۴</span></h4>
+<ul>
+  <li><code>NotificationManager</code> — مدیریت مرکزی اعلان‌ها</li>
+  <li>کامپوننت <code>notification_list</code></li>
+  <li>اکشن‌های <code>restart_push_notifications</code>, <code>refresh_notification_type_counters</code></li>
+  <li>یکپارچه‌سازی Push SDK — هدایت به صفحه از push</li>
+  <li>به‌روزرسانی real-time شمارنده اعلان‌ها</li>
+</ul>
+
+<h4>ماژول تصادفات — پایه <span class="badge badge-green">۱۴۰۴</span></h4>
+<ul>
+  <li>طراحی فلو ۴ مرحله‌ای ثبت تصادف سازشی</li>
+  <li>صفحات <code>main.json</code>, <code>compromisefirst.json</code>, <code>archive.json</code></li>
+  <li>سیستم Draft آفلاین (<code>set_page_with_changes_to_db</code>, <code>set_object_to_db</code>)</li>
+  <li>کامپوننت <code>accident_sketch</code> — کروکی تصادف</li>
+  <li>کامپوننت <code>offline_list_container</code> — بایگانی</li>
+  <li>اکشن‌های <code>set_random_id_to_db</code>, <code>save_vehicle_to_list</code></li>
+</ul>
+
+<h4>کامپوننت‌ها و اکشن‌های ۱۴۰۴</h4>
+<ul>
+  <li>نقشه (<code>map</code>, <code>navigation</code>) — Mapbox</li>
+  <li>امضا (<code>signature</code>), انتخاب تصویر (<code>image_picker</code>)</li>
+  <li>ضبط/پخش صدا (<code>audioRecorderView</code>, <code>audioPlayerView</code>)</li>
+  <li>انتخاب تکی/چندگانه + Bottom Sheet</li>
+  <li>ورودی سفارشی (<code>custom_input</code>)</li>
+  <li>اسلایدر (<code>labelledSliderView</code>), تایمر (<code>timer_button</code>)</li>
+  <li>تقویم شمسی — <code>get_persian_date</code>, <code>show_date_picker</code></li>
+  <li>Bottom Sheet لیست/پلاک/فرم</li>
+  <li><code>call_service</code>, <code>set_variable_to_db</code>, <code>set_variable_from_db</code></li>
+  <li>مجوزها، IMEI، IP، مدل دستگاه</li>
+  <li>Location Service</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h3><span class="year-tag recent">سه ماه اخیر ۱۴۰۵</span> — فروردین تا تیر ۱۴۰۵</h3>
+<p>در این بازه تمرکز بر تکمیل، بهینه‌سازی، و افزودن قابلیت‌های پیشرفته بوده است:</p>
+
+<h4>تکمیل ماژول تصادفات</h4>
+<ul>
+  <li>صفحات <code>vehicleInformationEntry.json</code>, <code>exportreasoninginference.json</code>, <code>finalregistration.json</code></li>
+  <li>صفحات <code>insurance.json</code>, <code>driver.json</code>, <code>vehicle.json</code>, <code>vehicleInformation.json</code></li>
+  <li><code>VehicleWizardDraftResolver</code> — resolve هوشمند draft خودرو</li>
+  <li>تکمیل فلو Draft → Archive → Resume</li>
+  <li>مستندسازی <code>DRAFT_ACTIONS.md</code></li>
+</ul>
+
+<h4>Patch Generator — تکمیل</h4>
+<ul>
+  <li>تکمیل <code>DynamicPatchGenerator</code> و <code>add_item_from_template</code></li>
+  <li>افزودن آیتم داینامیک از template به container</li>
+  <li>مستندات Template Creation و Dynamic Item Addition</li>
+</ul>
+
+<h4>بهینه‌سازی و قابلیت‌های جدید (کلاینت)</h4>
+<ul>
+  <li>بهینه‌سازی insert صفحات در IO Thread</li>
+  <li><code>PdfViewerActivity</code> — نمایش PDF (<code>show_image</code>)</li>
+  <li><code>FileUploadUtil</code> — آپلود فایل صوتی و تصویر</li>
+  <li>تکمیل <code>AudioRecordingService</code> + <code>upload_recording</code></li>
+  <li>بهبود <code>ScreenGenerator</code></li>
+  <li>اپراتورهای expression (<code>$</code> و <code>&amp;</code>)</li>
+  <li>تکمیل custom input variable binding</li>
+  <li>timer button + call service / upload</li>
+  <li>کامپوننت <code>tree_view</code> — نمایش درختی</li>
+</ul>
+
+<h4>سرور — نوتیفیکیشن و گشت انتظامی <span class="badge badge-orange">۱۴۰۵</span></h4>
+<p>در سال ۱۴۰۵، سمت سرور (<code>uiManager</code>) برای اتصال نوتیفیکیشن به جریان عملیاتی گشت انتظامی توسعه یافت. این بخش مکمل کارهای کلاینت است و اجازه می‌دهد مأمور بدون خروج از اپ، خبر را ببیند، فرم را پر کند و مرحله بعد را ادامه دهد.</p>
+<ul>
+  <li><code>NotificationDispatcherFacade</code> — ساخت UI نوتیف گشت (خبر، فرم، یا هر دو) از روی داده Mongo</li>
+  <li><code>buildCustomFormJson</code> — تبدیل JSON فرم سرویس گشت به موتور UI (تمپلیت <code>notif/custom</code>)</li>
+  <li><code>GashtCallService</code> — ثبت فرم، ارسال به Gateway، ذخیره وضعیت، ساخت فرم بعدی</li>
+  <li><code>NotificationFormHelper</code> — منطق مشترک parse و merge داده فرم</li>
+  <li>مدل <code>NotificationPayload</code> — نگهداری entity به‌روز فرم در Mongo</li>
+  <li>مسیر جدید Coordinator: <code>phPlus/notifications/gashtCallService</code></li>
+</ul>
+
+<h2 id="architecture">۴. معماری کل پروژه (تمام لایه‌ها)</h2>
+
+<p>پروژه PhPlus فقط یک اپلیکیشن Android نیست — یک <strong>اکوسیستم SDUI</strong> است که از چند لایه تشکیل شده. اپلیکیشن میدانی (<code>اپ PhPlus</code>) بالاترین لایه است؛ زیر آن موتور رندر، schema، ابزار ساخت JSON، SDKهای جانبی، و سرور uiManager قرار دارند.</p>
+
+<h3>نمای کلی لایه‌ها</h3>
+<div class="flow">schema/          → قرارداد JSON (متن, دستور اپ, patch, templates)
+api_generator/   → تولید API تایپ‌شده از schema
+json-builder/    → ساخت JSON در سرور (Kotlin, Python, TypeScript)
+client/android/  → 37 ماژول Gradle (موتور + اپ + SDK)
+uiManager (سرور) → Coordinator, MongoDB, Gateway — کنترل UI از راه دور
+test_data/       → نمونه کارت‌ها و patch برای تست</div>
+
+<h3>لایه ۱ — Schema و Generator</h3>
+<table>
+  <tr><th>مسیر</th><th>نقش</th><th>ارتباط با PhPlus</th></tr>
+  <tr><td><code>schema/</code></td><td>تعریف formal تمام componentها، actionها، patch، variable</td><td>قرارداد مشترک بین UI designer، کلاینت، و سرور</td></tr>
+  <tr><td><code>api_generator/</code></td><td>Codegen از schema برای Kotlin/Swift/TS</td><td>تولید <code>کتابخانه داده UI</code> و parser JSON در Android</td></tr>
+  <tr><td><code>json-builder/kotlin|python|typescript</code></td><td>DSL برای ساخت JSON سمت سرور</td><td>سرور uiManager و تیم backend می‌توانند UI بسازند بدون نوشتن raw JSON</td></tr>
+  <tr><td><code>test_data/</code></td><td>نمونه cards و regression data</td><td>تست موتور رندر قبل از deploy به PhPlus</td></tr>
+</table>
+
+<h3>لایه ۲ — موتور SDUI اندروید (37 ماژول Gradle)</h3>
+<table>
+  <tr><th>گروه</th><th>ماژول‌ها</th><th>نقش</th></tr>
+  <tr><td><strong>Core Engine</strong></td><td><code>موتور-هسته</code>, <code>کتابخانه داده UI</code>, <code>json-parser</code>, <code>موتور expression</code>, <code>موتور-رندر</code></td><td>پارس JSON → ساختار داده → رندر View؛ موتور expression <code>@{variable}</code></td></tr>
+  <tr><td><strong>Extensions</strong></td><td><code>states</code>, <code>storage</code>, <code>lottie</code>, <code>video</code>, <code>shimmer</code>, ...</td><td>state switching، ذخیره variable، انیمیشن، ویدیو</td></tr>
+  <tr><td><strong>Image Loaders</strong></td><td><code>picasso</code>, <code>glide</code>, <code>coil</code></td><td>بارگذاری تصویر — قابل تعویض</td></tr>
+  <tr><td><strong>Compose Bridge</strong></td><td><code>compose-interop</code></td><td>پل Compose ↔ SDUI؛ نگهداری JSON توسعه (Accidents و patchها)</td></tr>
+  <tr><td><strong>Sample / Test</strong></td><td><code>sample</code>, <code>video-custom</code>, <code>ماژول تست regression</code></td><td>نمونه یکپارچه‌سازی و تست regression</td></tr>
+  <tr><td><strong>Build Tools</strong></td><td><code>api-generator-plugin</code>, <code>screenshot-test-plugin</code></td><td>Codegen و تست visual در CI</td></tr>
+</table>
+
+<h3>لایه ۳ — اپلیکیشن PhPlus و SDKهای میدانی</h3>
+<table>
+  <tr><th>ماژول</th><th>نقش</th></tr>
+  <tr><td><strong>اپ PhPlus</strong></td><td>اپ اصلی PhPlus — Activity، Action Handler، Custom Views، Room DB، 200+ صفحه UI</td></tr>
+  <tr><td><strong>pushSdk</strong></td><td>SDK Push MQTT (Naja) — دریافت اعلان، location ping، رمزنگاری</td></tr>
+  <tr><td><strong>najicamera</strong></td><td>SDK دوربین/گaleri — انتخاب و capture تصویر میدانی</td></tr>
+</table>
+
+<h3>لایه ۴ — سرور uiManager (خارج از repo، Java/Spring)</h3>
+<table>
+  <tr><th>اجزا</th><th>نقش</th></tr>
+  <tr><td><code>POST CallService/coordinator</code></td><td>نقطه ورود واحد — تمام درخواست‌های کلاینت</td></tr>
+  <tr><td><code>CoordinateService</code></td><td>Routing بر اساس <code>path</code> در body</td></tr>
+  <tr><td>MongoDB</td><td>ذخیره notifications، payload فرم گشت، JSON صفحات</td></tr>
+  <tr><td>WSO2 Gateway</td><td>ارتباط با REST سرویس‌های گشت و سایر backendها</td></tr>
+  <tr><td><code>NotificationDispatcherFacade</code></td><td>ساخت UI نوتیف از داده Mongo</td></tr>
+  <tr><td><code>buildCustomFormJson</code></td><td>تبدیل JSON فرم گشت → UI SDUI</td></tr>
+</table>
+
+<h3>جریان داده end-to-end</h3>
+<div class="flow">طراح UI → JSON صفحه → سرور uiManager (ذخیره/توزیع)
+                              ↓
+کلاینت: login → call_service → coordinator
+                              ↓
+پاسخ: { next, set_patch, variables... } → Room DB → صفحه رندر می‌شود
+                              ↓
+کاربر action → دستور:// → load_screen | call_service | set_variable
+                              ↓
+Push (MQTT) → NotificationManager → call_service(phPlus/notifications)</div>
+
+<div class="box">
+  <strong>نکته:</strong> کد سرور uiManager در repo جداگانه است. این repo شامل موتور SDUI، اپ PhPlus، SDKها، schema، و مستندات قرارداد client-server است.
+</div>
+
+<h2 id="navigation-server">۵. ناوبری و کنترل سرور روی کلاینت</h2>
+
+<p>یکی از اصول کلیدی این پروژه این است که <strong>سرور فقط داده برنمی‌گرداند — رفتار UI را هم کنترل می‌کند</strong>. کلاینت یک «موتور اجرا» است؛ تصمیم «برو صفحه X»، «patch بزن»، «bottom sheet باز کن» از پاسخ coordinator می‌آید.</p>
+
+<h3>۵.۱ دو نوع ناوبری</h3>
+<table>
+  <tr><th>نوع</th><th>مکانیزم</th><th>چه کسی تصمیم می‌گیرد</th></tr>
+  <tr><td><strong>ناوبری محلی</strong></td><td><code>دستور://load_screen?screen=...</code></td><td>JSON صفحه — از پیش طراحی شده</td></tr>
+  <tr><td><strong>ناوبری سرور-محور</strong></td><td>پاسخ <code>call_service</code> با کلید <code>next</code></td><td>سرور uiManager — runtime</td></tr>
+  <tr><td><strong>Back Stack</strong></td><td><code>ScreenNavigationStack</code> در Room</td><td>کلاینت — با push/pop از JSON</td></tr>
+</table>
+
+<h3>۵.۲ فلو <code>load_screen</code> (کلاینت → کلاینت)</h3>
+<ol>
+  <li>کاربر روی element با action کلیک می‌کند</li>
+  <li><code>ActionHandler</code> authority <code>load_screen</code> را handle می‌کند</li>
+  <li><code>ScreenNavigationStack.push(screen)</code> — صفحه به stack اضافه می‌شود</li>
+  <li><code>MehdiActivity</code> جدید با <code>intent.putExtra("json", screenKey)</code> باز می‌شود</li>
+  <li>JSON از Room DB با کلید <code>screen</code> خوانده و رندر می‌شود</li>
+  <li>دکمه Back → <code>ScreenNavigationStack.pop()</code> → صفحه قبلی</li>
+</ol>
+<p><strong>هدف:</strong> ناوبری بین 200+ صفحه بدون Fragment/Activity جدا برای هر فرم.</p>
+
+<h3>۵.۳ فلو <code>call_service</code> (کلاینت → سرور → کلاینت)</h3>
+<ol>
+  <li>Action: <code>دستور://call_service?path=inquiryVehicle&amp;...</code></li>
+  <li>Handler پارامترها را جمع می‌کند؛ <code>@{variables}</code> resolve می‌شوند</li>
+  <li><code>MehdiActivity.onRequest()</code> — enrich: phId, versionCode, imei, deviceModel</li>
+  <li><code>POST {BASE_URL}CallService/coordinator</code> با body <code>Map&lt;String,String&gt;</code></li>
+  <li>سرور business logic را اجرا و پاسخ flat map برمی‌گرداند</li>
+  <li><code>MehdiActivity.setupObservers()</code> کلیدهای رزرو شده را parse می‌کند</li>
+</ol>
+
+<h3>۵.۴ کلیدهای کنترلی پاسخ سرور</h3>
+<p>سرور با کلیدهای رزرو در <code>Map&lt;String,String&gt;</code> به کلاینت دستور می‌دهد:</p>
+<table>
+  <tr><th>کلید پاسخ</th><th>عمل کلاینت</th><th>کاربرد</th></tr>
+  <tr><td><code>next</code></td><td>ذخیره JSON + باز کردن صفحه جدید</td><td>هدایت به صفحه بعد — مثلاً بعد از login یا submit فرم</td></tr>
+  <tr><td><code>set_patch</code></td><td>اعمال patch روی صفحه فعلی</td><td>نمایش نتیجه استعلام بدون reload</td></tr>
+  <tr><td><code>bottom_sheet_set_patch</code></td><td>patch روی Bottom Sheet باز</td><td>به‌روزرسانی sheet بدون بستن</td></tr>
+  <tr><td><code>show_bottomSheet</code></td><td>باز کردن Bottom Sheet با JSON</td><td>انتخاب پلاک، لیست، فرم کوتاه</td></tr>
+  <tr><td><code>show_toast</code> / <code>show_dialog</code></td><td>نمایش پیام/دیالوگ</td><td>بازخورد به کاربر</td></tr>
+  <tr><td><code>refresh</code></td><td>بارگذاری مجدد JSON صفحه فعلی</td><td>reset یا به‌روزرسانی کامل صفحه</td></tr>
+  <tr><td><code>update</code></td><td>دانلود APK</td><td>به‌روزرسانی اجباری/اختیاری</td></tr>
+  <tr><td><code>permissions</code></td><td>درخواست runtime permission</td><td>دوربین، GPS، ...</td></tr>
+  <tr><td><code>show_pdf</code> / <code>show_image</code></td><td>باز کردن viewer</td><td>نمایش مدرک/گزارش</td></tr>
+  <tr><td><code>initializePushNotifications</code></td><td>راه‌اندازی MQTT push</td><td>فعال‌سازی پس از login</td></tr>
+  <tr><td><code>initializeLocationService</code></td><td>شروع GPS tracking</td><td>سرویس‌های مبتنی بر موقعیت</td></tr>
+  <tr><td><code>reset_phid</code></td><td>تولید مجدد شناسه دستگاه</td><td>بازیابی از خطا</td></tr>
+  <tr><td><strong>هر کلید دیگر</strong></td><td>ذخیره در Room DB</td><td>JSON صفحه، patch، template، variable</td></tr>
+</table>
+
+<h3>۵.۵ کنترل variable از سرور</h3>
+<ul>
+  <li>کلیدهای حاوی <code>variable</code> → مستقیم روی <code>صفحه فعال</code> set می‌شوند</li>
+  <li>کلیدهای <code>bottom_sheet_variable</code> → روی Bottom Sheet فعال</li>
+  <li>بقیه کلیدها → insert در Room → برای <code>load_screen</code> یا patch بعدی</li>
+</ul>
+<p><strong>هدف:</strong> سرور می‌تواند فیلدهای UI را پر کند، صفحه جدید بفرستد، یا patch اعمال کند — همه در یک پاسخ coordinator.</p>
+
+<h3>۵.۶ Push و نوتیفیکیشن — کنترل از راه دور</h3>
+<div class="flow">MQTT Push → NotificationManager
+  → mode=call_service → coordinator(path=phPlus/notifications)
+  → mode=check_db_call_service → cache در DB، اگر موجود skip شبکه
+  → پاسخ: next=صفحه نوتیف / فرم گشت داینامیک
+  → کاربر submit → gashtCallService → فرم مرحله بعد</div>
+<p>در ۱۴۰۵ سرور خودش JSON فرم گشت را می‌سازد (<code>buildCustomFormJson</code>) — کلاینت فقط رندر می‌کند.</p>
+
+<h3>۵.۷ ScreenGenerator و Patch — کنترل hybrid</h3>
+<table>
+  <tr><th>مکانیزم</th><th>کجا</th><th>کاربرد</th></tr>
+  <tr><td><code>ScreenGenerator</code></td><td>کلاینت</td><td>تولید صفحه از template + data array — لیست داینامیک</td></tr>
+  <tr><td><code>DynamicPatchGenerator</code></td><td>کلاینت</td><td>افزودن آیتم به container از template</td></tr>
+  <tr><td><code>generateScreen</code> / <code>generatePatch</code></td><td>Action</td><td>فراخوانی از JSON</td></tr>
+  <tr><td>سرور <code>next</code> + inline JSON</td><td>سرور</td><td>صفحه کاملاً جدید بدون APK</td></tr>
+</table>
+
+<h2 id="research">۶. تحقیقات و مطالعات (R&amp;D)</h2>
+
+<p>هیچ بخشی از این پروژه «کپی-پیست» نبود. قبل از هر قابلیت، <strong>تحقیق و آزمایش (R&amp;D)</strong> انجام شد. جدول زیر نشان می‌دهد <em>چرا</em> وقت گذاشتیم و <em>چه نتیجه‌ای</em> گرفتیم.</p>
+
+<h3>۶.۰ پلاگین Figma → JSON <span class="badge badge-orange">R&amp;D + توسعه</span></h3>
+<div class="box box-green">
+  <strong>چی ساختیم:</strong> یک پلاگین روی Figma که طراحی UI (دکمه، متن، فیلد، لیست، ...) را به <strong>JSON صفحه</strong> تبدیل می‌کند.
+</div>
+<table class="task-table">
+  <tr><th>مرحله R&amp;D</th><th>چرا لازم بود</th><th>نتیجه</th></tr>
+  <tr><td>مطالعه Figma Plugin API</td><td class="task-why">بدون این API نمی‌شود از داخل Figma به لایه‌ها دسترسی داشت</td><td>اسکلت پلاگین</td></tr>
+  <tr><td>نگاشت لایه Figma → component JSON</td><td class="task-why">هر Rectangle/Text در Figma باید معادل در اپ داشته باشد (text, container, image)</td><td>قوانین تبدیل</td></tr>
+  <tr><td>Auto-layout و فاصله‌ها</td><td class="task-why">Figma flexbox دارد؛ JSON ما margin/padding دارد — باید translate شود</td><td>layout درست در اپ</td></tr>
+  <tr><td>فونت، رنگ، RTL فارسی</td><td class="task-why">اپ فارسی است — طراحی باید RTL-compatible export شود</td><td>UI درست در موبایل</td></tr>
+  <tr><td>تست روی 200+ صفحه</td><td class="task-why">تبدیل دستی هر صفحه ماه‌ها طول می‌کشید</td><td>سرعت طراحی چند برابر — پایه 200+ صفحه</td></tr>
+</table>
+<p><strong>به زبان ساده:</strong> قبلاً طراح در Figma می‌کشید، بعد برنامه‌نویس دستی JSON می‌نوشت. الان طراح Export می‌زند و JSON آماده می‌شود.</p>
+
+<h3>۶.۱ انتخاب معماری SDUI</h3>
+<table class="task-table">
+  <tr><th>موضوع تحقیق</th><th>به زبان ساده</th><th>نتیجه</th></tr>
+  <tr><td>Native vs SDUI vs WebView</td><td class="task-why">آیا هر صفحه جدا کد بزنیم یا از سرور بیاید؟</td><td>SDUI — تغییر UI بدون APK جدید</td></tr>
+  <tr><td>بررسی فریم‌ورک SDUI موجود</td><td class="task-why">از صفر ننویسیم — موتور آماده JSON→View</td><td>موتور UI + سفارشی‌سازی برای PhPlus</td></tr>
+  <tr><td>مطالعه schema و دستور اپ</td><td class="task-why">قبل از 200 صفحه بفهمیم JSON چطور کار می‌کند</td><td>استاندارد یکسان</td></tr>
+  <tr><td>POC با sample module</td><td class="task-why">اول یک صفحه تست — بعد commit</td><td>تأیید feasibility</td></tr>
+</table>
+
+<h3>۶.۲ طراحی قرارداد Client-Server</h3>
+<table class="task-table">
+  <tr><th>موضوع</th><th>به زبان ساده</th><th>نتیجه</th></tr>
+  <tr><td>طراحی coordinator واحد (<code>CallService/coordinator</code>)</td><td class="task-why">به‌جای ده‌ها آدرس جدا، یک درگاه — اپ ساده‌تر می‌ماند</td><td>یک endpoint برای همه سرویس‌ها</td></tr>
+  <tr><td>تعریف کلیدهای رزرو پاسخ (next, set_patch, ...)</td><td class="task-why">سرور بگوید «برو صفحه X» یا «این قسمت UI را عوض کن» — بدون APK جدید</td><td>پروتکل کنترل UI از سرور</td></tr>
+  <tr><td>الگوی key/value در Room DB</td><td class="task-why">همه چیز (صفحه، draft، cache) یکجا ذخیره شود</td><td>ذخیره یکپارچه در اپ</td></tr>
+  <tr><td>مطالعه json-builder (Kotlin DSL)</td><td class="task-why">سرور بتواند UI بسازد — مثل طراحی در Figma ولی سمت سرور</td><td>پایه uiManager</td></tr>
+</table>
+
+<h3>۶.۳ مطالعات فنی تخصصی</h3>
+<table class="task-table">
+  <tr><th>حوزه</th><th>به زبان ساده — چرا R&amp;D لازم بود</th><th>کاربرد در پروژه</th></tr>
+  <tr><td>Patch</td><td class="task-why">فقط یک قسمت صفحه عوض شود — نه reload کل صفحه</td><td>set_patch، DynamicPatchGenerator، patchهای استعلام</td></tr>
+  <tr><td>Template + item_builder</td><td class="task-why">یک قالب — چند بار استفاده (مثلاً چند خودرو در تصادف)</td><td>add_item_from_template، ScreenGenerator</td></tr>
+  <tr><td>Custom Container Adapter</td><td class="task-why">امضا، نقشه، دوربین — چیزهایی که JSON ساده ندارد</td><td>22+ کامپوننت میدانی</td></tr>
+  <tr><td>Expression <code>@{var}</code></td><td class="task-why">شرط و محاسبه داخل JSON — بدون if/else در کد</td><td>validation، شرط نمایش، concat</td></tr>
+  <tr><td>Bottom Sheet SDUI</td><td class="task-why">پنجره کوچک روی صفحه — انتخاب پلاک، لیست</td><td>sheet با patch جدا</td></tr>
+  <tr><td>MQTT Push (Naja SDK)</td><td class="task-why">اعلان لحظه‌ای — گشت، خبر عملیاتی</td><td>pushSdk، گشت انتظامی</td></tr>
+  <tr><td>Mapbox + Routing</td><td class="task-why">موقعیت مأمور و کروکی تصادف روی نقشه</td><td>map، navigation، accident_sketch</td></tr>
+  <tr><td>تقویم شمسی</td><td class="task-why">تاریخ فارسی — نه میلادی</td><td>DatePicker، validation</td></tr>
+  <tr><td>Offline / Draft</td><td class="task-why">اینترنت قطع — فرم نیمه‌کاره از بین نرود</td><td>draft تصادفات، بایگانی</td></tr>
+  <tr><td>check_db_call_service</td><td class="task-why">همان اعلان دوباره — از cache بخواند، سرور اذیت نشود</td><td>سرعت باز کردن نوتیف</td></tr>
+  <tr><td>فرم داینامیک گشت (۱۴۰۵)</td><td class="task-why">هر گشت فرم متفاوت — نسازیم صفحه ثابت برای هر کدام</td><td>buildCustomFormJson در سرور</td></tr>
+</table>
+
+<h3>۶.۴ مستندات داخلی تولیدشده</h3>
+<ul>
+  <li><code>actions_reference.json</code> — مرجع کامل 60+ action با نمونه URL</li>
+  <li><code>TEMPLATE_CREATION_GUIDE.md</code>, <code>DYNAMIC_ITEM_ADDITION_GUIDE.md</code></li>
+  <li><code>BOTTOM_SHEET_TARGETING_GUIDE.md</code>, <code>BOTTOM_SHEET_VARIABLE_FORMAT.md</code></li>
+  <li><code>Accidents/DRAFT_ACTIONS.md</code> — فلو draft تصادفات</li>
+  <li><code>SETUP_VERIFICATION.md</code> — تست Patch Generator</li>
+  <li>این مستند (<code>project-documentation.html</code>)</li>
+</ul>
+
+<h2 id="custom-views">۷. کامپوننت‌های سفارشی — توضیح تک‌تک</h2>
+
+<p>هر <code>custom_type</code> یک ویجت native است که JSON استاندارد ندارد — برای کار میدانی (نقشه، امضا، دوربین، ...) ساخته شده. در JSON با فیلد <code>custom_type</code> و <code>custom_props</code> استفاده می‌شود.</p>
+
+<table class="detail-table">
+  <tr><th>custom_type</th><th>عنوان</th><th>به زبان ساده</th><th>توضیح فنی</th><th>پارامترهای مهم</th></tr>
+  <tr><td><code>map</code></td><td>نقشه ثابت <span class="badge">۱۴۰۴</span></td><td class="simple-col">مأمور موقعیت را روی نقشه ببیند — مثلاً محل تخلف.</td><td class="tech-col">نمایش موقعیت روی نقشه Mapbox — بدون مسیریابی.</td><td>بدون پارامتر خاص — مختصات از variable یا props</td></tr>
+  <tr><td><code>navigation</code></td><td>نقشه + مسیریابی <span class="badge">۱۴۰۴</span></td><td class="simple-col">مسیر از مبدأ تا مقصد روی نقشه کشیده شود — VT، تصادف.</td><td class="tech-col">نقشه Mapbox با مسیر بین دو نقطه (RoutingApi).</td><td>lat/lng مبدأ و مقصد، show_route</td></tr>
+  <tr><td><code>signature</code></td><td>امضای دیجیتال <span class="badge">۱۴۰۴</span></td><td class="simple-col">طرفین یا مأمور با انگشت امضا کنند — مثل کاغذ.</td><td class="tech-col">صفحه لمس برای امضا — خروجی Base64 در variable.</td><td>variable_name</td></tr>
+  <tr><td><code>image_picker</code></td><td>انتخاب/گرفتن عکس <span class="badge">۱۴۰۴</span></td><td class="simple-col">عکس مستندات، پلاک، صحنه تصادف.</td><td class="tech-col">دوربین یا گالری — چند عکس — ذخیره در variable.</td><td>variable_name, title, min_images, max_images, source (camera/gallery/both)</td></tr>
+  <tr><td><code>audioRecorderView</code></td><td>ضبط صدا <span class="badge">۱۴۰۴</span></td><td class="simple-col">مأمور توضیح صوتی ضبط کند.</td><td class="tech-col">دکمه ضبط/توقف — فایل محلی.</td><td>variable_name, recording_id</td></tr>
+  <tr><td><code>audioPlayerView</code></td><td>پخش صدا <span class="badge">۱۴۰۴</span></td><td class="simple-col">شنیدن ضبط قبلی یا فایل سرور.</td><td class="tech-col">پخش فایل صوتی از URL یا مسیر محلی.</td><td>url یا path</td></tr>
+  <tr><td><code>multi_selection</code></td><td>انتخاب چندگانه (inline) <span class="badge">۱۴۰۴</span></td><td class="simple-col">انتخاب چند تخلف، چند نوع وسیله، ...</td><td class="tech-col">چند گزینه از لیست — داخل خود فرم.</td><td>options, ids, variable_name, selection_limit, searchable</td></tr>
+  <tr><td><code>single_selection</code></td><td>انتخاب تکی (inline) <span class="badge">۱۴۰۴</span></td><td class="simple-col">انتخاب یک استان، یک نوع پلاک، ...</td><td class="tech-col">یک گزینه از لیست — داخل فرم.</td><td>options, ids, variable_name, searchable</td></tr>
+  <tr><td><code>multi_selection_bottomsheet</code></td><td>انتخاب چندگانه (پنجره پایین) <span class="badge">۱۴۰۴</span></td><td class="simple-col">لیست طولانی — UX بهتر از inline.</td><td class="tech-col">لیست بلند — در bottom sheet با جستجو.</td><td>title, options, ids, variable_name, selection_limit</td></tr>
+  <tr><td><code>single_selection_bottomsheet</code></td><td>انتخاب تکی (پنجره پایین) <span class="badge">۱۴۰۴</span></td><td class="simple-col">انتخاب از لیست‌های سنگین.</td><td class="tech-col">یک انتخاب از لیست بلند در bottom sheet.</td><td>title, options, ids, variable_name</td></tr>
+  <tr><td><code>custom_input</code></td><td>ورودی متنی سفارشی <span class="badge">۱۴۰۴–۱۴۰۵</span></td><td class="simple-col">فیلدهایی که input پیش‌فرض JSON کافی نیست.</td><td class="tech-col">TextField با binding مستقیم به variable — نوع، validation، min/max.</td><td>variable_name, hint, input_type, validation, enabled, min, max</td></tr>
+  <tr><td><code>notification_list</code></td><td>لیست اعلان‌ها <span class="badge">۱۴۰۴</span></td><td class="simple-col">مأمور اعلان‌های گشت و عملیاتی را ببیند.</td><td class="tech-col">نمایش pushها با فیلتر نوع — کلیک → صفحه مربوط.</td><td>notification_type (فیلتر نوع)</td></tr>
+  <tr><td><code>accident_sketch</code></td><td>کروکی تصادف <span class="badge">۱۴۰۴</span></td><td class="simple-col">مأمور در محل کروکی تصادف بکشد.</td><td class="tech-col">ترسیم کروکی + نقشه — Activity جدا برای ویرایش.</td><td>json_variable, image_variable, sound_variable</td></tr>
+  <tr><td><code>offline_list_container</code></td><td>لیست کارهای ناتمام <span class="badge">۱۴۰۴</span></td><td class="simple-col">فرم نیمه‌کاره — اینترنت قطع — بعداً ادامه.</td><td class="tech-col">بایگانی draft — کلیک → ادامه فرم.</td><td>archive_path, system</td></tr>
+  <tr><td><code>timer_button</code></td><td>دکمه با تأخیر <span class="badge">۱۴۰۴</span></td><td class="simple-col">جلوگیری از submit تصادفی — مثلاً ۳ ثانیه صبر.</td><td class="tech-col">شمارش معکوس — بعد از N ثانیه action بعدی.</td><td>seconds, next_page</td></tr>
+  <tr><td><code>timer_button_call_service</code></td><td>دکمه تأخیر + سرویس <span class="badge">۱۴۰۴</span></td><td class="simple-col">تأخیر عمدی قبل از ارسال به سرور.</td><td class="tech-col">شمارش معکوس — بعد call_service.</td><td>seconds, path, پارامترهای سرویس</td></tr>
+  <tr><td><code>timer_button_upload_and_call_service</code></td><td>تأخیر + آپلود + سرویس <span class="badge">۱۴۰۵</span></td><td class="simple-col">ضبط صدا → آپلود → ثبت — یک دکمه.</td><td class="tech-col">شمارش — آپلود ضبط — فراخوانی سرور.</td><td>seconds, recording_id, path</td></tr>
+  <tr><td><code>labelledSliderView</code></td><td>اسلایدر برچسب‌دار <span class="badge">۱۴۰۴</span></td><td class="simple-col">انتخاب شدت، درجه، سطح — با بازخورد بصری.</td><td class="tech-col">اسلایدر با برچسب‌های از پیش تعریف‌شده.</td><td>label_list, label_id_list, variable_name</td></tr>
+  <tr><td><code>circular_progress</code></td><td>نوار پیشرفت دایره‌ای <span class="badge">۱۴۰۴</span></td><td class="simple-col">نشان دادن پیشرفت عملیات یا تکمیل فرم.</td><td class="tech-col">درصد پیشرفت — current/total.</td><td>current, total, textSize</td></tr>
+  <tr><td><code>double_circular_progressView</code></td><td>دو حلقه پیشرفت <span class="badge">۱۴۰۴</span></td><td class="simple-col">نمایش چند معیار همزمان — مثلاً دو مرحله.</td><td class="tech-col">دو نوار دایره‌ای تو در تو + درصد مرکز.</td><td>inner_percent, outer_percent, center_percent, inner_color, outer_color</td></tr>
+  <tr><td><code>tree_view</code></td><td>درخت داینامیک <span class="badge">۱۴۰۵</span></td><td class="simple-col">سازمان، دسته‌بندی، واحدها — باز/بسته شونده.</td><td class="tech-col">ساختار سلسله‌مراتبی — داده از call_service lazy load.</td><td>service_path, parent_param, root_id, root_label, token, extra_params</td></tr>
+  <tr><td><code>static_tree_view</code></td><td>درخت ثابت <span class="badge">۱۴۰۵</span></td><td class="simple-col">نمایش ساختار از پیش تعریف‌شده — تست/نمونه.</td><td class="tech-col">درخت از JSON ثابت embed — بدون سرور.</td><td>JSON در کد یا props</td></tr>
+</table>
+
+<h2 id="actions">۸. اکشن‌های سفارشی — توضیح تک‌تک</h2>
+
+<p>اکشن‌ها دستوراتی هستند که از JSON (کلیک دکمه، پاسخ سرور، ...) اجرا می‌شوند. فرمت: <code>دستور-اپ://{نام_اکشن}?{پارامتر}={مقدار}</code>. بیش از ۶۰ اکشن در <code>ActionHandler.kt</code> پیاده‌سازی شده.</p>
+
+<table class="detail-table">
+  <tr><th>اکشن</th><th>عنوان</th><th>به زبان ساده</th><th>توضیح فنی</th><th>پارامترها</th></tr>
+  <tr class="cat-header"><td colspan="5">ناوبری و صفحه</td></tr>
+  <tr><td><code>load_screen</code></td><td>بارگذاری صفحه</td><td class="simple-col">مأمور برود صفحه دیگر — مثلاً از داشبورد به فرم استعلام.</td><td class="tech-col">صفحه جدید را از دیتابیس با نام کلید screen بارگذاری می‌کند.</td><td>screen</td></tr>
+  <tr><td><code>open_screen</code></td><td>باز کردن Activity</td><td class="simple-col">یک صفحه native جدا باز شود (مثلاً تنظیمات) — نه JSON از سرور.</td><td class="tech-col">یک Activity دیگر را باز می‌کند.</td><td>activity</td></tr>
+  <tr><td><code>update</code></td><td>به‌روزرسانی APK</td><td class="simple-col">نسخه جدید APK دانلود و نصب شود — بدون مراجعه به فروشگاه.</td><td class="tech-col">دانلود و نصب نسخه جدید اپ از URL.</td><td>url</td></tr>
+  <tr><td><code>pop_and_load_screen</code></td><td>برگشت و بارگذاری صفحه قبلی</td><td class="simple-col">مأمور برگردد عقب — صفحه قبل بیاید (بدون خروج از اپ).</td><td class="tech-col">یک صفحه از stack ناوبری pop می‌کند و صفحه قبلی را بارگذاری می‌کند — مثل دکمه Back.</td><td>بدون پارامتر</td></tr>
+  <tr><td><code>forward_to</code></td><td>هدایت به سیستم دیگر</td><td class="simple-col">برود ماژول/سیستم دیگر داخل همان اپ.</td><td class="tech-col">هدایت به صفحه در سیستم/ماژول دیگر (در JSONهای موجود استفاده شده؛ handler مستقیم در ActionHandler پیاده‌سازی نشده).</td><td>name, system, path</td></tr>
+  <tr class="cat-header"><td colspan="5">متغیرهای صفحه</td></tr>
+  <tr><td><code>set_variable</code></td><td>ست متغیر صفحه</td><td class="simple-col">یک فیلد/متغیر در صفحه فعلی مقدار بگیرد.</td><td class="tech-col">مقدار یک متغیر صفحه را در صفحه فعلی تغییر می‌دهد.</td><td>name, value</td></tr>
+  <tr><td><code>set_variable_from_db</code></td><td>خواندن از DB و ست در صفحه</td><td class="simple-col">چیزی که قبلاً ذخیره شده را در فیلد صفحه بگذارد.</td><td class="tech-col">مقدار کلید را از دیتابیس می‌خواند و در متغیر صفحه با همان نام قرار می‌دهد.</td><td>name</td></tr>
+  <tr><td><code>set_variable_from_db_and_set_patch</code></td><td>خواندن DB و ست متغیر (بدون patch)</td><td class="simple-col">از حافظه بخواند و در فیلد بگذارد — یک مرحله.</td><td class="tech-col">مقدار DB را همزمان در متغیر صفحه ست می‌کند.</td><td>name</td></tr>
+  <tr><td><code>set_variable_to_base</code></td><td>ست متغیر روی صفحه اصلی</td><td class="simple-col">از داخل پنجره پایین، فیلد صفحه اصلی را پر کند.</td><td class="tech-col">از داخل bottom sheet، متغیر را روی view صفحه اصلی (MehdiActivity) ست می‌کند.</td><td>name, value</td></tr>
+  <tr><td><code>set_variable_to_bottomsheet</code></td><td>ست متغیر روی bottom sheet</td><td class="simple-col">فیلد داخل پنجره پایین را پر کند.</td><td class="tech-col">متغیر را روی یک bottom sheet مشخص (با target) ست می‌کند.</td><td>name, value, target</td></tr>
+  <tr><td><code>change_color</code></td><td>تغییر رنگ متغیر</td><td class="simple-col">رنگ یک بخش UI عوض شود — مثلاً فیلد خطا قرمز شود.</td><td class="tech-col">مقدار رنگ را با # خودکار به متغیر صفحه می‌دهد (بدون # در URL).</td><td>name, value</td></tr>
+  <tr><td><code>set_imei</code></td><td>ست Android ID</td><td class="simple-col">شناسه دستگاه گوشی در فیلد ثبت شود.</td><td class="tech-col">Android ID دستگاه را در متغیر صفحه ذخیره می‌کند.</td><td>name</td></tr>
+  <tr><td><code>set_ip</code></td><td>ست IP/شناسه دستگاه</td><td class="simple-col">شناسه دستگاه (مثل IMEI) در فیلد ثبت شود.</td><td class="tech-col">Android ID را در متغیر قرار می‌دهد (مشابه set_imei).</td><td>name</td></tr>
+  <tr><td><code>set_device_model</code></td><td>ست مدل دستگاه</td><td class="simple-col">مدل گوشی (Samsung، Xiaomi، ...) در فیلد ثبت شود.</td><td class="tech-col">Build.MODEL را در متغیر صفحه قرار می‌دهد.</td><td>name</td></tr>
+  <tr><td><code>refresh_captcha</code></td><td>رفرش کپچا</td><td class="simple-col">تصویر کپچا عوض شود — امنیت ورود.</td><td class="tech-col">تصویر کپچا را در متغیر صفحه به‌روز می‌کند.</td><td>name</td></tr>
+  <tr class="cat-header"><td colspan="5">دیتابیس محلی</td></tr>
+  <tr><td><code>set_variable_to_db</code></td><td>ذخیره در DB</td><td class="simple-col">مقدار فیلد در حافظه گوشی ذخیره شود — بین صفحات بماند.</td><td class="tech-col">یک key/value در دیتابیس محلی ذخیره می‌کند.</td><td>key, value</td></tr>
+  <tr><td><code>set_time_to_db</code></td><td>ذخیره تاریخ شمسی امروز</td><td class="simple-col">تاریخ امروز شمسی خودکار ذخیره شود.</td><td class="tech-col">تاریخ شمسی امروز را با کلید داده‌شده در DB ذخیره می‌کند.</td><td>key</td></tr>
+  <tr><td><code>set_variable_to_db_plus_one</code></td><td>افزایش و ذخیره</td><td class="simple-col">شمارنده یک واحد زیاد شود و ذخیره شود.</td><td class="tech-col">مقدار را +1 می‌کند، در Div و DB ذخیره می‌کند.</td><td>key, value</td></tr>
+  <tr><td><code>set_random_id_to_db</code></td><td>ساخت ID رندوم و ذخیره</td><td class="simple-col">یک کد یکتا برای پرونده بسازد — مثلاً شماره تصادف.</td><td class="tech-col">یک ID یکتا (timestamp + UUID) می‌سازد و با کلید داده‌شده در DB ذخیره می‌کند.</td><td>key, name</td></tr>
+  <tr><td><code>reset_phid</code></td><td>ریست phid</td><td class="simple-col">شناسه session اپ ریست شود.</td><td class="tech-col">یک UUID جدید می‌سازد و با کلید phid در DB ذخیره می‌کند.</td><td>—</td></tr>
+  <tr><td><code>delet_variables_frome_db</code></td><td>حذف از DB</td><td class="simple-col">داده‌های موقت از حافظه پاک شوند.</td><td class="tech-col">کلید(های) داده‌شده را از دیتابیس حذف می‌کند. (غلط املایی frome عمدی در کد)</td><td>—</td></tr>
+  <tr><td><code>set_object_to_db</code></td><td>ذخیره آبجکت JSON</td><td class="simple-col">یک ردیف در لیست کارهای ناتمام (بایگانی) ثبت شود.</td><td class="tech-col">تمام پارامترهای URL را به JSON تبدیل و با کلید username/next/date در DB ذخیره می‌کند.</td><td>next, archive_path, title</td></tr>
+  <tr><td><code>set_page_to_db</code></td><td>ذخیره صفحه فعلی</td><td class="simple-col">کل صفحه فعلی ذخیره شود — برای ادامه بعداً.</td><td class="tech-col">JSON صفحه Div فعلی را در DB با کلید key ذخیره می‌کند.</td><td>key</td></tr>
+  <tr><td><code>set_page_with_changes_to_db</code></td><td>ذخیره صفحه با تغییرات</td><td class="simple-col">فرم نیمه‌کاره با همه تغییرات کاربر ذخیره شود — آفلاین.</td><td class="tech-col">states و variables صفحه فعلی را روی JSON ذخیره‌شده قبلی (key) merge و ذخیره می‌کند.</td><td>key</td></tr>
+  <tr class="cat-header"><td colspan="5">Patch و تولید داینامیک</td></tr>
+  <tr><td><code>set_patch</code></td><td>اعمال Patch</td><td class="simple-col">فقط یک قسمت صفحه عوض شود — مثلاً نتیجه استعلام بیاید.</td><td class="tech-col">Patch را از DB (کلید patch) می‌خواند و اعمال می‌کند. از داخل bottom sheet به‌صورت پیش‌فرض روی همان sheet اعمال می‌شود.</td><td>patch, apply_to, patch_title, vehicle_type, ...</td></tr>
+  <tr><td><code>bottom_sheet_set_patch</code></td><td>Patch روی bottom sheet</td><td class="simple-col">همان patch ولی داخل پنجره پایین.</td><td class="tech-col">مثل set_patch ولی همیشه روی bottom sheet فعلی اعمال می‌شود. معمولاً از پاسخ سرویس استفاده می‌شود.</td><td>patch</td></tr>
+  <tr><td><code>set_patch_for_list</code></td><td>Patch با پر کردن template</td><td class="simple-col">یک ردیف به لیست اضافه/عوض شود — با داده از URL.</td><td class="tech-col">قبل از اعمال patch، فیلدهای item با type=template_name را از پارامترهای URL پر می‌کند.</td><td>patch, template_name</td></tr>
+  <tr><td><code>add_item_from_template</code></td><td>افزودن آیتم به container</td><td class="simple-col">ردیف جدید به لیست اضافه شود — مثلاً خودرو یا شخص دیگر.</td><td class="tech-col">یک آیتم جدید از template به container مشخص اضافه می‌کند (patch داینامیک).</td><td>container_id, template_type, template, position</td></tr>
+  <tr><td><code>generateScreen</code></td><td>تولید صفحه داینامیک</td><td class="simple-col">صفحه کامل از روی داده سرور ساخته شود — بدون JSON ثابت.</td><td class="tech-col">از template و data JSON یک صفحه می‌سازد و در DB ذخیره می‌کند.</td><td>containerId, templateName, patchName, screenName</td></tr>
+  <tr><td><code>generatePatch</code></td><td>تولید Patch داینامیک</td><td class="simple-col">یک patch از روی داده runtime ساخته شود.</td><td class="tech-col">مشابه generateScreen ولی خروجی patch است.</td><td>containerId, templateName, patchName</td></tr>
+  <tr class="cat-header"><td colspan="5">Stack ناوبری (تاریخچه patch)</td></tr>
+  <tr><td><code>push_to_stack</code></td><td>Push به stack</td><td class="simple-col">صفحه فعلی در تاریخچه Back ذخیره شود.</td><td class="tech-col">یک مقدار (معمولاً نام patch/صفحه) را به آرایه JSON stack در DB اضافه می‌کند.</td><td>key, value</td></tr>
+  <tr><td><code>pop_from_stack</code></td><td>Pop از stack</td><td class="simple-col">یک مرحله از تاریخچه Back حذف شود.</td><td class="tech-col">آخرین مقدار را از stack حذف می‌کند.</td><td>key</td></tr>
+  <tr><td><code>set_patch_from_stack</code></td><td>Patch از آخر stack</td><td class="simple-col">آخرین صفحه تاریخچه را نشان دهد.</td><td class="tech-col">آخرین مقدار stack را می‌خواند و patch مربوطه را روی صفحه اصلی اعمال می‌کند.</td><td>key</td></tr>
+  <tr><td><code>push_and_set_patch</code></td><td>Push + Patch (اتمیک)</td><td class="simple-col">برود صفحه جدید + تاریخچه حفظ شود — یکجا.</td><td class="tech-col">همزمان push می‌کند و patch همان value را اعمال می‌کند.</td><td>key, value</td></tr>
+  <tr><td><code>pop_and_set_patch</code></td><td>Pop + Patch قبلی (اتمیک)</td><td class="simple-col">برگشت + صفحه قبل — یکجا.</td><td class="tech-col">صفحه فعلی را pop می‌کند و patch صفحه قبلی را اعمال می‌کند (برگشت).</td><td>key</td></tr>
+  <tr class="cat-header"><td colspan="5">Bottom Sheet</td></tr>
+  <tr><td><code>bottom_sheet_div</code></td><td>نمایش bottom sheet (JSON)</td><td class="simple-col">پنجره پایین با فرم JSON باز شود.</td><td class="tech-col">یک bottom sheet با محتوای JSON صفحه (از DB) باز می‌کند.</td><td>jsonName</td></tr>
+  <tr><td><code>bottom_sheet_list</code></td><td>bottom sheet لیست</td><td class="simple-col">لیست انتخاب (استان، شهر، ...) در پنجره پایین.</td><td class="tech-col">لیست انتخاب (spinner) با جستجو.</td><td>id, title, code_var, title_var, ...</td></tr>
+  <tr><td><code>bottom_sheet_plate</code></td><td>bottom sheet پلاک</td><td class="simple-col">صفحه ورود/انتخاب پلاک در پنجره پایین.</td><td class="tech-col">انتخاب پلاک با UI اختصاصی.</td><td>—</td></tr>
+  <tr><td><code>bottom_sheet_dismiss</code></td><td>بستن bottom sheet</td><td class="simple-col">پنجره پایین بسته شود.</td><td class="tech-col">bottom sheet فعلی را می‌بندد.</td><td>—</td></tr>
+  <tr class="cat-header"><td colspan="5">UI و نمایش</td></tr>
+  <tr><td><code>show_toast</code></td><td>Toast ساده</td><td class="simple-col">پیام کوتاه پایین صفحه — «ثبت شد»، «خطا».</td><td class="tech-col">پیام Toast اندروید نمایش می‌دهد.</td><td>massage</td></tr>
+  <tr><td><code>show_toast_div</code></td><td>Toast سفارشی JSON</td><td class="simple-col">پیام سفارشی با طراحی JSON.</td><td class="tech-col">Toast سفارشی با layout JSON از DB.</td><td>jsonName</td></tr>
+  <tr><td><code>show_dialog</code></td><td>Dialog ساده</td><td class="simple-col">پنجره تأیید/هشدار — «مطمئنید؟».</td><td class="tech-col">AlertDialog با title و message.</td><td>title, massage</td></tr>
+  <tr><td><code>show_dialog_div</code></td><td>Dialog سفارشی JSON</td><td class="simple-col">دیالوگ سفارشی با طراحی JSON.</td><td class="tech-col">Dialog سفارشی با JSON صفحه از DB.</td><td>jsonName</td></tr>
+  <tr><td><code>show_image</code></td><td>نمایش تصویر Base64</td><td class="simple-col">تصویر یا PDF بزرگ نمایش داده شود.</td><td class="tech-col">تصویر base64 را در Dialog نمایش می‌دهد.</td><td>image</td></tr>
+  <tr><td><code>show_time_picker</code></td><td>انتخاب ساعت</td><td class="simple-col">ساعت انتخاب شود.</td><td class="tech-col">Time picker 24h باز می‌کند و نتیجه را در متغیر ذخیره می‌کند.</td><td>variableName</td></tr>
+  <tr><td><code>show_date_picker</code></td><td>انتخاب تاریخ شمسی</td><td class="simple-col">تاریخ شمسی انتخاب شود.</td><td class="tech-col">Date picker شمسی باز می‌کند.</td><td>variableName</td></tr>
+  <tr><td><code>show_date_picker_gregorian</code></td><td>انتخاب تاریخ میلادی</td><td class="simple-col">تاریخ میلادی انتخاب شود.</td><td class="tech-col">Date picker میلادی (dd/MM/yyyy).</td><td>variableName</td></tr>
+  <tr><td><code>get_persian_date</code></td><td>تاریخ شمسی امروز</td><td class="simple-col">تاریخ امروز شمسی خودکار در فیلد بیاید.</td><td class="tech-col">تاریخ شمسی امروز (Y/m/d) را در متغیر صفحه قرار می‌دهد.</td><td>variableName</td></tr>
+  <tr class="cat-header"><td colspan="5">مقایسه تاریخ و زمان</td></tr>
+  <tr><td><code>is_date_and_time_less_equal_today_now</code></td><td>آیا تاریخ/زمان &lt;= الان؟</td><td class="simple-col">بررسی: تاریخ از امروز بیشتر نباشد.</td><td class="tech-col">تاریخ/زمان ورودی را با الان مقایسه می‌کند. فقط فرمت ثابت: 1405/03/09_12:30</td><td>current_time, result_var</td></tr>
+  <tr><td><code>is_bigger_date_and_time</code></td><td>مقایسه دو تاریخ/زمان</td><td class="simple-col">مقایسه دو تاریخ — کدام بزرگ‌تر است.</td><td class="tech-col">بررسی می‌کند val1 &gt; val2 است یا نه. فرمت: 1405/03/09_12:30</td><td>val1, val2, result_var</td></tr>
+  <tr class="cat-header"><td colspan="5">سرویس و شبکه</td></tr>
+  <tr><td><code>call_service</code></td><td>فراخوانی سرویس</td><td class="simple-col">درخواست به سرور — استعلام، ثبت، گزارش، ...</td><td class="tech-col">درخواست HTTP به سرور. path و سایر پارامترها به onRequest ارسال می‌شوند. پاسخ می‌تواند patch، load_screen، toast و... برگرداند.</td><td>path</td></tr>
+  <tr><td><code>check_version</code></td><td>بررسی نسخه</td><td class="simple-col">بررسی نسخه اپ با سرور.</td><td class="tech-col">بررسی نسخه اپ (handler ناقص).</td><td>name</td></tr>
+  <tr class="cat-header"><td colspan="5">دسترسی‌ها</td></tr>
+  <tr><td><code>get_camera_permission</code></td><td>درخواست دوربین</td><td class="simple-col">اجازه دوربین از مأمور گرفته شود.</td><td class="tech-col">permission دوربین را درخواست می‌کند.</td><td>—</td></tr>
+  <tr><td><code>get_location_permission</code></td><td>درخواست موقعیت</td><td class="simple-col">اجازه GPS گرفته شود.</td><td class="tech-col">permission موقعیت مکانی را درخواست می‌کند.</td><td>—</td></tr>
+  <tr><td><code>get_write_permission</code></td><td>درخواست نوشتن فایل</td><td class="simple-col">اجازه ذخیره فایل گرفته شود.</td><td class="tech-col">permission storage/write را درخواست می‌کند.</td><td>—</td></tr>
+  <tr><td><code>get_all_permission</code></td><td>درخواست همه دسترسی‌ها</td><td class="simple-col">همه مجوزها یکجا گرفته شوند.</td><td class="tech-col">دوربین، موقعیت و storage را یکجا درخواست می‌کند.</td><td>—</td></tr>
+  <tr class="cat-header"><td colspan="5">دوربین و OCR</td></tr>
+  <tr><td><code>open_camera</code></td><td>باز کردن دوربین</td><td class="simple-col">دوربین باز شود — عکس، OCR پلاک، ...</td><td class="tech-col">دوربین Naji را برای عکس/OCR باز می‌کند.</td><td>type, check_ocr, iranian</td></tr>
+  <tr class="cat-header"><td colspan="5">ضبط صدا</td></tr>
+  <tr><td><code>start_recording</code></td><td>شروع ضبط</td><td class="simple-col">ضبط صدا شروع شود.</td><td class="tech-col">ضبط صدا را شروع می‌کند. id اختیاری؛ اگر نباشد از questioner_id در DB استفاده می‌شود.</td><td>id</td></tr>
+  <tr><td><code>stop_recording</code></td><td>توقف ضبط</td><td class="simple-col">ضبط صدا متوقف شود.</td><td class="tech-col">ضبط صدا را متوقف می‌کند.</td><td>—</td></tr>
+  <tr><td><code>upload_recording</code></td><td>آپلود ضبط</td><td class="simple-col">فایل صوتی به سرور فرستاده شود.</td><td class="tech-col">فایل ضبط‌شده را آپلود می‌کند.</td><td>id</td></tr>
+  <tr><td><code>upload_and_call_service</code></td><td>آپلود + call_service</td><td class="simple-col">صدا آپلود شود + سرویس سرور صدا زده شود.</td><td class="tech-col">ضبط را متوقف/آپلود می‌کند و سپس سرویس را با پارامترهای URL صدا می‌زند.</td><td>id, path</td></tr>
+  <tr class="cat-header"><td colspan="5">سرویس‌های پس‌زمینه</td></tr>
+  <tr><td><code>restart_push_notifications</code></td><td>ریست Push Notifications</td><td class="simple-col">سرویس اعلان push دوباره راه بیفتد.</td><td class="tech-col">سرویس push notification را restart می‌کند.</td><td>—</td></tr>
+  <tr><td><code>restart_location_service</code></td><td>ریست Location Service</td><td class="simple-col">GPS دوباره راه بیفتد.</td><td class="tech-col">سرویس موقعیت‌یابی را stop/start می‌کند.</td><td>—</td></tr>
+  <tr><td><code>refresh_notification_type_counters</code></td><td>به‌روزرسانی شمارنده نوتیف</td><td class="simple-col">شمارنده اعلان‌های خوانده‌نشده به‌روز شود.</td><td class="tech-col">شمارنده‌های نوع notification را refresh می‌کند.</td><td>—</td></tr>
+  <tr><td><code>save_vehicle_to_list</code></td><td>ذخیره خودرو در لیست پرونده تصادف</td><td class="simple-col">وقتی چند خودرو در تصادف هست — هر خودرو را به لیست پرونده اضافه می‌کند.</td><td class="tech-col">اطلاعات خودرو (پلاک، مدل، راننده، بیمه) را در آرایه JSON پرونده تصادف جاری merge و در DB ذخیره می‌کند.</td><td>از variableهای صفحه (accident_id، vehicle_id، پلاک، ...)</td></tr>
+</table>
+
+<p><strong>پاسخ سرور (<code>call_service</code>):</strong> سرور می‌تواند در JSON پاسخ کلیدهایی مثل <code>next</code> (رفتن صفحه)، <code>set_patch</code> (تغییر UI)، <code>load_screen</code>، <code>show_toast</code>، <code>bottom_sheet_div</code> برگرداند — اپ خودکار اجرا می‌کند.</p>
+
+
+<h2 id="data">۹. لایه داده و سرور</h2>
+<p>در کلاینت: Room DB (<code>PhPlusDB</code>: key/value) — Retrofit API (<code>POST CallService/coordinator</code>) — Repository Pattern — ViewModel با LiveData.</p>
+<p>در سرور (<code>uiManager</code>): MongoDB (collection <code>notifications</code>) — Spring WebFlux — Gateway WSO2 — Coordinator به‌عنوان نقطه ورود واحد. در ۱۴۰۵، payload فرم گشت هم در Mongo ذخیره می‌شود تا فرم چندمرحله‌ای بدون از دست رفتن وضعیت ادامه یابد.</p>
+
+<h2 id="offline">۱۰. ذخیره‌سازی آفلاین و Draft</h2>
+<ul>
+  <li><code>set_page_with_changes_to_db</code> — ذخیره Draft با تغییرات کاربر</li>
+  <li><code>set_object_to_db</code> — ثبت در بایگانی</li>
+  <li><code>offline_list_container</code> — نمایش و Resume</li>
+  <li><code>VehicleWizardDraftResolver</code> — (۱۴۰۵) resolve draft خودرو</li>
+</ul>
+
+<h2 id="accidents">۱۱. ماژول تصادفات</h2>
+
+<div class="flow">main [شروع سازشی]
+  → set_random_id_to_db
+  → page1 [compromisefirst]        ← ۱۴۰۴
+  → page2 [vehicleInformationEntry] ← ۱۴۰۵
+  → page3 [exportreasoninginference] ← ۱۴۰۵
+  → page4 [finalregistration]       ← ۱۴۰۵
+  → submit → پاک‌سازی draft → main
+
+main [بایگانی] → archive → offline_list → resume  ← ۱۴۰۴</div>
+
+<h2 id="services">۱۲. سرویس‌های پس‌زمینه</h2>
+<table>
+  <tr><th>سرویس</th><th>دوره</th></tr>
+  <tr><td>AudioRecordingService — ضبط صدا</td><td>۱۴۰۴ (تکمیل ۱۴۰۵)</td></tr>
+  <tr><td>LocationService — GPS</td><td>۱۴۰۴</td></tr>
+  <tr><td>Push SDK — اعلان</td><td>۱۴۰۴</td></tr>
+  <tr><td>FileUploadUtil — آپلود</td><td>۱۴۰۵</td></tr>
+  <tr><td>PdfViewerActivity — PDF</td><td>۱۴۰۵</td></tr>
+</table>
+
+<h2 id="patch-gen">۱۳. Patch Generator</h2>
+<p>کلاس <code>DynamicPatchGenerator</code> — پایه در <strong>۱۴۰۴</strong>، تکمیل <code>add_item_from_template</code> در <strong>۱۴۰۵</strong>.</p>
+<ol>
+  <li>Template از DB بارگذاری</li>
+  <li>جایگزینی متغیرها</li>
+  <li>تولید patch JSON</li>
+  <li>اعمال روی container</li>
+</ol>
+
+<h2 id="guide">۱۴. راهنمای توسعه و اجرا</h2>
+<ol>
+  <li>Android Studio — پروژه <code>client/android</code></li>
+  <li>Configuration: اپلیکیشن اصلی (<code>اپ PhPlus</code>)</li>
+  <li>Activity اصلی: <code>MehdiActivity</code></li>
+  <li>URL سرور: <code>Constants.kt → BASE_URL</code></li>
+</ol>
+
+<p>
+  <span class="badge">Kotlin</span>
+  <span class="badge">SDUI</span>
+  <span class="badge">Room</span>
+  <span class="badge">Retrofit</span>
+  <span class="badge">Mapbox</span>
+  <span class="badge">Coroutines</span>
+  <span class="badge badge-orange">Persian Calendar</span>
+  <span class="badge badge-orange">RTL</span>
+  <span class="badge badge-green">Java / Spring</span>
+</p>
+
+<h2 id="server-gasht" class="page-break">۱۵. سرور — نوتیفیکیشن و گشت انتظامی (۱۴۰۵)</h2>
+
+<p>این بخش کارهایی را توضیح می‌دهد که در <strong>سال ۱۴۰۵</strong> در سمت سرور (<code>uiManager</code>) برای <strong>گشت انتظامی</strong> و <strong>نوتیفیکیشن</strong> انجام شده است. هدف اصلی این بود که نوتیفیکیشن فقط یک پیام نمایشی نباشد، بلکه یک جریان عملیاتی کامل باشد: نمایش خبر، ساخت فرم از روی داده سرویس، ثبت اطلاعات، و رفتن به مرحله بعد — همه از داخل همان مسیر SDUI که کلاینت از قبل دارد.</p>
+
+<div class="box box-green">
+  <strong>مزیت اصلی این کار:</strong>
+  دیگر لازم نیست برای هر فرم گشت، صفحه جدا و کد مخصوص بنویسیم. سرویس گشت ساختار فرم را می‌فرستد؛ سرور آن را به UI تبدیل می‌کند و کلاینت فقط رندر می‌کند. تغییر فیلد یا فرم جدید، سریع‌تر و با هزینه کمتر انجام می‌شود.
+</div>
+
+<h3>۱۳.۱ مشکل قبلی و راه‌حل</h3>
+<p>قبلاً برای هر سناریوی گشت، باید صفحه و منطق جدا تعریف می‌شد. اگر سرویس گشت فیلد جدید اضافه می‌کرد یا فرم چندمرحله‌ای می‌شد، تغییر در اپ و بک‌اند زمان‌بر بود. با پیاده‌سازی فرم داینامیک در سرور، این وابستگی کم شد و نوتیفیکیشن به یک ابزار عملیاتی واقعی تبدیل شد.</p>
+
+<h3>۱۳.۲ جریان کار end-to-end</h3>
+<div class="flow">Push / Backend → ذخیره در Mongo (notifications)
+  ↓
+کلاینت: call_service → path=phPlus/notifications
+  ↓
+NotificationScreenDispatcher → NotificationDispatcherFacade
+  ↓
+ساخت JSON صفحه (خبر / فرم / هر دو) → پاسخ به کلاینت
+  ↓
+کاربر فرم را پر می‌کند → دکمه «ثبت»
+  ↓
+call_service → path=phPlus/notifications/gashtCallService
+  ↓
+GashtCallService → POST به REST گشت (Gateway) → ذخیره entity → فرم بعدی</div>
+
+<h3>۱۳.۳ سه حالت نمایش در گشت</h3>
+<table>
+  <tr><th>pushTypeId</th><th>کاربر چه می‌بیند</th><th>مزیت</th></tr>
+  <tr><td><strong>۱</strong> — خبر</td><td>خلاصه خبر + ناوبری (<code>gasht/news</code>)</td><td>اطلاع سریع بدون فرم اضافه</td></tr>
+  <tr><td><strong>۳</strong> — فرم</td><td>مستقیم فرم داینامیک (<code>notif/custom</code>)</td><td>شروع سریع کار عملیاتی</td></tr>
+  <tr><td><strong>۵</strong> — خبر + فرم</td><td>اول خبر، بعد ورود به فرم</td><td>هم آگاهی از ماجرا، هم اقدام</td></tr>
+</table>
+<p>سیستم گشت با <code>systemId = 4</code> شناسایی می‌شود.</p>
+
+<h3>۱۳.۴ اجزای اصلی سرور</h3>
+<table>
+  <tr><th>کلاس / فایل</th><th>نقش</th></tr>
+  <tr><td><code>NotificationDispatcherFacade</code></td><td>تصمیم‌گیری بر اساس systemId و pushTypeId؛ ساخت UI خبر و فرم داینامیک</td></tr>
+  <tr><td><code>buildCustomFormJson</code></td><td>خواندن entity فرم، مرتب‌سازی المان‌ها، تبدیل به JSON صفحه، افزودن دکمه ثبت</td></tr>
+  <tr><td><code>NotificationFormHelper</code></td><td>پیدا کردن entity، parse، merge مقادیر کلاینت، انتخاب آدرس REST</td></tr>
+  <tr><td><code>GashtCallService</code></td><td>ثبت فرم، ارسال به Gateway، به‌روزرسانی Mongo، ساخت فرم بعدی</td></tr>
+  <tr><td><code>NotificationScreenDispatcher</code></td><td>routing کلاینت: bottomSheet یا next screen</td></tr>
+  <tr><td><code>Notifications</code> + <code>NotificationPayload</code></td><td>ذخیره نوتیف و entity به‌روز فرم در Mongo</td></tr>
+  <tr><td><code>CoordinateService</code></td><td>مسیردهی درخواست‌ها به سرویس مناسب</td></tr>
+  <tr><td><code>CallGatewayService</code></td><td>ارتباط با REST گشت از طریق WSO2</td></tr>
+</table>
+
+<h3>۱۳.۵ مسیرهای Coordinator</h3>
+<table>
+  <tr><th>path</th><th>کاربرد</th></tr>
+  <tr><td><code>phPlus/notifications</code></td><td>باز کردن و نمایش نوتیفیکیشن (خبر / فرم)</td></tr>
+  <tr><td><code>phPlus/notifications/gashtCallService</code></td><td>ثبت فرم گشت و دریافت فرم بعدی</td></tr>
+  <tr><td><code>phPlus/notifications/submit</code></td><td>ثبت بازخورد (جدا از فرم گشت)</td></tr>
+</table>
+
+<h3>۱۳.۶ المان‌های فرم پشتیبانی‌شده</h3>
+<p>سرور انواع المان JSON سرویس گشت را به کامپوننت‌های UI تبدیل می‌کند — همان کامپوننت‌هایی که کلاینت از قبل دارد:</p>
+<table>
+  <tr><th>elementType (سرور)</th><th>custom_type (کلاینت)</th></tr>
+  <tr><td>TEXTVIEW</td><td><code>normal_text</code></td></tr>
+  <tr><td>EDITTEXT</td><td><code>custom_input</code></td></tr>
+  <tr><td>RADIOBUTTON / SINGLE_SELECT</td><td><code>single_selection</code> / <code>single_selection_bottomsheet</code></td></tr>
+  <tr><td>CHECKBOX / MULTI_SELECT</td><td><code>multi_selection</code> / <code>multi_selection_bottomsheet</code></td></tr>
+  <tr><td>MAP</td><td><code>navigation</code></td></tr>
+  <tr><td>SIGNATURE</td><td><code>signature</code></td></tr>
+  <tr><td>DISPLAY_IMAGE / CAPTURE_IMAGE</td><td><code>show_picture_*</code> / <code>image_picker</code></td></tr>
+</table>
+<p>دکمه «ثبت» به‌صورت خودکار در انتهای فرم ساخته می‌شود و با <code>call_service</code> به <code>gashtCallService</code> متصل است.</p>
+
+<h3>۱۳.۷ مزایای این پیاده‌سازی</h3>
+<div class="advantage-grid">
+  <div class="advantage-card">
+    <strong>⚡ توسعه سریع‌تر</strong>
+    فرم جدید = JSON از سرویس گشت، نه صفحه و کد جدید در اپ و سرور.
+  </div>
+  <div class="advantage-card">
+    <strong>🔄 فرم چندمرحله‌ای</strong>
+    بعد از هر ثبت موفق، entity در Mongo به‌روز می‌شود و فرم بعدی همان لحظه ساخته می‌شود.
+  </div>
+  <div class="advantage-card">
+    <strong>🎯 منطق متمرکز در سرور</strong>
+    Gateway، توکن، merge داده، و ساخت UI بعدی — همه سمت سرور؛ کلاینت سبک می‌ماند.
+  </div>
+  <div class="advantage-card">
+    <strong>🔗 یکپارچگی با SDUI کلاینت</strong>
+    همان الگوی <code>call_service</code> و <code>load_screen</code>؛ بدون نیاز به تغییر معماری اپ.
+  </div>
+</div>
+
+<h3>۱۳.۸ قبل و بعد</h3>
+<table>
+  <tr><th>قبل</th><th>بعد (۱۴۰۵)</th></tr>
+  <tr><td>صفحه تقریباً ثابت برای هر سناریو</td><td>صفحه از JSON فرم ساخته می‌شود</td></tr>
+  <tr><td>تغییر فیلد = تغییر کد و تمپلیت</td><td>تغییر فیلد = تغییر داده سرویس</td></tr>
+  <tr><td>فرم چندمرحله‌ای سخت و دستی</td><td>مرحله بعد خودکار بعد از ثبت موفق</td></tr>
+  <tr><td>نوتیف = فقط نمایش خبر</td><td>نوتیف = خبر + فرم + اقدام عملیاتی</td></tr>
+</table>
+
+<div class="box">
+  <strong>جمع‌بندی:</strong>
+  کار سرور در ۱۴۰۵، نوتیفیکیشن گشت انتظامی را از یک پیام ساده به یک جریان کاری کامل تبدیل کرد. مأمور از همان push وارد اپ می‌شود، خبر را می‌بیند یا فرم را پر می‌کند، و در صورت نیاز مرحله بعد را بدون پیچیدگی اضافه ادامه می‌دهد — در حالی که تیم توسعه کمتر درگیر ساخت صفحه تکراری می‌شود.
+</div>
+
+<h2 id="server-db" class="page-break">۱۶. محتوای دیتابیس سرور — صفحات و Patchها</h2>
+
+<p>این بخش بر اساس export واقعی دیتابیس سرور <strong>uiManager</strong> تهیه شده — فایل‌های <code>appScreen.json</code> (صفحات) و <code>patch.json</code> (patchها). سرور این JSONها را نگه می‌دارد و هنگام درخواست اپ (<code>getScreen</code> / <code>call_service</code>) به کلاینت می‌فرستد؛ اپ در Room DB ذخیره و رندر می‌کند.</p>
+
+<div class="box box-green">
+  <strong>آمار production (بدون تست/متفرقه):</strong><br>
+  <strong>187 صفحه</strong> — 167 فعال، 20 غیرفعال<br>
+  <strong>64 patch</strong> — استعلام، پلاک، بازرسی، باربری، ...
+</div>
+
+<h3>۱۶.۱ ساختار appScreen.json — هر صفحه چیست؟</h3>
+<table>
+  <tr><th>فیلد</th><th>معنی</th><th>کار شما</th></tr>
+  <tr><td><code>path</code> / <code>screenName</code></td><td>کلید یکتا صفحه — مثلاً <code>ph/login</code></td><td>نام‌گذاری ماژول/فلو — اپ با <code>load_screen</code> همین کلید را صدا می‌زند</td></tr>
+  <tr><td><code>jsonObject</code></td><td>کل JSON UI صفحه (card + states + div tree)</td><td>طراحی در Figma → Export پلاگین → ویرایش action/variable → آپلود سرور</td></tr>
+  <tr><td><code>idSystem</code></td><td>شناسه سیستم/ماژول در سرور (۱، ۲، ۷، ۱۱، ...)</td><td>تفکیک دسترسی و مسیریابی بین سرویس‌های مختلف سازمان</td></tr>
+  <tr><td><code>isDisabled</code></td><td>صفحه غیرفعال — به اپ ارسال نمی‌شود</td><td>نسخه قدیمی یا تست را خاموش کردید بدون حذف</td></tr>
+  <tr><td><code>version</code></td><td>نسخه صفحه</td><td>ردیابی تغییرات هنگام به‌روزرسانی UI</td></tr>
+  <tr><td><code>appScreenPatches</code></td><td>لیست patchهای مرتبط با صفحه</td><td>اتصال صفحه به patchهای از پیش تعریف‌شده</td></tr>
+</table>
+
+<h3>۱۶.۲ ساختار patch.json — هر patch چیست؟</h3>
+<p>Patch یعنی <strong>فقط یک قسمت UI عوض شود</strong> — نه reload کل صفحه. مثلاً بعد از استعلام، نتیجه در همان فرم ظاهر شود.</p>
+<table>
+  <tr><th>فیلد</th><th>معنی</th></tr>
+  <tr><td><code>patchName</code></td><td>کلید patch — مثلاً <code>patchInqueryHoviat</code> یا <code>patchVehiclePlate</code></td></tr>
+  <tr><td><code>jsonObject</code></td><td>JSON patch (آیتم‌های جایگزین/اضافه در container)</td></tr>
+  <tr><td><code>idScreen</code></td><td>ارتباط با صفحه والد (در صورت نیاز)</td></tr>
+  <tr><td><code>lastModifiedDate</code></td><td>تاریخ آخرین ویرایش</td></tr>
+</table>
+
+<h3>۱۶.۳ ماژول‌های صفحه‌ای که طراحی و آپلود کردید</h3>
+<p>صفحات فعال (بدون تست/غیرفعال) در export فعلی، به تفکیک حوزه کاری:</p>
+<table class="detail-table">
+  <tr><th>ماژول (path)</th><th>تعداد صفحه</th><th>به زبان ساده — چه کاری پوشش داده</th></tr>
+  <tr><td><code>Accidents</code> / <code>accidents</code></td><td>≈۳۱</td><td class="simple-col">ثبت تصادف سازش و غیرسازش — مراحل متعدد: اطلاعات اولیه، خودرو، راننده، بیمه، مسافر، عابر، کارشناسی، بایگانی</td></tr>
+  <tr><td><code>amaken</code></td><td>≈۲۰</td><td class="simple-col">اماکن — بازدید، مهر، همکار، جرم، کشفیات، گزارش، طرح اجرایی</td></tr>
+  <tr><td><code>cargo</code> / <code>Cargo</code></td><td>≈۱۹</td><td class="simple-col">باربری و گمرک — CMR، اظهارنامه، استعلام سفر/پلاک/پروانه، مانیتورینگ، متقاضی</td></tr>
+  <tr><td><code>bazrasi</code></td><td>≈۱۸</td><td class="simple-col">بازرسی — تناقض، پیش‌بینی، یگان، دستورالعمل، جستجو، امکانات</td></tr>
+  <tr><td><code>ph</code></td><td>≈۱۵</td><td class="simple-col">هسته PhPlus — login، استعلام خودرو/شخص، VT، گزارش، پشتیبانی، toast، force update</td></tr>
+  <tr><td><code>op</code></td><td>≈۱۴</td><td class="simple-col">نظرسنجی OP — ورود، splash، پرسشنامه، راهنما، قوانین، اندازه‌گیری</td></tr>
+  <tr><td><code>notif</code> / <code>gasht</code></td><td>≈۱۱</td><td class="simple-col">اعلان و گشت — فرم گشت، bottom sheet، نمایش متن/عکس/ویدیو</td></tr>
+  <tr><td><code>toghif</code></td><td>≈۹</td><td class="simple-col">توقیف — پارکینگ، جرثقیل، رد/تأیید، وضعیت قفل</td></tr>
+  <tr><td><code>cis</code></td><td>≈۸</td><td class="simple-col">صحنه جرم / جسد — مأموریت، کروکی کاغذی، مدارک، نتایج</td></tr>
+  <tr><td><code>vt</code></td><td>≈۸</td><td class="simple-col">Vehicle Ticket — پلاک (bottom sheet)، آدرس، نقشه، گزارش، تصاویر اشخاص</td></tr>
+  <tr><td><code>timeSheet</code></td><td>≈۶</td><td class="simple-col">کارنامه — تاریخچه تخلف، اخطار، راننده</td></tr>
+  <tr><td><code>atba</code></td><td>≈۵</td><td class="simple-col">اتباع — استعلام، مرز، ثبت شخص</td></tr>
+  <tr><td><code>nazer</code></td><td>≈۲</td><td class="simple-col">ناظر — تاریخچه تنبیه</td></tr>
+  <tr><td><code>splash</code></td><td>≈۲</td><td class="simple-col">اسپلش — ورود اولیه، مسیریابی به صفحه بعد</td></tr>
+</table>
+<p>در export خام DB هنوز حدود <strong>۶۰ صفحه تست/متفرقه</strong> و <strong>۵۷ patch آزمایشی</strong> وجود دارد که در فهرست §۱۸ نیامده — فقط محتوای عملیاتی مستند شده است.</p>
+
+<h3>۱۶.۴ دسته‌بندی Patchها — ۶۴ patch (production)</h3>
+<table>
+  <tr><th>دسته</th><th>تعداد تقریبی</th><th>نمونه patchName</th><th>کاربرد</th></tr>
+  <tr><td><strong>استعلام</strong></td><td>≈۲۵</td><td><code>patchInqueryHoviat</code>, <code>patchInqueryEntezami</code>, <code>patchInqueryGovahiname</code>, <code>patchInqueryPassport</code>, <code>patchInqueryPlates</code>, <code>patchInqueryNezamVazife</code>, <code>patchInquery*Atba</code></td><td>نمایش نتیجه استعلام در UI — بدون reload صفحه</td></tr>
+  <tr><td><strong>انواع پلاک</strong></td><td>≈۲۵</td><td><code>patchVehiclePlate</code>, <code>patchMotorPlate</code>, <code>patchDolatiPlate</code>, <code>patchTaxiPlate</code>, <code>patchTarikhiPlate</code>, <code>patchTransitPlate</code>, ...</td><td>UI ورود/نمایش هر نوع پلاک — کلیک روی حرف پلاک → patch مناسب</td></tr>
+  <tr><td><strong>تصادفات</strong></td><td>≈۴</td><td><code>Accidents/vehicleInformationEntry/patch</code>, <code>accident/page2/driver</code>, <code>insurance</code>, <code>vehicle</code></td><td>مراحل ۲ و ۳ ثبت تصادف — اطلاعات خودرو/راننده/بیمه</td></tr>
+  <tr><td><strong>بازرسی</strong></td><td>≈۶</td><td><code>bazrasi/programsPatch</code>, <code>bazrasi/yeganPatch</code>, <code>bazrasi/instruction</code></td><td>لیست برنامه‌ها، یگان، دستورالعمل</td></tr>
+  <tr><td><strong>باربری/گمرک</strong></td><td>≈۸</td><td><code>cmrInfo</code>, <code>ezharnamePatch</code>, <code>patchShomareBarname</code>, <code>patchShenavar</code>, <code>patchMotaghazi</code></td><td>اطلاعات CMR، اظهارنامه، شماره بارنامه، شناور</td></tr>
+  <tr><td><strong>PhPlus / VT</strong></td><td>≈۷</td><td><code>ph/main/*</code>, <code>vt/reports</code>, <code>patchAddress</code></td><td>داشبورد، گزارش VT، آدرس</td></tr>
+</table>
+
+<h3>۱۶.۵ کارهایی که داخل JSON صفحات انجام دادید</h3>
+<p>تحلیل محتوای <code>jsonObject</code> صفحات نشان می‌دهد چه قابلیت‌هایی واقعاً wire شده‌اند:</p>
+<table>
+  <tr><th>قابلیت</th><th>تعداد صفحات</th><th>توضیح</th></tr>
+  <tr><td><code>load_screen</code></td><td>۷۷</td><td>ناوبری بین صفحات — فلوهای چندمرحله‌ای</td></tr>
+  <tr><td><code>call_service</code></td><td>۶۸</td><td>ارتباط با سرور — استعلام، ثبت، getScreen</td></tr>
+  <tr><td><code>set_patch</code></td><td>۳۹</td><td>نمایش نتیجه یا تغییر بخشی از UI پس از عملیات</td></tr>
+  <tr><td><code>bottom_sheet_list</code></td><td>۳۳</td><td>انتخاب از لیست (استان، نوع، ...) در پنجره پایین</td></tr>
+  <tr><td><code>open_camera</code></td><td>۳۱</td><td>عکس/OCR پلاک و مستندات</td></tr>
+  <tr><td><code>set_variable</code> / <code>change_color</code></td><td>تقریباً همه صفحات</td><td>validation، شرط نمایش، بازخورد خطا (قرمز شدن فیلد)</td></tr>
+  <tr><td><code>show_date_picker</code></td><td>۱۲۹ فراخوانی</td><td>تاریخ شمسی در فرم‌های میدانی</td></tr>
+  <tr><td><code>set_page_with_changes_to_db</code></td><td>۸</td><td>ذخیره draft — آفلاین/ادامه بعداً</td></tr>
+  <tr><td><code>offline_list_container</code></td><td>۳</td><td>لیست کارهای ناتمام</td></tr>
+  <tr><td><code>navigation</code> (نقشه)</td><td>۴</td><td>مسیریابی در VT، اعلان، تصادف</td></tr>
+</table>
+
+<h3>۱۶.۶ کامپوننت‌های سفارشی استفاده‌شده در صفحات DB</h3>
+<table>
+  <tr><th>custom_type</th><th>تعداد</th><th>کجا</th></tr>
+  <tr><td><code>circular_progress</code></td><td>۳۲</td><td>نوار پیشرفت در فرم‌های طولانی</td></tr>
+  <tr><td><code>audioPlayerView</code></td><td>۵</td><td>پخش فایل صوتی</td></tr>
+  <tr><td><code>labelledSliderView</code></td><td>۵</td><td>انتخاب سطح/درجه</td></tr>
+  <tr><td><code>navigation</code></td><td>۴</td><td>نقشه + مسیر</td></tr>
+  <tr><td><code>offline_list_container</code></td><td>۳</td><td>بایگانی draft</td></tr>
+  <tr><td><code>notification_list</code></td><td>۲</td><td>لیست اعلان</td></tr>
+  <tr><td><code>timer_button</code></td><td>۲</td><td>دکمه با تأخیر</td></tr>
+  <tr><td><code>map</code>, <code>signature</code>, <code>image_picker</code>, <code>static_tree_view</code></td><td>۱</td><td>نقشه، امضا، عکس، درخت</td></tr>
+</table>
+
+<h3>۱۶.۷ جریان از DB سرور تا مأمور</h3>
+<div class="flow">uiManager (MongoDB)
+  appScreen collection → 248 سند (path + jsonObject)
+  patch collection     → 121 سند (patchName + jsonObject)
+
+اپ باز می‌شود → getScreen / sync → JSON در Room DB
+مأمور کلیک / visibility_action → call_service / load_screen / set_patch
+سرور پاسخ می‌دهد → next / set_patch / load_screen → UI به‌روز بدون APK</div>
+
+<div class="box">
+  <strong>جمع‌بندی کار شما روی این دو فایل:</strong>
+  طراحی UI در Figma و export با پلاگین؛ wiring اکشن‌ها (استعلام، patch، bottom sheet، تاریخ شمسی)؛ ساخت فلوهای چندصفحه‌ای برای <strong>بیش از ۱۵ حوزه عملیاتی</strong>؛ تعریف <strong>۱۲۱ patch</strong> برای پاسخ‌های تکراری (استعلام + ۲۰+ نوع پلاک)؛ آپلود و نگهداری در DB سرور برای توزیع به همه مأموران — بدون نیاز به نسخه جدید اپ.
+</div>
+
+<h2 id="modules-tasks" class="page-break">۱۷. لیست کامل ماژول‌ها و تسک‌ها</h2>
+
+<p>در این بخش <strong>همه کارهایی که انجام دادیم</strong> به تفکیک ماژول آمده. ستون «به زبان ساده» برای مدیر و غیرفنی‌هاست — می‌گوید <em>چرا</em> این کار لازم بود.</p>
+<p>پروژه فقط اپ موبایل نیست: <strong>پلاگین Figma</strong>، <strong>موتور SDUI</strong>، <strong>SDK اعلان و دوربین</strong>، <strong>قرارداد JSON</strong>، و <strong>سرور uiManager</strong> هم بخش کار ماست. برای هر بخش <strong>R&amp;D</strong> (تحقیق اول، پیاده‌سازی بعد) انجام شده.</p>
+
+<div class="module-block">
+<h3>ماژول A — Schema و JSON Builder <span class="badge">زیرساخت</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td>مطالعه و adopt کردن <code>schema/</code></td><td>۱۴۰۴</td><td class="task-why">همه (طراح، اپ، سرور) یک زبان مشترک داشته باشند — JSON اشتباه نشود</td></tr>
+  <tr><td>api-generator-plugin — codegen کتابخانه داده UI</td><td>۱۴۰۴</td><td class="task-why">اپ JSON را اشتباه نخواند — خطا کمتر</td></tr>
+  <tr><td>مطالعه json-builder/kotlin</td><td>۱۴۰۴</td><td class="task-why">سرور هم بتواند صفحه بسازد — نه فقط اپ</td></tr>
+</table>
+</div>
+
+<div class="module-block">
+<h3>ماژول B — موتور SDUI (موتور-رندر، موتور-هسته، موتور expression، ...) <span class="badge">زیرساخت</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td>یکپارچه‌سازی موتور-رندر + افزونه‌ها در build</td><td>۱۴۰۴</td><td class="task-why">JSON را تبدیل به دکمه و فیلد واقعی روی گوشی کند</td></tr>
+  <tr><td>موتور expression — expression engine</td><td>۱۴۰۴</td><td class="task-why">فیلدها خودکار پر/مخفی/اعتبارسنجی شوند — بدون کد جدا</td></tr>
+  <tr><td>compose-interop — نگهداری JSON توسعه</td><td>۱۴۰۴–۱۴۰۵</td><td class="task-why">workspace جدا برای Accidents و patchها</td></tr>
+</table>
+</div>
+
+<div class="module-block">
+<h3>ماژول C — pushSdk <span class="badge">۱۴۰۴</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td>یکپارچه‌سازی NajiPush (MQTT)</td><td>۱۴۰۴</td><td class="task-why">دریافت push در پس‌زمینه — گشت، اعلان عملیاتی</td></tr>
+  <tr><td>MqttService + reconnect</td><td>۱۴۰۴</td><td class="task-why">پایداری اتصال در شبکه موبایل</td></tr>
+  <tr><td>PersianDate در SDK</td><td>۱۴۰۴</td><td class="task-why">timestamp فارسی در notification</td></tr>
+</table>
+</div>
+
+<div class="module-block">
+<h3>ماژول D — najicamera <span class="badge">۱۴۰۴</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td>SDK انتخاب/گرفتن عکس</td><td>۱۴۰۴</td><td class="task-why">پشتیبانی image_picker custom component در فرم‌های میدانی</td></tr>
+</table>
+</div>
+
+
+<div class="module-block">
+<h3>ماژول E — پلاگین Figma → JSON <span class="badge badge-orange">R&amp;D + ۱۴۰۴</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td>تحقیق Figma Plugin API</td><td>۱۴۰۴</td><td class="task-why">بدون این API نمی‌شود از داخل Figma طراحی را بخوانیم — اول R&amp;D، بعد کد</td></tr>
+  <tr><td>ساخت اسکلت پلاگین (Export)</td><td>۱۴۰۴</td><td class="task-why">طراح یک دکمه Export بزند و JSON صفحه آماده شود — نه برنامه‌نویس دستی</td></tr>
+  <tr><td>نگاشت لایه‌ها: Text → text، Frame → container</td><td>۱۴۰۴</td><td class="task-why">هر چیزی در Figma بکشیم، معادل در اپ داشته باشد</td></tr>
+  <tr><td>تبدیل Auto-layout به margin/padding</td><td>۱۴۰۴</td><td class="task-why">فاصله‌ها و چیدمان در موبایل مثل طراحی باشد</td></tr>
+  <tr><td>پشتیبانی RTL و فونت فارسی</td><td>۱۴۰۴</td><td class="task-why">اپ فارسی است — متن و چیدمان برعکس انگلیسی درست کار کند</td></tr>
+  <tr><td>تست و اصلاح روی 200+ صفحه</td><td>۱۴۰۴–۱۴۰۵</td><td class="task-why">هر صفحه دستی ماه‌ها طول می‌کشید — پلاگین سرعت را چند برابر کرد</td></tr>
+</table>
+</div>
+
+<div class="module-block">
+<h3>ماژول ۱ — زیرساخت SDUI و اپلیکیشن اصلی <span class="badge">۱۴۰۴</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td>راه‌اندازی <code>MehdiActivity</code> به‌عنوان Activity اصلی</td><td>۱۴۰۴</td><td class="task-why">یک نقطه ورود واحد برای رندر تمام صفحات SDUI بدون ساخت Activity جدا برای هر فرم</td></tr>
+  <tr><td>پیاده‌سازی <code>UICreator</code> و پیکربندی موتور رندر</td><td>۱۴۰۴</td><td class="task-why">اتصال JSON به View اندروید با Custom Adapter و Action Handler اختصاصی پروژه</td></tr>
+  <tr><td>بارگذاری JSON صفحات از assets به Room DB</td><td>۱۴۰۴</td><td class="task-why">صفحات اولیه آفلاین در دسترس باشند؛ بعداً از سرور به‌روزرسانی شوند</td></tr>
+  <tr><td>بهینه‌سازی insert صفحات در IO Thread</td><td>۱۴۰۵</td><td class="task-why">جلوگیری از lag در startup و روان‌تر شدن باز شدن اپ روی دستگاه‌های ضعیف‌تر</td></tr>
+  <tr><td>پیاده‌سازی <code>MehdiViewModel</code> + LiveData</td><td>۱۴۰۴</td><td class="task-why">جداسازی UI از منطق بارگذاری صفحه، patch، و پاسخ سرور</td></tr>
+  <tr><td>مدیریت مجوزها (دوربین، مکان، ذخیره، میکروفون)</td><td>۱۴۰۴</td><td class="task-why">فرم‌های میدانی به مجوز سخت‌افزاری نیاز دارند؛ درخواست متمرکز و قابل فراخوانی از JSON</td></tr>
+</table>
+</div>
+
+<div class="module-block">
+<h3>ماژول ۲ — احراز هویت و صفحات پایه <span class="badge">۱۴۰۴</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td>طراحی و پیاده‌سازی صفحه login</td><td>۱۴۰۴</td><td class="task-why">ورود مأمور به سیستم و دریافت PhID برای تمام درخواست‌های بعدی</td></tr>
+  <tr><td>صفحه splash و startPoint</td><td>۱۴۰۴</td><td class="task-why">نقطه شروع اپ و هدایت به صفحه مناسب (عادی یا از push)</td></tr>
+  <tr><td>داشبورد (baseMain)، منو، تنظیمات</td><td>۱۴۰۴</td><td class="task-why">دسترسی سریع مأمور به سرویس‌های اصلی و تنظیمات دستگاه</td></tr>
+  <tr><td>اکشن <code>refresh_captcha</code></td><td>۱۴۰۴</td><td class="task-why">امنیت ورود — بارگذاری مجدد کپچا بدون reload کل صفحه</td></tr>
+  <tr><td>اکشن <code>check_version</code> و <code>update</code></td><td>۱۴۰۴</td><td class="task-why">اطمینان از نسخه به‌روز APK در محیط عملیاتی</td></tr>
+  <tr><td>اکشن <code>set_imei</code>, <code>set_ip</code>, <code>set_device_model</code></td><td>۱۴۰۴</td><td class="task-why">شناسایی دستگاه مأمور برای لاگ، امنیت، و عیب‌یابی</td></tr>
+</table>
+</div>
+
+<div class="module-block">
+<h3>ماژول ۳ — مدیریت ناوبری <span class="badge">۱۴۰۴</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td>پیاده‌سازی <code>ScreenNavigationStack</code></td><td>۱۴۰۴</td><td class="task-why">رفتار صحیح دکمه Back در فرم‌های چندصفحه‌ای SDUI — مشابه stack ناوبری native</td></tr>
+  <tr><td>اکشن <code>load_screen</code></td><td>۱۴۰۴</td><td class="task-why">جابجایی بین صفحات فقط با JSON — بدون کد ناوبری hardcode</td></tr>
+  <tr><td>اکشن <code>pop_and_load_screen</code></td><td>۱۴۰۴</td><td class="task-why">بازگشت به صفحه قبلی و بارگذاری صفحه جدید در یک action</td></tr>
+  <tr><td>اکشن‌های <code>push_to_stack</code> / <code>pop_from_stack</code></td><td>۱۴۰۴</td><td class="task-why">کنترل دستی stack برای فلوهای پیچیده (مثلاً bottom sheet → صفحه → برگشت)</td></tr>
+  <tr><td>مدیریت Back: ابتدا بستن Bottom Sheet</td><td>۱۴۰۴</td><td class="task-why">UX استاندارد — کاربر انتظار دارد Back ابتدا sheet را ببندد نه از اپ خارج شود</td></tr>
+  <tr><td>اکشن <code>forward_to</code> و <code>generateScreen</code></td><td>۱۴۰۴</td><td class="task-why">هدایت به URL خارجی یا تولید صفحه داینامیک از داده سرور</td></tr>
+  <tr><td>باز شدن اپ از Push (<code>open_from_push</code>)</td><td>۱۴۰۴</td><td class="task-why">مأمور با کلیک روی اعلان مستقیم وارد صفحه مربوطه شود</td></tr>
+</table>
+</div>
+
+<div class="module-block">
+<h3>ماژول ۴ — سیستم Patch (به‌روزرسانی جزئی UI) <span class="badge">۱۴۰۴</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td>اکشن <code>set_patch</code></td><td>۱۴۰۴</td><td class="task-why">به‌روزرسانی بخشی از UI پس از پاسخ سرور — بدون reload کل صفحه (مثلاً پر شدن نتیجه استعلام)</td></tr>
+  <tr><td>اکشن <code>bottom_sheet_set_patch</code></td><td>۱۴۰۴</td><td class="task-why">همان قابلیت patch داخل Bottom Sheet</td></tr>
+  <tr><td>اکشن <code>set_patch_for_list</code></td><td>۱۴۰۴</td><td class="task-why">به‌روزرسانی آیتم‌های لیست (گزارش‌ها، نتایج استعلام)</td></tr>
+  <tr><td>اکشن <code>push_and_set_patch</code> / <code>pop_and_set_patch</code></td><td>۱۴۰۴</td><td class="task-why">ترکیب ناوبری stack با patch — برای فلوهای چندمرحله‌ای</td></tr>
+  <tr><td>فایل‌های patch (Home, Grid, Profiles, Settings, Reports, استعلام‌ها)</td><td>۱۴۰۴</td><td class="task-why">تعریف از پیش ساختار patch برای پاسخ‌های پرتکرار سرور</td></tr>
+  <tr><td>اکشن <code>set_variable_from_db_and_set_patch</code></td><td>۱۴۰۵</td><td class="task-why">خواندن داده ذخیره‌شده و اعمال patch در یک مرحله — کاهش action chain در JSON</td></tr>
+</table>
+</div>
+
+<div class="module-block">
+<h3>ماژول ۵ — Patch Generator (آیتم داینامیک) <span class="badge">۱۴۰۴–۱۴۰۵</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td>پیاده‌سازی <code>DynamicPatchGenerator</code></td><td>۱۴۰۴</td><td class="task-why">تولید خودکار patch JSON برای افزودن/حذف آیتم — بدون نوشتن patch دستی</td></tr>
+  <tr><td>اکشن <code>add_item_from_template</code></td><td>۱۴۰۵</td><td class="task-why">افزودن ردیف جدید به لیست (مثلاً شخص، خودرو) از template — کاربر submit می‌زند و آیتم به container اضافه می‌شود</td></tr>
+  <tr><td>اکشن <code>generatePatch</code></td><td>۱۴۰۴</td><td class="task-why">تولید patch از روی داده runtime</td></tr>
+  <tr><td>مستندسازی Template Creation Guide</td><td>۱۴۰۵</td><td class="task-why">استانداردسازی نحوه ساخت template برای توسعه‌دهندگان بعدی</td></tr>
+</table>
+</div>
+
+<div class="module-block">
+<h3>ماژول ۶ — لایه داده و ارتباط با سرور <span class="badge">۱۴۰۴</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td>Room DB — entity <code>PhPlusDB</code> (key/value)</td><td>۱۴۰۴</td><td class="task-why">ذخیره JSON صفحات، متغیرها، draftها، و cache آفلاین</td></tr>
+  <tr><td>Retrofit — <code>PhPlusApi</code> → <code>CallService/coordinator</code></td><td>۱۴۰۴</td><td class="task-why">نقطه واحد ارتباط با تمام سرویس‌های بک‌اند</td></tr>
+  <tr><td>Repository Pattern — <code>PhPlusRepository</code></td><td>۱۴۰۴</td><td class="task-why">جداسازی منبع داده (شبکه/محلی) از ViewModel</td></tr>
+  <tr><td>اکشن <code>call_service</code></td><td>۱۴۰۴</td><td class="task-why">فراخوانی API مستقیم از JSON — قلب ارتباط UI با سرور</td></tr>
+  <tr><td>اکشن‌های <code>set_variable_to_db</code> / <code>set_variable_from_db</code></td><td>۱۴۰۴</td><td class="task-why">persist کردن state بین صفحات و sessionها</td></tr>
+  <tr><td><code>RoutingApi</code> — مسیریابی Mapbox</td><td>۱۴۰۴</td><td class="task-why">دریافت مسیر بین دو نقطه برای نمایش روی نقشه</td></tr>
+</table>
+</div>
+
+<div class="module-block page-break">
+<h3>ماژول ۷ — استعلام خودرو و اشخاص <span class="badge">۱۴۰۴</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td>طراحی صفحه <code>inqueryVehicle</code></td><td>۱۴۰۴</td><td class="task-why">استعلام اطلاعات خودرو در محل — نیاز روزمره مأمور</td></tr>
+  <tr><td>طراحی صفحه <code>inqueryHuman</code></td><td>۱۴۰۴</td><td class="task-why">استعلام اطلاعات اشخاص (هویت، گواهینامه، ...)</td></tr>
+  <tr><td>patchهای استعلام (پلاک، گذرنامه، گواهینامه، هویت، انتظامی، نظام وظیفه)</td><td>۱۴۰۴</td><td class="task-why">نمایش نتیجه هر نوع استعلام در UI مخصوص همان سرویس — بدون reload</td></tr>
+  <tr><td>Bottom Sheet پلاک (<code>bottom_sheet_plate</code>)</td><td>۱۴۰۴</td><td class="task-why">انتخاب/ورود پلاک با UX مناسب فارسی</td></tr>
+</table>
+</div>
+
+<div class="module-block">
+<h3>ماژول ۸ — ثبت تخلف <span class="badge">۱۴۰۴</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td>طراحی فرم جامع <code>sabte-takhalof</code></td><td>۱۴۰۴</td><td class="task-why">ثبت تخلفات رانندگی در محل — یکی از اصلی‌ترین use caseهای میدانی</td></tr>
+  <tr><td>صفحات پلاک (سیاسی، تاریخی، گذر موقت، موتور)</td><td>۱۴۰۴</td><td class="task-why">پوشش انواع پلاک موجود در سیستم انتظامی</td></tr>
+  <tr><td>استعلام خودرو در ثبت تخلف</td><td>۱۴۰۴</td><td class="task-why">پر شدن خودکار فیلدها پس از استعلام — کاهش خطای دستی</td></tr>
+  <tr><td>اعتبارسنجی فرم‌ها</td><td>۱۴۰۴</td><td class="task-why">جلوگیری از ارسال داده ناقص یا نامعتبر به سرور</td></tr>
+</table>
+</div>
+
+<div class="module-block">
+<h3>ماژول ۹ — VT (Vehicle Ticket) <span class="badge">۱۴۰۴</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td>ثبت تیکت خودرو (<code>vt-register-ticket</code>)</td><td>۱۴۰۴</td><td class="task-why">فرآیند VT در میدان</td></tr>
+  <tr><td>صفحات پلاک، آدرس، نقشه در Bottom Sheet</td><td>۱۴۰۴</td><td class="task-why">انتخاب موقعیت و اطلاعات تکمیلی بدون ترک فرم اصلی</td></tr>
+  <tr><td>گزارش‌های VT (تحویل‌شده / نشده)</td><td>۱۴۰۴</td><td class="task-why">پیگیری وضعیت تیکت‌ها توسط مأمور</td></tr>
+  <tr><td>صفحه تصاویر اشخاص</td><td>۱۴۰۴</td><td class="task-why">ثبت و نمایش تصاویر مرتبط با پرونده</td></tr>
+</table>
+</div>
+
+<div class="module-block">
+<h3>ماژول ۱۰ — گزارش‌ها <span class="badge">۱۴۰۴</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td>لیست گزارش‌ها (<code>reports</code>)</td><td>۱۴۰۴</td><td class="task-why">مأمور گزارش‌های خود را ببیند و پیگیری کند</td></tr>
+  <tr><td>جزئیات گزارش و patch گزارش‌ها</td><td>۱۴۰۴</td><td class="task-why">به‌روزرسانی وضعیت گزارش بدون reload</td></tr>
+  <tr><td><code>ph-vt-reports</code></td><td>۱۴۰۴</td><td class="task-why">گزارش‌های اختصاصی VT در PhPlus</td></tr>
+</table>
+</div>
+
+<div class="module-block">
+<h3>ماژول ۱۱ — سیستم اعلان (کلاینت) <span class="badge">۱۴۰۴</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td><code>NotificationManager</code> — مدیریت مرکزی</td><td>۱۴۰۴</td><td class="task-why">یک منبع حقیقت برای state اعلان‌ها در کل اپ</td></tr>
+  <tr><td>کامپوننت <code>notification_list</code></td><td>۱۴۰۴</td><td class="task-why">نمایش لیست اعلان‌ها داخل UI SDUI</td></tr>
+  <tr><td>Listener real-time برای به‌روزرسانی شمارنده</td><td>۱۴۰۴</td><td class="task-why">badge اعلان unread بلافاصله بعد از دریافت push به‌روز شود</td></tr>
+  <tr><td>اکشن <code>restart_push_notifications</code></td><td>۱۴۰۴</td><td class="task-why">راه‌اندازی مجدد سرویس push پس از خطا یا logout/login</td></tr>
+  <tr><td>اکشن <code>refresh_notification_type_counters</code></td><td>۱۴۰۴</td><td class="task-why">همگام‌سازی شمارنده انواع اعلان با سرور</td></tr>
+  <tr><td>یکپارچه‌سازی Push SDK (Naja)</td><td>۱۴۰۴</td><td class="task-why">دریافت push در پس‌زمینه و foreground</td></tr>
+</table>
+</div>
+
+<div class="module-block">
+<h3>ماژول ۱۲ — آفلاین، Draft و بایگانی <span class="badge">۱۴۰۴–۱۴۰۵</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td>اکشن <code>set_page_with_changes_to_db</code></td><td>۱۴۰۴</td><td class="task-why">ذخیره فرم ناقص با تمام تغییرات کاربر — ادامه بعداً</td></tr>
+  <tr><td>اکشن <code>set_object_to_db</code></td><td>۱۴۰۴</td><td class="task-why">ثبت metadata در بایگانی (عنوان، مرحله، شناسه)</td></tr>
+  <tr><td>کامپوننت <code>offline_list_container</code></td><td>۱۴۰۴</td><td class="task-why">نمایش لیست کارهای ناتمام و resume با یک کلیک</td></tr>
+  <tr><td>ثبت آفلاین (<code>validations and offline register</code>)</td><td>۱۴۰۴</td><td class="task-why">کار در مناطق بدون اینترنت</td></tr>
+  <tr><td><code>VehicleWizardDraftResolver</code></td><td>۱۴۰۵</td><td class="task-why">بازیابی صحیح draft اطلاعات خودرو در ویزارد تصادفات</td></tr>
+  <tr><td><code>ScreenVariableExporter</code></td><td>۱۴۰۴</td><td class="task-why">استخراج variableهای صفحه برای ذخیره draft</td></tr>
+</table>
+</div>
+
+<div class="module-block page-break">
+<h3>ماژول ۱۳ — تصادفات (Accidents) <span class="badge">۱۴۰۴–۱۴۰۵</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td>طراحی فلو ۴ مرحله‌ای ثبت تصادف سازشی</td><td>۱۴۰۴</td><td class="task-why">تقسیم فرم پیچیده به مراحل قابل مدیریت برای مأمور</td></tr>
+  <tr><td>صفحه main — شروع سازشی / بایگانی</td><td>۱۴۰۴</td><td class="task-why">نقطه ورود و دسترسی به کارهای ناتمام</td></tr>
+  <tr><td>صفحه compromisefirst (مرحله ۱)</td><td>۱۴۰۴</td><td class="task-why">ثبت اطلاعات اولیه توافق/سازش</td></tr>
+  <tr><td>صفحه archive + offline_list</td><td>۱۴۰۴</td><td class="task-why">مدیریت پرونده‌های ناتمام</td></tr>
+  <tr><td>اکشن <code>set_random_id_to_db</code> (current_accident_id)</td><td>۱۴۰۴</td><td class="task-why">شناسه یکتا برای هر پرونده تصادف</td></tr>
+  <tr><td>اکشن <code>save_vehicle_to_list</code></td><td>۱۴۰۴</td><td class="task-why">افزودن خودروهای متعدد به پرونده</td></tr>
+  <tr><td>vehicleInformationEntry (مرحله ۲)</td><td>۱۴۰۵</td><td class="task-why">ثبت اطلاعات خودروهای درگیر</td></tr>
+  <tr><td>exportreasoninginference (مرحله ۳)</td><td>۱۴۰۵</td><td class="task-why">ثبت استدلال و استنتاج</td></tr>
+  <tr><td>finalregistration (مرحله ۴)</td><td>۱۴۰۵</td><td class="task-why">ثبت نهایی و ارسال</td></tr>
+  <tr><td>صفحات insurance, driver, vehicle</td><td>۱۴۰۵</td><td class="task-why">اطلاعات تکمیلی بیمه، راننده، خودرو</td></tr>
+  <tr><td>کامپوننت <code>accident_sketch</code></td><td>۱۴۰۴</td><td class="task-why">ترسیم کروکی تصادف در محل — نیاز عملیاتی</td></tr>
+  <tr><td><code>AccidentSketchEditorActivity</code> + MapPicker</td><td>۱۴۰۴</td><td class="task-why">ویرایش کروکی و انتخاب موقعیت روی نقشه</td></tr>
+  <tr><td>مستند <code>DRAFT_ACTIONS.md</code></td><td>۱۴۰۵</td><td class="task-why">راهنمای action chain برای توسعه‌دهندگان</td></tr>
+</table>
+</div>
+
+<div class="module-block">
+<h3>ماژول ۱۴ — Bottom Sheet و Dialog <span class="badge">۱۴۰۴</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td><code>BottomSheetManager</code> + <code>BottomSheetRenderer</code></td><td>۱۴۰۴</td><td class="task-why">نمایش صفحه SDUI کامل داخل sheet — انتخاب پلاک، لیست، فرم کوتاه</td></tr>
+  <tr><td>اکشن <code>bottom_sheet</code></td><td>۱۴۰۴</td><td class="task-why">باز کردن sheet از JSON</td></tr>
+  <tr><td>اکشن <code>bottom_sheet_list</code></td><td>۱۴۰۴</td><td class="task-why">لیست انتخاب ساده</td></tr>
+  <tr><td>اکشن <code>bottom_sheet_dismiss</code></td><td>۱۴۰۴</td><td class="task-why">بستن programmatic از JSON</td></tr>
+  <tr><td><code>show_dialog</code> / <code>show_dialog</code></td><td>۱۴۰۴</td><td class="task-why">تأیید، هشدار، پیام — بدون Activity جدا</td></tr>
+  <tr><td><code>show_toast</code> / <code>show_toast</code></td><td>۱۴۰۴</td><td class="task-why">بازخورد سریع به کاربر</td></tr>
+</table>
+</div>
+
+<div class="module-block">
+<h3>ماژول ۱۵ — کامپوننت‌های سفارشی میدانی <span class="badge">۱۴۰۴–۱۴۰۵</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td><code>map</code> / <code>navigation</code> — Mapbox</td><td>۱۴۰۴</td><td class="task-why">نمایش موقعیت و مسیریابی در فرم‌های میدانی</td></tr>
+  <tr><td><code>signature</code></td><td>۱۴۰۴</td><td class="task-why">امضای دیجیتال طرفین — الزام legal</td></tr>
+  <tr><td><code>image_picker</code></td><td>۱۴۰۴</td><td class="task-why">عکس از دوربین/گالری برای مستندسازی</td></tr>
+  <tr><td><code>audioRecorderView</code> / <code>audioPlayerView</code></td><td>۱۴۰۴</td><td class="task-why">ضبط و پخش توضیحات صوتی مأمور</td></tr>
+  <tr><td><code>multi_selection</code> / <code>single_selection</code></td><td>۱۴۰۴</td><td class="task-why">انتخاب از لیست — inline در فرم</td></tr>
+  <tr><td><code>multi_selection_bottomsheet</code> / <code>single_selection_bottomsheet</code></td><td>۱۴۰۴</td><td class="task-why">انتخاب از لیست بلند — UX بهتر</td></tr>
+  <tr><td><code>custom_input</code></td><td>۱۴۰۴–۱۴۰۵</td><td class="task-why">ورودی با binding مستقیم به variable — کنترل بیشتر از input پیش‌فرض</td></tr>
+  <tr><td><code>labelledSliderView</code></td><td>۱۴۰۴</td><td class="task-why">انتخاب مقدار عددی با بازخورد بصری</td></tr>
+  <tr><td><code>timer_button</code> (+ call service / upload)</td><td>۱۴۰۴–۱۴۰۵</td><td class="task-why">تأخیر عمدی قبل از action — جلوگیری از submit تصادفی</td></tr>
+  <tr><td><code>circular_progress</code></td><td>۱۴۰۴</td><td class="task-why">نمایش پیشرفت عملیات</td></tr>
+  <tr><td><code>tree_view</code> / <code>static_tree_view</code></td><td>۱۴۰۵</td><td class="task-why">نمایش ساختار سلسله‌مراتبی (سازمان، دسته‌بندی)</td></tr>
+</table>
+</div>
+
+<div class="module-block">
+<h3>ماژول ۱۶ — تقویم شمسی و اعتبارسنجی تاریخ <span class="badge">۱۴۰۴</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td>اکشن <code>get_persian_date</code></td><td>۱۴۰۴</td><td class="task-why">پر شدن خودکار تاریخ شمسی در فرم</td></tr>
+  <tr><td>اکشن <code>show_date_picker</code> (شمسی)</td><td>۱۴۰۴</td><td class="task-why">انتخاب تاریخ با UX فارسی</td></tr>
+  <tr><td>اکشن <code>show_date_picker_gregorian</code></td><td>۱۴۰۴</td><td class="task-why">مواردی که تاریخ میلادی لازم است</td></tr>
+  <tr><td>اکشن <code>show_time_picker</code></td><td>۱۴۰۴</td><td class="task-why">انتخاب ساعت</td></tr>
+  <tr><td><code>DateTimeCompareActionHelper</code></td><td>۱۴۰۴</td><td class="task-why">اعتبارسنجی: تاریخ نباید از امروز بزرگ‌تر باشد و...</td></tr>
+  <tr><td><code>is_date_and_time_less_equal_today_now</code></td><td>۱۴۰۴</td><td class="task-why">قوانین business در JSON — بدون کد validation جدا</td></tr>
+</table>
+</div>
+
+<div class="module-block">
+<h3>ماژول ۱۷ — سرویس‌های پس‌زمینه <span class="badge">۱۴۰۴–۱۴۰۵</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td><code>AudioRecordingService</code></td><td>۱۴۰۴–۱۴۰۵</td><td class="task-why">ضبط صدا حتی وقتی کاربر صفحه را عوض کند</td></tr>
+  <tr><td>اکشن <code>start_recording</code> / <code>stop_recording</code></td><td>۱۴۰۴</td><td class="task-why">کنترل ضبط از JSON</td></tr>
+  <tr><td>اکشن <code>upload_recording</code></td><td>۱۴۰۵</td><td class="task-why">ارسال فایل صوتی به سرور</td></tr>
+  <tr><td><code>LocationService</code></td><td>۱۴۰۴</td><td class="task-why">ردیابی GPS مأمور برای سرویس‌های مبتنی بر موقعیت</td></tr>
+  <tr><td>اکشن <code>restart_location_service</code></td><td>۱۴۰۴</td><td class="task-why">بازیابی سرویس GPS پس از خطا</td></tr>
+  <tr><td><code>FileUploadUtil</code></td><td>۱۴۰۵</td><td class="task-why">آپلود یکپارچه فایل (صوت، تصویر)</td></tr>
+  <tr><td><code>PdfViewerActivity</code> + <code>show_image</code></td><td>۱۴۰۵</td><td class="task-why">مشاهده PDF و تصویر بزرگ — مثلاً گزارش یا مدرک</td></tr>
+</table>
+</div>
+
+<div class="module-block">
+<h3>ماژول ۱۸ — Screen Generator و Expression <span class="badge">۱۴۰۴–۱۴۰۵</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td><code>ScreenGenerator</code></td><td>۱۴۰۴–۱۴۰۵</td><td class="task-why">تولید صفحه از داده runtime — کاهش JSON ثابت</td></tr>
+  <tr><td>اپراتورهای <code>$</code> و <code>&amp;</code> در expression</td><td>۱۴۰۵</td><td class="task-why">concat و logic پیشرفته‌تر در JSON</td></tr>
+  <tr><td><code>set_variable_to_base</code> / <code>set_variable_to_bottomsheet</code></td><td>۱۴۰۵</td><td class="task-why">انتقال داده بین صفحه اصلی و bottom sheet</td></tr>
+  <tr><td>اکشن <code>change_color</code></td><td>۱۴۰۴</td><td class="task-why">بازخورد بصری (مثلاً قرمز شدن فیلد خطا)</td></tr>
+</table>
+</div>
+
+<div class="module-block page-break">
+<h3>ماژول ۱۹ — سرور uiManager: نوتیفیکیشن و گشت انتظامی <span class="badge badge-orange">۱۴۰۵</span></h3>
+<table class="task-table">
+  <tr><th>تسک</th><th>دوره</th><th>به زبان ساده — برای چی انجام شد</th></tr>
+  <tr><td><code>NotificationDispatcherFacade</code></td><td>۱۴۰۵</td><td class="task-why">تصمیم‌گیری نوع UI (خبر/فرم/هر دو) بر اساس pushTypeId</td></tr>
+  <tr><td><code>buildCustomFormJson</code></td><td>۱۴۰۵</td><td class="task-why">تبدیل JSON فرم سرویس گشت به UI — بدون ساخت صفحه ثابت برای هر فرم</td></tr>
+  <tr><td><code>GashtCallService</code></td><td>۱۴۰۵</td><td class="task-why">ثبت فرم، ارسال به Gateway، ساخت فرم مرحله بعد</td></tr>
+  <tr><td><code>NotificationFormHelper</code></td><td>۱۴۰۵</td><td class="task-why">parse، merge داده کلاینت، انتخاب REST address</td></tr>
+  <tr><td>مدل <code>NotificationPayload</code> در Mongo</td><td>۱۴۰۵</td><td class="task-why">نگهداری state فرم چندمرحله‌ای — از دست نرفتن پیشرفت</td></tr>
+  <tr><td>مسیر <code>phPlus/notifications/gashtCallService</code></td><td>۱۴۰۵</td><td class="task-why">endpoint اختصاصی ثبت فرم گشت</td></tr>
+  <tr><td>پشتیبانی pushTypeId 1/3/5</td><td>۱۴۰۵</td><td class="task-why">خبر ساده، فرم مستقیم، یا خبر+فرم — پوشش سناریوهای مختلف عملیاتی</td></tr>
+  <tr><td>نگاشت elementType → custom_type کلاینت</td><td>۱۴۰۵</td><td class="task-why">استفاده مجدد از کامپوننت‌های موجود کلاینت — بدون توسعه view جدید</td></tr>
+</table>
+</div>
+
+
+
+<h2 id="pages-patches-catalog" class="page-break">۱۸. فهرست صفحات و Patchها (production)</h2>
+<p>فهرست <strong>187 صفحه</strong> و <strong>64 patch</strong> عملیاتی — صفحات/patchهای تست و متفرقه حذف شده. توضیح از JSON (متن UI، سرویس، اکشن).</p>
+<div class="module-block">
+<h3>PhPlus — هسته اصلی <span class="badge">13 صفحه | 0 patch</span></h3>
+<h4>صفحات</h4><table class="detail-table"><tr><th>path</th><th>وضعیت</th><th>توضیح</th></tr>
+<tr><td><code>ph/chattels</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: استعلام موبایل و تبلت | استعلام | نتیجه استعلام | کد شخص شاکی — سرویس: chattels/agh — اکشن: set_variable, set_patch, call_service</td></tr>
+<tr><td><code>ph/forceupdate</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: باید نسخه جدید دانلود کنی | دانلود — اکشن: update, get_write_permission</td></tr>
+<tr><td><code>ph/hajghasem</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: پلیس همراه — کامپوننت: notification_list — اکشن: change_color</td></tr>
+<tr><td><code>ph/InqueryHuman</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">استعلام شخص — UI: غیر ایرانی | ایرانی | مشخصات شخص | مشخصات فردی — سرویس: inquiryNationalCode/agh — اکشن: set_variable, reset_phid, open_camera, bottom_sheet_list, show_date_picker_gregorian</td></tr>
+<tr><td><code>ph/InqueryReports</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: گزارش ثبت تخلفات | ارسال موفق | ارسال نا موفق | آفلاین — سرویس: reports — اکشن: set_variable, change_color, call_service, show_date_picker</td></tr>
+<tr><td><code>ph/InquiryVehicle</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">استعلام خودرو — UI: استعلام وسیله نقلیه | وسیله نقلیه | کد VIN | کد سریال — سرویس: AgahiInquiry, carParts/agh — اکشن: set_variable, reset_phid, call_service, change_color, bottom_sheet_div</td></tr>
+<tr><td><code>ph/login</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">ورود — UI: نام کاربری کوتاه است | استفاده از کاراکتر نا معتبر | رمز عبور کوتاه است — سرویس: getCaptcha, getLoginData — اکشن: set_variable, call_service</td></tr>
+<tr><td><code>ph/nomremanfi/bottomsheet</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: نمره منفی</td></tr>
+<tr><td><code>ph/notification</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: پلیس همراه — کامپوننت: notification_list — اکشن: change_color</td></tr>
+<tr><td><code>ph/support</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: شماره های پشتیبان | پشتیبانی 1 | پشتیبانی 2</td></tr>
+<tr><td><code>ph/toast</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">صفحه UI</td></tr>
+<tr><td><code>ph/update</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: باید نسخه جدید دانلود کنی | دانلود — اکشن: update, get_write_permission</td></tr>
+<tr><td><code>ph/vt/bottomsheet</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: کد پلیس شما معتبر نیست . لطفا با ادمین ارشد خود تماس بگیرید — سرویس: getScreen — اکشن: change_color, set_variable, bottom_sheet_list, set_variable_to_db, call_service</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>مسیریابی / داشبورد <span class="badge">1 صفحه | 0 patch</span></h3>
+<h4>صفحات</h4><table class="detail-table"><tr><th>path</th><th>وضعیت</th><th>توضیح</th></tr>
+<tr><td><code>main</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: پلیس همراه | آنلاین | موبایل و تبلت | احشام — بعدی: ph/InquiryVehicle, ph/chattels, ph/hajghasem — اکشن: load_screen, show_image, show_toast, set_variable, set_patch</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>Vehicle Ticket (VT) <span class="badge">8 صفحه | 0 patch</span></h3>
+<h4>صفحات</h4><table class="detail-table"><tr><th>path</th><th>وضعیت</th><th>توضیح</th></tr>
+<tr><td><code>vt/address</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: آدرسی وجود ندارد — سرویس: address, deleteAddress — اکشن: call_service, set_variable, bottom_sheet_dismiss</td></tr>
+<tr><td><code>vt/map/bottomsheet</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">کامپوننت: map — سرویس: address — اکشن: call_service, bottom_sheet_dismiss</td></tr>
+<tr><td><code>vt/persons/image</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: ثبت چهره — سرویس: getImageResult, inquery — اکشن: set_variable_to_db, bottom_sheet_dismiss, bottom_sheet_div, show_image, set_variable_to_base</td></tr>
+<tr><td><code>vt/plate</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">پلاک — UI: نام و نام خانوادگی | شماره تلفن | کد ملی | استعلام کاربری پارکینگ — اکشن: set_variable_to_db</td></tr>
+<tr><td><code>vt/plate/letters/bottomsheet</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">پلاک — UI: د | و | ن | ب — اکشن: set_patch, set_variable_to_base, bottom_sheet_dismiss</td></tr>
+<tr><td><code>vt/plates/bottomsheet</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">پلاک — UI: قدیم دولتی بدون کد | منطقه ای | مناطق آزاد | نظامی — اکشن: set_variable, change_color, set_patch, bottom_sheet_dismiss</td></tr>
+<tr><td><code>vt/reports</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: گزارش ثبت تخلفات | دستور | تاریخ دستور | نوع برخورد — کامپوننت: offline_list_container — سرویس: reports — اکشن: set_variable, show_date_picker, change_color, call_service</td></tr>
+<tr><td><code>vt/tickets</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">ثبت تیکت — UI: مشخصات خودرو | مشخصات جریمه | جمع مبالغ تخلفات — سرویس: registerTickets — اکشن: set_variable_from_db, bottom_sheet_dismiss, call_service</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>Patch — PhPlus <span class="badge">0 صفحه | 5 patch</span></h3>
+<h4>Patchها</h4><table class="detail-table"><tr><th>patchName</th><th>توضیح</th></tr>
+<tr><td><code>ph/main/grid/patch</code></td><td class="task-why">به‌روزرسانی جزئی UI</td></tr>
+<tr><td><code>ph/main/home</code></td><td class="task-why">UI: آنلاین | موبایل و تبلت | احشام | وسیله نقلیه — بعدی: ph/InquiryVehicle, ph/chattels, ph/hajghasem — اکشن: show_image, load_screen, show_toast</td></tr>
+<tr><td><code>ph/main/profile</code></td><td class="task-why">UI: نام کاربری: | استان | آخرین ورود | نام پدر</td></tr>
+<tr><td><code>ph/main/reports</code></td><td class="task-why">UI: جست و جو | بایگانی آفلاین — سرویس: reports — بعدی: ph/reports — اکشن: show_date_picker, show_time_picker, bottom_sheet_list, call_service, load_screen</td></tr>
+<tr><td><code>ph/main/setting</code></td><td class="task-why">UI: بروز رسانی نسخه | پشتیبانی | راه اندازی سرویس اعلان | راه اندازی سرویس موقعیت مکانی — سرویس: getLogoutData, update — اکشن: call_service, bottom_sheet_div, restart_push_notifications, restart_location_service, show_toast</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>Patch — استعلام <span class="badge">0 صفحه | 12 patch</span></h3>
+<h4>Patchها</h4><table class="detail-table"><tr><th>patchName</th><th>توضیح</th></tr>
+<tr><td><code>patchEstelam</code></td><td class="task-why">به‌روزرسانی جزئی UI</td></tr>
+<tr><td><code>patchEstelamGhatee</code></td><td class="task-why">UI: مشخصات خودرو | مدل | کاربری | رنگ</td></tr>
+<tr><td><code>patchInqueryEntezami</code></td><td class="task-why">UI: وضعیت | نقش | نوع اتهام | جرم</td></tr>
+<tr><td><code>patchInqueryGovahiname</code></td><td class="task-why">UI: وضعیت | نوع گواهینامه | تاریخ صدور | شماره گواهینامه</td></tr>
+<tr><td><code>patchInqueryHoviat</code></td><td class="task-why">UI: اوتیسم | آدرس منزل | شماره منزل | شماره همراه — اکشن: show_image</td></tr>
+<tr><td><code>patchInqueryHoviatAtba</code></td><td class="task-why">UI: نام | نام خانوادگی | شناسه فراگیر | جنسیت — اکشن: show_image</td></tr>
+<tr><td><code>patchInqueryLastTravel</code></td><td class="task-why">UI: تاریخ ورود | مرز ورود | تاریخ خروج | مرز خروج</td></tr>
+<tr><td><code>patchInqueryNezamVazife</code></td><td class="task-why">UI: وضعیت | استعلامی وجود ندارد</td></tr>
+<tr><td><code>patchInqueryPassport</code></td><td class="task-why">UI: نام | نام خانوادگی | نام پدر | شماره گذر نامه</td></tr>
+<tr><td><code>patchInqueryPlates</code></td><td class="task-why">پلاک — UI: وضعیت | مشخصات خودرو | بیشتر | مدل — سرویس: inquiryVehicle — اکشن: call_service</td></tr>
+<tr><td><code>patchInqueryResidenceAtba</code></td><td class="task-why">UI: شروع اقامت | پایان اقامت | کارت اقامت | دفترجه اقامت</td></tr>
+<tr><td><code>patchInqueryTravelAtba</code></td><td class="task-why">UI: نوع روادید | شماره روادید | تاریخ صدور روادید | تاریخ اعتبار روادید</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>Patch — پلاک <span class="badge">0 صفحه | 26 patch</span></h3>
+<h4>Patchها</h4><table class="detail-table"><tr><th>patchName</th><th>توضیح</th></tr>
+<tr><td><code>patchArteshPlate</code></td><td class="task-why">پلاک — اکشن: bottom_sheet_plate</td></tr>
+<tr><td><code>patchDiplomatPlate</code></td><td class="task-why">پلاک — اکشن: bottom_sheet_div</td></tr>
+<tr><td><code>patchDolatiPlate</code></td><td class="task-why">پلاک — اکشن: bottom_sheet_div</td></tr>
+<tr><td><code>patchGozarMovaghatMeliPlate</code></td><td class="task-why">پلاک</td></tr>
+<tr><td><code>patchGozarMovaghatPlate</code></td><td class="task-why">پلاک — UI: گذرموقت</td></tr>
+<tr><td><code>patchKeshavarziPlate</code></td><td class="task-why">پلاک — اکشن: bottom_sheet_div</td></tr>
+<tr><td><code>patchMaloolinPlate</code></td><td class="task-why">پلاک — اکشن: bottom_sheet_div</td></tr>
+<tr><td><code>patchMantaghAzadPlate</code></td><td class="task-why">پلاک — UI: شخصی | عمومی | دولتی</td></tr>
+<tr><td><code>patchMotorDolatiPlate</code></td><td class="task-why">پلاک</td></tr>
+<tr><td><code>patchMotorPlate</code></td><td class="task-why">پلاک</td></tr>
+<tr><td><code>patchMotorPolicePlate</code></td><td class="task-why">پلاک</td></tr>
+<tr><td><code>patchNezamiPlate</code></td><td class="task-why">پلاک — UI: ناجا | سماجا | نزاجا | نهاجا</td></tr>
+<tr><td><code>patchOmomePlate</code></td><td class="task-why">پلاک — اکشن: bottom_sheet_div</td></tr>
+<tr><td><code>patchPelakBarname</code></td><td class="task-why">بارنامه — UI: اطلاعات هویتی بارنامه | شماره بارنامه | نوع بارنامه | کد رهگیری بارنامه — اکشن: set_variable_to_db</td></tr>
+<tr><td><code>patchPlate</code></td><td class="task-why">پلاک</td></tr>
+<tr><td><code>patchpolicePlate</code></td><td class="task-why">پلاک — اکشن: bottom_sheet_div</td></tr>
+<tr><td><code>patchPoliticPlate</code></td><td class="task-why">پلاک — UI: سیاسی</td></tr>
+<tr><td><code>patchSepahPlate</code></td><td class="task-why">پلاک — اکشن: bottom_sheet_div</td></tr>
+<tr><td><code>patchServicePlate</code></td><td class="task-why">پلاک — اکشن: bottom_sheet_div</td></tr>
+<tr><td><code>patchSetadKolPlate</code></td><td class="task-why">پلاک — اکشن: bottom_sheet_div</td></tr>
+<tr><td><code>patchSiasiMeliPlate</code></td><td class="task-why">پلاک — اکشن: bottom_sheet_div</td></tr>
+<tr><td><code>patchTarikhiPlate</code></td><td class="task-why">پلاک — UI: تاریخی</td></tr>
+<tr><td><code>patchTaxiPlate</code></td><td class="task-why">پلاک — اکشن: bottom_sheet_div</td></tr>
+<tr><td><code>patchTransitPlate</code></td><td class="task-why">پلاک — UI: ایران | عراق | آلمان | شماره گمرکی کشور</td></tr>
+<tr><td><code>patchVedajaPlate</code></td><td class="task-why">پلاک — اکشن: bottom_sheet_div</td></tr>
+<tr><td><code>pateByPlatePatch</code></td><td class="task-why">پلاک — UI: اطلاعات کلی محموله | وزن کل محموله (ناخالص) | نوع ترافیک (واردات) | تاریخ صدور اطلاعات / سند</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>تصادفات <span class="badge">38 صفحه | 0 patch</span></h3>
+<h4>صفحات</h4><table class="detail-table"><tr><th>path</th><th>وضعیت</th><th>توضیح</th></tr>
+<tr><td><code>accident/map</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">صفحه UI</td></tr>
+<tr><td><code>accident/uncompromising/finalregistration</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">ثبت نهایی — UI: ثبت تصادفات | مشاهده مراحل | ثبت نهایی و ارسال به سرور | مشخصات تصادف — کامپوننت: circular_progress — بعدی: amaken/view, draft/@{current_accident_id}/page3 — اکشن: set_variable_from_db, set_variable, bottom_sheet_list, set_page_with_changes_to_db, set_object_to_db</td></tr>
+<tr><td><code>accident/uncompromising/insuranceInformation</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: مشاهده مراحل | اطلاعات بیمه | نام شرکت بیمه ثالث | شماره بیمه نامه ثالث — کامپوننت: circular_progress — بعدی: amaken/completion — اکشن: set_variable_from_db, bottom_sheet_list, show_date_picker, bottom_sheet_dismiss, load_screen</td></tr>
+<tr><td><code>accident/uncompromising/vehicleInformation</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">اطلاعات خودرو — UI: مشاهده مراحل | ثبت اطلاعات وسیله نقلیه | بعدی : دریافت تاییدیه | غیرمقصر — سرویس: cargo/barname — بعدی: amaken/completion — اکشن: change_color, set_variable, bottom_sheet_div, open_camera, call_service</td></tr>
+<tr><td><code>Accidents//uncompromisingvehiclespecifications</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">UI: مشاهده مراحل | ثبت اطلاعات وسیله نقلیه | بعدی : دریافت تاییدیه | غیرمقصر — سرویس: cargo/barname — بعدی: amaken/completion, amaken/view — اکشن: set_variable, change_color, show_date_picker, bottom_sheet_div, open_camera</td></tr>
+<tr><td><code>Accidents//vehiclespecifications</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">صفحه UI</td></tr>
+<tr><td><code>Accidents/archive</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">بایگانی — UI: بایگانی فرآیندهای ناقص — کامپوننت: offline_list_container</td></tr>
+<tr><td><code>accidents/compromisefirst</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">مرحله اول سازش — UI: ثبت تصادفات | ثبت اطلاعات اولیه | بعدی : ثبت اطلاعات وسیله نقلیه | تصادف جدید — کامپوننت: circular_progress — بعدی: Accidents/vehicleInformationEntry — اکشن: set_variable_from_db, set_variable, bottom_sheet_div, bottom_sheet_list, show_date_picker</td></tr>
+<tr><td><code>Accidents/compromisefirst/newscode</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">مرحله اول سازش — UI: خبر های موجود شما | زمان و ساعت وقوع خبر | محل وقوع خبر | شماره خبر</td></tr>
+<tr><td><code>Accidents/compromisefirst/newsinquiry</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">مرحله اول سازش — UI: استعلام اخبار بر اساس تاریخ و زمان | تاریخ تصادف | زمان تصادف | استعلام اخبار بر اساس شماره خبر و کد ملی — اکشن: show_date_picker, show_time_picker, set_variable</td></tr>
+<tr><td><code>Accidents/compromisefirstWithPatch</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">مرحله اول سازش — UI: ثبت تصادفات | ثبت اطلاعات اولیه | بعدی : ثبت اطلاعات وسیله نقلیه | تصادف جدید — کامپوننت: circular_progress — بعدی: Accidents/vehicleInformationEntry, amaken/completion — اکشن: set_variable, bottom_sheet_list, show_date_picker, show_time_picker, load_screen</td></tr>
+<tr><td><code>Accidents/driverprofile</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: مشاهده مراحل | ثبت اطلاعات اولیه | بعدی : ثبت اطلاعات وسیله نقلیه | غیر ایرانی — کامپوننت: circular_progress — بعدی: Accidents/insuranceinformation — اکشن: set_variable_from_db, change_color, set_variable, reset_phid, open_camera</td></tr>
+<tr><td><code>Accidents/exportreasoninginference</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">UI: ثبت تصادفات | مشاهده مراحل | استدلال و استنتاج کارشناسی | لطفا توضیحات کارشناسی را وارد کنید — کامپوننت: circular_progress — بعدی: Accidents/finalregistration — اکشن: set_variable_from_db, set_variable, set_page_with_changes_to_db, set_object_to_db, set_variable_to_db</td></tr>
+<tr><td><code>Accidents/finalregistration</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">ثبت نهایی — UI: ثبت تصادفات | مشاهده مراحل | ثبت نهایی و ارسال به سرور | مشخصات تصادف — کامپوننت: circular_progress — بعدی: Accidents/main — اکشن: set_variable_from_db, set_variable, bottom_sheet_list, set_page_with_changes_to_db, set_object_to_db</td></tr>
+<tr><td><code>Accidents/insuranceinformation</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: مشاهده مراحل | اطلاعات بیمه | نام شرکت بیمه ثالث | شماره بیمه نامه ثالث — کامپوننت: circular_progress — بعدی: Accidents/vehicleInformationEntry — اکشن: set_variable_from_db, bottom_sheet_list, show_date_picker, set_page_with_changes_to_db, save_vehicle_to_list</td></tr>
+<tr><td><code>Accidents/main</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: ثبت تصادفات | اطلاعات تصادفات | تعداد کل | تصادفات غیرسازشی — بعدی: Accidents/archive, Accidents/compromisefirst, Accidents/uncompromising/vehiclespecifications — اکشن: load_screen, set_random_id_to_db, set_variable_to_db</td></tr>
+<tr><td><code>accidents/policeCenter</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: یگان | داده ای دریافت نشد — اکشن: set_variable_to_db, bottom_sheet_dismiss</td></tr>
+<tr><td><code>Accidents/receiveconfirmation</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: ثبت تصادفات | مشاهده مراحل | اطلاعات بیمه | مقصر — کامپوننت: circular_progress — اکشن: set_variable</td></tr>
+<tr><td><code>Accidents/uncompromising/additionaklinformation</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: ثبت تصادفات | مشاهده مراحل | اطلاعات تکمیلی | بعدی :استدلال و استنتاج کارشناسی — کامپوننت: circular_progress — بعدی: Accidents/uncompromising/expertreasoning, amaken/completion — اکشن: set_variable, show_date_picker, bottom_sheet_list, load_screen</td></tr>
+<tr><td><code>Accidents/uncompromising/addpassenger</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: کد ملی | نام | نام خانوادگی | نام پدر — اکشن: show_date_picker</td></tr>
+<tr><td><code>Accidents/uncompromising/compromisefirst</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">مرحله اول سازش — UI: ثبت تصادفات | ثبت اطلاعات اولیه | بعدی : ثبت اطلاعات وسیله نقلیه | تصادف جدید — کامپوننت: circular_progress — بعدی: Accidents/vehicleInformationEntry, amaken/completion — اکشن: set_variable, bottom_sheet_list, show_date_picker, show_time_picker, load_screen</td></tr>
+<tr><td><code>Accidents/uncompromising/driverprofile</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: مشاهده مراحل | ثبت اطلاعات اولیه | بعدی : ثبت اطلاعات وسیله نقلیه | غیر ایرانی — کامپوننت: circular_progress — اکشن: change_color, set_variable, reset_phid, open_camera, bottom_sheet_list</td></tr>
+<tr><td><code>Accidents/uncompromising/expertreasoning</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: ثبت تصادفات | مشاهده مراحل | اطلاعات تکمیلی | بعدی :استدلال و استنتاج کارشناسی — کامپوننت: circular_progress — اکشن: set_variable</td></tr>
+<tr><td><code>Accidents/uncompromising/informationperson</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: استعلام | مجهول الهویه | نام | نام خانوادگی — بعدی: amaken/completion, amaken/view — اکشن: reset_phid, open_camera, set_variable, show_date_picker, load_screen</td></tr>
+<tr><td><code>Accidents/uncompromising/organizationblame</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">صفحه UI</td></tr>
+<tr><td><code>Accidents/uncompromising/organizationlegalentities</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: ثبت تصادفات | مشاهده مراحل | ثبت اطلاعات اولیه | بعدی : ثبت اطلاعات وسیله نقلیه — کامپوننت: circular_progress — بعدی: Accidents/uncompromising/status, amaken/completion — اکشن: set_variable, load_screen</td></tr>
+<tr><td><code>Accidents/uncompromising/passenger</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">UI: ثبت تصادفات | ثبت اطلاعات اولیه | بعدی : ثبت اطلاعات وسیله نقلیه | تصادف جدید — کامپوننت: circular_progress — بعدی: Accidents/vehicleInformationEntry, amaken/completion — اکشن: set_variable, bottom_sheet_list, show_date_picker, show_time_picker, load_screen</td></tr>
+<tr><td><code>Accidents/uncompromising/passengerdetails</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: ثبت تصادفات | مشاهده مراحل | مشخصات سرنشین | بعدی : مشخصات بیمه — کامپوننت: circular_progress — بعدی: amaken/completion, amaken/view — اکشن: set_variable, load_screen</td></tr>
+<tr><td><code>Accidents/uncompromising/pedestrianinformation</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: ثبت تصادفات | مشاهده مراحل | مشخصات سرنشین | بعدی : مشخصات بیمه — کامپوننت: circular_progress — بعدی: Accidents/uncompromising/pedestrianspecification, amaken/completion — اکشن: set_variable, load_screen</td></tr>
+<tr><td><code>Accidents/uncompromising/pedestrianspecification</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: ثبت تصادفات | استعلام | مجهول الهویه | نام — بعدی: amaken/completion, amaken/view — اکشن: set_variable, reset_phid, open_camera, show_date_picker, load_screen</td></tr>
+<tr><td><code>Accidents/uncompromising/status</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: وضعیت تقصیر | سازمان مقصر (اشخاص حقوقی) | علت تامه | علت قضایی تصادف — بعدی: amaken/completion, amaken/view — اکشن: show_date_picker, load_screen</td></tr>
+<tr><td><code>Accidents/uncompromising/submit</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">UI: ثبت تصادفات | مشاهده مراحل | اطلاعات تکمیلی | بعدی :استدلال و استنتاج کارشناسی — کامپوننت: circular_progress — بعدی: amaken/completion, amaken/view — اکشن: set_variable, show_date_picker, load_screen</td></tr>
+<tr><td><code>Accidents/uncompromising/submitimage</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: ثبت تصادفات | مشاهده مراحل | ثبت تصاویر | بعدی : عابر — کامپوننت: circular_progress — بعدی: Accidents/uncompromising/pedestrianinformation, amaken/completion — اکشن: set_variable, load_screen</td></tr>
+<tr><td><code>Accidents/uncompromising/vehiclespecifications</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: مشاهده مراحل | مشخصات وسیله نقلیه | بعدی :مشخصات راننده | غیرمقصر — سرویس: cargo/barname — بعدی: amaken/completion, amaken/view — اکشن: set_variable, change_color, show_date_picker, bottom_sheet_div, open_camera</td></tr>
+<tr><td><code>accidents/vehicleInformation</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">اطلاعات خودرو — UI: مشاهده مراحل | ثبت اطلاعات وسیله نقلیه | بعدی : دریافت تاییدیه | غیرمقصر — سرویس: cargo/barname — بعدی: Accidents/driverprofile — اکشن: set_variable_from_db, change_color, set_variable, bottom_sheet_div, open_camera</td></tr>
+<tr><td><code>accidents/vehicleInformationEntry</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">اطلاعات خودرو — UI: مشاهده مراحل | ثبت اطلاعات اولیه | بعدی : ثبت اطلاعات وسیله نقلیه | افزودن وسیله نقلیه — کامپوننت: circular_progress, offline_list_container — بعدی: Accidents/exportreasoninginference, Accidents/vehicleInformation — اکشن: set_variable_from_db, set_random_id_to_db, set_variable_to_db, load_screen, set_page_with_changes_to_db</td></tr>
+<tr><td><code>Accidents/vehiclespecifications</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">صفحه UI</td></tr>
+<tr><td><code>Accidents/ways</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: مدل | کاربری | اطلاعات راننده | جنسیت — کامپوننت: static_tree_view — اکشن: bottom_sheet_div</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>Patch — تصادفات <span class="badge">0 صفحه | 2 patch</span></h3>
+<h4>Patchها</h4><table class="detail-table"><tr><th>patchName</th><th>توضیح</th></tr>
+<tr><td><code>accident/page2/driver</code></td><td class="task-why">UI: مشاهده مراحل | ثبت اطلاعات اولیه | بعدی : ثبت اطلاعات وسیله نقلیه | غیر ایرانی — کامپوننت: circular_progress — اکشن: change_color, set_variable, reset_phid, open_camera, bottom_sheet_list</td></tr>
+<tr><td><code>accident/page2/insurance</code></td><td class="task-why">UI: اطلاعات بیمه | شماره بیمه | تاریخ اعتبار بیمه | نام شرکت بیمه — اکشن: bottom_sheet_set_patch, set_patch_for_list</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>اماکن <span class="badge">26 صفحه | 0 patch</span></h3>
+<h4>صفحات</h4><table class="detail-table"><tr><th>path</th><th>وضعیت</th><th>توضیح</th></tr>
+<tr><td><code>amake/licensingauthority</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: مرجع صدور مجوز — بعدی: amaken/crimes — اکشن: set_variable, load_screen</td></tr>
+<tr><td><code>amaken/addnewcolleague</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: افزودن همکار جدید | نماینده | نام و نام خانوداگی همکار | نام همکار — بعدی: amaken/crimes — اکشن: set_variable, load_screen</td></tr>
+<tr><td><code>amaken/completion</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: تکمیل پرونده صنف | مشاهده مراحل | لیست افراد صنف | بعدی : مشخصات صنف — کامپوننت: circular_progress — بعدی: amaken/information, amaken/start — اکشن: set_variable, load_screen</td></tr>
+<tr><td><code>amaken/crimes</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: تکمیل پرونده صنف | مشاهده مراحل | مشاهده جرایم | بعدی :اطلاعات مجرمین — کامپوننت: circular_progress, multi_selection — بعدی: amaken/criminalinformation, amaken/discoveries — اکشن: set_variable, open_camera, load_screen</td></tr>
+<tr><td><code>amaken/criminalinformation</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: تکمیل پرونده صنف | مشاهده مراحل | اطلاعات مجرمین | بعدی :انتخاب طرح — کامپوننت: circular_progress — سرویس: amakenGetPersonInfo — بعدی: amaken/crimes, amaken/executiveplan — اکشن: set_variable, call_service, show_date_picker, load_screen</td></tr>
+<tr><td><code>amaken/discoveries</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: تکمیل پرونده صنف | مشاهده مراحل | مشاهده کشفیات | بعدی :مشاهده جرایم — کامپوننت: circular_progress — بعدی: amaken/crimes, amaken/view — اکشن: set_variable, bottom_sheet_list, open_camera, load_screen</td></tr>
+<tr><td><code>amaken/eligibilitycheck</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سامانه اماکن | کد ملی وارد نشده است | جستجو — سرویس: amakenGuildSearch — اکشن: set_variable, change_color, call_service</td></tr>
+<tr><td><code>amaken/executiveplan</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: تکمیل پرونده صنف | مشاهده مراحل | انتخاب طرح | بعدی :ثبت صورت جلسه — کامپوننت: circular_progress — بعدی: amaken/criminalinformation, amaken/meetingminutes — اکشن: set_variable, load_screen</td></tr>
+<tr><td><code>amaken/first</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سامانه اماکن | کد ملی وارد نشده است | جستجو — سرویس: amakenGuildSearch — اکشن: set_variable, change_color, call_service</td></tr>
+<tr><td><code>amaken/guide</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">UI: ثبت بازدید | کد ملی | شماره شناسنامه | تاریخ تولد — اکشن: set_variable</td></tr>
+<tr><td><code>amaken/information</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: تکمیل پرونده صنف | مشاهده مراحل | مشخصات صنف | بعدی : ضوابط عمومی — کامپوننت: circular_progress — بعدی: amaken/completion, amaken/view — اکشن: set_variable, load_screen</td></tr>
+<tr><td><code>amaken/listactions</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: لیست اقدامات | نماینده | نام همکار — اکشن: set_variable</td></tr>
+<tr><td><code>amaken/listcolleagues</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: لیست همکاران | جست جو | محمد گلناری — بعدی: amaken/crimes — اکشن: set_variable, load_screen</td></tr>
+<tr><td><code>amaken/meetingminutes</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: تکمیل پرونده صنف | مشاهده مراحل | ثبت صورت جلسه | تاریخ بازدید — کامپوننت: circular_progress — سرویس: amakenGetPersonInfo — بعدی: amaken/crimes, amaken/executiveplan — اکشن: set_variable, call_service, bottom_sheet_list, load_screen</td></tr>
+<tr><td><code>amaken/passengerdetails</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">UI: ثبت تصادفات | مشاهده مراحل | مشخصات سرنشین | بعدی : مشخصات بیمه — کامپوننت: circular_progress — بعدی: amaken/completion, amaken/view — اکشن: set_variable, load_screen</td></tr>
+<tr><td><code>amaken/referencetype</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: مرجع صدور مجوز | نوع مرجع صدور مجوز | اتحادیه — بعدی: amaken/crimes — اکشن: set_variable, load_screen</td></tr>
+<tr><td><code>amaken/registe</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">صفحه UI</td></tr>
+<tr><td><code>amaken/registrationemployees</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: ثبت شاغلین | استعلام | نام خانوادگی | نام — سرویس: amakenGetPersonInfo — بعدی: amaken/executiveplan — اکشن: set_variable, call_service, show_date_picker, load_screen</td></tr>
+<tr><td><code>amaken/registrationvisitseal</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: ثبت بازدید پلمپ | وضعیت پلمپ | سالم ، فک نشده | توضیحات — بعدی: amaken/crimes — اکشن: set_variable, load_screen</td></tr>
+<tr><td><code>amaken/report</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: ثبت گزارش | مشاهده مراحل | اطلاعات صنف | بعدی :ضوابط عمومی — کامپوننت: circular_progress — سرویس: amakenGetPersonInfo — بعدی: amaken/executiveplan — اکشن: set_variable, call_service, show_date_picker, load_screen</td></tr>
+<tr><td><code>amaken/start</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: تکمیل پرونده صنف | پیام راهنما | صنف مورد نظر شما در لیست نیست ؟ | اگر صنف شما مرتبط با کد ملی شما است ، اما در لیست انتخاب صنوف وجود ندارد ، لطفا آن را گزارش دهید . — سرویس: addGuildStaff, amakenGuildDetails — اکشن: set_variable, call_service</td></tr>
+<tr><td><code>Amaken/uncompromising/informationperson</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">UI: مشاهده مراحل | ثبت اطلاعات وسیله نقلیه | بعدی : دریافت تاییدیه | غیرمقصر — سرویس: cargo/barname — بعدی: amaken/completion — اکشن: change_color, set_variable, bottom_sheet_div, open_camera, call_service</td></tr>
+<tr><td><code>amaken/vehiclespecifications</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">صفحه UI</td></tr>
+<tr><td><code>amaken/visitingactions</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سامانه اماکن | کد ملی وارد نشده است | جستجو — سرویس: amakenGuildSearch — اکشن: set_variable, change_color, call_service</td></tr>
+<tr><td><code>amaken/visitlist</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: لیست بازدید پلمپ | شناسه بازدید | کد پستی صنف | کد ملی متقضی — بعدی: amaken/crimes — اکشن: set_variable, load_screen</td></tr>
+<tr><td><code>amaken/visitlistseal</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: لیست بازدید پلمپ | رسته | خرده فروشی گازهای طبی و صنعتی | نام واحد صنفی — بعدی: amaken/crimes — اکشن: set_variable, load_screen</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>بازرسی <span class="badge">17 صفحه | 0 patch</span></h3>
+<h4>صفحات</h4><table class="detail-table"><tr><th>path</th><th>وضعیت</th><th>توضیح</th></tr>
+<tr><td><code>bazrasi</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">اکشن: set_variable</td></tr>
+<tr><td><code>bazrasi/bazbineList</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: داده ای دریافت نشد — اکشن: set_variable</td></tr>
+<tr><td><code>bazrasi/bazbineSubList</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: :امتیاز بازبینه | داده ای دریافت نشد — اکشن: set_variable</td></tr>
+<tr><td><code>bazrasi/bazbineSubmitForm</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: :امتیاز بازبینه | نتیجه | توصیف | درصد انجام کار — سرویس: checkListsRegisterBazrasi — اکشن: call_service, set_variable</td></tr>
+<tr><td><code>bazrasi/emkanat</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">سرویس: orgHumanBazrasi, yeganListBazrasi — اکشن: call_service</td></tr>
+<tr><td><code>bazrasi/ensani</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: نیروی انسانی | درجه | تعداد</td></tr>
+<tr><td><code>bazrasi/instruction</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: فیلتر — سرویس: registerAgreementsBazrasi — اکشن: call_service</td></tr>
+<tr><td><code>Bazrasi/instructionDetails</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: مشخصات | :عنوان دستورالعمل | :نوع دستورالعمل | :مرجع صادرکننده — اکشن: set_variable_to_db, bottom_sheet_dismiss</td></tr>
+<tr><td><code>Bazrasi/instructionSearch</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: عنوان دستورالعمل | نوع دستورالعمل | مرجع صادرکننده | کد دستورالعمل — سرویس: searchInstructionBazrasi, yeganListBazrasi — اکشن: bottom_sheet_list, call_service, bottom_sheet_dismiss</td></tr>
+<tr><td><code>bazrasi/jostoju</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: یگان بازدید کننده | یگان بازدید شونده | نوع برنامه | روش اجرا — سرویس: bazdidYeganFilterBazrasi, searchFilterBazrasi — اکشن: call_service, bottom_sheet_list, show_date_picker, bottom_sheet_dismiss</td></tr>
+<tr><td><code>bazrasi/main</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: دستورالعمل ها | کارنامه قبل | امکانات یگان | برنامه ها — اکشن: set_variable, set_patch, change_color</td></tr>
+<tr><td><code>bazrasi/pishbini</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: :برنامه | :یگان | :نوع برنامه | :روش اجرا — سرویس: checkListsBazrasi — اکشن: call_service</td></tr>
+<tr><td><code>bazrasi/report</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: این صفحه در دسترس نیست</td></tr>
+<tr><td><code>bazrasi/submitTavafogh</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">سرویس: registerAgreementsBazrasi, yeganListBazrasi — اکشن: bottom_sheet_list, show_date_picker, call_service</td></tr>
+<tr><td><code>bazrasi/tashvighat</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: تشویقات | جستجو | نام | نام خانوادگی — سرویس: incentiveRegisterBazrasi, incentiveSearchBazrasi — اکشن: call_service, bottom_sheet_list</td></tr>
+<tr><td><code>bazrasi/tavafogh</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: داده ای دریافت نشد — اکشن: set_variable</td></tr>
+<tr><td><code>bazrasi/yeganlist</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: یگان | داده ای دریافت نشد — اکشن: set_variable_to_db, bottom_sheet_dismiss</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>Patch — بازرسی <span class="badge">0 صفحه | 5 patch</span></h3>
+<h4>Patchها</h4><table class="detail-table"><tr><th>patchName</th><th>توضیح</th></tr>
+<tr><td><code>bazrasi/instruction</code></td><td class="task-why">UI: فیلتر — سرویس: registerAgreementsBazrasi — اکشن: bottom_sheet_div, call_service</td></tr>
+<tr><td><code>bazrasi/last_report</code></td><td class="task-why">UI: این صفحه در دسترس نیست</td></tr>
+<tr><td><code>bazrasi/programsPatch</code></td><td class="task-why">UI: فیلتر | مورد107 — اکشن: bottom_sheet_div, set_variable</td></tr>
+<tr><td><code>bazrasi/yegan</code></td><td class="task-why">سرویس: orgHumanBazrasi, yeganListBazrasi — اکشن: call_service</td></tr>
+<tr><td><code>bazrasi/yeganPatch</code></td><td class="task-why">به‌روزرسانی جزئی UI</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>باربری / گمرک <span class="badge">20 صفحه | 0 patch</span></h3>
+<h4>صفحات</h4><table class="detail-table"><tr><th>path</th><th>وضعیت</th><th>توضیح</th></tr>
+<tr><td><code>cargo/barname</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">بارنامه — UI: بارنامه برخط | شماره بارنامه | پلاک | اطلاعات هویتی بارنامه — سرویس: cargo/barname — اکشن: set_variable, set_patch, change_color, bottom_sheet_div, open_camera</td></tr>
+<tr><td><code>cargo/barname_bottom_sheet</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">بارنامه — UI: اطلاعات هویتی بارنامه | شماره بارنامه | نوع بارنامه | کد رهگیری بارنامه</td></tr>
+<tr><td><code>Cargo/bottomsheetcustomsinquiry</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: استعلام پته با پته | استعلام پته با پلاک | استعلام اظهارنامه ارزش | استعلام پروانه گمرکی — بعدی: cargo/ezharnameArzesh, cargo/ezharnameGomroki, cargo/inquiryPateByNumber — اکشن: load_screen</td></tr>
+<tr><td><code>Cargo/bottomsheethighwayinquiry</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: بارنامه برخط — بعدی: cargo/barname — اکشن: load_screen</td></tr>
+<tr><td><code>Cargo/bottomsheethoilinquiry</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سوخت تخصیصی به متقاضیان | مانیتورینگ انبار نفت | سوخت تخصیصی به شناور ها — بعدی: cargo/manitoring, cargo/moteghazi, cargo/shenavar — اکشن: load_screen</td></tr>
+<tr><td><code>Cargo/bottomsheetTripinquiry</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: راه نامه | سفرنامه | سوخت تخصیصی به شناور ها — بعدی: Cargo/GetCmrInfo, cargo/shenavar, cargo/travelogue — اکشن: load_screen</td></tr>
+<tr><td><code>cargo/containerDetail</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: اطلاعات کالا | شماره بارنامه | وزن | انتخاب شده</td></tr>
+<tr><td><code>cargo/cutomDuty</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: حقوق و عوارض گمرکی</td></tr>
+<tr><td><code>Cargo/GetCmrInfo</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: راه نامه | استعلام | نام | نام خانوادگی — سرویس: cargo/CmrInfo — اکشن: set_variable, set_patch, call_service</td></tr>
+<tr><td><code>cargo/inquiryByParvane</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: استعلام پروانه گمرکی | استعلام | شرح کالا | کد HS — سرویس: cargo/ezharnameGomroki, cargo/inquiryMotaghaziyan — اکشن: set_variable, set_patch, call_service</td></tr>
+<tr><td><code>cargo/inquiryByPate</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: استعلام پته با پته | استعلام | شماره کانتینر | نوع کانتینر (۴۰ فوت یخچال‌دار) — سرویس: cargo/pateByNumber — اکشن: set_variable, set_patch, call_service</td></tr>
+<tr><td><code>cargo/inquiryByPlate</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">پلاک — UI: استعلام پته با پلاک | اطلاعات هویتی بارنامه | شماره بارنامه | نوع بارنامه — سرویس: cargo/barname, cargo/inquiryMotaghaziyan, cargo/pateByPlate — اکشن: set_variable, set_patch, bottom_sheet_div, open_camera, call_service</td></tr>
+<tr><td><code>cargo/inquiryEzharnameh</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: استعلام اظهارنامه ارزش | استعلام | هویت کالا | کد تعرفه گمرکی (HS) — سرویس: cargo/ezharnameArzesh — اکشن: set_variable, set_patch, call_service</td></tr>
+<tr><td><code>cargo/main</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: پلیس امنیت اقتصادی فراجا — اکشن: set_variable, set_patch, bottom_sheet_div</td></tr>
+<tr><td><code>cargo/manitoring</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: مانیتورینگ انبار نفت | شماره بارنامه نفتی | پلاک | استعلام — سرویس: cargo/inquiryManitoring — اکشن: set_variable, set_patch, change_color, bottom_sheet_div, open_camera</td></tr>
+<tr><td><code>cargo/moteghazi</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سوخت تخصیص به متقاضیان | استعلام — سرویس: cargo/inquiryMotaghaziyan — اکشن: set_variable, set_patch, call_service</td></tr>
+<tr><td><code>cargo/shenavar</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سوخت تخصیص به شناورها | کد اقتصادی | کد ملی | استعلام — سرویس: cargo/shenavar — اکشن: set_variable, set_patch, change_color, call_service</td></tr>
+<tr><td><code>cargo/shenavar_bottom_sheet</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: نام و نام خانوادگی مالک | کد ملی | نام فرآورده | مقدار تخصیص یافته</td></tr>
+<tr><td><code>cargo/travelogue</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سفرنامه | استعلام | نام | نام خانوادگی — سرویس: cargo/tripInfo — اکشن: set_variable, set_patch, call_service</td></tr>
+<tr><td><code>shomare barname</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">بارنامه — سرویس: cargo/barname — اکشن: call_service</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>Patch — باربری / گمرک <span class="badge">0 صفحه | 11 patch</span></h3>
+<h4>Patchها</h4><table class="detail-table"><tr><th>patchName</th><th>توضیح</th></tr>
+<tr><td><code>cmrInfo</code></td><td class="task-why">UI: اطلاعات متقاضی | کشور مبدا | کد سه رقمی کشور مبدا | مبدا</td></tr>
+<tr><td><code>ezharnameArzeshPatch</code></td><td class="task-why">UI: هویت کالا | کد تعرفه گمرکی (HS) | شرح تجاری کالا | برند</td></tr>
+<tr><td><code>ezharnamePatch</code></td><td class="task-why">UI: اطلاعات کلی اظهارنامه | شماره ارزیابی / کوتاژ | شماره کوتاژ گمرکی | وضعیت اظهارنامه</td></tr>
+<tr><td><code>patchBaseInfo</code></td><td class="task-why">UI: بررسی صحنه | به کلاس | ساعت و تاریخ وقوع | ساعت و تاریخ ثبت پرونده</td></tr>
+<tr><td><code>patchChattels</code></td><td class="task-why">UI: نتیجه استعلام | کد شخص شاکی | نام | نام خانوادگی</td></tr>
+<tr><td><code>patchManitoring</code></td><td class="task-why">UI: شماره بارنامه | شماره پلاک | کد شهرستان پلاک | نام راننده</td></tr>
+<tr><td><code>patchMotaghazi</code></td><td class="task-why">UI: اطلاعات هویتی متقاضی | نوع متقاضی | کد ملی | مشخصات درخواست</td></tr>
+<tr><td><code>patchShenavar</code></td><td class="task-why">UI: نام مالک | کد ملی — اکشن: set_variable_to_db</td></tr>
+<tr><td><code>patchShomareBarname</code></td><td class="task-why">بارنامه — UI: اطلاعات هویتی بارنامه | شماره بارنامه | نوع بارنامه | کد رهگیری بارنامه</td></tr>
+<tr><td><code>pateByNumberPatch</code></td><td class="task-why">UI: اطلاعات کلی محموله | وزن کل محموله (ناخالص) | نوع ترافیک (واردات) | تاریخ صدور اطلاعات / سند</td></tr>
+<tr><td><code>tripInfo</code></td><td class="task-why">UI: اطلاعات متقاضی | کشور مبدا | مکان بارگیری | کشور مقصد</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>CSI / صحنه جرم <span class="badge">11 صفحه | 0 patch</span></h3>
+<h4>صفحات</h4><table class="detail-table"><tr><th>path</th><th>وضعیت</th><th>توضیح</th></tr>
+<tr><td><code>ajsad</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: اطلاعات جسد | کدملی | جنسیت | نام خانوادگی</td></tr>
+<tr><td><code>cis/crimesceneevidence</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: صحنه جرم | اموال | افراد | مشاهده مراحل — اکشن: set_variable, set_patch, change_color</td></tr>
+<tr><td><code>cis/informationcorpses</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: صحنه جرم | اموال | افراد | مشاهده مراحل — اکشن: set_variable, set_patch, change_color</td></tr>
+<tr><td><code>cis/informationjasads</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">صفحه UI</td></tr>
+<tr><td><code>cis/jasad</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: اسکن چهره | استعلام | مشخصات جسد | نام — سرویس: cargo/shenavar — اکشن: reset_phid, open_camera, call_service, bottom_sheet_list</td></tr>
+<tr><td><code>cis/main</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: شماره خبر رخداد انتظامی | شماره کلاس مبدا ارسال کننده | شماره پرونده پلیس آگاهی | شماره رایانه پلیس آگاهی — سرویس: cargo/shenavar — اکشن: call_service</td></tr>
+<tr><td><code>cis/main2</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: صحنه جرم | اموال | افراد | مشاهده مراحل — اکشن: set_variable, set_patch, change_color</td></tr>
+<tr><td><code>cis/mamouriat</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: موضوع جرم | شماره پرونده آگاهی | نشانی | یگان رسیدگی</td></tr>
+<tr><td><code>cis/papersketch</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">صفحه UI</td></tr>
+<tr><td><code>cis/resultsobtained</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: صحنه جرم | اموال | افراد | مشاهده مراحل — اکشن: set_variable, set_patch, change_color</td></tr>
+<tr><td><code>mamouriat</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: آثار بدست آمده</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>OP — نظرسنجی <span class="badge">14 صفحه | 0 patch</span></h3>
+<h4>صفحات</h4><table class="detail-table"><tr><th>path</th><th>وضعیت</th><th>توضیح</th></tr>
+<tr><td><code>op/conditions</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">UI: سنجش احساس امنیت و سرمایه اجتماعی | . متن شرایط و ضوابط را مطالعه کرده و رعایت خواهم کرد — کامپوننت: timer_button — بعدی: guide — اکشن: load_screen</td></tr>
+<tr><td><code>op/Exit</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: خروج | ماندن</td></tr>
+<tr><td><code>op/forceupdate</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: باید نسخه جدید دانلود کنی | دانلود — اکشن: update, get_write_permission</td></tr>
+<tr><td><code>op/guide</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سنجش احساس امنیت و سرمایه اجتماعی | متن شرایط و ضوابط را مطالعه کرده و رعایت خواهم کرد . | ادامه — سرویس: getQuestionnaire — بعدی: VerifyCode — اکشن: load_screen, call_service, login</td></tr>
+<tr><td><code>op/login</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">ورود — UI: پرسـان | ورود | .لطفا شماره موبایل خود را وارد کنید | ۰۹ — سرویس: getCaptcha, getLoginData — اکشن: call_service, show_toast</td></tr>
+<tr><td><code>op/measurement</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: پرسـان | وضعیت تکمیل پرسشنامه — کامپوننت: circular_progress — سرویس: getConditions — اکشن: call_service, set_variable</td></tr>
+<tr><td><code>op/opinion</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: نظر در مورد پرسشگر | لطفا نظر پاسخ دهنده را در مورد خودتان بنویسید . | ثبت و بعدی — بعدی: conditions — اکشن: load_screen</td></tr>
+<tr><td><code>op/options</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سنجش احساس امنیت و سرمایه اجتماعی | اتمام> | <قبلی | 1 از 24 — بعدی: conditions — اکشن: load_screen</td></tr>
+<tr><td><code>op/questionnaire</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سنجش احساس امنیت و سرمایه اجتماعی | اتمام > | تکمیل پرسشنامه جدید | 78 سوال — بعدی: VerifyCode, measurement — اکشن: load_screen, login</td></tr>
+<tr><td><code>op/questionnaire/null</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سنجش احساس امنیت و سرمایه اجتماعی | اتمام> | لطفا با استفاده از دکمه ی زیر یک پرسشنامه را تکمیل کنید | تکمیل پرسشنامه جدید — بعدی: VerifyCode, measurement — اکشن: load_screen, login</td></tr>
+<tr><td><code>op/rules</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: متوجه شدم — بعدی: VerifyCode — اکشن: load_screen, login</td></tr>
+<tr><td><code>op/splash</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">اسپلش — بعدی: nextSplash — اکشن: set_variable_from_db, load_screen</td></tr>
+<tr><td><code>op/update</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: باید نسخه جدید دانلود کنی | بیخیال | دانلود — سرویس: getScreen — اکشن: set_variable_to_db, call_service, update, get_write_permission</td></tr>
+<tr><td><code>op/verifycode</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">UI: پرسـان | ورود | .لطفا کد ۵ رقمی ارسال شده به شماره 09195737970 را وارد کنید | ۰۱:۵۹ — بعدی: conditions — اکشن: load_screen</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>اعلان <span class="badge">9 صفحه | 0 patch</span></h3>
+<h4>صفحات</h4><table class="detail-table"><tr><th>path</th><th>وضعیت</th><th>توضیح</th></tr>
+<tr><td><code>notif/custom</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سنجش احساس امنیت و سرمایه اجتماعی | اتمام> | قبلی> | از — کامپوننت: audioPlayerView, custom_input, image_picker, labelledSliderView, multi_selection, navigation, signature, single_selection — اکشن: open_camera, set_variable, video</td></tr>
+<tr><td><code>notif/gasht</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">گشت — UI: مسیریابی | مقصد | ثبت بازخورد — کامپوننت: navigation — سرویس: phPlus/notifications/submit — اکشن: call_service</td></tr>
+<tr><td><code>notif/gasht/bottomsheet</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">گشت — UI: مسیریابی | مقصد | ثبت بازخورد — کامپوننت: navigation — سرویس: phPlus/notifications/submit — اکشن: call_service</td></tr>
+<tr><td><code>notif/image</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سنجش احساس امنیت و سرمایه اجتماعی | قبلی> | از | باز کردن دوربین — کامپوننت: audioPlayerView, labelledSliderView — اکشن: open_camera, set_variable, video</td></tr>
+<tr><td><code>notif/image&text</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سنجش احساس امنیت و سرمایه اجتماعی | قبلی> | از | باز کردن دوربین — کامپوننت: audioPlayerView, labelledSliderView — اکشن: open_camera, set_variable, video</td></tr>
+<tr><td><code>Notif/navigation</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: مسیریابی | مقصد | مشاهده نشد | مشاهده و شناسایی شد — کامپوننت: navigation, single_selection — سرویس: phPlus/notifications/submit — اکشن: set_variable, call_service</td></tr>
+<tr><td><code>Notif/person</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: مشخصات | مشخصات فرد | نام | نام خانوادگی — اکشن: set_variable_to_db, show_image</td></tr>
+<tr><td><code>notif/text</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سنجش احساس امنیت و سرمایه اجتماعی | قبلی> | از | باز کردن دوربین — کامپوننت: audioPlayerView, labelledSliderView — اکشن: open_camera, set_variable, video</td></tr>
+<tr><td><code>notif/video</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سنجش احساس امنیت و سرمایه اجتماعی | قبلی> | از | باز کردن دوربین — کامپوننت: audioPlayerView, labelledSliderView — اکشن: set_variable, video, open_camera</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>گشت انتظامی <span class="badge">2 صفحه | 0 patch</span></h3>
+<h4>صفحات</h4><table class="detail-table"><tr><th>path</th><th>وضعیت</th><th>توضیح</th></tr>
+<tr><td><code>gasht/1</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">گشت — UI: موقعیت | شماره خبر | زمان | شرح واقعه</td></tr>
+<tr><td><code>gasht/main</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">گشت — UI: گشت انتظامی | موقعیت | شماره خبر | زمان — بعدی: ph/notification — اکشن: load_screen, set_imei, set_device_model, set_patch, get_all_permission</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>توقیف <span class="badge">9 صفحه | 0 patch</span></h3>
+<h4>صفحات</h4><table class="detail-table"><tr><th>path</th><th>وضعیت</th><th>توضیح</th></tr>
+<tr><td><code>toghif/bottomsheet/lockstatus</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: وضعیت قفل | آخرین سیگنال دریافت شده | آخرین موقعیت دریافت شده | شارژ باتری — اکشن: set_variable, set_patch</td></tr>
+<tr><td><code>toghif/car</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: اطلاعات خودرو | مشخصات خودرو | رنگ | سیستم — اکشن: set_variable_to_db, set_variable</td></tr>
+<tr><td><code>toghif/cranecanceled</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: درخواست شما لغو شده است | لغو</td></tr>
+<tr><td><code>toghif/craneInfo</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: اطلاعات جرثقیل | مشخصات جرثقیل | نام راننده | شماره تلفن — اکشن: set_variable_to_db</td></tr>
+<tr><td><code>toghif/main</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: علت توقیف | کد تخلف / جریمه | نحوه توقیف | راننده دارد — سرویس: address, bottomSheetParkings/PK, electronicRegistrations/PK, initialRegistrations/PK — بعدی: vt/plate — اکشن: set_variable, set_patch, change_color, set_variable_from_db, get_persian_date</td></tr>
+<tr><td><code>toghif/parkings</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: آدرسی وجود ندارد — اکشن: set_variable, bottom_sheet_dismiss</td></tr>
+<tr><td><code>toghif/rejectCrane</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: لغو درخواست جرثقیل | تاریخ | شماره درخواست | لغو</td></tr>
+<tr><td><code>toghif/selectType</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: توقیف | نوع توقیف را انتخاب کنید: | الکترونیک | پارکینگ — اکشن: set_variable, set_patch, set_variable_to_base, bottom_sheet_dismiss</td></tr>
+<tr><td><code>toghif/submitCrane</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: وضعیت حمل | وضعیت خودرو | علت | توضیحات — سرویس: transportStatus/PK — اکشن: bottom_sheet_list, call_service, bottom_sheet_dismiss, set_variable</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>اتباع <span class="badge">5 صفحه | 0 patch</span></h3>
+<h4>صفحات</h4><table class="detail-table"><tr><th>path</th><th>وضعیت</th><th>توضیح</th></tr>
+<tr><td><code>atba</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">صفحه UI</td></tr>
+<tr><td><code>atba/inquiry</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: استعلام شخص | غیر ایرانی | ایرانی | مشخصات فردی — اکشن: change_color, set_variable</td></tr>
+<tr><td><code>atba/main</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: اتباع | طرد اتباع | استعلام — بعدی: atba/inquiry — اکشن: bottom_sheet_div, load_screen, set_variable</td></tr>
+<tr><td><code>atba/select/border</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: اتخاب مرز خروجی | مرز | کد پلیس شما معتبر نیست . لطفا با ادمین ارشد خود تماس بگیرید | انتخاب — اکشن: set_variable_from_db, bottom_sheet_list, set_variable_to_db, open_camera, bottom_sheet_dismiss</td></tr>
+<tr><td><code>atba/submit/person</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: اتباع | دارای مدارک هویتی | دارای مجوز ورود | شناسه فیدا وارد نشده است — سرویس: registerPictureAtba — اکشن: set_variable_from_db, set_variable, change_color, show_date_picker, bottom_sheet_list</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>کارنامه (TimeSheet) <span class="badge">6 صفحه | 0 patch</span></h3>
+<h4>صفحات</h4><table class="detail-table"><tr><th>path</th><th>وضعیت</th><th>توضیح</th></tr>
+<tr><td><code>timeSheet/driverHistory</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سامانه مدیریت عملکرد رانندگان | سامانه صدور گواهینامه پلیس راهور فراجا | نام و نام خانوادگی | کد ملی — اکشن: set_variable_to_db</td></tr>
+<tr><td><code>timeSheet/inquiry</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: نام و نام خانوادگی | شماره تلفن | کد ملی | استعلام کاربری پارکینگ — اکشن: set_variable_to_db</td></tr>
+<tr><td><code>timeSheet/main</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: ثبت ساعت | توقیف | دستور | سرقتی — سرویس: address, inquiryNationalCode/SAT, inquiryPlate/SAT, receiveTickets — بعدی: timeSheet/driverHistory, timeSheet/inquiry — اکشن: set_variable, get_persian_date, change_color, bottom_sheet_list, bottom_sheet_div</td></tr>
+<tr><td><code>TimeSheet/notebookHistory</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سوابق اخذ دفترچه | نام و نام خانوادگی | کد ملی | تاریخ تولد — اکشن: set_variable_to_db</td></tr>
+<tr><td><code>TimeSheet/violationHistory</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سوابق تخلف | نام و نام خانوادگی | کد ملی | تاریخ تولد — اکشن: set_variable_to_db</td></tr>
+<tr><td><code>TimeSheet/warningsHistory</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: سوابق تذکرات | نام و نام خانوادگی | کد ملی | تاریخ تولد — اکشن: set_variable_to_db</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>ناظر <span class="badge">3 صفحه | 0 patch</span></h3>
+<h4>صفحات</h4><table class="detail-table"><tr><th>path</th><th>وضعیت</th><th>توضیح</th></tr>
+<tr><td><code>nazer/main</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: فرد مکشفه حجاب | راننده | سرنشین جلو | سرنشین عقب — سرویس: historyNazer, inquiryNazer, registerNazer — بعدی: vt/plate — اکشن: set_variable, get_persian_date, set_patch, change_color, call_service</td></tr>
+<tr><td><code>nazer/PunishmentHistory</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: ثبت جدید | لیست ثبت شده ها — اکشن: set_variable, set_patch</td></tr>
+<tr><td><code>nazer/register</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">صفحه UI</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>Patch — VT <span class="badge">0 صفحه | 3 patch</span></h3>
+<h4>Patchها</h4><table class="detail-table"><tr><th>patchName</th><th>توضیح</th></tr>
+<tr><td><code>patchAddress</code></td><td class="task-why">UI: آدرسی وجود ندارد — سرویس: deleteAddress — اکشن: call_service, set_variable, bottom_sheet_dismiss</td></tr>
+<tr><td><code>vt/reports/delivered</code></td><td class="task-why">UI: ارسال ناموفق | :مدل و رنگ خودرو | :نوع جریمه (۳ مورد) | :موقعیت</td></tr>
+<tr><td><code>vt/reports/notdelivered</code></td><td class="task-why">UI: ارسال ناموفق | :مدل و رنگ خودرو | :نوع جریمه (۳ مورد) | :موقعیت</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>اسپلش / ورود <span class="badge">1 صفحه | 0 patch</span></h3>
+<h4>صفحات</h4><table class="detail-table"><tr><th>path</th><th>وضعیت</th><th>توضیح</th></tr>
+<tr><td><code>splash</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">اسپلش — بعدی: nextSplash — اکشن: set_variable_from_db, load_screen</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>افکار <span class="badge">2 صفحه | 0 patch</span></h3>
+<h4>صفحات</h4><table class="detail-table"><tr><th>path</th><th>وضعیت</th><th>توضیح</th></tr>
+<tr><td><code>afkar/conditions</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">صفحه UI</td></tr>
+<tr><td><code>afkar/verifycode</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">UI: پرسـان | ورود | لطفا کد 6 رقمی ارسال شده به شماره  @{phone_number} را وارد کنید . | ۰۱:۵۹ — سرویس: verifyOtp — اکشن: call_service</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>سایر (registrationvisitseal) <span class="badge">1 صفحه | 0 patch</span></h3>
+<h4>صفحات</h4><table class="detail-table"><tr><th>path</th><th>وضعیت</th><th>توضیح</th></tr>
+<tr><td><code>registrationvisitseal</code></td><td><span class="badge badge-orange">غیرفعال</span></td><td class="task-why">صفحه UI</td></tr>
+</table>
+</div>
+<div class="module-block">
+<h3>سایر (splash_2) <span class="badge">1 صفحه | 0 patch</span></h3>
+<h4>صفحات</h4><table class="detail-table"><tr><th>path</th><th>وضعیت</th><th>توضیح</th></tr>
+<tr><td><code>splash_2</code></td><td><span class="badge badge-green">فعال</span></td><td class="task-why">اسپلش — سرویس: getScreen — بعدی: nextSplash — اکشن: set_variable_from_db, call_service, load_screen</td></tr>
+</table>
+</div>
+<div class="box box-green">
+  <strong>جمع‌بندی ماژول‌ها:</strong>
+  پروژه از <strong>schema + موتور SDUI + پلاگین Figma + pushSdk + najicamera + اپ PhPlus + uiManager سرور</strong> تشکیل شده. در <strong>۱۴۰۴</strong> زیرساخت، پلاگین Figma، ناوبری، patch، اعلان، استعلام، ثبت تخلف، VT، گزارش، آفلاین، و پایه تصادفات ساخته شد. در <strong>۱۴۰۵</strong> تصادفات تکمیل شد، Patch Generator، tree_view، آپلود/PDF، و سرور فرم داینامیک گشت انتظامی اضافه شد. بیش از <strong>۲۰۰ صفحه UI</strong> طراحی شده که از سرور دریافت و در کلاینت رندر می‌شوند. سرور با کلیدهای <code>next</code>, <code>set_patch</code>, ... رفتار UI را کنترل می‌کند.
+</div>
+
+<div class="footer-note">
+  مستندات پروژه پلیس همراه پلاس — دوره توسعه: ۱۴۰۴–۱۴۰۵<br>
+  کلاینت Android (SDUI) + سرور uiManager (نوتیفیکیشن و گشت انتظامی)<br>
+  تهیه‌شده در ۲۰ تیر ۱۴۰۵
+</div>
+
+</body>
+</html>

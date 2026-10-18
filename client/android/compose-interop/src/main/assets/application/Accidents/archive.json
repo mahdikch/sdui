@@ -1,0 +1,75 @@
+{
+  "card": {
+    "log_id": "accidents_archive",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "text",
+                  "text": "بایگانی فرآیندهای ناقص",
+                  "font_size": 16,
+                  "font_weight": "bold",
+                  "text_color": "#193d8d",
+                  "text_alignment_horizontal": "center",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "margins": {
+                    "top": 16,
+                    "bottom": 16
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#ffffff"
+                }
+              ]
+            },
+            {
+              "type": "custom",
+              "custom_type": "offline_list_container",
+              "custom_props": {
+                "screen": "Accidents"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "match_parent"
+              }
+            }
+          ],
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "orientation": "vertical",
+          "height": {
+            "type": "match_parent"
+          },
+          "width": {
+            "type": "match_parent"
+          }
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "string",
+        "name": "text___1",
+        "value": "بایگانی"
+      }
+    ]
+  },
+  "templates": {}
+}

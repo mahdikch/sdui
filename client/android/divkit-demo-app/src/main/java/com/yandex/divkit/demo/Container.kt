@@ -3,7 +3,6 @@ package com.yandex.divkit.demo
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
-import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.neovisionaries.ws.client.WebSocketFactory
 import com.yandex.div.coil.CoilDivImageLoader
 import com.yandex.div.core.DivKit
@@ -14,7 +13,6 @@ import com.yandex.div.histogram.RenderConfiguration
 import com.yandex.div.picasso.PicassoDivImageLoader
 import com.yandex.div.video.custom.VideoCache
 import com.yandex.div.video.custom.VideoCustomViewController
-import com.yandex.divkit.demo.div.editor.NaiveSSLContext
 import com.yandex.divkit.demo.div.histogram.DemoHistogramConfiguration
 import com.yandex.divkit.demo.div.histogram.LoggingHistogramBridge
 import com.yandex.divkit.demo.div.video.DemoVideoCustomImageCache
@@ -25,7 +23,6 @@ import com.yandex.divkit.demo.utils.DivkitDemoUriHandler
 import com.yandex.divkit.demo.utils.connectivityManager
 import com.yandex.divkit.regression.di.RegressionComponent
 import com.yandex.divkit.regression.di.`Yatagan$RegressionComponent`
-import com.yandex.yatagan.Yatagan
 import kotlinx.coroutines.MainScope
 import okhttp3.OkHttpClient
 import okhttp3.internal.http2.Header
@@ -33,6 +30,7 @@ import okhttp3.internal.toHeaderList
 import okhttp3.internal.toHeaders
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
+import javax.net.ssl.SSLContext
 
 @SuppressLint("StaticFieldLeak")
 internal object Container {
@@ -48,10 +46,6 @@ internal object Container {
     }
 
     private val httpClientBuilder = OkHttpClient.Builder()
-        .sslSocketFactory(
-            NaiveSSLContext.getInstance("TLS").socketFactory,
-            NaiveSSLContext.NaiveTrustManager()
-        )
         .addNetworkInterceptor {
             val request = it.request()
             val host = request.url.host
@@ -64,7 +58,6 @@ internal object Container {
                     .build()
             )
         }
-        .addNetworkInterceptor(StethoInterceptor())
 
     val httpClient = httpClientBuilder.build()
 
@@ -72,7 +65,7 @@ internal object Container {
 
     val webSocketFactory: WebSocketFactory by lazy {
         WebSocketFactory()
-            .setSSLContext(NaiveSSLContext.getInstance("TLS"))
+            .setSSLContext(SSLContext.getDefault())
             .setConnectionTimeout(TimeUnit.SECONDS.toMillis(15).toInt())
             .apply {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

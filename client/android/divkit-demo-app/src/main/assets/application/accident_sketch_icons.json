@@ -1,0 +1,7 @@
+[
+  {"id": "0100", "title": "خودرو", "drawable": "baseline_my_location_24"},
+  {"id": "0101", "title": "فلش", "drawable": "ic_back_rtl"},
+  {"id": "0102", "title": "علامت", "drawable": "ic_notification"},
+  {"id": "0103", "title": "مکان", "drawable": "baseline_mic_24"},
+  {"id": "0104", "title": "توقف", "drawable": "baseline_stop_24"}
+]

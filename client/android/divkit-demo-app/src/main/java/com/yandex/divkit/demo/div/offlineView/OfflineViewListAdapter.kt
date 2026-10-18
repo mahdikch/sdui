@@ -22,7 +22,8 @@ class OfflineViewListAdapter@JvmOverloads constructor(
 ) :
     ListAdapter<Map<String, String>, OfflineViewListAdapter.EntryViewHolder>(DiffCallback()) {
     interface OfflineViewListItemListener {
-        fun onClickedOfflineView(data: String,next: String)
+        fun onClickedOfflineView(data: String, next: String)
+        fun onDeleteOfflineView(archiveKey: String, data: String) {}
     }
     var onSendClick: ((position: Int, item: Map<String, String>) -> Unit)? = null
 
@@ -32,6 +33,7 @@ class OfflineViewListAdapter@JvmOverloads constructor(
         val recycler: RecyclerView =
             itemView.findViewById(com.yandex.divkit.demo.R.id.keyValueRecycler)
         val sendButton: Button = itemView.findViewById(com.yandex.divkit.demo.R.id.sendButton)
+        val deleteButton: Button = itemView.findViewById(com.yandex.divkit.demo.R.id.deleteButton)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntryViewHolder {
@@ -61,10 +63,36 @@ class OfflineViewListAdapter@JvmOverloads constructor(
         holder.recycler.layoutManager = LinearLayoutManager(holder.itemView.context)
         holder.recycler.adapter = KeyValueAdapter(keyValueList)
 
-        holder.sendButton.setOnClickListener {
+        val isAccidentsArchive = system.equals("Accidents", ignoreCase = true)
+        val isVehicleList = system.equals("vehicles", ignoreCase = true)
+        val isPassengerList = system.equals("passengers", ignoreCase = true)
+        val isPedestrianList = system.equals("pedestrians", ignoreCase = true)
+        val isOrganizationList = system.equals("organizations", ignoreCase = true)
+        val isLivestockList = system.equals("livestock", ignoreCase = true)
+        holder.sendButton.text = when {
+            isAccidentsArchive -> "ادامه"
+            isLivestockList -> "ویرایش"
+            isVehicleList || isPassengerList || isPedestrianList || isOrganizationList -> "ویرایش"
+            else -> "ارسال"
+        }
+        holder.deleteButton.visibility = if (
+            isAccidentsArchive || isVehicleList || isPassengerList || isPedestrianList || isOrganizationList || isLivestockList
+        ) View.VISIBLE else View.GONE
 
-            item["data"]?.let { it1 -> restoredMap["next"]?.let { it2 -> listener.onClickedOfflineView(it1, next = it2) } }
-//            onSendClick?.invoke(position, item)
+        holder.sendButton.setOnClickListener {
+            item["data"]?.let { dataJson ->
+                restoredMap["next"]?.let { nextKey ->
+                    listener.onClickedOfflineView(dataJson, next = nextKey)
+                }
+            }
+        }
+
+        holder.deleteButton.setOnClickListener {
+            item["data"]?.let { dataJson ->
+                item["key"]?.let { archiveKey ->
+                    listener.onDeleteOfflineView(archiveKey, dataJson)
+                }
+            }
         }
     }
 
@@ -73,7 +101,7 @@ class OfflineViewListAdapter@JvmOverloads constructor(
             oldItem: Map<String, String>,
             newItem: Map<String, String>
         ): Boolean {
-            return oldItem["title"] == newItem["title"] && oldItem["date"] == newItem["date"]
+            return oldItem["key"] == newItem["key"]
         }
 
         @SuppressLint("DiffUtilEquals")

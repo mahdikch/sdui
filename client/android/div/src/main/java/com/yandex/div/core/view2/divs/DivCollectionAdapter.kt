@@ -55,7 +55,8 @@ internal abstract class DivCollectionAdapter<VH: RecyclerView.ViewHolder>(
             index++
         }
 
-        // Apply patch inside items if needed
+        // Apply patch inside items if needed (e.g. grid child id inside a gallery page)
+        var appliedNestedPatch = false
         patch.patches.keys.filter { it !in appliedToListPatchIds }.forEach { idToFind ->
             for (i in 0 until items.size) {
                 val childDiv = items[i].div
@@ -68,12 +69,14 @@ internal abstract class DivCollectionAdapter<VH: RecyclerView.ViewHolder>(
                     updateItemVisibility(i, DivVisibility.GONE)
                     items[i] = DivItemBuilderResult(newDiv, bindingContext.expressionResolver)
                     updateItemVisibility(i)
+                    recyclerView?.adapter?.notifyItemChanged(i)
+                    appliedNestedPatch = true
                     return@forEach
                 }
             }
         }
 
-        if (appliedToListPatchIds.isEmpty()) return false
+        if (appliedToListPatchIds.isEmpty() && !appliedNestedPatch) return false
 
         subscribeOnElements()
         return true

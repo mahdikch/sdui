@@ -1,0 +1,1104 @@
+{
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "id": "vehicle_information",
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "match_parent"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "paddings": {
+            "top": 12,
+            "bottom": 12,
+            "start": 16,
+            "end": 16
+          },
+          "visibility_actions": [
+            {
+              "log_id": "load_vehicle_id",
+              "url": "div-action://set_variable_from_db?name=current_vehicle_id",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "load_current_accident_id",
+              "url": "div-action://set_variable_from_db?name=current_accident_id",
+              "visibility_duration": 0
+            }
+          ],
+          "items": [
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 8
+              },
+              "items": [
+                {
+                  "type": "page_title",
+                  "text": "اطلاعات بیمه",
+                  "alignment_horizontal": "right"
+                },
+                {
+                  "type": "text",
+                  "text": "بازگشت",
+                  "font_size": 12,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "actions": [
+                    {
+                      "log_id": "back",
+                      "url": "div-action://pop_and_load_screen"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "horizontal",
+              "content_alignment_vertical": "center",
+              "content_alignment_horizontal": "right",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ],
+              "border": {
+                "corner_radius": 8
+              },
+              "paddings": {
+                "top": 6,
+                "bottom": 6,
+                "start": 8,
+                "end": 8
+              },
+              "margins": {
+                "bottom": 8
+              },
+              "items": [
+                {
+                  "type": "custom",
+                  "custom_type": "circular_progress",
+                  "custom_props": {
+                    "current": "@{current_step}",
+                    "total": "@{total}"
+                  },
+                  "width": {
+                    "type": "fixed",
+                    "value": 36
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 36
+                  },
+                  "margins": {
+                    "end": 8
+                  }
+                },
+                {
+                  "type": "container",
+                  "orientation": "vertical",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "اطلاعات بیمه",
+                      "font_size": 12,
+                      "font_weight": "medium",
+                      "text_color": "#1f2937",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": "مرحله @{current_step} از @{total}",
+                      "font_size": 10,
+                      "text_color": "#6b7280",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "top": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "gallery",
+              "orientation": "vertical",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "match_parent",
+                "weight": 1
+              },
+              "items": [
+                {
+                  "type": "container",
+                  "orientation": "vertical",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#f3f5f9"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 10
+                  },
+                  "paddings": {
+                    "top": 12,
+                    "bottom": 4,
+                    "start": 12,
+                    "end": 12
+                  },
+                  "items": [
+                    {
+                      "type": "container",
+                      "orientation": "vertical",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "section_label",
+                          "text": "نام شرکت بیمه ثالث"
+                        },
+                        {
+                          "type": "field_box",
+                          "actions": [
+                            {
+                              "log_id": "show_bottom_sheet_list",
+                              "url": "div-action://bottom_sheet_list?id=INSURANCE_COMPANY&varName=INSURANCE_COMPANY&title= نام شرکت بیمه ثالث&title_var=compromising_insurance_company_name&code_var=compromising_insurance_company_code"
+                            }
+                          ],
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "▼",
+                              "font_size": 12,
+                              "text_color": "#193d8d",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "margins": {
+                                "end": 8
+                              }
+                            },
+                            {
+                              "type": "field_value",
+                              "text": "@{len(compromising_insurance_company_name) > 0 ? compromising_insurance_company_name : 'وارد نمایید'}",
+                              "text_color": "@{len(compromising_insurance_company_name) > 0 ? '#1f2937' : '#9ca3af'}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "container",
+                      "orientation": "vertical",
+                      "visibility": "@{ validation_insurance_company_name ? 'gone' : 'visible' }",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "container",
+                          "orientation": "vertical",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "items": [
+                            {
+                              "type": "section_label",
+                              "text": "شماره بیمه نامه ثالث"
+                            },
+                            {
+                              "type": "field_box",
+                              "items": [
+                                {
+                                  "type": "field_input",
+                                  "hint_text": "وارد نمایید",
+                                  "text_variable": "compromising_insurance_number",
+                                  "keyboard_type": "single_line_text"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "container",
+                          "orientation": "vertical",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "items": [
+                            {
+                              "type": "section_label",
+                              "text": "تاریخ پایان اعتبار بیمه ثالث"
+                            },
+                            {
+                              "type": "field_box",
+                              "actions": [
+                                {
+                                  "log_id": "show_bottom_sheet_list",
+                                  "url": "div-action://show_date_picker?variableName=compromising_insurance_expire_date"
+                                }
+                              ],
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "▼",
+                                  "font_size": 12,
+                                  "text_color": "#193d8d",
+                                  "width": {
+                                    "type": "wrap_content"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "end": 8
+                                  }
+                                },
+                                {
+                                  "type": "field_value",
+                                  "text": "@{len(compromising_insurance_expire_date) > 0 ? compromising_insurance_expire_date : 'انتخاب تاریخ'}",
+                                  "text_color": "@{len(compromising_insurance_expire_date) > 0 ? '#1f2937' : '#9ca3af'}"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "container",
+                      "orientation": "vertical",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "section_label",
+                          "text": "سقف تعهد مالی بیمه"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_input",
+                              "hint_text": "وارد نمایید",
+                              "text_variable": "compromising_insurance_financial_commitment"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "container",
+                      "orientation": "vertical",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "section_label",
+                          "text": "نام شرکت بیمه بدنه"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "▼",
+                              "font_size": 12,
+                              "text_color": "#193d8d",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "margins": {
+                                "end": 8
+                              },
+                              "actions": [
+                                {
+                                  "log_id": "show_bottom_sheet_list",
+                                  "url": "div-action://bottom_sheet_list?id=INSURANCE_COMPANY&varName=INSURANCE_COMPANY&title= نام شرکت بیمه بدنه &title_var=compromising_insurance_body_company&code_var=compromising_insurance_body_company_code"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "field_input",
+                              "hint_text": "وارد نمایید",
+                              "text_variable": "compromising_insurance_body_company",
+                              "keyboard_type": "single_line_text"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "container",
+                      "orientation": "vertical",
+                      "visibility": "@{ validation_insurance_body_company_name ? 'gone' : 'visible'}",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "container",
+                          "orientation": "vertical",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "items": [
+                            {
+                              "type": "section_label",
+                              "text": "شماره بیمه نامه بدنه(کارت طلایی)"
+                            },
+                            {
+                              "type": "field_box",
+                              "items": [
+                                {
+                                  "type": "field_input",
+                                  "hint_text": "وارد نمایید",
+                                  "text_variable": "compromising_insurance_body_number",
+                                  "keyboard_type": "single_line_text"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "container",
+                          "orientation": "vertical",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "items": [
+                            {
+                              "type": "section_label",
+                              "text": " تاریخ اعتباربیمه بدنه"
+                            },
+                            {
+                              "type": "field_box",
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "▼",
+                                  "font_size": 12,
+                                  "text_color": "#193d8d",
+                                  "width": {
+                                    "type": "wrap_content"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "end": 8
+                                  },
+                                  "actions": [
+                                    {
+                                      "log_id": "show_bottom_sheet_list",
+                                      "url": "div-action://show_date_picker?variableName=compromising_insurance_body_expire_date"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "field_input",
+                                  "hint_text": "وارد نمایید",
+                                  "text_variable": "compromising_insurance_body_expire_date",
+                                  "keyboard_type": "single_line_text"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "container",
+                      "orientation": "vertical",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "section_label",
+                          "text": "میزان تقریبی خسارت"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_input",
+                              "hint_text": "وارد نمایید",
+                              "text_variable": "compromising_insurance_approximate_damage",
+                              "keyboard_type": "single_line_text"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "container",
+                      "orientation": "vertical",
+                      "visibility": "@{ validation_insurance_company_name ? 'gone' : 'visible'}",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "validation_text",
+                          "text": "شماره بیمه ثالث اجباری می باشد.",
+                          "visibility": "@{ validation_insurance_number ? 'gone' : 'visible'}"
+                        },
+                        {
+                          "type": "validation_text",
+                          "text": "تاریخ انقضای بیمه ثالث اجباری می باشد.",
+                          "visibility": "@{ validation_insurance_expire_date ? 'gone' : 'visible'}"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "container",
+                      "orientation": "vertical",
+                      "visibility": "@{ validation_insurance_body_company_name ? 'gone' : 'visible'}",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "validation_text",
+                          "text": "شماره بیمه بدنه اجباری می باشد.",
+                          "visibility": "@{ validation_insurance_body_number ? 'gone' : 'visible'}"
+                        },
+                        {
+                          "type": "validation_text",
+                          "text": "تاریخ انقضای بیمه بدنه اجباری می باشد.",
+                          "visibility": "@{ validation_insurance_body_expire_date ? 'gone' : 'visible'}"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "horizontal",
+              "content_alignment_vertical": "center",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "top": 10
+              },
+              "items": [
+                {
+                  "type": "primary_btn",
+                  "text": "@{save_data}",
+                  "width": {
+                    "type": "match_parent",
+                    "weight": 1
+                  },
+                  "margins": {
+                    "start": 4
+                  },
+                  "actions": [
+                    {
+                      "log_id": "save_draft_page3",
+                      "url": "div-action://set_page_with_changes_to_db?key=draft/@{current_vehicle_id}/page3"
+                    },
+                    {
+                      "log_id": "save_vehicle_to_list",
+                      "url": "div-action://save_vehicle_to_list?accident_id=@{current_accident_id}&vehicle_id=@{current_vehicle_id}"
+                    },
+                    {
+                      "log_id": "return_to_vehicle_list",
+                      "url": "div-action://load_screen?screen=Accidents/vehicleInformationEntry"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "url": "div-action://set_variable_to_db?key=compromising_insurance_company_code/@{current_accident_id}&value=@{compromising_insurance_company_code}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "url": "div-action://set_variable_to_db?key=compromising_insurance_body_company_code/@{current_accident_id}&value=@{compromising_insurance_body_company_code}"
+                    },
+                    {
+                      "log_id": "save_to_db",
+                      "url": "div-action://set_variable_to_db?key=compromising_insurance_approximate_damage/@{current_accident_id}&value=@{compromising_insurance_approximate_damage}"
+                    }
+                  ]
+                },
+                {
+                  "type": "secondary_btn",
+                  "text": "@{previous_step}",
+                  "width": {
+                    "type": "match_parent",
+                    "weight": 1
+                  },
+                  "margins": {
+                    "top": 0,
+                    "end": 4
+                  },
+                  "actions": [
+                    {
+                      "log_id": "load_screen",
+                      "url": "div-action://pop_and_load_screen"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "string",
+        "name": "empty",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "previous_step",
+        "value": "مرحله قبل"
+      },
+      {
+        "type": "string",
+        "name": "save_data",
+        "value": "ذخیره ی اطلاعات"
+      },
+      {
+        "type": "string",
+        "name": "compromising_insurance_number",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_insurance_number",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_insurance_financial_commitment",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_insurance_body_number",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_insurance_body_expire_date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_insurance_expire_date",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_insurance_expire_date",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_insurance_company_name",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_insurance_company_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_insurance_company_name",
+        "value": true
+      },
+      {
+        "type": "string",
+        "name": "compromising_insurance_approximate_damage",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_insurance_body_company",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_insurance_body_company_name",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "validation_insurance_body_number",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_insurance_body_expire_date",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_insurance_body_company_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "current_vehicle_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "current_accident_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_chassis_number",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_compromising_engine_number",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "inquiry_bimeh_called",
+        "value": false
+      },
+      {
+        "type": "integer",
+        "name": "current_step",
+        "value": 3
+      },
+      {
+        "type": "integer",
+        "name": "total",
+        "value": 4
+      }
+    ],
+    "variable_triggers": [
+      {
+        "condition": "@{current_vehicle_id != empty && !inquiry_bimeh_called}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "mark_inquiry_bimeh_called",
+            "url": "div-action://set_variable?name=inquiry_bimeh_called&value=true"
+          },
+          {
+            "log_id": "inquiry_bimeh",
+            "url": "div-action://inquiry_bimeh?path=inquiryBimeh&sysName=accidents&ph/token=empty&vehicle_id=@{current_vehicle_id}"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_insurance_company_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_insurance_company_name&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_insurance_company_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_insurance_company_name&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_insurance_number != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_insurance_number&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_insurance_number == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_insurance_number&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_insurance_expire_date != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_insurance_expire_date&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_insurance_expire_date == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_insurance_expire_date&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_insurance_body_company_code != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_insurance_body_company_name&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_insurance_body_company_code == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_insurance_body_company_name&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_insurance_body_number == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_insurance_body_number&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_insurance_body_number != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_insurance_body_number&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_insurance_body_expire_date == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_insurance_body_expire_date&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_insurance_body_expire_date != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_insurance_body_expire_date&value=true"
+          }
+        ]
+      }
+    ]
+  },
+  "templates": {
+    "page_title": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "wrap_content"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "section_label": {
+      "type": "text",
+      "font_size": 12,
+      "font_weight": "medium",
+      "text_color": "#6b7280",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 6
+      }
+    },
+    "field_box": {
+      "type": "container",
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "right",
+      "content_alignment_vertical": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#c8d0e4",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "start": 12,
+        "end": 12
+      },
+      "margins": {
+        "bottom": 10
+      }
+    },
+    "field_value": {
+      "type": "text",
+      "font_size": 13,
+      "text_color": "#1f2937",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "field_input": {
+      "type": "input",
+      "font_size": 13,
+      "text_color": "#1f2937",
+      "hint_color": "#9ca3af",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "validation_text": {
+      "type": "text",
+      "font_size": 12,
+      "font_weight": "medium",
+      "text_color": "#dc2626",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 6
+      }
+    },
+    "primary_btn": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#ffffff",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#193d8d"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14
+      }
+    },
+    "secondary_btn": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#f3f5f9"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14
+      },
+      "margins": {
+        "top": 8
+      }
+    }
+  }
+}

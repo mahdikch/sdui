@@ -1,0 +1,813 @@
+{
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "match_parent"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "paddings": {
+            "top": 12,
+            "bottom": 12,
+            "start": 16,
+            "end": 16
+          },
+          "items": [
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 8
+              },
+              "items": [
+                {
+                  "type": "page_title",
+                  "text": "ثبت تصادف غیرسازشی",
+                  "alignment_horizontal": "right"
+                },
+                {
+                  "type": "text",
+                  "text": "بازگشت",
+                  "font_size": 12,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "actions": [
+                    {
+                      "log_id": "update_visibility",
+                      "url": "div-action://set_variable?name=variable_hoviat_visibility&value=gone"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "horizontal",
+              "content_alignment_vertical": "center",
+              "content_alignment_horizontal": "right",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ],
+              "border": {
+                "corner_radius": 8
+              },
+              "paddings": {
+                "top": 6,
+                "bottom": 6,
+                "start": 8,
+                "end": 8
+              },
+              "margins": {
+                "bottom": 8
+              },
+              "items": [
+                {
+                  "type": "custom",
+                  "custom_type": "circular_progress",
+                  "custom_props": {
+                    "current": "@{current}",
+                    "total": "@{total}"
+                  },
+                  "width": {
+                    "type": "fixed",
+                    "value": 36
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 36
+                  },
+                  "margins": {
+                    "end": 8
+                  }
+                },
+                {
+                  "type": "container",
+                  "orientation": "vertical",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "اطلاعات عابران",
+                      "font_size": 12,
+                      "font_weight": "medium",
+                      "text_color": "#1f2937",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": "بعدی: سازمان اشخاص حقوقی",
+                      "font_size": 10,
+                      "text_color": "#6b7280",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "top": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "gallery",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "match_parent"
+              },
+              "items": [
+                {
+                  "type": "separator",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 10
+                  },
+                  "margins": {
+                    "start": 8,
+                    "end": 8
+                  }
+                },
+                {
+                  "type": "container",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "اطلاعات عابران",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "margins": {
+                        "top": 10,
+                        "bottom": 10,
+                        "start": 10,
+                        "end": 10
+                      },
+                      "alignment_horizontal": "end",
+                      "font_weight": "bold",
+                      "font_size": 14
+                    },
+                    {
+                      "type": "custom",
+                      "custom_type": "offline_list_container",
+                      "custom_props": {
+                        "screen": "pedestrians",
+                        "accident_id": "@{current_accident_id}"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      }
+                    }
+                  ],
+                  "border": {
+                    "corners_radius": {
+                      "top-left": 6,
+                      "bottom-left": 6,
+                      "top-right": 6,
+                      "bottom-right": 6
+                    },
+                    "corner_radius": 6,
+                    "stroke": {
+                      "color": "#c8d0e4"
+                    },
+                    "shadow": {
+                      "color": "#c8d0e4"
+                    }
+                  },
+                  "margins": {
+                    "top": 8,
+                    "bottom": 8,
+                    "start": 8,
+                    "end": 8
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ]
+                },
+                {
+                  "type": "container",
+                  "actions": [
+                    {
+                      "log_id": "set_random_id_to_db",
+                      "url": "div-action://set_random_id_to_db?key=current_pedestrian_id"
+                    },
+                    {
+                      "log_id": "open_add_pedestrian",
+                      "url": "div-action://load_screen?screen=Accidents/uncompromising/pedestrianspecification"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "@{text___32}",
+                      "font_size": 14,
+                      "font_weight": "regular",
+                      "line_height": 24,
+                      "letter_spacing": 0,
+                      "text_color": "#4260a2",
+                      "text_alignment_horizontal": "center",
+                      "text_alignment_vertical": "top",
+                      "width": {
+                        "type": "fixed",
+                        "value": 138
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "alignment_vertical": "center"
+                    },
+                    {
+                      "type": "image",
+                      "image_url": "@{add_square.png}",
+                      "width": {
+                        "type": "fixed",
+                        "value": 31
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 29
+                      },
+                      "preload_required": true,
+                      "margins": {
+                        "top": 5,
+                        "bottom": 5,
+                        "start": 10,
+                        "end": 10
+                      },
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center"
+                    }
+                  ],
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#c8d0e4"
+                    }
+                  ],
+                  "border": {
+                    "corners_radius": {
+                      "top-left": 4,
+                      "top-right": 4,
+                      "bottom-left": 4,
+                      "bottom-right": 4
+                    },
+                    "stroke": {
+                      "style": {
+                        "type": "dashed"
+                      },
+                      "width": 2,
+                      "color": "#7b8fb7",
+                      "unit": "px"
+                    }
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 84
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "center",
+                  "content_alignment_vertical": "center",
+                  "margins": {
+                    "top": 20,
+                    "bottom": 20,
+                    "start": 8,
+                    "end": 8
+                  },
+                  "alignment_horizontal": "center"
+                }
+              ],
+              "orientation": "vertical",
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#f3f5f9"
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "horizontal",
+              "content_alignment_vertical": "center",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "top": 10
+              },
+              "items": [
+                {
+                  "type": "primary_btn",
+                  "text": "@{text___31}",
+                  "width": {
+                    "type": "match_parent",
+                    "weight": 1
+                  },
+                  "margins": {
+                    "start": 4
+                  },
+                  "actions": [
+                    {
+                      "log_id": "save_draft_page2",
+                      "url": "div-action://set_page_with_changes_to_db?key=draft/@{current_accident_id}/page4"
+                    },
+                    {
+                      "log_id": "save_archive_index",
+                      "url": "div-action://set_object_to_db?archive_path=Accidents&next=draft/@{current_accident_id}/page2&title=ثبت تصادف غیر سازشی&accident_id=@{current_accident_id}&current_step=3&process_type=sazeshi&step_dbshow=صفحه ۲ از ۴&step_persian_lan=مرحله&accident_id_dbshow=@{current_accident_id}&accident_id_persian_lan=شناسه"
+                    },
+                    {
+                      "log_id": "set_step",
+                      "url": "div-action://set_variable_to_db?key=current_step&value=5"
+                    },
+                    {
+                      "log_id": "load_screen",
+                      "url": "div-action://load_screen?screen=Accidents/uncompromising/organizationlegalentities"
+                    }
+                  ]
+                },
+                {
+                  "type": "secondary_btn",
+                  "text": "@{text___33}",
+                  "width": {
+                    "type": "match_parent",
+                    "weight": 1
+                  },
+                  "margins": {
+                    "top": 0,
+                    "end": 4
+                  },
+                  "actions": [
+                    {
+                      "log_id": "load_screen",
+                      "url": "div-action://load_screen?screen=amaken/completion"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "visibility_actions": [
+            {
+              "log_id": "load_accident_id",
+              "url": "div-action://set_variable_from_db?name=current_accident_id",
+              "visibility_duration": 0
+            }
+          ]
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "string",
+        "name": "text___1",
+        "value": "اطلاعات تصادفات"
+      },
+      {
+        "type": "string",
+        "name": "text___2",
+        "value": "تعداد کل :"
+      },
+      {
+        "type": "string",
+        "name": "text___3",
+        "value": "۲۶"
+      },
+      {
+        "type": "string",
+        "name": "text___4",
+        "value": "تصادفات سازشی :"
+      },
+      {
+        "type": "string",
+        "name": "text___5",
+        "value": "۱۷ عدد"
+      },
+      {
+        "type": "string",
+        "name": "text___6",
+        "value": "تصادفات غیر سازشی :"
+      },
+      {
+        "type": "string",
+        "name": "text___7",
+        "value": "۹ عدد"
+      },
+      {
+        "type": "string",
+        "name": "text___8",
+        "value": "نوع تصادف را انتخاب کنید :"
+      },
+      {
+        "type": "string",
+        "name": "text___9",
+        "value": "غیر سازشی"
+      },
+      {
+        "type": "string",
+        "name": "text___10",
+        "value": "شروع فرآیند"
+      },
+      {
+        "type": "string",
+        "name": "text___11",
+        "value": "سازشی"
+      },
+      {
+        "type": "string",
+        "name": "text___12",
+        "value": "شروع فرآیند"
+      },
+      {
+        "type": "string",
+        "name": "refresh",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "arrow_right",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "text___32",
+        "value": "افزودن عابر"
+      },
+      {
+        "type": "string",
+        "name": "text___33",
+        "value": "مرحله قبل"
+      },
+      {
+        "type": "string",
+        "name": "text___31",
+        "value": "مرحله بعد"
+      },
+      {
+        "type": "boolean",
+        "name": "index1",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "checked",
+        "value": "divkit-asset://checkbox-checked.png"
+      },
+      {
+        "type": "string",
+        "name": "unchecked",
+        "value": "divkit-asset://checkbox-unchecked.png"
+      },
+      {
+        "type": "string",
+        "name": "police_station",
+        "value": "پلیس راهور فراجا"
+      },
+      {
+        "type": "string",
+        "name": "police_command_center",
+        "value": "پلیس ترافیک شهری"
+      },
+      {
+        "type": "string",
+        "name": "provincial_police_center",
+        "value": "آذربایجان شرقی_پلیس راهور استان"
+      },
+      {
+        "type": "string",
+        "name": "provincial_traffic_police",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "the_way",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "news_number",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "number_vehicles",
+        "value": "2"
+      },
+      {
+        "type": "string",
+        "name": "type_accident",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "geographic_coordinates",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "date_accident",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "time_accident",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "distance_from_origin",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "text___36",
+        "value": "مشخصات شخص"
+      },
+      {
+        "type": "string",
+        "name": "text___36",
+        "value": "مشخصات راننده"
+      },
+      {
+        "type": "string",
+        "name": "text___49",
+        "value": "غیر ایرانی"
+      },
+      {
+        "type": "string",
+        "name": "text___50",
+        "value": "ایرانی"
+      },
+      {
+        "type": "string",
+        "name": "national_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "text___37",
+        "value": "اسکن چهره"
+      },
+      {
+        "type": "string",
+        "name": "text___39",
+        "value": "استعلام"
+      },
+      {
+        "type": "string",
+        "name": "certificate_number",
+        "value": "شماره گواهینامه"
+      },
+      {
+        "type": "string",
+        "name": "variable_name",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_family_name",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_father_name",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_age",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_gender",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_place_issue",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_place_birth",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_location",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_phone_number",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "fix_phone",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_location_work",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_reasons_arrest",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_type_accusation",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_position",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_citizenship",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "add_square.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "current_accident_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "current_pedestrian_id",
+        "value": ""
+      }
+    ]
+  },
+  "templates": {
+    "page_title": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "wrap_content"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "primary_btn": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#ffffff",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#193d8d"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14
+      }
+    },
+    "secondary_btn": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#f3f5f9"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14
+      },
+      "margins": {
+        "top": 8
+      }
+    }
+  }
+}

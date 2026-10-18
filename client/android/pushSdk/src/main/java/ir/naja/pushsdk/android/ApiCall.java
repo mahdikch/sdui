@@ -11,6 +11,7 @@ import java.util.Map;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
+import okhttp3.Handshake;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -21,12 +22,15 @@ import okhttp3.Response;
 public class ApiCall {
     Object result = null;
     public static final MediaType mediaType = MediaType.get("application/json;charset=utf-8");
-    private OkHttpClient client = new OkHttpClient();
+
+    private OkHttpClient client() {
+        return PushSsl.client(null);
+    }
 
     public Object makeApiGetRequest(String data) {
 
         Request request = new Request.Builder().url(Constant.server_Url + data).get().build();
-        client.newCall(request).enqueue(new Callback() {
+        client().newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 e.printStackTrace();
@@ -49,7 +53,7 @@ public class ApiCall {
     public Object makeApiPostRequest(String data) {
         RequestBody requestBody = RequestBody.create(data, mediaType);
         Request request = new Request.Builder().url(Constant.server_Url + data).post(requestBody).build();
-        client.newCall(request).enqueue(new Callback() {
+        client().newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 e.printStackTrace();
@@ -70,7 +74,7 @@ public class ApiCall {
     }
     public  String makeApiPostRequestWithObjHeader( Object object, String headerName, String token) throws IOException {
         // Initialize OkHttpClient
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = client();
         // Convert object to JSON using Gson
         Gson gson = new Gson();
         String jsonPayload = gson.toJson(object);
@@ -86,20 +90,27 @@ public class ApiCall {
                 .addHeader("Content-Type", "application/json")
                 .build();
 
-        // Execute the request
+        PushLog.i("HTTP enable-device POST " + Constant.server_Url
+                + " token=" + PushLog.preview(token));
         try (Response response = client.newCall(request).execute()) {
+            String body = response.body() != null ? response.body().string() : null;
+            PushLog.i("HTTP enable-device code=" + response.code()
+                    + " ok=" + response.isSuccessful()
+                    + " body=" + PushLog.preview(body));
             if (!response.isSuccessful()) {
-//                throw new IOException("Failed : HTTP error code : " + response.code());
+                PushLog.w("HTTP enable-device body=" + (body == null ? "null" : body));
             }
-
-            // Return the response body as a string
-            return response.body() != null ? response.body().string() : null;
+            return body;
+        } catch (IOException e) {
+            PushLog.e("HTTP enable-device failed url=" + Constant.server_Url
+                    + " err=" + PushLog.errorSummary(e), e);
+            throw e;
         }
     }
 
     public  String makeApiPostRequestWithObjHeaderSend( Object object, String headerName, String token) throws IOException {
         // Initialize OkHttpClient
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = client();
         // Convert object to JSON using Gson
         Gson gson = new Gson();
         String jsonPayload = gson.toJson(object);
@@ -128,7 +139,7 @@ public class ApiCall {
 
     public String makeApiPostRequestWithObjHeaderSync(Object object, String headerName, String token) throws IOException {
         // Initialize OkHttpClient
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = client();
         // Convert object to JSON using Gson
         Gson gson = new Gson();
         String jsonPayload = gson.toJson(object);
@@ -157,7 +168,7 @@ public class ApiCall {
 
     public String makeApiPostRequestFromData(HashMap<String, String> object) {
         // Initialize OkHttpClient
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = client();
         MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
         // Build the form body
         FormBody.Builder formBodyBuilder = new FormBody.Builder();
@@ -190,15 +201,36 @@ public class ApiCall {
 //                .build();
 
         // Execute the request
+        PushLog.i("HTTP portal POST " + Constant.portal_Url);
         try (Response response = client.newCall(request).execute()) {
-            if (!response.isSuccessful()) {
-//                throw new IOException("Failed : HTTP error code : " + response.code());
+            Handshake handshake = response.handshake();
+            if (handshake != null) {
+                PushLog.i("HTTP portal TLS tls=" + handshake.tlsVersion()
+                        + " cipher=" + handshake.cipherSuite()
+                        + " peerCerts=" + handshake.peerCertificates().size());
+            } else {
+                PushLog.w("HTTP portal TLS handshake=null (unexpected for https)");
             }
-
-            // Return the response body as a string
-            return response.body() != null ? response.body().string() : null;
+            String body = response.body() != null ? response.body().string() : null;
+            PushLog.i("HTTP portal code=" + response.code()
+                    + " ok=" + response.isSuccessful()
+                    + " body=" + PushLog.preview(body));
+            if (!response.isSuccessful()) {
+                PushLog.w("HTTP portal body=" + (body == null ? "null" : body));
+            }
+            return body;
         } catch (IOException e) {
-//            throw new RuntimeException(e);
+            PushLog.e("HTTP portal failed url=" + Constant.portal_Url
+                    + " clientSslConfigured=" + (client.sslSocketFactory() != null)
+                    + " err=" + PushLog.errorSummary(e), e);
+            Throwable c = e.getCause();
+            int depth = 0;
+            while (c != null && depth < 6) {
+                PushLog.e("HTTP portal cause[" + depth + "] "
+                        + c.getClass().getName() + ": " + c.getMessage());
+                c = c.getCause();
+                depth++;
+            }
             return "";
         }
     }

@@ -1,0 +1,379 @@
+{
+  "card": {
+    "log_id": "profile_facilities_mine_bottomsheet",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "border": {
+            "corners_radius": {
+              "top-left": 16,
+              "top-right": 16
+            }
+          },
+          "paddings": {
+            "top": 8,
+            "bottom": 24,
+            "start": 16,
+            "end": 16
+          },
+          "items": [
+            {
+              "type": "separator",
+              "delimiter_style": {
+                "color": "#d1d5db"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 40
+              },
+              "height": {
+                "type": "fixed",
+                "value": 4
+              },
+              "alignment_horizontal": "center",
+              "border": {
+                "corner_radius": 2
+              },
+              "margins": {
+                "bottom": 12
+              }
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 16
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "تسهیلات من",
+                  "font_size": 16,
+                  "font_weight": "medium",
+                  "text_color": "#193d8d",
+                  "text_alignment_horizontal": "right",
+                  "alignment_horizontal": "right",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "بستن",
+                  "font_size": 13,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "actions": [
+                    {
+                      "log_id": "close_facilities_mine",
+                      "url": "div-action://close_bottom_sheet"
+                    }
+                  ],
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "درخواستی ثبت نشده است",
+              "font_size": 13,
+              "text_color": "#6b7280",
+              "text_alignment_horizontal": "center",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "visibility": "@{len(facilities) == 0 ? 'visible' : 'gone'}",
+              "paddings": {
+                "top": 24,
+                "bottom": 24
+              }
+            },
+            {
+              "type": "gallery",
+              "orientation": "vertical",
+              "restrict_parent_scroll": true,
+              "visibility": "@{len(facilities) == 0 ? 'gone' : 'visible'}",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 480
+              },
+              "item_builder": {
+                "data": "@{facilities}",
+                "data_element_name": "item",
+                "prototypes": [
+                  {
+                    "selector": "@{true}",
+                    "div": {
+                      "type": "facility_card",
+                      "items": [
+                        {
+                          "type": "container",
+                          "orientation": "overlap",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "bottom": 8
+                          },
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "@{getStringFromDict(getDictFromDict(item, 'subStateType'), 'description')}",
+                              "font_size": 14,
+                              "font_weight": "medium",
+                              "text_color": "#193d8d",
+                              "text_alignment_horizontal": "right",
+                              "alignment_horizontal": "right",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "paddings": {
+                                "left": 72
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "انصراف",
+                              "font_size": 12,
+                              "font_weight": "medium",
+                              "text_color": "#dc2626",
+                              "alignment_horizontal": "left",
+                              "visibility": "@{getStringFromDict(item, 'isCancel') == '1' ? 'visible' : 'gone'}",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "actions": [
+                                {
+                                  "log_id": "cancel_facility_request",
+                                  "url": "div-action://call_service?path=loan/loanCancel&sysName=loan&ph/token=empty&id=@{getStringFromDict(item, 'id')}&isCancel=@{getStringFromDict(item, 'isCancel')}"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "تاریخ ثبت",
+                          "value_text": "@{getStringFromDict(item, 'exeDateShamsi')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "تاریخ تخصیص",
+                          "value_text": "@{getStringFromDict(item, 'allocateDateShamsi')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "از کاربری امید",
+                          "value_text": "@{getStringFromDict(item, 'fromKiosk')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "امریه",
+                          "value_text": "@{getStringFromDict(item, 'loanOrder')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "امریه ویژه",
+                          "value_text": "@{getStringFromDict(item, 'specialOrder')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "امتیاز",
+                          "value_text": "@{getStringFromDict(item, 'score')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "وضعیت صندوق",
+                          "value_text": "@{getStringFromDict(item, 'waitingBoxes')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "یگان ثبت کننده",
+                          "value_text": "@{getStringFromDict(getDictFromDict(item, 'registerYegan'), 'description')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "محل استقرار دریافت وام",
+                          "value_text": "@{getStringFromDict(item, 'countryDivisionFinal')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "نوع تسهیلات",
+                          "value_text": "@{getStringFromDict(getDictFromDict(item, 'subStateType'), 'description')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "عنوان تسهیلات",
+                          "value_text": "@{getStringFromDict(item, 'loanTitleFinal')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "گروه عنوان تسهیلات",
+                          "value_text": "@{getStringFromDict(item, 'loanInfoGrp')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "مبلغ تسهیلات",
+                          "value_text": "@{getStringFromDict(item, 'amountFinal')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "نوع صدور حکم",
+                          "value_text": "@{getStringFromDict(item, 'stmntType')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "وضعیت تصویب",
+                          "value_text": "@{getStringFromDict(item, 'confirmedTitle')}"
+                        },
+                        {
+                          "type": "field_row",
+                          "label": "روند ارسال به مالی",
+                          "value_text": "@{getStringFromDict(item, 'isAccept')}"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "array",
+        "name": "facilities",
+        "value": []
+      }
+    ]
+  },
+  "templates": {
+    "field_row": {
+      "type": "container",
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "right",
+      "content_alignment_vertical": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "paddings": {
+        "top": 4,
+        "bottom": 4
+      },
+      "items": [
+        {
+          "type": "text",
+          "$text": "value_text",
+          "font_size": 12,
+          "font_weight": "medium",
+          "text_color": "#1f2937",
+          "text_alignment_horizontal": "left",
+          "width": {
+            "type": "match_parent",
+            "weight": 1
+          }
+        },
+        {
+          "type": "text",
+          "$text": "label",
+          "font_size": 12,
+          "text_color": "#6b7280",
+          "text_alignment_horizontal": "right",
+          "width": {
+            "type": "wrap_content"
+          },
+          "margins": {
+            "start": 8
+          }
+        }
+      ]
+    },
+    "facility_card": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#f3f5f9"
+        }
+      ],
+      "border": {
+        "corner_radius": 12
+      },
+      "paddings": {
+        "top": 12,
+        "bottom": 12,
+        "start": 12,
+        "end": 12
+      },
+      "margins": {
+        "bottom": 10
+      }
+    }
+  }
+}

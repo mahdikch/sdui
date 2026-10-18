@@ -42,6 +42,7 @@ import com.yandex.divkit.demo.utils.lifecycleOwner
 import com.yandex.divkit.regression.ScenarioLogDelegate
 import io.noties.markwon.AbstractMarkwonPlugin
 import io.noties.markwon.core.MarkwonTheme
+import org.json.JSONArray
 import org.json.JSONObject
 
 fun divConfiguration(
@@ -90,7 +91,7 @@ fun divConfiguration(
             }
         })
         .supportHyphenation(true)
-        .visualErrorsEnabled(true)
+        .visualErrorsEnabled(false)
         .extension(DivSizeProviderExtensionHandler())
         .extension(createDivSwipeGestureExtensionHandler())
         .extension(createMarkdownExtension(activity))
@@ -201,10 +202,77 @@ fun JSONObject.asDiv2DataListWithTemplates(errorLogger: ParsingErrorLogger? = nu
 }
 
 fun JSONObject.asDivPatchWithTemplates(errorLogger: ParsingErrorLogger? = null): DivPatch {
+    normalizeDivNumericFields()
+    // Do NOT wrap base_element items into a nested grid.
+    // DivKit replaces the element with id=base_element by the patch items as siblings
+    // inside the parent grid (see DivPatchApply.applyPatchForListOfDivs). Nesting them
+    // in an extra grid collapsed the menu or broke column layout on main.
     val templates = optJSONObject("templates")
     val card = getJSONObject("patch")
     val environment = createEnvironment(errorLogger, templates)
     return DivPatch(environment, card)
+}
+
+/**
+ * DivKit expects numeric fields (e.g. match_parent size "weight") as numbers, not strings.
+ * Some patch JSON stored in DB uses string values and fails parsing.
+ * Also coerces stringified action_animation JSON objects from the server.
+ */
+fun JSONObject.normalizeDivNumericFields() {
+    normalizeDivNumericFieldsInternal(this)
+}
+
+private val INTEGER_FIELD_KEYS = setOf(
+    "row_span",
+    "column_span",
+    "column_count",
+    "row_count",
+    "font_size",
+    "line_height",
+    "max_lines",
+    "corner_radius",
+    "duration",
+)
+
+private fun normalizeDivNumericFieldsInternal(node: Any?) {
+    when (node) {
+        is JSONObject -> {
+            if (node.has("weight")) {
+                when (val weight = node.opt("weight")) {
+                    is String -> weight.toDoubleOrNull()?.let { node.put("weight", it) }
+                    is Int -> node.put("weight", weight.toDouble())
+                    is Long -> node.put("weight", weight.toDouble())
+                }
+            }
+            // Server patches often send spans as "1" instead of 1.
+            INTEGER_FIELD_KEYS.forEach { key ->
+                if (!node.has(key)) return@forEach
+                // Only coerce plain integer fields; skip size objects like {"type":"fixed","value":120}
+                val raw = node.opt(key)
+                if (raw is String) {
+                    raw.toLongOrNull()?.let { node.put(key, it) }
+                        ?: raw.toDoubleOrNull()?.let { node.put(key, it) }
+                }
+            }
+            // action_animation sometimes arrives as a JSON string instead of an object.
+            val actionAnimation = node.opt("action_animation")
+            if (actionAnimation is String) {
+                val trimmed = actionAnimation.trim()
+                if (trimmed.startsWith("{") && trimmed.endsWith("}")) {
+                    runCatching { node.put("action_animation", JSONObject(trimmed)) }
+                }
+            }
+            val keys = node.keys().asSequence().toList()
+            keys.forEach { key ->
+                normalizeDivNumericFieldsInternal(node.opt(key))
+            }
+        }
+        is org.json.JSONArray -> {
+            for (i in 0 until node.length()) {
+                normalizeDivNumericFieldsInternal(node.opt(i))
+            }
+        }
+    }
 }
 
 private fun createEnvironment(errorLogger: ParsingErrorLogger?, templates: JSONObject?, componentName: String? = null): DivParsingEnvironment {

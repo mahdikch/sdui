@@ -44,6 +44,9 @@ abstract class SingletonObjects {
         private var RETROFIT_INSTANCE: Retrofit? = null
 
         @Volatile
+        private var ROUTING_RETROFIT_INSTANCE: Retrofit? = null
+
+        @Volatile
         private var SHARED_PREF_INSTANCE: SharedPreferences? = null
 
         @Volatile
@@ -142,8 +145,8 @@ abstract class SingletonObjects {
                             
                             response
                         }
-                        .readTimeout(180, TimeUnit.SECONDS)
-                        .connectTimeout(180, TimeUnit.SECONDS)
+                        .readTimeout(600, TimeUnit.SECONDS)
+                        .connectTimeout(600, TimeUnit.SECONDS)
                         .build()
 
                     OKHTTPCLIENT_INSTANCE = okHttpClientInstance
@@ -203,6 +206,24 @@ abstract class SingletonObjects {
                     ANDROID_ID_INSTANCE = androidIdInstance
                 }
                 return androidIdInstance
+            }
+        }
+
+        fun routingRetrofitInstance(): Retrofit? {
+            synchronized(this) {
+                var retrofitInstance = ROUTING_RETROFIT_INSTANCE
+
+                if (retrofitInstance == null) {
+                    retrofitInstance = Retrofit.Builder()
+                        .client(getOkHttpClientInstance())
+                        .baseUrl("http://mapbox-gis.naja.net:8080/")
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create(getGsonInstance()))
+                        .build()
+
+                    ROUTING_RETROFIT_INSTANCE = retrofitInstance
+                }
+                return retrofitInstance
             }
         }
     }

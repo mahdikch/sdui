@@ -21,6 +21,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -88,8 +89,12 @@ public class Notify {
 //        String ticker = contentTitle + " " + messageString;
 
         //build the pending intent that will start the appropriate activity
+        Intent intent1=new Intent();
+        intent1.setComponent(new ComponentName(context.getPackageName(),"com.yandex.divkit.demo.ui.activity.MehdiActivity"));
+        intent1.putExtra("div_action_open_push","open");
+
         PendingIntent pendingIntent = PendingIntent.getActivity(context,
-                3, intent, PendingIntent.FLAG_IMMUTABLE);
+                3, intent1, PendingIntent.FLAG_IMMUTABLE);
         Uri parse = Uri.parse("android.resource://" + context.getPackageName() + "/" + R.raw.notif);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(TAG, "najification", NotificationManager.IMPORTANCE_HIGH);
@@ -152,8 +157,12 @@ public class Notify {
 
 
         //build the pending intent that will start the appropriate activity
+        Intent intent1=new Intent();
+        intent1.setComponent(new ComponentName(context.getPackageName(),"com.yandex.divkit.demo.ui.activity.MehdiActivity"));
+        intent1.putExtra("div_action_open_push","open");
+
         PendingIntent pendingIntent = PendingIntent.getActivity(context,
-                3, new Intent(), PendingIntent.FLAG_IMMUTABLE);
+                3, intent1, PendingIntent.FLAG_IMMUTABLE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel("101", "najification", NotificationManager.IMPORTANCE_LOW);

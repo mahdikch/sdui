@@ -674,6 +674,7 @@
               }
             },
             {
+              "id": "page",
               "type": "gallery",
               "width": {
                 "type": "match_parent"
@@ -682,8 +683,19 @@
                 "type": "match_parent",
                 "weight": 3
               },
-              "orientation": "vertical",
               "items": [
+                {
+                  "type": "container",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "orientation": "vertical",
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "center",
+                  "items": [
                 {
                   "type": "grid",
                   "width": {
@@ -702,8 +714,7 @@
                     "bottom": 8
                   },
                   "alignment_horizontal": "center",
-                  "column_count": "@{gridColumn}",
-                  "row_count": "@{gridRow}",
+                  "column_count": 3,
                   "items": [
                     {
                       "type": "grid_element",
@@ -911,9 +922,9 @@
                     }
                   ]
                 }
-              ],
-              "alignment_horizontal": "center",
-              "alignment_vertical": "center"
+                  ]
+                }
+              ]
             }
           ],
           "background": [

@@ -1,149 +1,1533 @@
 {
-  "templates": {
-    "grid_element": {
-      "type": "container",
-      "$actions": "actions",
-      "width": {
-        "type": "match_parent",
-        "weight": 1
-      },
-      "height": {
-        "type": "match_parent",
-        "weight": 1
-      },
-      "margins": {
-        "left": 8,
-        "top": 8,
-        "right": 8,
-        "bottom": 8
-      },
-      "background": [
-        {
-          "type": "solid",
-          "$color": "background_color"
-        }
-      ],
-      "items": [
-        {
-          "type": "image",
-          "$image_url": "icon",
-          "height": {
-            "type": "fixed",
-            "value": 26
-          },
-          "width": {
-            "type": "fixed",
-            "value": 35
-          }
-        },
-        {
-          "type": "text",
-          "$text": "title",
-          "font_size": 12,
-          "font_weight": "bold",
-          "letter_spacing": 0,
-          "text_color": "#193d8d",
-          "text_alignment_horizontal": "left",
-          "text_alignment_vertical": "top",
-          "width": {
-            "type": "wrap_content"
-          },
-          "height": {
-            "type": "wrap_content"
-          },
-          "content_alignment_vertical": "center",
-          "content_alignment_horizontal": "center",
-          "alignment_horizontal": "center",
-          "alignment_vertical": "center",
-          "margins": {
-            "top": 8,
-            "bottom": 0
-          }
-        }
-      ],
-      "orientation": "vertical",
-      "content_alignment_vertical": "center",
-      "content_alignment_horizontal": "center",
-      "alignment_horizontal": "center",
-      "alignment_vertical": "center",
-      "border": {
-        "corner_radius": 8
-      },
-      "delimiter_style": {
-        "color": "#00000000"
-      }
-    },
-    "empty_element": {
-      "type": "container",
-      "width": {
-        "type": "match_parent",
-        "weight": 1
-      },
-      "height": {
-        "type": "fixed",
-        "value": 100
-      },
-      "margins": {
-        "left": 8,
-        "top": 8,
-        "right": 8,
-        "bottom": 8
-      },
-      "background": [
-        {
-          "type": "solid",
-          "color": "#00000000"
-        }
-      ],
-      "orientation": "vertical",
-      "content_alignment_vertical": "center",
-      "content_alignment_horizontal": "center",
-      "alignment_horizontal": "center",
-      "alignment_vertical": "center",
-      "border": {
-        "corner_radius": 8
-      },
-      "delimiter_style": {
-        "color": "#00000000"
-      }
-    }
-  },
+
   "patch": {
     "mode": "partial",
     "changes": [
       {
-        "id": "base_element",
+        "id": "vehicle_information",
         "items": [
-          {
-            "type": "grid_element",
-            "row_span": "1",
-            "column_span": "1",
-            "background_color": "#FFFFFF",
-            "icon": "http://172.19.83.16:7001/PoliceHamrah/icon/ph.png",
-            "title": "ثبت تردد اربعين",
-            "actions": [
+          {  "id": "vehicle_information",
+            "type": "container",
+            "width": {
+              "type": "match_parent"
+            },
+            "height": {
+              "type": "match_parent"
+            },
+            "items": [
               {
-                "log_id": "show_bottom_sheet",
-                "url": "div-action://bottom_sheet_div?jsonName=ph/vt/bottomsheet"
-              }
-            ]          },
-          {
-            "type": "grid_element",
-            "row_span": "1",
-            "column_span": "1",
-            "background_color": "#FFFFFF",
-            "icon": "http://172.19.83.16:7001/Basir/icon/bazresi.png",
-            "title": "ثبت تخلف",
-            "actions": [
+                "type": "container",
+                "width": {
+                  "type": "match_parent"
+                },
+                "height": {
+                  "type": "fixed",
+                  "value": 111
+                },
+                "items": [
+                  {
+                    "type": "container",
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "items": [
+                      {
+                        "type": "image",
+                        "image_url": "empty://",
+                        "width": {
+                          "type": "fixed",
+                          "value": 27
+                        },
+                        "height": {
+                          "type": "fixed",
+                          "value": 20
+                        },
+                        "preload_required": true
+                      },
+                      {
+                        "type": "text",
+                        "text": "مشاهده مراحل ",
+                        "width": {
+                          "type": "fixed",
+                          "value": 100
+                        },
+                        "paddings": {
+                          "start": 10,
+                          "end": 10
+                        }
+                      }
+                    ],
+                    "content_alignment_horizontal": "start",
+                    "content_alignment_vertical": "center",
+                    "orientation": "horizontal",
+                    "margins": {
+                      "start": 30
+                    }
+                  },
+                  {
+                    "type": "container",
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "height": {
+                      "type": "wrap_content"
+                    },
+                    "items": [
+                      {
+                        "type": "text",
+                        "text": "اطلاعات بیمه",
+                        "font_size": 14,
+                        "width": {
+                          "type": "match_parent"
+                        },
+                        "text_alignment_horizontal": "start"
+                      }
+                    ],
+                    "alignment_vertical": "center",
+                    "content_alignment_horizontal": "end",
+                    "content_alignment_vertical": "center"
+                  },
+                  {
+                    "type": "container",
+                    "width": {
+                      "type": "fixed",
+                      "value": 174
+                    },
+                    "height": {
+                      "type": "fixed",
+                      "value": 111
+                    },
+                    "items": [
+                      {
+                        "type": "custom",
+                        "custom_type": "circular_progress",
+                        "custom_props": {
+                          "current": "@{current}",
+                          "total": "@{total}",
+                          "textSize": 32
+                        },
+                        "width": {
+                          "type": "match_parent"
+                        },
+                        "height": {
+                          "type": "match_parent"
+                        }
+                      }
+                    ],
+                    "content_alignment_horizontal": "center",
+                    "content_alignment_vertical": "center"
+                  }
+                ],
+                "orientation": "horizontal",
+                "content_alignment_horizontal": "center",
+                "content_alignment_vertical": "center",
+                "background": [
+                  {
+                    "type": "solid",
+                    "color": "#ffffff"
+                  }
+                ],
+                "margins": {
+                  "top": 8,
+                  "bottom": 8,
+                  "start": 8,
+                  "end": 8
+                },
+                "border": {
+                  "corner_radius": 6,
+                  "corners_radius": {
+                    "top-left": 6,
+                    "top-right": 6,
+                    "bottom-left": 6,
+                    "bottom-right": 6
+                  }
+                }
+              },
               {
-                "log_id": "show_bottom_sheet",
-                "url": "div-action://bottom_sheet_div?jsonName=ph/vt/bottomsheet"
+                "type": "gallery",
+                "width": {
+                  "type": "match_parent"
+                },
+                "height": {
+                  "type": "match_parent"
+                },
+                "items": [
+                  {
+                    "type": "container",
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "items": [
+                      {
+                        "type": "container",
+                        "items": [
+                          {
+                            "type": "container",
+                            "width": {
+                              "type": "match_parent"
+                            },
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "items": [
+                              {
+                                "type": "container",
+                                "items": [
+                                  {
+                                    "type": "text",
+                                    "text": "نام شرکت بیمه ثالث",
+                                    "font_size": 12,
+                                    "font_weight": "medium",
+                                    "line_height": 24,
+                                    "letter_spacing": 0,
+                                    "text_color": "#3b3b3b",
+                                    "text_alignment_horizontal": "right",
+                                    "text_alignment_vertical": "top",
+                                    "width": {
+                                      "type": "match_parent"
+                                    },
+                                    "height": {
+                                      "type": "wrap_content"
+                                    },
+                                    "margins": {
+                                      "top": 10,
+                                      "bottom": 10,
+                                      "start": 15,
+                                      "end": 15
+                                    }
+                                  },
+                                  {
+                                    "type": "container",
+                                    "items": [
+                                      {
+                                        "type": "container",
+                                        "items": [
+                                          {
+                                            "type": "image",
+                                            "image_url": "empty://",
+                                            "actions": [
+                                              {
+                                                "log_id": "show_bottom_sheet_list",
+                                                "url": "div-action://show_date_picker?variableName=date"
+                                              }
+                                            ],
+                                            "width": {
+                                              "type": "fixed",
+                                              "value": 38
+                                            },
+                                            "height": {
+                                              "type": "fixed",
+                                              "value": 32
+                                            },
+                                            "preload_required": true
+                                          },
+                                          {
+                                            "type": "input",
+                                            "hint_text": "وارد نمایید",
+                                            "text_variable": "variable_name_of_third_insurance_company",
+                                            "keyboard_type": "single_line_text",
+                                            "font_size": 14,
+                                            "font_weight": "regular",
+                                            "line_height": 32,
+                                            "letter_spacing": 0,
+                                            "text_color": "#a3a3a3",
+                                            "text_alignment_horizontal": "right",
+                                            "text_alignment_vertical": "top",
+                                            "width": {
+                                              "type": "match_parent"
+                                            },
+                                            "height": {
+                                              "type": "wrap_content"
+                                            }
+                                          }
+                                        ],
+                                        "height": {
+                                          "type": "wrap_content"
+                                        },
+                                        "width": {
+                                          "type": "match_parent"
+                                        },
+                                        "orientation": "horizontal",
+                                        "content_alignment_horizontal": "right",
+                                        "content_alignment_vertical": "center"
+                                      }
+                                    ],
+                                    "background": [
+                                      {
+                                        "type": "solid",
+                                        "color": "#ffffff"
+                                      }
+                                    ],
+                                    "border": {
+                                      "corners_radius": {
+                                        "top-left": 4,
+                                        "top-right": 4,
+                                        "bottom-left": 4,
+                                        "bottom-right": 4
+                                      },
+                                      "stroke": {
+                                        "color": "#cccccc",
+                                        "style": {
+                                          "type": "solid"
+                                        },
+                                        "unit": "px",
+                                        "width": 2
+                                      },
+                                      "corner_radius": 4
+                                    },
+                                    "height": {
+                                      "type": "wrap_content"
+                                    },
+                                    "width": {
+                                      "type": "match_parent"
+                                    },
+                                    "orientation": "horizontal",
+                                    "content_alignment_horizontal": "left",
+                                    "content_alignment_vertical": "center",
+                                    "paddings": {
+                                      "top": 12,
+                                      "bottom": 12,
+                                      "left": 12,
+                                      "right": 12
+                                    },
+                                    "margins": {
+                                      "top": 10,
+                                      "bottom": 10,
+                                      "start": 15,
+                                      "end": 15
+                                    }
+                                  }
+                                ],
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                },
+                                "orientation": "vertical",
+                                "content_alignment_vertical": "center",
+                                "content_alignment_horizontal": "center"
+                              }
+                            ],
+                            "orientation": "horizontal"
+                          },
+                          {
+                            "type": "container",
+                            "items": [
+                              {
+                                "type": "text",
+                                "text": "شماره بیمه نامه ثالث",
+                                "font_size": 12,
+                                "font_weight": "medium",
+                                "line_height": 24,
+                                "letter_spacing": 0,
+                                "text_color": "#3b3b3b",
+                                "text_alignment_horizontal": "right",
+                                "text_alignment_vertical": "top",
+                                "width": {
+                                  "type": "match_parent"
+                                },
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "margins": {
+                                  "top": 10,
+                                  "bottom": 10,
+                                  "start": 15,
+                                  "end": 15
+                                }
+                              },
+                              {
+                                "type": "container",
+                                "items": [
+                                  {
+                                    "type": "container",
+                                    "items": [
+                                      {
+                                        "type": "input",
+                                        "hint_text": "وارد نمایید",
+                                        "text_variable": "variable_third_insurance_policy_number",
+                                        "keyboard_type": "single_line_text",
+                                        "font_size": 14,
+                                        "font_weight": "regular",
+                                        "line_height": 32,
+                                        "letter_spacing": 0,
+                                        "text_color": "#a3a3a3",
+                                        "text_alignment_horizontal": "right",
+                                        "text_alignment_vertical": "top",
+                                        "width": {
+                                          "type": "match_parent"
+                                        },
+                                        "height": {
+                                          "type": "wrap_content"
+                                        }
+                                      }
+                                    ],
+                                    "height": {
+                                      "type": "wrap_content"
+                                    },
+                                    "width": {
+                                      "type": "match_parent"
+                                    },
+                                    "orientation": "horizontal",
+                                    "content_alignment_horizontal": "right",
+                                    "content_alignment_vertical": "center"
+                                  }
+                                ],
+                                "background": [
+                                  {
+                                    "type": "solid",
+                                    "color": "#ffffff"
+                                  }
+                                ],
+                                "border": {
+                                  "corners_radius": {
+                                    "top-left": 4,
+                                    "top-right": 4,
+                                    "bottom-left": 4,
+                                    "bottom-right": 4
+                                  },
+                                  "stroke": {
+                                    "color": "#cccccc",
+                                    "style": {
+                                      "type": "solid"
+                                    },
+                                    "unit": "px",
+                                    "width": 2
+                                  },
+                                  "corner_radius": 4
+                                },
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                },
+                                "orientation": "horizontal",
+                                "content_alignment_horizontal": "left",
+                                "content_alignment_vertical": "center",
+                                "paddings": {
+                                  "top": 12,
+                                  "bottom": 12,
+                                  "left": 12,
+                                  "right": 12
+                                },
+                                "margins": {
+                                  "top": 10,
+                                  "bottom": 10,
+                                  "start": 15,
+                                  "end": 15
+                                }
+                              }
+                            ],
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "width": {
+                              "type": "match_parent"
+                            },
+                            "orientation": "vertical",
+                            "content_alignment_vertical": "center",
+                            "content_alignment_horizontal": "center"
+                          },
+                          {
+                            "type": "container",
+                            "items": [
+                              {
+                                "type": "text",
+                                "text": "تاریخ پایان اعتبار بیمه ثالث",
+                                "font_size": 12,
+                                "font_weight": "medium",
+                                "line_height": 24,
+                                "letter_spacing": 0,
+                                "text_color": "#3b3b3b",
+                                "text_alignment_horizontal": "right",
+                                "text_alignment_vertical": "top",
+                                "width": {
+                                  "type": "match_parent"
+                                },
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "margins": {
+                                  "top": 10,
+                                  "bottom": 10,
+                                  "start": 15,
+                                  "end": 15
+                                }
+                              },
+                              {
+                                "type": "container",
+                                "items": [
+                                  {
+                                    "type": "container",
+                                    "items": [
+                                      {
+                                        "type": "image",
+                                        "image_url": "empty://",
+                                        "actions": [
+                                          {
+                                            "log_id": "show_bottom_sheet_list",
+                                            "url": "div-action://show_date_picker?variableName=date"
+                                          }
+                                        ],
+                                        "width": {
+                                          "type": "fixed",
+                                          "value": 38
+                                        },
+                                        "height": {
+                                          "type": "fixed",
+                                          "value": 32
+                                        },
+                                        "preload_required": true
+                                      },
+                                      {
+                                        "type": "input",
+                                        "text_variable": "variable_third_party_insurance_validity_expiration_date",
+                                        "hint_text": "انتخاب نمایید",
+                                        "keyboard_type": "single_text_line",
+                                        "font_size": 14,
+                                        "font_weight": "regular",
+                                        "line_height": 32,
+                                        "letter_spacing": 0,
+                                        "text_color": "#a3a3a3",
+                                        "text_alignment_horizontal": "right",
+                                        "text_alignment_vertical": "top",
+                                        "width": {
+                                          "type": "match_parent"
+                                        },
+                                        "height": {
+                                          "type": "wrap_content"
+                                        }
+                                      }
+                                    ],
+                                    "height": {
+                                      "type": "wrap_content"
+                                    },
+                                    "width": {
+                                      "type": "match_parent"
+                                    },
+                                    "orientation": "horizontal",
+                                    "content_alignment_horizontal": "right",
+                                    "content_alignment_vertical": "center"
+                                  }
+                                ],
+                                "background": [
+                                  {
+                                    "type": "solid",
+                                    "color": "#ffffff"
+                                  }
+                                ],
+                                "border": {
+                                  "corners_radius": {
+                                    "top-left": 4,
+                                    "top-right": 4,
+                                    "bottom-left": 4,
+                                    "bottom-right": 4
+                                  },
+                                  "stroke": {
+                                    "color": "#cccccc",
+                                    "style": {
+                                      "type": "solid"
+                                    },
+                                    "unit": "px",
+                                    "width": 2
+                                  },
+                                  "corner_radius": 4
+                                },
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                },
+                                "orientation": "horizontal",
+                                "content_alignment_horizontal": "left",
+                                "content_alignment_vertical": "center",
+                                "paddings": {
+                                  "top": 12,
+                                  "bottom": 12,
+                                  "left": 12,
+                                  "right": 12
+                                },
+                                "margins": {
+                                  "top": 10,
+                                  "bottom": 10,
+                                  "start": 15,
+                                  "end": 15
+                                }
+                              }
+                            ],
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "width": {
+                              "type": "match_parent"
+                            },
+                            "orientation": "vertical",
+                            "content_alignment_vertical": "center",
+                            "content_alignment_horizontal": "center"
+                          },
+                          {
+                            "type": "container",
+                            "items": [
+                              {
+                                "type": "text",
+                                "text": "سقف تعهد مالی بیمه",
+                                "font_size": 12,
+                                "font_weight": "medium",
+                                "line_height": 24,
+                                "letter_spacing": 0,
+                                "text_color": "#3b3b3b",
+                                "text_alignment_horizontal": "right",
+                                "text_alignment_vertical": "top",
+                                "width": {
+                                  "type": "match_parent"
+                                },
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "margins": {
+                                  "top": 10,
+                                  "bottom": 10,
+                                  "start": 15,
+                                  "end": 15
+                                }
+                              },
+                              {
+                                "type": "container",
+                                "items": [
+                                  {
+                                    "type": "container",
+                                    "items": [
+                                      {
+                                        "type": "image",
+                                        "image_url": "empty://",
+                                        "width": {
+                                          "type": "fixed",
+                                          "value": 38
+                                        },
+                                        "height": {
+                                          "type": "fixed",
+                                          "value": 26
+                                        },
+                                        "preload_required": true
+                                      },
+                                      {
+                                        "type": "input",
+                                        "text_variable": "variable_insurance_financial_commitment_limit",
+                                        "font_size": 14,
+                                        "font_weight": "regular",
+                                        "line_height": 32,
+                                        "letter_spacing": 0,
+                                        "text_color": "#a3a3a3",
+                                        "text_alignment_horizontal": "right",
+                                        "text_alignment_vertical": "top",
+                                        "width": {
+                                          "type": "match_parent"
+                                        },
+                                        "height": {
+                                          "type": "wrap_content"
+                                        }
+                                      }
+                                    ],
+                                    "height": {
+                                      "type": "wrap_content"
+                                    },
+                                    "width": {
+                                      "type": "match_parent"
+                                    },
+                                    "orientation": "horizontal",
+                                    "content_alignment_horizontal": "right",
+                                    "content_alignment_vertical": "center"
+                                  }
+                                ],
+                                "background": [
+                                  {
+                                    "type": "solid",
+                                    "color": "#ffffff"
+                                  }
+                                ],
+                                "border": {
+                                  "corners_radius": {
+                                    "top-left": 4,
+                                    "top-right": 4,
+                                    "bottom-left": 4,
+                                    "bottom-right": 4
+                                  },
+                                  "stroke": {
+                                    "color": "#cccccc",
+                                    "style": {
+                                      "type": "solid"
+                                    },
+                                    "unit": "px",
+                                    "width": 2
+                                  },
+                                  "corner_radius": 4
+                                },
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                },
+                                "orientation": "horizontal",
+                                "content_alignment_horizontal": "left",
+                                "content_alignment_vertical": "center",
+                                "paddings": {
+                                  "top": 12,
+                                  "bottom": 12,
+                                  "left": 12,
+                                  "right": 12
+                                },
+                                "margins": {
+                                  "top": 10,
+                                  "bottom": 10,
+                                  "start": 15,
+                                  "end": 15
+                                }
+                              }
+                            ],
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "width": {
+                              "type": "match_parent"
+                            },
+                            "orientation": "vertical",
+                            "content_alignment_vertical": "center",
+                            "content_alignment_horizontal": "center"
+                          },
+                          {
+                            "type": "container",
+                            "items": [
+                              {
+                                "type": "text",
+                                "text": "میزان تقریبی خسارت",
+                                "font_size": 12,
+                                "font_weight": "medium",
+                                "line_height": 24,
+                                "letter_spacing": 0,
+                                "text_color": "#3b3b3b",
+                                "text_alignment_horizontal": "right",
+                                "text_alignment_vertical": "top",
+                                "width": {
+                                  "type": "match_parent"
+                                },
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "margins": {
+                                  "top": 10,
+                                  "bottom": 10,
+                                  "start": 15,
+                                  "end": 15
+                                }
+                              },
+                              {
+                                "type": "container",
+                                "items": [
+                                  {
+                                    "type": "container",
+                                    "items": [
+                                      {
+                                        "type": "input",
+                                        "hint_text": "وارد نمایید",
+                                        "text_variable": "@{variable_approximate_amount_of_damage}",
+                                        "keyboard_type": "single_line_text",
+                                        "font_size": 14,
+                                        "font_weight": "regular",
+                                        "line_height": 32,
+                                        "letter_spacing": 0,
+                                        "text_color": "#a3a3a3",
+                                        "text_alignment_horizontal": "right",
+                                        "text_alignment_vertical": "top",
+                                        "width": {
+                                          "type": "match_parent"
+                                        },
+                                        "height": {
+                                          "type": "wrap_content"
+                                        }
+                                      }
+                                    ],
+                                    "height": {
+                                      "type": "wrap_content"
+                                    },
+                                    "width": {
+                                      "type": "match_parent"
+                                    },
+                                    "orientation": "horizontal",
+                                    "content_alignment_horizontal": "right",
+                                    "content_alignment_vertical": "center"
+                                  }
+                                ],
+                                "background": [
+                                  {
+                                    "type": "solid",
+                                    "color": "#ffffff"
+                                  }
+                                ],
+                                "border": {
+                                  "corners_radius": {
+                                    "top-left": 4,
+                                    "top-right": 4,
+                                    "bottom-left": 4,
+                                    "bottom-right": 4
+                                  },
+                                  "stroke": {
+                                    "color": "#cccccc",
+                                    "style": {
+                                      "type": "solid"
+                                    },
+                                    "unit": "px",
+                                    "width": 2
+                                  },
+                                  "corner_radius": 4
+                                },
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                },
+                                "orientation": "horizontal",
+                                "content_alignment_horizontal": "left",
+                                "content_alignment_vertical": "center",
+                                "paddings": {
+                                  "top": 12,
+                                  "bottom": 12,
+                                  "left": 12,
+                                  "right": 12
+                                },
+                                "margins": {
+                                  "top": 10,
+                                  "bottom": 10,
+                                  "start": 15,
+                                  "end": 15
+                                }
+                              }
+                            ],
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "width": {
+                              "type": "match_parent"
+                            },
+                            "orientation": "vertical",
+                            "content_alignment_vertical": "center",
+                            "content_alignment_horizontal": "center"
+                          },
+                          {
+                            "type": "container",
+                            "width": {
+                              "type": "match_parent"
+                            },
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "items": [
+                              {
+                                "type": "container",
+                                "items": [
+                                  {
+                                    "type": "text",
+                                    "text": "نام شرکت بیمه بدنه",
+                                    "font_size": 12,
+                                    "font_weight": "medium",
+                                    "line_height": 24,
+                                    "letter_spacing": 0,
+                                    "text_color": "#3b3b3b",
+                                    "text_alignment_horizontal": "right",
+                                    "text_alignment_vertical": "top",
+                                    "width": {
+                                      "type": "match_parent"
+                                    },
+                                    "height": {
+                                      "type": "wrap_content"
+                                    },
+                                    "margins": {
+                                      "top": 10,
+                                      "bottom": 10,
+                                      "start": 15,
+                                      "end": 15
+                                    }
+                                  },
+                                  {
+                                    "type": "container",
+                                    "items": [
+                                      {
+                                        "type": "container",
+                                        "items": [
+                                          {
+                                            "type": "input",
+                                            "hint_text": "وارد نمایید",
+                                            "text_variable": "@{variable_name_bodyinsurance_company}",
+                                            "keyboard_type": "single_line_text",
+                                            "font_size": 14,
+                                            "font_weight": "regular",
+                                            "line_height": 32,
+                                            "letter_spacing": 0,
+                                            "text_color": "#a3a3a3",
+                                            "text_alignment_horizontal": "right",
+                                            "text_alignment_vertical": "top",
+                                            "width": {
+                                              "type": "match_parent"
+                                            },
+                                            "height": {
+                                              "type": "wrap_content"
+                                            }
+                                          }
+                                        ],
+                                        "height": {
+                                          "type": "wrap_content"
+                                        },
+                                        "width": {
+                                          "type": "match_parent"
+                                        },
+                                        "orientation": "horizontal",
+                                        "content_alignment_horizontal": "right",
+                                        "content_alignment_vertical": "center"
+                                      }
+                                    ],
+                                    "background": [
+                                      {
+                                        "type": "solid",
+                                        "color": "#ffffff"
+                                      }
+                                    ],
+                                    "border": {
+                                      "corners_radius": {
+                                        "top-left": 4,
+                                        "top-right": 4,
+                                        "bottom-left": 4,
+                                        "bottom-right": 4
+                                      },
+                                      "stroke": {
+                                        "color": "#cccccc",
+                                        "style": {
+                                          "type": "solid"
+                                        },
+                                        "unit": "px",
+                                        "width": 2
+                                      },
+                                      "corner_radius": 4
+                                    },
+                                    "height": {
+                                      "type": "wrap_content"
+                                    },
+                                    "width": {
+                                      "type": "match_parent"
+                                    },
+                                    "orientation": "horizontal",
+                                    "content_alignment_horizontal": "left",
+                                    "content_alignment_vertical": "center",
+                                    "paddings": {
+                                      "top": 12,
+                                      "bottom": 12,
+                                      "left": 12,
+                                      "right": 12
+                                    },
+                                    "margins": {
+                                      "top": 10,
+                                      "bottom": 10,
+                                      "start": 15,
+                                      "end": 15
+                                    }
+                                  }
+                                ],
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                },
+                                "orientation": "vertical",
+                                "content_alignment_vertical": "center",
+                                "content_alignment_horizontal": "center"
+                              }
+                            ],
+                            "orientation": "horizontal"
+                          },
+                          {
+                            "type": "container",
+                            "items": [
+                              {
+                                "type": "text",
+                                "text": "شماره بیمه نامه بدنه(کارت طلایی)",
+                                "font_size": 12,
+                                "font_weight": "medium",
+                                "line_height": 24,
+                                "letter_spacing": 0,
+                                "text_color": "#3b3b3b",
+                                "text_alignment_horizontal": "right",
+                                "text_alignment_vertical": "top",
+                                "width": {
+                                  "type": "match_parent"
+                                },
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "margins": {
+                                  "top": 10,
+                                  "bottom": 10,
+                                  "start": 15,
+                                  "end": 15
+                                }
+                              },
+                              {
+                                "type": "container",
+                                "items": [
+                                  {
+                                    "type": "container",
+                                    "items": [
+                                      {
+                                        "type": "input",
+                                        "hint_text": "وارد نمایید",
+                                        "text_variable": "@{variable_body_insurace_policy_number}",
+                                        "keyboard_type": "single_line_text",
+                                        "font_size": 14,
+                                        "font_weight": "regular",
+                                        "line_height": 32,
+                                        "letter_spacing": 0,
+                                        "text_color": "#a3a3a3",
+                                        "text_alignment_horizontal": "right",
+                                        "text_alignment_vertical": "top",
+                                        "width": {
+                                          "type": "match_parent"
+                                        },
+                                        "height": {
+                                          "type": "wrap_content"
+                                        }
+                                      }
+                                    ],
+                                    "height": {
+                                      "type": "wrap_content"
+                                    },
+                                    "width": {
+                                      "type": "match_parent"
+                                    },
+                                    "orientation": "horizontal",
+                                    "content_alignment_horizontal": "right",
+                                    "content_alignment_vertical": "center"
+                                  }
+                                ],
+                                "background": [
+                                  {
+                                    "type": "solid",
+                                    "color": "#ffffff"
+                                  }
+                                ],
+                                "border": {
+                                  "corners_radius": {
+                                    "top-left": 4,
+                                    "top-right": 4,
+                                    "bottom-left": 4,
+                                    "bottom-right": 4
+                                  },
+                                  "stroke": {
+                                    "color": "#cccccc",
+                                    "style": {
+                                      "type": "solid"
+                                    },
+                                    "unit": "px",
+                                    "width": 2
+                                  },
+                                  "corner_radius": 4
+                                },
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                },
+                                "orientation": "horizontal",
+                                "content_alignment_horizontal": "left",
+                                "content_alignment_vertical": "center",
+                                "paddings": {
+                                  "top": 12,
+                                  "bottom": 12,
+                                  "left": 12,
+                                  "right": 12
+                                },
+                                "margins": {
+                                  "top": 10,
+                                  "bottom": 10,
+                                  "start": 15,
+                                  "end": 15
+                                }
+                              }
+                            ],
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "width": {
+                              "type": "match_parent"
+                            },
+                            "orientation": "vertical",
+                            "content_alignment_vertical": "center",
+                            "content_alignment_horizontal": "center"
+                          },
+                          {
+                            "type": "container",
+                            "width": {
+                              "type": "match_parent"
+                            },
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "items": [
+                              {
+                                "type": "container",
+                                "items": [
+                                  {
+                                    "type": "text",
+                                    "text": " تاریخ اعتباربیمه بدنه",
+                                    "font_size": 12,
+                                    "font_weight": "medium",
+                                    "line_height": 24,
+                                    "letter_spacing": 0,
+                                    "text_color": "#3b3b3b",
+                                    "text_alignment_horizontal": "right",
+                                    "text_alignment_vertical": "top",
+                                    "width": {
+                                      "type": "match_parent"
+                                    },
+                                    "height": {
+                                      "type": "wrap_content"
+                                    },
+                                    "margins": {
+                                      "top": 10,
+                                      "bottom": 10,
+                                      "start": 15,
+                                      "end": 15
+                                    }
+                                  },
+                                  {
+                                    "type": "container",
+                                    "items": [
+                                      {
+                                        "type": "container",
+                                        "items": [
+                                          {
+                                            "type": "input",
+                                            "hint_text": "وارد نمایید",
+                                            "text_variable": "@{variable_body_insurance_validity_date}",
+                                            "keyboard_type": "single_line_text",
+                                            "font_size": 14,
+                                            "font_weight": "regular",
+                                            "line_height": 32,
+                                            "letter_spacing": 0,
+                                            "text_color": "#a3a3a3",
+                                            "text_alignment_horizontal": "right",
+                                            "text_alignment_vertical": "top",
+                                            "width": {
+                                              "type": "match_parent"
+                                            },
+                                            "height": {
+                                              "type": "wrap_content"
+                                            }
+                                          }
+                                        ],
+                                        "height": {
+                                          "type": "wrap_content"
+                                        },
+                                        "width": {
+                                          "type": "match_parent"
+                                        },
+                                        "orientation": "horizontal",
+                                        "content_alignment_horizontal": "right",
+                                        "content_alignment_vertical": "center"
+                                      }
+                                    ],
+                                    "background": [
+                                      {
+                                        "type": "solid",
+                                        "color": "#ffffff"
+                                      }
+                                    ],
+                                    "border": {
+                                      "corners_radius": {
+                                        "top-left": 4,
+                                        "top-right": 4,
+                                        "bottom-left": 4,
+                                        "bottom-right": 4
+                                      },
+                                      "stroke": {
+                                        "color": "#cccccc",
+                                        "style": {
+                                          "type": "solid"
+                                        },
+                                        "unit": "px",
+                                        "width": 2
+                                      },
+                                      "corner_radius": 4
+                                    },
+                                    "height": {
+                                      "type": "wrap_content"
+                                    },
+                                    "width": {
+                                      "type": "match_parent"
+                                    },
+                                    "orientation": "horizontal",
+                                    "content_alignment_horizontal": "left",
+                                    "content_alignment_vertical": "center",
+                                    "paddings": {
+                                      "top": 12,
+                                      "bottom": 12,
+                                      "left": 12,
+                                      "right": 12
+                                    },
+                                    "margins": {
+                                      "top": 10,
+                                      "bottom": 10,
+                                      "start": 15,
+                                      "end": 15
+                                    }
+                                  }
+                                ],
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                },
+                                "orientation": "vertical",
+                                "content_alignment_vertical": "center",
+                                "content_alignment_horizontal": "center"
+                              }
+                            ],
+                            "orientation": "horizontal"
+                          },
+                          {
+                            "type": "container",
+                            "width": {
+                              "type": "match_parent"
+                            },
+                            "height": {
+                              "type": "wrap_content"
+                            },
+                            "orientation": "horizontal",
+                            "items": [
+                              {
+                                "type": "container",
+                                "height": {
+                                  "type": "wrap_content"
+                                },
+                                "width": {
+                                  "type": "match_parent"
+                                },
+                                "orientation": "vertical",
+                                "content_alignment_vertical": "center",
+                                "content_alignment_horizontal": "end",
+                                "items": [
+                                  {
+                                    "type": "text",
+                                    "text": "میزان تقریبی خسارت",
+                                    "font_size": 12,
+                                    "font_weight": "medium",
+                                    "line_height": 24,
+                                    "letter_spacing": 0,
+                                    "text_color": "#3b3b3b",
+                                    "text_alignment_horizontal": "right",
+                                    "text_alignment_vertical": "top",
+                                    "width": {
+                                      "type": "match_parent"
+                                    },
+                                    "height": {
+                                      "type": "wrap_content"
+                                    },
+                                    "margins": {
+                                      "top": 10,
+                                      "bottom": 10,
+                                      "start": 15,
+                                      "end": 15
+                                    }
+                                  },
+                                  {
+                                    "type": "container",
+                                    "background": [
+                                      {
+                                        "type": "solid",
+                                        "color": "#ffffff"
+                                      }
+                                    ],
+                                    "border": {
+                                      "corners_radius": {
+                                        "top-left": 4,
+                                        "top-right": 4,
+                                        "bottom-left": 4,
+                                        "bottom-right": 4
+                                      },
+                                      "stroke": {
+                                        "color": "#cccccc",
+                                        "style": {
+                                          "type": "solid"
+                                        },
+                                        "unit": "px",
+                                        "width": 2
+                                      },
+                                      "corner_radius": 4
+                                    },
+                                    "height": {
+                                      "type": "wrap_content"
+                                    },
+                                    "width": {
+                                      "type": "match_parent"
+                                    },
+                                    "orientation": "horizontal",
+                                    "content_alignment_horizontal": "left",
+                                    "content_alignment_vertical": "center",
+                                    "paddings": {
+                                      "top": 12,
+                                      "bottom": 12,
+                                      "left": 12,
+                                      "right": 12
+                                    },
+                                    "margins": {
+                                      "top": 10,
+                                      "bottom": 10,
+                                      "start": 15,
+                                      "end": 15
+                                    },
+                                    "items": [
+                                      {
+                                        "type": "container",
+                                        "height": {
+                                          "type": "wrap_content"
+                                        },
+                                        "width": {
+                                          "type": "match_parent"
+                                        },
+                                        "orientation": "horizontal",
+                                        "content_alignment_horizontal": "right",
+                                        "content_alignment_vertical": "center",
+                                        "items": [
+                                          {
+                                            "type": "input",
+                                            "hint_text": "وارد نمایید",
+                                            "text_variable": "@{variable_approximate_amount_damage}",
+                                            "keyboard_type": "single_line_text",
+                                            "font_size": 14,
+                                            "font_weight": "regular",
+                                            "line_height": 32,
+                                            "letter_spacing": 0,
+                                            "text_color": "#a3a3a3",
+                                            "text_alignment_horizontal": "right",
+                                            "text_alignment_vertical": "top",
+                                            "width": {
+                                              "type": "match_parent"
+                                            },
+                                            "height": {
+                                              "type": "wrap_content"
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "height": {
+                          "type": "wrap_content"
+                        },
+                        "width": {
+                          "type": "match_parent"
+                        },
+                        "orientation": "vertical",
+                        "content_alignment_vertical": "top",
+                        "content_alignment_horizontal": "right",
+                        "margins": {
+                          "top": 8,
+                          "bottom": 8,
+                          "start": 8,
+                          "end": 8
+                        },
+                        "background": [
+                          {
+                            "type": "solid",
+                            "color": "#ffffff"
+                          }
+                        ],
+                        "border": {
+                          "stroke": {
+                            "color": "#c8d0e4",
+                            "width": 1
+                          },
+                          "corner_radius": 6,
+                          "corners_radius": {
+                            "top-left": 6,
+                            "top-right": 6,
+                            "bottom-left": 6,
+                            "bottom-right": 6
+                          }
+                        }
+                      }
+                    ],
+                    "orientation": "vertical",
+                    "background": [
+                      {
+                        "type": "solid",
+                        "color": "#f3f5f9"
+                      }
+                    ]
+                  }
+                ],
+                "orientation": "vertical"
+              },
+              {
+                "type": "container",
+                "items": [
+                  {
+                    "type": "container",
+                    "actions": [
+                      {
+                        "log_id": "bottom_sheet_dismiss",
+                        "url": "div-action://bottom_sheet_dismiss"
+                      }
+                    ],
+                    "items": [
+                      {
+                        "type": "text",
+                        "text": "@{text___31}",
+                        "font_size": 14,
+                        "font_weight": "regular",
+                        "line_height": 24,
+                        "letter_spacing": 0,
+                        "text_color": "#ffffff",
+                        "text_alignment_horizontal": "left",
+                        "text_alignment_vertical": "top",
+                        "width": {
+                          "type": "wrap_content"
+                        },
+                        "height": {
+                          "type": "wrap_content"
+                        }
+                      }
+                    ],
+                    "background": [
+                      {
+                        "type": "solid",
+                        "color": "#193d8d"
+                      }
+                    ],
+                    "border": {
+                      "corners_radius": {
+                        "top-left": 4,
+                        "top-right": 4,
+                        "bottom-left": 4,
+                        "bottom-right": 4
+                      }
+                    },
+                    "height": {
+                      "type": "fixed",
+                      "value": 48
+                    },
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "orientation": "horizontal",
+                    "content_alignment_horizontal": "center",
+                    "content_alignment_vertical": "center",
+                    "paddings": {
+                      "top": 12,
+                      "bottom": 12,
+                      "left": 12,
+                      "right": 12
+                    }
+                  },
+                  {
+                    "type": "container",
+                    "actions": [
+                      {
+                        "log_id": "load_screen",
+                        "url": "div-action://load_screen?screen=amaken/completion"
+                      }
+                    ],
+                    "items": [
+                      {
+                        "type": "text",
+                        "text": "@{text___33}",
+                        "font_size": 14,
+                        "font_weight": "regular",
+                        "line_height": 24,
+                        "letter_spacing": 0,
+                        "text_color": "#4260a2",
+                        "text_alignment_horizontal": "left",
+                        "text_alignment_vertical": "top",
+                        "width": {
+                          "type": "wrap_content"
+                        },
+                        "height": {
+                          "type": "wrap_content"
+                        }
+                      }
+                    ],
+                    "background": [
+                      {
+                        "type": "solid",
+                        "color": "#f3f5f9"
+                      }
+                    ],
+                    "border": {
+                      "corners_radius": {
+                        "top-left": 4,
+                        "top-right": 4,
+                        "bottom-left": 4,
+                        "bottom-right": 4
+                      },
+                      "stroke": {
+                        "style": {
+                          "type": "solid"
+                        },
+                        "width": 2,
+                        "color": "#193d8d",
+                        "unit": "px"
+                      }
+                    },
+                    "height": {
+                      "type": "fixed",
+                      "value": 48
+                    },
+                    "width": {
+                      "type": "match_parent"
+                    },
+                    "orientation": "horizontal",
+                    "content_alignment_horizontal": "center",
+                    "content_alignment_vertical": "center",
+                    "paddings": {
+                      "top": 12,
+                      "bottom": 12,
+                      "left": 12,
+                      "right": 12
+                    },
+                    "margins": {
+                      "start": 20
+                    }
+                  }
+                ],
+                "height": {
+                  "type": "wrap_content"
+                },
+                "width": {
+                  "type": "match_parent"
+                },
+                "orientation": "horizontal",
+                "content_alignment_horizontal": "center",
+                "content_alignment_vertical": "center",
+                "margins": {
+                  "top": 8,
+                  "bottom": 8,
+                  "start": 8,
+                  "end": 8
+                }
               }
-            ]          },
-          {
-            "type": "empty_element",
-            "row_span": "1",
-            "column_span": "1"
+            ]
           }
         ]
       }

@@ -1,0 +1,272 @@
+{
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "border": {
+            "corners_radius": {
+              "top-left": 16,
+              "top-right": 16
+            }
+          },
+          "paddings": {
+            "top": 8,
+            "bottom": 16,
+            "start": 16,
+            "end": 16
+          },
+          "items": [
+            {
+              "type": "separator",
+              "delimiter_style": {
+                "color": "#d1d5db"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 40
+              },
+              "height": {
+                "type": "fixed",
+                "value": 4
+              },
+              "alignment_horizontal": "center",
+              "border": {
+                "corner_radius": 2
+              },
+              "margins": {
+                "bottom": 12
+              }
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 12
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "درخواست تسهیلات",
+                  "font_size": 16,
+                  "font_weight": "medium",
+                  "text_color": "#193d8d",
+                  "text_alignment_horizontal": "right",
+                  "alignment_horizontal": "right",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "بستن",
+                  "font_size": 13,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "actions": [
+                    {
+                      "log_id": "close_facilities_request",
+                      "url": "div-action://close_bottom_sheet"
+                    }
+                  ],
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "gallery",
+              "orientation": "vertical",
+              "restrict_parent_scroll": true,
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 480
+              },
+              "item_builder": {
+                "data": "@{facillities}",
+                "data_element_name": "facility",
+                "prototypes": [
+                  {
+                    "selector": "@{true}",
+                    "div": {
+                      "type": "option_row",
+                      "title": "@{getStringFromDict(getDictFromDict(facility, 'loanType'), 'description')}",
+                      "actions": [
+                        {
+                          "log_id": "set_facility_title",
+                          "url": "div-action://set_variable?name=facility_request_title&value=@{getStringFromDict(getDictFromDict(facility, 'loanType'), 'description')}"
+                        },
+                        {
+                          "log_id": "set_facility_id",
+                          "url": "div-action://set_variable?name=facility_id&value=@{getStringFromDict(getDictFromDict(facility, 'loanType'), 'id')}"
+                        },
+                        {
+                          "log_id": "set_facility_detail_id",
+                          "url": "div-action://set_variable?name=facility_detail_id&value=@{getStringFromDict(facility, 'id')}"
+                        },
+                        {
+                          "log_id": "set_facility_used_code",
+                          "url": "div-action://set_variable?name=facility_used_code&value=@{getStringFromDict(getDictFromDict(facility, 'loanType'), 'usedCode')}"
+                        },
+                        {
+                          "log_id": "set_facility_extra",
+                          "url": "div-action://set_variable?name=facility_extra_field&value=@{((getStringFromDict(getDictFromDict(facility, 'loanType'), 'id') == '721') || (getStringFromDict(getDictFromDict(facility, 'loanType'), 'id') == '722')) ? 'dependency' : ((getStringFromDict(getDictFromDict(facility, 'loanType'), 'id') == '761') ? 'transfer' : ((getStringFromDict(getDictFromDict(facility, 'loanType'), 'id') == '3') ? 'imperfective' : ((getStringFromDict(getDictFromDict(facility, 'loanType'), 'id') == '704') ? 'housing' : 'none')))}"
+                        },
+                        {
+                          "log_id": "call_loan_choice",
+                          "url": "div-action://call_service?path=loan/loanChoice&sysName=load&id=@{getStringFromDict(getDictFromDict(facility, 'loanType'), 'id')}&ph/token=empty"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "string",
+        "name": "facility_request_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "facility_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "facility_detail_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "facility_used_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "facility_extra_field",
+        "value": "none"
+      },
+      {
+        "type": "array",
+        "name": "facillities",
+        "value": []
+      }
+    ]
+  },
+  "templates": {
+    "option_row": {
+      "type": "container",
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "right",
+      "content_alignment_vertical": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#f3f5f9"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14,
+        "start": 12,
+        "end": 12
+      },
+      "margins": {
+        "bottom": 8
+      },
+      "items": [
+        {
+          "type": "text",
+          "text": "‹",
+          "font_size": 18,
+          "text_color": "#193d8d",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "margins": {
+            "end": 8
+          }
+        },
+        {
+          "type": "text",
+          "$text": "title",
+          "font_size": 14,
+          "font_weight": "medium",
+          "text_color": "#1f2937",
+          "text_alignment_horizontal": "right",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          }
+        }
+      ]
+    }
+  }
+}

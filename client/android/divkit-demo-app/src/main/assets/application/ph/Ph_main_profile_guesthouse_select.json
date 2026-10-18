@@ -1,0 +1,1337 @@
+{
+  "card": {
+    "log_id": "guesthouse_select_sheet",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "match_parent"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "border": {
+            "corners_radius": {
+              "top-left": 16,
+              "top-right": 16
+            }
+          },
+          "paddings": {
+            "top": 8,
+            "bottom": 16,
+            "start": 16,
+            "end": 16
+          },
+          "items": [
+            {
+              "type": "separator",
+              "delimiter_style": {
+                "color": "#d1d5db"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 40
+              },
+              "height": {
+                "type": "fixed",
+                "value": 4
+              },
+              "alignment_horizontal": "center",
+              "border": {
+                "corner_radius": 2
+              },
+              "margins": {
+                "bottom": 12
+              }
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 12
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "@{guesthouse_step == 'days' ? 'انتخاب روزهای اقامت' : 'انتخاب مهمانسرا'}",
+                  "font_size": 16,
+                  "font_weight": "medium",
+                  "text_color": "#193d8d",
+                  "text_alignment_horizontal": "right",
+                  "alignment_horizontal": "right",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "بستن",
+                  "font_size": 13,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "actions": [
+                    {
+                      "log_id": "close_guesthouse_select",
+                      "url": "div-action://close_bottom_sheet"
+                    }
+                  ],
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "vertical",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "match_parent",
+                "weight": 1
+              },
+              "visibility": "@{guesthouse_step == 'list' ? 'visible' : 'gone'}",
+              "items": [
+                {
+                  "type": "input",
+                  "text_variable": "guesthouse_search",
+                  "hint_text": "جستجوی مهمانسرا",
+                  "hint_color": "#6b7280",
+                  "font_size": 13,
+                  "text_color": "#1f2937",
+                  "text_alignment_horizontal": "right",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#f3f5f9"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 8
+                  },
+                  "paddings": {
+                    "top": 10,
+                    "bottom": 10,
+                    "start": 12,
+                    "end": 12
+                  },
+                  "margins": {
+                    "bottom": 8
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "ابتدا مهمانسرا را انتخاب کنید؛ سپس ۱ تا ۳ روز پشت‌سرهم برای اقامت مشخص کنید.",
+                  "font_size": 12,
+                  "text_color": "#6b7280",
+                  "text_alignment_horizontal": "right",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "margins": {
+                    "bottom": 10
+                  }
+                },
+                {
+                  "type": "gallery",
+                  "orientation": "vertical",
+                  "restrict_parent_scroll": true,
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "match_parent",
+                    "weight": 1
+                  },
+                  "items": [
+                    {
+                      "type": "container",
+                      "orientation": "vertical",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "item_builder": {
+                        "data": "@{guesthouse_places}",
+                        "data_element_name": "place",
+                        "prototypes": [
+                          {
+                            "selector": "@{len(guesthouse_search) == 0 || contains(getStringFromDict(place, 'description'), guesthouse_search) || contains(getStringFromDict(place, 'id'), guesthouse_search)}",
+                            "div": {
+                              "type": "guest_card",
+                              "actions": [
+                                {
+                                  "log_id": "select_guesthouse_id",
+                                  "url": "div-action://set_variable?name=selected_guesthouse_id&value=@{getStringFromDict(place, 'id')}"
+                                },
+                                {
+                                  "log_id": "select_guesthouse_name",
+                                  "url": "div-action://set_variable?name=selected_guesthouse_name&value=@{getStringFromDict(place, 'description')}"
+                                },
+                                {
+                                  "log_id": "select_guesthouse_step",
+                                  "url": "div-action://set_variable?name=guesthouse_step&value=days"
+                                },
+                                {
+                                  "log_id": "clear_day1_id",
+                                  "url": "div-action://set_variable?name=selected_day1_id&value="
+                                },
+                                {
+                                  "log_id": "clear_day1_date",
+                                  "url": "div-action://set_variable?name=selected_day1_date&value="
+                                },
+                                {
+                                  "log_id": "clear_day1_reserve",
+                                  "url": "div-action://set_variable?name=selected_day1_reserve_id&value="
+                                },
+                                {
+                                  "log_id": "clear_day2_id",
+                                  "url": "div-action://set_variable?name=selected_day2_id&value="
+                                },
+                                {
+                                  "log_id": "clear_day2_date",
+                                  "url": "div-action://set_variable?name=selected_day2_date&value="
+                                },
+                                {
+                                  "log_id": "clear_day2_reserve",
+                                  "url": "div-action://set_variable?name=selected_day2_reserve_id&value="
+                                },
+                                {
+                                  "log_id": "clear_day3_id",
+                                  "url": "div-action://set_variable?name=selected_day3_id&value="
+                                },
+                                {
+                                  "log_id": "clear_day3_date",
+                                  "url": "div-action://set_variable?name=selected_day3_date&value="
+                                },
+                                {
+                                  "log_id": "clear_day3_reserve",
+                                  "url": "div-action://set_variable?name=selected_day3_reserve_id&value="
+                                },
+                                {
+                                  "log_id": "clear_window_label",
+                                  "url": "div-action://set_variable?name=selected_window_label&value="
+                                }
+                              ],
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "@{getStringFromDict(place, 'description')}",
+                                  "font_size": 13,
+                                  "font_weight": "medium",
+                                  "text_color": "#193d8d",
+                                  "text_alignment_horizontal": "right",
+                                  "width": {
+                                    "type": "match_parent"
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "کد @{getStringFromDict(place, 'id')}",
+                                  "font_size": 11,
+                                  "text_color": "#6b7280",
+                                  "text_alignment_horizontal": "right",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "margins": {
+                                    "top": 2
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "vertical",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "match_parent",
+                "weight": 1
+              },
+              "visibility": "@{guesthouse_step == 'days' ? 'visible' : 'gone'}",
+              "items": [
+                {
+                  "type": "container",
+                  "orientation": "horizontal",
+                  "content_alignment_vertical": "center",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "margins": {
+                    "bottom": 8
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "بازگشت",
+                      "font_size": 13,
+                      "text_color": "#193d8d",
+                      "width": {
+                        "type": "wrap_content"
+                      },
+                      "actions": [
+                        {
+                          "log_id": "back_step",
+                          "url": "div-action://set_variable?name=guesthouse_step&value=list"
+                        },
+                        {
+                          "log_id": "back_clear_id",
+                          "url": "div-action://set_variable?name=selected_guesthouse_id&value="
+                        },
+                        {
+                          "log_id": "back_clear_name",
+                          "url": "div-action://set_variable?name=selected_guesthouse_name&value="
+                        },
+                        {
+                          "log_id": "back_clear_day1_id",
+                          "url": "div-action://set_variable?name=selected_day1_id&value="
+                        },
+                        {
+                          "log_id": "back_clear_day1_date",
+                          "url": "div-action://set_variable?name=selected_day1_date&value="
+                        },
+                        {
+                          "log_id": "back_clear_day1_reserve",
+                          "url": "div-action://set_variable?name=selected_day1_reserve_id&value="
+                        },
+                        {
+                          "log_id": "back_clear_day2_id",
+                          "url": "div-action://set_variable?name=selected_day2_id&value="
+                        },
+                        {
+                          "log_id": "back_clear_day2_date",
+                          "url": "div-action://set_variable?name=selected_day2_date&value="
+                        },
+                        {
+                          "log_id": "back_clear_day2_reserve",
+                          "url": "div-action://set_variable?name=selected_day2_reserve_id&value="
+                        },
+                        {
+                          "log_id": "back_clear_day3_id",
+                          "url": "div-action://set_variable?name=selected_day3_id&value="
+                        },
+                        {
+                          "log_id": "back_clear_day3_date",
+                          "url": "div-action://set_variable?name=selected_day3_date&value="
+                        },
+                        {
+                          "log_id": "back_clear_day3_reserve",
+                          "url": "div-action://set_variable?name=selected_day3_reserve_id&value="
+                        },
+                        {
+                          "log_id": "back_clear_label",
+                          "url": "div-action://set_variable?name=selected_window_label&value="
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": "@{selected_guesthouse_name}",
+                      "font_size": 13,
+                      "font_weight": "medium",
+                      "text_color": "#1f2937",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "روزها را یکی‌یکی انتخاب کنید (حداکثر ۳ روز). روزها باید پشت‌سرهم باشند؛ با زدن دوباره، انتخاب لغو می‌شود.",
+                  "font_size": 12,
+                  "text_color": "#6b7280",
+                  "text_alignment_horizontal": "right",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "margins": {
+                    "bottom": 8
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "@{len(selected_day1_id) > 0 ? ('انتخاب‌شده: ' + selected_window_label) : 'هنوز روزی انتخاب نشده (۱ تا ۳ روز پشت‌سرهم)'}",
+                  "font_size": 12,
+                  "font_weight": "medium",
+                  "text_color": "#193d8d",
+                  "text_alignment_horizontal": "right",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "margins": {
+                    "bottom": 10
+                  }
+                },
+                {
+                  "type": "gallery",
+                  "orientation": "vertical",
+                  "restrict_parent_scroll": true,
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "match_parent",
+                    "weight": 1
+                  },
+                  "items": [
+                    {
+                      "type": "container",
+                      "orientation": "vertical",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "item_builder": {
+                        "data": "@{guesthouse_places}",
+                        "data_element_name": "place",
+                        "prototypes": [
+                          {
+                            "selector": "@{getStringFromDict(place, 'id') == selected_guesthouse_id}",
+                            "div": {
+                              "type": "container",
+                              "orientation": "vertical",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "item_builder": {
+                                "data": "@{getArrayFromDict(place, 'calendarPlanDivisionDetail')}",
+                                "data_element_name": "day",
+                                "prototypes": [
+                                  {
+                                    "selector": "@{true}",
+                                    "div": {
+                                      "type": "day_card",
+                                      "background": [
+                                        {
+                                          "type": "solid",
+                                          "color": "@{(getStringFromDict(day, 'id') == selected_day1_id || getStringFromDict(day, 'id') == selected_day2_id || getStringFromDict(day, 'id') == selected_day3_id) ? '#e8edf7' : '#f3f5f9'}"
+                                        }
+                                      ],
+                                      "border": {
+                                        "corner_radius": 8,
+                                        "stroke": {
+                                          "color": "@{(getStringFromDict(day, 'id') == selected_day1_id || getStringFromDict(day, 'id') == selected_day2_id || getStringFromDict(day, 'id') == selected_day3_id) ? '#193d8d' : '#c8d0e4'}",
+                                          "width": 1
+                                        }
+                                      },
+                                      "actions": [
+                                        {
+                                          "log_id": "select_guesthouse_start_day",
+                                          "url": "div-action://select_guesthouse_start_day?guesthouse_id=@{selected_guesthouse_id}&day_id=@{getStringFromDict(day, 'id')}&date=@{encodeUri(getStringFromDict(day, 'date'))}"
+                                        }
+                                      ],
+                                      "items": [
+                                        {
+                                          "type": "container",
+                                          "orientation": "overlap",
+                                          "content_alignment_horizontal": "center",
+                                          "content_alignment_vertical": "center",
+                                          "width": {
+                                            "type": "fixed",
+                                            "value": 24
+                                          },
+                                          "height": {
+                                            "type": "fixed",
+                                            "value": 24
+                                          },
+                                          "background": [
+                                            {
+                                              "type": "solid",
+                                              "color": "#193d8d"
+                                            }
+                                          ],
+                                          "border": {
+                                            "corner_radius": 12
+                                          },
+                                          "visibility": "@{(getStringFromDict(day, 'id') == selected_day1_id || getStringFromDict(day, 'id') == selected_day2_id || getStringFromDict(day, 'id') == selected_day3_id) ? 'visible' : 'gone'}",
+                                          "margins": {
+                                            "end": 8
+                                          },
+                                          "items": [
+                                            {
+                                              "type": "text",
+                                              "text": "@{getStringFromDict(day, 'id') == selected_day1_id ? '۱' : (getStringFromDict(day, 'id') == selected_day2_id ? '۲' : '۳')}",
+                                              "font_size": 11,
+                                              "font_weight": "medium",
+                                              "text_color": "#ffffff",
+                                              "text_alignment_horizontal": "center"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "container",
+                                          "orientation": "vertical",
+                                          "content_alignment_horizontal": "right",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "items": [
+                                            {
+                                              "type": "text",
+                                              "text": "@{getStringFromDict(day, 'dayOfWeek')}  ·  @{getStringFromDict(day, 'date')}",
+                                              "font_size": 13,
+                                              "font_weight": "medium",
+                                              "text_color": "#1f2937",
+                                              "text_alignment_horizontal": "right",
+                                              "width": {
+                                                "type": "match_parent"
+                                              }
+                                            },
+                                            {
+                                              "type": "text",
+                                              "text": "ظرفیت @{getStringFromDict(day, 'capacity')}",
+                                              "font_size": 11,
+                                              "text_color": "#6b7280",
+                                              "text_alignment_horizontal": "right",
+                                              "width": {
+                                                "type": "match_parent"
+                                              },
+                                              "margins": {
+                                                "top": 2
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": "تأیید و ادامه",
+                  "font_size": 14,
+                  "font_weight": "medium",
+                  "text_color": "#ffffff",
+                  "text_alignment_horizontal": "center",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#193d8d"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 8
+                  },
+                  "paddings": {
+                    "top": 14,
+                    "bottom": 14
+                  },
+                  "margins": {
+                    "top": 12
+                  },
+                  "visibility": "@{len(selected_day1_id) > 0 ? 'visible' : 'gone'}",
+                  "actions": [
+                    {
+                      "log_id": "confirm_guesthouse_days",
+                      "url": "div-action://call_service?path=guestHouse/saveGuestHouse&sysName=guestHouse&ph/token=empty&date1=@{encodeUri(selected_day1_date)}&date2=@{encodeUri(selected_day2_date)}&date3=@{encodeUri(selected_day3_date)}&planGuestHouseDivisionId1=@{selected_day1_id}&planGuestHouseDivisionId2=@{selected_day2_id}&planGuestHouseDivisionId3=@{selected_day3_id}&planGuestHouseDivisionJunctionId1=@{selected_day1_reserve_id}&planGuestHouseDivisionJunctionId2=@{selected_day2_reserve_id}&planGuestHouseDivisionJunctionId3=@{selected_day3_reserve_id}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "string",
+        "name": "guesthouse_step",
+        "value": "list"
+      },
+      {
+        "type": "string",
+        "name": "guesthouse_search",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "selected_guesthouse_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "selected_guesthouse_name",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "selected_window_label",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "selected_day1_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "selected_day1_date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "selected_day1_reserve_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "selected_day2_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "selected_day2_date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "selected_day2_reserve_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "selected_day3_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "selected_day3_date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "selected_day3_reserve_id",
+        "value": ""
+      },
+      {
+        "type": "array",
+        "name": "guesthouse_places",
+        "value": [
+          {
+            "id": "208",
+            "description": "خراسان جنوبي - بيرجند - مجتمع رفاهي",
+            "calendarPlanDivisionDetail": [
+              {
+                "id": "31103",
+                "date": "1405/07/12",
+                "dayOfWeek": "شنبه",
+                "capacity": "10"
+              },
+              {
+                "id": "31104",
+                "date": "1405/07/13",
+                "dayOfWeek": "یکشنبه",
+                "capacity": "10"
+              },
+              {
+                "id": "31105",
+                "date": "1405/07/14",
+                "dayOfWeek": "دوشنبه",
+                "capacity": "10"
+              },
+              {
+                "id": "31106",
+                "date": "1405/07/15",
+                "dayOfWeek": "سه شنبه",
+                "capacity": "10"
+              },
+              {
+                "id": "31107",
+                "date": "1405/07/16",
+                "dayOfWeek": "چهارشنبه",
+                "capacity": "10"
+              },
+              {
+                "id": "31108",
+                "date": "1405/07/17",
+                "dayOfWeek": "پنجشنبه",
+                "capacity": "10"
+              },
+              {
+                "id": "31109",
+                "date": "1405/07/18",
+                "dayOfWeek": "جمعه",
+                "capacity": "10"
+              },
+              {
+                "id": "31110",
+                "date": "1405/07/19",
+                "dayOfWeek": "شنبه",
+                "capacity": "10"
+              },
+              {
+                "id": "31111",
+                "date": "1405/07/20",
+                "dayOfWeek": "یکشنبه",
+                "capacity": "10"
+              },
+              {
+                "id": "31112",
+                "date": "1405/07/21",
+                "dayOfWeek": "دوشنبه",
+                "capacity": "10"
+              },
+              {
+                "id": "31113",
+                "date": "1405/07/22",
+                "dayOfWeek": "سه شنبه",
+                "capacity": "10"
+              },
+              {
+                "id": "31114",
+                "date": "1405/07/23",
+                "dayOfWeek": "چهارشنبه",
+                "capacity": "10"
+              },
+              {
+                "id": "31115",
+                "date": "1405/07/24",
+                "dayOfWeek": "پنجشنبه",
+                "capacity": "10"
+              },
+              {
+                "id": "31116",
+                "date": "1405/07/25",
+                "dayOfWeek": "جمعه",
+                "capacity": "10"
+              },
+              {
+                "id": "31117",
+                "date": "1405/07/26",
+                "dayOfWeek": "شنبه",
+                "capacity": "10"
+              },
+              {
+                "id": "31118",
+                "date": "1405/07/27",
+                "dayOfWeek": "یکشنبه",
+                "capacity": "10"
+              },
+              {
+                "id": "31119",
+                "date": "1405/07/28",
+                "dayOfWeek": "دوشنبه",
+                "capacity": "10"
+              },
+              {
+                "id": "31120",
+                "date": "1405/07/29",
+                "dayOfWeek": "سه شنبه",
+                "capacity": "10"
+              },
+              {
+                "id": "31121",
+                "date": "1405/07/30",
+                "dayOfWeek": "چهارشنبه",
+                "capacity": "10"
+              }
+            ]
+          },
+          {
+            "id": "209",
+            "description": "مجتمع خدمات رفاهي ياس قم",
+            "calendarPlanDivisionDetail": [
+              {
+                "id": "31164",
+                "date": "1405/07/12",
+                "dayOfWeek": "شنبه",
+                "capacity": "7"
+              },
+              {
+                "id": "31165",
+                "date": "1405/07/13",
+                "dayOfWeek": "یکشنبه",
+                "capacity": "7"
+              },
+              {
+                "id": "31166",
+                "date": "1405/07/14",
+                "dayOfWeek": "دوشنبه",
+                "capacity": "7"
+              },
+              {
+                "id": "31167",
+                "date": "1405/07/15",
+                "dayOfWeek": "سه شنبه",
+                "capacity": "7"
+              },
+              {
+                "id": "31168",
+                "date": "1405/07/16",
+                "dayOfWeek": "چهارشنبه",
+                "capacity": "7"
+              },
+              {
+                "id": "31169",
+                "date": "1405/07/17",
+                "dayOfWeek": "پنجشنبه",
+                "capacity": "7"
+              },
+              {
+                "id": "31170",
+                "date": "1405/07/18",
+                "dayOfWeek": "جمعه",
+                "capacity": "7"
+              },
+              {
+                "id": "31171",
+                "date": "1405/07/19",
+                "dayOfWeek": "شنبه",
+                "capacity": "7"
+              },
+              {
+                "id": "31172",
+                "date": "1405/07/20",
+                "dayOfWeek": "یکشنبه",
+                "capacity": "7"
+              },
+              {
+                "id": "31173",
+                "date": "1405/07/21",
+                "dayOfWeek": "دوشنبه",
+                "capacity": "7"
+              },
+              {
+                "id": "31174",
+                "date": "1405/07/22",
+                "dayOfWeek": "سه شنبه",
+                "capacity": "7"
+              },
+              {
+                "id": "31175",
+                "date": "1405/07/23",
+                "dayOfWeek": "چهارشنبه",
+                "capacity": "7"
+              },
+              {
+                "id": "31176",
+                "date": "1405/07/24",
+                "dayOfWeek": "پنجشنبه",
+                "capacity": "7"
+              },
+              {
+                "id": "31177",
+                "date": "1405/07/25",
+                "dayOfWeek": "جمعه",
+                "capacity": "7"
+              },
+              {
+                "id": "31178",
+                "date": "1405/07/26",
+                "dayOfWeek": "شنبه",
+                "capacity": "7"
+              },
+              {
+                "id": "31179",
+                "date": "1405/07/27",
+                "dayOfWeek": "یکشنبه",
+                "capacity": "7"
+              },
+              {
+                "id": "31180",
+                "date": "1405/07/28",
+                "dayOfWeek": "دوشنبه",
+                "capacity": "7"
+              },
+              {
+                "id": "31181",
+                "date": "1405/07/29",
+                "dayOfWeek": "سه شنبه",
+                "capacity": "7"
+              },
+              {
+                "id": "31182",
+                "date": "1405/07/30",
+                "dayOfWeek": "چهارشنبه",
+                "capacity": "7"
+              }
+            ]
+          },
+          {
+            "id": "210",
+            "description": "مجتمع ثامن الحجج(ع) 1",
+            "calendarPlanDivisionDetail": [
+              {
+                "id": "31225",
+                "date": "1405/07/12",
+                "dayOfWeek": "شنبه",
+                "capacity": "8"
+              },
+              {
+                "id": "31226",
+                "date": "1405/07/13",
+                "dayOfWeek": "یکشنبه",
+                "capacity": "8"
+              },
+              {
+                "id": "31227",
+                "date": "1405/07/14",
+                "dayOfWeek": "دوشنبه",
+                "capacity": "8"
+              },
+              {
+                "id": "31228",
+                "date": "1405/07/15",
+                "dayOfWeek": "سه شنبه",
+                "capacity": "9"
+              },
+              {
+                "id": "31229",
+                "date": "1405/07/16",
+                "dayOfWeek": "چهارشنبه",
+                "capacity": "9"
+              },
+              {
+                "id": "31230",
+                "date": "1405/07/17",
+                "dayOfWeek": "پنجشنبه",
+                "capacity": "9"
+              },
+              {
+                "id": "31231",
+                "date": "1405/07/18",
+                "dayOfWeek": "جمعه",
+                "capacity": "9"
+              },
+              {
+                "id": "31232",
+                "date": "1405/07/19",
+                "dayOfWeek": "شنبه",
+                "capacity": "9"
+              },
+              {
+                "id": "31233",
+                "date": "1405/07/20",
+                "dayOfWeek": "یکشنبه",
+                "capacity": "9"
+              },
+              {
+                "id": "31234",
+                "date": "1405/07/21",
+                "dayOfWeek": "دوشنبه",
+                "capacity": "9"
+              },
+              {
+                "id": "31235",
+                "date": "1405/07/22",
+                "dayOfWeek": "سه شنبه",
+                "capacity": "9"
+              },
+              {
+                "id": "31236",
+                "date": "1405/07/23",
+                "dayOfWeek": "چهارشنبه",
+                "capacity": "9"
+              },
+              {
+                "id": "31237",
+                "date": "1405/07/24",
+                "dayOfWeek": "پنجشنبه",
+                "capacity": "9"
+              },
+              {
+                "id": "31238",
+                "date": "1405/07/25",
+                "dayOfWeek": "جمعه",
+                "capacity": "9"
+              },
+              {
+                "id": "31239",
+                "date": "1405/07/26",
+                "dayOfWeek": "شنبه",
+                "capacity": "9"
+              },
+              {
+                "id": "31240",
+                "date": "1405/07/27",
+                "dayOfWeek": "یکشنبه",
+                "capacity": "9"
+              },
+              {
+                "id": "31241",
+                "date": "1405/07/28",
+                "dayOfWeek": "دوشنبه",
+                "capacity": "9"
+              },
+              {
+                "id": "31242",
+                "date": "1405/07/29",
+                "dayOfWeek": "سه شنبه",
+                "capacity": "9"
+              },
+              {
+                "id": "31243",
+                "date": "1405/07/30",
+                "dayOfWeek": "چهارشنبه",
+                "capacity": "9"
+              }
+            ]
+          },
+          {
+            "id": "243",
+            "description": "مهمانسراي طوبي",
+            "calendarPlanDivisionDetail": [
+              {
+                "id": "31347",
+                "date": "1405/07/12",
+                "dayOfWeek": "شنبه",
+                "capacity": "540"
+              },
+              {
+                "id": "31348",
+                "date": "1405/07/13",
+                "dayOfWeek": "یکشنبه",
+                "capacity": "540"
+              },
+              {
+                "id": "31349",
+                "date": "1405/07/14",
+                "dayOfWeek": "دوشنبه",
+                "capacity": "540"
+              },
+              {
+                "id": "31350",
+                "date": "1405/07/15",
+                "dayOfWeek": "سه شنبه",
+                "capacity": "540"
+              },
+              {
+                "id": "31351",
+                "date": "1405/07/16",
+                "dayOfWeek": "چهارشنبه",
+                "capacity": "540"
+              },
+              {
+                "id": "31352",
+                "date": "1405/07/17",
+                "dayOfWeek": "پنجشنبه",
+                "capacity": "540"
+              },
+              {
+                "id": "31353",
+                "date": "1405/07/18",
+                "dayOfWeek": "جمعه",
+                "capacity": "540"
+              },
+              {
+                "id": "31354",
+                "date": "1405/07/19",
+                "dayOfWeek": "شنبه",
+                "capacity": "540"
+              },
+              {
+                "id": "31355",
+                "date": "1405/07/20",
+                "dayOfWeek": "یکشنبه",
+                "capacity": "540"
+              },
+              {
+                "id": "31356",
+                "date": "1405/07/21",
+                "dayOfWeek": "دوشنبه",
+                "capacity": "540"
+              },
+              {
+                "id": "31357",
+                "date": "1405/07/22",
+                "dayOfWeek": "سه شنبه",
+                "capacity": "540"
+              },
+              {
+                "id": "31358",
+                "date": "1405/07/23",
+                "dayOfWeek": "چهارشنبه",
+                "capacity": "540"
+              },
+              {
+                "id": "31359",
+                "date": "1405/07/24",
+                "dayOfWeek": "پنجشنبه",
+                "capacity": "540"
+              },
+              {
+                "id": "31360",
+                "date": "1405/07/25",
+                "dayOfWeek": "جمعه",
+                "capacity": "540"
+              },
+              {
+                "id": "31361",
+                "date": "1405/07/26",
+                "dayOfWeek": "شنبه",
+                "capacity": "540"
+              },
+              {
+                "id": "31362",
+                "date": "1405/07/27",
+                "dayOfWeek": "یکشنبه",
+                "capacity": "540"
+              },
+              {
+                "id": "31363",
+                "date": "1405/07/28",
+                "dayOfWeek": "دوشنبه",
+                "capacity": "540"
+              },
+              {
+                "id": "31364",
+                "date": "1405/07/29",
+                "dayOfWeek": "سه شنبه",
+                "capacity": "540"
+              },
+              {
+                "id": "31365",
+                "date": "1405/07/30",
+                "dayOfWeek": "چهارشنبه",
+                "capacity": "540"
+              }
+            ]
+          },
+          {
+            "id": "244",
+            "description": "مهمانسراي کوثر",
+            "calendarPlanDivisionDetail": [
+              {
+                "id": "31286",
+                "date": "1405/07/12",
+                "dayOfWeek": "شنبه",
+                "capacity": "100"
+              },
+              {
+                "id": "31287",
+                "date": "1405/07/13",
+                "dayOfWeek": "یکشنبه",
+                "capacity": "100"
+              },
+              {
+                "id": "31288",
+                "date": "1405/07/14",
+                "dayOfWeek": "دوشنبه",
+                "capacity": "100"
+              },
+              {
+                "id": "31289",
+                "date": "1405/07/15",
+                "dayOfWeek": "سه شنبه",
+                "capacity": "100"
+              },
+              {
+                "id": "31290",
+                "date": "1405/07/16",
+                "dayOfWeek": "چهارشنبه",
+                "capacity": "100"
+              },
+              {
+                "id": "31291",
+                "date": "1405/07/17",
+                "dayOfWeek": "پنجشنبه",
+                "capacity": "100"
+              },
+              {
+                "id": "31292",
+                "date": "1405/07/18",
+                "dayOfWeek": "جمعه",
+                "capacity": "100"
+              },
+              {
+                "id": "31293",
+                "date": "1405/07/19",
+                "dayOfWeek": "شنبه",
+                "capacity": "100"
+              },
+              {
+                "id": "31294",
+                "date": "1405/07/20",
+                "dayOfWeek": "یکشنبه",
+                "capacity": "100"
+              },
+              {
+                "id": "31295",
+                "date": "1405/07/21",
+                "dayOfWeek": "دوشنبه",
+                "capacity": "100"
+              },
+              {
+                "id": "31296",
+                "date": "1405/07/22",
+                "dayOfWeek": "سه شنبه",
+                "capacity": "100"
+              },
+              {
+                "id": "31297",
+                "date": "1405/07/23",
+                "dayOfWeek": "چهارشنبه",
+                "capacity": "100"
+              },
+              {
+                "id": "31298",
+                "date": "1405/07/24",
+                "dayOfWeek": "پنجشنبه",
+                "capacity": "100"
+              },
+              {
+                "id": "31299",
+                "date": "1405/07/25",
+                "dayOfWeek": "جمعه",
+                "capacity": "100"
+              },
+              {
+                "id": "31300",
+                "date": "1405/07/26",
+                "dayOfWeek": "شنبه",
+                "capacity": "100"
+              },
+              {
+                "id": "31301",
+                "date": "1405/07/27",
+                "dayOfWeek": "یکشنبه",
+                "capacity": "100"
+              },
+              {
+                "id": "31302",
+                "date": "1405/07/28",
+                "dayOfWeek": "دوشنبه",
+                "capacity": "100"
+              },
+              {
+                "id": "31303",
+                "date": "1405/07/29",
+                "dayOfWeek": "سه شنبه",
+                "capacity": "100"
+              },
+              {
+                "id": "31304",
+                "date": "1405/07/30",
+                "dayOfWeek": "چهارشنبه",
+                "capacity": "100"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "templates": {
+    "guest_card": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#c8d0e4",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "start": 10,
+        "end": 10
+      },
+      "margins": {
+        "bottom": 8
+      }
+    },
+    "day_card": {
+      "type": "container",
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "right",
+      "content_alignment_vertical": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 12,
+        "bottom": 12,
+        "start": 12,
+        "end": 12
+      },
+      "margins": {
+        "bottom": 8
+      }
+    }
+  }
+}

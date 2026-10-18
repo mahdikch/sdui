@@ -579,6 +579,7 @@ public class MqttService extends Service implements MqttTraceHandler {
     @Override
     public void onCreate() {
         super.onCreate();
+        ir.naja.pushsdk.android.PushLog.i("MqttService onCreate");
 
         // create a binder that will let the Activity UI send
         // commands to the Service
@@ -619,9 +620,7 @@ public class MqttService extends Service implements MqttTraceHandler {
      */
     @Override
     public IBinder onBind(Intent intent) {
-        // What we pass back to the Activity on binding -
-        // a reference to ourself, and the activityToken
-        // we were given when started
+        ir.naja.pushsdk.android.PushLog.i("MqttService onBind");
         String activityToken = intent
                 .getStringExtra(MqttServiceConstants.CALLBACK_ACTIVITY_TOKEN);
         mqttServiceBinder.setActivityToken(activityToken);
@@ -633,8 +632,7 @@ public class MqttService extends Service implements MqttTraceHandler {
      */
     @Override
     public int onStartCommand(final Intent intent, int flags, final int startId) {
-        // run till explicitly stopped, restart when
-        // process restarted
+        ir.naja.pushsdk.android.PushLog.i("MqttService onStartCommand startId=" + startId);
         registerBroadcastReceivers();
 //        startForeground(1, createNotification());
         return START_STICKY;

@@ -3,6 +3,8 @@ package ir.naja.pushsdk.android;
 import static ir.naja.pushsdk.android.Constant.APP_NAME;
 import static ir.naja.pushsdk.android.Constant.Lat;
 import static ir.naja.pushsdk.android.Constant.Lot;
+import static ir.naja.pushsdk.android.Constant.MQTT_PORT;
+import static ir.naja.pushsdk.android.Constant.MQTT_URL;
 import static ir.naja.pushsdk.android.Constant.PASSWORD_PORTAL;
 import static ir.naja.pushsdk.android.Constant.USERNAME_PORTAL;
 
@@ -14,6 +16,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.Looper;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -70,22 +73,31 @@ public class NajiPush {
     private Intent mainIntentClass;
     private int qos = 2;
     private NajiPushCallBack listener;
-    private static String serverUri = "tcp://" + "172.31.68.165" + ":" + "1885"; // local
-//    private static String serverUri = "tcp://" + "10.33.106.68" + ":" + "1885";
+    private static String serverUri = buildMqttUri();
 
     public void setListener(NajiPushCallBack listenerr) {
         this.listener = listenerr;
     }
 
+    private static String buildMqttUri() {
+        String scheme = Constant.MQTT_USE_SSL ? "ssl://" : "tcp://";
+        return scheme + MQTT_URL + ":" + MQTT_PORT;
+    }
+
     public static MqttAndroidClient getInstance(Activity activity) throws NullActivityException {
-        if (mqttAndroidClient == null) {
+        String uri = buildMqttUri();
+        if (mqttAndroidClient == null || !uri.equals(serverUri)) {
+            serverUri = uri;
             mqttAndroidClient = new MqttAndroidClient(activity, serverUri, getClientId(activity), new Intent());
+            PushLog.i("MQTT client created uri=" + serverUri + " clientId=" + clientId);
         }
         return mqttAndroidClient;
     }
 
     public void setServerUri(String mqtt, String port) {
-        NajiPush.serverUri = "tcp://" + mqtt + ":" + port;
+        String scheme = Constant.MQTT_USE_SSL ? "ssl://" : "tcp://";
+        NajiPush.serverUri = scheme + mqtt + ":" + port;
+        mqttAndroidClient = null;
     }
 
     public ResponseActive ActiveNajiFication(Activity activity, Intent mainIntentClass, String apiKeyServer, String username, String lat, String lot, String usernamePortal, String passwordPortal) {
@@ -93,6 +105,13 @@ public class NajiPush {
 
         try {
 
+            PushSsl.init(activity);
+            PushLog.i("ActiveNajiFication start user=" + username
+                    + " portalUser=" + usernamePortal
+                    + " portal=" + Constant.portal_Url
+                    + " enable=" + Constant.server_Url
+                    + " mqtt=" + serverUri
+                    + " thread=" + Thread.currentThread().getName());
             HashMap<String, String> request = new HashMap<>();
             request.put("client_id", "pushnotif");
             request.put("client_secret", "pushnotif-changeitinportal");
@@ -102,17 +121,27 @@ public class NajiPush {
 //            request.put("username", "policeman");
 //            request.put("password", "policeman123");
             try {
+                PushSsl.init(activity);
+                PushLog.i("Requesting portal token");
                 String s = new ApiCall().makeApiPostRequestFromData(request);
+                PushLog.i("Portal token response " + PushLog.preview(s));
                 HashMap<String, String> response = new Gson().fromJson(s, new TypeToken<HashMap<String, String>>() {
                 }.getType());
+                if (response == null || response.get("access_token") == null) {
+                    PushLog.e("Portal token missing. body=" + s);
+                    return new ResponseActive();
+                }
+                PushLog.i("Portal token ok " + PushLog.preview(response.get("access_token")));
                 request = new HashMap<>();
                 request.put("apiKeyServer", apiKeyServer);
                 request.put("deviceType", "PHONE");
-                request.put("username", username);
+                request.put("username", "PHPLUS_APP/" +username);
                 request.put("latitude", lat);
                 request.put("longitude", lot);
-                String sessionId = new ApiCall().makeApiPostRequestWithObjHeader(request, "Authorization", "bearer " + (response != null ? response.get("access_token") : ""));
+                String sessionId = new ApiCall().makeApiPostRequestWithObjHeader(request, "Authorization", "bearer " + response.get("access_token"));
+                PushLog.i("Enable-device response " + PushLog.preview(sessionId));
                 if (sessionId == null) {
+                    PushLog.e("Enable-device returned null");
                     try {
                         if (mqttAndroidClient != null)
                             mqttAndroidClient.disconnect();
@@ -126,6 +155,8 @@ public class NajiPush {
                     } catch (Exception ee) {
                     }
                     ResponseActive o = new Gson().fromJson(sessionId, ResponseActive.class);
+                    PushLog.i("Enable-device parsed topic=" + o.getTopic()
+                            + " session=" + PushLog.preview(o.getSessionId()));
                     SharedPrefs.save(activity, SharedPrefs.session1, o.getSessionId());
                     SharedPrefs.save(activity, SharedPrefs.topic1, o.getTopic());
                     connectNajiPush(activity, o.getTopic(), lat, lot, mainIntentClass, username, o.getSessionId());
@@ -133,6 +164,7 @@ public class NajiPush {
                 }
 
             } catch (IOException e) {
+                PushLog.e("ActiveNajiFication IO error " + PushLog.errorSummary(e), e);
 
                 try {
                     if (mqttAndroidClient != null)
@@ -141,6 +173,7 @@ public class NajiPush {
                 }
             }
         } catch (Exception e) {
+            PushLog.e("ActiveNajiFication failed " + PushLog.errorSummary(e), e);
             try {
                 if (mqttAndroidClient != null)
                     mqttAndroidClient.disconnect();
@@ -151,81 +184,81 @@ public class NajiPush {
         return new ResponseActive();
     }
 
-    public ResponseActive ActiveNajiFicationTwoApp(Activity activity, Intent mainIntentClass, String apiKeyServer1, String apiKeyServer2, String username, String lat, String lot, String usernamePortal, String passwordPortal) {
-//        String tp = "message/" + username + "/PHONE";
-
-        try {
-
-            HashMap<String, String> request = new HashMap<>();
-            request.put("client_id", "pushnotif");
-            request.put("client_secret", "pushnotif-changeitinportal");
-            request.put("grant_type", "password");
-            request.put("username", usernamePortal);
-            request.put("password", passwordPortal);
-//            request.put("username", "policeman");
-//            request.put("password", "policeman123");
-            try {
-                String s = new ApiCall().makeApiPostRequestFromData(request);
-                HashMap<String, String> response = new Gson().fromJson(s, new TypeToken<HashMap<String, String>>() {
-                }.getType());
-                request = new HashMap<>();
-                request.put("apiKeyServer", apiKeyServer1);
-                request.put("deviceType", "PHONE");
-                request.put("username", username);
-                request.put("latitude", lat);
-                request.put("longitude", lot);
-                String sessionId = new ApiCall().makeApiPostRequestWithObjHeader(request, "Authorization", "bearer " + (response != null ? response.get("access_token") : ""));
-                if (sessionId == null) {
-                    try {
-                        if (mqttAndroidClient != null)
-                            mqttAndroidClient.disconnect();
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                } else {
-                    try {
-                        if (mqttAndroidClient != null)
-                            mqttAndroidClient.disconnect();
-                    } catch (Exception ee) {
-                    }
-                    ResponseActive o = new Gson().fromJson(sessionId, ResponseActive.class);
-                    SharedPrefs.save(activity, SharedPrefs.session1, o.getSessionId());
-                    SharedPrefs.save(activity, SharedPrefs.topic1, o.getTopic());
-                    request = new HashMap<>();
-                    request.put("apiKeyServer", apiKeyServer2);
-                    request.put("deviceType", "PHONE");
-                    request.put("username", "PH_NOTIF/"+username);
-                    request.put("latitude", lat);
-                    request.put("longitude", lot);
-                    sessionId = new ApiCall().makeApiPostRequestWithObjHeader(request, "Authorization", "bearer " + (response != null ? response.get("access_token") : ""));
-
-
-                    ResponseActive o2 = new Gson().fromJson(sessionId, ResponseActive.class);
-                    SharedPrefs.save(activity, SharedPrefs.session2, o2.getSessionId());
-                    SharedPrefs.save(activity, SharedPrefs.topic2, o2.getTopic());
-
-                    connectNajiPush(activity, o.getTopic(), lat, lot, mainIntentClass, username, o.getSessionId(), o2.getTopic());
-                    return o;
-                }
-
-            } catch (IOException e) {
-
-                try {
-                    if (mqttAndroidClient != null)
-                        mqttAndroidClient.disconnect();
-                } catch (Exception ee) {
-                }
-            }
-        } catch (Exception e) {
-            try {
-                if (mqttAndroidClient != null)
-                    mqttAndroidClient.disconnect();
-            } catch (Exception eee) {
-            }
-
-        }
-        return new ResponseActive();
-    }
+//    public ResponseActive ActiveNajiFicationTwoApp(Activity activity, Intent mainIntentClass, String apiKeyServer1, String apiKeyServer2, String username, String lat, String lot, String usernamePortal, String passwordPortal) {
+////        String tp = "message/" + username + "/PHONE";
+//
+//        try {
+//
+//            HashMap<String, String> request = new HashMap<>();
+//            request.put("client_id", "pushnotif");
+//            request.put("client_secret", "pushnotif-changeitinportal");
+//            request.put("grant_type", "password");
+//            request.put("username", usernamePortal);
+//            request.put("password", passwordPortal);
+////            request.put("username", "policeman");
+////            request.put("password", "policeman123");
+//            try {
+//                String s = new ApiCall().makeApiPostRequestFromData(request);
+//                HashMap<String, String> response = new Gson().fromJson(s, new TypeToken<HashMap<String, String>>() {
+//                }.getType());
+//                request = new HashMap<>();
+//                request.put("apiKeyServer", apiKeyServer1);
+//                request.put("deviceType", "PHONE");
+//                request.put("username", username);
+//                request.put("latitude", lat);
+//                request.put("longitude", lot);
+//                String sessionId = new ApiCall().makeApiPostRequestWithObjHeader(request, "Authorization", "bearer " + (response != null ? response.get("access_token") : ""));
+//                if (sessionId == null) {
+//                    try {
+//                        if (mqttAndroidClient != null)
+//                            mqttAndroidClient.disconnect();
+//                    } catch (Exception e) {
+//                        throw new RuntimeException(e);
+//                    }
+//                } else {
+//                    try {
+//                        if (mqttAndroidClient != null)
+//                            mqttAndroidClient.disconnect();
+//                    } catch (Exception ee) {
+//                    }
+//                    ResponseActive o = new Gson().fromJson(sessionId, ResponseActive.class);
+//                    SharedPrefs.save(activity, SharedPrefs.session1, o.getSessionId());
+//                    SharedPrefs.save(activity, SharedPrefs.topic1, o.getTopic());
+//                    request = new HashMap<>();
+//                    request.put("apiKeyServer", apiKeyServer2);
+//                    request.put("deviceType", "PHONE");
+//                    request.put("username", "PH_NOTIF/" + username);
+//                    request.put("latitude", lat);
+//                    request.put("longitude", lot);
+//                    sessionId = new ApiCall().makeApiPostRequestWithObjHeader(request, "Authorization", "bearer " + (response != null ? response.get("access_token") : ""));
+//
+//
+//                    ResponseActive o2 = new Gson().fromJson(sessionId, ResponseActive.class);
+//                    SharedPrefs.save(activity, SharedPrefs.session2, o2.getSessionId());
+//                    SharedPrefs.save(activity, SharedPrefs.topic2, o2.getTopic());
+//
+//                    connectNajiPush(activity, o.getTopic(), lat, lot, mainIntentClass, username, o.getSessionId(), o2.getTopic());
+//                    return o;
+//                }
+//
+//            } catch (IOException e) {
+//
+//                try {
+//                    if (mqttAndroidClient != null)
+//                        mqttAndroidClient.disconnect();
+//                } catch (Exception ee) {
+//                }
+//            }
+//        } catch (Exception e) {
+//            try {
+//                if (mqttAndroidClient != null)
+//                    mqttAndroidClient.disconnect();
+//            } catch (Exception eee) {
+//            }
+//
+//        }
+//        return new ResponseActive();
+//    }
 
     public String sendMessage(String usernamePortal, String passwordPortal, SendMessage sendMessage) {
 
@@ -286,15 +319,50 @@ public class NajiPush {
     }
 
     public void connectNajiPush(Activity activity, String topic, String lat, String lot, Intent mainIntentClass, String username, String sessionId) throws NullActivityException {
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            PushLog.i("MQTT connect posted to main thread");
+            new Handler(Looper.getMainLooper()).post(() -> {
+                try {
+                    connectNajiPush(activity, topic, lat, lot, mainIntentClass, username, sessionId);
+                } catch (Exception e) {
+                    PushLog.e("MQTT connect on main failed " + PushLog.errorSummary(e), e);
+                }
+            });
+            return;
+        }
         this.myActivity = activity;
         this.mainIntentClass = mainIntentClass;
         Lat = lat;
         Lot = lot;
+        if (lat.isEmpty() && lot.isEmpty())
+        {
+            Lat="31.00";
+                Lot="51.00";
+
+        }
         MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
         mqttConnectOptions.setAutomaticReconnect(true);
-        mqttConnectOptions.setConnectionTimeout(60);
+        mqttConnectOptions.setConnectionTimeout(120);
         mqttConnectOptions.setKeepAliveInterval(600);
         mqttConnectOptions.setCleanSession(false);
+        PushSsl.init(activity);
+        boolean useSsl = serverUri.startsWith("ssl://") || serverUri.startsWith("tls://");
+        PushLog.i("MQTT connect start uri=" + serverUri
+                + " topic=" + topic
+                + " user=" + username
+                + " sslUri=" + useSsl
+                + " factory=" + (PushSsl.mqttSocketFactory(activity) != null));
+        if (useSsl) {
+            javax.net.ssl.SSLSocketFactory socketFactory = PushSsl.mqttSocketFactory(activity);
+            if (socketFactory != null) {
+                mqttConnectOptions.setSocketFactory(socketFactory);
+                PushLog.i("MQTT SSL socket factory applied");
+            } else {
+                PushLog.e("MQTT SSL requested but socket factory is null");
+            }
+        } else {
+            PushLog.i("MQTT connecting over TCP (no TLS)");
+        }
 //        mqttConnectOptions.setWill(topic, "client Disconnect".getBytes(), 1, false);
 
         Log.d("naji push", "app username" + APP_NAME + username);
@@ -312,6 +380,7 @@ public class NajiPush {
             mqttAndroidClient.connect(mqttConnectOptions, null, new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
+                    PushLog.i("MQTT connect onSuccess uri=" + serverUri + " topic=" + topic);
                     DisconnectedBufferOptions disconnectedBufferOptions = new DisconnectedBufferOptions();
                     disconnectedBufferOptions.setBufferEnabled(true);
                     disconnectedBufferOptions.setBufferSize(100);
@@ -355,6 +424,8 @@ public class NajiPush {
 
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                    PushLog.e("MQTT connect onFailure uri=" + serverUri
+                            + " err=" + PushLog.errorSummary(exception), exception);
                     listener.connectFailed("Failed to connect to: " + serverUri);
                     addToHistory("Failed to connect to: " + serverUri);
                 }
@@ -363,6 +434,7 @@ public class NajiPush {
             mqttAndroidClient.setCallback(new MqttCallbackExtended() {
                 @Override
                 public void connectComplete(boolean reconnect, String serverURI) {
+                    PushLog.i("MQTT connectComplete reconnect=" + reconnect + " uri=" + serverURI);
 
                     if (reconnect) {
                         listener.reconnected("Reconnected to : " + serverURI);
@@ -378,42 +450,35 @@ public class NajiPush {
 
                 @Override
                 public void connectionLost(Throwable cause) {
-                    listener.connectionLost("The Connection was lost." + cause.getMessage());
+                    PushLog.e("MQTT connectionLost " + PushLog.errorSummary(cause), cause);
+                    if (listener != null) {
+                        String message = "The Connection was lost.";
+                        if (cause != null && cause.getMessage() != null) {
+                            message += " " + cause.getMessage();
+                        }
+                        listener.connectionLost(message);
+                    }
                     addToHistory("The Connection was lost.");
                 }
 
                 @Override
                 public void messageArrived(String topic, MqttMessage message) throws Exception {
-                    Message message1 = null;
-                    try {
-                        try {
-                            AES.setKey(SharedPrefs.getString(activity, SharedPrefs.session1));
-                            String decrypt = AES.decrypt(new String(message.getPayload()));
-                            message1 = new Gson().fromJson(decrypt, Message.class);
-                        } catch (Exception e) {
-                            message1 = new Gson().fromJson(new String(message.getPayload()), Message.class);
-                        }
-                    } catch (Exception e) {
-                        message1 = new Message();
-                        message1.setSenderTitle(topic);
-                        Payload payload = new Payload();
-                        payload.setBody(new String(message.getPayload()));
-                        payload.setTitle(new String(message.getPayload()));
-                        message1.setPayload(new Gson().toJson(payload));
+                    PushLog.i("MQTT messageArrived topic=" + topic
+                            + " bytes=" + (message == null || message.getPayload() == null
+                            ? 0 : message.getPayload().length));
+                    Message message1 = decodeIncomingMessage(
+                            message, SharedPrefs.getString(activity, SharedPrefs.session1));
+                    if (message1 == null) {
+                        // Not marked DELIVERED, so the server resends it once the right key is set.
+                        PushLog.w("MQTT message dropped: decrypt failed topic=" + topic);
+                        return;
                     }
 
-//                    LinkedHashMap linkedHashMap = new Gson().fromJson(new String(message.getPayload()), LinkedHashMap.class);
-//                    Object payload = linkedHashMap.get("payload");
-//                    payload.toString().replaceAll("'","\"")
                     String spayload = message1.getPayload();
                     Payload payload = null;
                     try {
-
                         payload = new Gson().fromJson(spayload, Payload.class);
-                    } catch (Exception e) {
-                        String substring = message1.getPayload().substring(17, message1.getPayload().length() - 1);
-                        payload.setTitle(message1.getSenderTitle());
-                        payload.setBody(substring);
+                    } catch (Exception ignored) {
                     }
                     listener.messageArrived(topic, message1);
                     SetStatusRequest setStatusRequest = new SetStatusRequest();
@@ -434,8 +499,10 @@ public class NajiPush {
                     }
 
                     Intent mainIntent = new Intent(myActivity, mainIntentClass.getClass());
-//                    Notify.notifcation(myActivity, payload.getTitle(), message1.getSenderTitle(), new Intent(), R.string.notifyTitle, mainIntent);
-                    Notify.notifcation(myActivity, payload.getTitle(), "پلیس همراه +", new Intent(), R.string.notifyTitle, mainIntent);
+                    // Skip notification for location messages
+                    if (payload != null && (topic == null || !topic.contains("PHPLUS_LOCATION"))) {
+                        Notify.notifcation(myActivity, payload.getTitle(), "پلیس همراه +", new Intent(), R.string.notifyTitle, mainIntent);
+                    }
                     addToHistory("Incoming message: " + new String(message.getPayload()));
                 }
 
@@ -453,9 +520,12 @@ public class NajiPush {
                 }
             });
 
-        } catch (MqttException ex) {
-            ex.printStackTrace();
-            listener.connectFailed("Exception connecting: " + serverUri);
+        } catch (Exception ex) {
+            PushLog.e("MQTT connect exception uri=" + serverUri
+                    + " err=" + PushLog.errorSummary(ex), ex);
+            if (listener != null) {
+                listener.connectFailed("Exception connecting: " + serverUri);
+            }
         }
 
     }
@@ -470,6 +540,13 @@ public class NajiPush {
         mqttConnectOptions.setConnectionTimeout(60);
         mqttConnectOptions.setKeepAliveInterval(600);
         mqttConnectOptions.setCleanSession(false);
+        PushSsl.init(activity);
+        if (serverUri.startsWith("ssl://") || serverUri.startsWith("tls://")) {
+            javax.net.ssl.SSLSocketFactory socketFactory = PushSsl.mqttSocketFactory(activity);
+            if (socketFactory != null) {
+                mqttConnectOptions.setSocketFactory(socketFactory);
+            }
+        }
 //        mqttConnectOptions.setWill(topic, "client Disconnect".getBytes(), 1, false);
 
         Log.d("naji push", "app username" + APP_NAME + username);
@@ -557,52 +634,36 @@ public class NajiPush {
 
                 @Override
                 public void connectionLost(Throwable cause) {
-                    listener.connectionLost("The Connection was lost." + cause.getMessage());
+                    String message = "The Connection was lost.";
+                    if (cause != null && cause.getMessage() != null) {
+                        message += " " + cause.getMessage();
+                    }
+                    listener.connectionLost(message);
                     addToHistory("The Connection was lost.");
                 }
 
                 @Override
                 public void messageArrived(String topic, MqttMessage message) throws Exception {
-                    Message message1 = null;
-                    try {
-                        if (topic.contains("PH_NOTIF")) {
-                            try {
-                                AES.setKey(SharedPrefs.getString(activity, SharedPrefs.session2));
-                                String decrypt = AES.decrypt(new String(message.getPayload()));
-                                message1 = new Gson().fromJson(decrypt, Message.class);
-                            } catch (Exception e) {
-                                message1 = new Gson().fromJson(new String(message.getPayload()), Message.class);
-                            }
-                        } else if (topic.contains("ROKHDAD_APP_MISSION")) {
-                            try {
-                                AES.setKey(SharedPrefs.getString(activity, SharedPrefs.session1));
-                                String decrypt = AES.decrypt(new String(message.getPayload()));
-                                message1 = new Gson().fromJson(decrypt, Message.class);
-                            } catch (Exception e) {
-                                message1 = new Gson().fromJson(new String(message.getPayload()), Message.class);
-                            }
-                        }
-                    } catch (Exception e) {
-                        message1 = new Message();
-                        message1.setSenderTitle(topic);
-                        Payload payload = new Payload();
-                        payload.setBody(new String(message.getPayload()));
-                        payload.setTitle(new String(message.getPayload()));
-                        message1.setPayload(new Gson().toJson(payload));
+                    PushLog.i("MQTT messageArrived topic=" + topic
+                            + " bytes=" + (message == null || message.getPayload() == null
+                            ? 0 : message.getPayload().length));
+                    String sessionKey = null;
+                    if (topic != null && topic.contains("PH_NOTIF")) {
+                        sessionKey = SharedPrefs.getString(activity, SharedPrefs.session2);
+                    } else if (topic != null && topic.contains("ROKHDAD_APP_MISSION")) {
+                        sessionKey = SharedPrefs.getString(activity, SharedPrefs.session1);
+                    }
+                    Message message1 = sessionKey == null ? null : decodeIncomingMessage(message, sessionKey);
+                    if (message1 == null) {
+                        PushLog.w("MQTT message dropped: decrypt failed topic=" + topic);
+                        return;
                     }
 
-//                    LinkedHashMap linkedHashMap = new Gson().fromJson(new String(message.getPayload()), LinkedHashMap.class);
-//                    Object payload = linkedHashMap.get("payload");
-//                    payload.toString().replaceAll("'","\"")
                     String spayload = message1.getPayload();
                     Payload payload = null;
                     try {
-
                         payload = new Gson().fromJson(spayload, Payload.class);
-                    } catch (Exception e) {
-                        String substring = message1.getPayload().substring(17, message1.getPayload().length() - 1);
-                        payload.setTitle(message1.getSenderTitle());
-                        payload.setBody(substring);
+                    } catch (Exception ignored) {
                     }
                     listener.messageArrived(topic, message1);
                     SetStatusRequest setStatusRequest = new SetStatusRequest();
@@ -623,8 +684,10 @@ public class NajiPush {
                     }
 
                     Intent mainIntent = new Intent(myActivity, mainIntentClass.getClass());
-//                    Notify.notifcation(myActivity, payload.getTitle(), message1.getSenderTitle(), new Intent(), R.string.notifyTitle, mainIntent);
-                    Notify.notifcation(myActivity, payload.getTitle(), "پلیس همراه +", new Intent(), R.string.notifyTitle, mainIntent);
+                    // Skip notification for location messages
+                    if (payload != null && (topic == null || !topic.contains("PHPLUS_LOCATION"))) {
+                        Notify.notifcation(myActivity, payload.getTitle(), "پلیس همراه +", new Intent(), R.string.notifyTitle, mainIntent);
+                    }
                     addToHistory("Incoming message: " + new String(message.getPayload()));
                 }
 
@@ -632,6 +695,7 @@ public class NajiPush {
                 public void deliveryComplete(IMqttDeliveryToken token) {
                     try {
                         listener.deliveryComplete("deliveryComplete : " + token.getMessage());
+//                        Log.d("deliveryComplete:",""+token.getMessage());
                         addToHistory("deliveryComplete : " + token.getMessage());
                     } catch (MqttException e) {
                         e.printStackTrace();
@@ -654,6 +718,7 @@ public class NajiPush {
             mqttAndroidClient.subscribe(topic, qos, null, new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
+                    PushLog.i("MQTT subscribed topic=" + topic);
                     listener.Subscribed("Subscribed!");
                     try {
                         HandlerThread handlerThread = new HandlerThread("NetworkThread");
@@ -674,6 +739,8 @@ public class NajiPush {
 
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                    PushLog.e("MQTT subscribe failed topic=" + topic
+                            + " err=" + PushLog.errorSummary(exception), exception);
                     listener.SubscribeFailed("Failed to subscribe");
                     addToHistory("Failed to subscribe");
                     // TODO: 11/17/2024 timescahul
@@ -704,6 +771,10 @@ public class NajiPush {
         String s = split[2] + "/" + split[3];
         List<Message> messages = unreadMessage(new UnreadMessageReq(Constant.API_KEY, s));
         for (Message message : messages) {
+            if (message == null || !isJsonObject(message.getPayload())) {
+                PushLog.w("Unread message dropped: payload is not readable topic=" + s);
+                continue;
+            }
             listener.messageArrived(s, message);
             SetStatusRequest setStatusRequest = new SetStatusRequest();
             setStatusRequest.setMessageId(message.getId());
@@ -724,16 +795,55 @@ public class NajiPush {
             String spayload = message.getPayload();
             Payload payload = null;
             try {
-
                 payload = new Gson().fromJson(spayload, Payload.class);
-            } catch (Exception e) {
-                String substring = message.getPayload().substring(17, message.getPayload().length() - 1);
-                payload.setTitle(message.getSenderTitle());
-                payload.setBody(substring);
+            } catch (Exception ignored) {
             }
             Intent mainIntent = new Intent(myActivity, mainIntentClass.getClass());
-            Notify.notifcation(myActivity, payload.getTitle(), message.getSenderTitle(), new Intent(), R.string.notifyTitle, mainIntent);
+            // Skip notification for location messages
+            String messageTopic = message.getTopic();
+            if (payload != null && (messageTopic == null || !messageTopic.contains("PHPLUS_LOCATION"))) {
+                Notify.notifcation(myActivity, payload.getTitle(), message.getSenderTitle(), new Intent(), R.string.notifyTitle, mainIntent);
+            }
             addToHistory("Incoming message: " + new String(message.getPayload()));
+        }
+    }
+
+    /**
+     * Returns null when the payload cannot be decrypted with the current session key,
+     * so ciphertext is never delivered as a notification.
+     */
+    private static Message decodeIncomingMessage(MqttMessage mqttMessage, String sessionKey) {
+        if (mqttMessage == null || mqttMessage.getPayload() == null) return null;
+        String raw = new String(mqttMessage.getPayload());
+        if (sessionKey != null && !sessionKey.isEmpty()) {
+            try {
+                AES.setKey(sessionKey);
+                Message decrypted = new Gson().fromJson(AES.decrypt(raw), Message.class);
+                if (decrypted != null && isJsonObject(decrypted.getPayload())) {
+                    return decrypted;
+                }
+            } catch (Exception ignored) {
+            }
+        }
+        if (!isJsonObject(raw)) return null;
+        try {
+            Message plain = new Gson().fromJson(raw, Message.class);
+            if (plain != null && isJsonObject(plain.getPayload())) {
+                return plain;
+            }
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    private static boolean isJsonObject(String value) {
+        if (value == null) return false;
+        String trimmed = value.trim();
+        if (!trimmed.startsWith("{")) return false;
+        try {
+            return new com.google.gson.JsonParser().parse(trimmed).isJsonObject();
+        } catch (Exception e) {
+            return false;
         }
     }
 
@@ -826,12 +936,19 @@ public class NajiPush {
     }
 
     private void addToHistory(String mainText) {
-        System.out.println("LOG: " + mainText);
-//        mAdapter.add(mainText);
-        if (myActivity != null)
-            Snackbar.make(myActivity.findViewById(android.R.id.content), mainText, Snackbar.LENGTH_LONG).setAction("Action", null).show();
-
+        PushLog.i(mainText);
     }
 
+    public void disconnect() {
+        try {
+            if (mqttAndroidClient != null) {
+                mqttAndroidClient.disconnect();
+            }
+        } catch (MqttException e) {
+            PushLog.e("MQTT disconnect failed " + PushLog.errorSummary(e), e);
+        } finally {
+            mqttAndroidClient = null;
+        }
+    }
 
 }

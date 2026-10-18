@@ -1,0 +1,601 @@
+{
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 56
+              },
+              "orientation": "vertical",
+              "items": [
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "container",
+                      "items": [
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "image",
+                              "image_url": "@{notification_bing.png}",
+                              "width": {
+                                "type": "fixed",
+                                "value": 24
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 24
+                              },
+                              "preload_required": true,
+                              "alignment_horizontal": "left",
+                              "alignment_vertical": "center",
+                              "margins": {
+                                "left": 12
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "پلیس همراه",
+                              "font_size": 16,
+                              "line_height": 24,
+                              "letter_spacing": 0,
+                              "text_color": "#193d8d",
+                              "text_alignment_horizontal": "center",
+                              "text_alignment_vertical": "top",
+                              "width": {
+                                "type": "wrap_content"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "alignment_horizontal": "right",
+                              "alignment_vertical": "center",
+                              "margins": {
+                                "right": 12
+                              }
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "height": {
+                            "type": "fixed",
+                            "value": 56
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "overlap",
+                          "content_alignment_vertical": "center",
+                          "content_alignment_horizontal": "center",
+                          "alignment_horizontal": "center",
+                          "alignment_vertical": "top"
+                        }
+                      ],
+                      "background": [
+                        {
+                          "type": "solid",
+                          "color": "#f3f5f9"
+                        }
+                      ],
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "vertical",
+                      "content_alignment_vertical": "top",
+                      "content_alignment_horizontal": "center"
+                    }
+                  ],
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "content_alignment_horizontal": "center",
+                  "content_alignment_vertical": "center",
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "top"
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "match_parent"
+              },
+              "items": [
+                {
+                  "type": "custom",
+                  "custom_type": "notification_list",
+                  "custom_props": {
+                    "title": ""
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "match_parent"
+                  }
+                }
+              ]
+            }
+          ],
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "height": {
+            "type": "match_parent"
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "vertical",
+          "content_alignment_vertical": "top",
+          "content_alignment_horizontal": "center"
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "string",
+        "name": "name",
+        "value": "سرهنگ بهراد آب نیکی"
+      },
+      {
+        "type": "string",
+        "name": "province",
+        "value": "تهران - تهران بزرگ"
+      },
+      {
+        "type": "integer",
+        "name": "gridRow",
+        "value": 1
+      },
+      {
+        "type": "integer",
+        "name": "gridColumn",
+        "value": 1
+      },
+      {
+        "type": "string",
+        "name": "blue",
+        "value": "193d8d"
+      },
+      {
+        "type": "string",
+        "name": "gray",
+        "value": "777676"
+      },
+      {
+        "type": "string",
+        "name": "white",
+        "value": "FFFFFF"
+      },
+      {
+        "type": "string",
+        "name": "profile_title",
+        "value": "پروفایل"
+      },
+      {
+        "type": "string",
+        "name": "reports_title",
+        "value": "گزارشات"
+      },
+      {
+        "type": "string",
+        "name": "setting_title",
+        "value": "تنظیمات"
+      },
+      {
+        "type": "string",
+        "name": "home_title",
+        "value": "خانه"
+      },
+      {
+        "type": "boolean",
+        "name": "home",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "setting",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "reports",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "profile",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "home_selected_text_color",
+        "value": "#193d8d"
+      },
+      {
+        "type": "string",
+        "name": "home_selected_line_color",
+        "value": "#193d8d"
+      },
+      {
+        "type": "string",
+        "name": "setting_selected_text_color",
+        "value": "#777676"
+      },
+      {
+        "type": "string",
+        "name": "setting_selected_line_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "reports_selected_text_color",
+        "value": "#777676"
+      },
+      {
+        "type": "string",
+        "name": "reports_selected_line_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "profile_selected_text_color",
+        "value": "#777676"
+      },
+      {
+        "type": "string",
+        "name": "profile_selected_line_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "vehicle",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "cattle",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "tabletandphone",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "profile_selected",
+        "value": "divkit-asset://profile-selected.png"
+      },
+      {
+        "type": "string",
+        "name": "home_selected",
+        "value": "divkit-asset://home-selected.png"
+      },
+      {
+        "type": "string",
+        "name": "report_selected",
+        "value": "divkit-asset://report-selected.png"
+      },
+      {
+        "type": "string",
+        "name": "setting_selected",
+        "value": "divkit-asset://setting-selected.png"
+      },
+      {
+        "type": "string",
+        "name": "image_profile",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "identity",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "patch",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "notification_bing.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "hoviat_inquiry_vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "vehicle_inquiry_vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "mobile_inquiry_vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "animal_inquiry_vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "imei_code",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "device_model",
+        "value": "-"
+      }
+    ],
+    "variable_triggers": [
+      {
+        "condition": "@{home}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "change home text color",
+            "url": "div-action://change_color?name=home_selected_text_color&value=@{blue}"
+          },
+          {
+            "log_id": "change home line color",
+            "url": "div-action://change_color?name=home_selected_line_color&value=@{blue}"
+          }
+        ]
+      },
+      {
+        "condition": "@{!home}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "change home text color",
+            "url": "div-action://change_color?name=home_selected_text_color&value=@{gray}"
+          },
+          {
+            "log_id": "change home line color",
+            "url": "div-action://change_color?name=home_selected_line_color&value=@{white}"
+          }
+        ]
+      },
+      {
+        "condition": "@{setting}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "change setting text color",
+            "url": "div-action://change_color?name=setting_selected_text_color&value=@{blue}"
+          },
+          {
+            "log_id": "change setting text color",
+            "url": "div-action://change_color?name=setting_selected_line_color&value=@{blue}"
+          }
+        ]
+      },
+      {
+        "condition": "@{!setting}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "change setting text color",
+            "url": "div-action://change_color?name=setting_selected_text_color&value=@{gray}"
+          },
+          {
+            "log_id": "change setting text color",
+            "url": "div-action://change_color?name=setting_selected_line_color&value=@{white}"
+          }
+        ]
+      },
+      {
+        "condition": "@{reports}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "change reports text color",
+            "url": "div-action://change_color?name=reports_selected_text_color&value=@{blue}"
+          },
+          {
+            "log_id": "change reports text color",
+            "url": "div-action://change_color?name=reports_selected_line_color&value=@{blue}"
+          }
+        ]
+      },
+      {
+        "condition": "@{!reports}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "change reports text color",
+            "url": "div-action://change_color?name=reports_selected_text_color&value=@{gray}"
+          },
+          {
+            "log_id": "change reports text color",
+            "url": "div-action://change_color?name=reports_selected_line_color&value=@{white}"
+          }
+        ]
+      },
+      {
+        "condition": "@{profile}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "change home text color",
+            "url": "div-action://change_color?name=profile_selected_text_color&value=@{blue}"
+          },
+          {
+            "log_id": "change home line color",
+            "url": "div-action://change_color?name=profile_selected_line_color&value=@{blue}"
+          }
+        ]
+      },
+      {
+        "condition": "@{!profile}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "change home text color",
+            "url": "div-action://change_color?name=profile_selected_text_color&value=@{gray}"
+          },
+          {
+            "log_id": "change home line color",
+            "url": "div-action://change_color?name=profile_selected_line_color&value=@{white}"
+          }
+        ]
+      }
+    ]
+  },
+  "templates": {
+    "grid_element": {
+      "type": "container",
+      "$actions": "actions",
+      "width": {
+        "type": "match_parent",
+        "weight": 1
+      },
+      "height": {
+        "type": "fixed",
+        "value": 120
+      },
+      "margins": {
+        "left": 8,
+        "top": 8,
+        "right": 8,
+        "bottom": 8
+      },
+      "background": [
+        {
+          "type": "solid",
+          "$color": "background_color"
+        }
+      ],
+      "items": [
+        {
+          "type": "image",
+          "$image_url": "icon",
+          "height": {
+            "type": "fixed",
+            "value": 26
+          },
+          "width": {
+            "type": "fixed",
+            "value": 35
+          }
+        },
+        {
+          "type": "text",
+          "$text": "title",
+          "font_size": 12,
+          "letter_spacing": 0,
+          "text_color": "#193d8d",
+          "text_alignment_horizontal": "left",
+          "text_alignment_vertical": "top",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "content_alignment_vertical": "center",
+          "content_alignment_horizontal": "center",
+          "alignment_horizontal": "center",
+          "alignment_vertical": "center",
+          "margins": {
+            "top": 8,
+            "bottom": 0
+          }
+        }
+      ],
+      "orientation": "vertical",
+      "content_alignment_vertical": "center",
+      "content_alignment_horizontal": "center",
+      "alignment_horizontal": "center",
+      "alignment_vertical": "center",
+      "border": {
+        "corner_radius": 8
+      },
+      "delimiter_style": {
+        "color": "#00000000"
+      }
+    },
+    "empty_element": {
+      "type": "container",
+      "width": {
+        "type": "match_parent",
+        "weight": 1
+      },
+      "height": {
+        "type": "match_parent",
+        "weight": 1
+      },
+      "margins": {
+        "left": 8,
+        "top": 8,
+        "right": 8,
+        "bottom": 8
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#00000000"
+        }
+      ],
+      "orientation": "vertical",
+      "content_alignment_vertical": "center",
+      "content_alignment_horizontal": "center",
+      "alignment_horizontal": "center",
+      "alignment_vertical": "center",
+      "border": {
+        "corner_radius": 8
+      },
+      "delimiter_style": {
+        "color": "#00000000"
+      }
+    }
+  }
+}

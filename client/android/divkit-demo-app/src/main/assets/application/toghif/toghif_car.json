@@ -1,0 +1,1895 @@
+{
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "gallery",
+          "visibility_actions": [
+            {
+              "log_id": "set_variable_from_db",
+              "url": "div-action://set_variable_from_db?name=recieveMessageTime"
+            }
+          ],
+          "items": [
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#ffffff"
+                }
+              ],
+              "border": {
+                "corners_radius": {
+                  "bottom-left": 16,
+                  "bottom-right": 16
+                },
+                "stroke": {
+                  "color": "#e6ebf5",
+                  "width": 1
+                }
+              },
+              "paddings": {
+                "top": 14,
+                "bottom": 14,
+                "left": 12,
+                "right": 12
+              },
+              "margins": {
+                "bottom": 8
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "اطلاعات خودرو",
+                  "font_size": 16,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#193d8d",
+                  "text_alignment_horizontal": "center",
+                  "text_alignment_vertical": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "font_weight": "bold",
+                  "alignment_horizontal": "center"
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "orientation": "vertical",
+              "alignment_horizontal": "center",
+              "visibility_actions": [
+                {
+                  "log_id": "set_car_model_to_db",
+                  "url": "div-action://set_variable_to_db?key=car_model_information_vt&value=@{car_model}",
+                  "visibility_duration": 0
+                },
+                {
+                  "log_id": "set_car_color_to_db",
+                  "url": "div-action://set_variable_to_db?key=car_color_information_vt&value=@{color}",
+                  "visibility_duration": 0
+                },
+                {
+                  "log_id": "set_car_total_ticket_to_db",
+                  "url": "div-action://set_variable_to_db?key=car_total_ticket_information_vt&value=@{total_ticket}",
+                  "visibility_duration": 0
+                }
+              ],
+              "items": [
+                {
+                  "type": "container",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "orientation": "vertical",
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 14,
+                    "stroke": {
+                      "color": "#c8d0e4",
+                      "width": 1
+                    }
+                  },
+                  "paddings": {
+                    "top": 14,
+                    "bottom": 12,
+                    "left": 14,
+                    "right": 14
+                  },
+                  "margins": {
+                    "top": 4,
+                    "bottom": 12,
+                    "start": 12,
+                    "end": 12
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "مشخصات خودرو",
+                      "font_size": 13,
+                      "line_height": 22,
+                      "letter_spacing": 0,
+                      "text_color": "#193d8d",
+                      "text_alignment_horizontal": "end",
+                      "text_alignment_vertical": "center",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "font_weight": "bold",
+                      "margins": {
+                        "top": 4,
+                        "bottom": 8
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image_url": "empty://",
+                      "preview": "@{plateImage}",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 200
+                      },
+                      "scale": "fit",
+                      "preload_required": true,
+                      "border": {
+                        "corner_radius": 10
+                      },
+                      "margins": {
+                        "bottom": 8
+                      },
+                      "actions": [
+                        {
+                          "log_id": "show_plate_image",
+                          "is_enabled": "@{len(plateImage) > 0}",
+                          "url": "div-action://show_image?image=@{plateImage}"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "nodata_template",
+                      "visibility": "@{car_information ? 'gone' : 'visible'}"
+                    },
+                    {
+                      "type": "container",
+                      "visibility": "@{car_information ? 'visible' : 'gone'}",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "orientation": "vertical",
+                      "items": [
+                        {
+                          "type": "container",
+                          "orientation": "horizontal",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "content_alignment_vertical": "center",
+                          "paddings": {
+                            "top": 8,
+                            "bottom": 8
+                          },
+                          "items": [
+                            {
+                              "type": "container",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "content_alignment_horizontal": "start",
+                              "content_alignment_vertical": "center",
+                              "margins": {
+                                "end": 12
+                              },
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "center",
+                                  "content_alignment_vertical": "center",
+                                  "width": {
+                                    "type": "wrap_content"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#e8eeff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corner_radius": 6,
+                                    "stroke": {
+                                      "color": "#c8d0e4",
+                                      "width": 1
+                                    }
+                                  },
+                                  "paddings": {
+                                    "top": 4,
+                                    "bottom": 4,
+                                    "left": 4,
+                                    "right": 4
+                                  },
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "orientation": "overlap",
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 18
+                                      },
+                                      "height": {
+                                        "type": "fixed",
+                                        "value": 32
+                                      },
+                                      "background": [
+                                        {
+                                          "type": "solid",
+                                          "color": "#193d8d"
+                                        }
+                                      ],
+                                      "border": {
+                                        "corner_radius": 4
+                                      },
+                                      "content_alignment_horizontal": "center",
+                                      "content_alignment_vertical": "center",
+                                      "items": [
+                                        {
+                                          "type": "text",
+                                          "text": "@{text_i_r__2}",
+                                          "font_size": 5,
+                                          "line_height": 6,
+                                          "letter_spacing": 0,
+                                          "text_color": "#ffffff",
+                                          "text_alignment_horizontal": "center",
+                                          "text_alignment_vertical": "center",
+                                          "width": {
+                                            "type": "wrap_content"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          },
+                                          "margins": {
+                                            "top": 4
+                                          }
+                                        },
+                                        {
+                                          "type": "text",
+                                          "text": "@{text_iran_3}",
+                                          "font_size": 5,
+                                          "line_height": 6,
+                                          "letter_spacing": 0,
+                                          "text_color": "#ffffff",
+                                          "text_alignment_horizontal": "center",
+                                          "text_alignment_vertical": "center",
+                                          "width": {
+                                            "type": "wrap_content"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          },
+                                          "margins": {
+                                            "bottom": 4
+                                          },
+                                          "alignment_vertical": "bottom"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "container",
+                                      "orientation": "horizontal",
+                                      "content_alignment_vertical": "center",
+                                      "width": {
+                                        "type": "wrap_content"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "background": [
+                                        {
+                                          "type": "solid",
+                                          "color": "#ffffff"
+                                        }
+                                      ],
+                                      "border": {
+                                        "corner_radius": 4
+                                      },
+                                      "paddings": {
+                                        "top": 4,
+                                        "bottom": 4,
+                                        "left": 8,
+                                        "right": 8
+                                      },
+                                      "margins": {
+                                        "start": 3
+                                      },
+                                      "items": [
+                                        {
+                                          "type": "text",
+                                          "text": "@{plateA}",
+                                          "font_size": 15,
+                                          "line_height": 22,
+                                          "letter_spacing": 0,
+                                          "text_color": "#252424",
+                                          "text_alignment_horizontal": "center",
+                                          "text_alignment_vertical": "center",
+                                          "width": {
+                                            "type": "wrap_content"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          },
+                                          "font_weight": "medium"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "text": "@{plateB}",
+                                          "font_size": 15,
+                                          "line_height": 22,
+                                          "letter_spacing": 0,
+                                          "text_color": "#252424",
+                                          "text_alignment_horizontal": "center",
+                                          "text_alignment_vertical": "center",
+                                          "width": {
+                                            "type": "wrap_content"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          },
+                                          "font_weight": "medium",
+                                          "margins": {
+                                            "start": 8
+                                          }
+                                        },
+                                        {
+                                          "type": "text",
+                                          "text": "@{plateC}",
+                                          "font_size": 15,
+                                          "line_height": 22,
+                                          "letter_spacing": 0,
+                                          "text_color": "#252424",
+                                          "text_alignment_horizontal": "center",
+                                          "text_alignment_vertical": "center",
+                                          "width": {
+                                            "type": "wrap_content"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          },
+                                          "font_weight": "medium",
+                                          "margins": {
+                                            "start": 8
+                                          }
+                                        },
+                                        {
+                                          "type": "text",
+                                          "text": "@{plateD}",
+                                          "font_size": 15,
+                                          "line_height": 22,
+                                          "letter_spacing": 0,
+                                          "text_color": "#252424",
+                                          "text_alignment_horizontal": "center",
+                                          "text_alignment_vertical": "center",
+                                          "width": {
+                                            "type": "wrap_content"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          },
+                                          "font_weight": "medium",
+                                          "margins": {
+                                            "start": 8
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "text": "پلاک",
+                              "font_size": 12,
+                              "line_height": 20,
+                              "letter_spacing": 0,
+                              "text_color": "#777676",
+                              "text_alignment_horizontal": "end",
+                              "text_alignment_vertical": "center",
+                              "width": {
+                                "type": "wrap_content",
+                                "constrained": true
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "info_row",
+                          "label": "سیستم",
+                          "value": "@{system}"
+                        },
+                        {
+                          "type": "info_row",
+                          "label": "تیپ",
+                          "value": "@{usage}"
+                        },
+                        {
+                          "type": "info_row",
+                          "label": "رنگ",
+                          "value": "@{color}"
+                        },
+                        {
+                          "type": "info_row",
+                          "label": "محور / جاده",
+                          "value": "@{road}"
+                        },
+                        {
+                          "type": "info_row",
+                          "label": "سرعت خودرو",
+                          "value": "@{speed}"
+                        },
+                        {
+                          "type": "info_row",
+                          "label": "سرعت مجاز",
+                          "value": "@{allowedSpeed}"
+                        },
+                        {
+                          "type": "info_row",
+                          "label": "زمان رسیدن به پاسگاه",
+                          "value": "@{arrivingTime}"
+                        },
+                        {
+                          "type": "info_row",
+                          "label": "زمان دریافت پیام",
+                          "value": "@{recieveMessageTime}"
+                        },
+                        {
+                          "type": "info_row",
+                          "label": "نام پاسگاه",
+                          "value": "@{nameCheckPoint}"
+                        },
+                        {
+                          "type": "info_row",
+                          "label": "کد تخلف",
+                          "value": "@{violationTypeId}"
+                        },
+                        {
+                          "type": "info_row",
+                          "label": "نام دوربین",
+                          "value": "@{cameraCode}"
+                        },
+                        {
+                          "type": "text",
+                          "text": "ثبت بازخورد",
+                          "font_size": 13,
+                          "line_height": 22,
+                          "letter_spacing": 0,
+                          "text_color": "#193d8d",
+                          "text_alignment_horizontal": "end",
+                          "text_alignment_vertical": "center",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "font_weight": "bold",
+                          "margins": {
+                            "top": 16,
+                            "bottom": 8
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "orientation": "vertical",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#f8f9fc"
+                            }
+                          ],
+                          "border": {
+                            "corner_radius": 12,
+                            "stroke": {
+                              "color": "#c8d0e4",
+                              "width": 1
+                            }
+                          },
+                          "paddings": {
+                            "top": 4,
+                            "bottom": 4,
+                            "left": 8,
+                            "right": 8
+                          },
+                          "margins": {
+                            "bottom": 8
+                          },
+                          "items": [
+                            {
+                              "type": "container",
+                              "orientation": "horizontal",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "content_alignment_vertical": "center",
+                              "paddings": {
+                                "top": 10,
+                                "bottom": 10,
+                                "left": 12,
+                                "right": 12
+                              },
+                              "margins": {
+                                "top": 4,
+                                "bottom": 4
+                              },
+                              "border": {
+                                "corner_radius": 12
+                              },
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "@{tab_index=='1'?selected_tab:unselected_tab}"
+                                }
+                              ],
+                              "actions": [
+                                {
+                                  "log_id": "select_feedback_1",
+                                  "url": "div-action://set_variable?name=tab_index&value=1"
+                                },
+                                {
+                                  "log_id": "set_number_1",
+                                  "url": "div-action://set_variable?name=number&value=1"
+                                }
+                              ],
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "ثبت جریمه",
+                                  "font_size": 13,
+                                  "line_height": 20,
+                                  "letter_spacing": 0,
+                                  "text_color": "@{tab_index=='1'?selected_tab_text:unselected_tab_text}",
+                                  "text_alignment_horizontal": "start",
+                                  "text_alignment_vertical": "center",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "max_lines": 2
+                                },
+                                {
+                                  "type": "image",
+                                  "image_url": "@{tab_index=='1'?checked:unchecked}",
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 22
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 22
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "start": 8
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "type": "container",
+                              "orientation": "horizontal",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "content_alignment_vertical": "center",
+                              "paddings": {
+                                "top": 10,
+                                "bottom": 10,
+                                "left": 12,
+                                "right": 12
+                              },
+                              "margins": {
+                                "top": 4,
+                                "bottom": 4
+                              },
+                              "border": {
+                                "corner_radius": 12
+                              },
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "@{tab_index=='2'?selected_tab:unselected_tab}"
+                                }
+                              ],
+                              "actions": [
+                                {
+                                  "log_id": "select_feedback_2",
+                                  "url": "div-action://set_variable?name=tab_index&value=2"
+                                },
+                                {
+                                  "log_id": "set_number_2",
+                                  "url": "div-action://set_variable?name=number&value=2"
+                                }
+                              ],
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "توقیف ساعتی",
+                                  "font_size": 13,
+                                  "line_height": 20,
+                                  "letter_spacing": 0,
+                                  "text_color": "@{tab_index=='2'?selected_tab_text:unselected_tab_text}",
+                                  "text_alignment_horizontal": "start",
+                                  "text_alignment_vertical": "center",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "max_lines": 2
+                                },
+                                {
+                                  "type": "image",
+                                  "image_url": "@{tab_index=='2'?checked:unchecked}",
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 22
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 22
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "start": 8
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "type": "container",
+                              "orientation": "horizontal",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "content_alignment_vertical": "center",
+                              "paddings": {
+                                "top": 10,
+                                "bottom": 10,
+                                "left": 12,
+                                "right": 12
+                              },
+                              "margins": {
+                                "top": 4,
+                                "bottom": 4
+                              },
+                              "border": {
+                                "corner_radius": 12
+                              },
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "@{tab_index=='5'?selected_tab:unselected_tab}"
+                                }
+                              ],
+                              "actions": [
+                                {
+                                  "log_id": "select_feedback_5",
+                                  "url": "div-action://set_variable?name=tab_index&value=5"
+                                },
+                                {
+                                  "log_id": "set_number_5",
+                                  "url": "div-action://set_variable?name=number&value=5"
+                                }
+                              ],
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "رویت نشد",
+                                  "font_size": 13,
+                                  "line_height": 20,
+                                  "letter_spacing": 0,
+                                  "text_color": "@{tab_index=='5'?selected_tab_text:unselected_tab_text}",
+                                  "text_alignment_horizontal": "start",
+                                  "text_alignment_vertical": "center",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "max_lines": 2
+                                },
+                                {
+                                  "type": "image",
+                                  "image_url": "@{tab_index=='5'?checked:unchecked}",
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 22
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 22
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "start": 8
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "type": "container",
+                              "orientation": "horizontal",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "content_alignment_vertical": "center",
+                              "paddings": {
+                                "top": 10,
+                                "bottom": 10,
+                                "left": 12,
+                                "right": 12
+                              },
+                              "margins": {
+                                "top": 4,
+                                "bottom": 4
+                              },
+                              "border": {
+                                "corner_radius": 12
+                              },
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "@{tab_index=='3'?selected_tab:unselected_tab}"
+                                }
+                              ],
+                              "actions": [
+                                {
+                                  "log_id": "select_feedback_3",
+                                  "url": "div-action://set_variable?name=tab_index&value=3"
+                                },
+                                {
+                                  "log_id": "set_number_3",
+                                  "url": "div-action://set_variable?name=number&value=3"
+                                }
+                              ],
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "ضبط گواهینامه",
+                                  "font_size": 13,
+                                  "line_height": 20,
+                                  "letter_spacing": 0,
+                                  "text_color": "@{tab_index=='3'?selected_tab_text:unselected_tab_text}",
+                                  "text_alignment_horizontal": "start",
+                                  "text_alignment_vertical": "center",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "max_lines": 2
+                                },
+                                {
+                                  "type": "image",
+                                  "image_url": "@{tab_index=='3'?checked:unchecked}",
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 22
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 22
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "start": 8
+                                  }
+                                }
+                              ],
+                              "visibility": "gone"
+                            },
+                            {
+                              "type": "container",
+                              "orientation": "horizontal",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "content_alignment_vertical": "center",
+                              "paddings": {
+                                "top": 10,
+                                "bottom": 10,
+                                "left": 12,
+                                "right": 12
+                              },
+                              "margins": {
+                                "top": 4,
+                                "bottom": 4
+                              },
+                              "border": {
+                                "corner_radius": 12
+                              },
+                              "background": [
+                                {
+                                  "type": "solid",
+                                  "color": "@{tab_index=='4'?selected_tab:unselected_tab}"
+                                }
+                              ],
+                              "actions": [
+                                {
+                                  "log_id": "select_feedback_4",
+                                  "url": "div-action://set_variable?name=tab_index&value=4"
+                                },
+                                {
+                                  "log_id": "set_number_4",
+                                  "url": "div-action://set_variable?name=number&value=4"
+                                }
+                              ],
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "توقیف",
+                                  "font_size": 13,
+                                  "line_height": 20,
+                                  "letter_spacing": 0,
+                                  "text_color": "@{tab_index=='4'?selected_tab_text:unselected_tab_text}",
+                                  "text_alignment_horizontal": "start",
+                                  "text_alignment_vertical": "center",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "max_lines": 2
+                                },
+                                {
+                                  "type": "image",
+                                  "image_url": "@{tab_index=='4'?checked:unchecked}",
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 22
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 22
+                                  },
+                                  "preload_required": true,
+                                  "margins": {
+                                    "start": 8
+                                  }
+                                }
+                              ],
+                              "visibility": "gone"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "routing_template",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 0,
+                            "start": 0,
+                            "end": 0
+                          },
+                          "paddings": {
+                            "top": 12,
+                            "bottom": 12,
+                            "start": 16,
+                            "end": 16
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "height": {
+            "type": "match_parent"
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "vertical",
+          "content_alignment_vertical": "top",
+          "content_alignment_horizontal": "center"
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "boolean",
+        "name": "car_information",
+        "value": true
+      },
+      {
+        "type": "string",
+        "name": "plate_two_direction_visibility",
+        "value": "visible"
+      },
+      {
+        "type": "boolean",
+        "name": "last_ticket",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "car_punishments",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "instruction",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "plate_two_direction",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "parking_instruction",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "inquiry_agahi",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "insurance",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "tecnical_visit",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "parking_tecnical_visit",
+        "value": true
+      },
+      {
+        "type": "string",
+        "name": "text___1",
+        "value": "مشخصات خودرو"
+      },
+      {
+        "type": "string",
+        "name": "text_i_r__2",
+        "value": "i.r."
+      },
+      {
+        "type": "string",
+        "name": "text_iran_3",
+        "value": "iran"
+      },
+      {
+        "type": "string",
+        "name": "plateA",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "plateB",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "plateC",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "plateD",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___8",
+        "value": "پلاک"
+      },
+      {
+        "type": "string",
+        "name": "color",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___10",
+        "value": "مدل"
+      },
+      {
+        "type": "string",
+        "name": "tracId",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "parking_color_selection",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___12",
+        "value": "کاربری"
+      },
+      {
+        "type": "string",
+        "name": "plateNo",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "parking_national_code",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "parking_user",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___14",
+        "value": "رنگ"
+      },
+      {
+        "type": "string",
+        "name": "year",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "parking_manufacturer_selection",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___16",
+        "value": "سال ساخت"
+      },
+      {
+        "type": "string",
+        "name": "chassis_number",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "chassis_number",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___18",
+        "value": "شماره شاسی"
+      },
+      {
+        "type": "string",
+        "name": "car_type",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "parking_vin_selection",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "parking_address_selection",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "parking_owners_name_selection",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "parking_body_series_selection",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "parking_phone_number_selection",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "parking_type",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___20",
+        "value": "تیپ"
+      },
+      {
+        "type": "string",
+        "name": "text___21",
+        "value": "آخرین جریمه"
+      },
+      {
+        "type": "string",
+        "name": "ticket_date",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___23",
+        "value": "تاریخ و زمان جریمه"
+      },
+      {
+        "type": "string",
+        "name": "ticket_title1",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "ticket_title2",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "ticket_title3",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___25",
+        "value": "عنوان جریمه"
+      },
+      {
+        "type": "string",
+        "name": "ticket_code",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "parking_fathers_name",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___27",
+        "value": "کد جریمه"
+      },
+      {
+        "type": "string",
+        "name": "ticket_type",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___29",
+        "value": "نوع جریمه"
+      },
+      {
+        "type": "string",
+        "name": "ticket_location",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___31",
+        "value": "موقعیت"
+      },
+      {
+        "type": "string",
+        "name": "text___32",
+        "value": "ریال"
+      },
+      {
+        "type": "string",
+        "name": "ticket_price",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___34",
+        "value": "مبلغ جریمه"
+      },
+      {
+        "type": "string",
+        "name": "text___35",
+        "value": "خلافی خودرو"
+      },
+      {
+        "type": "string",
+        "name": "text___36",
+        "value": "ریال"
+      },
+      {
+        "type": "string",
+        "name": "total_ticket",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___38",
+        "value": "جمع تخلفات"
+      },
+      {
+        "type": "string",
+        "name": "text___39",
+        "value": "دستورات"
+      },
+      {
+        "type": "string",
+        "name": "executive_order",
+        "value": "تبصره ماده ۸ قانون"
+      },
+      {
+        "type": "string",
+        "name": "text___41",
+        "value": "دستور اجرائیات"
+      },
+      {
+        "type": "string",
+        "name": "numbering_order",
+        "value": "ندارد"
+      },
+      {
+        "type": "string",
+        "name": "text___43",
+        "value": "دستور شماره گذاری"
+      },
+      {
+        "type": "string",
+        "name": "text___44",
+        "value": "استعلام آگاهی"
+      },
+      {
+        "type": "string",
+        "name": "agh_order",
+        "value": "توقیف - بدپوششی"
+      },
+      {
+        "type": "string",
+        "name": "text___46",
+        "value": "دستور"
+      },
+      {
+        "type": "string",
+        "name": "agh_order_date",
+        "value": "۱۴۰۲/۰۵/۱۲"
+      },
+      {
+        "type": "string",
+        "name": "text___48",
+        "value": "تاریخ دستور"
+      },
+      {
+        "type": "string",
+        "name": "collision_type",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___50",
+        "value": "نوع برخورد"
+      },
+      {
+        "type": "string",
+        "name": "announcement_date",
+        "value": "۱۴۰۲/۰۵/۱۲"
+      },
+      {
+        "type": "string",
+        "name": "text___52",
+        "value": "تاریخ اعلان"
+      },
+      {
+        "type": "string",
+        "name": "agh_order_location",
+        "value": "تهران ، تهران ، میدان نبوت"
+      },
+      {
+        "type": "string",
+        "name": "text___54",
+        "value": "آدرس دستور"
+      },
+      {
+        "type": "string",
+        "name": "discover_location",
+        "value": "تهران ، تهران ، میدان نبوت"
+      },
+      {
+        "type": "string",
+        "name": "text___56",
+        "value": "آدرس کشف"
+      },
+      {
+        "type": "string",
+        "name": "discover_date",
+        "value": "۱۴۰۲/۰۵/۱۲"
+      },
+      {
+        "type": "string",
+        "name": "text___58",
+        "value": "تاریخ کشف"
+      },
+      {
+        "type": "string",
+        "name": "agh_description",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___60",
+        "value": "شرح برخورد"
+      },
+      {
+        "type": "string",
+        "name": "text___61",
+        "value": "بیمه"
+      },
+      {
+        "type": "string",
+        "name": "insurance_expire",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___63",
+        "value": "تاریخ اعتبار"
+      },
+      {
+        "type": "string",
+        "name": "insurance_name",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___65",
+        "value": "نام شرکت"
+      },
+      {
+        "type": "string",
+        "name": "insurance_type",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___67",
+        "value": "نوع بیمه"
+      },
+      {
+        "type": "string",
+        "name": "insurance_number",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___69",
+        "value": "شماره بیمه"
+      },
+      {
+        "type": "string",
+        "name": "text___70",
+        "value": "معاینه فنی"
+      },
+      {
+        "type": "string",
+        "name": "tecnical_visit_status",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "parking_tecnical_visit_status",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "parking_color",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "year_vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "parking_manufacturer",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "shasi_vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "parking_production_date",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "type_vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "parking_vin",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "parking_address",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "parking_owners_name",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "parking_body_series",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "parking_phone_number",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "parking_owner_fathers_name",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "parking_type_selection",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "name_vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "parking_owners_last_name",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "phone_vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "parking_car_engine_series",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "info_vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "parking_usage_inquiry",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "instructions_vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "parking_instructions_vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "inquiry_agahi_vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "parking_inquiry__vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "technical_visit_vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "parking_technical_visit_vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "insurance_vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "punish_vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "national_code_vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "parking_system",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "usage",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "parking_system_name",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "last_ticket_vis",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "name_and_family",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "parking_last_name",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "parking_date",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "system",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "parking_engine_series",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "road",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "speed",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "recieveMessageTime",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "allowedSpeed",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "plateType",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "arrivingTime",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "nameCheckPoint",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "violationTypeId",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "text___72",
+        "value": "وضعیت"
+      },
+      {
+        "type": "string",
+        "name": "text___73",
+        "value": "استعلام خودرو"
+      },
+      {
+        "type": "string",
+        "name": "iran_flag.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "number",
+        "value": "0"
+      },
+      {
+        "type": "string",
+        "name": "cameraCode",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "plateImage",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "checked",
+        "value": "divkit-asset://checkbox-checked.png"
+      },
+      {
+        "type": "string",
+        "name": "unchecked",
+        "value": "divkit-asset://checkbox-unchecked.png"
+      },
+      {
+        "type": "string",
+        "name": "selected_tab_text",
+        "value": "#193d8d"
+      },
+      {
+        "type": "string",
+        "name": "unselected_tab_text",
+        "value": "#757575"
+      },
+      {
+        "type": "integer",
+        "name": "max_selected",
+        "value": 2
+      },
+      {
+        "type": "string",
+        "name": "index1m_color",
+        "value": "#eee"
+      },
+      {
+        "type": "string",
+        "name": "tab_index",
+        "value": "0"
+      },
+      {
+        "type": "string",
+        "name": "selected_tab",
+        "value": "#e8ecf4"
+      },
+      {
+        "type": "string",
+        "name": "unselected_tab",
+        "value": "#ffffff"
+      }
+    ]
+  },
+  "templates": {
+    "info_row": {
+      "type": "container",
+      "orientation": "horizontal",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "content_alignment_vertical": "center",
+      "paddings": {
+        "top": 10,
+        "bottom": 10
+      },
+      "items": [
+        {
+          "type": "text",
+          "$text": "value",
+          "font_size": 13,
+          "line_height": 20,
+          "letter_spacing": 0,
+          "text_color": "#252424",
+          "text_alignment_horizontal": "start",
+          "text_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "max_lines": 4,
+          "margins": {
+            "end": 12
+          }
+        },
+        {
+          "type": "text",
+          "$text": "label",
+          "font_size": 12,
+          "line_height": 20,
+          "letter_spacing": 0,
+          "text_color": "#777676",
+          "text_alignment_horizontal": "end",
+          "text_alignment_vertical": "center",
+          "width": {
+            "type": "wrap_content",
+            "constrained": true
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "max_lines": 2
+        }
+      ]
+    },
+    "routing_template": {
+      "type": "container",
+      "items": [
+        {
+          "type": "text",
+          "text": "ثبت بازخورد ",
+          "font_size": 14,
+          "font_weight": "regular",
+          "line_height": 24,
+          "letter_spacing": 0,
+          "text_color": "#ffffff",
+          "text_alignment_horizontal": "left",
+          "text_alignment_vertical": "top",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          }
+        }
+      ],
+      "background": [
+        {
+          "type": "solid",
+          "color": "#193d8d"
+        }
+      ],
+      "border": {
+        "corner_radius": 12
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "width": {
+        "type": "match_parent"
+      },
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "center",
+      "content_alignment_vertical": "center",
+      "paddings": {
+        "top": 14,
+        "bottom": 14,
+        "start": 16,
+        "end": 16
+      },
+      "margins": {
+        "top": 8,
+        "bottom": 8,
+        "start": 0,
+        "end": 0
+      },
+      "$actions": "actions"
+    }
+  }
+}

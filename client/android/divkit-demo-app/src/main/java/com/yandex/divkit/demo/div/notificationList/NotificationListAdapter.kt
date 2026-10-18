@@ -12,12 +12,33 @@ import java.util.Date
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 
-class NotificationListAdapter(
-    private val onItemClick: (NotificationItem) -> Unit = {},
-    private val onMarkAsRead: (NotificationItem) -> Unit = {}
-) : RecyclerView.Adapter<NotificationListAdapter.NotificationViewHolder>() {
+class NotificationListAdapter : RecyclerView.Adapter<NotificationListAdapter.NotificationViewHolder>() {
 
     private val notifications = mutableListOf<NotificationItem>()
+    private var notificationBasicInfo: List<NotificationTypeInfo>? = null
+    
+    // Use a listener interface instead of lambdas to avoid capture issues
+    interface NotificationClickListener {
+        fun onNotificationClick(notification: NotificationItem)
+        fun onMarkAsRead(notification: NotificationItem)
+    }
+    
+    private var clickListener: NotificationClickListener? = null
+    
+    /**
+     * Set click listener
+     * This should be called when the view is attached/reattached
+     */
+    fun setClickListener(listener: NotificationClickListener?) {
+        this.clickListener = listener
+        android.util.Log.d("NotificationListAdapter", "Click listener set: ${listener != null}")
+    }
+    
+    data class NotificationTypeInfo(
+        val id: String,
+        val titleFa: String,
+        val titleEn: String
+    )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -26,14 +47,26 @@ class NotificationListAdapter(
     }
 
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
+        android.util.Log.d("NotificationListAdapter", "onBindViewHolder called for position $position")
         holder.bind(notifications[position])
     }
 
     override fun getItemCount(): Int = notifications.size
 
     fun setNotifications(newNotifications: List<NotificationItem>) {
+        android.util.Log.d("NotificationListAdapter", "setNotifications called with ${newNotifications.size} items")
+        android.util.Log.d("NotificationListAdapter", "Current clickListener: ${clickListener != null}")
         notifications.clear()
         notifications.addAll(newNotifications.sortedByDescending { it.timestamp })
+        notifyDataSetChanged()
+    }
+    
+    /**
+     * Set notification basic info from database
+     * This is used to display notification type labels
+     */
+    fun setNotificationBasicInfo(basicInfo: List<NotificationTypeInfo>?) {
+        this.notificationBasicInfo = basicInfo
         notifyDataSetChanged()
     }
 
@@ -59,6 +92,7 @@ class NotificationListAdapter(
         private val titleText: TextView = itemView.findViewById(R.id.notification_title)
         private val messageText: TextView = itemView.findViewById(R.id.notification_message)
         private val timestampText: TextView = itemView.findViewById(R.id.notification_timestamp)
+        private val senderTimeTypeText: TextView = itemView.findViewById(R.id.notification_sender_time_type)
         private val notificationIcon: ImageView = itemView.findViewById(R.id.notification_icon)
         private val newBadge: View = itemView.findViewById(R.id.new_badge)
         private val readIndicator: View = itemView.findViewById(R.id.read_indicator)
@@ -66,7 +100,33 @@ class NotificationListAdapter(
         fun bind(notification: NotificationItem) {
             titleText.text = notification.title
             messageText.text = notification.message
+
+            // Set relative time (how long ago notification was received)
             timestampText.text = formatTimestamp(notification.timestamp)
+
+            // Build senderTime and type text (shown on separate line above)
+            val senderTimeTypeParts = mutableListOf<String>()
+            
+            // Add senderTime from server if available
+            if (notification.senderTime != null) {
+                senderTimeTypeParts.add(notification.senderTime)
+            }
+            
+            // Add type label if available
+            if (notification.rawType != null) {
+                // Try to find type label from notificationBasicInfo
+                val typeLabel = notificationBasicInfo?.find { it.id == notification.rawType }?.titleFa
+                    ?: notification.rawType
+                senderTimeTypeParts.add(typeLabel)
+            }
+            
+            // Show/hide senderTime and type TextView
+            if (senderTimeTypeParts.isNotEmpty()) {
+                senderTimeTypeText.text = senderTimeTypeParts.joinToString("  •  ")
+                senderTimeTypeText.visibility = View.VISIBLE
+            } else {
+                senderTimeTypeText.visibility = View.GONE
+            }
 
             // Show/hide new badge
             newBadge.visibility = if (notification.isNew && !notification.isRead) {
@@ -100,12 +160,22 @@ class NotificationListAdapter(
                 }
             }
 
-            // Set click listener
+            // Set click listener - always set it fresh to ensure it works
+            itemView.setOnClickListener(null) // Clear previous listener first
             itemView.setOnClickListener {
+                android.util.Log.d("NotificationListAdapter", "Item clicked: ${notification.id}, title: ${notification.title}")
+                android.util.Log.d("NotificationListAdapter", "clickListener is null: ${clickListener == null}")
+                
+                if (clickListener != null) {
                 if (!notification.isRead) {
-                    onMarkAsRead(notification)
+                        android.util.Log.d("NotificationListAdapter", "Notification is not read, calling onMarkAsRead")
+                        clickListener!!.onMarkAsRead(notification)
                 }
-                onItemClick(notification)
+                    android.util.Log.d("NotificationListAdapter", "Calling onNotificationClick")
+                    clickListener!!.onNotificationClick(notification)
+                } else {
+                    android.util.Log.e("NotificationListAdapter", "clickListener is null, cannot handle click!")
+                }
             }
         }
 

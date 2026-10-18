@@ -1,0 +1,368 @@
+{
+  "templates": {
+    "grid_element": {
+      "type": "container",
+      "$actions": "actions",
+      "width": {
+        "type": "match_parent",
+        "weight": 1
+      },
+      "height": {
+        "type": "fixed",
+        "value": 120
+      },
+      "margins": {
+        "left": 8,
+        "top": 8,
+        "right": 8,
+        "bottom": 8
+      },
+      "background": [
+        {
+          "type": "solid",
+          "$color": "background_color"
+        }
+      ],
+      "items": [
+        {
+          "type": "image",
+          "scale": "fit",
+          "$image_url": "icon",
+          "height": {
+            "type": "fixed",
+            "value": 26
+          },
+          "width": {
+            "type": "fixed",
+            "value": 35
+          }
+        },
+        {
+          "type": "text",
+          "$text": "title",
+          "font_size": 12,
+          "letter_spacing": 0,
+          "text_color": "#193d8d",
+          "text_alignment_horizontal": "left",
+          "text_alignment_vertical": "top",
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "content_alignment_vertical": "center",
+          "content_alignment_horizontal": "center",
+          "alignment_horizontal": "center",
+          "alignment_vertical": "center",
+          "margins": {
+            "top": 8,
+            "bottom": 0
+          }
+        }
+      ],
+      "orientation": "vertical",
+      "content_alignment_vertical": "center",
+      "content_alignment_horizontal": "center",
+      "alignment_horizontal": "center",
+      "alignment_vertical": "center",
+      "border": {
+        "corner_radius": 4
+      },
+      "delimiter_style": {
+        "color": "#00000000"
+      }
+    },
+    "empty_element": {
+      "type": "container",
+      "width": {
+        "type": "match_parent",
+        "weight": 1
+      },
+      "height": {
+        "type": "fixed",
+        "value": 100
+      },
+      "margins": {
+        "left": 8,
+        "top": 8,
+        "right": 8,
+        "bottom": 8
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#00000000"
+        }
+      ],
+      "orientation": "vertical",
+      "content_alignment_vertical": "center",
+      "content_alignment_horizontal": "center",
+      "alignment_horizontal": "center",
+      "alignment_vertical": "center",
+      "border": {
+        "corner_radius": 4
+      },
+      "delimiter_style": {
+        "color": "#00000000"
+      }
+    }
+  },
+  "patch": {
+    "mode": "partial",
+    "changes": [
+      {
+        "id": "base_element",
+        "items": [
+          {
+            "type": "grid_element",
+            "row_span": 1,
+            "column_span": 1,
+            "background_color": "#FFFFFF",
+            "icon": "http://172.19.83.21:7001/VehicleTicketTwo/icon/takhalofat.png",
+            "title": "ثبت تخلفات",
+            "version_vt": "2026-10-18 10:31:54.0519871",
+            "actions": [
+              {
+                "log_id": "show_bottom_sheet",
+                "url": "div-action://bottom_sheet_div?jsonName=ph/vt/bottomsheet&lastModified=empty"
+              }
+            ],
+            "action_animation": {
+              "name": "scale",
+              "start_value": 1,
+              "end_value": 0.95,
+              "duration": 300,
+              "interpolator": "ease_in_out"
+            }
+          },
+          {
+            "type": "grid_element",
+            "row_span": 1,
+            "column_span": 1,
+            "background_color": "#FFFFFF",
+            "icon": "http://172.19.83.21:7001/Nazer/icon/nazer.png",
+            "title": "ناظر",
+            "version_nzr": "2026-10-18 10:31:54.0519871",
+            "actions": [
+              {
+                "log_id": "show_bottom_sheet",
+                "url": "div-action://call_service?path=getScreen&screenName=nazer/main&ph/token=empty&device_model=@{device_model}&imei_code=@{imei_code}&lastModified=empty"
+              }
+            ],
+            "action_animation": {
+              "name": "scale",
+              "start_value": 1,
+              "end_value": 0.95,
+              "duration": 300,
+              "interpolator": "ease_in_out"
+            }
+          },
+          {
+            "type": "grid_element",
+            "row_span": 1,
+            "column_span": 1,
+            "background_color": "#FFFFFF",
+            "icon": "http://172.19.83.21:7001/CRASHES/icon/acident.png",
+            "title": "ثبت تصادفات",
+            "version_accidents": "2026-10-18 10:31:54.0519871",
+            "actions": [
+              {
+                "log_id": "show_bottom_sheet",
+                "url": "div-action://call_service?path=getScreen&screenName=accidents/main&ph/token=empty&lastModified_Accident=empty"
+              }
+            ],
+            "action_animation": {
+              "name": "scale",
+              "start_value": 1,
+              "end_value": 0.95,
+              "duration": 300,
+              "interpolator": "ease_in_out"
+            }
+          },
+          {
+            "type": "grid_element",
+            "row_span": 1,
+            "column_span": 1,
+            "background_color": "#FFFFFF",
+            "icon": "http://172.19.83.21:7001/Jorm/icon/jorm.png",
+            "title": "صحنه جرم",
+            "version_CIS": "2026-10-18 10:31:54.0519871",
+            "actions": [
+              {
+                "log_id": "call_service",
+                "url": "div-action://show_toast?massage=برنامه در مرحله تولید می باشد"
+              }
+            ],
+            "action_animation": {
+              "name": "scale",
+              "start_value": 1,
+              "end_value": 0.95,
+              "duration": 300,
+              "interpolator": "ease_in_out"
+            }
+          },
+          {
+            "type": "grid_element",
+            "row_span": 1,
+            "column_span": 1,
+            "background_color": "#FFFFFF",
+            "icon": "http://172.19.83.21:7001/Basir/icon/bazresi.png",
+            "title": "بازرسي کل ناجا",
+            "version_bazrasi": "2026-10-18 10:31:54.0519871",
+            "actions": [
+              {
+                "log_id": "show_bottom_sheet",
+                "url": "div-action://call_service?path=getScreen&screenName=bazrasi/main&ph/token=empty&lastModified=empty"
+              }
+            ],
+            "action_animation": {
+              "name": "scale",
+              "start_value": 1,
+              "end_value": 0.95,
+              "duration": 300,
+              "interpolator": "ease_in_out"
+            }
+          },
+          {
+            "type": "grid_element",
+            "row_span": 1,
+            "column_span": 1,
+            "background_color": "#FFFFFF",
+            "icon": "http://172.19.83.21:7001/Parking/icon/toghif.png",
+            "title": "سامانه توقيف",
+            "version_toghif": "2026-10-18 10:31:54.0519871",
+            "actions": [
+              {
+                "log_id": "show_bottom_sheet",
+                "url": "div-action://call_service?path=getScreen&screenName=toghif/main&ph/token=empty&lastUpdateToghif=empty&lastModified=empty"
+              }
+            ],
+            "action_animation": {
+              "name": "scale",
+              "start_value": 1,
+              "end_value": 0.95,
+              "duration": 300,
+              "interpolator": "ease_in_out"
+            }
+          },
+          {
+            "type": "grid_element",
+            "row_span": 1,
+            "column_span": 1,
+            "background_color": "#FFFFFF",
+            "icon": "http://172.19.83.21:7001/Amaken/icon/amaken.png",
+            "title": "سامانه اماکن",
+            "version_amkn": "2026-10-18 10:31:54.0519871",
+            "actions": [
+              {
+                "log_id": "show_bottom_sheet",
+                "url": "div-action://call_service?path=getScreen&screenName=amkn/main&ph/token=empty&lastModified=empty"
+              }
+            ],
+            "action_animation": {
+              "name": "scale",
+              "start_value": 1,
+              "end_value": 0.95,
+              "duration": 300,
+              "interpolator": "ease_in_out"
+            }
+          },
+          {
+            "type": "grid_element",
+            "row_span": 1,
+            "column_span": 1,
+            "background_color": "#FFFFFF",
+            "icon": "http://172.19.83.21:7001/Atba/icon/atba.png",
+            "title": "پايش ميداني اتباع خارجي",
+            "version_atba": "2026-10-18 10:31:54.0519871",
+            "actions": [
+              {
+                "log_id": "show_bottom_sheet",
+                "url": "div-action://call_service?path=getScreen&screenName=atba/main&ph/token=empty&lastModified=empty&lastModified=empty"
+              }
+            ],
+            "action_animation": {
+              "name": "scale",
+              "start_value": 1,
+              "end_value": 0.95,
+              "duration": 300,
+              "interpolator": "ease_in_out"
+            }
+          },
+          {
+            "type": "grid_element",
+            "row_span": 1,
+            "column_span": 1,
+            "background_color": "#FFFFFF",
+            "icon": "http://172.19.83.21:7001/Atba/icon/atba.png",
+            "title": "محموله گمرکی",
+            "version_cargo": "2026-10-18 10:31:54.0519871",
+            "actions": [
+              {
+                "log_id": "show_bottom_sheet",
+                "url": "div-action://call_service?path=getScreen&screenName=cargo/main&ph/token=empty&lastModified=empty"
+              }
+            ],
+            "action_animation": {
+              "name": "scale",
+              "start_value": 1,
+              "end_value": 0.95,
+              "duration": 300,
+              "interpolator": "ease_in_out"
+            }
+          },
+          {
+            "type": "grid_element",
+            "row_span": 1,
+            "column_span": 1,
+            "background_color": "#FFFFFF",
+            "icon": "http://172.19.83.21:7001/Atba/icon/atba.png",
+            "title": "ثبت ساعت",
+            "version_timeSheet": "2026-10-18 10:31:54.0519871",
+            "actions": [
+              {
+                "log_id": "show_bottom_sheet",
+                "url": "div-action://call_service?path=getScreen&screenName=timeSheet/main&ph/token=empty&lastModified=empty"
+              }
+            ],
+            "action_animation": {
+              "name": "scale",
+              "start_value": 1,
+              "end_value": 0.95,
+              "duration": 300,
+              "interpolator": "ease_in_out"
+            }
+          },
+          {
+            "type": "grid_element",
+            "row_span": 1,
+            "column_span": 1,
+            "background_color": "#FFFFFF",
+            "icon": "http://172.19.83.21:7001/Atba/icon/atba.png",
+            "title": "جرثقیل",
+            "version_CRANE": "2026-10-18 10:31:54.0519871",
+            "actions": [
+              {
+                "log_id": "call_service",
+                "url": "div-action://show_toast?massage=برنامه در مرحله تولید می باشد"
+              }
+            ],
+            "action_animation": {
+              "name": "scale",
+              "start_value": 1,
+              "end_value": 0.95,
+              "duration": 300,
+              "interpolator": "ease_in_out"
+            }
+          },
+          {
+            "type": "empty_element",
+            "row_span": 1,
+            "column_span": 1
+          }
+        ]
+      }
+    ]
+  }
+}

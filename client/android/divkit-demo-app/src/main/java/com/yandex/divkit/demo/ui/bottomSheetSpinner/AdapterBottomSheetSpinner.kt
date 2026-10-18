@@ -13,7 +13,7 @@ import com.yandex.divkit.demo.databinding.ItemBottomSheetSpinnerBinding
 class AdapterBottomSheetSpinner(private val listener: CustomItemListener) :
     RecyclerView.Adapter<AdapterBottomSheetSpinner.ViewHolder>() {
     interface CustomItemListener {
-        fun onClicked(programs: ListItemDto, varName: String, titleVar: String, codeVar: String,sysName: String, path: String)
+        fun onClicked(programs: ListItemDto, varName: String, titleVar: String, codeVar: String, sysName: String, path: String, allParams: Map<String, String>)
     }
 
     private var items = ArrayList<ListItemDto>()
@@ -24,6 +24,7 @@ class AdapterBottomSheetSpinner(private val listener: CustomItemListener) :
     private var path = ""
     private var multiSelect: Boolean = false
     private val selectedIds: MutableSet<String> = linkedSetOf()
+    private var allParams: Map<String, String> = emptyMap()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemBottomSheetSpinnerBinding.inflate(
@@ -40,7 +41,9 @@ class AdapterBottomSheetSpinner(private val listener: CustomItemListener) :
             ::onItemToggle,
             ::isSelected,
             multiSelect,
-            sysName, path
+            sysName,
+            path,
+            allParams
         )
     }
 
@@ -63,7 +66,8 @@ class AdapterBottomSheetSpinner(private val listener: CustomItemListener) :
         titleVar: String,
         codeVar: String,
         sysName: String? = "",
-        path: String? = ""
+        path: String? = "",
+        allParams: Map<String, String> = emptyMap()
     ) {
         this.items.clear()
         this.items = items
@@ -76,9 +80,10 @@ class AdapterBottomSheetSpinner(private val listener: CustomItemListener) :
         if (path != null) {
             this.path = path
         }
+        this.allParams = allParams
         Log.d(
             "AdapterBottomSheetSpinner",
-            "addItem size=${items.size} varName=$varName titleVar=$titleVar codeVar=$codeVar"
+            "addItem size=${items.size} varName=$varName titleVar=$titleVar codeVar=$codeVar allParams=$allParams"
         )
         notifyDataSetChanged()
     }
@@ -92,8 +97,7 @@ class AdapterBottomSheetSpinner(private val listener: CustomItemListener) :
     fun setPreselected(ids: Collection<String>) {
         selectedIds.clear()
         selectedIds.addAll(ids)
-        Log.d("AdapterBottomSheetSpinner", "setPreselected ids=$ids")
-        notifyDataSetChanged()
+        notifyDataSetChanged()  // اینجا ایرادی نداره چون فقط موقع init صدا زده میشه
     }
 
     fun getSelectedItems(): List<ListItemDto> {
@@ -113,12 +117,13 @@ class AdapterBottomSheetSpinner(private val listener: CustomItemListener) :
         if (!multiSelect) return
         if (selectedIds.contains(item.id)) {
             selectedIds.remove(item.id)
-            Log.d("AdapterBottomSheetSpinner", "toggle remove id=${item.id}")
         } else {
             selectedIds.add(item.id)
-            Log.d("AdapterBottomSheetSpinner", "toggle add id=${item.id}")
         }
-        notifyDataSetChanged()
+        val position = items.indexOfFirst { it.id == item.id }
+        if (position != -1) {
+            notifyItemChanged(position)  // فقط همون آیتم رو آپدیت کن
+        }
     }
 
     private fun isSelected(id: String): Boolean = selectedIds.contains(id)
@@ -133,13 +138,15 @@ class AdapterBottomSheetSpinner(private val listener: CustomItemListener) :
         private val isSelected: (String) -> Boolean,
         private val multiSelect: Boolean,
         private val sysName: String,
-        private val path: String
+        private val path: String,
+        private val allParams: Map<String, String>
     ) : RecyclerView.ViewHolder(itemBinding.root), View.OnClickListener {
 
         //        val title = itemBinding.title
         private lateinit var item: ListItemDto
 
         init {
+            itemBinding.itemCard.setOnClickListener(this)
             itemBinding.root.setOnClickListener(this)
             itemBinding.checkbox.setOnCheckedChangeListener { _: CompoundButton, checked: Boolean ->
                 if (this::item.isInitialized) {
@@ -156,6 +163,7 @@ class AdapterBottomSheetSpinner(private val listener: CustomItemListener) :
             this.item = item
 
             itemBinding.title.text = item.titleFa
+            itemBinding.itemCard.isSelected = selected
             if (multiSelect) {
                 itemBinding.checkbox.visibility = View.VISIBLE
                 // avoid triggering listener when programmatically updating
@@ -178,7 +186,7 @@ class AdapterBottomSheetSpinner(private val listener: CustomItemListener) :
                 Log.d("AdapterBottomSheetSpinner", "row click toggle id=${item.id}")
                 toggle(item)
             } else {
-                listener.onClicked(item, varName, titleVar, codeVar,sysName,path)
+                listener.onClicked(item, varName, titleVar, codeVar, sysName, path, allParams)
             }
         }
     }

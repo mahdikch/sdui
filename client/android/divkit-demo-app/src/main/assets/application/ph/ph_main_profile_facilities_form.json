@@ -1,0 +1,558 @@
+{
+  "card": {
+    "log_id": "profile_facilities_form_bottomsheet",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#ffffff"
+            }
+          ],
+          "border": {
+            "corners_radius": {
+              "top-left": 16,
+              "top-right": 16
+            }
+          },
+          "paddings": {
+            "top": 8,
+            "bottom": 16,
+            "start": 16,
+            "end": 16
+          },
+          "visibility_actions": [
+            {
+              "log_id": "init_facility_title",
+              "url": "div-action://set_variable_from_array?array=form&index=0&path=loanType.description&name=facility_request_title",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "init_facility_salary_raw",
+              "url": "div-action://set_variable_from_array?array=form&index=0&path=salaryOneThird&name=facility_salary_third_raw",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "init_facility_salary_display",
+              "url": "div-action://set_variable_from_array?array=form&index=0&path=salaryOneThird&name=facility_salary_third&format=number",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "init_facility_execute_date",
+              "url": "div-action://set_variable_from_array?array=form&index=0&path=executeDateMiladi&name=facility_execute_date_miladi",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "init_facility_sub_state_type",
+              "url": "div-action://set_variable_from_array?array=form&index=0&path=loanType.id&name=facility_sub_state_type_id",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "init_facility_extra_field",
+              "url": "div-action://set_variable_from_array?array=form&index=0&path=loanType.id&name=facility_extra_field&map=721:dependency,722:dependency,761:transfer,3:imperfective,704:housing&default=none",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "list_facility_details",
+              "url": "div-action://array_to_list_db?array=form&key=FACILITY_DETAILS&id=id&title=%7Bid%7D%20%7C%20%D9%85%D8%A8%D9%84%D8%BA%3A%20%7BloanAmount%3Anumber%7D%20%7C%20%D9%86%D8%B1%D8%AE%3A%20%7BloanFacilityRate%7D%20%D8%AF%D8%B1%D8%B5%D8%AF",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "list_fund_type",
+              "url": "div-action://array_to_list_db?array=fund_type_options&key=FUND_TYPE&id=id&title=%7Btitle%7D",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "list_dependency_decree",
+              "url": "div-action://array_to_list_db?array=form&key=DEPENDENCY_DECREE&nested=sponseredMember&id=id&title=%7Bid%7D%20%7C%20%7Bname%7D%20%7Bfamily%7D%20%7C%20%7BbirthDate%7D%20%7C%20%7BmarriageDate%7D&unique=true",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "list_transfer_decree",
+              "url": "div-action://array_to_list_db?array=form&key=TRANSFER_DECREE&nested=enteghalStateDto&id=id&title=%7Bid%7D%20%7C%20%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE%20%D8%A7%D8%AC%D8%B1%D8%A7%3A%20%7BexecuteDateShamsi%7D%20%7C%20%D8%B4%D9%85%D8%A7%D8%B1%D9%87%20%D8%AD%DA%A9%D9%85%3A%20%7BinterdictNumber%7D%20%7C%20%D8%B2%DB%8C%D8%B1%D8%AD%DA%A9%D9%85%3A%20%7BsubStateType.description%7D&unique=true",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "list_imperfective",
+              "url": "div-action://array_to_list_db?array=form&key=IMPERFECTIVE&nested=sponsoredImperfectiveDtos&id=id&title=%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE%20%D8%A7%D8%AC%D8%B1%D8%A7%3A%20%7BexecuteDateShamsi%7D%20%7C%20%7Bid%7D%20%7C%20%7BsubStateType.description%7D%20%7C%20%7BdestBase.destDesc%7D&unique=true",
+              "visibility_duration": 0
+            }
+          ],
+          "items": [
+            {
+              "type": "separator",
+              "delimiter_style": {
+                "color": "#d1d5db"
+              },
+              "width": {
+                "type": "fixed",
+                "value": 40
+              },
+              "height": {
+                "type": "fixed",
+                "value": 4
+              },
+              "alignment_horizontal": "center",
+              "border": {
+                "corner_radius": 2
+              },
+              "margins": {
+                "bottom": 12
+              }
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "bottom": 12
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "درخواست تسهیلات",
+                  "font_size": 16,
+                  "font_weight": "medium",
+                  "text_color": "#193d8d",
+                  "text_alignment_horizontal": "right",
+                  "alignment_horizontal": "right",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "بستن",
+                  "font_size": 13,
+                  "text_color": "#193d8d",
+                  "alignment_horizontal": "left",
+                  "actions": [
+                    {
+                      "log_id": "close_facility_form",
+                      "url": "div-action://close_bottom_sheet"
+                    }
+                  ],
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "این تسهیلات به عنوان جایگزین منزل سازمانی می باشد و دریافت کنندگان این نوع تسهیلات دیگر حق استفاده از منازل سازمانی را تا آخر خدمت نخواهند داشت.",
+              "font_size": 12,
+              "text_color": "#b45309",
+              "text_alignment_horizontal": "right",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#fffbeb"
+                }
+              ],
+              "border": {
+                "corner_radius": 8
+              },
+              "paddings": {
+                "top": 10,
+                "bottom": 10,
+                "start": 12,
+                "end": 12
+              },
+              "margins": {
+                "bottom": 12
+              },
+              "visibility": "@{facility_extra_field == 'housing' ? 'visible' : 'gone'}"
+            },
+            {
+              "type": "select_row",
+              "label": "جزییات تسهیلات",
+              "value_text": "@{facility_details}",
+              "action_url": "div-action://bottom_sheet_list?id=FACILITY_DETAILS&varName=FACILITY_DETAILS&title=جزییات تسهیلات&title_var=facility_details&code_var=facility_details_code&sync_from=form&sync_match=id&sync_fields=executeDateMiladi:facility_execute_date_miladi,salaryOneThird:facility_salary_third_raw,salaryOneThird:facility_salary_third%7Cnumber,loanType.id:facility_sub_state_type_id"
+            },
+            {
+              "type": "readonly_row",
+              "label": "تسهیلات درخواستی",
+              "value_text": "@{facility_request_title}"
+            },
+            {
+              "type": "readonly_row",
+              "label": "یک سوم حقوق",
+              "value_text": "@{facility_salary_third}"
+            },
+            {
+              "type": "select_row",
+              "label": "نوع صندوق",
+              "value_text": "@{facility_fund_type}",
+              "action_url": "div-action://bottom_sheet_list?id=FUND_TYPE&varName=FUND_TYPE&title=نوع صندوق&title_var=facility_fund_type&code_var=facility_fund_type_code"
+            },
+            {
+              "type": "select_row",
+              "label": "معسرین/صعب العلاج/عائله معلول",
+              "value_text": "@{facility_imperfective}",
+              "action_url": "div-action://bottom_sheet_list?id=IMPERFECTIVE&varName=IMPERFECTIVE&title=معسرین/صعب العلاج/عائله معلول&title_var=facility_imperfective&code_var=facility_imperfective_code&sync_from=form&sync_nested=sponsoredImperfectiveDtos&sync_match=id&sync_fields=executeDateMiladi:facility_execute_date_miladi",
+              "visibility": "@{facility_extra_field == 'imperfective' ? 'visible' : 'gone'}"
+            },
+            {
+              "type": "select_row",
+              "label": "حکم وابستگی",
+              "value_text": "@{facility_decree}",
+              "action_url": "div-action://bottom_sheet_list?id=DEPENDENCY_DECREE&varName=DEPENDENCY_DECREE&title=حکم وابستگی&title_var=facility_decree&code_var=facility_sponsored_member_id",
+              "visibility": "@{facility_extra_field == 'dependency' ? 'visible' : 'gone'}"
+            },
+            {
+              "type": "select_row",
+              "label": "حکم انتقال",
+              "value_text": "@{facility_decree}",
+              "action_url": "div-action://bottom_sheet_list?id=TRANSFER_DECREE&varName=TRANSFER_DECREE&title=حکم انتقال&title_var=facility_decree&code_var=facility_enteghal_state_id&sync_from=form&sync_nested=enteghalStateDto&sync_match=id&sync_fields=executeDateMiladi:facility_execute_date_miladi",
+              "visibility": "@{facility_extra_field == 'transfer' ? 'visible' : 'gone'}"
+            },
+            {
+              "type": "container",
+              "orientation": "overlap",
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "fixed",
+                "value": 44
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#193d8d"
+                }
+              ],
+              "border": {
+                "corner_radius": 8
+              },
+              "margins": {
+                "top": 8
+              },
+              "actions": [
+                {
+                  "log_id": "submit_facility_request",
+                  "url": "div-action://call_service?path=loan/loanSave&sysName=load&ph/token=empty&salaryOneThird=@{facility_salary_third_raw}&loanTypeDetailsId=@{facility_details_code}&enteghalStateId=@{facility_enteghal_state_id}&sponsoredMemberId=@{facility_sponsored_member_id}&sponsoredImperfectiveId=@{facility_imperfective_code}&subStateTypeId=@{facility_sub_state_type_id}&executeDateMiladi=@{facility_execute_date_miladi}&waitingBoxes=@{facility_fund_type_code}"
+                }
+              ],
+              "items": [
+                {
+                  "type": "text",
+                  "text": "ثبت درخواست",
+                  "font_size": 14,
+                  "font_weight": "medium",
+                  "text_color": "#ffffff",
+                  "text_alignment_horizontal": "center",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "string",
+        "name": "facility_request_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "facility_extra_field",
+        "value": "none"
+      },
+      {
+        "type": "string",
+        "name": "facility_salary_third",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "facility_salary_third_raw",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "facility_details",
+        "value": "انتخاب کنید"
+      },
+      {
+        "type": "string",
+        "name": "facility_details_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "facility_fund_type",
+        "value": "انتخاب کنید"
+      },
+      {
+        "type": "string",
+        "name": "facility_fund_type_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "facility_decree",
+        "value": "انتخاب کنید"
+      },
+      {
+        "type": "string",
+        "name": "facility_sponsored_member_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "facility_enteghal_state_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "facility_imperfective",
+        "value": "انتخاب کنید"
+      },
+      {
+        "type": "string",
+        "name": "facility_imperfective_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "facility_sub_state_type_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "facility_execute_date_miladi",
+        "value": ""
+      },
+      {
+        "type": "array",
+        "name": "fund_type_options",
+        "value": [
+          {
+            "id": "1",
+            "title": "پرداخت از طریق سازمان"
+          },
+          {
+            "id": "2",
+            "title": "مراجعه به شعبه"
+          }
+        ]
+      },
+      {
+        "type": "array",
+        "name": "form",
+        "value": []
+      }
+    ]
+  },
+  "templates": {
+    "select_row": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 8
+      },
+      "items": [
+        {
+          "type": "text",
+          "$text": "label",
+          "font_size": 12,
+          "font_weight": "medium",
+          "text_color": "#193d8d",
+          "text_alignment_horizontal": "right",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "margins": {
+            "bottom": 4
+          }
+        },
+        {
+          "type": "container",
+          "orientation": "horizontal",
+          "content_alignment_horizontal": "right",
+          "content_alignment_vertical": "center",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "wrap_content"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "border": {
+            "corner_radius": 8
+          },
+          "paddings": {
+            "top": 12,
+            "bottom": 12,
+            "start": 12,
+            "end": 12
+          },
+          "actions": [
+            {
+              "log_id": "open_select",
+              "$url": "action_url"
+            }
+          ],
+          "items": [
+            {
+              "type": "text",
+              "text": "‹",
+              "font_size": 18,
+              "text_color": "#193d8d",
+              "width": {
+                "type": "wrap_content"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "margins": {
+                "end": 8
+              }
+            },
+            {
+              "type": "text",
+              "$text": "value_text",
+              "font_size": 13,
+              "text_color": "#1f2937",
+              "text_alignment_horizontal": "right",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "readonly_row": {
+      "type": "container",
+      "orientation": "overlap",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "fixed",
+        "value": 48
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#f3f5f9"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "margins": {
+        "bottom": 8
+      },
+      "items": [
+        {
+          "type": "text",
+          "$text": "label",
+          "font_size": 12,
+          "text_color": "#6b7280",
+          "alignment_horizontal": "right",
+          "alignment_vertical": "center",
+          "margins": {
+            "end": 12
+          },
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          }
+        },
+        {
+          "type": "text",
+          "$text": "value_text",
+          "font_size": 13,
+          "font_weight": "medium",
+          "text_color": "#1f2937",
+          "alignment_horizontal": "left",
+          "alignment_vertical": "center",
+          "margins": {
+            "start": 12
+          },
+          "width": {
+            "type": "wrap_content"
+          },
+          "height": {
+            "type": "wrap_content"
+          }
+        }
+      ]
+    }
+  }
+}

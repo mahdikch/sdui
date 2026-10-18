@@ -1,0 +1,895 @@
+{
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "items": [
+            {
+              "type": "container",
+              "items": [
+                {
+                  "type": "image",
+                  "image_url": "@{arrow_left.png}",
+                  "width": {
+                    "type": "fixed",
+                    "value": 24
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 24
+                  },
+                  "preload_required": true,
+                  "alignment_horizontal": "left",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "left": 12
+                  }
+                },
+                {
+                  "type": "image",
+                  "image_url": "@{Group.png}",
+                  "width": {
+                    "type": "fixed",
+                    "value": 28
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 25
+                  },
+                  "preload_required": true,
+                  "alignment_horizontal": "start",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "start": 50
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "ثبت تصادفات",
+                  "font_size": 16,
+                  "line_height": 24,
+                  "letter_spacing": 0,
+                  "text_color": "#193d8d",
+                  "text_alignment_horizontal": "center",
+                  "text_alignment_vertical": "top",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "alignment_horizontal": "center",
+                  "alignment_vertical": "center",
+                  "margins": {
+                    "left": 162,
+                    "right": 162,
+                    "top": 16,
+                    "bottom": 16
+                  }
+                }
+              ],
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#ffffff"
+                }
+              ],
+              "height": {
+                "type": "wrap_content"
+              },
+              "width": {
+                "type": "match_parent"
+              },
+              "orientation": "overlap",
+              "content_alignment_vertical": "top",
+              "content_alignment_horizontal": "center",
+              "alignment_horizontal": "center",
+              "alignment_vertical": "top",
+              "margins": {
+                "bottom": 8
+              }
+            },
+            {
+              "type": "gallery",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "match_parent"
+              },
+              "items": [
+                {
+                  "type": "container",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "container",
+                      "width": {
+                        "type": "match_parent",
+                        "weight": 1
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "container",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "اطلاعات تصادفات",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "alignment_vertical": "center",
+                              "font_weight": "bold",
+                              "font_size": 14,
+                              "text_alignment_horizontal": "start",
+                              "margins": {
+                                "top": 10,
+                                "bottom": 10,
+                                "start": 10,
+                                "end": 10
+                              }
+                            },
+                            {
+                              "type": "image",
+                              "image_url": "icon_box.png",
+                              "width": {
+                                "type": "fixed",
+                                "value": 24
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 24
+                              },
+                              "preload_required": true,
+                              "alignment_vertical": "center",
+                              "margins": {
+                                "top": 10,
+                                "bottom": 10,
+                                "start": 10,
+                                "end": 10
+                              }
+                            }
+                          ],
+                          "orientation": "horizontal",
+                          "content_alignment_horizontal": "end",
+                          "content_alignment_vertical": "center",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          },
+                          "alignment_horizontal": "end"
+                        },
+                        {
+                          "type": "container",
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "items": [
+                            {
+                              "type": "container",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "تعداد کل ",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "alignment_horizontal": "center",
+                                  "text_alignment_horizontal": "center"
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "26",
+                                  "font_size": 20,
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "alignment_horizontal": "center",
+                                  "text_alignment_horizontal": "center"
+                                }
+                              ],
+                              "content_alignment_horizontal": "center",
+                              "content_alignment_vertical": "center",
+                              "alignment_vertical": "center",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 10,
+                                "end": 10
+                              }
+                            },
+                            {
+                              "type": "container",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "items": [
+                                        {
+                                          "type": "text",
+                                          "text": "تصادفات غیرسازشی",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "text_alignment_horizontal": "center",
+                                          "font_size": 14,
+                                          "margins": {
+                                            "top": 5,
+                                            "bottom": 5,
+                                            "start": 5,
+                                            "end": 5
+                                          }
+                                        },
+                                        {
+                                          "type": "text",
+                                          "text": "@{non_compromising_accidents}",
+                                          "font_size": 14,
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "text_alignment_horizontal": "center",
+                                          "margins": {
+                                            "top": 5,
+                                            "bottom": 5,
+                                            "start": 5,
+                                            "end": 5
+                                          }
+                                        }
+                                      ],
+                                      "alignment_vertical": "center",
+                                      "content_alignment_horizontal": "center",
+                                      "content_alignment_vertical": "center",
+                                      "margins": {
+                                        "top": 0,
+                                        "bottom": 8,
+                                        "start": 10,
+                                        "end": 10
+                                      }
+                                    },
+                                    {
+                                      "type": "container",
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "items": [
+                                        {
+                                          "type": "text",
+                                          "text": "تصادفات سازشی",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "alignment_horizontal": "center",
+                                          "text_alignment_horizontal": "center",
+                                          "font_size": 14,
+                                          "margins": {
+                                            "top": 5,
+                                            "bottom": 5,
+                                            "start": 5,
+                                            "end": 5
+                                          }
+                                        },
+                                        {
+                                          "type": "text",
+                                          "text": "@{compromise_accidents}",
+                                          "font_size": 14,
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "alignment_horizontal": "center",
+                                          "text_alignment_horizontal": "center",
+                                          "height": {
+                                            "type": "wrap_content"
+                                          },
+                                          "margins": {
+                                            "top": 5,
+                                            "bottom": 5,
+                                            "start": 5,
+                                            "end": 5
+                                          }
+                                        }
+                                      ],
+                                      "content_alignment_horizontal": "end",
+                                      "content_alignment_vertical": "center",
+                                      "alignment_vertical": "center",
+                                      "margins": {
+                                        "top": 8,
+                                        "start": 10,
+                                        "end": 10
+                                      }
+                                    }
+                                  ],
+                                  "orientation": "vertical"
+                                }
+                              ]
+                            }
+                          ],
+                          "orientation": "horizontal"
+                        }
+                      ],
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 4,
+                          "top-right": 4,
+                          "bottom-left": 4,
+                          "bottom-right": 4
+                        },
+                        "stroke": {
+                          "style": {
+                            "type": "solid"
+                          },
+                          "unit": "px",
+                          "color": "#c8d0e4",
+                          "width": 2
+                        },
+                        "corner_radius": 2
+                      },
+                      "background": [
+                        {
+                          "type": "solid",
+                          "color": "#FCFCFC"
+                        }
+                      ],
+                      "orientation": "vertical"
+                    }
+                  ],
+                  "margins": {
+                    "top": 8,
+                    "bottom": 8,
+                    "start": 8,
+                    "end": 8
+                  }
+                },
+                {
+                  "type": "container",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "items": [
+                    {
+                      "type": "text",
+                      "text": "نوع تصادف را انتخاب کنید ",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "text_alignment_horizontal": "center",
+                      "font_size": 14,
+                      "font_weight": "bold",
+                      "margins": {
+                        "top": 8,
+                        "bottom": 8,
+                        "start": 8,
+                        "end": 8
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "container",
+                          "actions": [
+                            {
+                              "log_id": "open_settings",
+                              "url": "div-action://load_screen?screen=Accidents/uncompromising/driverprofile"
+                            }
+                          ],
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "items": [
+                            {
+                              "type": "image",
+                              "image_url": "@{Uncompromising.png}",
+                              "width": {
+                                "type": "fixed",
+                                "value": 97
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 85
+                              },
+                              "preload_required": true,
+                              "alignment_horizontal": "center",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 8,
+                                "end": 8
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "غیرسازشی",
+                              "font_size": 14,
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "alignment_horizontal": "center",
+                              "text_alignment_horizontal": "center",
+                              "font_weight": "bold",
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "margins": {
+                                "top": 5,
+                                "bottom": 5
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "شروع فرایند",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "alignment_horizontal": "center",
+                              "text_alignment_horizontal": "center",
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "font_size": 14,
+                              "margins": {
+                                "top": 10,
+                                "bottom": 10
+                              }
+                            }
+                          ],
+                          "border": {
+                            "stroke": {
+                              "style": {
+                                "type": "solid"
+                              },
+                              "width": 2,
+                              "color": "#E8E8E8",
+                              "unit": "px"
+                            },
+                            "corners_radius": {
+                              "bottom-left": 10,
+                              "top-left": 10,
+                              "top-right": 10,
+                              "bottom-right": 10
+                            },
+                            "corner_radius": 10
+                          },
+                          "margins": {
+                            "top": 4,
+                            "bottom": 4,
+                            "end": 10
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "actions": [
+                            {
+                              "log_id": "set_random_id_to_db",
+                              "url": "div-action://set_random_id_to_db?key=current_accident_id"
+                            },
+                            {
+                              "log_id": "set_process_type",
+                              "url": "div-action://set_variable_to_db?key=process_type&value=sazeshi"
+                            },
+                            {
+                              "log_id": "set_step",
+                              "url": "div-action://set_variable_to_db?key=current_step&value=1"
+                            },
+                            {
+                              "log_id": "start_process",
+                              "url": "div-action://load_screen?screen=Accidents/compromisefirst"
+                            }
+                          ],
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "items": [
+                            {
+                              "type": "image",
+                              "image_url": "@{sazeshi.png}",
+                              "width": {
+                                "type": "fixed",
+                                "value": 97
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 85
+                              },
+                              "preload_required": true,
+                              "alignment_horizontal": "center",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 8,
+                                "end": 8
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "سازشی",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "alignment_horizontal": "center",
+                              "text_alignment_horizontal": "center",
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "font_size": 14,
+                              "font_weight": "bold",
+                              "margins": {
+                                "top": 5,
+                                "bottom": 5
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "شروع فرآیند",
+                              "font_size": 14,
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "alignment_horizontal": "center",
+                              "margins": {
+                                "top": 10,
+                                "bottom": 10
+                              },
+                              "text_alignment_horizontal": "center",
+                              "transform": {
+                                "rotation": 0
+                              }
+                            }
+                          ],
+                          "border": {
+                            "stroke": {
+                              "style": {
+                                "type": "solid"
+                              },
+                              "width": 2,
+                              "color": "#E8E8E8",
+                              "unit": "px"
+                            },
+                            "corners_radius": {
+                              "bottom-left": 10,
+                              "top-left": 10,
+                              "top-right": 10,
+                              "bottom-right": 10
+                            },
+                            "corner_radius": 10
+                          },
+                          "margins": {
+                            "top": 4,
+                            "bottom": 4,
+                            "start": 10
+                          }
+                        }
+                      ],
+                      "orientation": "horizontal",
+                      "margins": {
+                        "bottom": 8
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "container",
+                          "actions": [
+                            {
+                              "log_id": "open_archive",
+                              "url": "div-action://load_screen?screen=Accidents/archive"
+                            }
+                          ],
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "items": [
+                            {
+                              "type": "text",
+                              "text": "بایگانی",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "alignment_horizontal": "center",
+                              "text_alignment_horizontal": "center",
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "font_size": 14,
+                              "font_weight": "bold",
+                              "margins": {
+                                "top": 16,
+                                "bottom": 16
+                              }
+                            }
+                          ],
+                          "border": {
+                            "stroke": {
+                              "style": {
+                                "type": "solid"
+                              },
+                              "width": 2,
+                              "color": "#E8E8E8",
+                              "unit": "px"
+                            },
+                            "corners_radius": {
+                              "bottom-left": 10,
+                              "top-left": 10,
+                              "top-right": 10,
+                              "bottom-right": 10
+                            },
+                            "corner_radius": 10
+                          }
+                        }
+                      ],
+                      "orientation": "horizontal",
+                      "margins": {
+                        "bottom": 8
+                      }
+                    }
+                  ],
+                  "margins": {
+                    "bottom": 8,
+                    "start": 8,
+                    "end": 8
+                  }
+                }
+              ],
+              "orientation": "vertical",
+              "border": {
+                "corners_radius": {
+                  "bottom-right": 2,
+                  "bottom-left": 2,
+                  "top-right": 2,
+                  "top-left": 2
+                },
+                "corner_radius": 2,
+                "stroke": {
+                  "unit": "px",
+                  "style": {
+                    "type": "solid"
+                  },
+                  "width": 1,
+                  "color": "#c8d0e4"
+                }
+              },
+              "margins": {
+                "bottom": 8,
+                "start": 8,
+                "end": 8
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#ffffff"
+                }
+              ]
+            }
+          ],
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "border": {
+            "corners_radius": {
+              "top-left": 4,
+              "top-right": 4,
+              "bottom-left": 4,
+              "bottom-right": 4
+            },
+            "stroke": {
+              "color": "#c8d0e4",
+              "width": 1
+            }
+          },
+          "height": {
+            "type": "match_parent"
+          },
+          "width": {
+            "type": "match_parent"
+          },
+          "orientation": "vertical",
+          "content_alignment_vertical": "top",
+          "content_alignment_horizontal": "center",
+          "alignment_vertical": "top"
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "string",
+        "name": "text___1",
+        "value": "اطلاعات تصادفات"
+      },
+      {
+        "type": "string",
+        "name": "text___2",
+        "value": "تعداد کل :"
+      },
+      {
+        "type": "string",
+        "name": "text___3",
+        "value": "۲۶"
+      },
+      {
+        "type": "string",
+        "name": "text___4",
+        "value": "تصادفات سازشی :"
+      },
+      {
+        "type": "string",
+        "name": "text___5",
+        "value": "۱۷ عدد"
+      },
+      {
+        "type": "string",
+        "name": "text___6",
+        "value": "تصادفات غیر سازشی :"
+      },
+      {
+        "type": "string",
+        "name": "text___7",
+        "value": "۹ عدد"
+      },
+      {
+        "type": "string",
+        "name": "text___8",
+        "value": "نوع تصادف را انتخاب کنید :"
+      },
+      {
+        "type": "string",
+        "name": "text___9",
+        "value": "غیر سازشی"
+      },
+      {
+        "type": "string",
+        "name": "text___10",
+        "value": "شروع فرآیند"
+      },
+      {
+        "type": "string",
+        "name": "text___11",
+        "value": "سازشی"
+      },
+      {
+        "type": "string",
+        "name": "text___12",
+        "value": "شروع فرآیند"
+      },
+      {
+        "type": "string",
+        "name": "refresh",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "arrow_right",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "compromise_accidents",
+        "value": "17 عدد"
+      },
+      {
+        "type": "string",
+        "name": "non_compromising_accidents",
+        "value": "9 عدد"
+      },
+      {
+        "type": "string",
+        "name": "sazeshi.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "Uncompromising.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "icon_box.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "Group.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "arrow_left.png",
+        "value": "empty://"
+      }
+    ]
+  },
+  "templates": {}
+}

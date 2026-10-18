@@ -1,0 +1,1064 @@
+{
+  "_meta": {
+    "title": "مرجع اکشن‌های div-action",
+    "description": "لیست کامل اکشن‌های سفارشی اپلیکیشن SDUI. هر اکشن با URL نمونه، پارامترها و توضیح فارسی.",
+    "scheme": "div-action",
+    "format": "div-action://{authority}?{param1}={value1}&{param2}={value2}",
+    "notes": [
+      "مقادیر @{variable} از Div variable خوانده می‌شوند.",
+      "patch و jsonName باید قبلاً در دیتابیس (mehdi.json / assets) ذخیره شده باشند.",
+      "set_patch از داخل bottom sheet به‌صورت خودکار روی همان sheet اعمال می‌شود؛ برای patch صفحه اصلی از apply_to=base استفاده کنید.",
+      "bottom_sheet_set_patch معمولاً از پاسخ call_service برمی‌گردد، نه مستقیم از JSON."
+    ]
+  },
+  "categories": [
+    {
+      "id": "navigation",
+      "title": "ناوبری و صفحه",
+      "actions": [
+        {
+          "id": "load_screen",
+          "title": "بارگذاری صفحه",
+          "description": "صفحه جدید را از دیتابیس با نام کلید screen بارگذاری می‌کند.",
+          "parameters": [
+            { "name": "screen", "required": true, "description": "کلید JSON صفحه در DB، مثلاً ph/main/home" }
+          ],
+          "sample_url": "div-action://load_screen?screen=ph/main/home",
+          "sample_div_action": {
+            "log_id": "load_screen_sample",
+            "url": "div-action://load_screen?screen=ph/main/home"
+          }
+        },
+        {
+          "id": "open_screen",
+          "title": "باز کردن Activity",
+          "description": "یک Activity دیگر را باز می‌کند.",
+          "parameters": [
+            { "name": "activity", "required": true, "description": "demo | samples | regression | settings | mehdi" }
+          ],
+          "sample_url": "div-action://open_screen?activity=mehdi",
+          "sample_div_action": {
+            "log_id": "open_screen_sample",
+            "url": "div-action://open_screen?activity=mehdi"
+          }
+        },
+        {
+          "id": "update",
+          "title": "به‌روزرسانی APK",
+          "description": "دانلود و نصب نسخه جدید اپ از URL.",
+          "parameters": [
+            { "name": "url", "required": true, "description": "آدرس فایل APK" }
+          ],
+          "sample_url": "div-action://update?url=https://example.com/app.apk",
+          "sample_div_action": {
+            "log_id": "update_sample",
+            "url": "div-action://update?url=https://example.com/app.apk"
+          }
+        },
+        {
+          "id": "forward_to",
+          "title": "هدایت به سیستم دیگر",
+          "description": "هدایت به صفحه در سیستم/ماژول دیگر (در JSONهای موجود استفاده شده؛ handler مستقیم در UIDiv2ActionHandler پیاده‌سازی نشده).",
+          "parameters": [
+            { "name": "name", "required": true, "description": "نام صفحه مقصد" },
+            { "name": "system", "required": false, "description": "شماره سیستم" },
+            { "name": "path", "required": false, "description": "مسیر سرویس" }
+          ],
+          "sample_url": "div-action://forward_to?name=ph/reports&system=2",
+          "sample_div_action": {
+            "log_id": "forward_to_sample",
+            "url": "div-action://forward_to?name=ph/reports&system=2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "variables",
+      "title": "متغیرهای Div",
+      "actions": [
+        {
+          "id": "set_variable",
+          "title": "ست متغیر Div",
+          "description": "مقدار یک متغیر Div را در صفحه فعلی تغییر می‌دهد.",
+          "parameters": [
+            { "name": "name", "required": true, "description": "نام متغیر" },
+            { "name": "value", "required": true, "description": "مقدار جدید" }
+          ],
+          "sample_url": "div-action://set_variable?name=username&value=علی",
+          "sample_div_action": {
+            "log_id": "set_variable_sample",
+            "url": "div-action://set_variable?name=username&value=علی"
+          }
+        },
+        {
+          "id": "set_variable_from_db",
+          "title": "خواندن از DB و ست در Div",
+          "description": "مقدار کلید را از دیتابیس می‌خواند و در متغیر Div با همان نام قرار می‌دهد.",
+          "parameters": [
+            { "name": "name", "required": true, "description": "کلید DB و نام متغیر Div" }
+          ],
+          "sample_url": "div-action://set_variable_from_db?name=questioner_id",
+          "sample_div_action": {
+            "log_id": "set_variable_from_db_sample",
+            "url": "div-action://set_variable_from_db?name=questioner_id"
+          }
+        },
+        {
+          "id": "set_variable_from_db_and_set_patch",
+          "title": "خواندن DB و ست متغیر (بدون patch)",
+          "description": "مقدار DB را همزمان در متغیر Div ست می‌کند.",
+          "parameters": [
+            { "name": "name", "required": true, "description": "کلید DB" }
+          ],
+          "sample_url": "div-action://set_variable_from_db_and_set_patch?name=plateType",
+          "sample_div_action": {
+            "log_id": "set_variable_from_db_and_set_patch_sample",
+            "url": "div-action://set_variable_from_db_and_set_patch?name=plateType"
+          }
+        },
+        {
+          "id": "set_variable_to_base",
+          "title": "ست متغیر روی صفحه اصلی",
+          "description": "از داخل bottom sheet، متغیر را روی Div2View صفحه اصلی (MehdiActivity) ست می‌کند.",
+          "parameters": [
+            { "name": "name", "required": true, "description": "نام متغیر" },
+            { "name": "value", "required": true, "description": "مقدار" }
+          ],
+          "sample_url": "div-action://set_variable_to_base?name=variable_plateB&value=د",
+          "sample_div_action": {
+            "log_id": "set_variable_to_base_sample",
+            "url": "div-action://set_variable_to_base?name=variable_plateB&value=د"
+          }
+        },
+        {
+          "id": "set_variable_to_bottomsheet",
+          "title": "ست متغیر روی bottom sheet",
+          "description": "متغیر را روی یک bottom sheet مشخص (با target) ست می‌کند.",
+          "parameters": [
+            { "name": "name", "required": true, "description": "نام متغیر" },
+            { "name": "value", "required": true, "description": "مقدار" },
+            { "name": "target", "required": true, "description": "current | first | id شیت | position (0-based)" }
+          ],
+          "sample_url": "div-action://set_variable_to_bottomsheet?name=selected_item&value=123&target=current",
+          "sample_div_action": {
+            "log_id": "set_variable_to_bottomsheet_sample",
+            "url": "div-action://set_variable_to_bottomsheet?name=selected_item&value=123&target=current"
+          }
+        },
+        {
+          "id": "change_color",
+          "title": "تغییر رنگ متغیر",
+          "description": "مقدار رنگ را با # خودکار به متغیر Div می‌دهد (بدون # در URL).",
+          "parameters": [
+            { "name": "name", "required": true, "description": "نام متغیر رنگ" },
+            { "name": "value", "required": true, "description": "کد hex بدون #، مثلاً FF0000" }
+          ],
+          "sample_url": "div-action://change_color?name=bg_color&value=FF0000",
+          "sample_div_action": {
+            "log_id": "change_color_sample",
+            "url": "div-action://change_color?name=bg_color&value=FF0000"
+          }
+        },
+        {
+          "id": "set_imei",
+          "title": "ست Android ID",
+          "description": "Android ID دستگاه را در متغیر Div ذخیره می‌کند.",
+          "parameters": [
+            { "name": "name", "required": true, "description": "نام متغیر" }
+          ],
+          "sample_url": "div-action://set_imei?name=device_id",
+          "sample_div_action": {
+            "log_id": "set_imei_sample",
+            "url": "div-action://set_imei?name=device_id"
+          }
+        },
+        {
+          "id": "set_ip",
+          "title": "ست IP/شناسه دستگاه",
+          "description": "Android ID را در متغیر قرار می‌دهد (مشابه set_imei).",
+          "parameters": [
+            { "name": "name", "required": true, "description": "نام متغیر" }
+          ],
+          "sample_url": "div-action://set_ip?name=ip_var",
+          "sample_div_action": {
+            "log_id": "set_ip_sample",
+            "url": "div-action://set_ip?name=ip_var"
+          }
+        },
+        {
+          "id": "set_device_model",
+          "title": "ست مدل دستگاه",
+          "description": "Build.MODEL را در متغیر Div قرار می‌دهد.",
+          "parameters": [
+            { "name": "name", "required": true, "description": "نام متغیر" }
+          ],
+          "sample_url": "div-action://set_device_model?name=phone_model",
+          "sample_div_action": {
+            "log_id": "set_device_model_sample",
+            "url": "div-action://set_device_model?name=phone_model"
+          }
+        },
+        {
+          "id": "refresh_captcha",
+          "title": "رفرش کپچا",
+          "description": "تصویر کپچا را در متغیر Div به‌روز می‌کند.",
+          "parameters": [
+            { "name": "name", "required": true, "description": "نام متغیر تصویر کپچا" }
+          ],
+          "sample_url": "div-action://refresh_captcha?name=captcha_image",
+          "sample_div_action": {
+            "log_id": "refresh_captcha_sample",
+            "url": "div-action://refresh_captcha?name=captcha_image"
+          }
+        }
+      ]
+    },
+    {
+      "id": "database",
+      "title": "دیتابیس محلی",
+      "actions": [
+        {
+          "id": "set_variable_to_db",
+          "title": "ذخیره در DB",
+          "description": "یک key/value در دیتابیس محلی ذخیره می‌کند.",
+          "parameters": [
+            { "name": "key", "required": true, "description": "کلید" },
+            { "name": "value", "required": true, "description": "مقدار (می‌تواند @{var} باشد)" }
+          ],
+          "sample_url": "div-action://set_variable_to_db?key=car_model&value=@{car_model}",
+          "sample_div_action": {
+            "log_id": "set_variable_to_db_sample",
+            "url": "div-action://set_variable_to_db?key=car_model&value=@{car_model}"
+          }
+        },
+        {
+          "id": "set_time_to_db",
+          "title": "ذخیره تاریخ شمسی امروز",
+          "description": "تاریخ شمسی امروز را با کلید داده‌شده در DB ذخیره می‌کند.",
+          "parameters": [
+            { "name": "key", "required": true, "description": "کلید DB" }
+          ],
+          "sample_url": "div-action://set_time_to_db?key=register_date",
+          "sample_div_action": {
+            "log_id": "set_time_to_db_sample",
+            "url": "div-action://set_time_to_db?key=register_date"
+          }
+        },
+        {
+          "id": "set_variable_to_db_plus_one",
+          "title": "افزایش و ذخیره",
+          "description": "مقدار را +1 می‌کند، در Div و DB ذخیره می‌کند.",
+          "parameters": [
+            { "name": "key", "required": true, "description": "کلید" },
+            { "name": "value", "required": true, "description": "مقدار عددی فعلی" }
+          ],
+          "sample_url": "div-action://set_variable_to_db_plus_one?key=counter&value=5",
+          "sample_div_action": {
+            "log_id": "set_variable_to_db_plus_one_sample",
+            "url": "div-action://set_variable_to_db_plus_one?key=counter&value=5"
+          }
+        },
+        {
+          "id": "set_random_id_to_db",
+          "title": "ساخت ID رندوم و ذخیره",
+          "description": "یک ID یکتا (timestamp + UUID) می‌سازد و با کلید داده‌شده در DB ذخیره می‌کند.",
+          "parameters": [
+            { "name": "key", "required": true, "description": "کلید DB (یا name)" },
+            { "name": "name", "required": false, "description": "جایگزین key" }
+          ],
+          "sample_url": "div-action://set_random_id_to_db?key=accident_id",
+          "sample_div_action": {
+            "log_id": "set_random_id_to_db_sample",
+            "url": "div-action://set_random_id_to_db?key=accident_id"
+          }
+        },
+        {
+          "id": "reset_phid",
+          "title": "ریست phid",
+          "description": "یک UUID جدید می‌سازد و با کلید phid در DB ذخیره می‌کند.",
+          "parameters": [],
+          "sample_url": "div-action://reset_phid",
+          "sample_div_action": {
+            "log_id": "reset_phid_sample",
+            "url": "div-action://reset_phid"
+          }
+        },
+        {
+          "id": "delet_variables_frome_db",
+          "title": "حذف از DB",
+          "description": "کلید(های) داده‌شده را از دیتابیس حذف می‌کند. (غلط املایی frome عمدی در کد)",
+          "parameters": [
+            { "name": "*", "required": true, "description": "هر پارامتر = یک کلید برای حذف" }
+          ],
+          "sample_url": "div-action://delet_variables_frome_db?temp_key=1&old_data=1",
+          "sample_div_action": {
+            "log_id": "delete_from_db_sample",
+            "url": "div-action://delet_variables_frome_db?temp_key=1"
+          }
+        },
+        {
+          "id": "set_object_to_db",
+          "title": "ذخیره آبجکت JSON",
+          "description": "تمام پارامترهای URL را به JSON تبدیل و با کلید username/next/date در DB ذخیره می‌کند.",
+          "parameters": [
+            { "name": "next", "required": true, "description": "مقدار فیلد next در JSON + fallback کلید DB" },
+            { "name": "archive_path", "required": false, "description": "پیشوند کلید DB برای بایگانی، مثلاً Accidents (جدا از next/resume)" },
+            { "name": "title", "required": false, "description": "عنوان در لیست offline" },
+            { "name": "...", "required": false, "description": "فیلدهای _dbshow و _persian_lan برای نمایش در لیست" }
+          ],
+          "sample_url": "div-action://set_object_to_db?archive_path=Accidents&next=draft/@{current_accident_id}/page1&title=ثبت تصادف&step_dbshow=صفحه ۱&step_persian_lan=مرحله",
+          "sample_div_action": {
+            "log_id": "set_object_to_db_sample",
+            "url": "div-action://set_object_to_db?next=sabte-takhalof&field1=value1"
+          }
+        },
+        {
+          "id": "set_page_to_db",
+          "title": "ذخیره صفحه فعلی",
+          "description": "JSON صفحه Div فعلی را در DB با کلید key ذخیره می‌کند.",
+          "parameters": [
+            { "name": "key", "required": true, "description": "کلید DB" }
+          ],
+          "sample_url": "div-action://set_page_to_db?key=draft_page",
+          "sample_div_action": {
+            "log_id": "set_page_to_db_sample",
+            "url": "div-action://set_page_to_db?key=draft_page"
+          }
+        },
+        {
+          "id": "set_page_with_changes_to_db",
+          "title": "ذخیره صفحه با تغییرات",
+          "description": "states و variables صفحه فعلی را روی JSON ذخیره‌شده قبلی (key) merge و ذخیره می‌کند.",
+          "parameters": [
+            { "name": "key", "required": true, "description": "کلید JSON پایه در DB" }
+          ],
+          "sample_url": "div-action://set_page_with_changes_to_db?key=draft_page",
+          "sample_div_action": {
+            "log_id": "set_page_with_changes_to_db_sample",
+            "url": "div-action://set_page_with_changes_to_db?key=draft_page"
+          }
+        }
+      ]
+    },
+    {
+      "id": "patch",
+      "title": "Patch و تولید داینامیک",
+      "actions": [
+        {
+          "id": "set_patch",
+          "title": "اعمال Patch",
+          "description": "Patch را از DB (کلید patch) می‌خواند و اعمال می‌کند. از داخل bottom sheet به‌صورت پیش‌فرض روی همان sheet اعمال می‌شود.",
+          "parameters": [
+            { "name": "patch", "required": true, "description": "کلید patch در DB" },
+            { "name": "apply_to", "required": false, "description": "base | bottomsheet | current" },
+            { "name": "patch_title", "required": false, "description": "عنوان (متغیر patch)" },
+            { "name": "vehicle_type", "required": false, "description": "نوع خودرو" },
+            { "name": "btm_dismiss", "required": false, "description": "true = بستن bottom sheet بعد از patch" },
+            { "name": "target", "required": false, "description": "هدف bottom sheet برای patch" }
+          ],
+          "sample_url": "div-action://set_patch?patch=patchVehiclePlate&apply_to=base&patch_title=منطقه ای شخصی",
+          "sample_div_action": {
+            "log_id": "set_patch_sample",
+            "url": "div-action://set_patch?patch=patchVehiclePlate&apply_to=base&patch_title=منطقه ای شخصی"
+          }
+        },
+        {
+          "id": "bottom_sheet_set_patch",
+          "title": "Patch روی bottom sheet",
+          "description": "مثل set_patch ولی همیشه روی bottom sheet فعلی اعمال می‌شود. معمولاً از پاسخ سرویس استفاده می‌شود.",
+          "parameters": [
+            { "name": "patch", "required": true, "description": "کلید patch در DB" }
+          ],
+          "sample_url": "div-action://bottom_sheet_set_patch?patch=ph/test/patch",
+          "sample_div_action": {
+            "log_id": "bottom_sheet_set_patch_sample",
+            "url": "div-action://bottom_sheet_set_patch?patch=ph/test/patch"
+          }
+        },
+        {
+          "id": "set_patch_for_list",
+          "title": "Patch با پر کردن template",
+          "description": "قبل از اعمال patch، فیلدهای item با type=template_name را از پارامترهای URL پر می‌کند.",
+          "parameters": [
+            { "name": "patch", "required": true, "description": "کلید patch" },
+            { "name": "template_name", "required": true, "description": "type آیتم در patch" },
+            { "name": "...", "required": false, "description": "فیلدهای template (name, family, ...)" }
+          ],
+          "sample_url": "div-action://set_patch_for_list?patch=my_patch&template_name=text_template&name=Ali&family=Ahmadi",
+          "sample_div_action": {
+            "log_id": "set_patch_for_list_sample",
+            "url": "div-action://set_patch_for_list?patch=my_patch&template_name=text_template&name=Ali&family=Ahmadi"
+          }
+        },
+        {
+          "id": "add_item_from_template",
+          "title": "افزودن آیتم به container",
+          "description": "یک آیتم جدید از template به container مشخص اضافه می‌کند (patch داینامیک).",
+          "parameters": [
+            { "name": "container_id", "required": true, "description": "id کانتینر هدف" },
+            { "name": "template_type", "required": false, "description": "type template در Div (مثل text_template)" },
+            { "name": "template", "required": false, "description": "کلید template کامل در DB" },
+            { "name": "position", "required": false, "description": "موقعیت insert (عدد)" },
+            { "name": "...", "required": false, "description": "متغیرهای template" }
+          ],
+          "sample_url": "div-action://add_item_from_template?container_id=info_list&template_type=text_template&name=Reza&city=Tehran",
+          "sample_div_action": {
+            "log_id": "add_item_from_template_sample",
+            "url": "div-action://add_item_from_template?container_id=info_list&template_type=text_template&name=Reza&city=Tehran"
+          }
+        },
+        {
+          "id": "generateScreen",
+          "title": "تولید صفحه داینامیک",
+          "description": "از template و data JSON یک صفحه می‌سازد و در DB ذخیره می‌کند.",
+          "parameters": [
+            { "name": "containerId", "required": true, "description": "id کانتینر" },
+            { "name": "templateName", "required": true, "description": "نام template" },
+            { "name": "patchName", "required": true, "description": "کلید ذخیره در DB" },
+            { "name": "screenName", "required": false, "description": "صفحه برای load بعد از generate" }
+          ],
+          "sample_url": "div-action://generateScreen?containerId=info_container&templateName=text_template&patchName=my_screen",
+          "sample_div_action": {
+            "log_id": "generateScreen_sample",
+            "url": "div-action://generateScreen?containerId=info_container&templateName=text_template&patchName=my_screen"
+          }
+        },
+        {
+          "id": "generatePatch",
+          "title": "تولید Patch داینامیک",
+          "description": "مشابه generateScreen ولی خروجی patch است.",
+          "parameters": [
+            { "name": "containerId", "required": true, "description": "id کانتینر" },
+            { "name": "templateName", "required": true, "description": "نام template" },
+            { "name": "patchName", "required": true, "description": "کلید patch در DB" }
+          ],
+          "sample_url": "div-action://generatePatch?containerId=info_container&templateName=text_template&patchName=my_patch",
+          "sample_div_action": {
+            "log_id": "generatePatch_sample",
+            "url": "div-action://generatePatch?containerId=info_container&templateName=text_template&patchName=my_patch"
+          }
+        }
+      ]
+    },
+    {
+      "id": "stack",
+      "title": "Stack ناوبری (تاریخچه patch)",
+      "actions": [
+        {
+          "id": "push_to_stack",
+          "title": "Push به stack",
+          "description": "یک مقدار (معمولاً نام patch/صفحه) را به آرایه JSON stack در DB اضافه می‌کند.",
+          "parameters": [
+            { "name": "key", "required": true, "description": "کلید stack در DB" },
+            { "name": "value", "required": true, "description": "مقدار برای push" }
+          ],
+          "sample_url": "div-action://push_to_stack?key=nav_stack&value=ph/main/profile",
+          "sample_div_action": {
+            "log_id": "push_to_stack_sample",
+            "url": "div-action://push_to_stack?key=nav_stack&value=ph/main/profile"
+          }
+        },
+        {
+          "id": "pop_from_stack",
+          "title": "Pop از stack",
+          "description": "آخرین مقدار را از stack حذف می‌کند.",
+          "parameters": [
+            { "name": "key", "required": true, "description": "کلید stack" }
+          ],
+          "sample_url": "div-action://pop_from_stack?key=nav_stack",
+          "sample_div_action": {
+            "log_id": "pop_from_stack_sample",
+            "url": "div-action://pop_from_stack?key=nav_stack"
+          }
+        },
+        {
+          "id": "set_patch_from_stack",
+          "title": "Patch از آخر stack",
+          "description": "آخرین مقدار stack را می‌خواند و patch مربوطه را روی صفحه اصلی اعمال می‌کند.",
+          "parameters": [
+            { "name": "key", "required": true, "description": "کلید stack" }
+          ],
+          "sample_url": "div-action://set_patch_from_stack?key=nav_stack",
+          "sample_div_action": {
+            "log_id": "set_patch_from_stack_sample",
+            "url": "div-action://set_patch_from_stack?key=nav_stack"
+          }
+        },
+        {
+          "id": "push_and_set_patch",
+          "title": "Push + Patch (اتمیک)",
+          "description": "همزمان push می‌کند و patch همان value را اعمال می‌کند.",
+          "parameters": [
+            { "name": "key", "required": true, "description": "کلید stack" },
+            { "name": "value", "required": true, "description": "نام patch/صفحه" }
+          ],
+          "sample_url": "div-action://push_and_set_patch?key=nav_stack&value=ph/main/reports",
+          "sample_div_action": {
+            "log_id": "push_and_set_patch_sample",
+            "url": "div-action://push_and_set_patch?key=nav_stack&value=ph/main/reports"
+          }
+        },
+        {
+          "id": "pop_and_set_patch",
+          "title": "Pop + Patch قبلی (اتمیک)",
+          "description": "صفحه فعلی را pop می‌کند و patch صفحه قبلی را اعمال می‌کند (برگشت).",
+          "parameters": [
+            { "name": "key", "required": true, "description": "کلید stack" }
+          ],
+          "sample_url": "div-action://pop_and_set_patch?key=nav_stack",
+          "sample_div_action": {
+            "log_id": "pop_and_set_patch_sample",
+            "url": "div-action://pop_and_set_patch?key=nav_stack"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bottom_sheet",
+      "title": "Bottom Sheet",
+      "actions": [
+        {
+          "id": "bottom_sheet_div",
+          "title": "نمایش bottom sheet (Div)",
+          "description": "باتم‌شیت DivKit را باز می‌کند. اختیاری: array + match_key (+ match_value یا log_id) یک آیتم آرایه را پیدا کرده و با prefix به متغیرهای شیت می‌ریزد.",
+          "parameters": [
+            { "name": "jsonName", "required": true, "description": "کلید JSON bottom sheet در DB" },
+            { "name": "array", "required": false, "description": "نام متغیر آرایه روی صفحه فعلی (مثلاً reports)" },
+            { "name": "match_key", "required": false, "description": "کلید داخل آیتم آرایه برای مچ (مثلاً rangeId)" },
+            { "name": "match_value", "required": false, "description": "مقدار مچ؛ اگر نباشد از log_id اکشن استفاده می‌شود" },
+            { "name": "prefix", "required": false, "description": "پیشوند نام متغیرهای باتم‌شیت (مثلاً fine_)" }
+          ],
+          "sample_url": "div-action://bottom_sheet_div?jsonName=ph/trafficticket&array=reports&match_key=rangeId&prefix=fine_",
+          "sample_div_action": {
+            "$log_id": "successful_serial",
+            "url": "div-action://bottom_sheet_div?jsonName=ph/trafficticket&array=reports&match_key=rangeId&prefix=fine_"
+          }
+        },
+        {
+          "id": "bottom_sheet_list",
+          "title": "bottom sheet لیست",
+          "description": "لیست انتخاب (spinner) با جستجو.",
+          "parameters": [
+            { "name": "id", "required": true, "description": "شناسه لیست" },
+            { "name": "title", "required": true, "description": "عنوان" },
+            { "name": "code_var", "required": true, "description": "متغیر کد" },
+            { "name": "title_var", "required": true, "description": "متغیر عنوان" },
+            { "name": "SEARCHABLE", "required": false, "description": "true/false" },
+            { "name": "type", "required": false, "description": "نوع لیست" }
+          ],
+          "sample_url": "div-action://bottom_sheet_list?id=provinces&title=استان&code_var=province_code&title_var=province_name&SEARCHABLE=true",
+          "sample_div_action": {
+            "log_id": "bottom_sheet_list_sample",
+            "url": "div-action://bottom_sheet_list?id=provinces&title=استان&code_var=province_code&title_var=province_name"
+          }
+        },
+        {
+          "id": "bottom_sheet_plate",
+          "title": "bottom sheet پلاک",
+          "description": "انتخاب پلاک با UI اختصاصی.",
+          "parameters": [],
+          "sample_url": "div-action://bottom_sheet_plate",
+          "sample_div_action": {
+            "log_id": "bottom_sheet_plate_sample",
+            "url": "div-action://bottom_sheet_plate"
+          }
+        },
+        {
+          "id": "bottom_sheet_dismiss",
+          "title": "بستن bottom sheet",
+          "description": "bottom sheet فعلی را می‌بندد.",
+          "parameters": [],
+          "sample_url": "div-action://bottom_sheet_dismiss",
+          "sample_div_action": {
+            "log_id": "bottom_sheet_dismiss_sample",
+            "url": "div-action://bottom_sheet_dismiss"
+          }
+        },
+        {
+          "id": "close_bottom_sheet",
+          "title": "بستن bottom sheet (close_bottom_sheet)",
+          "description": "bottom sheet فعلی را می‌بندد — alias سرور برای bottom_sheet_dismiss.",
+          "parameters": [],
+          "sample_url": "div-action://close_bottom_sheet",
+          "sample_div_action": {
+            "log_id": "close_bottom_sheet_sample",
+            "url": "div-action://close_bottom_sheet"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ui",
+      "title": "UI و نمایش",
+      "actions": [
+        {
+          "id": "show_toast",
+          "title": "Toast ساده",
+          "description": "پیام Toast اندروید نمایش می‌دهد.",
+          "parameters": [
+            { "name": "massage", "required": true, "description": "متن پیام (غلط املایی massage عمدی در کد)" }
+          ],
+          "sample_url": "div-action://show_toast?massage=عملیات موفق بود",
+          "sample_div_action": {
+            "log_id": "show_toast_sample",
+            "url": "div-action://show_toast?massage=عملیات موفق بود"
+          }
+        },
+        {
+          "id": "show_toast_div",
+          "title": "Toast با Div",
+          "description": "Toast سفارشی با layout JSON از DB.",
+          "parameters": [
+            { "name": "jsonName", "required": true, "description": "کلید JSON toast در DB" }
+          ],
+          "sample_url": "div-action://show_toast_div?jsonName=ph/toast/success",
+          "sample_div_action": {
+            "log_id": "show_toast_div_sample",
+            "url": "div-action://show_toast_div?jsonName=ph/toast/success"
+          }
+        },
+        {
+          "id": "show_dialog",
+          "title": "Dialog ساده",
+          "description": "AlertDialog با title و message.",
+          "parameters": [
+            { "name": "title", "required": true, "description": "عنوان" },
+            { "name": "massage", "required": true, "description": "متن پیام" }
+          ],
+          "sample_url": "div-action://show_dialog?title=توجه&massage=آیا مطمئن هستید؟",
+          "sample_div_action": {
+            "log_id": "show_dialog_sample",
+            "url": "div-action://show_dialog?title=توجه&massage=آیا مطمئن هستید؟"
+          }
+        },
+        {
+          "id": "show_dialog_div",
+          "title": "Dialog با Div",
+          "description": "Dialog سفارشی با JSON Div از DB.",
+          "parameters": [
+            { "name": "jsonName", "required": true, "description": "کلید JSON dialog" }
+          ],
+          "sample_url": "div-action://show_dialog_div?jsonName=ph/dialog/confirm",
+          "sample_div_action": {
+            "log_id": "show_dialog_div_sample",
+            "url": "div-action://show_dialog_div?jsonName=ph/dialog/confirm"
+          }
+        },
+        {
+          "id": "show_image",
+          "title": "نمایش تصویر Base64",
+          "description": "تصویر base64 را در Dialog نمایش می‌دهد.",
+          "parameters": [
+            { "name": "image", "required": true, "description": "رشته Base64 تصویر" }
+          ],
+          "sample_url": "div-action://show_image?image=BASE64_STRING_HERE",
+          "sample_div_action": {
+            "log_id": "show_image_sample",
+            "url": "div-action://show_image?image=@{image_base64}"
+          }
+        },
+        {
+          "id": "show_time_picker",
+          "title": "انتخاب ساعت",
+          "description": "Time picker 24h باز می‌کند و نتیجه را در متغیر ذخیره می‌کند.",
+          "parameters": [
+            { "name": "variableName", "required": true, "description": "نام متغیر Div" }
+          ],
+          "sample_url": "div-action://show_time_picker?variableName=selected_time",
+          "sample_div_action": {
+            "log_id": "show_time_picker_sample",
+            "url": "div-action://show_time_picker?variableName=selected_time"
+          }
+        },
+        {
+          "id": "show_date_picker",
+          "title": "انتخاب تاریخ شمسی",
+          "description": "Date picker شمسی باز می‌کند.",
+          "parameters": [
+            { "name": "variableName", "required": true, "description": "نام متغیر Div" }
+          ],
+          "sample_url": "div-action://show_date_picker?variableName=birth_date",
+          "sample_div_action": {
+            "log_id": "show_date_picker_sample",
+            "url": "div-action://show_date_picker?variableName=birth_date"
+          }
+        },
+        {
+          "id": "show_date_picker_gregorian",
+          "title": "انتخاب تاریخ میلادی",
+          "description": "Date picker میلادی (dd/MM/yyyy).",
+          "parameters": [
+            { "name": "variableName", "required": true, "description": "نام متغیر Div" }
+          ],
+          "sample_url": "div-action://show_date_picker_gregorian?variableName=expire_date",
+          "sample_div_action": {
+            "log_id": "show_date_picker_gregorian_sample",
+            "url": "div-action://show_date_picker_gregorian?variableName=expire_date"
+          }
+        },
+        {
+          "id": "get_persian_date",
+          "title": "تاریخ شمسی امروز",
+          "description": "تاریخ شمسی امروز (Y/m/d) را در متغیر Div قرار می‌دهد.",
+          "parameters": [
+            { "name": "variableName", "required": true, "description": "نام متغیر" }
+          ],
+          "sample_url": "div-action://get_persian_date?variableName=today",
+          "sample_div_action": {
+            "log_id": "get_persian_date_sample",
+            "url": "div-action://get_persian_date?variableName=today"
+          }
+        },
+        {
+          "id": "get_persian_time",
+          "title": "ساعت سیستم",
+          "description": "ساعت فعلی سیستم (HH:mm) را در متغیر Div قرار می‌دهد.",
+          "parameters": [
+            { "name": "variableName", "required": true, "description": "نام متغیر" }
+          ],
+          "sample_url": "div-action://get_persian_time?variableName=now_time",
+          "sample_div_action": {
+            "log_id": "get_persian_time_sample",
+            "url": "div-action://get_persian_time?variableName=now_time"
+          }
+        },
+        {
+          "id": "get_current_location",
+          "title": "مختصات جغرافیایی سیستم",
+          "description": "عرض و طول جغرافیایی فعلی دستگاه را از LocationService یا GPS در متغیرهای Div قرار می‌دهد.",
+          "parameters": [
+            { "name": "lat_var", "required": true, "description": "نام متغیر عرض جغرافیایی (latitude)" },
+            { "name": "long_var", "required": true, "description": "نام متغیر طول جغرافیایی (longitude)" }
+          ],
+          "sample_url": "div-action://get_current_location?lat_var=variable_geographic_coordinates_lat&long_var=variable_geographic_coordinates_long",
+          "sample_div_action": {
+            "log_id": "get_current_location_sample",
+            "url": "div-action://get_current_location?lat_var=variable_geographic_coordinates_lat&long_var=variable_geographic_coordinates_long"
+          }
+        },
+        {
+          "id": "sync_vehicles_count",
+          "title": "همگام‌سازی تعداد وسایل نقلیه",
+          "description": "تعداد موردنیاز (از صفحه اول) و تعداد اضافه‌شده را مقایسه می‌کند و متغیرهای اعتبارسنجی را به‌روز می‌کند.",
+          "parameters": [
+            { "name": "accident_id", "required": false, "description": "شناسه تصادف؛ پیش‌فرض current_accident_id" }
+          ],
+          "sample_url": "div-action://sync_vehicles_count?accident_id=@{current_accident_id}",
+          "sample_div_action": {
+            "log_id": "sync_vehicles_count_sample",
+            "url": "div-action://sync_vehicles_count?accident_id=@{current_accident_id}"
+          }
+        },
+        {
+          "id": "save_livestock_to_list",
+          "title": "ذخیره حیوان در لیست آفلاین",
+          "description": "نوع حیوان (LIVESTOCK) و تعداد را در آرشیو آفلاین تصادف ذخیره می‌کند و bottom sheet را می‌بندد.",
+          "parameters": [
+            { "name": "accident_id", "required": false, "description": "شناسه تصادف؛ پیش‌فرض current_accident_id" },
+            { "name": "livestock_id", "required": false, "description": "شناسه ردیف؛ پیش‌فرض current_livestock_id" }
+          ],
+          "sample_url": "div-action://save_livestock_to_list?accident_id=@{current_accident_id}&livestock_id=@{current_livestock_id}",
+          "sample_div_action": {
+            "log_id": "save_livestock_to_list_sample",
+            "url": "div-action://save_livestock_to_list?accident_id=@{current_accident_id}&livestock_id=@{current_livestock_id}"
+          }
+        }
+      ]
+    },
+    {
+      "id": "datetime_compare",
+      "title": "مقایسه تاریخ و زمان",
+      "actions": [
+        {
+          "id": "is_date_and_time_less_equal_today_now",
+          "title": "آیا تاریخ/زمان <= الان؟",
+          "description": "تاریخ/زمان ورودی را با الان مقایسه می‌کند. فقط فرمت ثابت: 1405/03/09_12:30",
+          "parameters": [
+            { "name": "current_time", "required": true, "description": "تاریخ/زمان شمسی به فرمت yyyy/MM/dd_HH:mm" },
+            { "name": "result_var", "required": true, "description": "متغیر نتیجه (true/false)" }
+          ],
+          "sample_url": "div-action://is_date_and_time_less_equal_today_now?current_time=1405/03/09_12:30&result_var=is_past",
+          "sample_div_action": {
+            "log_id": "is_date_less_equal_sample",
+            "url": "div-action://is_date_and_time_less_equal_today_now?current_time=@{accident_datetime}&result_var=is_past"
+          }
+        },
+        {
+          "id": "is_bigger_date_and_time",
+          "title": "مقایسه دو تاریخ/زمان",
+          "description": "بررسی می‌کند val1 > val2 است یا نه. فرمت: 1405/03/09_12:30",
+          "parameters": [
+            { "name": "val1", "required": true, "description": "تاریخ/زمان اول" },
+            { "name": "val2", "required": true, "description": "تاریخ/زمان دوم" },
+            { "name": "result_var", "required": true, "description": "متغیر نتیجه" }
+          ],
+          "sample_url": "div-action://is_bigger_date_and_time?val1=1405/03/10_08:00&val2=1405/03/09_12:30&result_var=is_after",
+          "sample_div_action": {
+            "log_id": "is_bigger_datetime_sample",
+            "url": "div-action://is_bigger_date_and_time?val1=@{start_time}&val2=@{end_time}&result_var=is_after"
+          }
+        }
+      ]
+    },
+    {
+      "id": "service",
+      "title": "سرویس و شبکه",
+      "actions": [
+        {
+          "id": "call_service",
+          "title": "فراخوانی سرویس",
+          "description": "درخواست HTTP به سرور. path و سایر پارامترها به onRequest ارسال می‌شوند. پاسخ می‌تواند patch، load_screen، toast و... برگرداند.",
+          "parameters": [
+            { "name": "path", "required": true, "description": "مسیر/نام سرویس" },
+            { "name": "...", "required": false, "description": "پارامترهای دلخواه (ph/token, sysName, @{var}, ...)" }
+          ],
+          "sample_url": "div-action://call_service?path=inquiryVehicle&ph/token=empty&sysName=@{sysName}&plateA=@{variable_plateA}",
+          "sample_div_action": {
+            "log_id": "call_service_sample",
+            "url": "div-action://call_service?path=inquiryVehicle&ph/token=empty&sysName=@{sysName}&plateA=@{variable_plateA}&plateB=@{variable_plateB}"
+          },
+          "service_response_fields": [
+            { "field": "patch", "description": "اعمال patch روی صفحه اصلی" },
+            { "field": "bottom_sheet_set_patch", "description": "اعمال patch روی bottom sheet فعلی" },
+            { "field": "load_screen", "description": "بارگذاری صفحه جدید" },
+            { "field": "show_toast", "description": "نمایش toast" },
+            { "field": "bottom_sheet_div", "description": "باز کردن bottom sheet" }
+          ]
+        },
+        {
+          "id": "upload_files_and_call_service",
+          "title": "آپلود فایل و فراخوانی سرویس",
+          "description": "multipart به همان coordinator. requestScreen مثل call_service است و file1_name تا file5_name داخل fileLabels می‌روند. fileN_path مسیر واقعی فایل (یا نام متغیر حاوی مسیر) است. پاسخ مثل call_service پردازش می‌شود؛ isUploaded=true یعنی آپلود موفق و false یعنی ناموفق.",
+          "parameters": [
+            { "name": "path", "required": true, "description": "مسیر/نام سرویس" },
+            { "name": "file1_name", "required": true, "description": "برچسب فایل اول در fileLabels (مثلا rawImage)" },
+            { "name": "file1_path", "required": true, "description": "مسیر فایل یا متغیر حاوی مسیر (@{var} یا نام متغیر)" },
+            { "name": "file2_name", "required": false, "description": "برچسب فایل دوم" },
+            { "name": "file2_path", "required": false, "description": "مسیر فایل دوم" },
+            { "name": "file3_name", "required": false, "description": "برچسب فایل سوم" },
+            { "name": "file3_path", "required": false, "description": "مسیر فایل سوم" },
+            { "name": "file4_name", "required": false, "description": "برچسب فایل چهارم" },
+            { "name": "file4_path", "required": false, "description": "مسیر فایل چهارم" },
+            { "name": "file5_name", "required": false, "description": "برچسب فایل پنجم" },
+            { "name": "file5_path", "required": false, "description": "مسیر فایل پنجم" },
+            { "name": "...", "required": false, "description": "سایر پارامترهای سرویس (sysName, screenName, ph/token=empty, @{var}, ...)" }
+          ],
+          "sample_url": "div-action://upload_files_and_call_service?path=corokiAccidents&sysName=accidents&screenName=accidents&ph/token=empty&file1_name=rawImage&file1_path=@{raw_image_path}&file2_name=rawBgImage&file2_path=@{raw_bg_image_path}",
+          "sample_div_action": {
+            "log_id": "upload_files_and_call_service_sample",
+            "url": "div-action://upload_files_and_call_service?path=corokiAccidents&sysName=accidents&screenName=accidents&ph/token=empty&file1_name=rawImage&file1_path=@{raw_image_path}&file2_name=rawBgImage&file2_path=@{raw_bg_image_path}"
+          },
+          "service_response_fields": [
+            { "field": "isUploaded", "description": "true اگر آپلود موفق باشد، در غیر این صورت false" },
+            { "field": "show_toast", "description": "نمایش toast" },
+            { "field": "toast", "description": "JSON کارت toast" },
+            { "field": "ph/token", "description": "توکن تازه‌شده" },
+            { "field": "next", "description": "صفحه بعدی" },
+            { "field": "set_patch", "description": "اعمال patch روی صفحه اصلی" }
+          ]
+        },
+        {
+          "id": "check_version",
+          "title": "بررسی نسخه",
+          "description": "بررسی نسخه اپ (handler ناقص).",
+          "parameters": [
+            { "name": "name", "required": false, "description": "نام/شناسه نسخه" }
+          ],
+          "sample_url": "div-action://check_version?name=phplus",
+          "sample_div_action": {
+            "log_id": "check_version_sample",
+            "url": "div-action://check_version?name=phplus"
+          }
+        }
+      ]
+    },
+    {
+      "id": "permissions",
+      "title": "دسترسی‌ها",
+      "actions": [
+        {
+          "id": "get_camera_permission",
+          "title": "درخواست دوربین",
+          "description": "permission دوربین را درخواست می‌کند.",
+          "parameters": [],
+          "sample_url": "div-action://get_camera_permission",
+          "sample_div_action": { "log_id": "get_camera_permission_sample", "url": "div-action://get_camera_permission" }
+        },
+        {
+          "id": "get_location_permission",
+          "title": "درخواست موقعیت",
+          "description": "permission موقعیت مکانی را درخواست می‌کند.",
+          "parameters": [],
+          "sample_url": "div-action://get_location_permission",
+          "sample_div_action": { "log_id": "get_location_permission_sample", "url": "div-action://get_location_permission" }
+        },
+        {
+          "id": "get_write_permission",
+          "title": "درخواست نوشتن فایل",
+          "description": "permission storage/write را درخواست می‌کند.",
+          "parameters": [],
+          "sample_url": "div-action://get_write_permission",
+          "sample_div_action": { "log_id": "get_write_permission_sample", "url": "div-action://get_write_permission" }
+        },
+        {
+          "id": "get_all_permission",
+          "title": "درخواست همه دسترسی‌ها",
+          "description": "دوربین، موقعیت و storage را یکجا درخواست می‌کند.",
+          "parameters": [],
+          "sample_url": "div-action://get_all_permission",
+          "sample_div_action": { "log_id": "get_all_permission_sample", "url": "div-action://get_all_permission" }
+        }
+      ]
+    },
+    {
+      "id": "camera",
+      "title": "دوربین و OCR",
+      "actions": [
+        {
+          "id": "open_camera",
+          "title": "باز کردن دوربین",
+          "description": "دوربین Naji را برای عکس/OCR باز می‌کند.",
+          "parameters": [
+            { "name": "type", "required": true, "description": "car | person | ocr | ..." },
+            { "name": "check_ocr", "required": false, "description": "فعال‌سازی OCR" },
+            { "name": "iranian", "required": false, "description": "پلاک ایرانی" }
+          ],
+          "sample_url": "div-action://open_camera?type=car&check_ocr=@{check_ocr}",
+          "sample_div_action": {
+            "log_id": "open_camera_sample",
+            "url": "div-action://open_camera?type=car&check_ocr=@{check_ocr}"
+          }
+        },
+        {
+          "id": "open_kashfface_camera",
+          "title": "باز کردن دوربین چهره KashfFace",
+          "description": "همان جریان open_camera (ارسال به سرویس/متغیر) ولی عکس را با دوربین تشخیص چهره KashfFace می‌گیرد.",
+          "parameters": [
+            { "name": "type", "required": false, "description": "پیش‌فرض person | car | ocr | atba" },
+            { "name": "check_ocr", "required": false, "description": "فعال‌سازی OCR (برای type=car)" },
+            { "name": "iranian", "required": false, "description": "برای type=person: ایرانی true/false" },
+            { "name": "front", "required": false, "description": "دوربین سلفی true/false (پیش‌فرض false)" }
+          ],
+          "sample_url": "div-action://open_kashfface_camera?type=person&iranian=true",
+          "sample_div_action": {
+            "log_id": "open_kashfface_camera_sample",
+            "url": "div-action://open_kashfface_camera?type=person&iranian=true"
+          }
+        },
+        {
+          "id": "open_kashfface_plate",
+          "title": "دوربین پلاک KashfFace",
+          "description": "دوربین تشخیص پلاک KashfFace. کاربر روی صفحه انتخاب می‌کند: خواندن با مدل محلی (پر کردن variable_plate*) یا ارسال عکس به ocrPicture روی سرور.",
+          "parameters": [
+            { "name": "mode", "required": false, "description": "انتخاب پیش‌فرض روی UI: local | server" }
+          ],
+          "sample_url": "div-action://open_kashfface_plate?mode=local",
+          "sample_div_action": {
+            "log_id": "open_kashfface_plate_sample",
+            "url": "div-action://open_kashfface_plate?mode=local"
+          }
+        }
+      ]
+    },
+    {
+      "id": "recording",
+      "title": "ضبط صدا",
+      "actions": [
+        {
+          "id": "start_recording",
+          "title": "شروع ضبط",
+          "description": "ضبط صدا را شروع می‌کند. id اختیاری؛ اگر نباشد از questioner_id در DB استفاده می‌شود.",
+          "parameters": [
+            { "name": "id", "required": false, "description": "شناسه ضبط" }
+          ],
+          "sample_url": "div-action://start_recording?id=@{questioner_id}",
+          "sample_div_action": {
+            "log_id": "start_recording_sample",
+            "url": "div-action://start_recording?id=@{questioner_id}"
+          }
+        },
+        {
+          "id": "stop_recording",
+          "title": "توقف ضبط",
+          "description": "ضبط صدا را متوقف می‌کند.",
+          "parameters": [],
+          "sample_url": "div-action://stop_recording",
+          "sample_div_action": { "log_id": "stop_recording_sample", "url": "div-action://stop_recording" }
+        },
+        {
+          "id": "upload_recording",
+          "title": "آپلود ضبط",
+          "description": "فایل ضبط‌شده را آپلود می‌کند.",
+          "parameters": [
+            { "name": "id", "required": true, "description": "شناسه ضبط" }
+          ],
+          "sample_url": "div-action://upload_recording?id=@{questioner_id}",
+          "sample_div_action": {
+            "log_id": "upload_recording_sample",
+            "url": "div-action://upload_recording?id=@{questioner_id}"
+          }
+        },
+        {
+          "id": "upload_and_call_service",
+          "title": "آپلود + call_service",
+          "description": "ضبط را متوقف/آپلود می‌کند و سپس سرویس را با پارامترهای URL صدا می‌زند.",
+          "parameters": [
+            { "name": "id", "required": true, "description": "شناسه ضبط" },
+            { "name": "path", "required": true, "description": "مسیر سرویس" },
+            { "name": "...", "required": false, "description": "سایر پارامترهای سرویس" }
+          ],
+          "sample_url": "div-action://upload_and_call_service?id=@{questioner_id}&path=processRecordings&username=@{username}",
+          "sample_div_action": {
+            "log_id": "upload_and_call_service_sample",
+            "url": "div-action://upload_and_call_service?id=@{questioner_id}&path=processRecordings&username=@{username}"
+          }
+        }
+      ]
+    },
+    {
+      "id": "background_services",
+      "title": "سرویس‌های پس‌زمینه",
+      "actions": [
+        {
+          "id": "restart_push_notifications",
+          "title": "ریست Push Notifications",
+          "description": "سرویس push notification را restart می‌کند.",
+          "parameters": [],
+          "sample_url": "div-action://restart_push_notifications",
+          "sample_div_action": { "log_id": "restart_push_sample", "url": "div-action://restart_push_notifications" }
+        },
+        {
+          "id": "restart_location_service",
+          "title": "ریست Location Service",
+          "description": "سرویس موقعیت‌یابی را stop/start می‌کند.",
+          "parameters": [],
+          "sample_url": "div-action://restart_location_service",
+          "sample_div_action": { "log_id": "restart_location_sample", "url": "div-action://restart_location_service" }
+        },
+        {
+          "id": "refresh_notification_type_counters",
+          "title": "به‌روزرسانی شمارنده نوتیف",
+          "description": "شمارنده‌های نوع notification را refresh می‌کند.",
+          "parameters": [],
+          "sample_url": "div-action://refresh_notification_type_counters",
+          "sample_div_action": { "log_id": "refresh_notif_counters_sample", "url": "div-action://refresh_notification_type_counters" }
+        }
+      ]
+    }
+  ],
+  "divkit_builtin_actions": {
+    "description": "اکشن‌های built-in DivKit (از طریق DivActionTypedHandlerProxy)",
+    "examples": [
+      {
+        "id": "set_state",
+        "description": "تغییر state یک div (مثلاً tabs)",
+        "sample_url": "div-action://set_state?state_id=1"
+      },
+      {
+        "id": "set_variable_builtin",
+        "description": "set_variable استاندارد DivKit",
+        "sample_url": "div-action://set_variable?name=my_var&value=hello"
+      }
+    ]
+  }
+}

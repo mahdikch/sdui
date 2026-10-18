@@ -30,7 +30,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     },
@@ -50,7 +50,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     },
@@ -70,7 +70,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     },
@@ -90,7 +90,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     },
@@ -110,7 +110,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     }
@@ -156,7 +156,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     },
@@ -176,7 +176,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     },
@@ -196,7 +196,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     },
@@ -216,7 +216,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     },
@@ -236,7 +236,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     }
@@ -282,7 +282,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     },
@@ -302,27 +302,27 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     },
                     {
                       "type": "letter_template",
-                      "text": "ت",
-                      "background_color": "#FDCA00",
+                      "text": "ط",
                       "text_color": "#000000",
+                      "background_color": "#ffffff",
                       "actions": [
                         {
                           "log_id": "set_patch_patchVehiclePlate",
-                          "url": "div-action://set_patch?patch=patchTaxiPlate&patch_title=تاکسی"
+                          "url": "div-action://set_patch?patch=patchVehiclePlate&patch_title=منطقه ای شخصی"
                         },
                         {
                           "log_id": "set_patch_patchVehiclePlate",
-                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=ت"
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=ط"
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     },
@@ -342,7 +342,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     },
@@ -362,7 +362,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     }
@@ -408,7 +408,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     },
@@ -428,7 +428,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     },
@@ -448,7 +448,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     },
@@ -468,7 +468,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     },
@@ -488,7 +488,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     }
@@ -534,7 +534,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     },
@@ -553,7 +553,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     },
@@ -573,7 +573,7 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     },
@@ -593,7 +593,27 @@
                         },
                         {
                           "log_id": "bottom_sheet_dismiss",
-                          "url": "div-action://bottom_sheet_dismiss"
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "letter_template",
+                      "text": "ت",
+                      "background_color": "#FDCA00",
+                      "text_color": "#000000",
+                      "actions": [
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_patch?patch=patchTaxiPlate&patch_title=تاکسی"
+                        },
+                        {
+                          "log_id": "set_patch_patchVehiclePlate",
+                          "url": "div-action://set_variable_to_base?name=variable_plateB&value=ت"
+                        },
+                        {
+                          "log_id": "bottom_sheet_dismiss",
+                          "url": "div-action://bottom_sheet_dismiss?focus=plateC"
                         }
                       ]
                     }
@@ -648,10 +668,10 @@
           ],
           "border": {
             "corners_radius": {
-              "top-left": 5,
-              "top-right": 5,
-              "bottom-right": 5,
-              "bottom-left": 5
+              "top-left": 6,
+              "top-right": 6,
+              "bottom-right": 6,
+              "bottom-left": 6
             }
           },
           "height": {

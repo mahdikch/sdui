@@ -1,0 +1,3439 @@
+{
+  "card": {
+    "log_id": "div2_sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "visibility_actions": [
+            {
+              "log_id": "load_accident_id",
+              "url": "div-action://set_variable_from_db?name=current_vehicle_id",
+              "visibility_duration": 0
+            }
+          ],
+          "items": [
+            {
+              "id": "vehicle_information",
+              "type": "container",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "match_parent"
+              },
+              "items": [
+                {
+                  "type": "container",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "fixed",
+                    "value": 108
+                  },
+                  "items": [
+                    {
+                      "type": "container",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "image",
+                          "image_url": "empty://",
+                          "width": {
+                            "type": "fixed",
+                            "value": 27
+                          },
+                          "height": {
+                            "type": "fixed",
+                            "value": 20
+                          },
+                          "preload_required": true
+                        },
+                        {
+                          "type": "text",
+                          "text": "مشاهده مراحل ",
+                          "width": {
+                            "type": "fixed",
+                            "value": 100
+                          },
+                          "paddings": {
+                            "start": 10,
+                            "end": 10
+                          }
+                        }
+                      ],
+                      "content_alignment_horizontal": "start",
+                      "content_alignment_vertical": "center",
+                      "orientation": "horizontal",
+                      "margins": {
+                        "start": 30
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 200
+                      },
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "ثبت اطلاعات اولیه",
+                          "font_size": 14,
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "text_alignment_horizontal": "start"
+                        },
+                        {
+                          "type": "text",
+                          "text": "بعدی : ثبت اطلاعات وسیله نقلیه",
+                          "font_size": 14,
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "text_alignment_horizontal": "start"
+                        }
+                      ],
+                      "alignment_vertical": "center",
+                      "content_alignment_horizontal": "end",
+                      "content_alignment_vertical": "center"
+                    },
+                    {
+                      "type": "container",
+                      "width": {
+                        "type": "fixed",
+                        "value": 174
+                      },
+                      "height": {
+                        "type": "match_parent"
+                      },
+                      "items": [
+                        {
+                          "type": "custom",
+                          "custom_type": "circular_progress",
+                          "custom_props": {
+                            "current": "@{current}",
+                            "total": "@{total}",
+                            "textSize": 32
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "height": {
+                            "type": "match_parent"
+                          }
+                        }
+                      ],
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center"
+                    }
+                  ],
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "center",
+                  "content_alignment_vertical": "center",
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ],
+                  "margins": {
+                    "top": 8,
+                    "bottom": 8,
+                    "start": 8,
+                    "end": 8
+                  },
+                  "border": {
+                    "corner_radius": 6,
+                    "corners_radius": {
+                      "top-left": 6,
+                      "top-right": 6,
+                      "bottom-left": 6,
+                      "bottom-right": 6
+                    }
+                  }
+                },
+                {
+                  "items": [
+                    {
+                      "type": "container",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "items": [
+                        {
+                          "type": "container",
+                          "visibility": "@{driver_inquiry_visibility}",
+                          "items": [
+                            {
+                              "type": "container",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "items": [
+                                        {
+                                          "type": "text",
+                                          "text": "غیر ایرانی",
+                                          "font_size": 14,
+                                          "line_height": 32,
+                                          "letter_spacing": 0,
+                                          "text_color": "@{variable_citizen_text_color}",
+                                          "text_alignment_horizontal": "right",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "wrap_content"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        }
+                                      ],
+                                      "background": [
+                                        {
+                                          "type": "solid",
+                                          "color": "@{variable_citizen_tab}"
+                                        }
+                                      ],
+                                      "border": {
+                                        "corner_radius": 4
+                                      },
+                                      "actions": [
+                                        {
+                                          "log_id": "change_shomarer_tab_background",
+                                          "url": "div-action://change_color?name=variable_citizen_text_color&value=@{color_blue}"
+                                        },
+                                        {
+                                          "log_id": "change_pelak_tab_background",
+                                          "url": "div-action://change_color?name=variable_iranian_text_color&value=@{color_gray}"
+                                        },
+                                        {
+                                          "log_id": "change_shomare_tab_background",
+                                          "url": "div-action://change_color?name=variable_citizen_tab&value=@{variable_selected_tab_color}"
+                                        },
+                                        {
+                                          "log_id": "change_pelak_tab_background",
+                                          "url": "div-action://change_color?name=variable_iranian_tab&value=@{variable_unselected_tab_color}"
+                                        },
+                                        {
+                                          "log_id": "change_pelak_tab_background",
+                                          "url": "div-action://set_variable?name=validation_driver_citizen&value=true"
+                                        }
+                                      ],
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "center",
+                                      "content_alignment_vertical": "center",
+                                      "paddings": {
+                                        "top": 8,
+                                        "bottom": 8,
+                                        "left": 12,
+                                        "right": 12
+                                      }
+                                    },
+                                    {
+                                      "type": "container",
+                                      "items": [
+                                        {
+                                          "type": "text",
+                                          "text": "ایرانی",
+                                          "font_size": 14,
+                                          "line_height": 32,
+                                          "letter_spacing": 0,
+                                          "text_color": "@{variable_iranian_text_color}",
+                                          "text_alignment_horizontal": "right",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "wrap_content"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        }
+                                      ],
+                                      "background": [
+                                        {
+                                          "type": "solid",
+                                          "color": "@{variable_iranian_tab}"
+                                        }
+                                      ],
+                                      "actions": [
+                                        {
+                                          "log_id": "change_shomarer_tab_background",
+                                          "url": "div-action://change_color?name=variable_citizen_text_color&value=@{color_gray}"
+                                        },
+                                        {
+                                          "log_id": "change_pelak_tab_background",
+                                          "url": "div-action://change_color?name=variable_iranian_text_color&value=@{color_blue}"
+                                        },
+                                        {
+                                          "log_id": "change_shomarer_tab_background",
+                                          "url": "div-action://change_color?name=variable_citizen_tab&value=@{variable_unselected_tab_color}"
+                                        },
+                                        {
+                                          "log_id": "change_pelak_tab_background",
+                                          "url": "div-action://change_color?name=variable_iranian_tab&value=@{variable_selected_tab_color}"
+                                        },
+                                        {
+                                          "log_id": "change_pelak_tab_background",
+                                          "url": "div-action://set_variable?name=validation_driver_citizen&value=false"
+                                        }
+                                      ],
+                                      "border": {
+                                        "corner_radius": 4
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "center",
+                                      "content_alignment_vertical": "center",
+                                      "paddings": {
+                                        "top": 8,
+                                        "bottom": 8,
+                                        "left": 12,
+                                        "right": 12
+                                      },
+                                      "margins": {
+                                        "left": 8
+                                      }
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#e8ecf4"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corner_radius": 4,
+                                    "stroke": {
+                                      "color": "#c8d0e4",
+                                      "width": 1
+                                    }
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 180
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "start",
+                                  "content_alignment_vertical": "center",
+                                  "alignment_horizontal": "start",
+                                  "alignment_vertical": "center",
+                                  "margins": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "start": 8,
+                                    "end": 8
+                                  }
+                                },
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "text",
+                                      "text": "@{text___36}",
+                                      "font_size": 12,
+                                      "line_height": 24,
+                                      "letter_spacing": 0,
+                                      "text_color": "#3b3b3b",
+                                      "text_alignment_horizontal": "right",
+                                      "text_alignment_vertical": "top",
+                                      "width": {
+                                        "type": "wrap_content"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      }
+                                    },
+                                    {
+                                      "type": "container",
+                                      "items": [
+                                        {
+                                          "type": "container",
+                                          "items": [
+                                            {
+                                              "type": "image",
+                                              "image_url": "@{person.png}",
+                                              "height": {
+                                                "type": "fixed",
+                                                "value": 32
+                                              },
+                                              "width": {
+                                                "type": "fixed",
+                                                "value": 32
+                                              }
+                                            }
+                                          ],
+                                          "height": {
+                                            "type": "fixed",
+                                            "value": 32
+                                          },
+                                          "width": {
+                                            "type": "fixed",
+                                            "value": 32
+                                          },
+                                          "orientation": "overlap",
+                                          "content_alignment_vertical": "center",
+                                          "content_alignment_horizontal": "center",
+                                          "margins": {
+                                            "top": 8,
+                                            "bottom": 8,
+                                            "start": 8,
+                                            "end": 8
+                                          }
+                                        }
+                                      ],
+                                      "background": [
+                                        {
+                                          "type": "solid",
+                                          "color": "#f3f5f9"
+                                        }
+                                      ],
+                                      "border": {
+                                        "corner_radius": 4
+                                      },
+                                      "height": {
+                                        "type": "fixed",
+                                        "value": 32
+                                      },
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 32
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "center",
+                                      "content_alignment_vertical": "center",
+                                      "paddings": {
+                                        "top": 8,
+                                        "bottom": 8,
+                                        "left": 8,
+                                        "right": 8
+                                      },
+                                      "margins": {
+                                        "left": 8
+                                      }
+                                    }
+                                  ],
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "wrap_content"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "right",
+                                  "content_alignment_vertical": "center",
+                                  "alignment_horizontal": "end",
+                                  "alignment_vertical": "center"
+                                }
+                              ],
+                              "orientation": "overlap",
+                              "content_alignment_horizontal": "center",
+                              "content_alignment_vertical": "center",
+                              "margins": {
+                                "top": 5,
+                                "bottom": 5,
+                                "start": 5,
+                                "end": 5
+                              }
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 108
+                                  },
+                                  "height": {
+                                    "type": "match_parent"
+                                  },
+                                  "items": [
+                                    {
+                                      "type": "text",
+                                      "text": "استعلام",
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 100
+                                      },
+                                      "text_color": "#ffffff",
+                                      "alignment_horizontal": "center",
+                                      "text_alignment_horizontal": "center"
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#193d8d"
+                                    }
+                                  ],
+                                  "alignment_vertical": "center",
+                                  "content_alignment_horizontal": "center",
+                                  "content_alignment_vertical": "center",
+                                  "border": {
+                                    "stroke": {
+                                      "style": {
+                                        "type": "solid"
+                                      },
+                                      "width": 2,
+                                      "unit": "px"
+                                    },
+                                    "corners_radius": {
+                                      "bottom-right": 4,
+                                      "bottom-left": 4,
+                                      "top-right": 4,
+                                      "top-left": 4
+                                    },
+                                    "corner_radius": 4
+                                  },
+                                  "margins": {
+                                    "end": 10
+                                  }
+                                },
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "text",
+                                      "actions": [
+                                        {
+                                          "log_id": "reset_phid",
+                                          "url": "div-action://reset_phid"
+                                        },
+                                        {
+                                          "log_id": "open_camera",
+                                          "url": "div-action://open_camera?type=person"
+                                        }
+                                      ],
+                                      "text": "@{text___37}",
+                                      "font_size": 12,
+                                      "line_height": 24,
+                                      "letter_spacing": 0,
+                                      "text_color": "#4260a2",
+                                      "text_alignment_horizontal": "left",
+                                      "text_alignment_vertical": "top",
+                                      "width": {
+                                        "type": "wrap_content"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "alignment_horizontal": "left",
+                                      "alignment_vertical": "center"
+                                    },
+                                    {
+                                      "type": "input",
+                                      "text_variable": "national_code",
+                                      "hint_text": "کد ملی",
+                                      "font_size": 12,
+                                      "line_height": 24,
+                                      "letter_spacing": 0,
+                                      "text_color": "#4260a2",
+                                      "text_alignment_horizontal": "right",
+                                      "text_alignment_vertical": "top",
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "alignment_horizontal": "right",
+                                      "alignment_vertical": "center",
+                                      "margins": {
+                                        "left": 64
+                                      },
+                                      "keyboard_type": "number"
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corner_radius": 4,
+                                    "stroke": {
+                                      "color": "#dedede",
+                                      "width": 1
+                                    }
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "overlap",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "horizontal",
+                              "content_alignment_vertical": "center",
+                              "content_alignment_horizontal": "center",
+                              "alignment_horizontal": "center",
+                              "alignment_vertical": "top",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 8,
+                                "end": 8
+                              }
+                            },
+                            {
+                              "type": "container",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "fixed",
+                                "value": 48
+                              },
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "width": {
+                                    "type": "fixed",
+                                    "value": 108
+                                  },
+                                  "height": {
+                                    "type": "fixed",
+                                    "value": 48
+                                  },
+                                  "items": [
+                                    {
+                                      "type": "text",
+                                      "text": "استعلام",
+                                      "width": {
+                                        "type": "fixed",
+                                        "value": 100
+                                      },
+                                      "text_color": "#ffffff",
+                                      "alignment_horizontal": "center",
+                                      "text_alignment_horizontal": "center"
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#193d8d"
+                                    }
+                                  ],
+                                  "alignment_vertical": "center",
+                                  "content_alignment_horizontal": "center",
+                                  "content_alignment_vertical": "center",
+                                  "border": {
+                                    "stroke": {
+                                      "style": {
+                                        "type": "solid"
+                                      },
+                                      "unit": "px",
+                                      "width": 2
+                                    },
+                                    "corners_radius": {
+                                      "bottom-right": 4,
+                                      "bottom-left": 4,
+                                      "top-right": 4,
+                                      "top-left": 4
+                                    },
+                                    "corner_radius": 4
+                                  },
+                                  "margins": {
+                                    "end": 10
+                                  }
+                                },
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "input",
+                                      "text_variable": "compromising_driver_certification_no",
+                                      "hint_text": "شماره گواهینامه ",
+                                      "font_size": 12,
+                                      "line_height": 24,
+                                      "letter_spacing": 0,
+                                      "text_color": "#4260a2",
+                                      "text_alignment_horizontal": "right",
+                                      "text_alignment_vertical": "top",
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "alignment_horizontal": "right",
+                                      "alignment_vertical": "center",
+                                      "margins": {
+                                        "left": 64
+                                      },
+                                      "keyboard_type": "number"
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corner_radius": 4,
+                                    "stroke": {
+                                      "color": "#dedede",
+                                      "width": 1
+                                    }
+                                  },
+                                  "height": {
+                                    "type": "match_parent"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "overlap",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  }
+                                }
+                              ],
+                              "orientation": "horizontal",
+                              "content_alignment_horizontal": "center",
+                              "content_alignment_vertical": "center",
+                              "margins": {
+                                "top": 8,
+                                "bottom": 8,
+                                "start": 12,
+                                "end": 12
+                              }
+                            }
+                          ],
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "corner_radius": 6,
+                            "stroke": {
+                              "color": "#c8d0e4",
+                              "width": 1
+                            },
+                            "corners_radius": {
+                              "top-left": 6,
+                              "top-right": 6,
+                              "bottom-left": 6,
+                              "bottom-right": 6
+                            }
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "vertical",
+                          "content_alignment_vertical": "center",
+                          "content_alignment_horizontal": "center",
+                          "alignment_horizontal": "center",
+                          "alignment_vertical": "bottom",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          }
+                        },
+                        {
+                          "type": "container",
+                          "items": [
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "نام",
+                                  "font_size": 12,
+                                  "font_weight": "medium",
+                                  "line_height": 24,
+                                  "letter_spacing": 0,
+                                  "text_color": "#3b3b3b",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  }
+                                },
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "items": [
+                                        {
+                                          "type": "input",
+                                          "hint_text": "وارد نمایید",
+                                          "text_variable": "compromising_driver_name",
+                                          "keyboard_type": "single_line_text",
+                                          "font_size": 14,
+                                          "font_weight": "regular",
+                                          "line_height": 32,
+                                          "letter_spacing": 0,
+                                          "text_color": "#a3a3a3",
+                                          "text_alignment_horizontal": "right",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        }
+                                      ],
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "right",
+                                      "content_alignment_vertical": "center"
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corners_radius": {
+                                      "top-left": 4,
+                                      "top-right": 4,
+                                      "bottom-left": 4,
+                                      "bottom-right": 4
+                                    },
+                                    "stroke": {
+                                      "color": "#cccccc",
+                                      "style": {
+                                        "type": "solid"
+                                      },
+                                      "unit": "px",
+                                      "width": 2
+                                    },
+                                    "corner_radius": 4
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "vertical",
+                              "content_alignment_vertical": "center",
+                              "content_alignment_horizontal": "center"
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "نام خانوادگی",
+                                  "font_size": 12,
+                                  "font_weight": "medium",
+                                  "line_height": 24,
+                                  "letter_spacing": 0,
+                                  "text_color": "#3b3b3b",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  }
+                                },
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "items": [
+                                        {
+                                          "type": "input",
+                                          "hint_text": "وارد نمایید",
+                                          "text_variable": "compromising_driver_family",
+                                          "keyboard_type": "single_line_text",
+                                          "font_size": 14,
+                                          "font_weight": "regular",
+                                          "line_height": 32,
+                                          "letter_spacing": 0,
+                                          "text_color": "#a3a3a3",
+                                          "text_alignment_horizontal": "right",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        }
+                                      ],
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "right",
+                                      "content_alignment_vertical": "center"
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corners_radius": {
+                                      "top-left": 4,
+                                      "top-right": 4,
+                                      "bottom-left": 4,
+                                      "bottom-right": 4
+                                    },
+                                    "stroke": {
+                                      "color": "#cccccc",
+                                      "style": {
+                                        "type": "solid"
+                                      },
+                                      "unit": "px",
+                                      "width": 2
+                                    },
+                                    "corner_radius": 4
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "vertical",
+                              "content_alignment_vertical": "center",
+                              "content_alignment_horizontal": "center"
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "نام پدر",
+                                  "font_size": 12,
+                                  "font_weight": "medium",
+                                  "line_height": 24,
+                                  "letter_spacing": 0,
+                                  "text_color": "#3b3b3b",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  }
+                                },
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "items": [
+                                        {
+                                          "type": "input",
+                                          "hint_text": "وارد نمایید",
+                                          "text_variable": "variable_father_name",
+                                          "keyboard_type": "single_line_text",
+                                          "font_size": 14,
+                                          "font_weight": "regular",
+                                          "line_height": 32,
+                                          "letter_spacing": 0,
+                                          "text_color": "#a3a3a3",
+                                          "text_alignment_horizontal": "right",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        }
+                                      ],
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "right",
+                                      "content_alignment_vertical": "center"
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corners_radius": {
+                                      "top-left": 4,
+                                      "top-right": 4,
+                                      "bottom-left": 4,
+                                      "bottom-right": 4
+                                    },
+                                    "stroke": {
+                                      "color": "#cccccc",
+                                      "style": {
+                                        "type": "solid"
+                                      },
+                                      "unit": "px",
+                                      "width": 2
+                                    },
+                                    "corner_radius": 4
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "vertical",
+                              "content_alignment_vertical": "center",
+                              "content_alignment_horizontal": "center"
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "نوع گواهینامه",
+                                  "font_size": 12,
+                                  "font_weight": "medium",
+                                  "line_height": 24,
+                                  "letter_spacing": 0,
+                                  "text_color": "#3b3b3b",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  }
+                                },
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "items": [
+                                        {
+                                          "type": "image",
+                                          "image_url": "empty://",
+                                          "actions": [
+                                            {
+                                              "log_id": "show_bottom_sheet_list",
+                                              "url": "div-action://bottom_sheet_list?id=LICENSE_TYPE&varName=LICENSE_TYPE&title=نوع    گواهینامه &title_var=compromising_driver_certificate_type&code_var=compromising_driver_certificate_type_code"
+                                            }
+                                          ],
+                                          "width": {
+                                            "type": "fixed",
+                                            "value": 38
+                                          },
+                                          "height": {
+                                            "type": "fixed",
+                                            "value": 32
+                                          },
+                                          "preload_required": true
+                                        },
+                                        {
+                                          "type": "input",
+                                          "text_variable": "compromising_driver_certificate_type",
+                                          "hint_text": "انتخاب نمایید",
+                                          "font_size": 14,
+                                          "font_weight": "regular",
+                                          "line_height": 32,
+                                          "letter_spacing": 0,
+                                          "text_color": "#a3a3a3",
+                                          "text_alignment_horizontal": "right",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        }
+                                      ],
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "right",
+                                      "content_alignment_vertical": "center"
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corners_radius": {
+                                      "top-left": 4,
+                                      "top-right": 4,
+                                      "bottom-left": 4,
+                                      "bottom-right": 4
+                                    },
+                                    "stroke": {
+                                      "color": "#cccccc",
+                                      "style": {
+                                        "type": "solid"
+                                      },
+                                      "unit": "px",
+                                      "width": 2
+                                    },
+                                    "corner_radius": 4
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "vertical",
+                              "content_alignment_vertical": "center",
+                              "content_alignment_horizontal": "center"
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "تاریخ صدور گواهی نامه",
+                                  "font_size": 12,
+                                  "font_weight": "medium",
+                                  "line_height": 24,
+                                  "letter_spacing": 0,
+                                  "text_color": "#3b3b3b",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  }
+                                },
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "items": [
+                                        {
+                                          "type": "image",
+                                          "image_url": "empty://",
+                                          "actions": [
+                                            {
+                                              "log_id": "show_bottom_sheet_list",
+                                              "url": "div-action://show_date_picker?variableName=compromising_driver_certificate_date"
+                                            }
+                                          ],
+                                          "width": {
+                                            "type": "fixed",
+                                            "value": 38
+                                          },
+                                          "height": {
+                                            "type": "fixed",
+                                            "value": 32
+                                          },
+                                          "preload_required": true
+                                        },
+                                        {
+                                          "type": "input",
+                                          "text_variable": "compromising_driver_certificate_date",
+                                          "hint_text": "انتخاب نمایید",
+                                          "font_size": 14,
+                                          "font_weight": "regular",
+                                          "line_height": 32,
+                                          "letter_spacing": 0,
+                                          "text_color": "#a3a3a3",
+                                          "text_alignment_horizontal": "right",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        }
+                                      ],
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "right",
+                                      "content_alignment_vertical": "center"
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corners_radius": {
+                                      "top-left": 4,
+                                      "top-right": 4,
+                                      "bottom-left": 4,
+                                      "bottom-right": 4
+                                    },
+                                    "stroke": {
+                                      "color": "#cccccc",
+                                      "style": {
+                                        "type": "solid"
+                                      },
+                                      "unit": "px",
+                                      "width": 2
+                                    },
+                                    "corner_radius": 4
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "vertical",
+                              "content_alignment_vertical": "center",
+                              "content_alignment_horizontal": "center"
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "سن",
+                                  "font_size": 12,
+                                  "font_weight": "medium",
+                                  "line_height": 24,
+                                  "letter_spacing": 0,
+                                  "text_color": "#3b3b3b",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  }
+                                },
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "items": [
+                                        {
+                                          "type": "input",
+                                          "text_variable": "compromising_driver_age",
+                                          "hint_text": "انتخاب نمایید",
+                                          "font_size": 14,
+                                          "font_weight": "regular",
+                                          "line_height": 32,
+                                          "letter_spacing": 0,
+                                          "text_color": "#a3a3a3",
+                                          "text_alignment_horizontal": "right",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        }
+                                      ],
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "right",
+                                      "content_alignment_vertical": "center"
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corners_radius": {
+                                      "top-left": 4,
+                                      "top-right": 4,
+                                      "bottom-left": 4,
+                                      "bottom-right": 4
+                                    },
+                                    "stroke": {
+                                      "color": "#cccccc",
+                                      "style": {
+                                        "type": "solid"
+                                      },
+                                      "unit": "px",
+                                      "width": 2
+                                    },
+                                    "corner_radius": 4
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "vertical",
+                              "content_alignment_vertical": "center",
+                              "content_alignment_horizontal": "center"
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "جنسیت",
+                                  "font_size": 12,
+                                  "font_weight": "medium",
+                                  "line_height": 24,
+                                  "letter_spacing": 0,
+                                  "text_color": "#3b3b3b",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  }
+                                },
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "items": [
+                                        {
+                                          "type": "image",
+                                          "action": {
+                                            "log_id": "show_bottom_sheet_list",
+                                            "url": "div-action://bottom_sheet_list?id=GENDER&varName=GENDER&title=تجهیزات ایمنی&title_var=compromising_driver_sex&code_var=compromising_driver_sex_code"
+                                          },
+                                          "image_url": "empty://",
+                                          "width": {
+                                            "type": "fixed",
+                                            "value": 38
+                                          },
+                                          "height": {
+                                            "type": "fixed",
+                                            "value": 26
+                                          },
+                                          "preload_required": true
+                                        },
+                                        {
+                                          "type": "input",
+                                          "text_variable": "compromising_driver_sex",
+                                          "font_size": 14,
+                                          "font_weight": "regular",
+                                          "line_height": 32,
+                                          "letter_spacing": 0,
+                                          "text_color": "#a3a3a3",
+                                          "text_alignment_horizontal": "right",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        }
+                                      ],
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "right",
+                                      "content_alignment_vertical": "center"
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corners_radius": {
+                                      "top-left": 4,
+                                      "top-right": 4,
+                                      "bottom-left": 4,
+                                      "bottom-right": 4
+                                    },
+                                    "stroke": {
+                                      "color": "#cccccc",
+                                      "style": {
+                                        "type": "solid"
+                                      },
+                                      "unit": "px",
+                                      "width": 2
+                                    },
+                                    "corner_radius": 4
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "vertical",
+                              "content_alignment_vertical": "center",
+                              "content_alignment_horizontal": "center"
+                            },
+                            {
+                              "type": "container",
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "تلفن",
+                                  "font_size": 12,
+                                  "font_weight": "medium",
+                                  "line_height": 24,
+                                  "letter_spacing": 0,
+                                  "text_color": "#3b3b3b",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  }
+                                },
+                                {
+                                  "type": "container",
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "items": [
+                                        {
+                                          "type": "input",
+                                          "hint_text": "وارد نمایید",
+                                          "text_variable": "@{variable_phone_number}",
+                                          "keyboard_type": "single_line_text",
+                                          "font_size": 14,
+                                          "font_weight": "regular",
+                                          "line_height": 32,
+                                          "letter_spacing": 0,
+                                          "text_color": "#a3a3a3",
+                                          "text_alignment_horizontal": "right",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        }
+                                      ],
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "right",
+                                      "content_alignment_vertical": "center"
+                                    }
+                                  ],
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corners_radius": {
+                                      "top-left": 4,
+                                      "top-right": 4,
+                                      "bottom-left": 4,
+                                      "bottom-right": 4
+                                    },
+                                    "stroke": {
+                                      "color": "#cccccc",
+                                      "style": {
+                                        "type": "solid"
+                                      },
+                                      "unit": "px",
+                                      "width": 2
+                                    },
+                                    "corner_radius": 4
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  }
+                                }
+                              ],
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "vertical",
+                              "content_alignment_vertical": "center",
+                              "content_alignment_horizontal": "center"
+                            },
+                            {
+                              "type": "container",
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "vertical",
+                              "content_alignment_vertical": "center",
+                              "content_alignment_horizontal": "center",
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "استفاده از کمربند / کلاه ایمنی",
+                                  "font_size": 12,
+                                  "font_weight": "medium",
+                                  "line_height": 24,
+                                  "letter_spacing": 0,
+                                  "text_color": "#3b3b3b",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  }
+                                },
+                                {
+                                  "type": "container",
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corners_radius": {
+                                      "top-left": 4,
+                                      "top-right": 4,
+                                      "bottom-left": 4,
+                                      "bottom-right": 4
+                                    },
+                                    "stroke": {
+                                      "color": "#cccccc",
+                                      "style": {
+                                        "type": "solid"
+                                      },
+                                      "unit": "px",
+                                      "width": 2
+                                    },
+                                    "corner_radius": 4
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  },
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "right",
+                                      "content_alignment_vertical": "center",
+                                      "items": [
+                                        {
+                                          "type": "image",
+                                          "image_url": "empty://",
+                                          "actions": [
+                                            {
+                                              "log_id": "show_bottom_sheet_list",
+                                              "url": "div-action://bottom_sheet_list?id=SEATBELT_HELMET&varName=SEATBELT_HELMET&title=تجهیزات ایمنی&title_var=compromising_driver_belt&code_var=compromising_driver_belt_code"
+                                            }
+                                          ],
+                                          "width": {
+                                            "type": "fixed",
+                                            "value": 39
+                                          },
+                                          "height": {
+                                            "type": "fixed",
+                                            "value": 33
+                                          },
+                                          "preload_required": true
+                                        },
+                                        {
+                                          "type": "input",
+                                          "hint_text": "استفاده از کمربند / کلاه ایمنی را وارد نمایید",
+                                          "text_variable": "compromising_driver_belt",
+                                          "keyboard_type": "single_line_text",
+                                          "font_size": 14,
+                                          "font_weight": "regular",
+                                          "line_height": 32,
+                                          "letter_spacing": 0,
+                                          "text_color": "#a3a3a3",
+                                          "text_alignment_horizontal": "right",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "container",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "orientation": "horizontal",
+                              "items": [
+                                {
+                                  "type": "container",
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "vertical",
+                                  "content_alignment_vertical": "center",
+                                  "content_alignment_horizontal": "center",
+                                  "items": [
+                                    {
+                                      "type": "text",
+                                      "text": "وابستگی",
+                                      "font_size": 12,
+                                      "font_weight": "medium",
+                                      "line_height": 24,
+                                      "letter_spacing": 0,
+                                      "text_color": "#3b3b3b",
+                                      "text_alignment_horizontal": "right",
+                                      "text_alignment_vertical": "top",
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "margins": {
+                                        "top": 10,
+                                        "bottom": 10,
+                                        "start": 15,
+                                        "end": 15
+                                      }
+                                    },
+                                    {
+                                      "type": "container",
+                                      "background": [
+                                        {
+                                          "type": "solid",
+                                          "color": "#ffffff"
+                                        }
+                                      ],
+                                      "border": {
+                                        "corners_radius": {
+                                          "top-left": 4,
+                                          "top-right": 4,
+                                          "bottom-left": 4,
+                                          "bottom-right": 4
+                                        },
+                                        "stroke": {
+                                          "color": "#cccccc",
+                                          "style": {
+                                            "type": "solid"
+                                          },
+                                          "unit": "px",
+                                          "width": 2
+                                        },
+                                        "corner_radius": 4
+                                      },
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "left",
+                                      "content_alignment_vertical": "center",
+                                      "paddings": {
+                                        "top": 12,
+                                        "bottom": 12,
+                                        "left": 12,
+                                        "right": 12
+                                      },
+                                      "margins": {
+                                        "top": 10,
+                                        "bottom": 10,
+                                        "start": 15,
+                                        "end": 15
+                                      },
+                                      "items": [
+                                        {
+                                          "type": "container",
+                                          "height": {
+                                            "type": "wrap_content"
+                                          },
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "orientation": "horizontal",
+                                          "content_alignment_horizontal": "right",
+                                          "content_alignment_vertical": "center",
+                                          "items": [
+                                            {
+                                              "type": "image",
+                                              "image_url": "empty://",
+                                              "action": {
+                                                "log_id": "show_bottom_sheet_list",
+                                                "url": "div-action://bottom_sheet_list?id=PERSON_AFFILIATION&varName=PERSON_AFFILIATION&title= وابستگی &title_var=compromising_vehicle_safety_equipment_title&code_var=compromising_vehicle_affiliation_code"
+                                              },
+                                              "width": {
+                                                "type": "fixed",
+                                                "value": 39
+                                              },
+                                              "height": {
+                                                "type": "fixed",
+                                                "value": 33
+                                              },
+                                              "preload_required": true
+                                            },
+                                            {
+                                              "type": "input",
+                                              "text": "compromising_vehicle_affiliation_title",
+                                              "hint_text": " وابستگی را وارد نمایید",
+                                              "font_size": 14,
+                                              "font_weight": "regular",
+                                              "line_height": 32,
+                                              "letter_spacing": 0,
+                                              "text_color": "#a3a3a3",
+                                              "text_alignment_horizontal": "right",
+                                              "text_alignment_vertical": "top",
+                                              "width": {
+                                                "type": "match_parent"
+                                              },
+                                              "height": {
+                                                "type": "wrap_content"
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "container",
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "vertical",
+                              "content_alignment_vertical": "center",
+                              "content_alignment_horizontal": "center",
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "علت قضایی تصادف",
+                                  "font_size": 12,
+                                  "font_weight": "medium",
+                                  "line_height": 24,
+                                  "letter_spacing": 0,
+                                  "text_color": "#3b3b3b",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  }
+                                },
+                                {
+                                  "type": "container",
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corners_radius": {
+                                      "top-left": 4,
+                                      "top-right": 4,
+                                      "bottom-left": 4,
+                                      "bottom-right": 4
+                                    },
+                                    "stroke": {
+                                      "color": "#cccccc",
+                                      "style": {
+                                        "type": "solid"
+                                      },
+                                      "unit": "px",
+                                      "width": 2
+                                    },
+                                    "corner_radius": 4
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 10,
+                                    "end": 15
+                                  },
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "right",
+                                      "content_alignment_vertical": "center",
+                                      "items": [
+                                        {
+                                          "type": "image",
+                                          "image_url": "empty://",
+                                          "actions": [
+                                            {
+                                              "log_id": "show_bottom_sheet_list",
+                                              "url": "div-action://bottom_sheet_list?id=GUILTY_DRIVER_FAULT_CAUSE&varName=GUILTY_DRIVER_FAULT_CAUSE&title=تجهیزات ایمنی&title_var=compromising_driver_judicial_cause&code_var=compromising_driver_judicial_cause_code"
+                                            }
+                                          ],
+                                          "width": {
+                                            "type": "fixed",
+                                            "value": 39
+                                          },
+                                          "height": {
+                                            "type": "fixed",
+                                            "value": 33
+                                          },
+                                          "preload_required": true
+                                        },
+                                        {
+                                          "type": "input",
+                                          "text_variable": "compromising_driver_judicial_cause",
+                                          "hint_text": " علت قضایی تصادف را وارد نمایید",
+                                          "keyboard_type": "single_line_text",
+                                          "font_size": 14,
+                                          "font_weight": "regular",
+                                          "line_height": 32,
+                                          "letter_spacing": 0,
+                                          "text_color": "#a3a3a3",
+                                          "text_alignment_horizontal": "right",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "container",
+                              "visibility": "@{ validation_driver_absolute_cause_visibility ? 'gone' : 'visible'}",
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "orientation": "vertical",
+                              "content_alignment_vertical": "center",
+                              "content_alignment_horizontal": "center",
+                              "items": [
+                                {
+                                  "type": "text",
+                                  "text": "مصادیق عدم رعایت حق تقدم",
+                                  "font_size": 12,
+                                  "font_weight": "medium",
+                                  "line_height": 24,
+                                  "letter_spacing": 0,
+                                  "text_color": "#3b3b3b",
+                                  "text_alignment_horizontal": "right",
+                                  "text_alignment_vertical": "top",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 15
+                                  }
+                                },
+                                {
+                                  "type": "container",
+                                  "background": [
+                                    {
+                                      "type": "solid",
+                                      "color": "#ffffff"
+                                    }
+                                  ],
+                                  "border": {
+                                    "corners_radius": {
+                                      "top-left": 4,
+                                      "top-right": 4,
+                                      "bottom-left": 4,
+                                      "bottom-right": 4
+                                    },
+                                    "stroke": {
+                                      "color": "#cccccc",
+                                      "style": {
+                                        "type": "solid"
+                                      },
+                                      "unit": "px",
+                                      "width": 2
+                                    },
+                                    "corner_radius": 4
+                                  },
+                                  "height": {
+                                    "type": "wrap_content"
+                                  },
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "orientation": "horizontal",
+                                  "content_alignment_horizontal": "left",
+                                  "content_alignment_vertical": "center",
+                                  "paddings": {
+                                    "top": 12,
+                                    "bottom": 12,
+                                    "left": 12,
+                                    "right": 12
+                                  },
+                                  "margins": {
+                                    "top": 10,
+                                    "bottom": 10,
+                                    "start": 15,
+                                    "end": 10
+                                  },
+                                  "items": [
+                                    {
+                                      "type": "container",
+                                      "height": {
+                                        "type": "wrap_content"
+                                      },
+                                      "width": {
+                                        "type": "match_parent"
+                                      },
+                                      "orientation": "horizontal",
+                                      "content_alignment_horizontal": "right",
+                                      "content_alignment_vertical": "center",
+                                      "items": [
+                                        {
+                                          "type": "image",
+                                          "image_url": "empty://",
+                                          "actions": [
+                                            {
+                                              "log_id": "show_bottom_sheet_list",
+                                              "url": "div-action://bottom_sheet_list?id=JUDICIAL_ACCIDENT_CAUSE&varName=JUDICIAL_ACCIDENT_CAUSE&title=تجهیزات ایمنی&title_var=compromising_driver_absolute_cause&code_var=compromising_driver_absolute_cause_code"
+                                            }
+                                          ],
+                                          "width": {
+                                            "type": "fixed",
+                                            "value": 39
+                                          },
+                                          "height": {
+                                            "type": "fixed",
+                                            "value": 33
+                                          },
+                                          "preload_required": true
+                                        },
+                                        {
+                                          "type": "input",
+                                          "text_variable": "compromising_driver_absolute_cause",
+                                          "hint_text": "علت نامه تصادف را وارد نمایید",
+                                          "keyboard_type": "single_line_text",
+                                          "font_size": 14,
+                                          "font_weight": "regular",
+                                          "line_height": 32,
+                                          "letter_spacing": 0,
+                                          "text_color": "#a3a3a3",
+                                          "text_alignment_horizontal": "right",
+                                          "text_alignment_vertical": "top",
+                                          "width": {
+                                            "type": "match_parent"
+                                          },
+                                          "height": {
+                                            "type": "wrap_content"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "container",
+                              "width": {
+                                "type": "match_parent"
+                              },
+                              "height": {
+                                "type": "wrap_content"
+                              },
+                              "items": [
+                                {
+                                  "type": "validation_text",
+                                  "text": "شماره گواهینامه اجباری می باشد.",
+                                  "visibility": "@{ validation_driver_certification_no ? 'gone' : 'visible'}",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "alignment_horizontal": "end",
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                },
+                                {
+                                  "type": "validation_text",
+                                  "text": "نام اجباری می باشد.",
+                                  "visibility": "@{ validation_driver_name ? 'gone' : 'visible'}",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "alignment_horizontal": "end",
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                },
+                                {
+                                  "type": "validation_text",
+                                  "text": "نام خانوادگی اجباری می باشد.",
+                                  "visibility": "@{ validation_driver_family ? 'gone' : 'visible'}",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "alignment_horizontal": "end",
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                },
+                                {
+                                  "type": "validation_text",
+                                  "text": "سن اجباری می باشد.",
+                                  "visibility": "@{ validation_driver_age ? 'gone' : 'visible'}",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "alignment_horizontal": "end",
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                },
+                                {
+                                  "type": "validation_text",
+                                  "text": "جنسیت اجباری می باشد.",
+                                  "visibility": "@{ validation_driver_sex ? 'gone' : 'visible'}",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "alignment_horizontal": "end",
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                },
+                                {
+                                  "type": "validation_text",
+                                  "text": "نوع گواهینامه اجباری می باشد.",
+                                  "visibility": "@{ validation_driver_certificate_type ? 'gone' : 'visible'}",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "alignment_horizontal": "end",
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                },
+                                {
+                                  "type": "validation_text",
+                                  "text": "علت قضایی تصادف اجباری می باشد.",
+                                  "visibility": "@{ validation_driver_judicial_cause ? 'gone' : 'visible'}",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "alignment_horizontal": "end",
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                },
+                                {
+                                  "type": "validation_text",
+                                  "text": "مصادیق عدم رعایت حق تقدم اجباری می باشد.",
+                                  "visibility": "@{ validation_driver_absolute_cause  ? 'gone' : 'visible'}",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "alignment_horizontal": "end",
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                },
+                                {
+                                  "type": "validation_text",
+                                  "text": "کمر بند ایمنی/کلاه ایمنی اجباری می باشد.",
+                                  "visibility": "@{ validation_driver_belt ? 'gone' : 'visible'}",
+                                  "width": {
+                                    "type": "match_parent"
+                                  },
+                                  "alignment_horizontal": "end",
+                                  "height": {
+                                    "type": "wrap_content"
+                                  }
+                                }
+                              ],
+                              "paddings": {
+                                "top": 8,
+                                "bottom": 8
+                              }
+                            }
+                          ],
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "width": {
+                            "type": "match_parent"
+                          },
+                          "orientation": "vertical",
+                          "content_alignment_vertical": "top",
+                          "content_alignment_horizontal": "right",
+                          "margins": {
+                            "top": 8,
+                            "bottom": 8,
+                            "start": 8,
+                            "end": 8
+                          },
+                          "background": [
+                            {
+                              "type": "solid",
+                              "color": "#ffffff"
+                            }
+                          ],
+                          "border": {
+                            "stroke": {
+                              "color": "#c8d0e4"
+                            },
+                            "corner_radius": 4,
+                            "corners_radius": {
+                              "top-left": 4,
+                              "top-right": 4,
+                              "bottom-left": 4,
+                              "bottom-right": 4
+                            }
+                          }
+                        }
+                      ],
+                      "orientation": "vertical",
+                      "background": [
+                        {
+                          "type": "solid",
+                          "color": "#f3f5f9"
+                        }
+                      ]
+                    }
+                  ],
+                  "height": {
+                    "type": "match_parent"
+                  },
+                  "type": "gallery",
+                  "orientation": "vertical",
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#f3f5f9"
+                    }
+                  ]
+                },
+                {
+                  "type": "container",
+                  "items": [
+                    {
+                      "type": "container",
+                      "actions": [
+                        {
+                          "log_id": "save_draft_page3",
+                          "url": "div-action://set_page_with_changes_to_db?key=draft/@{current_vehicle_id}/page3"
+                        },
+                        {
+                          "log_id": "save_archive_index",
+                          "url": "div-action://set_object_to_db?archive_path=vehicles&next=draft/@{current_vehicles_id}/page1&title=ثبت تصادف سازشی&vehicle_id=@{current_vehicles_id}&current_step=3&process_type=sazeshi&step_dbshow=صفحه ۱ از ۴&step_persian_lan=مرحله&vehicle_id_dbshow=@{current_vehicles_id}&vehicle_id_persian_lan=شناسه"
+                        },
+                        {
+                          "log_id": "set_step",
+                          "url": "div-action://set_variable_to_db?key=vehicle_current_step&value=3"
+                        },
+                        {
+                          "log_id": "load_screen",
+                          "url": "div-action://load_screen?screen=Accidents/insuranceinformation"
+                        }
+                      ],
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "@{text___31}",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#ffffff",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        }
+                      ],
+                      "background": [
+                        {
+                          "type": "solid",
+                          "color": "#193d8d"
+                        }
+                      ],
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 4,
+                          "top-right": 4,
+                          "bottom-left": 4,
+                          "bottom-right": 4
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 48
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      }
+                    },
+                    {
+                      "type": "container",
+                      "actions": [
+                        {
+                          "log_id": "load_screen",
+                          "url": "div-action://pop_and_load_screen"
+                        }
+                      ],
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "@{text___33}",
+                          "font_size": 14,
+                          "font_weight": "regular",
+                          "line_height": 24,
+                          "letter_spacing": 0,
+                          "text_color": "#4260a2",
+                          "text_alignment_horizontal": "left",
+                          "text_alignment_vertical": "top",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          }
+                        }
+                      ],
+                      "background": [
+                        {
+                          "type": "solid",
+                          "color": "#f3f5f9"
+                        }
+                      ],
+                      "border": {
+                        "corners_radius": {
+                          "top-left": 4,
+                          "top-right": 4,
+                          "bottom-left": 4,
+                          "bottom-right": 4
+                        },
+                        "stroke": {
+                          "style": {
+                            "type": "solid"
+                          },
+                          "width": 2,
+                          "color": "#193d8d",
+                          "unit": "px"
+                        }
+                      },
+                      "height": {
+                        "type": "fixed",
+                        "value": 48
+                      },
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "orientation": "horizontal",
+                      "content_alignment_horizontal": "center",
+                      "content_alignment_vertical": "center",
+                      "paddings": {
+                        "top": 12,
+                        "bottom": 12,
+                        "left": 12,
+                        "right": 12
+                      },
+                      "margins": {
+                        "start": 20
+                      }
+                    }
+                  ],
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "orientation": "horizontal",
+                  "content_alignment_horizontal": "left",
+                  "content_alignment_vertical": "top",
+                  "margins": {
+                    "top": 8,
+                    "bottom": 8,
+                    "start": 8,
+                    "end": 8
+                  }
+                }
+              ]
+            }
+          ],
+          "visibility_action": {
+            "log_id": "visible"
+          },
+          "background": [
+            {
+              "color": "@{getDictOptColor('#00ffffff', local_palette, 'bg_primary', theme)}",
+              "type": "solid"
+            },
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "height": {
+            "type": "match_parent"
+          },
+          "orientation": "vertical",
+          "type": "container"
+        }
+      }
+    ],
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#eeeeee",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "string",
+        "name": "scan.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "microphone.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "iran_flag.png",
+        "value": "empty://"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateB_hint",
+        "value": "ب"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateC_hint",
+        "value": "۱۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateD_hint",
+        "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateE_hint",
+        "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateA_hint",
+        "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateF_hint",
+        "value": "۱۱"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateA",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_plateB",
+        "value": "ب"
+      },
+      {
+        "type": "string",
+        "name": "variable_plateC",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_plateD",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "plate_text_color",
+        "value": "#4F4F4F"
+      },
+      {
+        "type": "string",
+        "name": "{variable_manufacturing_factory",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_shomare_shasi",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_year_manufacture",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_vehicle_body_color",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_production_type",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_vin",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_motor_number",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_following_organization",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_safety_equipment",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_fire_extinguisher_capsule",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_fire",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_damaged_parts",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "text___33",
+        "value": "مرحله قبل"
+      },
+      {
+        "type": "string",
+        "name": "text___31",
+        "value": "مرحله بعد"
+      },
+      {
+        "type": "string",
+        "name": "variable_personal_area",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_system",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_year_manufactur",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_chassis_number",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_chassis_number",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_user_type",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_selected_tab_color",
+        "value": "ffffff"
+      },
+      {
+        "type": "string",
+        "name": "variable_unselected_tab_color",
+        "value": "e8ecf4"
+      },
+      {
+        "type": "string",
+        "name": "selected_tab_text",
+        "value": "193d8d"
+      },
+      {
+        "type": "string",
+        "name": "unselected_tab_text",
+        "value": "757575"
+      },
+      {
+        "type": "string",
+        "name": "plate_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate_color2",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate_text_color",
+        "value": "#193d8d"
+      },
+      {
+        "type": "string",
+        "name": "plate_text_color2",
+        "value": "#193d8d"
+      },
+      {
+        "type": "string",
+        "name": "plate1_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate2_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate3_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate4_color",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "plate_text_color",
+        "value": "#4F4F4F"
+      },
+      {
+        "type": "string",
+        "name": "color_blue",
+        "value": "193d8d"
+      },
+      {
+        "type": "string",
+        "name": "variable_iranian_text_color",
+        "value": "#193d8d"
+      },
+      {
+        "type": "string",
+        "name": "variable_iranian_tab",
+        "value": "#ffffff"
+      },
+      {
+        "type": "string",
+        "name": "variable_citizen_tab",
+        "value": "#e8ecf4"
+      },
+      {
+        "type": "string",
+        "name": "color_gray",
+        "value": "757575"
+      },
+      {
+        "type": "string",
+        "name": "variable_citizen_text_color",
+        "value": "#757575"
+      },
+      {
+        "type": "string",
+        "name": "variable_unchecked_unknown_color",
+        "value": "#f3f5f9"
+      },
+      {
+        "type": "string",
+        "name": "variable_driver_unknown_constraint",
+        "value": "#f3f5f9"
+      },
+      {
+        "type": "string",
+        "name": "variable_checked_unknown_color",
+        "value": "#0d5302"
+      },
+      {
+        "type": "string",
+        "name": "empty",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_national_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_certification_no",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_certification_no",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_name",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_name",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_family",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_family",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_age",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_age",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_sex",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_sex_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_sex",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_belt",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_belt_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_belt",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_certificate_type",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_certificate_date",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_certificate_type_code",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_affiliation_title",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_vehicle_affiliation_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_certificate_type",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_judicial_cause",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_judicial_cause_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_judicial_cause",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_absolute_cause",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_absolute_cause_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_absolute_cause",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_absolute_cause_visibility",
+        "value": true
+      },
+      {
+        "type": "string",
+        "name": "compromising_driver_fault_reason",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_drivers_reaction_before_accident",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_drivers_reaction_before_accident_code",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_fault_reason",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_citizen",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "validation_driver_go_page_insurance",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "current_vehicle_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "current_step",
+        "value": "2"
+      }
+    ],
+    "variable_triggers": [
+      {
+        "condition": "@{ compromising_driver_certification_no == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_certification_no&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{ compromising_driver_certification_no != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_certification_no&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_driver_name == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_name&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_driver_name != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_name&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_driver_family == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_family&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_driver_family != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_family&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_driver_age == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_age&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_driver_age != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_age&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_driver_sex == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_sex&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_driver_sex != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_sex&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_driver_certificate_type == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_certificate_type&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_driver_certificate_type != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_certificate_type&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_driver_judicial_cause == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_judicial_cause&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_driver_judicial_cause != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_judicial_cause&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_driver_belt == empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_belt&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_driver_belt != empty }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_belt&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_driver_judicial_cause_code == '1960' }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_absolute_cause_visibility&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_driver_judicial_cause_code != '1960' }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_absolute_cause_visibility&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_driver_absolute_cause == empty && !validation_driver_absolute_cause_visibility }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_absolute_cause&value=false"
+          }
+        ]
+      },
+      {
+        "condition": "@{compromising_driver_absolute_cause != empty && !validation_driver_absolute_cause_visibility }",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "slider A change",
+            "url": "div-action://set_variable?name=validation_driver_absolute_cause&value=true"
+          }
+        ]
+      }
+    ]
+  },
+  "templates": {
+    "validation_text": {
+      "type": "text",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "left": 20,
+        "top": 4,
+        "right": 20,
+        "bottom": 4
+      },
+      "alpha": 1,
+      "alignment_horizontal": "center",
+      "alignment_vertical": "center",
+      "font_size": 13,
+      "font_weight": "medium",
+      "text_alignment_horizontal": "right",
+      "text_alignment_vertical": "center",
+      "text_color": "#ff0000"
+    }
+  }
+}

@@ -146,6 +146,28 @@ class BottomSheetManager {
     }
     
     /**
+     * Apply a patch JSON to a bottom sheet target.
+     */
+    fun applyPatchOnTarget(
+        target: String,
+        patchJson: String,
+        patchName: String,
+        patchTitle: String = "",
+        vehicleType: String = "",
+    ): Boolean {
+        val bottomSheet = when (target.lowercase()) {
+            "current", "top", "latest", "bottomsheet", "bottom_sheet", "sheet" ->
+                getCurrentBottomSheet()
+            "first", "bottom", "oldest" -> getFirstBottomSheet()
+            else -> getBottomSheetById(target)
+                ?: target.toIntOrNull()?.let { getBottomSheetByPosition(it) }
+        } ?: return false
+
+        bottomSheet.onApplyOnbase(patchJson, patchName, patchTitle, vehicleType)
+        return true
+    }
+
+    /**
      * Get the count of active bottom sheets
      */
     fun getBottomSheetCount(): Int {
@@ -190,11 +212,14 @@ class BottomSheetManager {
         jsonName: String,
         mehdiViewModel: MehdiViewModel,
         lo: LifecycleOwner,
-        id: String? = null
+        id: String? = null,
+        fullScreen: Boolean = false,
+        inlineJson: String? = null,
     ): BottomSheetDiv {
         val bottomSheet = BottomSheetDiv(context, activity, jsonName, mehdiViewModel, lo, this)
+        bottomSheet.fullScreen = fullScreen
+        bottomSheet.inlineJson = inlineJson
         val assignedId = addBottomSheet(bottomSheet, id)
-        // Store the ID in the bottom sheet for reference
         bottomSheet.assignedId = assignedId
         return bottomSheet
     }

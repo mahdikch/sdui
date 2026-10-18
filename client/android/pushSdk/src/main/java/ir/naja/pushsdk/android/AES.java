@@ -20,6 +20,10 @@ public final class AES {
         password = key;
     }
 
+    public static void clearKey() {
+        password = null;
+    }
+
     private static SecretKeySpec generateKey(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] bytes = password.getBytes("UTF-8");
