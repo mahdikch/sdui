@@ -88,6 +88,18 @@ class AdapterBottomSheetSpinner(private val listener: CustomItemListener) :
         notifyDataSetChanged()
     }
 
+    fun appendItems(newItems: List<ListItemDto>) {
+        if (newItems.isEmpty()) return
+        val existing = items.map { it.id }.toHashSet()
+        val toAdd = newItems.filter { it.id.isNotBlank() && !existing.contains(it.id) }
+        if (toAdd.isEmpty()) return
+        val start = items.size
+        items.addAll(toAdd)
+        notifyItemRangeInserted(start, toAdd.size)
+    }
+
+    fun currentItems(): List<ListItemDto> = items.toList()
+
     fun setMultiSelect(enabled: Boolean) {
         this.multiSelect = enabled
         Log.d("AdapterBottomSheetSpinner", "setMultiSelect enabled=$enabled")

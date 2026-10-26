@@ -7,7 +7,6 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
-import com.facebook.stetho.Stetho
 import com.yandex.android.beacon.SendBeaconConfiguration
 import com.yandex.android.beacon.SendBeaconPerWorkerLogger
 import com.yandex.div.core.DivKit
@@ -15,8 +14,11 @@ import com.yandex.div.core.DivKitConfiguration
 import com.yandex.div.internal.Assert
 import com.yandex.divkit.demo.beacon.SendBeaconRequestExecutorImpl
 import com.yandex.divkit.demo.beacon.SendBeaconWorkerSchedulerImpl
+import com.yandex.divkit.demo.debug.DebugStetho
 import com.yandex.divkit.demo.div.notificationList.NotificationManager
 import com.yandex.divkit.demo.push.MqttClientHandleCrashGuard
+import com.yandex.divkit.demo.security.ApkIntegrityChecker
+import com.yandex.divkit.demo.security.RootDetector
 import com.yandex.divkit.demo.utils.VisualAssertionErrorHandler
 import com.yandex.divkit.regression.di.HasRegressionTesting
 import com.yandex.divkit.regression.di.RegressionComponent
@@ -74,38 +76,28 @@ class DivkitApplication : Application(), HasRegressionTesting, NajiPushCallBack 
         INSTANCE = this
         Container.initialize(applicationContext)
         ir.naja.pushsdk.android.PushSsl.init(this)
-        // Create an InitializerBuilder
-        val initializerBuilder = Stetho.newInitializerBuilder(this)
 
-        // Enable Chrome DevTools
-        initializerBuilder.enableWebKitInspector(
-            Stetho.defaultInspectorModulesProvider(this)
-        )
+        // Stetho only in debug source set (release stub is a no-op).
+        DebugStetho.init(this)
 
-        // Enable command line interface
-        initializerBuilder.enableDumpapp(
-            Stetho.defaultDumperPluginsProvider(this)
-        )
+        // Environment integrity signals (non-blocking for field/MDM devices).
+        RootDetector.evaluate(this)
+        ApkIntegrityChecker.evaluate(this)
 
-        // Use the InitializerBuilder to generate an Initializer
-        val initializer = initializerBuilder.build()
-
-        // Initialize Stetho with the Initializer
-        Stetho.initialize(initializer)
-        AppMetrica.activate(
-            this,
-            AppMetricaConfig.newConfigBuilder("e48dd638-f5ba-4cb8-b272-53b6d275062f")
-                .withCrashReporting(!BuildConfig.DEBUG)
-                .withLocationTracking(false)
-                .withNativeCrashReporting(false)
-                .withLogs().build()
-        )
+        val metricaBuilder = AppMetricaConfig.newConfigBuilder("e48dd638-f5ba-4cb8-b272-53b6d275062f")
+            .withCrashReporting(!BuildConfig.DEBUG)
+            .withLocationTracking(false)
+            .withNativeCrashReporting(false)
+        if (BuildConfig.DEBUG) {
+            metricaBuilder.withLogs()
+        }
+        AppMetrica.activate(this, metricaBuilder.build())
 
         // Internal API used, do not reproduce this line in your app
         Assert.setAssertPerformer(VisualAssertionErrorHandler(this))
         DivKit.apply {
-            enableLogging(true)
-            enableAssertions(BuildConfig.THROW_ASSERTS)
+            enableLogging(BuildConfig.DEBUG)
+            enableAssertions(BuildConfig.THROW_ASSERTS && BuildConfig.DEBUG)
         }
         DivKit.configure(
             DivKitConfiguration.Builder()

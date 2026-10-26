@@ -1,20 +1,23 @@
 package com.yandex.divkit.demo.ui.bottomSheetSpinner
 
-//import com.yandex.divkit.demo.data.CustomBottomSheetSpinnerClickListener
-
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -24,18 +27,16 @@ import com.yandex.div.core.DivViewFacade
 import com.yandex.divkit.demo.data.SharePref
 import com.yandex.divkit.demo.data.entities.ListItemDto
 import com.yandex.divkit.demo.data.entities.PhPlusDB
-import com.yandex.divkit.demo.data.local.PhPlusDBDao
 import com.yandex.divkit.demo.data.remote.PhPlusApi
 import com.yandex.divkit.demo.data.remote.PhPlusRemoteDataSource
 import com.yandex.divkit.demo.data.repository.PhPlusRepository
 import com.yandex.divkit.demo.databinding.BottomSheetSpinnerBinding
-import com.yandex.divkit.demo.screenshot.DivAssetReader
+import com.yandex.divkit.demo.ui.LoadScreenListener
 import com.yandex.divkit.demo.utils.SingletonObjects
+import org.json.JSONArray
+import java.lang.ref.WeakReference
+import java.util.HashMap
 
-//import dagger.hilt.android.AndroidEntryPoint
-
-
-//@AndroidEntryPoint
 class BottomSheetSpinner(
     private val context: Context,
     private val listener: AdapterBottomSheetSpinner.CustomItemListener,
@@ -44,10 +45,10 @@ class BottomSheetSpinner(
     private val codeVar: String,
     private val titleVar: String,
     private val view: DivViewFacade,
-    private val map: MutableMap<String, String> = HashMap()
+    private val map: MutableMap<String, String> = HashMap(),
+    private val loadScreenListener: LoadScreenListener? = null,
+) : BottomSheetDialogFragment() {
 
-) :
-    BottomSheetDialogFragment() {
     lateinit var dialog: BottomSheetDialog
     lateinit var rootview: View
     private var _binding: BottomSheetSpinnerBinding? = null
@@ -57,9 +58,57 @@ class BottomSheetSpinner(
     private lateinit var repository: PhPlusRepository
     private lateinit var remoteDataSource: PhPlusRemoteDataSource
     private lateinit var sharePref: SharePref
-    private lateinit var phPlusDBDao: PhPlusDBDao
-    private lateinit var assetReader: DivAssetReader
 
+    private var currentPage = 1
+    private var currentSearch = ""
+    private var isLoadingPage = false
+    private var hasMorePages = true
+    private var pagedMode = false
+    private var pendingRequestSeq = 0
+    private val loadedItems = ArrayList<ListItemDto>()
+    private var bindVarName: String = ""
+    private var bindTitleVar: String = ""
+    private var bindCodeVar: String = ""
+    private var bindSysName: String? = null
+    private var bindPath: String? = null
+
+    companion object {
+        private val SHEET_INTERNAL_KEYS = setOf(
+            "id", "title", "code_var", "title_var", "varName",
+            "sysName", "path", "selection", "selected_codes",
+            "sync_from", "sync_fields", "sync_match", "sync_nested",
+            "SEARCHABLE", "searchable",
+            "service_path", "response_key", "id_field", "name_field",
+            "search_param", "page_param", "paged", "has_more_field"
+        )
+
+        @Volatile
+        private var pendingSheet: WeakReference<BottomSheetSpinner>? = null
+
+        fun deliverServiceResponse(data: Map<String, String>): Boolean {
+            val sheet = pendingSheet?.get() ?: return false
+            if (!sheet.isAdded || !sheet.pagedMode) return false
+            sheet.applyServiceResponse(data)
+            return true
+        }
+
+        fun deliverServiceError(message: String?) {
+            val sheet = pendingSheet?.get() ?: return
+            if (!sheet.isAdded || !sheet.pagedMode) return
+            sheet.applyServiceError(message)
+        }
+
+        private fun register(sheet: BottomSheetSpinner) {
+            pendingSheet = WeakReference(sheet)
+        }
+
+        private fun unregister(sheet: BottomSheetSpinner) {
+            val current = pendingSheet?.get()
+            if (current == null || current === sheet) {
+                pendingSheet = null
+            }
+        }
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
@@ -100,7 +149,6 @@ class BottomSheetSpinner(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = BottomSheetSpinnerBinding.inflate(inflater, container, false)
         val retrofit = SingletonObjects.retrofitInstance()
         val create = retrofit?.create(PhPlusApi::class.java)
@@ -110,13 +158,12 @@ class BottomSheetSpinner(
             sharePref = SharePref(sharedPreferences)
         if (create != null)
             remoteDataSource = PhPlusRemoteDataSource(create)
-        if (database != null) {
+        if (database != null && ::remoteDataSource.isInitialized && ::sharePref.isInitialized) {
             repository = PhPlusRepository(remoteDataSource, sharePref, database.phPlusDBDao())
+            val factory = MyViewModelFactory(repository)
+            viewModelBottomSheetSpinner =
+                ViewModelProvider(this, factory)[ViewModelBottomSheetSpinner::class.java]
         }
-        val factory = MyViewModelFactory(repository)
-        viewModelBottomSheetSpinner =
-            ViewModelProvider(this, factory)[ViewModelBottomSheetSpinner::class.java]
-//        assetReader = container?.let { DivAssetReader(it.context) }!!
 
         setUp()
         val sheetHeight = (resources.displayMetrics.heightPixels * 70) / 100
@@ -129,199 +176,147 @@ class BottomSheetSpinner(
         return binding.root
     }
 
+    override fun onDestroyView() {
+        unregister(this)
+        _binding = null
+        super.onDestroyView()
+    }
+
+    private fun resolvedServicePath(): String {
+        val raw = map["service_path"].orEmpty().ifBlank { map["path"].orEmpty() }
+        return Uri.decode(raw).trim()
+    }
+
     private fun setUp() {
-
-
         binding.title.text = title
         adapter = AdapterBottomSheetSpinner(listener)
-//        viewModel.getBasicInfoItems(parentId).observe(viewLifecycleOwner) {
-//        var divMotorJson:PhPlusDB = viewModelBottomSheetSpinner.getValueByKey("patchMotorPlate")
-//        var divVehicleJson:PhPlusDB = viewModelBottomSheetSpinner.getValueByKey("patchVehiclePlate")
-        var varName = map["varName"]
-        var path = map["path"]
-        var sysName = map["sysName"]
+        bindVarName = map["varName"].orEmpty().ifBlank { key }
+        bindPath = map["path"]
+        bindSysName = map["sysName"]
+        bindCodeVar = codeVar
+        bindTitleVar = titleVar
         val selectionMode = map["selection"] ?: "single"
         val isMulti = selectionMode.equals("multi", ignoreCase = true)
         Log.d(
             "BottomSheetSpinner",
-            "setUp: selectionMode=$selectionMode isMulti=$isMulti key=$key title=$title codeVar=$codeVar titleVar=$titleVar"
+            "setUp: selectionMode=$selectionMode isMulti=$isMulti key=$key map=$map servicePath=${resolvedServicePath()}"
         )
         adapter.setMultiSelect(isMulti)
 
-        var json: PhPlusDB = viewModelBottomSheetSpinner.getValueByKey(key)
-        Log.d("BottomSheetSpinner", "DB getValueByKey('$key'): valueLength=${json.value?.length}")
-        val turnsType = object : TypeToken<List<ListItemDto>>() {}.type
-        var items: List<ListItemDto> = Gson().fromJson<List<ListItemDto>>(json.value, turnsType)
-        Log.d("BottomSheetSpinner", "Parsed items size=${items.size}")
-        var arrayList: ArrayList<ListItemDto> = arrayListOf<ListItemDto>()
-        arrayList.addAll(items)
-        for (item in items) {
-            for (constraint in item.constraintList) {
-                if (constraint.variableName == "usage.res") {
-                    if (map.contains("usage")) {
-                        if (constraint.disallowedList.contains(map["usage"])) {
-                            arrayList.remove(item)
-                        }
-                    }
-                }
-                if (constraint.variableName == "delivery.res") {
-                    if (map.contains("delivery")) {
-                        if (constraint.disallowedList.contains(map["delivery"])) {
-                            arrayList.remove(item)
-                        }
-                    }
-                }
-                if (constraint.variableName == "plate.res") {
-                    if (map.contains("plate")) {
-                        if (constraint.disallowedList.contains(map["plate"])) {
-                            arrayList.remove(item)
-                        }
-                    }
-                }
+        val servicePath = resolvedServicePath()
+        // Any non-blank service_path means remote paged/searchable list.
+        pagedMode = servicePath.isNotBlank() &&
+            (map["paged"].equals("true", ignoreCase = true) ||
+                map.containsKey("page_param") ||
+                map.containsKey("search_param") ||
+                map.containsKey("service_path"))
 
-                if (constraint.variableName == "violation.res") {
-                    if (map.contains("violation1")) {
-                        if (constraint.disallowedList.contains(map["violation1"])) {
-                            arrayList.remove(item)
-                        }
-                    }
-                    if (map.contains("violation2")) {
-                        if (constraint.disallowedList.contains(map["violation2"])) {
-                            arrayList.remove(item)
-                        }
-                    }
-                    if (map.contains("violation3")) {
-                        if (constraint.disallowedList.contains(map["violation3"])) {
-                            arrayList.remove(item)
-                        }
-                    }
-//                    if (map.contains("delivery")) {
-//                        if (constraint.disallowedList.contains(map["violation3"])) {
-//                            arrayList.remove(item)
-//                        }
-//                    }
-
-                }
-                if (constraint.variableName == "system.res") {
-                    if (map.contains("system")) {
-                        if (constraint.disallowedList.contains(map.get("system"))) {
-                            arrayList.remove(item)
-                        }
-                    }
-
-                }
-                if (constraint.variableName == "violations.res") {
-                    if (map.contains("violations")) {
-                        if (constraint.disallowedList.contains(map.get("violations"))) {
-                            arrayList.remove(item)
-                        }
-                    }
-
-                }
-                if (constraint.variableName == "city.res") {
-                    if (map.contains("city")) {
-                        if (constraint.disallowedList.contains(map.get("city"))) {
-                            arrayList.remove(item)
-                        }
-                    }
-
-                }
-                if (constraint.variableName == "province.res") {
-                    if (map.contains("province")) {
-                        if (constraint.disallowedList.contains(map.get("province"))) {
-                            arrayList.remove(item)
-                        }
-                    }
-
-                }
-                if (constraint.variableName == "category.res") {
-                    if (map.contains("category")) {
-                        if (constraint.disallowedList.contains(map.get("category"))) {
-                            arrayList.remove(item)
-                        }
-                    }
-
-                }
-
-            }
-        }
-        Log.d("BottomSheetSpinner", "After filtering: size=${arrayList.size} filters=${map}")
-        if (varName != null) {
-            Log.d(
-                "BottomSheetSpinner",
-                "Adapter addItem with varName=$varName, titleVar=$titleVar, codeVar=$codeVar, allParams=$map"
-            )
-            adapter.addItem(ArrayList(arrayList), varName, titleVar, codeVar, sysName, path, map)
-        }
-
-        if (isMulti) {
-            // Preselect using selected_codes query param, or fallback to current value of code_var
-            var selectedCodesCsv = map["selected_codes"]
-
-            // If selected_codes is empty or null, try to read from the database
-            if (selectedCodesCsv.isNullOrEmpty()) {
-                try {
-                    // Try to get the current value of code_var from database
-                    val currentValue = viewModelBottomSheetSpinner.getValueByKey(codeVar)?.value
-
-                    if (currentValue != null && currentValue.isNotEmpty() && currentValue != "null") {
-                        selectedCodesCsv = currentValue
-                        Log.d(
-                            "BottomSheetSpinner",
-                            "selected_codes is empty, using current value from DB for $codeVar: $selectedCodesCsv"
-                        )
-                    } else {
-                        Log.d(
-                            "BottomSheetSpinner",
-                            "selected_codes is empty and $codeVar in DB is also empty or null"
-                        )
-                    }
-                } catch (e: Exception) {
-                    Log.e("BottomSheetSpinner", "Error reading current value of $codeVar from DB", e)
-                }
-            }
-
-            val preselected =
-                selectedCodesCsv?.split(',')?.map { it.trim() }?.filter { it.isNotEmpty() }
-                    ?: emptyList()
-            Log.d(
-                "BottomSheetSpinner",
-                "Preselect ids=$preselected from selected_codes='$selectedCodesCsv'"
-            )
-            adapter.setPreselected(preselected)
-
-            // Show multi-select action bar (Done only per spec)
-            binding.actions.visibility = View.VISIBLE
-            binding.btnDone.visibility = View.VISIBLE
-//            binding.btnCancel.visibility = View.GONE
-//            binding.btnClear.visibility = View.GONE
-
-            binding.btnDone.setOnClickListener {
-                val selected = adapter.getSelectedItems()
-                Log.d("BottomSheetSpinner", "Done clicked, selected count=${selected.size}")
-                val codes = selected.joinToString(separator = ",") { it.id }
-                val titles = selected.joinToString(separator = ",") { it.titleFa }
-                // per spec: if zero selected, set empty strings
-                val div2View = view as? com.yandex.div.core.view2.Div2View
-                div2View?.setVariable(codeVar, codes)
-                div2View?.setVariable(titleVar, titles)
-//                div2View?.setVariable(titleVar, "تخلفسرعت,تخلفسبقت")
-                Log.d("BottomSheetSpinner", "Set variables: $codeVar='$codes' $titleVar='$titles'")
-                dismiss()
-            }
-            // Cancel/Clear kept hidden
-        } else {
-
-
-            ;
-            // Single select: hide actions
-            binding.actions.visibility = View.GONE
-        }
-//            val gridLayoutManager = GridLayoutManager(context, 1)
         val gridLayoutManager = LinearLayoutManager(context)
         binding.recyclerView.layoutManager = gridLayoutManager
         binding.recyclerView.adapter = adapter
         binding.recyclerView.hasFixedSize()
+
+        if (pagedMode) {
+            setupPagedServiceMode(isMulti)
+        } else {
+            binding.btnSearch.visibility = View.GONE
+            setupLocalDbMode(isMulti)
+        }
+    }
+
+    private fun setupLocalDbMode(isMulti: Boolean) {
+        val arrayList: ArrayList<ListItemDto> = arrayListOf()
+        try {
+            if (!::viewModelBottomSheetSpinner.isInitialized) {
+                Toast.makeText(requireContext(), "خطا در بارگذاری لیست", Toast.LENGTH_SHORT).show()
+                return
+            }
+            val json: PhPlusDB = viewModelBottomSheetSpinner.getValueByKey(key)
+            val turnsType = object : TypeToken<List<ListItemDto>>() {}.type
+            val items: List<ListItemDto> = try {
+                Gson().fromJson<List<ListItemDto>>(json.value, turnsType) ?: emptyList()
+            } catch (e: Exception) {
+                Log.e("BottomSheetSpinner", "Failed to parse DB list for key=$key", e)
+                emptyList()
+            }
+            arrayList.addAll(items)
+            for (item in items) {
+                for (constraint in item.constraintList.orEmpty()) {
+                    if (constraint.variableName == "usage.res" &&
+                        map.contains("usage") &&
+                        constraint.disallowedList.contains(map["usage"])
+                    ) arrayList.remove(item)
+                    if (constraint.variableName == "delivery.res" &&
+                        map.contains("delivery") &&
+                        constraint.disallowedList.contains(map["delivery"])
+                    ) arrayList.remove(item)
+                    if (constraint.variableName == "plate.res" &&
+                        map.contains("plate") &&
+                        constraint.disallowedList.contains(map["plate"])
+                    ) arrayList.remove(item)
+                    if (constraint.variableName == "violation.res") {
+                        if (map.contains("violation1") && constraint.disallowedList.contains(map["violation1"])) arrayList.remove(item)
+                        if (map.contains("violation2") && constraint.disallowedList.contains(map["violation2"])) arrayList.remove(item)
+                        if (map.contains("violation3") && constraint.disallowedList.contains(map["violation3"])) arrayList.remove(item)
+                    }
+                    if (constraint.variableName == "system.res" &&
+                        map.contains("system") &&
+                        constraint.disallowedList.contains(map["system"])
+                    ) arrayList.remove(item)
+                    if (constraint.variableName == "violations.res" &&
+                        map.contains("violations") &&
+                        constraint.disallowedList.contains(map["violations"])
+                    ) arrayList.remove(item)
+                    if (constraint.variableName == "city.res" &&
+                        map.contains("city") &&
+                        constraint.disallowedList.contains(map["city"])
+                    ) arrayList.remove(item)
+                    if (constraint.variableName == "province.res" &&
+                        map.contains("province") &&
+                        constraint.disallowedList.contains(map["province"])
+                    ) arrayList.remove(item)
+                    if (constraint.variableName == "category.res" &&
+                        map.contains("category") &&
+                        constraint.disallowedList.contains(map["category"])
+                    ) arrayList.remove(item)
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("BottomSheetSpinner", "DB list load failed for key=$key", e)
+            Toast.makeText(requireContext(), "لیست خالی است", Toast.LENGTH_SHORT).show()
+        }
+
+        adapter.addItem(ArrayList(arrayList), bindVarName, bindTitleVar, bindCodeVar, bindSysName, bindPath, map)
+
+        if (isMulti) {
+            var selectedCodesCsv = map["selected_codes"]
+            if (selectedCodesCsv.isNullOrEmpty() && ::viewModelBottomSheetSpinner.isInitialized) {
+                try {
+                    val currentValue = viewModelBottomSheetSpinner.getValueByKey(codeVar)?.value
+                    if (!currentValue.isNullOrBlank() && currentValue != "null") {
+                        selectedCodesCsv = currentValue
+                    }
+                } catch (_: Exception) {
+                }
+            }
+            val preselected =
+                selectedCodesCsv?.split(',')?.map { it.trim() }?.filter { it.isNotEmpty() }
+                    ?: emptyList()
+            adapter.setPreselected(preselected)
+            binding.actions.visibility = View.VISIBLE
+            binding.btnDone.visibility = View.VISIBLE
+            binding.btnDone.setOnClickListener {
+                val selected = adapter.getSelectedItems()
+                val codes = selected.joinToString(",") { it.id }
+                val titles = selected.joinToString(",") { it.titleFa }
+                val div2View = view as? com.yandex.div.core.view2.Div2View
+                div2View?.setVariable(codeVar, codes)
+                div2View?.setVariable(titleVar, titles)
+                dismiss()
+            }
+        } else {
+            binding.actions.visibility = View.GONE
+        }
 
         binding.search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -329,28 +324,228 @@ class BottomSheetSpinner(
             override fun afterTextChanged(s: Editable?) {
                 val query = s?.toString().orEmpty()
                 val filtered = arrayList.filter {
-                    query.isEmpty() ||
-                        it.titleFa.contains(query) ||
-                        it.id.contains(query)
+                    query.isEmpty() || it.titleFa.contains(query) || it.id.contains(query)
                 }
-                if (varName != null) {
-                    adapter.addItem(
-                        ArrayList(filtered),
-                        varName,
-                        titleVar,
-                        codeVar,
-                        sysName,
-                        path,
-                        map
-                    )
-                }
+                adapter.addItem(
+                    ArrayList(filtered),
+                    bindVarName,
+                    bindTitleVar,
+                    bindCodeVar,
+                    bindSysName,
+                    bindPath,
+                    map
+                )
             }
         })
     }
 
+    private fun setupPagedServiceMode(isMulti: Boolean) {
+        binding.actions.visibility = if (isMulti) View.VISIBLE else View.GONE
+        binding.btnSearch.visibility = View.VISIBLE
+        adapter.addItem(ArrayList(), bindVarName, bindTitleVar, bindCodeVar, bindSysName, bindPath, map)
 
+        val runSearch = {
+            currentSearch = binding.search.text?.toString().orEmpty().trim()
+            currentPage = 1
+            hasMorePages = true
+            loadedItems.clear()
+            fetchPagedPage(reset = true)
+        }
+
+        binding.btnSearch.setOnClickListener { runSearch() }
+        binding.search.setOnEditorActionListener { _, actionId, event ->
+            val isSearch = actionId == EditorInfo.IME_ACTION_SEARCH ||
+                (event?.keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN)
+            if (isSearch) {
+                runSearch()
+                true
+            } else {
+                false
+            }
+        }
+
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy <= 0 || isLoadingPage || !hasMorePages) return
+                val lm = recyclerView.layoutManager as? LinearLayoutManager ?: return
+                if (lm.findLastVisibleItemPosition() >= adapter.itemCount - 3) {
+                    currentPage += 1
+                    fetchPagedPage(reset = false)
+                }
+            }
+        })
+
+        currentPage = 1
+        currentSearch = ""
+        hasMorePages = true
+        fetchPagedPage(reset = true)
+    }
+
+    private fun fetchPagedPage(reset: Boolean) {
+        if (isLoadingPage) return
+        if (!reset && !hasMorePages) return
+
+        val servicePath = resolvedServicePath()
+        if (servicePath.isBlank()) {
+            Toast.makeText(requireContext(), "مسیر سرویس مشخص نیست", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (loadScreenListener == null) {
+            Toast.makeText(requireContext(), "امکان فراخوانی سرویس نیست", Toast.LENGTH_SHORT).show()
+            Log.e("BottomSheetSpinner", "loadScreenListener is null")
+            return
+        }
+
+        isLoadingPage = true
+        binding.btnSearch.isEnabled = false
+
+        val searchParam = map["search_param"].orEmpty().ifBlank { "name" }
+        val pageParam = map["page_param"].orEmpty().ifBlank { "pageNumber" }
+
+        val request = HashMap<String, String>()
+        map.forEach { (k, v) ->
+            if (!SHEET_INTERNAL_KEYS.contains(k)) {
+                request[k] = v
+            }
+        }
+        request["path"] = servicePath
+        request[searchParam] = currentSearch
+        request[pageParam] = currentPage.toString()
+        if (request["sysName"].isNullOrBlank()) {
+            request["sysName"] = bindSysName.orEmpty().ifBlank {
+                dbValueOrEmpty("sysName")
+            }
+        }
+        if (!request.containsKey("ph/token")) {
+            request["ph/token"] = "empty"
+        }
+
+        pendingRequestSeq += 1
+        register(this)
+
+        Log.d(
+            "BottomSheetSpinner",
+            "fetchPagedPage reset=$reset page=$currentPage search='$currentSearch' path=$servicePath request=$request"
+        )
+        loadScreenListener.onRequest(request)
+    }
+
+    fun applyServiceResponse(data: Map<String, String>) {
+        if (_binding == null || !isAdded) return
+        isLoadingPage = false
+        binding.btnSearch.isEnabled = true
+
+        val responseKey = map["response_key"].orEmpty().ifBlank { "json" }
+        val idField = map["id_field"].orEmpty().ifBlank { "id" }
+        val nameField = map["name_field"].orEmpty().ifBlank { "name" }
+        val hasMoreField = map["has_more_field"].orEmpty()
+
+        val rawJson = data[responseKey].orEmpty()
+        val pageItems = parseFlexibleListItems(rawJson, idField, nameField)
+        hasMorePages = if (hasMoreField.isNotBlank()) {
+            data[hasMoreField]?.equals("true", ignoreCase = true) == true
+        } else {
+            pageItems.isNotEmpty()
+        }
+
+        if (currentPage == 1) {
+            loadedItems.clear()
+            loadedItems.addAll(pageItems)
+            adapter.addItem(
+                ArrayList(loadedItems),
+                bindVarName,
+                bindTitleVar,
+                bindCodeVar,
+                bindSysName,
+                bindPath,
+                map
+            )
+        } else {
+            val existing = loadedItems.map { it.id }.toHashSet()
+            val toAdd = pageItems.filter { it.id.isNotBlank() && !existing.contains(it.id) }
+            loadedItems.addAll(toAdd)
+            adapter.appendItems(toAdd)
+        }
+
+        Log.d(
+            "BottomSheetSpinner",
+            "page applied size=${pageItems.size} total=${loadedItems.size} hasMore=$hasMorePages rawLen=${rawJson.length}"
+        )
+        if (pageItems.isEmpty() && currentPage == 1) {
+            Toast.makeText(requireContext(), "موردی یافت نشد", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun applyServiceError(message: String?) {
+        if (_binding == null || !isAdded) return
+        isLoadingPage = false
+        binding.btnSearch.isEnabled = true
+        if (currentPage > 1) {
+            currentPage -= 1
+        }
+        Toast.makeText(
+            requireContext(),
+            message ?: "خطا در دریافت لیست",
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    private fun dbValueOrEmpty(keyName: String): String {
+        if (!::viewModelBottomSheetSpinner.isInitialized) return ""
+        return try {
+            viewModelBottomSheetSpinner.getValueByKey(keyName)?.value.orEmpty()
+        } catch (_: Exception) {
+            ""
+        }
+    }
+
+    private fun parseFlexibleListItems(
+        raw: String,
+        idField: String,
+        nameField: String,
+    ): List<ListItemDto> {
+        if (raw.isBlank()) return emptyList()
+        return try {
+            val array = JSONArray(raw)
+            val out = ArrayList<ListItemDto>(array.length())
+            for (i in 0 until array.length()) {
+                val obj = array.optJSONObject(i) ?: continue
+                val id = firstNonBlank(
+                    obj.optString(idField),
+                    obj.optString("id"),
+                    obj.optString("code")
+                )
+                val name = firstNonBlank(
+                    obj.optString(nameField),
+                    obj.optString("name"),
+                    obj.optString("titleFa"),
+                    obj.optString("title")
+                )
+                if (id.isBlank() && name.isBlank()) continue
+                out.add(
+                    ListItemDto(
+                        id = id.ifBlank { name },
+                        parentId = obj.optString("parentId", ""),
+                        titleFa = name.ifBlank { id },
+                        titleEn = obj.optString("titleEn", ""),
+                        constraintList = emptyList()
+                    )
+                )
+            }
+            out
+        } catch (e: Exception) {
+            Log.e("BottomSheetSpinner", "parseFlexibleListItems failed rawLen=${raw.length}", e)
+            emptyList()
+        }
+    }
+
+    private fun firstNonBlank(vararg values: String): String {
+        for (v in values) {
+            if (v.isNotBlank() && v != "null") return v
+        }
+        return ""
+    }
 }
-
 
 class MyViewModelFactory(private val repository: PhPlusRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

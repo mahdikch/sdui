@@ -1,0 +1,993 @@
+{
+  "templates": {
+    "page_title": {
+      "type": "text",
+      "font_size": 16,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 12
+      }
+    },
+    "section_label": {
+      "type": "text",
+      "font_size": 12,
+      "font_weight": "medium",
+      "text_color": "#6b7280",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 6
+      }
+    },
+    "section_header": {
+      "type": "text",
+      "font_size": 13,
+      "font_weight": "medium",
+      "text_color": "#ffffff",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#193d8d"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 12,
+        "bottom": 12
+      },
+      "margins": {
+        "top": 8,
+        "bottom": 12
+      }
+    },
+    "subsection_title": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "top": 4,
+        "bottom": 10
+      }
+    },
+    "field_box": {
+      "type": "container",
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "right",
+      "content_alignment_vertical": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#c8d0e4",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "start": 12,
+        "end": 12
+      },
+      "margins": {
+        "bottom": 10
+      }
+    },
+    "field_value": {
+      "type": "text",
+      "font_size": 13,
+      "text_color": "#1f2937",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "info_card": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 10,
+        "stroke": {
+          "color": "#c8d0e4",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 8,
+        "start": 12,
+        "end": 12
+      },
+      "margins": {
+        "bottom": 12
+      }
+    },
+    "driver_smart_card_template": {
+      "type": "container",
+      "orientation": "vertical",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "items": [
+        {
+          "type": "subsection_title",
+          "$text": "driver_smart_card_number"
+        },
+        {
+          "type": "section_label",
+          "text": "شماره کارت"
+        },
+        {
+          "type": "field_box",
+          "items": [
+            {
+              "type": "field_value",
+              "$text": "driver_card_number"
+            }
+          ]
+        },
+        {
+          "type": "section_label",
+          "text": "شماره سند"
+        },
+        {
+          "type": "field_box",
+          "items": [
+            {
+              "type": "field_value",
+              "$text": "document_number"
+            }
+          ]
+        },
+        {
+          "type": "section_label",
+          "text": "نام"
+        },
+        {
+          "type": "field_box",
+          "items": [
+            {
+              "type": "field_value",
+              "$text": "driver_name"
+            }
+          ]
+        },
+        {
+          "type": "section_label",
+          "text": "نام خانوادگی"
+        },
+        {
+          "type": "field_box",
+          "items": [
+            {
+              "type": "field_value",
+              "$text": "driver_family_name"
+            }
+          ]
+        },
+        {
+          "type": "section_label",
+          "text": "نام پدر"
+        },
+        {
+          "type": "field_box",
+          "items": [
+            {
+              "type": "field_value",
+              "$text": "driver_father_name"
+            }
+          ]
+        },
+        {
+          "type": "section_label",
+          "text": "کد ملی"
+        },
+        {
+          "type": "field_box",
+          "items": [
+            {
+              "type": "field_value",
+              "$text": "driver_national_number"
+            }
+          ]
+        },
+        {
+          "type": "section_label",
+          "text": "تاریخ تولد"
+        },
+        {
+          "type": "field_box",
+          "items": [
+            {
+              "type": "field_value",
+              "$text": "driver_bithday_date"
+            }
+          ]
+        },
+        {
+          "type": "section_label",
+          "text": "نوع راننده"
+        },
+        {
+          "type": "field_box",
+          "items": [
+            {
+              "type": "field_value",
+              "$text": "driver_type"
+            }
+          ]
+        },
+        {
+          "type": "section_label",
+          "text": "شماره گواهینامه"
+        },
+        {
+          "type": "field_box",
+          "items": [
+            {
+              "type": "field_value",
+              "$text": "driver_certificat_number"
+            }
+          ]
+        },
+        {
+          "type": "section_label",
+          "text": "شماره بیمه"
+        },
+        {
+          "type": "field_box",
+          "items": [
+            {
+              "type": "field_value",
+              "$text": "driver_insurance_number"
+            }
+          ]
+        },
+        {
+          "type": "section_label",
+          "text": "وضعیت فعالیت"
+        },
+        {
+          "type": "field_box",
+          "items": [
+            {
+              "type": "field_value",
+              "$text": "driver_activity_status"
+            }
+          ]
+        },
+        {
+          "type": "section_label",
+          "text": "تاریخ صدور"
+        },
+        {
+          "type": "field_box",
+          "items": [
+            {
+              "type": "field_value",
+              "$text": "date_of_issue"
+            }
+          ]
+        },
+        {
+          "type": "section_label",
+          "text": "تاریخ انقضا"
+        },
+        {
+          "type": "field_box",
+          "items": [
+            {
+              "type": "field_value",
+              "$text": "expiration_date"
+            }
+          ]
+        },
+        {
+          "type": "section_label",
+          "text": "شهر محل سکونت"
+        },
+        {
+          "type": "field_box",
+          "items": [
+            {
+              "type": "field_value",
+              "$text": "city_of_residence"
+            }
+          ]
+        },
+        {
+          "type": "section_label",
+          "text": "محل دریافت"
+        },
+        {
+          "type": "field_box",
+          "items": [
+            {
+              "type": "field_value",
+              "$text": "pickup_location"
+            }
+          ]
+        },
+        {
+          "type": "section_label",
+          "text": "استان"
+        },
+        {
+          "type": "field_box",
+          "items": [
+            {
+              "type": "field_value",
+              "$text": "province"
+            }
+          ]
+        },
+        {
+          "type": "section_label",
+          "text": "توضیحات"
+        },
+        {
+          "type": "field_box",
+          "items": [
+            {
+              "type": "field_value",
+              "$text": "description"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "card": {
+    "log_id": "timesheet_information",
+    "variables": [
+      {
+        "type": "dict",
+        "name": "local_palette",
+        "value": {
+          "bg_primary": {
+            "name": "Primary background",
+            "light": "#fff",
+            "dark": "#000"
+          },
+          "color0": {
+            "name": "Secondary background",
+            "light": "#f3f5f9",
+            "dark": "#000"
+          }
+        }
+      },
+      {
+        "type": "string",
+        "name": "officer",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "name_driver",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "status",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "time",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "date",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "location",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "time_of_driver",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "name",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "national_number",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "booklet_status",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "number",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "issuance",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "credibility",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "date_of_booklet",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "time_of_booklet",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "reason_for_the_latest_violation",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "location_for_the_latest_violation",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "time_for_the_latest_violation",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "date_for_the_latest_violation",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "reason_for_the_latest_warning",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "date_for_the_latest_warning",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "time_for_the_latest_warning",
+        "value": "-"
+      },
+      {
+        "type": "string",
+        "name": "car_model",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "color",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "total_ticket",
+        "value": ""
+      },
+      {
+        "type": "boolean",
+        "name": "car_information",
+        "value": true
+      },
+      {
+        "type": "string",
+        "name": "parking_usage_inquiry",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "parking_owners_last_name",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "parking_car_engine_series",
+        "value": "visible"
+      },
+      {
+        "type": "string",
+        "name": "parking_system",
+        "value": "visible"
+      }
+    ],
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "gallery",
+          "orientation": "vertical",
+          "width": {
+            "type": "match_parent"
+          },
+          "height": {
+            "type": "match_parent"
+          },
+          "background": [
+            {
+              "type": "solid",
+              "color": "#f3f5f9"
+            }
+          ],
+          "items": [
+            {
+              "type": "container",
+              "orientation": "vertical",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "paddings": {
+                "top": 12,
+                "bottom": 24,
+                "start": 12,
+                "end": 12
+              },
+              "visibility_actions": [
+                {
+                  "log_id": "set_car_model_to_db",
+                  "url": "div-action://set_variable_to_db?key=car_model_information_vt&value=@{car_model}",
+                  "visibility_duration": 0
+                },
+                {
+                  "log_id": "set_car_color_to_db",
+                  "url": "div-action://set_variable_to_db?key=car_color_information_vt&value=@{color}",
+                  "visibility_duration": 0
+                },
+                {
+                  "log_id": "set_car_total_ticket_to_db",
+                  "url": "div-action://set_variable_to_db?key=car_total_ticket_information_vt&value=@{total_ticket}",
+                  "visibility_duration": 0
+                }
+              ],
+              "items": [
+                {
+                  "type": "container",
+                  "orientation": "vertical",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  },
+                  "visibility": "@{parking_usage_inquiry}",
+                  "items": [
+                    {
+                      "type": "page_title",
+                      "text": "اطلاعات بر اساس کد ملی"
+                    },
+                    {
+                      "type": "info_card",
+                      "visibility": "@{car_information ? 'visible' : 'gone'}",
+                      "items": [
+                        {
+                          "type": "subsection_title",
+                          "text": "آخرین ثبت ساعت"
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "ساعت"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{time}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "تاریخ",
+                          "visibility": "@{parking_owners_last_name}"
+                        },
+                        {
+                          "type": "field_box",
+                          "visibility": "@{parking_owners_last_name}",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{date}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "محل",
+                          "visibility": "@{parking_car_engine_series}"
+                        },
+                        {
+                          "type": "field_box",
+                          "visibility": "@{parking_car_engine_series}",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{location}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "نام راننده",
+                          "visibility": "@{parking_system}"
+                        },
+                        {
+                          "type": "field_box",
+                          "visibility": "@{parking_system}",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{name_driver}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "مامور"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{officer}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "وضعیت"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{status}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "مدت زمان رانندگی"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{time_of_driver}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "section_header",
+                      "text": "سوابق ۲۴ ساعت اخیر"
+                    },
+                    {
+                      "type": "info_card",
+                      "items": [
+                        {
+                          "type": "subsection_title",
+                          "text": "دفترچه فعال"
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "نام"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{name}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "کد ملی"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{national_number}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "وضعیت دفترچه"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{booklet_status}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "شماره"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{number}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "صدور"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{issuance}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "اعتبار"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{credibility}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_header",
+                          "text": "سوابق دفترچه"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "info_card",
+                      "items": [
+                        {
+                          "type": "subsection_title",
+                          "text": "آخرین تخلف"
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "علت"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{reason_for_the_latest_violation}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "محل"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{location_for_the_latest_violation}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "تاریخ"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{date_for_the_latest_violation}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "ساعت"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{time_for_the_latest_violation}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_header",
+                          "text": "سوابق تخلفات"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "info_card",
+                      "items": [
+                        {
+                          "type": "subsection_title",
+                          "text": "آخرین تذکر"
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "علت"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{reason_for_the_latest_warning}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "تاریخ"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{date_for_the_latest_warning}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_label",
+                          "text": "ساعت"
+                        },
+                        {
+                          "type": "field_box",
+                          "items": [
+                            {
+                              "type": "field_value",
+                              "text": "@{time_for_the_latest_warning}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "section_header",
+                          "text": "سوابق تذکر"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "info_card",
+                      "items": [
+                        {
+                          "type": "subsection_title",
+                          "text": "کارت هوشمند راننده"
+                        },
+                        {
+                          "type": "driver_smart_card_template",
+                          "driver_smart_card_number": "کارت هوشمند راننده ۱",
+                          "driver_card_number": "-",
+                          "document_number": "-",
+                          "driver_name": "-",
+                          "driver_family_name": "-",
+                          "driver_father_name": "-",
+                          "driver_national_number": "-",
+                          "driver_bithday_date": "-",
+                          "driver_type": "-",
+                          "driver_certificat_number": "-",
+                          "driver_insurance_number": "-",
+                          "driver_activity_status": "-",
+                          "date_of_issue": "-",
+                          "expiration_date": "-",
+                          "city_of_residence": "-",
+                          "pickup_location": "-",
+                          "province": "-",
+                          "description": "-"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

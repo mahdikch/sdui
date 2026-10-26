@@ -7,6 +7,8 @@ import org.json.JSONObject
 object VehicleEntryCountHelper {
 
     private const val TAG = "VehicleEntryCountHelper"
+    const val DRIVER_SIGNATURE_VARIABLE = "variable_compromising_driver_signature"
+    const val DRIVER_SIGNATURE_ARCHIVE_FIELD = "driver_signature"
 
     fun sync(viewModel: MehdiViewModel?, div2View: Div2View?, accidentId: String? = null) {
         if (div2View == null) return
@@ -21,12 +23,15 @@ object VehicleEntryCountHelper {
 
         val requiredCount = resolveRequiredVehicleCount(viewModel, resolvedAccidentId)
         val addedCount = countArchivedVehicles(viewModel, resolvedAccidentId)
-        val isComplete = requiredCount > 0 && addedCount == requiredCount
+        val isCountComplete = requiredCount > 0 && addedCount == requiredCount
+        val allHaveSignatures = isCountComplete &&
+            allArchivedVehiclesHaveDriverSignature(viewModel, resolvedAccidentId)
         val canAddMore = requiredCount > 0 && addedCount < requiredCount
 
         android.util.Log.d(
             TAG,
-            "sync: accidentId=$resolvedAccidentId required=$requiredCount added=$addedCount complete=$isComplete",
+            "sync: accidentId=$resolvedAccidentId required=$requiredCount added=$addedCount " +
+                "countOk=$isCountComplete signaturesOk=$allHaveSignatures",
         )
 
         // Never overwrite with 0: on first-page load (before draft save) requiredCount is 0 and
@@ -35,7 +40,15 @@ object VehicleEntryCountHelper {
             div2View.setVariable("variable_vehicle_count", requiredCount.toString())
         }
         div2View.setVariable("vehicles_added_count", addedCount.toString())
-        div2View.setVariable("val_validation_vehicles_count", if (isComplete) "true" else "false")
+        div2View.setVariable("val_validation_vehicles_count", if (isCountComplete) "true" else "false")
+        div2View.setVariable(
+            "val_validation_vehicles_signatures",
+            if (allHaveSignatures) "true" else "false",
+        )
+        div2View.setVariable(
+            "val_validation_vehicles_ready",
+            if (isCountComplete && allHaveSignatures) "true" else "false",
+        )
         div2View.setVariable("can_add_vehicle", if (canAddMore) "true" else "false")
     }
 
@@ -85,6 +98,47 @@ object VehicleEntryCountHelper {
         return runCatching {
             viewModelNonNull.getOfflineReportsListSync("%$username/vehicles/$accidentId%").size
         }.getOrDefault(0)
+    }
+
+    fun allArchivedVehiclesHaveDriverSignature(
+        viewModel: MehdiViewModel?,
+        accidentId: String,
+    ): Boolean {
+        if (accidentId.isBlank()) return false
+        val username = dbValue(viewModel, "userName")
+        if (username.isBlank()) return false
+        val rows = runCatching {
+            viewModel?.getOfflineReportsListSync("%$username/vehicles/$accidentId%").orEmpty()
+        }.getOrDefault(emptyList())
+        if (rows.isEmpty()) return false
+
+        return rows.all { row ->
+            val fromArchive = runCatching {
+                JSONObject(row.value.orEmpty()).optString(DRIVER_SIGNATURE_ARCHIVE_FIELD)
+            }.getOrDefault("")
+            if (fromArchive.isNotBlank()) return@all true
+
+            val vehicleId = extractVehicleId(row.value, row.key)
+            if (vehicleId.isBlank()) return@all false
+            val fromDraft = readDraftVariable(
+                viewModel,
+                "draft/$vehicleId/page2",
+                DRIVER_SIGNATURE_VARIABLE,
+            )
+            fromDraft.isNotBlank()
+        }
+    }
+
+    private fun extractVehicleId(archiveJson: String?, archiveKey: String?): String {
+        if (!archiveJson.isNullOrBlank()) {
+            runCatching {
+                JSONObject(archiveJson).optString("vehicle_id")
+            }.getOrNull()?.takeIf { it.isNotBlank() }?.let { return it }
+        }
+        // key format: {username}/vehicles/{accidentId}/{vehicleId}
+        val key = archiveKey.orEmpty()
+        val parts = key.split('/')
+        return parts.lastOrNull().orEmpty()
     }
 
     fun canAddAnotherVehicle(

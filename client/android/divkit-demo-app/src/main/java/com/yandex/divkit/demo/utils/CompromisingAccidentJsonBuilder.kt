@@ -79,7 +79,7 @@ object CompromisingAccidentJsonBuilder {
         obj.put("distanceFrom", intOrNull(page1["variable_distance_from_origin"]))
 
         val accDate = page1["variable_accident_date"].orEmpty()
-        val accTime = page1["variable_accident_time"].orEmpty()
+        val accTime = normalizeTime(page1["variable_accident_time"].orEmpty())
         if (accDate.isNotBlank() && accTime.isNotBlank()) {
             obj.put("accidentDate", "$accDate $accTime")
         } else {
@@ -87,7 +87,7 @@ object CompromisingAccidentJsonBuilder {
         }
 
         val regDate = page1["variable_register_accident_date"].orEmpty()
-        val regTime = page1["variable_register_accident_time"].orEmpty()
+        val regTime = normalizeTime(page1["variable_register_accident_time"].orEmpty())
         if (regDate.isNotBlank() && regTime.isNotBlank()) {
             obj.put("completionDate", "$regDate $regTime")
         } else {
@@ -123,8 +123,32 @@ object CompromisingAccidentJsonBuilder {
         val livestockFatality = buildLivestockFatalityArray(viewModel, username, accidentId)
         obj.put("marfokMain", livestockFatality.length() > 0)
         obj.put("livestockFatality", livestockFatality)
+        obj.put("seri", resolveSeri(viewModel, username, accidentId))
 
         return obj
+    }
+
+    /**
+     * سازشی → "100" ، غیرسازشی → "200"
+     */
+    private fun resolveSeri(
+        viewModel: MehdiViewModel?,
+        username: String,
+        accidentId: String,
+    ): String {
+        val processType = dbValue(viewModel, "process_type").orEmpty().trim()
+        when {
+            processType.equals("ghersazeshi", ignoreCase = true) ||
+                processType.equals("nonsazeshi", ignoreCase = true) ||
+                processType.contains("غیر") -> return "200"
+            processType.equals("sazeshi", ignoreCase = true) -> return "100"
+        }
+
+        val archiveTitle = runCatching {
+            val archiveJson = dbValue(viewModel, "$username/Accidents/$accidentId").orEmpty()
+            JSONObject(archiveJson).optString("title")
+        }.getOrDefault("")
+        return if (archiveTitle.contains("غیر")) "200" else "100"
     }
 
     private fun buildLivestockFatalityArray(
@@ -194,7 +218,7 @@ object CompromisingAccidentJsonBuilder {
                     ),
                 ),
             )
-            vehicle.put("plaqueNo", buildPlateNumber(vPage1))
+            putPlateParts(vehicle, vPage1)
             vehicle.put("vin", vPage1["uncompromising_vehicle_vin"].orEmpty())
             vehicle.put(
                 "chassisNo",
@@ -204,7 +228,9 @@ object CompromisingAccidentJsonBuilder {
                 "motorNo",
                 draftVal(
                     vPage1,
+                    "variable_compromising_engine_number",
                     "variable_compromising_vehicle_engin_no",
+                    "uncompromising_engine_number",
                     "uncompromising_vehicle_motor_number",
                 ),
             )
@@ -212,7 +238,16 @@ object CompromisingAccidentJsonBuilder {
                 "faultStatusID",
                 if (FaultDriversLoader.isAtFault(vPage1, archive)) 2219 else 2282,
             )
-            vehicle.put("systemID", intOrNull(vPage1["uncompromising_vehicle_system_code"]))
+            vehicle.put(
+                "systemID",
+                intOrNull(
+                    draftVal(
+                        vPage1,
+                        "variable_system_code",
+                        "uncompromising_vehicle_system_code",
+                    ),
+                ),
+            )
             vehicle.put("efficiencyID", intOrNull(vPage1["uncompromising_vehicle_performance_code"]))
             vehicle.putOpt("numberingCorrespondID", intOrNull(vPage1["uncompromising_vehicle_numbering_correspond_code"]))
             vehicle.putOpt("resolveUp60Date", vPage1["uncompromising_vehicle_resolve_up60_date"])
@@ -227,7 +262,16 @@ object CompromisingAccidentJsonBuilder {
                 ),
             )
             vehicle.put("companyID", intOrNull(vPage1["uncompromising_vehicle_manufacturer_code"]))
-            vehicle.put("systemTypeID", intOrNull(vPage1["uncompromising_vehicle_tip_code"]))
+            vehicle.put(
+                "systemTypeID",
+                intOrNull(
+                    draftVal(
+                        vPage1,
+                        "variable_type_code",
+                        "uncompromising_vehicle_tip_code",
+                    ),
+                ),
+            )
             vehicle.put(
                 "colorID",
                 intOrNull(
@@ -297,7 +341,12 @@ object CompromisingAccidentJsonBuilder {
         )
         d.put(
             "fatherName",
-            draftVal(driverDraft, "variable_compromising_driver_father_name", "compromising_driver_father_name"),
+            draftVal(
+                driverDraft,
+                "variable_father_name",
+                "variable_compromising_driver_father_name",
+                "compromising_driver_father_name",
+            ),
         )
         d.put("age", intOrNull(draftVal(driverDraft, "variable_compromising_driver_age", "compromising_driver_age")) ?: 0)
         d.put(
@@ -568,31 +617,64 @@ object CompromisingAccidentJsonBuilder {
         return obj
     }
 
-    private fun buildPlateNumber(vehicleDraft: Map<String, String>): String {
-        val one = draftVal(
-            vehicleDraft,
-            "variable_compromising_vehicle_plate_one",
-            "variable_plateA",
-            "uncompromising_vehicle_plate_one",
+    private fun putPlateParts(vehicle: JSONObject, vehicleDraft: Map<String, String>) {
+        vehicle.put(
+            "plateA",
+            draftVal(
+                vehicleDraft,
+                "variable_compromising_vehicle_plate_one",
+                "variable_plateA",
+                "uncompromising_vehicle_plate_one",
+            ),
         )
-        val alphabet = draftVal(
-            vehicleDraft,
-            "variable_plateB",
-            "uncompromising_vehicle_plate_alphabet",
+        vehicle.put(
+            "plateB",
+            draftVal(
+                vehicleDraft,
+                "variable_plateB",
+                "uncompromising_vehicle_plate_alphabet",
+            ),
         )
-        val three = draftVal(
-            vehicleDraft,
-            "variable_compromising_vehicle_plate_three",
-            "variable_plateC",
-            "uncompromising_vehicle_plate_three",
+        vehicle.put(
+            "plateC",
+            draftVal(
+                vehicleDraft,
+                "variable_compromising_vehicle_plate_three",
+                "variable_plateC",
+                "uncompromising_vehicle_plate_three",
+            ),
         )
-        val four = draftVal(
-            vehicleDraft,
-            "variable_compromising_vehicle_plate_four",
-            "variable_plateD",
-            "uncompromising_vehicle_plate_four",
+        vehicle.put(
+            "plateD",
+            draftVal(
+                vehicleDraft,
+                "variable_compromising_vehicle_plate_four",
+                "variable_plateD",
+                "uncompromising_vehicle_plate_four",
+            ),
         )
-        return listOf(one, alphabet, three, four).filter { it.isNotBlank() }.joinToString("")
+        vehicle.put(
+            "plateType",
+            draftVal(
+                vehicleDraft,
+                "plateType",
+                "variable_compromising_vehicle_plate_type_code",
+                "uncompromising_vehicle_plate_type_code",
+            ),
+        )
+    }
+
+    /** e.g. 9:02 → 09:02 */
+    private fun normalizeTime(time: String): String {
+        val trimmed = time.trim()
+        if (trimmed.isBlank()) return trimmed
+        val parts = trimmed.split(':')
+        if (parts.size < 2) return trimmed
+        return parts.joinToString(":") { part ->
+            val digits = part.filter { it.isDigit() }
+            val number = digits.toIntOrNull()
+            if (number != null) number.toString().padStart(2, '0') else part
+        }
     }
 
     private fun draftVal(map: Map<String, String>, vararg names: String): String =

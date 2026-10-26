@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config xmlns:android="http://schemas.android.com/apk/res/android">
-    <base-config cleartextTrafficPermitted="true">
+    <!-- Library default: no cleartext, trust system + push CA only (never user CAs). -->
+    <base-config cleartextTrafficPermitted="false">
         <trust-anchors>
             <certificates src="@raw/push_ca"/>
             <certificates src="system"/>
@@ -13,4 +14,11 @@
             <certificates src="system"/>
         </trust-anchors>
     </domain-config>
+    <debug-overrides>
+        <trust-anchors>
+            <certificates src="user"/>
+            <certificates src="system"/>
+            <certificates src="@raw/push_ca"/>
+        </trust-anchors>
+    </debug-overrides>
 </network-security-config>

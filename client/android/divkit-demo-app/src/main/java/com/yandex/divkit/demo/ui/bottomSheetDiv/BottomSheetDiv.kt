@@ -303,14 +303,23 @@ class BottomSheetDiv(
     }
 
     private fun loadJsonFromAssets(name: String): String? {
-        val candidates = listOf(
-            "application/ph/${name.replace('/', '_')}.json",
-            "application/${name}.json",
-            "application/${name.replace('/', '_')}.json"
-        )
+        val underscored = name.replace('/', '_')
+        val folder = name.substringBefore('/', missingDelimiterValue = "")
+        val leaf = name.substringAfter('/', missingDelimiterValue = name)
+        val candidates = ArrayList<String>().apply {
+            add("application/$name.json")
+            add("application/${underscored}.json")
+            if (folder.isNotBlank()) {
+                // Accidents/policeCenter → application/Accidents/Accidents_policeCenter.json
+                add("application/$folder/${folder}_$leaf.json")
+                add("application/$folder/$underscored.json")
+                add("application/$folder/$leaf.json")
+            }
+            add("application/ph/${underscored}.json")
+        }
         for (path in candidates) {
             val json = runCatching {
-            context.assets.open(path).bufferedReader().use { it.readText() }
+                context.assets.open(path).bufferedReader().use { it.readText() }
             }.getOrNull()
             if (!json.isNullOrBlank()) return json
         }

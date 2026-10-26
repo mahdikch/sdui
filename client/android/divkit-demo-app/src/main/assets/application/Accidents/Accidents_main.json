@@ -323,7 +323,7 @@
                         },
                         {
                           "log_id": "set_process_type",
-                          "url": "div-action://set_variable_to_db?key=process_type&value=sazeshi"
+                          "url": "div-action://set_variable_to_db?key=process_type&value=ghersazeshi"
                         },
                         {
                           "log_id": "set_step",

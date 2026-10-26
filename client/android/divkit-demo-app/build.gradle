@@ -25,12 +25,15 @@ repositories {
         // Do not change the username below. It should always be "mapbox" (not your username).
 
         credentials.username = "mapbox"
-
-        // Use the secret token stored in gradle.properties as the password
-
-//            credentials.password = providers.gradleProperty("MAPBOX_DOWNLOADS_TOKEN").get()
-        credentials.password = "sk.eyJ1IjoiYnBrYXplbWkiLCJhIjoiY20zbDliZXpmMGZ3dzJqcXplNXBhdTA3OSJ9.kUYbRXN3L7C8pS97UC6mmQ"
-
+        // Token must live in local.properties / CI secrets — never hardcode in VCS.
+        def mapboxToken = (project.findProperty("MAPBOX_DOWNLOADS_TOKEN") ?: "") as String
+        def localPropsFile = rootProject.file("local.properties")
+        if (mapboxToken.isEmpty() && localPropsFile.exists()) {
+            def localProps = new Properties()
+            localPropsFile.withInputStream { localProps.load(it) }
+            mapboxToken = localProps.getProperty("MAPBOX_DOWNLOADS_TOKEN", "")
+        }
+        credentials.password = mapboxToken
         authentication { basic(BasicAuthentication) }
 
     }
@@ -51,13 +54,15 @@ android {
     }
     defaultConfig {
 //        versionCode divkitVersion.versionCode + divkitVersion.buildNumber
-        versionCode 17
-        versionName "1.1.7"
+        versionCode 18
+        versionName "1.1.8"
 
         buildConfigField "int", "BUILD_NUMBER", "${divkitVersion.buildNumber}"
         buildConfigField "String", "METRICA_API_KEY", JsonOutput.toJson(project.findProperty("metricaApiKey") ?: "")
         buildConfigField "boolean", "THROW_ASSERTS", project.hasProperty("screenshot-tests")? "false" : "true"
         buildConfigField "String", "HTTP_HEADERS", JsonOutput.toJson(project.findProperty("httpHeaders") ?: "{}")
+        // Set release signing cert SHA-256 (hex, no colons) to enforce anti-repack checks.
+        buildConfigField "String", "EXPECTED_CERT_SHA256", JsonOutput.toJson(project.findProperty("expectedCertSha256") ?: "")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -66,19 +71,48 @@ android {
         }
     }
 
+    // Prefer v2/v3 APK Signature Scheme (v1 alone is vulnerable to Janus).
+    signingConfigs {
+        debug {
+            enableV1Signing true
+            enableV2Signing true
+            enableV3Signing true
+        }
+        release {
+            enableV1Signing true
+            enableV2Signing true
+            enableV3Signing true
+            def storePath = project.findProperty("RELEASE_STORE_FILE")
+            def storePass = project.findProperty("RELEASE_STORE_PASSWORD")
+            def keyAliasName = project.findProperty("RELEASE_KEY_ALIAS")
+            def keyPass = project.findProperty("RELEASE_KEY_PASSWORD")
+            if (storePath && storePass && keyAliasName && keyPass) {
+                storeFile file(storePath)
+                storePassword storePass
+                keyAlias keyAliasName
+                keyPassword keyPass
+            }
+        }
+    }
+
     buildTypes {
         debug {
             minifyEnabled false
             proguardFiles  'proguard-rules.pro'
+            signingConfig signingConfigs.debug
             // Emulator (generic_x86) + real 64-bit devices
             ndk {
                 abiFilters 'arm64-v8a', 'x86'
             }
         }
         release {
-//            signingConfig signingConfigs.release
             minifyEnabled true
-            proguardFiles  'proguard-rules.pro'
+            // Keep false: SDUI may reference res drawables by name; shrinking can strip them.
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            if (signingConfigs.release.storeFile != null) {
+                signingConfig signingConfigs.release
+            }
             ndk {
                 abiFilters 'arm64-v8a'
             }
@@ -92,11 +126,12 @@ android {
         }
 
         debug {
-            java.srcDirs = ['src/public/java']
+            // Append — do not replace default src/debug/java (DebugStetho etc.).
+            java.srcDirs += ['src/public/java']
         }
 
         release {
-            java.srcDirs = ['src/public/java']
+            java.srcDirs += ['src/public/java']
         }
 
         test {
@@ -209,11 +244,12 @@ dependencies {
     implementation 'com.github.samanzamani:PersianDate:1.7.1'
     implementation 'pub.devrel:easypermissions:3.0.0'
     implementation 'androidx.biometric:biometric:1.1.0'
-    implementation libs.stetho.core
-    implementation libs.stetho.okhttp3
+    // Stetho / UI Automator are debug-only — must not ship in release APK.
+    debugImplementation libs.stetho.core
+    debugImplementation libs.stetho.okhttp3
 //    implementation("androidx.compose.material3:material3:1.0.1")
     implementation libs.nvWebsocket
-    implementation libs.androidx.test.uiautomator
+    androidTestImplementation libs.androidx.test.uiautomator
     implementation libs.androidx.coreKtx
     // QR code stuff
     implementation libs.zxing.embedded

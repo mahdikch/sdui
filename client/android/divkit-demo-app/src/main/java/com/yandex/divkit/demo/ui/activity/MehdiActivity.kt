@@ -893,6 +893,10 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener,
                         Log.e("SUCCESS", "start")
                         val varList = java.util.HashMap(it.data ?: emptyMap())
 
+                        // Deliver paged bottom-sheet list responses (station/road search).
+                        com.yandex.divkit.demo.ui.bottomSheetSpinner.BottomSheetSpinner
+                            .deliverServiceResponse(varList)
+
                         if (pendingNotificationMode == "check_db_call_service" &&
                             pendingNotificationPath != null &&
                             pendingNotificationRequestId != null
@@ -1044,6 +1048,18 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener,
                                 } else if (key.contains("variable")) {
                                     // Only set on main div if it's NOT a bottom_sheet_variable
                                     div.setVariable(key, value)
+                                }
+
+                                // roadsAccidents returns basic-info key "road" → reveal road spinner.
+                                if (key.equals("road", ignoreCase = true)) {
+                                    runCatching {
+                                        div.setVariable("variable_roads_ready", "true")
+                                    }.onFailure {
+                                        android.util.Log.w(
+                                            "MehdiActivity",
+                                            "variable_roads_ready not on card; road list saved to DB"
+                                        )
+                                    }
                                 }
                             }
                         }
@@ -1299,6 +1315,8 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener,
                 Resource.Status.ERROR -> {
                     android.util.Log.e("MehdiActivity", "ERROR: ${it.message}")
                     com.yandex.divkit.demo.ui.UIDiv2ActionHandler.clearPendingGuesthouseDayOp()
+                    com.yandex.divkit.demo.ui.bottomSheetSpinner.BottomSheetSpinner
+                        .deliverServiceError(it.message)
 //                     binding.loading.visibility = View.GONE
                     if (nextScreen != "") {
                         startActivityForLoad(MehdiActivity::class.java, nextScreen)
@@ -1983,6 +2001,12 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener,
                             }
                         } else if (key.contains("variable")) {
                             div.setVariable(key, value)
+                        }
+
+                        if (key.equals("road", ignoreCase = true)) {
+                            runCatching {
+                                div.setVariable("variable_roads_ready", "true")
+                            }
                         }
                     }
                 }

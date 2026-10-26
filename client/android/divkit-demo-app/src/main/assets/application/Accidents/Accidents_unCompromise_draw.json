@@ -1,6 +1,130 @@
 {
+  "templates": {
+    "page_title": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "wrap_content"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "section_label": {
+      "type": "text",
+      "font_size": 12,
+      "font_weight": "medium",
+      "text_color": "#6b7280",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 6
+      }
+    },
+    "primary_btn": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#ffffff",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#193d8d"
+        }
+      ],
+      "border": {
+        "corner_radius": 10
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14
+      }
+    },
+    "secondary_btn": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 10,
+        "stroke": {
+          "color": "#c8d0e4",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14
+      }
+    }
+  },
   "card": {
-    "log_id": "div2_sample_card",
+    "log_id": "accidents_uncompromising_draw",
+    "variables": [
+      {
+        "type": "string",
+        "name": "empty",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "current_accident_id",
+        "value": ""
+      },
+      {
+        "type": "integer",
+        "name": "current_step",
+        "value": 9
+      },
+      {
+        "type": "integer",
+        "name": "total",
+        "value": 10
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_accident_sketch_json",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_accident_sketch_image",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_accident_sketch_sound",
+        "value": ""
+      }
+    ],
     "states": [
       {
         "state_id": 0,
@@ -16,7 +140,7 @@
           "background": [
             {
               "type": "solid",
-              "color": "#ffffff"
+              "color": "#f3f5f9"
             }
           ],
           "paddings": {
@@ -25,6 +149,13 @@
             "start": 16,
             "end": 16
           },
+          "visibility_actions": [
+            {
+              "log_id": "load_accident_id",
+              "url": "div-action://set_variable_from_db?name=current_accident_id",
+              "visibility_duration": 0
+            }
+          ],
           "items": [
             {
               "type": "container",
@@ -36,7 +167,7 @@
                 "type": "wrap_content"
               },
               "margins": {
-                "bottom": 8
+                "bottom": 10
               },
               "items": [
                 {
@@ -79,39 +210,43 @@
               "background": [
                 {
                   "type": "solid",
-                  "color": "#f3f5f9"
+                  "color": "#ffffff"
                 }
               ],
               "border": {
-                "corner_radius": 8
+                "corner_radius": 12,
+                "stroke": {
+                  "color": "#dbe3f0",
+                  "width": 1
+                }
               },
               "paddings": {
-                "top": 6,
-                "bottom": 6,
-                "start": 8,
-                "end": 8
+                "top": 10,
+                "bottom": 10,
+                "start": 12,
+                "end": 12
               },
               "margins": {
-                "bottom": 8
+                "bottom": 10
               },
               "items": [
                 {
                   "type": "custom",
                   "custom_type": "circular_progress",
                   "custom_props": {
-                    "current": "@{current}",
+                    "current": "@{current_step}",
                     "total": "@{total}"
                   },
                   "width": {
                     "type": "fixed",
-                    "value": 36
+                    "value": 40
                   },
                   "height": {
                     "type": "fixed",
-                    "value": 36
+                    "value": 40
                   },
                   "margins": {
-                    "end": 8
+                    "end": 10
                   }
                 },
                 {
@@ -127,7 +262,7 @@
                     {
                       "type": "text",
                       "text": "کروکی تصادف",
-                      "font_size": 12,
+                      "font_size": 13,
                       "font_weight": "medium",
                       "text_color": "#1f2937",
                       "text_alignment_horizontal": "right",
@@ -140,8 +275,8 @@
                     },
                     {
                       "type": "text",
-                      "text": "بعدی: پیش‌نمایش اطلاعات",
-                      "font_size": 10,
+                      "text": "مرحله @{current_step} از @{total}  ·  بعدی: پیش‌نمایش اطلاعات",
+                      "font_size": 11,
                       "text_color": "#6b7280",
                       "text_alignment_horizontal": "right",
                       "width": {
@@ -151,10 +286,55 @@
                         "type": "wrap_content"
                       },
                       "margins": {
-                        "top": 1
+                        "top": 2
                       }
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "horizontal",
+              "content_alignment_vertical": "center",
+              "content_alignment_horizontal": "right",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#eef3fb"
+                }
+              ],
+              "border": {
+                "corner_radius": 10
+              },
+              "paddings": {
+                "top": 10,
+                "bottom": 10,
+                "start": 12,
+                "end": 12
+              },
+              "margins": {
+                "bottom": 12
+              },
+              "items": [
+                {
+                  "type": "text",
+                  "text": "موقعیت وسایل، جهت حرکت و علائم صحنه را روی کروکی مشخص کنید.",
+                  "font_size": 11,
+                  "text_color": "#3b5b9a",
+                  "text_alignment_horizontal": "right",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "height": {
+                    "type": "wrap_content"
+                  }
                 }
               ]
             },
@@ -165,18 +345,45 @@
                 "type": "match_parent"
               },
               "height": {
-                "type": "match_parent"
+                "type": "match_parent",
+                "weight": 1
               },
               "items": [
                 {
+                  "type": "section_label",
+                  "text": "فضای رسم کروکی"
+                },
+                {
                   "type": "container",
+                  "orientation": "vertical",
                   "width": {
                     "type": "match_parent"
                   },
                   "height": {
                     "type": "wrap_content"
                   },
-                  "orientation": "vertical",
+                  "background": [
+                    {
+                      "type": "solid",
+                      "color": "#ffffff"
+                    }
+                  ],
+                  "border": {
+                    "corner_radius": 12,
+                    "stroke": {
+                      "color": "#dbe3f0",
+                      "width": 1
+                    }
+                  },
+                  "paddings": {
+                    "top": 10,
+                    "bottom": 10,
+                    "start": 10,
+                    "end": 10
+                  },
+                  "margins": {
+                    "bottom": 8
+                  },
                   "items": [
                     {
                       "type": "custom",
@@ -194,46 +401,7 @@
                         "value": 560
                       }
                     }
-                  ],
-                  "background": [
-                    {
-                      "type": "solid",
-                      "color": "#ffffff"
-                    }
-                  ],
-                  "margins": {
-                    "top": 8,
-                    "bottom": 8,
-                    "start": 8,
-                    "end": 8
-                  },
-                  "paddings": {
-                    "top": 8,
-                    "bottom": 8,
-                    "start": 8,
-                    "end": 8
-                  },
-                  "border": {
-                    "shadow": {
-                      "color": "#c8d0e4"
-                    },
-                    "corner_radius": 6,
-                    "corners_radius": {
-                      "top-left": 6,
-                      "top-right": 6,
-                      "bottom-left": 6,
-                      "bottom-right": 6
-                    },
-                    "stroke": {
-                      "color": "#c8d0e4"
-                    }
-                  }
-                }
-              ],
-              "background": [
-                {
-                  "type": "solid",
-                  "color": "#f3f5f9"
+                  ]
                 }
               ]
             },
@@ -253,35 +421,13 @@
               "items": [
                 {
                   "type": "primary_btn",
-                  "text": "مرحله قبل",
-                  "width": {
-                    "type": "match_parent",
-                    "weight": 1
-                  },
-                  "margins": {
-                    "start": 4
-                  },
-                  "actions": [
-                    {
-                      "log_id": "save_draw_draft",
-                      "url": "div-action://set_page_with_changes_to_db?key=draft/@{current_accident_id}/page9"
-                    },
-                    {
-                      "log_id": "go_previous_step",
-                      "url": "div-action://load_screen?screen=Accidents/uncompromising/expertreasoning"
-                    }
-                  ]
-                },
-                {
-                  "type": "secondary_btn",
                   "text": "مرحله بعد",
                   "width": {
                     "type": "match_parent",
                     "weight": 1
                   },
                   "margins": {
-                    "top": 0,
-                    "end": 4
+                    "start": 4
                   },
                   "actions": [
                     {
@@ -297,147 +443,33 @@
                       "url": "div-action://load_screen?screen=Accidents/uncompromising/preview"
                     }
                   ]
+                },
+                {
+                  "type": "secondary_btn",
+                  "text": "مرحله قبل",
+                  "width": {
+                    "type": "match_parent",
+                    "weight": 1
+                  },
+                  "margins": {
+                    "end": 4
+                  },
+                  "actions": [
+                    {
+                      "log_id": "save_draw_draft",
+                      "url": "div-action://set_page_with_changes_to_db?key=draft/@{current_accident_id}/page9"
+                    },
+                    {
+                      "log_id": "go_previous_step",
+                      "url": "div-action://load_screen?screen=Accidents/uncompromising/expertreasoning"
+                    }
+                  ]
                 }
               ]
-            }
-          ],
-          "visibility_actions": [
-            {
-              "log_id": "load_accident_id",
-              "url": "div-action://set_variable_from_db?name=current_accident_id",
-              "visibility_duration": 0
             }
           ]
         }
       }
-    ],
-    "variables": [
-      {
-        "type": "dict",
-        "name": "local_palette",
-        "value": {
-          "bg_primary": {
-            "name": "Primary background",
-            "light": "#fff",
-            "dark": "#000"
-          },
-          "color0": {
-            "name": "Secondary background",
-            "light": "#eeeeee",
-            "dark": "#000"
-          }
-        }
-      },
-      {
-        "type": "string",
-        "name": "acc_rotate_right.png",
-        "value": "empty://"
-      },
-      {
-        "type": "string",
-        "name": "acc_sort.png",
-        "value": "empty://"
-      },
-      {
-        "type": "integer",
-        "name": "current",
-        "value": 10
-      },
-      {
-        "type": "integer",
-        "name": "total",
-        "value": 10
-      },
-      {
-        "type": "string",
-        "name": "current_accident_id",
-        "value": ""
-      },
-      {
-        "type": "string",
-        "name": "uncompromising_accident_sketch_json",
-        "value": ""
-      },
-      {
-        "type": "string",
-        "name": "uncompromising_accident_sketch_image",
-        "value": ""
-      },
-      {
-        "type": "string",
-        "name": "uncompromising_accident_sketch_sound",
-        "value": ""
-      }
     ]
-  },
-  "templates": {
-    "page_title": {
-      "type": "text",
-      "font_size": 14,
-      "font_weight": "medium",
-      "text_color": "#193d8d",
-      "text_alignment_horizontal": "right",
-      "width": {
-        "type": "wrap_content"
-      },
-      "height": {
-        "type": "wrap_content"
-      }
-    },
-    "primary_btn": {
-      "type": "text",
-      "font_size": 14,
-      "font_weight": "medium",
-      "text_color": "#ffffff",
-      "text_alignment_horizontal": "center",
-      "width": {
-        "type": "match_parent"
-      },
-      "height": {
-        "type": "wrap_content"
-      },
-      "background": [
-        {
-          "type": "solid",
-          "color": "#193d8d"
-        }
-      ],
-      "border": {
-        "corner_radius": 8
-      },
-      "paddings": {
-        "top": 14,
-        "bottom": 14
-      }
-    },
-    "secondary_btn": {
-      "type": "text",
-      "font_size": 14,
-      "font_weight": "medium",
-      "text_color": "#193d8d",
-      "text_alignment_horizontal": "center",
-      "width": {
-        "type": "match_parent"
-      },
-      "height": {
-        "type": "wrap_content"
-      },
-      "background": [
-        {
-          "type": "solid",
-          "color": "#f3f5f9"
-        }
-      ],
-      "border": {
-        "corner_radius": 8
-      },
-      "paddings": {
-        "top": 14,
-        "bottom": 14
-      },
-      "margins": {
-        "top": 8
-      }
-    }
   }
 }

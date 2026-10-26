@@ -44,7 +44,28 @@ internal class DivActionTypedCopyToClipboardHandler @Inject constructor()
                 }
 
         val clipData = content.getClipData(resolver)
+        // Mark as sensitive + auto-clear (API 24+ extras / API 33 EXTRA_IS_SENSITIVE).
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            val extras = android.os.PersistableBundle().apply {
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+                    putBoolean(ClipDescription.EXTRA_IS_SENSITIVE, true)
+                } else {
+                    putBoolean("android.content.extra.IS_SENSITIVE", true)
+                }
+            }
+            clipData.description.extras = extras
+        }
         clipboardManager.setPrimaryClip(clipData)
+        android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+            try {
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
+                    clipboardManager.clearPrimaryClip()
+                } else {
+                    clipboardManager.setPrimaryClip(ClipData.newPlainText("", ""))
+                }
+            } catch (_: Exception) {
+            }
+        }, 30_000L)
     }
 
     private fun DivActionCopyToClipboardContent.getClipData(resolver: ExpressionResolver) =

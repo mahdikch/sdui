@@ -537,16 +537,24 @@
         {
           "id": "bottom_sheet_list",
           "title": "bottom sheet لیست",
-          "description": "لیست انتخاب (spinner) با جستجو.",
+          "description": "لیست انتخاب (spinner) با جستجو. برای لیست سروری/صفحه‌بندی: service_path + paged=true.",
           "parameters": [
-            { "name": "id", "required": true, "description": "شناسه لیست" },
+            { "name": "id", "required": true, "description": "شناسه لیست (DB key در حالت محلی)" },
             { "name": "title", "required": true, "description": "عنوان" },
             { "name": "code_var", "required": true, "description": "متغیر کد" },
             { "name": "title_var", "required": true, "description": "متغیر عنوان" },
-            { "name": "SEARCHABLE", "required": false, "description": "true/false" },
-            { "name": "type", "required": false, "description": "نوع لیست" }
+            { "name": "SEARCHABLE", "required": false, "description": "true/false (جستجوی محلی)" },
+            { "name": "type", "required": false, "description": "نوع لیست" },
+            { "name": "service_path", "required": false, "description": "مثلاً station/SAT یا road/SAT؛ فعال‌کننده لود از سرویس" },
+            { "name": "paged", "required": false, "description": "true = جستجو و pagination سمت سرور" },
+            { "name": "response_key", "required": false, "description": "کلید آرایه در پاسخ (پیش‌فرض json)" },
+            { "name": "id_field", "required": false, "description": "فیلد شناسه آیتم (id یا code)" },
+            { "name": "name_field", "required": false, "description": "فیلد عنوان آیتم (پیش‌فرض name)" },
+            { "name": "search_param", "required": false, "description": "نام پارامتر جستجو (پیش‌فرض name)" },
+            { "name": "page_param", "required": false, "description": "نام پارامتر صفحه (پیش‌فرض pageNumber)" },
+            { "name": "has_more_field", "required": false, "description": "کلید boolean در پاسخ برای ادامه pagination" }
           ],
-          "sample_url": "div-action://bottom_sheet_list?id=provinces&title=استان&code_var=province_code&title_var=province_name&SEARCHABLE=true",
+          "sample_url": "div-action://bottom_sheet_list?id=station&title=انتخاب پاسگاه&code_var=variable_basicInfoStation_code&title_var=variable_basicInfoStation_title&service_path=station%2FSAT&sysName=@{sysName}&ph/token=empty&response_key=json&id_field=id&name_field=name&search_param=name&page_param=pageNumber&paged=true",
           "sample_div_action": {
             "log_id": "bottom_sheet_list_sample",
             "url": "div-action://bottom_sheet_list?id=provinces&title=استان&code_var=province_code&title_var=province_name"

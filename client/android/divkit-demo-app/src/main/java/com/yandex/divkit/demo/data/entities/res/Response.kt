@@ -1,9 +1,17 @@
 package com.yandex.divkit.demo.data.entities.res
 
+import com.google.gson.annotations.SerializedName
+
 /**
- * Created by vahid on 05/09/2015.
+ * Coordinator API envelope. Field names kept via SerializedName for R8 release builds.
  */
-class Response<T>(//    @SerializedName("resultCode")
-    var resultCode: Int, //    @SerializedName("resultCode")
-    var resultMessage: String, var response: T, var responseList: List<T>
+class Response<T>(
+    @SerializedName("resultCode")
+    var resultCode: Int = 0,
+    @SerializedName("resultMessage")
+    var resultMessage: String = "",
+    @SerializedName("response")
+    var response: T? = null,
+    @SerializedName("responseList")
+    var responseList: List<T>? = null,
 )

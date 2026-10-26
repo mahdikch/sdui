@@ -28,6 +28,10 @@ class PhPlusRepository @Inject constructor(
         remoteDataSource.phPlus(phId,request)
     }
 
+    /** Direct/suspend call for in-sheet paged lists (avoids MehdiActivity global observer). */
+    suspend fun phPlusDirect(phId: String, request: HashMap<String, String>) =
+        remoteDataSource.phPlus(phId, request)
+
     suspend fun phPlusWithFiles(
         phId: String,
         requestScreenJson: String,

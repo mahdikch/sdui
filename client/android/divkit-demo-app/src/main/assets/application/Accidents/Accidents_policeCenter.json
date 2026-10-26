@@ -210,7 +210,7 @@
                     "variable_target": "base",
                     "selection_mode": "single",
                     "clear_variables_on_confirm": "variable_road,variable_road_code,variable_roads_ready",
-                    "confirm_url": "div-action://call_service?path=roadsAccidents&sysName=accidents&ph/token=empty&policeCenterCode=@{variable_policeCenterCode}"
+                    "confirm_url": "div-action://call_service?path=roadsAccidents&sysName=accidents&ph/token=empty&policeCenterCode="
                   },
                   "height": {
                     "type": "match_parent"

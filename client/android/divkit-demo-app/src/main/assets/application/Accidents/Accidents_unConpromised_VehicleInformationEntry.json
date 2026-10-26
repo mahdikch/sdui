@@ -185,7 +185,7 @@
         },
         {
           "log_id": "open_vehicle_wizard_edit",
-          "url": "div-action://bottom_sheet_div?jsonName=Accidents/vehicleInformation"
+          "url": "div-action://bottom_sheet_div?jsonName=Accidents/uncompromising/vehicleInformation"
         }
       ],
       "width": {
@@ -288,9 +288,11 @@
                   }
                 },
                 {
-                  "type": "container",
-                  "orientation": "horizontal",
-                  "content_alignment_horizontal": "right",
+                  "type": "text",
+                  "text": "کاربری: @{usage}",
+                  "font_size": 11,
+                  "text_color": "#6b7280",
+                  "text_alignment_horizontal": "right",
                   "width": {
                     "type": "match_parent"
                   },
@@ -299,35 +301,7 @@
                   },
                   "margins": {
                     "top": 2
-                  },
-                  "items": [
-                    {
-                      "type": "text",
-                      "$text": "usage",
-                      "font_size": 11,
-                      "text_color": "#6b7280",
-                      "text_alignment_horizontal": "right",
-                      "width": {
-                        "type": "wrap_content"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      }
-                    },
-                    {
-                      "type": "text",
-                      "text": "کاربری: ",
-                      "font_size": 11,
-                      "text_color": "#6b7280",
-                      "text_alignment_horizontal": "right",
-                      "width": {
-                        "type": "wrap_content"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      }
-                    }
-                  ]
+                  }
                 }
               ]
             }
@@ -466,12 +440,6 @@
                     {
                       "type": "solid",
                       "color": "@{plate2_color}"
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "log_id": "show_bottom_sheet_list",
-                      "url": "div-action://bottom_sheet_div?jsonName=vt/plate/letters/bottomsheet"
                     }
                   ]
                 },
@@ -670,7 +638,7 @@
               "items": [
                 {
                   "type": "vehicle_row_label",
-                  "text": "تاریخ اعتبار بیمه"
+                  "text": "تاریخ اعتبار"
                 },
                 {
                   "type": "vehicle_row_value",
@@ -694,7 +662,7 @@
               "items": [
                 {
                   "type": "vehicle_row_label",
-                  "text": "نام شرکت بیمه"
+                  "text": "شرکت بیمه"
                 },
                 {
                   "type": "vehicle_row_value",
@@ -708,43 +676,62 @@
     }
   },
   "card": {
-    "log_id": "div2_sample_card",
+    "log_id": "accidents_uncompromised_vehicle_information_entry",
     "variables": [
       {
-        "type": "dict",
-        "name": "local_palette",
-        "value": {
-          "bg_primary": {
-            "name": "Primary background",
-            "light": "#fff",
-            "dark": "#000"
-          },
-          "color0": {
-            "name": "Secondary background",
-            "light": "#eeeeee",
-            "dark": "#000"
-          }
-        }
+        "type": "string",
+        "name": "empty",
+        "value": ""
       },
       {
         "type": "string",
-        "name": "text___4",
-        "value": "۲"
+        "name": "current_accident_id",
+        "value": ""
+      },
+      {
+        "type": "integer",
+        "name": "current_step",
+        "value": 2
+      },
+      {
+        "type": "integer",
+        "name": "total",
+        "value": 11
       },
       {
         "type": "string",
-        "name": "text___5",
-        "value": "۵"
+        "name": "variable_vehicle_count",
+        "value": "0"
       },
       {
         "type": "string",
-        "name": "text___33",
-        "value": "مرحله قبل"
+        "name": "vehicles_added_count",
+        "value": "0"
       },
       {
-        "type": "string",
-        "name": "text___31",
-        "value": "مرحله بعد"
+        "type": "boolean",
+        "name": "val_validation_vehicles_count",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "val_validation_vehicles_signatures",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "val_validation_vehicles_ready",
+        "value": false
+      },
+      {
+        "type": "boolean",
+        "name": "can_add_vehicle",
+        "value": true
+      },
+      {
+        "type": "boolean",
+        "name": "attempted_next",
+        "value": false
       },
       {
         "type": "string",
@@ -753,92 +740,7 @@
       },
       {
         "type": "string",
-        "name": "variable_plateB_hint",
-        "value": "ب"
-      },
-      {
-        "type": "string",
-        "name": "variable_plateC_hint",
-        "value": "۱۱۱"
-      },
-      {
-        "type": "string",
-        "name": "variable_plateD_hint",
-        "value": "۱۱"
-      },
-      {
-        "type": "string",
-        "name": "variable_plateE_hint",
-        "value": "۱۱"
-      },
-      {
-        "type": "string",
-        "name": "variable_plateA_hint",
-        "value": "۱۱"
-      },
-      {
-        "type": "string",
-        "name": "variable_plateF_hint",
-        "value": "۱۱"
-      },
-      {
-        "type": "string",
-        "name": "variable_plateA",
-        "value": ""
-      },
-      {
-        "type": "string",
-        "name": "variable_plateB",
-        "value": "ب"
-      },
-      {
-        "type": "string",
-        "name": "variable_plateC",
-        "value": ""
-      },
-      {
-        "type": "string",
-        "name": "variable_plateD",
-        "value": ""
-      },
-      {
-        "type": "string",
-        "name": "selected_tab",
-        "value": "ffffff"
-      },
-      {
-        "type": "string",
-        "name": "unselected_tab",
-        "value": "e8ecf4"
-      },
-      {
-        "type": "string",
-        "name": "selected_tab_text",
-        "value": "193d8d"
-      },
-      {
-        "type": "string",
-        "name": "unselected_tab_text",
-        "value": "757575"
-      },
-      {
-        "type": "string",
-        "name": "plate_color",
-        "value": "#ffffff"
-      },
-      {
-        "type": "string",
-        "name": "plate_color2",
-        "value": "#ffffff"
-      },
-      {
-        "type": "string",
         "name": "plate_text_color",
-        "value": "#193d8d"
-      },
-      {
-        "type": "string",
-        "name": "plate_text_color2",
         "value": "#193d8d"
       },
       {
@@ -860,51 +762,6 @@
         "type": "string",
         "name": "plate4_color",
         "value": "#ffffff"
-      },
-      {
-        "type": "string",
-        "name": "plate_text_color",
-        "value": "#4F4F4F"
-      },
-      {
-        "type": "string",
-        "name": "current_accident_id",
-        "value": ""
-      },
-      {
-        "type": "string",
-        "name": "current_step",
-        "value": "2"
-      },
-      {
-        "type": "string",
-        "name": "total",
-        "value": "5"
-      },
-      {
-        "type": "string",
-        "name": "variable_vehicle_count",
-        "value": "0"
-      },
-      {
-        "type": "string",
-        "name": "vehicles_added_count",
-        "value": "0"
-      },
-      {
-        "type": "boolean",
-        "name": "val_validation_vehicles_count",
-        "value": false
-      },
-      {
-        "type": "boolean",
-        "name": "can_add_vehicle",
-        "value": true
-      },
-      {
-        "type": "boolean",
-        "name": "attempted_next",
-        "value": false
       }
     ],
     "states": [
@@ -1058,7 +915,7 @@
                     },
                     {
                       "type": "text",
-                      "text": "بعدی: ثبت تصاویر",
+                      "text": "بعدی: ثبت تصویر",
                       "font_size": 10,
                       "text_color": "#6b7280",
                       "text_alignment_horizontal": "right",
@@ -1114,7 +971,7 @@
                   "margins": {
                     "bottom": 10
                   },
-                  "visibility": "@{attempted_next && !val_validation_vehicles_count ? 'visible' : 'gone'}",
+                  "visibility": "@{attempted_next && !val_validation_vehicles_ready ? 'visible' : 'gone'}",
                   "items": [
                     {
                       "type": "text",
@@ -1137,6 +994,11 @@
                       "type": "validation_text",
                       "text": "تعداد وسایل نقلیه ثبت‌شده کمتر از تعداد اعلام‌شده است",
                       "visibility": "@{val_validation_vehicles_count ? 'gone' : 'visible'}"
+                    },
+                    {
+                      "type": "validation_text",
+                      "text": "برای همه وسایل نقلیه، امضای راننده الزامی است",
+                      "visibility": "@{val_validation_vehicles_count && !val_validation_vehicles_signatures ? 'visible' : 'gone'}"
                     }
                   ]
                 },
@@ -1260,7 +1122,7 @@
               "items": [
                 {
                   "type": "primary_btn",
-                  "text": "@{text___31}",
+                  "text": "مرحله بعد",
                   "width": {
                     "type": "match_parent",
                     "weight": 1
@@ -1270,40 +1132,49 @@
                   },
                   "actions": [
                     {
+                      "log_id": "resync_before_next",
+                      "url": "div-action://sync_vehicles_count"
+                    },
+                    {
                       "log_id": "attempt_show_errors",
-                      "is_enabled": "@{!val_validation_vehicles_count}",
+                      "is_enabled": "@{!val_validation_vehicles_ready}",
                       "url": "div-action://set_variable?name=attempted_next&value=true"
                     },
                     {
-                      "log_id": "toast_validation",
+                      "log_id": "toast_validation_count",
                       "is_enabled": "@{!val_validation_vehicles_count}",
                       "url": "div-action://show_toast?massage=لطفاً تعداد وسایل نقلیه را تکمیل کنید"
                     },
                     {
-                      "is_enabled": "@{val_validation_vehicles_count}",
+                      "log_id": "toast_validation_signature",
+                      "is_enabled": "@{val_validation_vehicles_count && !val_validation_vehicles_signatures}",
+                      "url": "div-action://show_toast?massage=برای همه وسایل نقلیه، امضای راننده الزامی است"
+                    },
+                    {
                       "log_id": "save_draft_page2",
+                      "is_enabled": "@{val_validation_vehicles_ready}",
                       "url": "div-action://set_page_with_changes_to_db?key=draft/@{current_accident_id}/page2"
                     },
                     {
-                      "is_enabled": "@{val_validation_vehicles_count}",
                       "log_id": "save_archive_index",
-                      "url": "div-action://set_object_to_db?archive_path=Accidents&next=draft/@{current_accident_id}/page2&title=ثبت تصادف غیر سازشی&accident_id=@{current_accident_id}&current_step=3&process_type=sazeshi&step_dbshow=صفحه ۲ از ۴&step_persian_lan=مرحله&accident_id_dbshow=@{current_accident_id}&accident_id_persian_lan=شناسه"
+                      "is_enabled": "@{val_validation_vehicles_ready}",
+                      "url": "div-action://set_object_to_db?archive_path=Accidents&next=draft/@{current_accident_id}/page2&title=ثبت تصادف غیر سازشی&accident_id=@{current_accident_id}&current_step=3&process_type=sazeshi&step_dbshow=صفحه ۲ از ۵&step_persian_lan=مرحله&accident_id_dbshow=@{current_accident_id}&accident_id_persian_lan=شناسه"
                     },
                     {
-                      "is_enabled": "@{val_validation_vehicles_count}",
                       "log_id": "set_step",
+                      "is_enabled": "@{val_validation_vehicles_ready}",
                       "url": "div-action://set_variable_to_db?key=current_step&value=3"
                     },
                     {
-                      "is_enabled": "@{val_validation_vehicles_count}",
                       "log_id": "next_page",
+                      "is_enabled": "@{val_validation_vehicles_ready}",
                       "url": "div-action://load_screen?screen=Accidents/uncompromising/submitimage"
                     }
                   ]
                 },
                 {
                   "type": "secondary_btn",
-                  "text": "@{text___33}",
+                  "text": "مرحله قبل",
                   "width": {
                     "type": "match_parent",
                     "weight": 1

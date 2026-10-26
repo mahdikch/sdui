@@ -1,19 +1,20 @@
 package com.yandex.divkit.demo.div.offlineView
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.yandex.divkit.demo.div.signatureView.SignatureView
+import com.yandex.divkit.demo.utils.VehicleEntryCountHelper
 
 
 class OfflineViewListAdapter@JvmOverloads constructor(
@@ -24,6 +25,7 @@ class OfflineViewListAdapter@JvmOverloads constructor(
     interface OfflineViewListItemListener {
         fun onClickedOfflineView(data: String, next: String)
         fun onDeleteOfflineView(archiveKey: String, data: String) {}
+        fun onVehicleSignatureSaved(archiveKey: String, signatureBase64: String) {}
     }
     var onSendClick: ((position: Int, item: Map<String, String>) -> Unit)? = null
 
@@ -32,6 +34,10 @@ class OfflineViewListAdapter@JvmOverloads constructor(
         val dateText: TextView = itemView.findViewById(com.yandex.divkit.demo.R.id.dateText)
         val recycler: RecyclerView =
             itemView.findViewById(com.yandex.divkit.demo.R.id.keyValueRecycler)
+        val signatureLabel: TextView =
+            itemView.findViewById(com.yandex.divkit.demo.R.id.signatureLabel)
+        val signatureContainer: FrameLayout =
+            itemView.findViewById(com.yandex.divkit.demo.R.id.signatureContainer)
         val sendButton: Button = itemView.findViewById(com.yandex.divkit.demo.R.id.sendButton)
         val deleteButton: Button = itemView.findViewById(com.yandex.divkit.demo.R.id.deleteButton)
     }
@@ -79,6 +85,8 @@ class OfflineViewListAdapter@JvmOverloads constructor(
             isAccidentsArchive || isVehicleList || isPassengerList || isPedestrianList || isOrganizationList || isLivestockList
         ) View.VISIBLE else View.GONE
 
+        bindVehicleSignature(holder, item, restoredMap, isVehicleList)
+
         holder.sendButton.setOnClickListener {
             item["data"]?.let { dataJson ->
                 restoredMap["next"]?.let { nextKey ->
@@ -92,6 +100,45 @@ class OfflineViewListAdapter@JvmOverloads constructor(
                 item["key"]?.let { archiveKey ->
                     listener.onDeleteOfflineView(archiveKey, dataJson)
                 }
+            }
+        }
+    }
+
+    private fun bindVehicleSignature(
+        holder: EntryViewHolder,
+        item: Map<String, String>,
+        restoredMap: MutableMap<String, String>,
+        isVehicleList: Boolean,
+    ) {
+        if (!isVehicleList) {
+            holder.signatureLabel.visibility = View.GONE
+            holder.signatureContainer.visibility = View.GONE
+            holder.signatureContainer.removeAllViews()
+            return
+        }
+
+        holder.signatureLabel.visibility = View.VISIBLE
+        holder.signatureContainer.visibility = View.VISIBLE
+
+        val signatureView = holder.signatureContainer.getChildAt(0) as? SignatureView
+            ?: SignatureView(holder.itemView.context).also { view ->
+                holder.signatureContainer.removeAllViews()
+                holder.signatureContainer.addView(
+                    view,
+                    FrameLayout.LayoutParams(
+                        FrameLayout.LayoutParams.MATCH_PARENT,
+                        FrameLayout.LayoutParams.MATCH_PARENT,
+                    ),
+                )
+            }
+
+        val existingSignature = restoredMap[VehicleEntryCountHelper.DRIVER_SIGNATURE_ARCHIVE_FIELD]
+            .orEmpty()
+        signatureView.setSignature(existingSignature.ifBlank { null })
+        signatureView.setOnSignatureSavedListener { base64 ->
+            val archiveKey = item["key"].orEmpty()
+            if (archiveKey.isNotBlank()) {
+                listener.onVehicleSignatureSaved(archiveKey, base64)
             }
         }
     }

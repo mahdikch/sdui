@@ -60,11 +60,20 @@ abstract class SingletonObjects {
             ): Map<String, String> {
                 val result = mutableMapOf<String, String>()
                 json.asJsonObject.entrySet().forEach {
-                    result[it.key] = it.value.asString
+                    // Values may be numbers/booleans/null from coordinator — stringify safely.
+                    val value = it.value
+                    result[it.key] = when {
+                        value == null || value.isJsonNull -> ""
+                        value.isJsonPrimitive -> value.asJsonPrimitive.asString
+                        else -> value.toString()
+                    }
                 }
                 return result
             }
         }
+
+        /** Named TypeToken so R8 keeps the generic signature (anonymous TypeToken breaks in release). */
+        class MapStringTypeToken : TypeToken<Map<String, String>>()
 
         fun getDbInstance(context: Context): AppDatabase {
 
@@ -94,7 +103,7 @@ abstract class SingletonObjects {
                 if (gsonInstance == null) {
                     gsonInstance = GsonBuilder()
                         .registerTypeAdapter(
-                            object : TypeToken<Map<String, String>>() {}.type,
+                            MapStringTypeToken().type,
                             MapDeserializer()
                         )
                         .create()

@@ -195,8 +195,23 @@
       },
       {
         "type": "string",
+        "name": "variable_policeCenter",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_policeCenterCode",
+        "value": ""
+      },
+      {
+        "type": "string",
         "name": "variable_policeCenterId",
         "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_roads_ready",
+        "value": "false"
       },
       {
         "type": "string",
@@ -325,6 +340,11 @@
       },
       {
         "type": "boolean",
+        "name": "val_validation_police_center",
+        "value": false
+      },
+      {
+        "type": "boolean",
         "name": "val_validation_road",
         "value": false
       },
@@ -415,6 +435,26 @@
       }
     ],
     "variable_triggers": [
+      {
+        "condition": "@{variable_policeCenterCode != empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_police_center_ok",
+            "url": "div-action://set_variable?name=val_validation_police_center&value=true"
+          }
+        ]
+      },
+      {
+        "condition": "@{variable_policeCenterCode == empty}",
+        "mode": "on_condition",
+        "actions": [
+          {
+            "log_id": "val_police_center_bad",
+            "url": "div-action://set_variable?name=val_validation_police_center&value=false"
+          }
+        ]
+      },
       {
         "condition": "@{variable_road != empty}",
         "mode": "on_condition",
@@ -549,7 +589,7 @@
           },
           {
             "log_id": "check_accident_dt",
-            "url": "div-action://is_date_and_time_less_equal_today_now?current_time=variable_accident_date_and_time&result_var=val_validation_is_accident_date_and_time_less_today_now"
+            "url": "div-action://is_date_and_time_less_equal_today_now?date_var=variable_accident_date&time_var=variable_accident_time&result_var=val_validation_is_accident_date_and_time_less_today_now"
           }
         ]
       },
@@ -581,7 +621,7 @@
           },
           {
             "log_id": "check_police_dt",
-            "url": "div-action://is_date_and_time_less_equal_today_now?current_time=variable_police_date_and_time&result_var=val_validation_is_police_date_and_time_less_today_now"
+            "url": "div-action://is_date_and_time_less_equal_today_now?date_var=variable_police_date&time_var=variable_police_time&result_var=val_validation_is_police_date_and_time_less_today_now"
           }
         ]
       },
@@ -633,7 +673,7 @@
           },
           {
             "log_id": "check_order_dt",
-            "url": "div-action://is_bigger_date_and_time?val1=variable_police_date_and_time&val2=variable_accident_date_and_time&result_var=val_validation_is_accident_date_and_time_bigger_police_date_and_time"
+            "url": "div-action://is_bigger_date_and_time?val1_date_var=variable_police_date&val1_time_var=variable_police_time&val2_date_var=variable_accident_date&val2_time_var=variable_accident_time&result_var=val_validation_is_accident_date_and_time_bigger_police_date_and_time"
           }
         ]
       },
@@ -648,7 +688,7 @@
         ]
       },
       {
-        "condition": "@{val_validation_road && val_validation_news_number && val_validation_vehicle_count && val_validation_distance_from_origin && val_validation_lat_long && val_validation_accident_type && val_validation_accident_datetime_filled && val_validation_police_datetime_filled && val_validation_register_datetime_filled && val_validation_is_police_date_and_time_less_today_now && val_validation_is_accident_date_and_time_less_today_now && val_validation_is_accident_date_and_time_bigger_police_date_and_time}",
+        "condition": "@{val_validation_police_center && val_validation_road && val_validation_news_number && val_validation_vehicle_count && val_validation_distance_from_origin && val_validation_lat_long && val_validation_accident_type && val_validation_accident_datetime_filled && val_validation_police_datetime_filled && val_validation_register_datetime_filled && val_validation_is_police_date_and_time_less_today_now && val_validation_is_accident_date_and_time_less_today_now && val_validation_is_accident_date_and_time_bigger_police_date_and_time}",
         "mode": "on_condition",
         "actions": [
           {
@@ -658,7 +698,7 @@
         ]
       },
       {
-        "condition": "@{!val_validation_road || !val_validation_news_number || !val_validation_vehicle_count || !val_validation_distance_from_origin || !val_validation_lat_long || !val_validation_accident_type || !val_validation_accident_datetime_filled || !val_validation_police_datetime_filled || !val_validation_register_datetime_filled || !val_validation_is_police_date_and_time_less_today_now || !val_validation_is_accident_date_and_time_less_today_now || !val_validation_is_accident_date_and_time_bigger_police_date_and_time}",
+        "condition": "@{!val_validation_police_center || !val_validation_road || !val_validation_news_number || !val_validation_vehicle_count || !val_validation_distance_from_origin || !val_validation_lat_long || !val_validation_accident_type || !val_validation_accident_datetime_filled || !val_validation_police_datetime_filled || !val_validation_register_datetime_filled || !val_validation_is_police_date_and_time_less_today_now || !val_validation_is_accident_date_and_time_less_today_now || !val_validation_is_accident_date_and_time_bigger_police_date_and_time}",
         "mode": "on_condition",
         "actions": [
           {
@@ -907,6 +947,11 @@
                     },
                     {
                       "type": "validation_text",
+                      "text": "مرکز پلیس انتخاب نشده است",
+                      "visibility": "@{val_validation_police_center ? 'gone' : 'visible'}"
+                    },
+                    {
+                      "type": "validation_text",
                       "text": "راه انتخاب نشده است",
                       "visibility": "@{val_validation_road ? 'gone' : 'visible'}"
                     },
@@ -994,39 +1039,84 @@
                   "items": [
                     {
                       "type": "section_label",
-                      "text": "راه *"
+                      "text": "مرکز پلیس *"
                     },
+                    {
+                      "type": "field_box",
+                      "actions": [
                         {
-                          "type": "field_box",
-                          "actions": [
-                            {
-                              "log_id": "pick_road",
-                              "url": "div-action://bottom_sheet_div?jsonName=Accidents/ways"
-                            }
-                          ],
-                          "items": [
-                            {
-                              "type": "text",
-                              "text": "▼",
-                              "font_size": 12,
-                              "text_color": "#193d8d",
-                              "width": {
-                                "type": "wrap_content"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              },
-                              "margins": {
-                                "end": 8
-                              }
-                            },
-                            {
-                              "type": "field_value",
-                              "text": "@{len(variable_road) > 0 ? variable_road : 'انتخاب راه'}",
-                              "text_color": "@{len(variable_road) > 0 ? '#1f2937' : '#9ca3af'}"
-                            }
-                          ]
+                          "log_id": "clear_road_title",
+                          "url": "div-action://set_variable?name=variable_road&value=@{empty}"
                         },
+                        {
+                          "log_id": "clear_road_code",
+                          "url": "div-action://set_variable?name=variable_road_code&value=@{empty}"
+                        },
+                        {
+                          "log_id": "pick_police_center",
+                          "url": "div-action://bottom_sheet_div?jsonName=Accidents/policeCenter"
+                        }
+                      ],
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "▼",
+                          "font_size": 12,
+                          "text_color": "#193d8d",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "end": 8
+                          }
+                        },
+                        {
+                          "type": "field_value",
+                          "text": "@{len(variable_policeCenter) > 0 ? variable_policeCenter : 'انتخاب مرکز پلیس'}",
+                          "text_color": "@{len(variable_policeCenter) > 0 ? '#1f2937' : '#9ca3af'}"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "section_label",
+                      "text": "راه *",
+                      "visibility": "@{len(variable_policeCenter) > 0 ? 'visible' : 'gone'}"
+                    },
+                    {
+                      "type": "field_box",
+                      "visibility": "@{len(variable_policeCenter) > 0 ? 'visible' : 'gone'}",
+                      "actions": [
+                        {
+                          "log_id": "pick_road",
+                          "url": "div-action://bottom_sheet_list?id=road&varName=road&title=انتخاب راه&code_var=variable_road_code&title_var=variable_road"
+                        }
+                      ],
+                      "items": [
+                        {
+                          "type": "text",
+                          "text": "▼",
+                          "font_size": 12,
+                          "text_color": "#193d8d",
+                          "width": {
+                            "type": "wrap_content"
+                          },
+                          "height": {
+                            "type": "wrap_content"
+                          },
+                          "margins": {
+                            "end": 8
+                          }
+                        },
+                        {
+                          "type": "field_value",
+                          "text": "@{len(variable_road) > 0 ? variable_road : 'انتخاب راه'}",
+                          "text_color": "@{len(variable_road) > 0 ? '#1f2937' : '#9ca3af'}"
+                        }
+                      ]
+                    },
                         {
                           "type": "section_label",
                           "text": "تاریخ تصادف *"
@@ -1577,6 +1667,21 @@
                       "url": "div-action://set_variable_to_db?key=variable_road/@{current_accident_id}&value=@{variable_road}"
                     },
                     {
+                      "log_id": "save_road_code",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=variable_road_code/@{current_accident_id}&value=@{variable_road_code}"
+                    },
+                    {
+                      "log_id": "save_police_center",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=variable_policeCenter/@{current_accident_id}&value=@{variable_policeCenter}"
+                    },
+                    {
+                      "log_id": "save_police_center_code",
+                      "is_enabled": "@{val_validation_next_page}",
+                      "url": "div-action://set_variable_to_db?key=variable_policeCenterCode/@{current_accident_id}&value=@{variable_policeCenterCode}"
+                    },
+                    {
                       "log_id": "save_police_center_id",
                       "is_enabled": "@{val_validation_next_page}",
                       "url": "div-action://set_variable_to_db?key=variable_policeCenterId/@{current_accident_id}&value=@{variable_policeCenterId}"
@@ -1681,6 +1786,4 @@
       }
     ]
   }
-}
-
 }

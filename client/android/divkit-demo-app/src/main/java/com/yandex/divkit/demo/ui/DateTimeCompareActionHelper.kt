@@ -22,17 +22,28 @@ object DateTimeCompareActionHelper {
         resolver: ExpressionResolver,
         currentTime: String?,
         resultVar: String?,
+        dateVar: String? = null,
+        timeVar: String? = null,
     ): Boolean {
         Log.d(TAG, "=== is_date_and_time_less_equal_today_now ===")
-        Log.d(TAG, "raw current_time='$currentTime' result_var='$resultVar'")
-        if (currentTime.isNullOrBlank() || resultVar.isNullOrBlank()) {
-            Log.e(TAG, "missing params: current_time/result_var")
-            Assert.fail("current_time and result_var params are required")
+        Log.d(
+            TAG,
+            "raw current_time='$currentTime' date_var='$dateVar' time_var='$timeVar' result_var='$resultVar'"
+        )
+        if (resultVar.isNullOrBlank()) {
+            Log.e(TAG, "missing params: result_var")
+            Assert.fail("result_var param is required")
+            return false
+        }
+        if (currentTime.isNullOrBlank() && (dateVar.isNullOrBlank() || timeVar.isNullOrBlank())) {
+            Log.e(TAG, "missing params: current_time or date_var+time_var")
+            Assert.fail("current_time or date_var+time_var params are required")
             return false
         }
 
         val resultName = resultVar.trim()
-        val resolved = resolveDateTimeValue(resolver, currentTime.trim())
+        // Prefer date_var+time_var to avoid race with a just-set *_date_and_time variable.
+        val resolved = resolveComposableDateTime(resolver, currentTime, dateVar, timeVar)
         Log.d(TAG, "resolved current_time='$resolved'")
         val inputMillis = resolved?.let { parseDateTimeToMillis(it) }
             ?: resolved?.let { parseLiteralDateTimeToMillis(it) }
@@ -41,11 +52,11 @@ object DateTimeCompareActionHelper {
             Log.w(TAG, "parse failed for '$resolved' → set $resultName=false")
             return setBooleanVariable(div2View, resultName, false)
         }
-        // 2-minute tolerance for clock/picker skew when choosing "now"
-        val pass = inputMillis <= nowMillis + 2 * 60 * 1000L
+        // 5-minute tolerance for clock/picker skew when choosing "now"
+        val pass = inputMillis <= nowMillis + 5 * 60 * 1000L
         Log.d(
             TAG,
-            "compare input=${Date(inputMillis)} <= now=${Date(nowMillis)}(+2m)? $pass " +
+            "compare input=${Date(inputMillis)} <= now=${Date(nowMillis)}(+5m)? $pass " +
                 "(diff=${inputMillis - nowMillis}ms) → set $resultName=$pass"
         )
         return setBooleanVariable(div2View, resultName, pass)
@@ -64,18 +75,34 @@ object DateTimeCompareActionHelper {
         val1: String?,
         val2: String?,
         resultVar: String?,
+        val1DateVar: String? = null,
+        val1TimeVar: String? = null,
+        val2DateVar: String? = null,
+        val2TimeVar: String? = null,
     ): Boolean {
         Log.d(TAG, "=== is_bigger_date_and_time ===")
-        Log.d(TAG, "raw val1='$val1' val2='$val2' result_var='$resultVar'")
-        if (val1.isNullOrBlank() || val2.isNullOrBlank() || resultVar.isNullOrBlank()) {
-            Log.e(TAG, "missing params: val1/val2/result_var")
-            Assert.fail("val1, val2 and result_var params are required")
+        Log.d(
+            TAG,
+            "raw val1='$val1' val2='$val2' " +
+                "val1_date='$val1DateVar' val1_time='$val1TimeVar' " +
+                "val2_date='$val2DateVar' val2_time='$val2TimeVar' result_var='$resultVar'"
+        )
+        if (resultVar.isNullOrBlank()) {
+            Log.e(TAG, "missing params: result_var")
+            Assert.fail("result_var param is required")
+            return false
+        }
+        val hasVal1 = !val1.isNullOrBlank() || (!val1DateVar.isNullOrBlank() && !val1TimeVar.isNullOrBlank())
+        val hasVal2 = !val2.isNullOrBlank() || (!val2DateVar.isNullOrBlank() && !val2TimeVar.isNullOrBlank())
+        if (!hasVal1 || !hasVal2) {
+            Log.e(TAG, "missing params: val1/val2 or date_var+time_var pairs")
+            Assert.fail("val1/val2 or date/time var pairs are required")
             return false
         }
 
         val resultName = resultVar.trim()
-        val val1Resolved = resolveDateTimeValue(resolver, val1.trim())
-        val val2Resolved = resolveDateTimeValue(resolver, val2.trim())
+        val val1Resolved = resolveComposableDateTime(resolver, val1, val1DateVar, val1TimeVar)
+        val val2Resolved = resolveComposableDateTime(resolver, val2, val2DateVar, val2TimeVar)
         Log.d(TAG, "resolved val1='$val1Resolved' val2='$val2Resolved'")
 
         val millis1 = val1Resolved?.let { parseDateTimeToMillis(it) }
@@ -101,6 +128,43 @@ object DateTimeCompareActionHelper {
                 "(${millis1 - millis2}ms diff) → set $resultName=$pass"
         )
         return setBooleanVariable(div2View, resultName, pass)
+    }
+
+    /**
+     * Builds "date_time" from date_var+time_var when provided; otherwise resolves [currentTime]
+     * and, if that is an empty `*_date_and_time` name, falls back to sibling `_date` / `_time`.
+     */
+    private fun resolveComposableDateTime(
+        resolver: ExpressionResolver,
+        currentTime: String?,
+        dateVar: String?,
+        timeVar: String?,
+    ): String? {
+        if (!dateVar.isNullOrBlank() && !timeVar.isNullOrBlank()) {
+            val date = getVariableValue(resolver, dateVar.trim()).orEmpty()
+            val time = getVariableValue(resolver, timeVar.trim()).orEmpty()
+            Log.d(TAG, "compose from date_var='$dateVar'='$date' time_var='$timeVar'='$time'")
+            if (date.isNotEmpty() && time.isNotEmpty()) {
+                return "${date}_${time}"
+            }
+        }
+        if (currentTime.isNullOrBlank()) return null
+        val resolved = resolveDateTimeValue(resolver, currentTime.trim())
+        if (!resolved.isNullOrBlank() && looksLikeDateTimeLiteral(resolved)) {
+            return resolved
+        }
+        // Fallback: variable_accident_date_and_time → variable_accident_date + variable_accident_time
+        val name = currentTime.trim()
+        if (name.endsWith("_date_and_time")) {
+            val prefix = name.removeSuffix("_date_and_time")
+            val date = getVariableValue(resolver, "${prefix}_date").orEmpty()
+            val time = getVariableValue(resolver, "${prefix}_time").orEmpty()
+            Log.d(TAG, "compose fallback from '$name' → date='$date' time='$time'")
+            if (date.isNotEmpty() && time.isNotEmpty()) {
+                return "${date}_${time}"
+            }
+        }
+        return resolved
     }
 
     fun Uri.getTrimmedQueryParameter(key: String): String? {

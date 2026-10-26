@@ -3,6 +3,7 @@ package com.yandex.divkit.demo.div
 import OfflineViewList
 import android.content.Context
 import android.content.ContextWrapper
+import android.net.Uri
 import androidx.fragment.app.FragmentActivity
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -775,9 +776,14 @@ class DemoCustomContainerAdapter(
                     "    ]\n" +
                     "  }\n" +
                     "}\n"
-//            val jsonData = evaluateCustomPropString(div, "json_data", expressionResolver, json)
-            val jsonData = json
-            // Cache org tree so submit can resolve policeCenterID (= parent Id) from road code.
+            val fromProp = evaluateCustomPropString(div, "json_data", expressionResolver, "")
+            val fromDb = mehdiViewModel?.getValueByKey("org_tree_json")?.value.orEmpty()
+            val jsonData = when {
+                fromProp.isNotBlank() -> fromProp
+                fromDb.isNotBlank() -> fromDb
+                else -> json
+            }
+            // Cache org tree so submit can resolve policeCenterID from selection.
             runCatching {
                 mehdiViewModel?.insertItemToDbSync(
                     com.yandex.divkit.demo.data.entities.PhPlusDB(null, "org_tree_json", jsonData)
@@ -798,7 +804,13 @@ class DemoCustomContainerAdapter(
                 .ifEmpty { evaluateCustomPropString(div, "title_variable", expressionResolver, "") }
             val codeVariable = evaluateCustomPropString(div, "code_variable", expressionResolver, "")
             val parentIdVariable = evaluateCustomPropString(div, "parent_id_variable", expressionResolver, "")
+            // Selected node's own Id (police center), distinct from parent_id_variable.
+            val idVariable = evaluateCustomPropString(div, "id_variable", expressionResolver, "")
             val confirmText = evaluateCustomPropString(div, "confirm_text", expressionResolver, "تایید")
+            val confirmUrl = evaluateCustomPropString(div, "confirm_url", expressionResolver, "")
+            val clearVariablesOnConfirm = evaluateCustomPropString(
+                div, "clear_variables_on_confirm", expressionResolver, ""
+            )
             val showConfirmStr = evaluateCustomPropString(div, "show_confirm_button", expressionResolver, "")
             val variableTarget = evaluateCustomPropString(div, "variable_target", expressionResolver, "base")
             val dismissOnConfirm = !evaluateCustomPropString(
@@ -811,7 +823,9 @@ class DemoCustomContainerAdapter(
             val showConfirm = when {
                 showConfirmStr.equals("true", ignoreCase = true) -> true
                 showConfirmStr.equals("false", ignoreCase = true) -> false
-                else -> nameVariable.isNotEmpty() || codeVariable.isNotEmpty() || parentIdVariable.isNotEmpty()
+                else -> nameVariable.isNotEmpty() || codeVariable.isNotEmpty() ||
+                    parentIdVariable.isNotEmpty() || idVariable.isNotEmpty() ||
+                    confirmUrl.isNotEmpty()
             }
 
             // Parse selection mode
@@ -840,7 +854,10 @@ class DemoCustomContainerAdapter(
                 nameVariable = nameVariable,
                 codeVariable = codeVariable,
                 parentIdVariable = parentIdVariable,
+                idVariable = idVariable,
                 confirmText = confirmText,
+                confirmUrl = confirmUrl,
+                clearVariablesOnConfirm = clearVariablesOnConfirm,
                 showConfirmButton = showConfirm,
                 divView = divView,
                 variableTarget = variableTarget,
@@ -1875,7 +1892,10 @@ class DemoCustomContainerAdapter(
         nameVariable: String = "",
         codeVariable: String = "",
         parentIdVariable: String = "",
+        idVariable: String = "",
         confirmText: String = "تایید",
+        confirmUrl: String = "",
+        clearVariablesOnConfirm: String = "",
         showConfirmButton: Boolean = false,
         divView: Div2View? = null,
         variableTarget: String = "base",
@@ -1957,41 +1977,177 @@ class DemoCustomContainerAdapter(
                         return@setOnClickListener
                     }
                     val actionHandler = resolveActionHandler(context)
-                    if (actionHandler != null && divView != null) {
-                        if (nameVariable.isNotEmpty()) {
-                            actionHandler.setVariableOnTarget(
-                                nameVariable, selectedNode.name, variableTarget, divView
-                            )
-                        }
-                        if (codeVariable.isNotEmpty()) {
-                            actionHandler.setVariableOnTarget(
-                                codeVariable, selectedNode.code, variableTarget, divView
-                            )
-                        }
-                        if (parentIdVariable.isNotEmpty()) {
-                            actionHandler.setVariableOnTarget(
-                                parentIdVariable, selectedNode.parentId, variableTarget, divView
-                            )
-                        }
-                    } else if (variableTarget.equals("base", ignoreCase = true)) {
-                        if (nameVariable.isNotEmpty()) {
-                            loadScreenListener?.setVariableToBase(nameVariable, selectedNode.name)
-                        }
-                        if (codeVariable.isNotEmpty()) {
-                            loadScreenListener?.setVariableToBase(codeVariable, selectedNode.code)
-                        }
-                        if (parentIdVariable.isNotEmpty()) {
-                            loadScreenListener?.setVariableToBase(parentIdVariable, selectedNode.parentId)
+
+                    fun setVar(name: String, value: String) {
+                        if (name.isEmpty()) return
+                        if (actionHandler != null && divView != null) {
+                            actionHandler.setVariableOnTarget(name, value, variableTarget, divView)
+                        } else if (variableTarget.equals("base", ignoreCase = true)) {
+                            loadScreenListener?.setVariableToBase(name, value)
                         }
                     }
-                    // Always persist parent Id for policeCenterID — Div variable may be missing on old drafts.
-                    persistRoadSelectionToDb(selectedNode.code, selectedNode.parentId, parentIdVariable)
+
+                    setVar(nameVariable, selectedNode.name)
+                    setVar(codeVariable, selectedNode.code)
+                    setVar(idVariable, selectedNode.id)
+                    setVar(parentIdVariable, selectedNode.parentId)
+
+                    clearVariablesOnConfirm
+                        .split(",")
+                        .map { it.trim() }
+                        .filter { it.isNotEmpty() }
+                        .forEach { name ->
+                            val cleared = if (name.contains("ready", ignoreCase = true)) "false" else ""
+                            setVar(name, cleared)
+                        }
+
+                    // Reveal road field as soon as police center is confirmed;
+                    // roadsAccidents may return empty/missing "road" and must not hide UI.
+                    if (confirmUrl.contains("roadsAccidents")) {
+                        setVar("variable_roads_ready", "true")
+                    }
+
+                    // Police-center selection: persist selected node Id + code.
+                    // Legacy road-tree selection: persist parent Id as policeCenterId.
+                    if (idVariable.isNotBlank() || confirmUrl.contains("roadsAccidents")) {
+                        persistPoliceCenterSelectionToDb(selectedNode.id, selectedNode.code)
+                    } else {
+                        persistRoadSelectionToDb(
+                            selectedNode.code,
+                            selectedNode.parentId,
+                            parentIdVariable
+                        )
+                    }
+
+                    if (confirmUrl.isNotBlank()) {
+                        dispatchStaticTreeConfirmUrl(
+                            confirmUrl = confirmUrl,
+                            selectedNode = selectedNode,
+                            codeVariable = codeVariable,
+                            nameVariable = nameVariable,
+                            idVariable = idVariable,
+                            loadScreenListener = loadScreenListener,
+                        )
+                    }
+
                     if (dismissOnConfirm) {
                         dismissHostingBottomSheet(context)
                     }
                 }
             }
             addView(confirmButton)
+        }
+    }
+
+    /**
+     * Executes confirm_url after selection. For call_service, injects selected node code into
+     * policeCenterCode so @{variable_policeCenterCode} is never sent empty (vars are on base,
+     * while the sheet URL may evaluate before set).
+     */
+    private fun dispatchStaticTreeConfirmUrl(
+        confirmUrl: String,
+        selectedNode: StaticTreeView.TreeNode,
+        codeVariable: String,
+        nameVariable: String,
+        idVariable: String,
+        loadScreenListener: LoadScreenListener?,
+    ) {
+        val resolvedUrl = confirmUrl
+            .replace("@{variable_policeCenterCode}", selectedNode.code)
+            .replace("@{variable_policeCenter}", selectedNode.name)
+            .replace("@{variable_policeCenterId}", selectedNode.id)
+            .let { url ->
+                var out = url
+                if (codeVariable.isNotBlank()) {
+                    out = out.replace("@{$codeVariable}", selectedNode.code)
+                }
+                if (nameVariable.isNotBlank()) {
+                    out = out.replace("@{$nameVariable}", selectedNode.name)
+                }
+                if (idVariable.isNotBlank()) {
+                    out = out.replace("@{$idVariable}", selectedNode.id)
+                }
+                out
+            }
+
+        val uri = runCatching { Uri.parse(resolvedUrl) }.getOrNull() ?: return
+        if (uri.scheme != "div-action" || uri.authority != "call_service") {
+            android.util.Log.w(
+                "DemoCustomContainerAdapter",
+                "confirm_url not call_service, ignored: $resolvedUrl"
+            )
+            return
+        }
+
+        val map = java.util.HashMap<String, String>()
+        for (parameterName in uri.queryParameterNames) {
+            map[parameterName] = uri.getQueryParameter(parameterName).orEmpty()
+        }
+        // Always send the selected node's code — never an empty expression residue.
+        map["policeCenterCode"] = selectedNode.code
+        if (map["ph/token"].isNullOrBlank()) {
+            map["ph/token"] = "empty"
+        }
+        if (map["sysName"].isNullOrBlank()) {
+            map["sysName"] = "accidents"
+        }
+        if (map["path"].isNullOrBlank()) {
+            map["path"] = "roadsAccidents"
+        }
+
+        android.util.Log.d(
+            "DemoCustomContainerAdapter",
+            "static_tree confirm call_service map=$map"
+        )
+        loadScreenListener?.onRequest(map)
+    }
+
+    private fun persistPoliceCenterSelectionToDb(policeCenterId: String, policeCenterCode: String) {
+        val accidentId = mehdiViewModel?.getValueByKey("current_accident_id")?.value.orEmpty()
+        if (accidentId.isBlank()) {
+            android.util.Log.w(
+                "DemoCustomContainerAdapter",
+                "persistPoliceCenterSelectionToDb: current_accident_id empty; id=$policeCenterId code=$policeCenterCode"
+            )
+            // Still persist global keys used by roadsAccidents if needed later.
+        }
+        runCatching {
+            if (accidentId.isNotBlank()) {
+                mehdiViewModel?.insertItemToDbSync(
+                    com.yandex.divkit.demo.data.entities.PhPlusDB(
+                        null,
+                        "variable_policeCenterId/$accidentId",
+                        policeCenterId
+                    )
+                )
+                mehdiViewModel?.insertItemToDbSync(
+                    com.yandex.divkit.demo.data.entities.PhPlusDB(
+                        null,
+                        "variable_policeCenterCode/$accidentId",
+                        policeCenterCode
+                    )
+                )
+            }
+            mehdiViewModel?.insertItemToDbSync(
+                com.yandex.divkit.demo.data.entities.PhPlusDB(
+                    null,
+                    "variable_policeCenterId",
+                    policeCenterId
+                )
+            )
+            mehdiViewModel?.insertItemToDbSync(
+                com.yandex.divkit.demo.data.entities.PhPlusDB(
+                    null,
+                    "variable_policeCenterCode",
+                    policeCenterCode
+                )
+            )
+            android.util.Log.d(
+                "DemoCustomContainerAdapter",
+                "Saved policeCenterId=$policeCenterId policeCenterCode=$policeCenterCode accidentId=$accidentId"
+            )
+        }.onFailure {
+            android.util.Log.e("DemoCustomContainerAdapter", "persistPoliceCenterSelectionToDb failed", it)
         }
     }
 
@@ -2308,6 +2464,46 @@ class DemoCustomContainerAdapter(
         } else {
             loadScreenListener?.loadeScreenWithData(data, next)
         }
+    }
+
+    override fun onVehicleSignatureSaved(archiveKey: String, signatureBase64: String) {
+        if (archiveKey.isBlank() || signatureBase64.isBlank()) return
+        val existingJson = mehdiViewModel?.getValueByKey(archiveKey)?.value.orEmpty()
+        if (existingJson.isBlank()) {
+            android.util.Log.w(
+                "DemoCustomContainerAdapter",
+                "onVehicleSignatureSaved: archive missing key=$archiveKey",
+            )
+            return
+        }
+        val updated = runCatching {
+            JSONObject(existingJson).apply {
+                put(VehicleEntryCountHelper.DRIVER_SIGNATURE_ARCHIVE_FIELD, signatureBase64)
+            }
+        }.getOrNull() ?: return
+
+        val username = mehdiViewModel?.getValueByKey("userName")?.value.orEmpty()
+        val accidentId = updated.optString("accident_id")
+            .ifBlank { VehicleEntryCountHelper.resolveAccidentId(mehdiViewModel) }
+        val vehicleId = updated.optString("vehicle_id")
+            .ifBlank { archiveKey.substringAfterLast('/') }
+
+        if (username.isBlank() || accidentId.isBlank() || vehicleId.isBlank()) {
+            android.util.Log.w(
+                "DemoCustomContainerAdapter",
+                "onVehicleSignatureSaved: missing ids username=$username accidentId=$accidentId vehicleId=$vehicleId",
+            )
+            return
+        }
+
+        mehdiViewModel?.upsertVehicleArchiveEntry(
+            username = username,
+            accidentId = accidentId,
+            vehicleId = vehicleId,
+            archiveKey = archiveKey,
+            json = updated.toString(),
+        )
+        VehicleEntryCountHelper.sync(mehdiViewModel, offlineListDiv2View, accidentId)
     }
 
     override fun onDeleteOfflineView(archiveKey: String, data: String) {

@@ -9,10 +9,10 @@ import java.io.File
 import java.io.InputStreamReader
 
 /**
- * Multi-signal rooted-environment checks.
+ * Multi-signal rooted-environment checks (su/magisk/busybox/test-keys/frida/xposed).
  *
- * Does **not** hard-block the app: many field/MDM devices report false positives.
- * Results are available via [lastResult] for telemetry / future server attestation.
+ * Does **not** hard-block the app by default: many field/MDM devices report false positives.
+ * Results are available via [lastResult] for telemetry / server attestation.
  */
 object RootDetector {
 
@@ -33,14 +33,18 @@ object RootDetector {
         if (hasTestKeys()) signals += "test-keys"
         if (hasSuBinary()) signals += "su-binary"
         if (hasMagiskArtifacts()) signals += "magisk"
+        if (hasBusyBox()) signals += "busybox"
         if (canExecuteWhichSu()) signals += "which-su"
         if (hasDangerousPackages(context)) signals += "root-apps"
         if (canWriteSystem()) signals += "rw-system"
+        if (hasFridaArtifacts()) signals += "frida"
+        if (hasXposedArtifacts()) signals += "xposed"
+        if (isDebuggerAttached()) signals += "debugger"
 
         val result = Result(isSuspicious = signals.isNotEmpty(), signals = signals)
         lastResult = result
         if (result.isSuspicious) {
-            Log.w(TAG, "Root signals detected: ${signals.joinToString()}")
+            Log.w(TAG, "Root/hook signals detected: ${signals.joinToString()}")
         } else {
             Log.i(TAG, "No common root signals detected")
         }
@@ -64,6 +68,8 @@ object RootDetector {
             "/data/local/bin/su",
             "/data/local/su",
             "/su/bin/su",
+            "/system/app/Superuser.apk",
+            "/system/app/SuperSU.apk",
         )
         return paths.any { File(it).exists() }
     }
@@ -74,10 +80,15 @@ object RootDetector {
             "/data/adb/magisk",
             "/data/adb/modules",
             "/cache/.disable_magisk",
+            "/data/adb/magisk.db",
         )
-        return paths.any { File(it).exists() } ||
-            File("/system/xbin/busybox").exists() ||
-            File("/system/bin/busybox").exists()
+        return paths.any { File(it).exists() }
+    }
+
+    private fun hasBusyBox(): Boolean {
+        return File("/system/xbin/busybox").exists() ||
+            File("/system/bin/busybox").exists() ||
+            File("/sbin/busybox").exists()
     }
 
     private fun canExecuteWhichSu(): Boolean {
@@ -104,6 +115,9 @@ object RootDetector {
             "com.kingroot.kinguser",
             "com.kingo.root",
             "me.phh.superuser",
+            "com.saurik.substrate",
+            "de.robv.android.xposed.installer",
+            "com.android.vending.billing.InAppBillingService.COIN",
         )
         val pm = context.packageManager
         return packages.any { pkg ->
@@ -130,5 +144,37 @@ object RootDetector {
         } catch (_: Exception) {
             false
         }
+    }
+
+    private fun hasFridaArtifacts(): Boolean {
+        val paths = arrayOf(
+            "/data/local/tmp/frida-server",
+            "/data/local/tmp/re.frida.server",
+            "/system/bin/frida-server",
+            "/system/xbin/frida-server",
+        )
+        if (paths.any { File(it).exists() }) return true
+        return try {
+            val maps = File("/proc/self/maps").readText()
+            maps.contains("frida", ignoreCase = true) ||
+                maps.contains("gadget", ignoreCase = true)
+        } catch (_: Exception) {
+            false
+        }
+    }
+
+    private fun hasXposedArtifacts(): Boolean {
+        return try {
+            val maps = File("/proc/self/maps").readText()
+            maps.contains("XposedBridge", ignoreCase = true) ||
+                maps.contains("edxp", ignoreCase = true) ||
+                maps.contains("lsposed", ignoreCase = true)
+        } catch (_: Exception) {
+            false
+        } || File("/system/framework/XposedBridge.jar").exists()
+    }
+
+    private fun isDebuggerAttached(): Boolean {
+        return android.os.Debug.isDebuggerConnected() || android.os.Debug.waitingForDebugger()
     }
 }

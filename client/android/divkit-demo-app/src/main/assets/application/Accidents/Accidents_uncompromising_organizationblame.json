@@ -1,6 +1,214 @@
 {
+  "templates": {
+    "page_title": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "wrap_content"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "section_label": {
+      "type": "text",
+      "font_size": 12,
+      "font_weight": "medium",
+      "text_color": "#6b7280",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 6
+      }
+    },
+    "field_box": {
+      "type": "container",
+      "orientation": "horizontal",
+      "content_alignment_horizontal": "right",
+      "content_alignment_vertical": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#ffffff"
+        }
+      ],
+      "border": {
+        "corner_radius": 8,
+        "stroke": {
+          "color": "#c8d0e4",
+          "width": 1
+        }
+      },
+      "paddings": {
+        "top": 10,
+        "bottom": 10,
+        "start": 12,
+        "end": 12
+      },
+      "margins": {
+        "bottom": 10
+      }
+    },
+    "field_value": {
+      "type": "text",
+      "font_size": 13,
+      "text_color": "#1f2937",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "field_input": {
+      "type": "input",
+      "font_size": 13,
+      "text_color": "#1f2937",
+      "hint_color": "#9ca3af",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      }
+    },
+    "validation_text": {
+      "type": "text",
+      "font_size": 12,
+      "font_weight": "medium",
+      "text_color": "#dc2626",
+      "text_alignment_horizontal": "right",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "bottom": 6
+      }
+    },
+    "primary_btn": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#ffffff",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#193d8d"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14
+      }
+    },
+    "secondary_btn": {
+      "type": "text",
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_color": "#193d8d",
+      "text_alignment_horizontal": "center",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#f3f5f9"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      },
+      "paddings": {
+        "top": 14,
+        "bottom": 14
+      },
+      "margins": {
+        "top": 8
+      }
+    }
+  },
   "card": {
-    "log_id": "div2_sample_card",
+    "log_id": "accidents_uncompromising_organizationblame",
+    "variables": [
+      {
+        "type": "string",
+        "name": "current_organization_id",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "current_accident_id",
+        "value": ""
+      },
+      {
+        "type": "integer",
+        "name": "current_step",
+        "value": 5
+      },
+      {
+        "type": "integer",
+        "name": "total",
+        "value": 5
+      },
+      {
+        "type": "boolean",
+        "name": "attempted_next",
+        "value": false
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_organization_name",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_organization_fault_status",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_organization_judicial_cause",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "uncompromising_organization_main_cause",
+        "value": ""
+      }
+    ],
     "states": [
       {
         "state_id": 0,
@@ -25,6 +233,18 @@
             "start": 16,
             "end": 16
           },
+          "visibility_actions": [
+            {
+              "log_id": "load_organization_id",
+              "url": "div-action://set_variable_from_db?name=current_organization_id",
+              "visibility_duration": 0
+            },
+            {
+              "log_id": "load_accident_id",
+              "url": "div-action://set_variable_from_db?name=current_accident_id",
+              "visibility_duration": 0
+            }
+          ],
           "items": [
             {
               "type": "container",
@@ -99,7 +319,7 @@
                   "type": "custom",
                   "custom_type": "circular_progress",
                   "custom_props": {
-                    "current": "@{current}",
+                    "current": "@{current_step}",
                     "total": "@{total}"
                   },
                   "width": {
@@ -126,7 +346,7 @@
                   "items": [
                     {
                       "type": "text",
-                      "text": "مشخصات سازمان مقصر",
+                      "text": "افزودن سازمان مقصر",
                       "font_size": 12,
                       "font_weight": "medium",
                       "text_color": "#1f2937",
@@ -136,6 +356,22 @@
                       },
                       "height": {
                         "type": "wrap_content"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": "بعدی: بازگشت به لیست سازمان‌ها",
+                      "font_size": 10,
+                      "text_color": "#6b7280",
+                      "text_alignment_horizontal": "right",
+                      "width": {
+                        "type": "match_parent"
+                      },
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "margins": {
+                        "top": 1
                       }
                     }
                   ]
@@ -149,75 +385,70 @@
                 "type": "match_parent"
               },
               "height": {
-                "type": "match_parent"
+                "type": "match_parent",
+                "weight": 1
               },
               "items": [
                 {
                   "type": "container",
+                  "orientation": "vertical",
                   "width": {
                     "type": "match_parent"
                   },
                   "height": {
                     "type": "wrap_content"
                   },
-                  "orientation": "vertical",
                   "background": [
                     {
                       "type": "solid",
-                      "color": "#ffffff"
+                      "color": "#f3f5f9"
                     }
                   ],
                   "border": {
-                    "corner_radius": 6,
-                    "stroke": {
-                      "color": "#c8d0e4",
-                      "width": 1
-                    }
-                  },
-                  "margins": {
-                    "top": 8,
-                    "bottom": 8,
-                    "start": 8,
-                    "end": 8
+                    "corner_radius": 8
                   },
                   "paddings": {
-                    "top": 8,
-                    "bottom": 8
+                    "top": 12,
+                    "bottom": 4,
+                    "start": 12,
+                    "end": 12
                   },
                   "items": [
                     {
-                      "type": "text",
-                      "text": "مشخصات سازمان مقصر",
-                      "font_size": 14,
-                      "font_weight": "bold",
+                      "type": "container",
+                      "orientation": "vertical",
                       "width": {
                         "type": "match_parent"
                       },
-                      "text_alignment_horizontal": "end",
+                      "height": {
+                        "type": "wrap_content"
+                      },
+                      "background": [
+                        {
+                          "type": "solid",
+                          "color": "#fef2f2"
+                        }
+                      ],
+                      "border": {
+                        "corner_radius": 8
+                      },
+                      "paddings": {
+                        "top": 10,
+                        "bottom": 6,
+                        "start": 12,
+                        "end": 12
+                      },
                       "margins": {
-                        "top": 8,
-                        "bottom": 8,
-                        "start": 10,
-                        "end": 10
-                      }
-                    },
-                    {
-                      "type": "container",
-                      "width": {
-                        "type": "match_parent"
+                        "bottom": 10
                       },
-                      "height": {
-                        "type": "wrap_content"
-                      },
-                      "orientation": "vertical",
+                      "visibility": "@{attempted_next && len(uncompromising_organization_name) == 0 ? 'visible' : 'gone'}",
                       "items": [
                         {
                           "type": "text",
-                          "text": "نام سازمان",
-                          "font_size": 12,
+                          "text": "لطفاً موارد الزامی را تکمیل کنید",
+                          "font_size": 13,
                           "font_weight": "medium",
-                          "line_height": 24,
-                          "text_color": "#3b3b3b",
+                          "text_color": "#b91c1c",
                           "text_alignment_horizontal": "right",
                           "width": {
                             "type": "match_parent"
@@ -226,364 +457,77 @@
                             "type": "wrap_content"
                           },
                           "margins": {
-                            "top": 10,
-                            "bottom": 6,
-                            "start": 15,
-                            "end": 15
+                            "bottom": 6
                           }
                         },
                         {
-                          "type": "container",
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "height": {
-                            "type": "wrap_content"
-                          },
-                          "orientation": "horizontal",
-                          "content_alignment_horizontal": "right",
-                          "content_alignment_vertical": "center",
-                          "background": [
-                            {
-                              "type": "solid",
-                              "color": "#ffffff"
-                            }
-                          ],
-                          "border": {
-                            "corner_radius": 4,
-                            "corners_radius": {
-                              "top-left": 4,
-                              "top-right": 4,
-                              "bottom-left": 4,
-                              "bottom-right": 4
-                            },
-                            "stroke": {
-                              "color": "#cccccc",
-                              "width": 2,
-                              "unit": "px"
-                            }
-                          },
-                          "paddings": {
-                            "top": 8,
-                            "bottom": 8,
-                            "left": 12,
-                            "right": 12
-                          },
-                          "margins": {
-                            "top": 4,
-                            "bottom": 8,
-                            "start": 8,
-                            "end": 8
-                          },
-                          "items": [
-                            {
-                              "type": "input",
-                              "hint_text": "نام سازمان را وارد نمایید",
-                              "text_variable": "uncompromising_organization_name",
-                              "keyboard_type": "single_line_text",
-                              "font_size": 14,
-                              "text_color": "#3b3b3b",
-                              "text_alignment_horizontal": "right",
-                              "width": {
-                                "type": "match_parent"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              }
-                            }
-                          ]
+                          "type": "validation_text",
+                          "text": "نام سازمان اجباری می باشد.",
+                          "visibility": "@{len(uncompromising_organization_name) == 0 ? 'visible' : 'gone'}"
                         }
                       ]
                     },
                     {
-                      "type": "container",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      },
-                      "orientation": "vertical",
+                      "type": "section_label",
+                      "text": "نام سازمان *"
+                    },
+                    {
+                      "type": "field_box",
                       "items": [
                         {
-                          "type": "text",
-                          "text": "وضعیت تقصیر",
-                          "font_size": 12,
-                          "font_weight": "medium",
-                          "line_height": 24,
-                          "text_color": "#3b3b3b",
-                          "text_alignment_horizontal": "right",
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "height": {
-                            "type": "wrap_content"
-                          },
-                          "margins": {
-                            "top": 10,
-                            "bottom": 6,
-                            "start": 15,
-                            "end": 15
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "height": {
-                            "type": "wrap_content"
-                          },
-                          "orientation": "horizontal",
-                          "content_alignment_horizontal": "right",
-                          "content_alignment_vertical": "center",
-                          "background": [
-                            {
-                              "type": "solid",
-                              "color": "#ffffff"
-                            }
-                          ],
-                          "border": {
-                            "corner_radius": 4,
-                            "corners_radius": {
-                              "top-left": 4,
-                              "top-right": 4,
-                              "bottom-left": 4,
-                              "bottom-right": 4
-                            },
-                            "stroke": {
-                              "color": "#cccccc",
-                              "width": 2,
-                              "unit": "px"
-                            }
-                          },
-                          "paddings": {
-                            "top": 8,
-                            "bottom": 8,
-                            "left": 12,
-                            "right": 12
-                          },
-                          "margins": {
-                            "top": 4,
-                            "bottom": 8,
-                            "start": 8,
-                            "end": 8
-                          },
-                          "items": [
-                            {
-                              "type": "input",
-                              "hint_text": "مقصر / غیر مقصر",
-                              "text_variable": "uncompromising_organization_fault_status",
-                              "keyboard_type": "single_line_text",
-                              "font_size": 14,
-                              "text_color": "#3b3b3b",
-                              "text_alignment_horizontal": "right",
-                              "width": {
-                                "type": "match_parent"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              }
-                            }
-                          ]
+                          "type": "field_input",
+                          "text_variable": "uncompromising_organization_name",
+                          "hint_text": "نام سازمان را وارد نمایید",
+                          "keyboard_type": "single_line_text"
                         }
                       ]
                     },
                     {
-                      "type": "container",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      },
-                      "orientation": "vertical",
+                      "type": "section_label",
+                      "text": "وضعیت تقصیر"
+                    },
+                    {
+                      "type": "field_box",
                       "items": [
                         {
-                          "type": "text",
-                          "text": "علت قضایی تصادف",
-                          "font_size": 12,
-                          "font_weight": "medium",
-                          "line_height": 24,
-                          "text_color": "#3b3b3b",
-                          "text_alignment_horizontal": "right",
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "height": {
-                            "type": "wrap_content"
-                          },
-                          "margins": {
-                            "top": 10,
-                            "bottom": 6,
-                            "start": 15,
-                            "end": 15
-                          }
-                        },
-                        {
-                          "type": "container",
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "height": {
-                            "type": "wrap_content"
-                          },
-                          "orientation": "horizontal",
-                          "content_alignment_horizontal": "right",
-                          "content_alignment_vertical": "center",
-                          "background": [
-                            {
-                              "type": "solid",
-                              "color": "#ffffff"
-                            }
-                          ],
-                          "border": {
-                            "corner_radius": 4,
-                            "corners_radius": {
-                              "top-left": 4,
-                              "top-right": 4,
-                              "bottom-left": 4,
-                              "bottom-right": 4
-                            },
-                            "stroke": {
-                              "color": "#cccccc",
-                              "width": 2,
-                              "unit": "px"
-                            }
-                          },
-                          "paddings": {
-                            "top": 8,
-                            "bottom": 8,
-                            "left": 12,
-                            "right": 12
-                          },
-                          "margins": {
-                            "top": 4,
-                            "bottom": 8,
-                            "start": 8,
-                            "end": 8
-                          },
-                          "items": [
-                            {
-                              "type": "input",
-                              "hint_text": "علت قضایی را وارد نمایید",
-                              "text_variable": "uncompromising_organization_judicial_cause",
-                              "keyboard_type": "single_line_text",
-                              "font_size": 14,
-                              "text_color": "#3b3b3b",
-                              "text_alignment_horizontal": "right",
-                              "width": {
-                                "type": "match_parent"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              }
-                            }
-                          ]
+                          "type": "field_input",
+                          "text_variable": "uncompromising_organization_fault_status",
+                          "hint_text": "مقصر / غیر مقصر",
+                          "keyboard_type": "single_line_text"
                         }
                       ]
                     },
                     {
-                      "type": "container",
-                      "width": {
-                        "type": "match_parent"
-                      },
-                      "height": {
-                        "type": "wrap_content"
-                      },
-                      "orientation": "vertical",
+                      "type": "section_label",
+                      "text": "علت قضایی تصادف"
+                    },
+                    {
+                      "type": "field_box",
                       "items": [
                         {
-                          "type": "text",
-                          "text": "علت تامه",
-                          "font_size": 12,
-                          "font_weight": "medium",
-                          "line_height": 24,
-                          "text_color": "#3b3b3b",
-                          "text_alignment_horizontal": "right",
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "height": {
-                            "type": "wrap_content"
-                          },
-                          "margins": {
-                            "top": 10,
-                            "bottom": 6,
-                            "start": 15,
-                            "end": 15
-                          }
-                        },
+                          "type": "field_input",
+                          "text_variable": "uncompromising_organization_judicial_cause",
+                          "hint_text": "علت قضایی را وارد نمایید",
+                          "keyboard_type": "single_line_text"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "section_label",
+                      "text": "علت تامه"
+                    },
+                    {
+                      "type": "field_box",
+                      "items": [
                         {
-                          "type": "container",
-                          "width": {
-                            "type": "match_parent"
-                          },
-                          "height": {
-                            "type": "wrap_content"
-                          },
-                          "orientation": "horizontal",
-                          "content_alignment_horizontal": "right",
-                          "content_alignment_vertical": "center",
-                          "background": [
-                            {
-                              "type": "solid",
-                              "color": "#ffffff"
-                            }
-                          ],
-                          "border": {
-                            "corner_radius": 4,
-                            "corners_radius": {
-                              "top-left": 4,
-                              "top-right": 4,
-                              "bottom-left": 4,
-                              "bottom-right": 4
-                            },
-                            "stroke": {
-                              "color": "#cccccc",
-                              "width": 2,
-                              "unit": "px"
-                            }
-                          },
-                          "paddings": {
-                            "top": 8,
-                            "bottom": 8,
-                            "left": 12,
-                            "right": 12
-                          },
-                          "margins": {
-                            "top": 4,
-                            "bottom": 8,
-                            "start": 8,
-                            "end": 8
-                          },
-                          "items": [
-                            {
-                              "type": "input",
-                              "hint_text": "علت تامه را وارد نمایید",
-                              "text_variable": "uncompromising_organization_main_cause",
-                              "keyboard_type": "single_line_text",
-                              "font_size": 14,
-                              "text_color": "#3b3b3b",
-                              "text_alignment_horizontal": "right",
-                              "width": {
-                                "type": "match_parent"
-                              },
-                              "height": {
-                                "type": "wrap_content"
-                              }
-                            }
-                          ]
+                          "type": "field_input",
+                          "text_variable": "uncompromising_organization_main_cause",
+                          "hint_text": "علت تامه را وارد نمایید",
+                          "keyboard_type": "single_line_text"
                         }
                       ]
                     }
                   ]
-                }
-              ],
-              "background": [
-                {
-                  "type": "solid",
-                  "color": "#f3f5f9"
                 }
               ]
             },
@@ -613,15 +557,28 @@
                   },
                   "actions": [
                     {
+                      "log_id": "attempt_show_errors",
+                      "is_enabled": "@{len(uncompromising_organization_name) == 0}",
+                      "url": "div-action://set_variable?name=attempted_next&value=true"
+                    },
+                    {
+                      "log_id": "toast_validation",
+                      "is_enabled": "@{len(uncompromising_organization_name) == 0}",
+                      "url": "div-action://show_toast?massage=لطفاً فیلدهای الزامی را تکمیل کنید"
+                    },
+                    {
                       "log_id": "save_draft_organization",
+                      "is_enabled": "@{len(uncompromising_organization_name) > 0}",
                       "url": "div-action://set_page_with_changes_to_db?key=draft/@{current_organization_id}/page1"
                     },
                     {
                       "log_id": "save_organization_to_list",
+                      "is_enabled": "@{len(uncompromising_organization_name) > 0}",
                       "url": "div-action://save_organization_to_list?accident_id=@{current_accident_id}&organization_id=@{current_organization_id}"
                     },
                     {
                       "log_id": "return_to_organization_list",
+                      "is_enabled": "@{len(uncompromising_organization_name) > 0}",
                       "url": "div-action://pop_and_load_screen"
                     }
                   ]
@@ -646,144 +603,9 @@
                 }
               ]
             }
-          ],
-          "visibility_actions": [
-            {
-              "log_id": "load_organization_id",
-              "url": "div-action://set_variable_from_db?name=current_organization_id",
-              "visibility_duration": 0
-            },
-            {
-              "log_id": "load_accident_id",
-              "url": "div-action://set_variable_from_db?name=current_accident_id",
-              "visibility_duration": 0
-            }
           ]
         }
       }
-    ],
-    "variables": [
-      {
-        "type": "dict",
-        "name": "local_palette",
-        "value": {
-          "bg_primary": {
-            "name": "Primary background",
-            "light": "#fff",
-            "dark": "#000"
-          },
-          "color0": {
-            "name": "Secondary background",
-            "light": "#eeeeee",
-            "dark": "#000"
-          }
-        }
-      },
-      {
-        "type": "string",
-        "name": "arrow_right",
-        "value": "empty://"
-      },
-      {
-        "type": "string",
-        "name": "uncompromising_organization_name",
-        "value": ""
-      },
-      {
-        "type": "string",
-        "name": "uncompromising_organization_fault_status",
-        "value": ""
-      },
-      {
-        "type": "string",
-        "name": "uncompromising_organization_judicial_cause",
-        "value": ""
-      },
-      {
-        "type": "string",
-        "name": "uncompromising_organization_main_cause",
-        "value": ""
-      },
-      {
-        "type": "string",
-        "name": "current_organization_id",
-        "value": ""
-      },
-      {
-        "type": "string",
-        "name": "current_accident_id",
-        "value": ""
-      }
     ]
-  },
-  "templates": {
-    "page_title": {
-      "type": "text",
-      "font_size": 14,
-      "font_weight": "medium",
-      "text_color": "#193d8d",
-      "text_alignment_horizontal": "right",
-      "width": {
-        "type": "wrap_content"
-      },
-      "height": {
-        "type": "wrap_content"
-      }
-    },
-    "primary_btn": {
-      "type": "text",
-      "font_size": 14,
-      "font_weight": "medium",
-      "text_color": "#ffffff",
-      "text_alignment_horizontal": "center",
-      "width": {
-        "type": "match_parent"
-      },
-      "height": {
-        "type": "wrap_content"
-      },
-      "background": [
-        {
-          "type": "solid",
-          "color": "#193d8d"
-        }
-      ],
-      "border": {
-        "corner_radius": 8
-      },
-      "paddings": {
-        "top": 14,
-        "bottom": 14
-      }
-    },
-    "secondary_btn": {
-      "type": "text",
-      "font_size": 14,
-      "font_weight": "medium",
-      "text_color": "#193d8d",
-      "text_alignment_horizontal": "center",
-      "width": {
-        "type": "match_parent"
-      },
-      "height": {
-        "type": "wrap_content"
-      },
-      "background": [
-        {
-          "type": "solid",
-          "color": "#f3f5f9"
-        }
-      ],
-      "border": {
-        "corner_radius": 8
-      },
-      "paddings": {
-        "top": 14,
-        "bottom": 14
-      },
-      "margins": {
-        "top": 8
-      }
-    }
   }
 }

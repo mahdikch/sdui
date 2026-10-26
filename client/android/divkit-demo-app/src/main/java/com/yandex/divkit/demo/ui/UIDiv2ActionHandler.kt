@@ -1096,6 +1096,7 @@ class UIDiv2ActionHandler(
         } else if (uri.authority == AUTHORITY_IS_DATE_AND_TIME_LESS_EQUAL_TODAY_NOW) {
             val div2View = view as? Div2View ?: return false
             // Support both current_time and legacy `val` param names.
+            // Prefer date_var+time_var to avoid race with just-set *_date_and_time.
             val currentTime = uri.getTrimmedQueryParameter("current_time")
                 ?: uri.getTrimmedQueryParameter("val")
             android.util.Log.d(
@@ -1108,6 +1109,8 @@ class UIDiv2ActionHandler(
                 div2View.expressionResolver,
                 currentTime,
                 uri.getTrimmedQueryParameter("result_var"),
+                uri.getTrimmedQueryParameter("date_var"),
+                uri.getTrimmedQueryParameter("time_var"),
             )
 
         } else if (uri.authority == AUTHORITY_IS_BIGGER_DATE_AND_TIME) {
@@ -1123,6 +1126,14 @@ class UIDiv2ActionHandler(
                 uri.getTrimmedQueryParameter("val1"),
                 uri.getTrimmedQueryParameter("val2"),
                 uri.getTrimmedQueryParameter("result_var"),
+                uri.getTrimmedQueryParameter("val1_date_var")
+                    ?: uri.getTrimmedQueryParameter("date_var1"),
+                uri.getTrimmedQueryParameter("val1_time_var")
+                    ?: uri.getTrimmedQueryParameter("time_var1"),
+                uri.getTrimmedQueryParameter("val2_date_var")
+                    ?: uri.getTrimmedQueryParameter("date_var2"),
+                uri.getTrimmedQueryParameter("val2_time_var")
+                    ?: uri.getTrimmedQueryParameter("time_var2"),
             )
 
         } else if (uri.authority == AUTHORITY_GET_CAMERA_PERMISSION) {
@@ -2155,8 +2166,15 @@ class UIDiv2ActionHandler(
 //            Toast.makeText(context, uri.getQueryParameter(PARAM_TOAST), Toast.LENGTH_LONG).show()
             val parameterNames = uri.queryParameterNames
             val map: MutableMap<String, String> = HashMap()
+            val div2View = if (view is Div2View) view as Div2View? else null
+            val expressionResolver = div2View?.expressionResolver
             for (parameterName in parameterNames) {
-                map[parameterName] = uri.getQueryParameter(parameterName).toString()
+                var parameterValue = uri.getQueryParameter(parameterName).toString()
+                if (expressionResolver != null && parameterValue.contains("@{")) {
+                    parameterValue =
+                        processNestedVariableExpressions(parameterValue, expressionResolver)
+                }
+                map[parameterName] = parameterValue
             }
             btmSheet_list = BottomSheetSpinner(
                 context,
@@ -2166,7 +2184,8 @@ class UIDiv2ActionHandler(
                 uri.getQueryParameter(PARAM_BOTTOM_SHEET_LIST_CODE_VAR).toString(),
                 uri.getQueryParameter(PARAM_BOTTOM_SHEET_LIST_TITLE_VAR).toString(),
                 view,
-                map
+                map,
+                loadScreenListener,
             )
             btmSheet_list.show(
                 (context as FragmentActivity).supportFragmentManager,
@@ -3328,7 +3347,9 @@ class UIDiv2ActionHandler(
                 "id", "title", "code_var", "title_var", "varName",
                 "sysName", "path", "selection", "selected_codes",
                 "sync_from", "sync_fields", "sync_match", "sync_nested",
-                "SEARCHABLE", "searchable"
+                "SEARCHABLE", "searchable",
+                "service_path", "response_key", "id_field", "name_field",
+                "search_param", "page_param", "paged", "has_more_field"
             )
 
             // اضافه کردن تمام پارامترهای اضافی (مثل arrestType, bstArrestCauseType و غیره)
@@ -3865,6 +3886,7 @@ class UIDiv2ActionHandler(
             ).show()
             return
         }
+
         val pdf = PersianDateFormat("Y/m/d-H:i:s")
         val currentDate = pdf.format(PersianDate())
 
@@ -3931,13 +3953,14 @@ class UIDiv2ActionHandler(
 
         val archiveKey = "$username/vehicles/$accidentId/$vehicleId"
         val existingJson = mehdiViewModel?.getValueByKey(archiveKey)?.value
-        val offlineRegisterDate = if (existingJson != null) {
-            runCatching {
-                JSONObject(existingJson).optString("offline_register_date")
-            }.getOrNull()?.takeIf { it.isNotBlank() } ?: currentDate
-        } else {
-            currentDate
-        }
+        val existingArchive = existingJson?.let { runCatching { JSONObject(it) }.getOrNull() }
+        val offlineRegisterDate = existingArchive
+            ?.optString("offline_register_date")
+            ?.takeIf { it.isNotBlank() }
+            ?: currentDate
+        val existingDriverSignature = existingArchive
+            ?.optString(VehicleEntryCountHelper.DRIVER_SIGNATURE_ARCHIVE_FIELD)
+            .orEmpty()
 
         val map = linkedMapOf(
             "accident_id" to accidentId,
@@ -3959,6 +3982,9 @@ class UIDiv2ActionHandler(
             "insurance_persian_lan" to "بیمه",
             "archive_key" to archiveKey,
         )
+        if (existingDriverSignature.isNotBlank()) {
+            map[VehicleEntryCountHelper.DRIVER_SIGNATURE_ARCHIVE_FIELD] = existingDriverSignature
+        }
 
         val json = Gson().toJson(map)
         android.util.Log.d(
