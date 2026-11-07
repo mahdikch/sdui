@@ -61,13 +61,15 @@ public final class PushSsl {
 
             CertificateFactory factory = CertificateFactory.getInstance("X.509");
             Certificate ca;
-            try (InputStream stream = app.getResources().openRawResource(R.raw.push_ca)) {
+//            try (InputStream stream = app.getResources().openRawResource(R.raw.push_ca)) {//mian
+            try (InputStream stream = app.getResources().openRawResource(R.raw.ca)) {//local
                 ca = factory.generateCertificate(stream);
             }
 
             KeyStore customStore = KeyStore.getInstance(KeyStore.getDefaultType());
             customStore.load(null, null);
-            customStore.setCertificateEntry("push_ca", ca);
+//            customStore.setCertificateEntry("push_ca", ca);//main
+            customStore.setCertificateEntry("ca", ca);//local
 
             TrustManagerFactory customTmf = TrustManagerFactory.getInstance(
                     TrustManagerFactory.getDefaultAlgorithm()

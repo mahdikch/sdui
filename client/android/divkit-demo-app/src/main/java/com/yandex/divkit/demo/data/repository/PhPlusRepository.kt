@@ -32,6 +32,9 @@ class PhPlusRepository @Inject constructor(
     suspend fun phPlusDirect(phId: String, request: HashMap<String, String>) =
         remoteDataSource.phPlus(phId, request)
 
+    suspend fun phPlusRawBody(phId: String, jsonBody: String) =
+        remoteDataSource.phPlusRawBody(phId, jsonBody)
+
     suspend fun phPlusWithFiles(
         phId: String,
         requestScreenJson: String,

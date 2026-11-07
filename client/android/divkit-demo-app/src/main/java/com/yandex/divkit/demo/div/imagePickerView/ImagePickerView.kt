@@ -108,6 +108,27 @@ class ImagePickerView @JvmOverloads constructor(
             picker?.handleActivityResultInternal(requestCode, resultCode, data, variableName, key)
             picker?.takeIf { !it.isAttachedToWindow }?.let { activeViews.remove(it) }
         }
+
+        /**
+         * Returns serialized image payload stored under [storeKey]
+         * (e.g. variable_compromising_vehicle_damage_parts_images/{vehicleId}).
+         */
+        fun getStoredSerialized(storeKey: String, withDescriptions: Boolean = false): String {
+            val images = ImageStore.get(storeKey)
+            if (images.isEmpty()) return ""
+            if (withDescriptions) {
+                val arr = JSONArray()
+                images.forEach { item ->
+                    arr.put(JSONObject().apply {
+                        put("image", item.image)
+                        put("scene", item.sceneDesc)
+                        put("expert", item.expertDesc)
+                    })
+                }
+                return arr.toString()
+            }
+            return images.joinToString(",") { it.image }
+        }
     }
 
     init {

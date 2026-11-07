@@ -42,6 +42,13 @@ class MehdiViewModel @Inject constructor(
         repository.phPlusWithFiles(phId, requestScreenJson, files)
     }
 
+    suspend fun callCoordinatorRawBody(
+        phId: String,
+        jsonBody: String,
+    ): Resource<Map<String, String>> = withContext(Dispatchers.IO) {
+        repository.phPlusRawBody(phId, jsonBody)
+    }
+
 
 //    fun insertListToDb(phPlusDBs: List<PhPlusDB>) = viewModelScope.launch(Dispatchers.IO) {
 //        repository.insertList(phPlusDBs)

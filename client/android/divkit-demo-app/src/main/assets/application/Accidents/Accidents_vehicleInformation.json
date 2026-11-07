@@ -1746,8 +1746,8 @@
                           "actions": [
                             {
                               "is_enabled": "true",
-                              "log_id": "show_bottom_sheet_list",
-                              "url": "div-action://bottom_sheet_list?id=VEHICLE_PARTS&varName=VEHICLE_PARTS&selection=multi&title=قسمت های آسیب دیده&title_var=variable_compromising_vehicle_damage_parts&code_var=variable_compromising_vehicle_damage_parts_code"
+                              "log_id": "open_vehicle_damage_3d",
+                              "url": "div-action://open_vehicle_damage_3d?title_var=variable_compromising_vehicle_damage_parts&code_var=variable_compromising_vehicle_damage_parts_code&images_var=variable_compromising_vehicle_damage_parts_images&photos_by_code_var=variable_compromising_vehicle_damage_parts_photos_by_code&store_key=@{current_vehicle_id}"
                             }
                           ],
                           "items": [
@@ -1923,6 +1923,11 @@
                           "log_id": "save_to_db",
                           "is_enabled": "@{variable_validation_vehicle_go_page_driver}",
                           "url": "div-action://set_variable_to_db?key=variable_compromising_vehicle_damage_parts_images/@{current_accident_id}&value=@{variable_compromising_vehicle_damage_parts_images}"
+                        },
+                        {
+                          "log_id": "save_to_db",
+                          "is_enabled": "@{variable_validation_vehicle_go_page_driver}",
+                          "url": "div-action://set_variable_to_db?key=variable_compromising_vehicle_damage_parts_photos_by_code/@{current_accident_id}&value=@{variable_compromising_vehicle_damage_parts_photos_by_code}"
                         },
                         {
                           "log_id": "load_screen",
@@ -2571,6 +2576,11 @@
       {
         "type": "string",
         "name": "variable_compromising_vehicle_damage_parts_images",
+        "value": ""
+      },
+      {
+        "type": "string",
+        "name": "variable_compromising_vehicle_damage_parts_photos_by_code",
         "value": ""
       },
       {

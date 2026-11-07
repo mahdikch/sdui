@@ -29,6 +29,14 @@ interface PhPlusApi {
         @Body request: Map<String, String>,
     ): Response<Map<String, String>>
 
+    /** Raw JSON body (object or array) — used for accident image metadata batch. */
+    @Headers("Content-Type: application/json")
+    @POST("CallService/coordinator")
+    suspend fun phPlusRawBody(
+        @Header("user-id") phId: String,
+        @Body body: RequestBody,
+    ): Response<Map<String, String>>
+
     @Multipart
     @POST("CallService/coordinator")
     suspend fun phPlusWithFiles(

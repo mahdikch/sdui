@@ -55,6 +55,7 @@ import com.yandex.divkit.demo.div.DivActivity
 import com.yandex.divkit.demo.div.DynamicPatchGenerator
 import com.yandex.divkit.demo.div.DynamicPatchGeneratorSingleton
 import com.yandex.divkit.demo.div.asDivPatchWithTemplates
+import com.yandex.divkit.demo.div.vehicleDamage.VehicleDamage3DActivity
 import com.yandex.divkit.demo.persiandatepicker.PersianDatePickerDialog
 import com.yandex.divkit.demo.persiandatepicker.api.PersianPickerDate
 import com.yandex.divkit.demo.persiandatepicker.api.PersianPickerListener
@@ -117,6 +118,7 @@ private const val AUTHORITY_GENERATE_PATCH = "generatePatch"
 private const val AUTHORITY_OPEN_CAMERA = "open_camera"
 private const val AUTHORITY_OPEN_KASHFFACE_CAMERA = "open_kashfface_camera"
 private const val AUTHORITY_OPEN_KASHFFACE_PLATE = "open_kashfface_plate"
+private const val AUTHORITY_OPEN_VEHICLE_DAMAGE_3D = "open_vehicle_damage_3d"
 private const val AUTHORITY_SELECT_GUESTHOUSE_START_DAY = "select_guesthouse_start_day"
 private const val AUTHORITY_SHOW_MASSAGE = "show_toast"
 private const val AUTHORITY_OPEN_KASHFFACE = "open_kashfface"
@@ -526,6 +528,8 @@ class UIDiv2ActionHandler(
                     liveVars,
                     context,
                 )
+                val accidentId = liveVars["current_accident_id"]?.takeIf { it.isNotBlank() }
+                    ?: mehdiViewModel?.getValueByKey("current_accident_id")?.value.orEmpty()
                 android.util.Log.d("UIDiv2ActionHandler", "submit_compromising_accident: requestJson length=${requestJson.length}")
                 val map = HashMap<String, String>()
                 map["path"] = "primaryRegisterAccidents"
@@ -533,6 +537,9 @@ class UIDiv2ActionHandler(
                 map["screenName"] = "accidents"
                 map["ph/token"] = "empty"
                 map["requestJson"] = requestJson
+                // After success, MehdiActivity: metadata → curl links → multipart upload
+                map["_pending_accident_images_upload"] = "true"
+                map["_accident_id"] = accidentId
                 loadScreenListener.onRequest(map)
                 true
             } catch (e: Exception) {
@@ -1207,6 +1214,10 @@ class UIDiv2ActionHandler(
             openKashfFacePlate(
                 defaultMode = uri.getQueryParameter(PARAM_OPEN_KASHFFACE_PLATE_MODE)
             )
+            return true
+
+        } else if (uri.authority == AUTHORITY_OPEN_VEHICLE_DAMAGE_3D) {
+            openVehicleDamage3D(uri)
             return true
 
         } else if (uri.authority == AUTHORITY_SELECT_GUESTHOUSE_START_DAY) {
@@ -3179,6 +3190,14 @@ class UIDiv2ActionHandler(
         private var pendingGuesthouseHandler: WeakReference<UIDiv2ActionHandler>? = null
         private var pendingGuesthouseDayOp: PendingGuesthouseDayOp? = null
 
+        @Transient
+        private var pendingVehicleDamageHandler: WeakReference<UIDiv2ActionHandler>? = null
+        private var pendingVehicleDamageTitleVar: String? = null
+        private var pendingVehicleDamageCodeVar: String? = null
+        private var pendingVehicleDamageImagesVar: String? = null
+        private var pendingVehicleDamagePhotosByCodeVar: String? = null
+        private var pendingVehicleDamageStoreKey: String? = null
+
         /**
          * Handles guestHouse reserve/delete day responses.
          * Returns true when a pending guesthouse day op was consumed.
@@ -3267,6 +3286,67 @@ class UIDiv2ActionHandler(
             }
             return true
         }
+
+        @JvmStatic
+        fun handleVehicleDamage3DResult(
+            requestCode: Int,
+            resultCode: Int,
+            data: Intent?,
+        ): Boolean {
+            if (requestCode != VehicleDamage3DActivity.REQUEST_CODE) {
+                return false
+            }
+            val handler = pendingVehicleDamageHandler?.get()
+            val titleVar = pendingVehicleDamageTitleVar
+            val codeVar = pendingVehicleDamageCodeVar
+            val imagesVar = pendingVehicleDamageImagesVar
+            val photosByCodeVar = pendingVehicleDamagePhotosByCodeVar
+            val storeKey = pendingVehicleDamageStoreKey
+            pendingVehicleDamageHandler = null
+            pendingVehicleDamageTitleVar = null
+            pendingVehicleDamageCodeVar = null
+            pendingVehicleDamageImagesVar = null
+            pendingVehicleDamagePhotosByCodeVar = null
+            pendingVehicleDamageStoreKey = null
+
+            if (resultCode != Activity.RESULT_OK || data == null || handler == null) {
+                return true
+            }
+
+            val titles = data.getStringExtra(VehicleDamage3DActivity.EXTRA_RESULT_TITLES).orEmpty()
+            val codes = data.getStringExtra(VehicleDamage3DActivity.EXTRA_RESULT_CODES).orEmpty()
+            val images = data.getStringExtra(VehicleDamage3DActivity.EXTRA_RESULT_IMAGES).orEmpty()
+            val photosByCode =
+                data.getStringExtra(VehicleDamage3DActivity.EXTRA_RESULT_PHOTOS_BY_CODE).orEmpty()
+
+            val div2View = if (handler.view is Div2View) handler.view as Div2View else null
+            if (!titleVar.isNullOrBlank()) {
+                handler.setVariableIfPresent(div2View, titles, titleVar)
+            }
+            if (!codeVar.isNullOrBlank()) {
+                handler.setVariableIfPresent(div2View, codes, codeVar)
+            }
+            if (!imagesVar.isNullOrBlank()) {
+                handler.setVariableIfPresent(div2View, images, imagesVar)
+                if (!storeKey.isNullOrBlank()) {
+                    runCatching {
+                        handler.loadScreenListener.setVariableToBase("$imagesVar/$storeKey", images)
+                    }
+                }
+            }
+            if (!photosByCodeVar.isNullOrBlank()) {
+                handler.setVariableIfPresent(div2View, photosByCode, photosByCodeVar)
+                if (!storeKey.isNullOrBlank()) {
+                    runCatching {
+                        handler.loadScreenListener.setVariableToBase(
+                            "$photosByCodeVar/$storeKey",
+                            photosByCode,
+                        )
+                    }
+                }
+            }
+            return true
+        }
     }
 
     private fun startActivityAction(klass: Class<out Activity>) {
@@ -3322,6 +3402,76 @@ class UIDiv2ActionHandler(
                 // Variable may not exist on the current screen.
             }
         }
+    }
+
+    /**
+     * Opens the 3D damaged-parts picker.
+     *
+     * URL: div-action://open_vehicle_damage_3d?title_var=...&code_var=...&images_var=...&photos_by_code_var=...&store_key=...
+     */
+    private fun openVehicleDamage3D(uri: Uri) {
+        val host = context as? Activity
+        if (host == null || host.isFinishing) {
+            Toast.makeText(context, "خطا در باز کردن صفحه آسیب‌دیدگی", Toast.LENGTH_SHORT).show()
+            return
+        }
+        val div2View = if (view is Div2View) view as Div2View else null
+        val resolver = div2View?.expressionResolver
+
+        fun qp(name: String, default: String = ""): String {
+            var raw = uri.getQueryParameter(name).orEmpty()
+            if (resolver != null && raw.contains("@{")) {
+                raw = processNestedVariableExpressions(raw, resolver)
+            }
+            return raw.ifBlank { default }
+        }
+
+        fun readVar(name: String): String {
+            if (name.isBlank() || div2View == null) return ""
+            return runCatching {
+                Div2ViewVariableExporter.captureVariablesMap(div2View)[name]?.toString().orEmpty()
+            }.getOrDefault("")
+        }
+
+        val titleVar = qp("title_var", "variable_compromising_vehicle_damage_parts")
+        val codeVar = qp("code_var", "variable_compromising_vehicle_damage_parts_code")
+        val imagesVar = qp("images_var", "variable_compromising_vehicle_damage_parts_images")
+        val photosByCodeVar = qp(
+            "photos_by_code_var",
+            "variable_compromising_vehicle_damage_parts_photos_by_code",
+        )
+        val storeKey = qp("store_key")
+
+        pendingVehicleDamageHandler = WeakReference(this)
+        pendingVehicleDamageTitleVar = titleVar
+        pendingVehicleDamageCodeVar = codeVar
+        pendingVehicleDamageImagesVar = imagesVar
+        pendingVehicleDamagePhotosByCodeVar = photosByCodeVar
+        pendingVehicleDamageStoreKey = storeKey
+
+        var initialImages = readVar(imagesVar)
+        if (initialImages.isBlank() && storeKey.isNotBlank()) {
+            initialImages = runCatching {
+                com.yandex.divkit.demo.div.imagePickerView.ImagePickerView
+                    .getStoredSerialized("$imagesVar/$storeKey", withDescriptions = false)
+            }.getOrDefault("")
+        }
+
+        host.startActivityForResult(
+            VehicleDamage3DActivity.createIntent(
+                context = host,
+                titleVar = titleVar,
+                codeVar = codeVar,
+                imagesVar = imagesVar,
+                photosByCodeVar = photosByCodeVar,
+                storeKey = storeKey.ifBlank { null },
+                initialTitles = readVar(titleVar),
+                initialCodes = readVar(codeVar),
+                initialImages = initialImages,
+                initialPhotosByCode = readVar(photosByCodeVar),
+            ),
+            VehicleDamage3DActivity.REQUEST_CODE,
+        )
     }
 
     override fun onClicked(

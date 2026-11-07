@@ -1830,6 +1830,12 @@ class DemoCustomContainerAdapter(
                 if (variableName.isNotEmpty()) {
                     loadScreenListener?.setVariableToBase(variableName, storedValue)
                 }
+                // Persist under store_key so upload can find images after leaving this screen
+                if (storeKey.isNotBlank()) {
+                    mehdiViewModel?.insertItemToDbSync(
+                        com.yandex.divkit.demo.data.entities.PhPlusDB(null, storeKey, storedValue),
+                    )
+                }
             },
             newStoreKey = storeKey,
         )

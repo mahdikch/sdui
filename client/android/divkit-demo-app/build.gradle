@@ -56,7 +56,6 @@ android {
 //        versionCode divkitVersion.versionCode + divkitVersion.buildNumber
         versionCode 18
         versionName "1.1.8"
-
         buildConfigField "int", "BUILD_NUMBER", "${divkitVersion.buildNumber}"
         buildConfigField "String", "METRICA_API_KEY", JsonOutput.toJson(project.findProperty("metricaApiKey") ?: "")
         buildConfigField "boolean", "THROW_ASSERTS", project.hasProperty("screenshot-tests")? "false" : "true"

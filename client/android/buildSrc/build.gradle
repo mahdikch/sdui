@@ -2,6 +2,7 @@ apply plugin: 'groovy'
 apply plugin: 'kotlin'
 
 repositories {
+    maven { url "https://maven.aliyun.com/repository/public" }
     mavenCentral()
     jcenter()
     maven { url "https://jitpack.io" }
@@ -14,6 +15,7 @@ dependencies {
 
 buildscript {
     repositories {
+        maven { url "https://maven.aliyun.com/repository/public" }
         mavenCentral()
         jcenter()
         maven { url "https://jitpack.io" }

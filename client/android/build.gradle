@@ -19,7 +19,7 @@ buildscript {
 
     repositories {
         gradlePluginPortal()
-        // Offline-friendly stubs / mirrors when dl.google.com is unreachable
+        // Prefer Aliyun mirrors: Maven Central often fails here with UnknownHostException.
         maven { url uri("${rootProject.projectDir}/local-maven-repo") }
         maven { url "https://maven.aliyun.com/repository/google" }
         maven { url "https://maven.aliyun.com/repository/public" }
@@ -46,7 +46,7 @@ apply plugin: "org.jetbrains.kotlinx.binary-compatibility-validator"
 
 allprojects {
     repositories {
-        // Offline-friendly stubs / mirrors when dl.google.com is unreachable
+        // Prefer Aliyun mirrors: Maven Central often fails here with UnknownHostException.
         maven { url uri("${rootProject.projectDir}/local-maven-repo") }
         maven { url "https://maven.aliyun.com/repository/google" }
         maven { url "https://maven.aliyun.com/repository/public" }

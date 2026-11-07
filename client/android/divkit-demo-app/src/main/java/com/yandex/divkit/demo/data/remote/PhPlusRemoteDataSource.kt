@@ -13,6 +13,11 @@ class PhPlusRemoteDataSource @Inject constructor(
     suspend fun phPlus(phId:String,request: HashMap<String,String>) =
         getResult { phPlusService.phPlus(phId,request) }
 
+    suspend fun phPlusRawBody(phId: String, jsonBody: String) = getResult {
+        val body = jsonBody.toRequestBody("application/json; charset=utf-8".toMediaType())
+        phPlusService.phPlusRawBody(phId, body)
+    }
+
     suspend fun phPlusWithFiles(
         phId: String,
         requestScreenJson: String,

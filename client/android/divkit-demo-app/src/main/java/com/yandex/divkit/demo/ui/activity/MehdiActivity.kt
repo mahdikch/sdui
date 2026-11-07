@@ -64,7 +64,9 @@ import com.yandex.divkit.demo.ui.bottomSheetDiv.BottomSheetDiv
 import com.yandex.divkit.demo.ui.bottomSheetDiv.BottomSheetManager
 import com.yandex.divkit.demo.ui.dialogDiv.DialogDiv
 import com.yandex.divkit.demo.utils.ApkDownloader
+import com.yandex.divkit.demo.utils.AccidentImagesUploadHelper
 import com.yandex.divkit.demo.utils.AccidentRegisterDateTimeHelper
+import com.yandex.divkit.demo.utils.CurlMultipartExecutor
 import com.yandex.divkit.demo.utils.ScreenNavigationStack
 import com.yandex.divkit.demo.utils.VehicleEntryCountHelper
 import com.yandex.divkit.demo.utils.VehicleWizardDraftResolver
@@ -119,6 +121,9 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener,
     private var pendingNotificationMode: String? = null
     private var pendingNotificationPath: String? = null
     private var pendingNotificationRequestId: String? = null
+
+    /** After primaryRegisterAccidents success, upload images with returned variable_id. */
+    private var pendingAccidentImagesUploadAccidentId: String? = null
 
     // Debounce mechanism for notification count updates
     private var lastNotificationUpdateTime: Long = 0
@@ -1029,6 +1034,13 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener,
                                     "clearNotificationPrefs" -> clearNotificationPrefs = value
                                     "close_bottom_sheet" -> closeBottomSheet =
                                         shouldCloseBottomSheet(value)
+                                    "open_vehicle_damage_3d" -> {
+                                        runOnUiThread {
+                                            com.yandex.divkit.demo.div.vehicleDamage
+                                                .VehicleDamage3DReviewActivity
+                                                .openFromService(this@MehdiActivity, value)
+                                        }
+                                    }
 
                                     else -> pendingInserts.add(PhPlusDB(null, key, value))
                                 }
@@ -1307,13 +1319,35 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener,
                         if (pendingInserts.isNotEmpty()) {
                             repository.insertListAsync(pendingInserts)
                         }
-                        loading.dismissDialog()
+
+                        val accidentIdForImages = pendingAccidentImagesUploadAccidentId
+                        val registerVariableId = varList["variable_id"]
+                            ?.takeIf { it.isNotBlank() && it != "null" }
+                        if (!accidentIdForImages.isNullOrBlank() && !registerVariableId.isNullOrBlank()) {
+                            pendingAccidentImagesUploadAccidentId = null
+                            android.util.Log.d(
+                                "MehdiActivity",
+                                "primaryRegisterAccidents ok → upload images id=$registerVariableId accidentId=$accidentIdForImages",
+                            )
+                            loading.dismissDialog()
+                            uploadAccidentImagesAfterRegister(registerVariableId, accidentIdForImages)
+                        } else {
+                            if (!accidentIdForImages.isNullOrBlank()) {
+                                android.util.Log.w(
+                                    "MehdiActivity",
+                                    "pending accident image upload but variable_id missing in response",
+                                )
+                                pendingAccidentImagesUploadAccidentId = null
+                            }
+                            loading.dismissDialog()
+                        }
                         Log.e("SUCCESS", "end")
                     }
                 }
 
                 Resource.Status.ERROR -> {
                     android.util.Log.e("MehdiActivity", "ERROR: ${it.message}")
+                    pendingAccidentImagesUploadAccidentId = null
                     com.yandex.divkit.demo.ui.UIDiv2ActionHandler.clearPendingGuesthouseDayOp()
                     com.yandex.divkit.demo.ui.bottomSheetSpinner.BottomSheetSpinner
                         .deliverServiceError(it.message)
@@ -1509,6 +1543,68 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener,
             resultCode,
             data
         )
+        com.yandex.divkit.demo.ui.UIDiv2ActionHandler.handleVehicleDamage3DResult(
+            requestCode,
+            resultCode,
+            data
+        )
+
+        if (requestCode ==
+            com.yandex.divkit.demo.div.vehicleDamage.VehicleDamage3DReviewActivity.REQUEST_CODE &&
+            resultCode == Activity.RESULT_OK &&
+            data != null
+        ) {
+            submitVehicleSpecConfirm(data)
+        }
+    }
+
+    /**
+     * Confirm/reject parking vehicle damage review via confirmVehicleSpec/PK.
+     * Builds the `json` field: requestId, confirmTime, processSpec, reason, confirm, ticket.
+     */
+    private fun submitVehicleSpecConfirm(data: Intent) {
+        val review = com.yandex.divkit.demo.div.vehicleDamage.VehicleDamage3DReviewActivity
+        val mapper = com.yandex.divkit.demo.div.vehicleDamage.VehicleStatusDamageMapper
+
+        val approved = data.getBooleanExtra(review.EXTRA_RESULT_APPROVED, false)
+        val reason = data.getStringExtra(review.EXTRA_RESULT_REASON).orEmpty()
+        var requestId = data.getLongExtra(review.EXTRA_ENTITY_ID, 0L)
+        val payloadJson = data.getStringExtra(review.EXTRA_PAYLOAD_JSON).orEmpty()
+        if (requestId <= 0L && payloadJson.isNotBlank()) {
+            requestId = mapper.extractEntityId(payloadJson)
+        }
+
+        val vehicleStatusRaw = data.getStringExtra(review.EXTRA_VEHICLE_STATUS)
+            ?.takeIf { it.isNotBlank() }
+            ?: mapper.extractVehicleStatus(payloadJson)
+
+        val processSpec = runCatching { JSONObject(vehicleStatusRaw) }
+            .getOrElse { JSONObject() }
+
+        val ticket = mehdiViewModel.getValueByKey("ticket")?.value
+            ?.takeIf { it.isNotBlank() && it != "empty" && it != "null" }
+            ?: mehdiViewModel.getValueByKey("ph/token")?.value.orEmpty()
+
+        val body = JSONObject().apply {
+            put("requestId", requestId)
+            put("confirmTime", System.currentTimeMillis())
+            put("processSpec", processSpec)
+            put("reason", reason)
+            put("confirm", approved)
+            put("ticket", ticket)
+        }
+
+        android.util.Log.d(
+            "MehdiActivity",
+            "confirmVehicleSpec requestId=$requestId confirm=$approved jsonLen=${body.toString().length}",
+        )
+
+        val map = HashMap<String, String>()
+        map["path"] = "confirmVehicleSpec/PK"
+        map["sysName"] = "parking"
+        map["json"] = body.toString()
+        map["ph/token"] = "empty"
+        onRequest(map)
     }
 
     private fun startActivityForLoad(klass: Class<out Activity>, jsonName: String) {
@@ -1859,6 +1955,16 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener,
         pendingNotificationPath = map["path"]
         pendingNotificationRequestId = map["_notification_request_id"]
 
+        if (map.remove("_pending_accident_images_upload") == "true") {
+            pendingAccidentImagesUploadAccidentId = map.remove("_accident_id")
+                ?.takeIf { it.isNotBlank() }
+                ?: mehdiViewModel.getValueByKey("current_accident_id")?.value
+            android.util.Log.d(
+                "MehdiActivity",
+                "Armed accident images upload for accidentId=$pendingAccidentImagesUploadAccidentId",
+            )
+        }
+
         // Remove internal notification keys from request before sending to server
         map.remove("_notification_mode")
         map.remove("_notification_request_id")
@@ -1888,6 +1994,9 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener,
         for (key in keys) {
             val value = map[key] ?: continue
             if (key == "screenName") {
+
+
+
                 nextScreen = value
             }
             if (value == "empty" || value == "null") {
@@ -1985,6 +2094,13 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener,
                             "show_image" -> show_image = value
                             "clearNotificationPrefs" -> clearNotificationPrefs = value
                             "close_bottom_sheet" -> closeBottomSheet = shouldCloseBottomSheet(value)
+                            "open_vehicle_damage_3d" -> {
+                                runOnUiThread {
+                                    com.yandex.divkit.demo.div.vehicleDamage
+                                        .VehicleDamage3DReviewActivity
+                                        .openFromService(this@MehdiActivity, value)
+                                }
+                            }
 
                             else -> pendingInserts.add(PhPlusDB(null, key, value))
                         }
@@ -2880,6 +2996,135 @@ class MehdiActivity : AppCompatActivity(), LoadScreenListener,
         }
 
         android.util.Log.d("MehdiActivity", "=== uploadAndCallService() completed ===")
+    }
+
+    private fun uploadAccidentImagesAfterRegister(variableId: String, accidentId: String) {
+        lifecycleScope.launch {
+            var prepared: AccidentImagesUploadHelper.PreparedUpload? = null
+            try {
+                loading.showLoadingDialog("در حال آپلود تصاویر...")
+
+                val phToken = mehdiViewModel.getValueByKey("ph/token")?.value.orEmpty()
+                    .ifBlank { mehdiViewModel.getValueByKey("token")?.value.orEmpty() }
+                    .ifBlank { "empty" }
+                val phId = mehdiViewModel.getValueByKey("phid")?.value.orEmpty()
+
+                prepared = withContext(Dispatchers.IO) {
+                    AccidentImagesUploadHelper.prepare(
+                        context = this@MehdiActivity,
+                        viewModel = mehdiViewModel,
+                        accidentId = accidentId,
+                        registerId = variableId,
+                        phToken = phToken,
+                        versionCodePhPlus = BuildConfig.VERSION_CODE.toString(),
+                    )
+                }
+
+                val preparedUpload = prepared
+                if (preparedUpload == null) {
+                    loading.dismissDialog()
+                    android.util.Log.w(
+                        "MehdiActivity",
+                        "uploadAccidentImagesAfterRegister: no images for accidentId=$accidentId",
+                    )
+                    Toast.makeText(
+                        this@MehdiActivity,
+                        "تصویری برای آپلود یافت نشد",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                    return@launch
+                }
+
+                val metadataJson = preparedUpload.metadataRequest.toString()
+                android.util.Log.d(
+                    "MehdiActivity",
+                    "uploadAccidentImagesAfterRegister metadata=$metadataJson",
+                )
+
+                val curlResult = mehdiViewModel.callCoordinatorRawBody(phId, metadataJson)
+                when (curlResult.status) {
+                    Resource.Status.ERROR -> {
+                        loading.dismissDialog()
+                        curlResult.message?.let { error.showErrorDialog(it) }
+                        return@launch
+                    }
+                    Resource.Status.LOADING -> {
+                        loading.dismissDialog()
+                        error.showErrorDialog("پاسخ دریافتی از سرور نادرست است")
+                        return@launch
+                    }
+                    Resource.Status.SUCCESS -> Unit
+                }
+
+                val curlMap = curlResult.data
+                if (curlMap.isNullOrEmpty()) {
+                    loading.dismissDialog()
+                    error.showErrorDialog("لینک آپلود تصاویر دریافت نشد")
+                    return@launch
+                }
+
+                // Response keys may have trailing spaces (e.g. "accident_damageparts1 ")
+                val curlByTrimmedKey = curlMap
+                    .mapNotNull { (k, v) ->
+                        val trimmed = k?.trim().orEmpty()
+                        if (trimmed.isEmpty() || v.isNullOrBlank()) null else trimmed to v
+                    }
+                    .toMap()
+
+                val uploadErrors = mutableListOf<String>()
+                withContext(Dispatchers.IO) {
+                    for ((key, files) in preparedUpload.filesByKey) {
+                        val curlCommand = curlByTrimmedKey[key].orEmpty()
+                        if (curlCommand.isBlank() || !curlCommand.contains("curl", ignoreCase = true)) {
+                            uploadErrors.add("$key: دستور curl دریافت نشد")
+                            continue
+                        }
+                        val exec = CurlMultipartExecutor.execute(curlCommand, files)
+                        if (!exec.success) {
+                            uploadErrors.add("$key: ${exec.error ?: "خطای آپلود"}")
+                        }
+                    }
+                }
+
+                loading.dismissDialog()
+
+                val allOk = uploadErrors.isEmpty()
+                try {
+                    div.setVariable("isUploaded", if (allOk) "true" else "false")
+                } catch (_: Exception) {
+                }
+
+                if (allOk) {
+                    Toast.makeText(
+                        this@MehdiActivity,
+                        "آپلود تصاویر با موفقیت انجام شد",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                    val responseMap = HashMap<String, String>()
+                    for ((key, value) in curlMap) {
+                        if (key != null && value != null && !value.contains("curl", ignoreCase = true)) {
+                            responseMap[key] = value
+                        }
+                    }
+                    responseMap["isUploaded"] = "true"
+                    if (responseMap.size > 1) {
+                        processServiceResponseDirectly(responseMap)
+                    }
+                } else {
+                    android.util.Log.e(
+                        "MehdiActivity",
+                        "uploadAccidentImagesAfterRegister partial/fail: $uploadErrors",
+                    )
+                    error.showErrorDialog(uploadErrors.joinToString("\n"))
+                }
+            } catch (e: Exception) {
+                loading.dismissDialog()
+                android.util.Log.e("MehdiActivity", "uploadAccidentImagesAfterRegister failed", e)
+                error.showErrorDialog(e.message ?: "خطا در آپلود تصاویر")
+            } finally {
+                AccidentImagesUploadHelper.cleanup(prepared)
+            }
+        }
     }
 
     override fun uploadFilesAndCallService(params: HashMap<String, String>) {

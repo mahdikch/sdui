@@ -84,6 +84,31 @@ public class NajiPush {
         return scheme + MQTT_URL + ":" + MQTT_PORT;
     }
 
+    /**
+     * MQTTS like App-background0508: custom CA + hostname check via {@link MqttSslHelper}.
+     * HTTP portal/API still uses {@link PushSsl}. No background reconnect stack.
+     */
+    private void applyMqttSsl(MqttConnectOptions mqttConnectOptions, Context context)
+            throws NullActivityException {
+        boolean useSsl = Constant.MQTT_USE_SSL
+                || serverUri.startsWith("ssl://")
+                || serverUri.startsWith("tls://");
+        if (!useSsl) {
+            PushLog.i("MQTT connecting over TCP (no TLS)");
+            return;
+        }
+        try {
+            mqttConnectOptions.setSocketFactory(MqttSslHelper.socketFactory(context, MQTT_URL));
+            PushLog.i("MQTT SSL socket factory applied host=" + MQTT_URL + " uri=" + serverUri);
+        } catch (Exception e) {
+            PushLog.e("TLS setup failed: " + MqttSslHelper.rootCause(e), e);
+            if (listener != null) {
+                listener.connectFailed("TLS setup failed: " + e.getMessage());
+            }
+            throw new NullActivityException("TLS setup failed (assets/ca.crt): " + e.getMessage());
+        }
+    }
+
     public static MqttAndroidClient getInstance(Activity activity) throws NullActivityException {
         String uri = buildMqttUri();
         if (mqttAndroidClient == null || !uri.equals(serverUri)) {
@@ -340,29 +365,19 @@ public class NajiPush {
                 Lot="51.00";
 
         }
+        serverUri = buildMqttUri();
         MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
         mqttConnectOptions.setAutomaticReconnect(true);
         mqttConnectOptions.setConnectionTimeout(120);
         mqttConnectOptions.setKeepAliveInterval(600);
         mqttConnectOptions.setCleanSession(false);
+        // HTTP/API TLS (portal) — separate from MQTTS
         PushSsl.init(activity);
-        boolean useSsl = serverUri.startsWith("ssl://") || serverUri.startsWith("tls://");
         PushLog.i("MQTT connect start uri=" + serverUri
                 + " topic=" + topic
                 + " user=" + username
-                + " sslUri=" + useSsl
-                + " factory=" + (PushSsl.mqttSocketFactory(activity) != null));
-        if (useSsl) {
-            javax.net.ssl.SSLSocketFactory socketFactory = PushSsl.mqttSocketFactory(activity);
-            if (socketFactory != null) {
-                mqttConnectOptions.setSocketFactory(socketFactory);
-                PushLog.i("MQTT SSL socket factory applied");
-            } else {
-                PushLog.e("MQTT SSL requested but socket factory is null");
-            }
-        } else {
-            PushLog.i("MQTT connecting over TCP (no TLS)");
-        }
+                + " mqttUseSsl=" + Constant.MQTT_USE_SSL);
+        applyMqttSsl(mqttConnectOptions, activity);
 //        mqttConnectOptions.setWill(topic, "client Disconnect".getBytes(), 1, false);
 
         Log.d("naji push", "app username" + APP_NAME + username);
@@ -424,10 +439,13 @@ public class NajiPush {
 
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                    String detail = MqttSslHelper.rootCause(exception);
                     PushLog.e("MQTT connect onFailure uri=" + serverUri
-                            + " err=" + PushLog.errorSummary(exception), exception);
-                    listener.connectFailed("Failed to connect to: " + serverUri);
-                    addToHistory("Failed to connect to: " + serverUri);
+                            + " err=" + detail, exception);
+                    if (listener != null) {
+                        listener.connectFailed("Failed to connect to: " + serverUri + " — " + detail);
+                    }
+                    addToHistory("Failed to connect to: " + serverUri + " — " + detail);
                 }
             });
 
@@ -535,18 +553,14 @@ public class NajiPush {
         this.mainIntentClass = mainIntentClass;
         Lat = lat;
         Lot = lot;
+        serverUri = buildMqttUri();
         MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
         mqttConnectOptions.setAutomaticReconnect(true);
         mqttConnectOptions.setConnectionTimeout(60);
         mqttConnectOptions.setKeepAliveInterval(600);
         mqttConnectOptions.setCleanSession(false);
         PushSsl.init(activity);
-        if (serverUri.startsWith("ssl://") || serverUri.startsWith("tls://")) {
-            javax.net.ssl.SSLSocketFactory socketFactory = PushSsl.mqttSocketFactory(activity);
-            if (socketFactory != null) {
-                mqttConnectOptions.setSocketFactory(socketFactory);
-            }
-        }
+        applyMqttSsl(mqttConnectOptions, activity);
 //        mqttConnectOptions.setWill(topic, "client Disconnect".getBytes(), 1, false);
 
         Log.d("naji push", "app username" + APP_NAME + username);
@@ -609,8 +623,11 @@ public class NajiPush {
 
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                    listener.connectFailed("Failed to connect to: " + serverUri);
-                    addToHistory("Failed to connect to: " + serverUri);
+                    String detail = MqttSslHelper.rootCause(exception);
+                    if (listener != null) {
+                        listener.connectFailed("Failed to connect to: " + serverUri + " — " + detail);
+                    }
+                    addToHistory("Failed to connect to: " + serverUri + " — " + detail);
                 }
             });
 
@@ -739,9 +756,12 @@ public class NajiPush {
 
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                    String detail = MqttSslHelper.rootCause(exception);
                     PushLog.e("MQTT subscribe failed topic=" + topic
-                            + " err=" + PushLog.errorSummary(exception), exception);
-                    listener.SubscribeFailed("Failed to subscribe");
+                            + " err=" + detail, exception);
+                    if (listener != null) {
+                        listener.SubscribeFailed("Failed to subscribe: " + detail);
+                    }
                     addToHistory("Failed to subscribe");
                     // TODO: 11/17/2024 timescahul
                     // subscribeToTopic(topic);
@@ -768,8 +788,17 @@ public class NajiPush {
 
     private void syncUnreadMessage(String topic) {
         String[] split = topic.split("/");
+        if (split.length < 4) {
+            PushLog.w("syncUnreadMessage skipped: unexpected topic=" + topic);
+            return;
+        }
         String s = split[2] + "/" + split[3];
         List<Message> messages = unreadMessage(new UnreadMessageReq(Constant.API_KEY, s));
+        if (messages == null) {
+            // unreadMessage() returns null on portal/API/IO failure (or non-list JSON)
+            PushLog.w("syncUnreadMessage skipped: unread API returned null topic=" + s);
+            return;
+        }
         for (Message message : messages) {
             if (message == null || !isJsonObject(message.getPayload())) {
                 PushLog.w("Unread message dropped: payload is not readable topic=" + s);

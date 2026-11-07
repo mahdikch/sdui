@@ -110,6 +110,16 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".div.vehicleDamage.VehicleDamage3DActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".div.vehicleDamage.VehicleDamage3DReviewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".div.DivActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false"

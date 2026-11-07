@@ -10,14 +10,14 @@ public class Constant {
 //    public static String MQTT_URL = "push.pishgiri.naja.net";//wifi
 //
 //        public static String server_Url ="https://push.pishgiri.naja.net/pushnotif/session-api/enable-device";
-//
+//    public static String MQTT_PORT = "1883";
 //    public static String send_Url = "https://push.pishgiri.naja.net/pushnotif/sending-notifications/send-push";
 //    public static String portal_Url = "https://push.pishgiri.naja.net/portal/oauth/token";
 //    public static String unread_Url = "https://push.pishgiri.naja.net/pushnotif/sending-notifications/sync-unread";
 //    public static String API_KEY = "788de465-a105-4d9d-aca7-292e8a78b409";// local token
 //    public static String USERNAME_PORTAL = "policehamrah";// ghasht
 //    public static String PASSWORD_PORTAL = "123456";// ghasht
-//
+//    public static final boolean MQTT_USE_SSL = false;
 
 
 
@@ -27,23 +27,25 @@ public class Constant {
        public static String MQTT_URL = "172.31.68.165";//wifi
         public static String USERNAME_PORTAL = "policehamrah";// ghasht
         public static String PASSWORD_PORTAL = "123456";// ghasht
-        public static String server_Url ="http://172.31.68.165/pushnotif/session-api/enable-device";
-        public static String send_Url = "http://172.31.68.165/pushnotif/sending-notifications/send-push"; // local
-        public static String portal_Url = "http://172.31.68.165/portal/oauth/token"; // local
-        public static String unread_Url = "http://172.31.68.165/pushnotif/sending-notifications/sync-unread";
+        public static String server_Url ="https://172.31.68.165/pushnotif/session-api/enable-device";
+        public static String send_Url = "https://172.31.68.165/pushnotif/sending-notifications/send-push"; // local
+        public static String portal_Url = "https://172.31.68.165/portal/oauth/token"; // local
+        public static String unread_Url = "https://172.31.68.165/pushnotif/sending-notifications/sync-unread";
         public static String API_KEY = "ab864b5e-fe84-4a0a-85ba-58ad1af12d4e";// local token*/
 
 //        public static String MQTT_URL = "10.33.202.163";//wifi
 //    public static String MQTT_URL = "10.33.165.130";//wifi
 //    public static String MQTT_PORT = "1885";//wifi
-    public static String MQTT_PORT = "1883";
-    public static final boolean MQTT_USE_SSL = false;//wifi
+//    public static String MQTT_PORT = "1883";
+    public static String MQTT_PORT = "8989";
+    /** When true, broker URI is ssl:// and MqttSslHelper (assets/ca.crt) is required — same TLS path as App-background0508. */
+    public static final boolean MQTT_USE_SSL = true;
     public static String APP_NAME = "PHPLUS_APP/";// ghasht
 
 
-//        public static String APP_NAME = "ROKHDAD_APP_MISSION/";// ghasht
+// public static String APP_NAME = "ROKHDAD_APP_MISSION/";// ghasht
     public static String APP_NAME_SEND = "PHPLUS_LOCATION";// ghasht
-//        public static String USERNAME = "test_mrz";//ghasht
+//  public static String USERNAME = "test_mrz";//ghasht
     public static String USERNAME = "";//ghasht
 
 

@@ -25,10 +25,22 @@ object CompromisingAccidentJsonBuilder {
 
         val page1 = extractDraftVariables(dbValue(viewModel, "draft/$accidentId/page1"))
         val page4Draft = extractDraftVariables(dbValue(viewModel, "draft/$accidentId/page4"))
-        val page4 = page4Draft + liveVars
+        // Uncompromising final registration is saved as page11
+        val page11Draft = extractDraftVariables(dbValue(viewModel, "draft/$accidentId/page11"))
+        val page4 = page4Draft + page11Draft + liveVars
         val page3 = extractDraftVariables(dbValue(viewModel, "draft/$accidentId/page3"))
+        val page8 = extractDraftVariables(dbValue(viewModel, "draft/$accidentId/page8"))
 
-        val accident = buildAccidentObject(page1, page4, accidentId, viewModel, username, context)
+        val accident = buildAccidentObject(
+            page1,
+            page3,
+            page4,
+            page8,
+            accidentId,
+            viewModel,
+            username,
+            context,
+        )
         val vehicles = buildVehiclesArray(viewModel, username, accidentId)
         val pedestrians = buildPedestriansArray(viewModel, username, accidentId)
         val faultOrgan = buildFaultOrganObject(page4, viewModel, username, accidentId)
@@ -47,7 +59,9 @@ object CompromisingAccidentJsonBuilder {
 
     private fun buildAccidentObject(
         page1: Map<String, String>,
+        page3: Map<String, String>,
         page4: Map<String, String>,
+        page8: Map<String, String>,
         accidentId: String,
         viewModel: MehdiViewModel?,
         username: String,
@@ -94,14 +108,71 @@ object CompromisingAccidentJsonBuilder {
             obj.put("completionDate", regDate)
         }
 
+        val policeDate = page1["variable_police_date"].orEmpty()
+            .ifBlank { dbValue(viewModel, "variable_police_date/$accidentId").orEmpty() }
+        val policeTime = normalizeTime(
+            page1["variable_police_time"].orEmpty()
+                .ifBlank { dbValue(viewModel, "variable_police_time/$accidentId").orEmpty() },
+        )
+        obj.put(
+            "policeArriveTime",
+            when {
+                policeDate.isNotBlank() && policeTime.isNotBlank() -> "$policeDate $policeTime"
+                policeTime.isNotBlank() -> policeTime
+                else -> policeDate
+            },
+        )
+
+        obj.put(
+            "notificationNo",
+            page1["variable_news_number"].orEmpty()
+                .ifBlank { dbValue(viewModel, "variable_news_number/$accidentId").orEmpty() },
+        )
+
+        obj.put(
+            "expertOpinion",
+            page3["compromising_reasoning_officer_theory"].orEmpty()
+                .ifBlank {
+                    dbValue(viewModel, "compromising_reasoning_officer_theory/$accidentId").orEmpty()
+                },
+        )
+
+        obj.put(
+            "analysis",
+            page3["compromising_reasoning_officer_description"].orEmpty()
+                .ifBlank {
+                    dbValue(viewModel, "compromising_reasoning_officer_description/$accidentId")
+                        .orEmpty()
+                }
+                .ifBlank { page8["variable_explanation"].orEmpty() },
+        )
+
         obj.put("sceneStatusID", intOrNull(page1["ACCIDENT_SCENE_STATUS_code"]))
         obj.put("lightStatusID", intOrNull(page4["compromising_final_registration_lighting_status_code"]))
 
         parseCoordinates(page1["variable_geographic_coordinates_lat"].orEmpty(), obj, "x")
         parseCoordinates(page1["variable_geographic_coordinates_long"].orEmpty(), obj, "y")
 
-        obj.put("collisionTypeID", intOrNull(page4["compromising_final_registration_collision_place_code"]))
-        obj.putOpt("collisionStyleID", intOrNull(page4["compromising_final_registration_collision_style_code"]))
+        // نوع برخورد (page1) → collisionTypeID
+        obj.put(
+            "collisionTypeID",
+            intOrNull(
+                page1["variable_collection_type_code"]
+                    .orEmpty()
+                    .ifBlank { dbValue(viewModel, "variable_collection_type_code/$accidentId").orEmpty() },
+            ),
+        )
+        // محل برخورد (final registration) → collisionStyleID
+        obj.putOpt(
+            "collisionStyleID",
+            intOrNull(
+                draftVal(
+                    page4,
+                    "compromising_final_registration_collision_place_code",
+                    "uncompromising_final_registration_collision_place_code",
+                ),
+            ),
+        )
         obj.put("vehicleReasonIDs", page4["compromising_final_registration_vehicle_factor_code"].orEmpty())
         obj.put("humanReasonIDs", page4["compromising_final_registration_human_factor_code"].orEmpty())
         obj.put("shoulderStatusID", intOrNull(page4["compromising_final_registration_shoulder_type_code"]))
@@ -317,8 +388,9 @@ object CompromisingAccidentJsonBuilder {
             vehicle.putOpt("manoeuvreID", intOrNull(vPage1["uncompromising_vehicle_maneuver_code"]))
             vehicle.putOpt("remainEffectIDs", vPage1["uncompromising_vehicle_remaining_effectiv_code"])
             vehicle.put("damageSectionOther", vPage1["uncompromising_vehicle_damage_section_other"].orEmpty())
+            putVehicleExtraFields(vehicle, vPage1)
 
-            val driver = buildDriverObject(vPage2)
+            val driver = buildDriverObject(vPage2, vPage1, viewModel, accidentId)
             vehicle.put("driver", driver)
 
             val passengers = buildPassengersForVehicle(viewModel, username, vehicleId)
@@ -329,7 +401,12 @@ object CompromisingAccidentJsonBuilder {
         return arr
     }
 
-    private fun buildDriverObject(driverDraft: Map<String, String>): JSONObject {
+    private fun buildDriverObject(
+        driverDraft: Map<String, String>,
+        vehicleDraft: Map<String, String> = emptyMap(),
+        viewModel: MehdiViewModel? = null,
+        accidentId: String = "",
+    ): JSONObject {
         val d = JSONObject()
         d.put("address", draftVal(driverDraft, "variable_compromising_driver_address", "compromising_driver_address"))
         d.put("firstName", draftVal(driverDraft, "variable_compromising_driver_name", "compromising_driver_name"))
@@ -363,7 +440,22 @@ object CompromisingAccidentJsonBuilder {
             "jobTypeID",
             intOrNull(draftVal(driverDraft, "variable_compromising_driver_job_code", "compromising_driver_job_code")),
         )
-        d.put("dependencyPersonID", JSONObject.NULL)
+        val dependencyRaw = draftVal(
+            driverDraft,
+            "variable_compromising_vehicle_affiliation_code",
+            "compromising_vehicle_affiliation_code",
+            "variable_compromising_driver_affiliation_code",
+        ).ifBlank {
+            draftVal(
+                vehicleDraft,
+                "variable_compromising_vehicle_affiliation_code",
+                "compromising_vehicle_affiliation_code",
+            )
+        }.ifBlank {
+            if (accidentId.isBlank()) ""
+            else dbValue(viewModel, "variable_compromising_vehicle_affiliation_code/$accidentId")
+        }
+        d.put("dependencyPersonID", intOrNull(dependencyRaw) ?: JSONObject.NULL)
         d.put(
             "licenceDate",
             draftVal(
@@ -495,7 +587,102 @@ object CompromisingAccidentJsonBuilder {
                 "compromising_driver_violation_type_code",
             ),
         )
+
+        putVehicleExtraFields(d, vehicleDraft)
         return d
+    }
+
+    /**
+     * Extra vehicle-page fields shared by both `vehicle` and `driver` server objects.
+     * Several exist only on the uncompromising flow.
+     */
+    private fun putVehicleExtraFields(target: JSONObject, vehicleDraft: Map<String, String>) {
+        target.putOpt(
+            "illegalCargoTypeID",
+            intOrNull(draftVal(vehicleDraft, "uncompromising_vehicle_unlawful_cargo_type_code")),
+        )
+        target.putOpt(
+            "cargoStatusID",
+            intOrNull(draftVal(vehicleDraft, "uncompromising_vehicle_cargo_nature_code")),
+        )
+        target.putOpt(
+            "fireExtinguisherId",
+            intOrNull(
+                draftVal(
+                    vehicleDraft,
+                    "variable_compromising_vehicle_fire_extinguisher_capsule_code",
+                    "uncompromising_vehicle_fire_extinguisher_capsule_code",
+                ),
+            ),
+        )
+        target.putOpt(
+            "gettingOnFireId",
+            intOrNull(
+                draftVal(
+                    vehicleDraft,
+                    "variable_compromising_vehicle_getting_on_fire_code",
+                    "uncompromising_vehicle_getting_on_fire_code",
+                ),
+            ),
+        )
+        target.putOpt(
+            "approximateSpeedId",
+            intOrNull(
+                draftVal(
+                    vehicleDraft,
+                    "variable_compromising_vehicle_collision_speed_code",
+                    "uncompromising_vehicle_collision_speed_code",
+                ),
+            ),
+        )
+        target.putOpt(
+            "collisionAngleId",
+            intOrNull(
+                draftVal(
+                    vehicleDraft,
+                    "variable_compromising_vehicle_collision_angle_code",
+                    "uncompromising_vehicle_collision_angle_code",
+                ),
+            ),
+        )
+        target.putOpt(
+            "airbagId",
+            intOrNull(
+                draftVal(
+                    vehicleDraft,
+                    "variable_compromising_vehicle_air_bag_activity_code",
+                    "uncompromising_vehicle_air_bag_activity_code",
+                ),
+            ),
+        )
+        target.putOpt(
+            "airbagCount",
+            intOrNull(
+                draftVal(
+                    vehicleDraft,
+                    "variable_compromising_vehicle_air_bag_count",
+                    "uncompromising_vehicle_air_bag_count",
+                ),
+            ),
+        )
+        target.putOpt(
+            "airbagActId",
+            intOrNull(
+                draftVal(
+                    vehicleDraft,
+                    "variable_compromising_vehicle_air_bag_performance_code",
+                    "uncompromising_vehicle_air_bag_performance_code",
+                ),
+            ),
+        )
+        target.put(
+            "airbagPlaceIds",
+            draftVal(
+                vehicleDraft,
+                "variable_compromising_vehicle_air_bag_place_code",
+                "uncompromising_vehicle_air_bag_place_code",
+            ),
+        )
     }
 
     private fun buildPassengersForVehicle(
@@ -535,6 +722,16 @@ object CompromisingAccidentJsonBuilder {
             p.put("ambulanceCode", pDraft["variable_ambulance_code"].orEmpty())
             p.put("hospitalName", pDraft["variable_hospital_name"].orEmpty())
             p.putOpt("saftyBeltCapID", intOrNull(pDraft["variable_safety_belt_code"]))
+            p.put(
+                "chkUnknown",
+                boolFromDraft(
+                    pDraft,
+                    "variable_check_box_unknown",
+                    "uncompromising_passenger_check_box_unknown",
+                    "check_box_unknown",
+                    "chkUnknown",
+                ),
+            )
             arr.put(p)
         }
         return arr
@@ -587,6 +784,15 @@ object CompromisingAccidentJsonBuilder {
             p.putOpt("transferTypeID", intOrNull(pDraft["uncompromising_pedestrian_transfer_type_code"]))
             p.put("ambulanceCode", pDraft["uncompromising_pedestrian_ambulance_code"].orEmpty())
             p.put("hospitalName", pDraft["uncompromising_pedestrian_hospital_name"].orEmpty())
+            p.put(
+                "chkUnknown",
+                boolFromDraft(
+                    pDraft,
+                    "uncompromising_pedestrian_check_box_unknown",
+                    "check_box_unknown",
+                    "chkUnknown",
+                ),
+            )
             arr.put(p)
         }
         return arr
@@ -679,6 +885,13 @@ object CompromisingAccidentJsonBuilder {
 
     private fun draftVal(map: Map<String, String>, vararg names: String): String =
         DraftVariables.run { map.valueOf(*names) }
+
+    private fun boolFromDraft(map: Map<String, String>, vararg names: String): Boolean {
+        return when (draftVal(map, *names).trim().lowercase()) {
+            "true", "1", "yes" -> true
+            else -> false
+        }
+    }
 
     private fun parseCoordinates(value: String, obj: JSONObject, prefix: String) {
         val decimal = value.toDoubleOrNull() ?: return
